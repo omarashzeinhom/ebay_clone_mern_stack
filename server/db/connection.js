@@ -1,33 +1,26 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
-const Db =  process.env.ATLAS_URI;
 
-const client = new MongoClient(Db, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    }
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb://localhost/omarashrafzeinhom:23646358Omar/cluster0.vr0db7g.mongodb.net/?retryWrites=true&w=majority";
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
 }
-);
-
-
-var _db;
-
-module.exports = {
-    connectToServer: function (callback){
-        client.connect(function (error, db){
-            // Verify we got the "db " object
-            if(db){
-                _db = db.db("ebay_clone");
-                console.log(`
-                🚀 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
-                Successfully Connected to MongoDB , Lets fly 
-                🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀`);
-            }
-            return callback(error);
-        });
-    },
-    getDb: function(){
-        return _db;
-    },
-};
+run().catch(console.dir);
