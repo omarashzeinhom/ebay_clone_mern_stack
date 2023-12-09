@@ -1,7 +1,8 @@
 export default  function Header(){
     return (
-        <header>
-            <h1>Test</h1>
-        </header>
+        <head>
+            <title>Ebay Clone</title>
+            
+        </head>
     )
 }
