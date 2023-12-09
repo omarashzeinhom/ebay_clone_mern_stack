@@ -1,9 +1,14 @@
-const {MongoClient} = require("mongodb");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 const Db =  process.env.ATLAS_URI;
 
 const client = new MongoClient(Db, {
-   
-});
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    }
+}
+);
 
 
 var _db;
