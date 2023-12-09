@@ -1,6 +1,7 @@
 import "./Nav.scss";
 import { FaRegBell } from "react-icons/fa";
 import { TbShoppingCart } from "react-icons/tb";
+import { navItems, myEbayItems  } from "../../utils/constants";
 
 export default function Nav() {
   return (
@@ -49,72 +50,3 @@ export default function Nav() {
   );
 }
 
-const navItems = [
-  {
-    title: "Daily Deals",
-    link: "/dailydeals",
-  },
-  {
-    title: "Gift Cards",
-    link: "/giftcards",
-  },
-  {
-    title: "Help & Contact",
-    link: "/help&contact",
-  },
-];
-
-const myEbayItems = [
-  {
-    title: "Summary",
-    link: "#",
-  },
-  {
-    title: "Recently Viewed",
-    link: "#",
-  },
-  {
-    title: "Bids/Offers",
-    link: "#",
-  },
-  {
-    title: " Watchlist",
-    link: "#",
-  },
-  {
-    title: "Purchase History",
-    link: "#",
-  },
-  {
-    title: "Buy Again",
-    link: "#",
-  },
-  {
-    title: "Selling",
-    link: "#",
-  },
-
-  {
-    title: "Saved Searches",
-    link: "#",
-  },
-  {
-    title: "My Garage",
-    link: "#",
-  },
-
-  {
-    title: "Messages",
-    link: "#",
-  },
-
-  {
-    title: "Collection beta",
-    link: "#",
-  },
-
-  {
-    title: "The eBay vault",
-    link: "#",
-  },
-];
