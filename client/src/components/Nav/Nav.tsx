@@ -1,7 +1,7 @@
 import "./Nav.scss";
 import { FaRegBell } from "react-icons/fa";
 import { TbShoppingCart } from "react-icons/tb";
-import { navItems, myEbayItems  } from "../../utils/constants";
+import { navItems, myEbayItems } from "../../utils/constants";
 
 export default function Nav() {
   return (
@@ -23,20 +23,22 @@ export default function Nav() {
           );
         })}
         <div className="app__nav-right">
-          <li > Sell</li>
-          <li > MyEbay</li>
+          <li> Sell</li>
           <li>
-          <select name="MyeBay" id="myebay" className="app__nav-rightItem">
-            {myEbayItems.map((ebayItem, index) => {
-              return (
-                <option key={index} id={ebayItem?.title} >
-                {ebayItem?.title}
-                </option>
-              );
-            })}
-          </select>
+            <select name="MyeBay" id="myebay" className="app__nav-right-dropDown">
+              <option selected hidden>
+                My Ebay
+              </option>
+              {myEbayItems.map((ebayItem, index) => {
+                return (
+                  <option key={index} id={ebayItem?.title}>
+                    {ebayItem?.title}
+                  </option>
+                );
+              })}
+            </select>
           </li>
-          
+
           <li className="app__nav-rightItem">
             <a href="#notifcations">
               <FaRegBell className="app__nav-rightIcon" />
@@ -52,4 +54,3 @@ export default function Nav() {
     </nav>
   );
 }
-

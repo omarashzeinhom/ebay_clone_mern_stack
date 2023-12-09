@@ -1,0 +1,56 @@
+.app__searchbar {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-height: 3rem;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.app__searchbar-logo {
+  width: 100%;
+  height: 100%;
+  max-height: 3rem;
+  max-width: 7rem;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.app__searchbar-input {
+  width: 100%;
+  max-width: 60%;
+  height: fit-content;
+  outline: none;
+  border: 1px solid white;
+}
+
+.app__searchbar-searchBtn {
+  background-color: rgb(4, 111, 250);
+  border: 0px;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+}
+.app__searchbar-searchBtn:hover {
+  background-color: rgb(92, 163, 255);
+}
+
+.app__searchbar-searchicon {
+  color: white;
+}
+
+.app__searchbar-form {
+  display: flex;
+  gap: 1rem;
+}
+
+.app__searchbar-formSearch {
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border: 2px solid black;
+  width: 100%;
+  height: 100%;
+}
+
+.app__searchbar-form-dropDown{
+    outline: none;
+    border: 1px solid white;
+}
