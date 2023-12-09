@@ -2,9 +2,9 @@ import "./Header.css";
 
 export default  function Header(){
     return (
-        <head>
+        <header>
             <title>Ebay Clone</title>
             
-        </head>
+        </header>
     )
 };

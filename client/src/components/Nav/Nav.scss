@@ -1,0 +1,57 @@
+.app__nav {
+  display: flex;
+  top: 0;
+  position: static;
+  width: 100%;
+  flex-direction: row;
+  border-bottom: 0.1rem solid gray;
+  font-size: 12px;
+  padding: 3px 0 5px;
+
+}
+
+.app__nav-items {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.app__nav-item {
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  text-decoration: none;
+  color: black;
+}
+
+.app__nav-item:hover {
+  text-decoration: underline;
+}
+
+.app__nav-left {
+  text-align: left;
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+}
+
+.app__nav-right {
+  text-decoration: none;
+  list-style: none;
+  align-items: flex-end;
+  display: flex;
+  gap: 1rem;
+}
+
+.app__nav-rightItem {
+  color: black;
+  cursor: pointer;
+  top: 0px;
+}
+
+.app__nav-rightIcon {
+  color: black;
+  width: 100%;
+  max-width: 2rem;
+  max-height: 2rem;
+  height: 1.4rem;
+}
