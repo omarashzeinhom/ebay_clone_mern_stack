@@ -1,19 +1,19 @@
 .app__nav {
   display: flex;
-  top: 0;
-  position: static;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  flex-direction: row;
   border-bottom: 0.1rem solid gray;
   font-size: 12px;
-  padding: 3px 0 5px;
-
+  padding: 10px 0;
 }
 
 .app__nav-items {
   display: flex;
   gap: 1rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .app__nav-item {
@@ -27,17 +27,8 @@
   text-decoration: underline;
 }
 
-.app__nav-left {
-  text-align: left;
-  align-items: flex-start;
-  display: flex;
-  gap: 1rem;
-}
-
+.app__nav-left,
 .app__nav-right {
-  text-decoration: none;
-  list-style: none;
-  align-items: flex-end;
   display: flex;
   gap: 1rem;
 }
@@ -45,13 +36,15 @@
 .app__nav-rightItem {
   color: black;
   cursor: pointer;
-  top: 0px;
 }
 
 .app__nav-rightIcon {
   color: black;
-  width: 100%;
-  max-width: 2rem;
-  max-height: 2rem;
+  color: black;
+  width: 1.4rem;
   height: 1.4rem;
+}
+/* Additional style for the MyeBay select */
+.app__nav-rightItem select {
+  padding: 5px; /* Adjust padding for select element */
 }

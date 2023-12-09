@@ -23,8 +23,9 @@ export default function Nav() {
           );
         })}
         <div className="app__nav-right">
-          <li className="app__nav-rightItem"> Sell</li>
-          <li> MyEbay</li>
+          <li > Sell</li>
+          <li > MyEbay</li>
+          <li>
           <select name="MyeBay" id="myebay" className="app__nav-rightItem">
             {myEbayItems.map((ebayItem, index) => {
               return (
@@ -34,6 +35,8 @@ export default function Nav() {
               );
             })}
           </select>
+          </li>
+          
           <li className="app__nav-rightItem">
             <a href="#notifcations">
               <FaRegBell className="app__nav-rightIcon" />
