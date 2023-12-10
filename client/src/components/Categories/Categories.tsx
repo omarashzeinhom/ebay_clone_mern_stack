@@ -24,7 +24,7 @@ const Categories: React.FC<CategoriesProps> = () => {
   const fetchRandomImages = async () => {
     try {
       const response = await axios.get(
-        "https://api.pexels.com/v1/search?query=shoes&size=small&orientation=landscape",
+        "https://api.pexels.com/v1/search?query=sneakers&size=small&orientation=landscape",
         {
           headers: {
             Authorization:
