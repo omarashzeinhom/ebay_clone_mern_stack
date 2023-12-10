@@ -7,6 +7,8 @@ import Categories from "./Categories/Categories";
 import TrendingProducts from "./TrendingProducts/TrendingProducts";
 import Deals from "./Deals/Deals";
 import Ads from "./Ads/Ads";
+import SignInForm from "./SignInForm/SignInForm";
+import RegisterForm from "./RegisterForm/RegisterForm";
 import Footer from "./Footer/Footer";
 
-export {Header, Nav,  SearchBar, AdsCarousel, CategoriesCarousel, Categories, TrendingProducts , Deals , Ads, Footer};
+export {Header, Nav,  SearchBar, AdsCarousel, CategoriesCarousel, Categories, TrendingProducts , Deals , Ads, SignInForm, RegisterForm, Footer};

@@ -1,13 +1,17 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { Register, SignIn } from './pages';
 
-
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
-      <h1>app page</h1>
-    </div>
+    <Router>
+      <AuthProvider>
+          <Route path="/register" element={<Register/>} />
+          <Route path="/login" element={<SignIn/>} />
+      </AuthProvider>
+    </Router>
   );
-}
+};
 
 export default App;
