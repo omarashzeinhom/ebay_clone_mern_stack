@@ -1,6 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const uri =
-  "mongodb://localhost/omarashrafzeinhom:23646358Omar/cluster0.vr0db7g.mongodb.net/?retryWrites=true&w=majority";
+require("dotenv").config({path: "../config.env"});
+const uri = process.env.ATLAS_URI;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
