@@ -50,3 +50,7 @@ public
     ├── index.css
     └── index.tsx
 ```
+
+### References
+
+1. [optgroup: The Option Group element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup)

@@ -1,26 +1,41 @@
-import "./CategoriesCarousel.css";
-// import React, { useRef, useState } from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+// CategoriesCarousel.tsx
 
-// Import Swiper styles
-import "swiper/css";
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css';
+import './CategoriesCarousel.css';
+import { Category, categoryData } from '../../utils/searchBarConstants';
 
-export default function CategoriesCarousel() {
+interface CategoriesCarouselProps {
+  // Add any props if needed
+}
+
+const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
+  const shuffleArray = (array: Category[]): Category[] => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  const shuffledData = shuffleArray([...categoryData]);
+
   return (
     <div>
       <h2>Add Categories Carousel Here 📝</h2>
-      <Swiper slidesPerView={4} spaceBetween={30} className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+      <Swiper slidesPerView={4} spaceBetween={30} className="myCustomSwiper">
+        {shuffledData.map((category, index) => (
+          <SwiperSlide key={index}>
+            <div className="category-slide">
+              <img src={category.img} alt={category.name} loading="lazy" />
+              <p>{category.name}</p>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
-}
+};
+
+export default CategoriesCarousel;

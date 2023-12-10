@@ -1,23 +1,32 @@
-.swiper {
-    width: 100%;
-    height: 100%;
+/* CategoriesCarousel.css */
+
+.myCustomSwiper {
+  width: 100%;
+  height: 200px; /* Set a fixed height for the Swiper container */
+}
+
+.myCustomSwiper .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Make the slide circular */
+  overflow: hidden; /* Hide overflow for circular effect */
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Blue shadow effect */
+}
+
+.myCustomSwiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .myCustomSwiper {
+    height: 150px; /* Adjust the height for mobile */
   }
-  
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-  
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
+}

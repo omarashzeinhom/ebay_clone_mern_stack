@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "./AdsCarousel.scss";
 
@@ -13,7 +13,6 @@ interface Image {
 
 const AdsCarousel: React.FC = () => {
   const [images, setImages] = useState<Image[]>([]);
-  const swiper = useSwiper();
 
   const fetchRandomImages = async () => {
     try {

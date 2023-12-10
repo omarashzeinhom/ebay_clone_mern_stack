@@ -9,7 +9,7 @@ export default function SearchBar() {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
     null
   );
-
+    console.log(selectedCategory);
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedIndex = event.target.selectedIndex;
     setSelectedCategory(
