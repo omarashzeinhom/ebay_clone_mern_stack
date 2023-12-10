@@ -1,33 +1,105 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Navigation } from "swiper/modules";
 import "./AdsCarousel.scss";
-// import React, { useRef, useState } from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-
-// import required modules
-import { Navigation } from 'swiper/modules';
-
-
-export default function AdsCarousel(){
-
-    return (
-        <>
-        <h2>Add Ads Carousel Here 📝</h2>
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper>
-        </>
-    )
+interface Image {
+  id: number;
+  imageUrl: string;
+  alt: string;
+  buttonText: string;
 }
+
+const AdsCarousel: React.FC = () => {
+  const [images, setImages] = useState<Image[]>([]);
+  const swiper = useSwiper();
+
+  const fetchRandomImages = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.pexels.com/v1/search?query=product&size=small&orientation=landscape&per_page=7",
+        {
+          headers: {
+            Authorization:
+              "N9wgadcmAj2BqNR2TD6PWN8YMJvuqgSH9U339yI1uoM9QQhmJPhPDyBX",
+          },
+        }
+      );
+
+      const texts = [
+        "Product A",
+        "Amazing Deals",
+        "Limited Time Offer",
+        "Shop Now",
+      ];
+
+      const randomImages = response.data.photos.map(
+        (photo: any, index: number) => ({
+          id: photo.id,
+          imageUrl: photo.src.large,
+          alt: photo.url,
+          buttonText: texts[index % texts.length],
+        })
+      );
+
+      return randomImages;
+    } catch (error) {
+      console.error("Error fetching images:", error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const getImages = async () => {
+      const randomImages = await fetchRandomImages();
+      setImages(randomImages);
+    };
+
+    getImages();
+  }, []);
+
+  return (
+    <>
+      <Swiper
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
+        modules={[Navigation]}
+        className="mySwiper"
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+      >
+        {images.map((image) => (
+          <SwiperSlide key={image.id}>
+            <div className="slide-container">
+              <img
+                src={image.imageUrl}
+                alt={image.alt}
+                width={50}
+                height={50}
+                loading="lazy"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="image-buttons">
+                <button className="generate-text-button">
+                  {image.buttonText}
+                </button>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+        <div className="swiper-button-next"></div>
+        <div className="swiper-button-prev"></div>
+      </Swiper>
+    </>
+  );
+};
+
+export default AdsCarousel;
