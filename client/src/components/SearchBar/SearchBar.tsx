@@ -10,6 +10,7 @@ export default function SearchBar() {
           src="/ebaylogo.png"
           width={250}
           height={100}
+          alt="searchbarlogo"
         />
       </a>
 
@@ -44,6 +45,7 @@ export default function SearchBar() {
         </div>
 
         <button className=" app__searchbar-searchBtn">
+          Search
           <HiMagnifyingGlass className="app__searchbar-searchicon" />
         </button>
       </form>

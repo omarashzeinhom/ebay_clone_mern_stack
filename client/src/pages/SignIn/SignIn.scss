@@ -1,0 +1,46 @@
+.app__signin {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  display: grid;
+}
+
+.app__signin-container {
+  width: 100%;
+}
+
+.app__signin-form {
+  width: 100%;
+}
+
+.app__signin-input {
+  width: 100%;
+}
+.app__signin-Btn {
+  background-color: rgb(0, 110, 255);
+  border-radius: 28px;
+  width: 100%;
+  padding: 1rem 1rem 1rem 1rem;
+  font-size: 1rem;
+  color: white;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  gap: 2rem;
+}
+.app__signin-Btn-alt {
+  background-color: rgb(243, 243, 243);
+  border-radius: 28px;
+  width: 100%;
+  padding: 1rem 1rem 1rem 1rem;
+  font-size: 1rem;
+  color: rgb(5, 5, 5);
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  gap: 2rem;
+}

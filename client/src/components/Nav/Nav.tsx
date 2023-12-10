@@ -10,7 +10,7 @@ export default function Nav() {
         <div className="app__nav-left">
           <li>
             Hi! <a href="/signin ">Sign in</a> or{" "}
-            <a href="/register">register</a> Notification
+            <a href="/register">register</a> 
           </li>
         </div>
         {navItems.map((item, index) => {
@@ -23,7 +23,7 @@ export default function Nav() {
           );
         })}
         <div className="app__nav-right">
-          <li> Sell</li>
+          <li className="app__nav-right"> Sell</li>
           <li>
             <select name="MyeBay" id="myebay" className="app__nav-right-dropDown">
               <option selected hidden>

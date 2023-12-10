@@ -10,9 +10,11 @@
 
 .app__nav-items {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
+  color: black;
+  font-weight: bold;
   padding: 0;
 }
 
@@ -30,12 +32,16 @@
 .app__nav-left,
 .app__nav-right {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .app__nav-rightItem {
   color: black;
   cursor: pointer;
+}
+
+.app__nav-rightItem:hover {
+  text-decoration: underline;
 }
 
 .app__nav-rightIcon {
@@ -52,4 +58,6 @@
 .app__nav-right-dropDown {
   outline: none;
   border: 1px solid white;
+  cursor: pointer;
+  text-align: right;
 }
