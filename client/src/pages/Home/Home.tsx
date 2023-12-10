@@ -2,6 +2,7 @@ import {
     Header,
     Nav,
     SearchBar,
+    AdsCarousel,
     CategoriesCarousel,
     Categories,
     TrendingProducts,
@@ -17,6 +18,7 @@ export default function Home(){
         <Header />
         <Nav />
         <SearchBar />
+        <AdsCarousel/>
         <CategoriesCarousel />
         <Categories />
         <TrendingProducts />

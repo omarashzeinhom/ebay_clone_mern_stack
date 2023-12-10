@@ -1,16 +1,23 @@
-import "./CategoriesCarousel.css";
+import "./AdsCarousel.scss";
 // import React, { useRef, useState } from 'react';
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import "swiper/css";
+import 'swiper/css';
+import 'swiper/css/navigation';
 
-export default function CategoriesCarousel() {
-  return (
-    <div>
-      <h2>Add Categories Carousel Here 📝</h2>
-      <Swiper slidesPerView={4} spaceBetween={30} className="mySwiper">
+
+// import required modules
+import { Navigation } from 'swiper/modules';
+
+
+export default function AdsCarousel(){
+
+    return (
+        <>
+        <h2>Add Ads Carousel Here 📝</h2>
+        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         <SwiperSlide>Slide 1</SwiperSlide>
         <SwiperSlide>Slide 2</SwiperSlide>
         <SwiperSlide>Slide 3</SwiperSlide>
@@ -21,6 +28,6 @@ export default function CategoriesCarousel() {
         <SwiperSlide>Slide 8</SwiperSlide>
         <SwiperSlide>Slide 9</SwiperSlide>
       </Swiper>
-    </div>
-  );
+        </>
+    )
 }
