@@ -35,10 +35,7 @@ export default function SearchBar() {
             placeholder="Search for anything"
           />
 
-          <select
-            className="app__searchbar-form-dropDown"
-            id="categories"
-          >
+          <select className="app__searchbar-form-dropDown" id="categories">
             <option disabled defaultValue="All Categories">
               All Categories
             </option>
@@ -50,7 +47,6 @@ export default function SearchBar() {
 
         <button className="app__searchbar-searchBtn" id="searchBtn">
           <HiMagnifyingGlass className="app__searchbar-searchicon" />
-          Search
         </button>
       </form>
     </div>

@@ -31,6 +31,7 @@
   color: white;
   transition: 0.2s ease-out;
 }
+
 .app__searchbar-searchBtn:hover {
   background-color: rgb(92, 163, 255);
 }
@@ -51,7 +52,17 @@
   height: 100%;
 }
 
-.app__searchbar-form-dropDown{
-    outline: none;
-    border: 1px solid white;
+.app__searchbar-form-dropDown {
+  outline: none;
+  border: 1px solid white;
+}
+
+@media screen and (max-width: 500px) {
+  .app__searchbar-form-dropDown {
+    display: none;
+  }
+
+  .app__searchbar-searchBtn {
+    padding-right: 0;
+  }
 }
