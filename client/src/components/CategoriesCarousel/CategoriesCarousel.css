@@ -3,30 +3,54 @@
 .myCustomSwiper {
   width: 100%;
   height: 200px; /* Set a fixed height for the Swiper container */
+  background-color: #ffffff; /* Beige background color */
+  border-radius: 20px; /* Add border-radius for a rounded container */
+  overflow: hidden; /* Hide overflow for rounded container effect */
 }
 
 .myCustomSwiper .swiper-slide {
+  width: 100%;
+  max-width: 150px; /* Adjust the size of the circular avatar */
+  height: 150px; /* Adjust the size of the circular avatar */
   text-align: center;
-  font-size: 18px;
-  background: #fff;
+  font-size: 14px; /* Adjusted font size */
+  background-color: #f5f5dc; /* Beige background color */
   display: flex;
+  flex-direction: column; /* Align text and image vertically */
   justify-content: center;
   align-items: center;
-  border-radius: 50%; /* Make the slide circular */
+  border-radius: 50%; /* Maintain circular shape for the avatar */
   overflow: hidden; /* Hide overflow for circular effect */
-  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Blue shadow effect */
+  box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem rgba(212, 248, 11, 0.5); /* Blue shadow effect */
+  position: relative;
 }
 
 .myCustomSwiper .swiper-slide img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 100px; /* Adjust the size of the circular avatar */
+  height: 100px; /* Adjust the size of the circular avatar */
   object-fit: cover;
+  border-radius: 50%; /* Maintain circular shape for the avatar */
+  margin-bottom: 5px; /* Reduced margin between image and text */
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Blue shadow effect */
 }
 
-/* Responsive styles for mobile */
-@media (max-width: 768px) {
-  .myCustomSwiper {
-    height: 150px; /* Adjust the height for mobile */
-  }
+.myCustomSwiper .swiper-slide p.category-name {
+  margin: 0; /* Remove default margin for text */
+}
+
+.myCustomSwiper .category-name-hover {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px; /* Adjust the font size of the category name */
+  color: transparent;
+  text-decoration: underline transparent;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.myCustomSwiper .swiper-slide:hover .category-name-hover {
+  color: black; /* Black color on hover */
+  text-decoration: underline; /* Underline on hover */
 }
