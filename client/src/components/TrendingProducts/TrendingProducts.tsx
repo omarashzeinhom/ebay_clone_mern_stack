@@ -1,30 +1,83 @@
-import "./TrendingProducts.css";
-//import React, { useRef, useState } from 'react';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+// CategoriesCarousel.tsx
 
-// Import Swiper styles
-import 'swiper/css';
-export default function TrendingProducts(){
-    return (
-        <div>
-            <h2> Add TrendingProducts Here  📝</h2>
-            <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
-      
-        className="mySwiper"
-      >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper>
-            </div>
-    )
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+import "./TrendingProducts.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+interface TrendingProductsProps {
+  // Add any props if needed
 }
+interface Image {
+  id: number;
+  imageUrl: string;
+  alt: string;
+  buttonText: string;
+}
+
+const TrendingProducts: React.FC<TrendingProductsProps> = () => {
+  const [images, setImages] = useState<Image[]>([]);
+
+  const fetchRandomImages = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.pexels.com/v1/search?query=christmas&size=small&orientation=landscape",
+        {
+          headers: {
+            Authorization:
+              "N9wgadcmAj2BqNR2TD6PWN8YMJvuqgSH9U339yI1uoM9QQhmJPhPDyBX",
+          },
+        }
+      );
+
+      const texts = [
+        "Product A",
+        "Amazing Deals",
+        "Limited Time Offer",
+        "Shop Now",
+      ];
+
+      const randomImages = response.data.photos.map(
+        (photo: any, index: number) => ({
+          id: photo.id,
+          imageUrl: photo.src.large,
+          alt: photo.url,
+          buttonText: texts[index % texts.length],
+        })
+      );
+
+      return randomImages;
+    } catch (error) {
+      console.error("Error fetching images:", error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const getImages = async () => {
+      const randomImages = await fetchRandomImages();
+      setImages(randomImages);
+    };
+
+    getImages();
+  }, []);
+
+  return (
+    <div>
+      <h2>Holiday essentials</h2>
+      <Swiper slidesPerView={4} spaceBetween={30} className="myCustomSwiper">
+        {images.map((image, index) => (
+          <SwiperSlide key={index}>
+            <div className="category-slide">
+              <img src={image.imageUrl} alt={image.alt} loading="lazy" />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+};
+
+export default TrendingProducts;
