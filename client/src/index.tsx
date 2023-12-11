@@ -7,8 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Home, SignIn, Register } from './pages';
 import { AuthProvider } from './context/AuthContext';
 import { ErrorBoundary, NotFound } from './components';
-import { CategoryList } from './components/';
-import { ProductList } from './components/';
+import { CategoryList , ProductList, CustomerService } from './components/';
 import { ProductProvider } from './context/ProductContext';
 import { categoryData } from './utils/searchBarConstants';
 
@@ -44,6 +43,10 @@ const routes = [
   {
     path: '*',
     element: <NotFound />,
+  },
+  {
+    path: '/help&contact',
+    element: <CustomerService/>, 
   },
 ];
 

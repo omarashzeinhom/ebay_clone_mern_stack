@@ -4,10 +4,7 @@ const navItems = [
       title: "Daily Deals",
       link: "/dailydeals",
     },
-    {
-      title: "Gift Cards",
-      link: "/giftcards",
-    },
+    
     {
       title: "Help & Contact",
       link: "/help&contact",

@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaRegBell } from "react-icons/fa";
 import { TbShoppingCart } from "react-icons/tb";
 import { navItems, myEbayItems } from "../../utils/constants";
 import "./Nav.scss";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { token, user, logout } = useAuth();
   //console.log(user, token, logout);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleLogOut = () => {
     logout();
@@ -17,7 +19,10 @@ const Nav = () => {
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
-
+  const handleUserRoute = () => {
+    // Redirect to /user/${user?.userId} route
+    navigate(`/user/${user?.userId}`);
+  };
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
       <div className="app__nav-mobile-icon" onClick={handleMobileMenuToggle}>
@@ -28,17 +33,27 @@ const Nav = () => {
       >
         <div className="app__nav-left">
           {token ? (
-            <>
-              Hi, {user?.email || user?.userId}!
-              <button onClick={handleLogOut}>Logout</button>
-            </>
+            <select
+              className="app__nav-dropdown"
+              onChange={(e) => {
+                if (e.target.value === "logout") {
+                  handleLogOut();
+                } else {
+                  navigate(`/user/${user?.userId}`);
+                }
+              }}
+            >
+              <option value="">Hi, {user?.email || user?.userId}!</option>
+              <option onClick={handleUserRoute}>{user?.userId || " "}!</option>
+              <option value="logout" className="">
+                Sign out
+              </option>
+            </select>
           ) : (
-            <>
-              <li>
-                Hi! <a href="/signin">Sign in</a> or{" "}
-                <a href="/register">register</a>
-              </li>
-            </>
+            <li>
+              Hi! <a href="/signin">Sign in</a> or{" "}
+              <a href="/register">register</a>
+            </li>
           )}
         </div>
         {navItems.map((item, index) => (
