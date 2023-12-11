@@ -64,3 +64,6 @@ Start the server with `node index.js`
 [Express Documentation](https://expressjs.com/en/5x/api.html)
 [MongoDB Documentation](https://www.mongodb.com/docs/drivers/node/current/)
 [Mongoose Documentation](https://mongoosejs.com/docs/)
+
+- Various References 
+1. [Import and Export Data - MongoDB Compass ](https://www.mongodb.com/docs/compass/current/import-export/)

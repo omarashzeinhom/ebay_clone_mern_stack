@@ -48,6 +48,14 @@ const Nav = () => {
             </a>
           </li>
         ))}
+        <button
+          className={`app__nav-close ${
+            mobileMenuOpen ? "mobile-menu-open" : ""
+          }`}
+          onClick={handleMobileMenuToggle}
+        >
+          &times;
+        </button>
         <div className="app__nav-right">
           <li className="app__nav-rightItem">
             <a href="/sell">Sell</a>
