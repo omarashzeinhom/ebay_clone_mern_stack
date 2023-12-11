@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
   const [selectedCategory, setSelectedCategory] = useState<String | null>(null);
-  console.log(selectedCategory);
+  // console.log(selectedCategory);
 
   const navigate = useNavigate(); // React Router's useNavigate hook
 

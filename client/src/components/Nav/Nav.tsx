@@ -8,7 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { token, user, logout } = useAuth();
-  console.log(user, token, logout);
+  //console.log(user, token, logout);
 
   const handleLogOut = () => {
     logout();

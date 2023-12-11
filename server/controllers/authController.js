@@ -56,7 +56,7 @@ exports.getUser = async (req, res) => {
   try {
     // You can access the user details from the request object
     const user = req.user;
-    console.log(user);
+    //console.log(req.user);
     res.status(200).json({ email: user.email, userId: user.userId });
   } catch (error) {
     console.error(error);
