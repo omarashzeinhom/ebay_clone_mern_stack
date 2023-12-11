@@ -28,14 +28,16 @@ app.get("/", (req, res) => {
 
 app.get("/auth/register", (req, res) => {
   const {email, password} = req.body;
-  res.send(email,password);
+  //res.send(email,password);
   res.send("Hello, this is the register route!");
 });
 app.get("/auth/login", (req, res) => {
   const {email, password} = req.body;
-  res.send(email,password);
+  //res.send(email,password);
   res.send("Hello, this is the login route!");
 });
+
+app.get('/products', ProductController.getProducts);
 
 // Connect to MongoDB
 mongoose.connect(process.env.ATLAS_URI, {  useUnifiedTopology: true });

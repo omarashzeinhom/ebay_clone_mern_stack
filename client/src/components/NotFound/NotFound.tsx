@@ -1,9 +1,12 @@
 // NotFound.tsx
 import React from "react";
 import "./NotFound.scss"; // Import the corresponding SCSS file
+import SearchBar from "../SearchBar/SearchBar";
 
 const NotFound: React.FC = () => {
   return (
+  <>
+    <SearchBar/>
     <div className="not-found-container">
       <h2 className="not-found-title">404 Not Found</h2>
       <hr />
@@ -20,6 +23,7 @@ const NotFound: React.FC = () => {
 
       <a href="/">Return back </a>
     </div>
+  </>
   );
 };
 
