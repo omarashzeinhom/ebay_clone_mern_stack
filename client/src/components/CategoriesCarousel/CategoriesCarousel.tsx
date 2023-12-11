@@ -1,26 +1,22 @@
 // CategoriesCarousel.tsx
-
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 import "./CategoriesCarousel.scss";
 import { Category } from "../../models/category";
-import { Scrollbar } from "swiper/modules";
+import { Scrollbar, Grid } from "swiper/modules";
 import { categoriesService } from "../../services/categoryService";
 
-interface CategoriesCarouselProps {
-  // Add any props if needed
-}
+interface CategoriesCarouselProps {}
 
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
-  const [categoryData, setCategoryData] = useState([]);
+  const [categoryData, setCategoryData] = useState<Category[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const data = await categoriesService.getAllCategories();
-
         setCategoryData(data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -41,24 +37,32 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   const shuffledData = shuffleArray([...categoryData]);
 
   return (
-    <div>
+    <div className="app__categories-Carousel">
       <h2>Shop By Category</h2>
       <Swiper
-        modules={[Scrollbar]}
+        modules={[Scrollbar, Grid]}
         scrollbar={{
-          hide: false,
+          hide: true,
         }}
-        slidesPerView={4}
-        spaceBetween={30}
-        className="myCustomSwiper"
+        slidesPerView={3}
+        spaceBetween={10}
+        breakpoints={{
+          
+          768: {
+            slidesPerView: 5, 
+           
+          },
+          1024: {
+            slidesPerView: 6,
+          },
+        }}
       >
         {shuffledData.map((category, index) => (
           <SwiperSlide key={index}>
-            {/* Use Link to create a link for each category */}
             <Link to={`/category/${encodeURIComponent(category.name)}`}>
-              <div className="category-slide">
+              <div className="swiper-slide">
                 <img src={category.img} alt={category.name} loading="lazy" />
-                <p className="category-name">{category.name.slice(0, 10)}</p>
+                <p className="category-name">{category.name.slice(0, 15)}</p>
               </div>
             </Link>
           </SwiperSlide>
