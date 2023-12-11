@@ -6,6 +6,7 @@ import "swiper/swiper-bundle.css";
 import "./Categories.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Scrollbar } from "swiper/modules";
 
 interface CategoriesProps {
   // Add any props if needed
@@ -19,7 +20,6 @@ interface Image {
 
 const Categories: React.FC<CategoriesProps> = () => {
   const [images, setImages] = useState<Image[]>([]);
-
 
   const fetchRandomImages = async () => {
     try {
@@ -65,16 +65,22 @@ const Categories: React.FC<CategoriesProps> = () => {
     getImages();
   }, []);
 
-
   return (
     <div>
       <h2>Score these trending kicks</h2>
-      <Swiper slidesPerView={4} spaceBetween={30} className="myCustomSwiper">
+      <Swiper
+        modules={[Scrollbar]}
+        scrollbar={{
+          hide: false,
+        }}
+        slidesPerView={4}
+        spaceBetween={30}
+        className="myCustomSwiper"
+      >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="category-slide">
-              <img     src={image.imageUrl}
-                alt={image.alt} loading="lazy" />
+              <img src={image.imageUrl} alt={image.alt} loading="lazy" />
             </div>
           </SwiperSlide>
         ))}

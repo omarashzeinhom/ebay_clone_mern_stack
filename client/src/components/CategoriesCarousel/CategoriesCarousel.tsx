@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "./CategoriesCarousel.css";
 import { Category, categoryData } from "../../utils/searchBarConstants";
+import { Scrollbar } from "swiper/modules";
 
 interface CategoriesCarouselProps {
   // Add any props if needed
@@ -24,7 +25,15 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   return (
     <div>
       <h2>Wrap up the season with 15% off</h2>
-      <Swiper slidesPerView={4} spaceBetween={30} className="myCustomSwiper">
+      <Swiper
+        modules={[Scrollbar]}
+        scrollbar={{
+          hide: false,
+        }}
+        slidesPerView={4}
+        spaceBetween={30}
+        className="myCustomSwiper"
+      >
         {shuffledData.map((category, index) => (
           <SwiperSlide key={index}>
             <div className="category-slide">

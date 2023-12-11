@@ -6,6 +6,7 @@ import "swiper/swiper-bundle.css";
 import "./TrendingProducts.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Scrollbar } from "swiper/modules";
 
 interface TrendingProductsProps {
   // Add any props if needed
@@ -67,7 +68,14 @@ const TrendingProducts: React.FC<TrendingProductsProps> = () => {
   return (
     <div>
       <h2>Holiday essentials</h2>
-      <Swiper slidesPerView={4} spaceBetween={30} className="myCustomSwiper">
+      <Swiper 
+      slidesPerView={4} 
+      modules={[Scrollbar]}
+      scrollbar={{
+        hide: false,
+      }}
+      spaceBetween={30} 
+      className="myCustomSwiper">
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="category-slide">
