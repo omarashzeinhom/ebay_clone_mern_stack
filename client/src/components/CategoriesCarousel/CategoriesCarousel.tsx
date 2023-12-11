@@ -5,7 +5,7 @@ import "swiper/swiper-bundle.css";
 import { Link } from "react-router-dom";
 import "./CategoriesCarousel.scss";
 import { Category } from "../../models/category";
-import { Scrollbar, Grid } from "swiper/modules";
+import { Scrollbar, Navigation } from "swiper/modules";
 import { categoriesService } from "../../services/categoryService";
 
 interface CategoriesCarouselProps {}
@@ -40,10 +40,11 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
     <div className="app__categories-Carousel">
       <h2>Shop By Category</h2>
       <Swiper
-        modules={[Scrollbar, Grid]}
+        modules={[Scrollbar, Navigation]}
         scrollbar={{
           hide: true,
         }}
+        loop={true}
         slidesPerView={3}
         spaceBetween={10}
         breakpoints={{
