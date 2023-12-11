@@ -28,14 +28,14 @@ const routes = [
   },
   {
     path: "/",
-    element: <CategoryList categories={categoryData} />,
-    children: categoryData.map((category) => ({
-      path: `/category/${encodeURIComponent(category.name)}`,
-      element: (
-        <ProductList
-          products={productData.filter((p) => p.parent === category.name)}
-        />
-      ),
+  element: <CategoryList categories={categoryData} />,
+  children: categoryData.map((category) => ({
+    path: `/category/${encodeURIComponent(category.name)}`,
+    element: (
+      <ProductList
+        products={productData.filter((p) => p.parent === category.name)}
+      />
+    ),
     })),
   },
   {

@@ -3,7 +3,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import "./CategoriesCarousel.css";
+import { Link } from "react-router-dom"; // Import Link
+import "./CategoriesCarousel.scss";
 import { Category, categoryData } from "../../utils/searchBarConstants";
 import { Scrollbar } from "swiper/modules";
 
@@ -36,10 +37,13 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
       >
         {shuffledData.map((category, index) => (
           <SwiperSlide key={index}>
-            <div className="category-slide">
-              <img src={category.img} alt={category.name} loading="lazy" />
-              <p className="category-name">{category.name.slice(0, 10)}</p>
-            </div>
+            {/* Use Link to create a link for each category */}
+            <Link to={`/category/${encodeURIComponent(category.name)}`}>
+              <div className="category-slide">
+                <img src={category.img} alt={category.name} loading="lazy" />
+                <p className="category-name">{category.name.slice(0, 10)}</p>
+              </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
