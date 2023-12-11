@@ -830,7 +830,19 @@ const productData: Product[] = [
     img: "https://source.unsplash.com/featured/?gunsafe",
     price: 199.99,
     parent: "Hunting Equipment",
-    },
+  },
+  {
+    name: "Women Heels",
+    img: "https://source.unsplash.com/featured/?womenheels",
+    price: 199.99,
+    parent: "Women",
+  },
+  {
+    name: "Women Makeup",
+    img: "https://source.unsplash.com/featured/?makeup",
+    price: 99.99,
+    parent: "Women",
+  },
 ];
 
 export { categoryData, productData };

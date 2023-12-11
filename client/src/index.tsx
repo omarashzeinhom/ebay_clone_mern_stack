@@ -5,7 +5,12 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home, SignIn, Register } from "./pages";
 import { AuthProvider } from "./context/AuthContext";
-import { CategoryList, ProductList } from "./components";
+import {
+  CategoryList,
+  ErrorBoundary,
+  NotFound,
+  ProductList,
+} from "./components";
 import { categoryData, productData } from "./utils/searchBarConstants";
 
 const routes = [
@@ -33,6 +38,10 @@ const routes = [
       ),
     })),
   },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
 ];
 
 const router = createBrowserRouter(routes);
@@ -43,9 +52,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 

@@ -11,6 +11,8 @@ import SignInForm from "./SignInForm/SignInForm";
 import RegisterForm from "./RegisterForm/RegisterForm";
 import ProductList from "./ProductList/ProductList";
 import CategoryList from "./CategoryList/CategoryList";
+import NotFound from "./NotFound/NotFound";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import Footer from "./Footer/Footer";
 
-export {Header, Nav,  SearchBar, AdsCarousel, CategoriesCarousel, Categories, TrendingProducts , Deals , Ads, SignInForm, RegisterForm, ProductList, CategoryList, Footer};
+export {Header, Nav,  SearchBar, AdsCarousel, CategoriesCarousel, Categories, TrendingProducts , Deals , Ads, SignInForm, RegisterForm, ProductList, CategoryList, NotFound, ErrorBoundary, Footer};
