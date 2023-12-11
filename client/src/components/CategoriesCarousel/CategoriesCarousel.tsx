@@ -24,7 +24,7 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
 
   return (
     <div>
-      <h2>Wrap up the season with 15% off</h2>
+      <h2>Shop By Category</h2>
       <Swiper
         modules={[Scrollbar]}
         scrollbar={{

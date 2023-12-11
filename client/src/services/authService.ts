@@ -13,4 +13,10 @@ export const authService = {
     });
     return response.data.token;
   },
+  getUser: async (token: string): Promise<any> => {
+    const response = await axios.get(`${API_BASE_URL}/user`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  },
 };

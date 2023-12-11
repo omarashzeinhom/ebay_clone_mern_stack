@@ -1,7 +1,8 @@
 import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
 import "./SignInForm.scss";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { authService } from "../../services/authService";
+import { useAuth } from "../../context/AuthContext";
 
 const SignInNav = () => {
   return (
@@ -20,17 +21,27 @@ const SignInNav = () => {
 };
 
 const SignInForm: React.FC = () => {
-  const [ email, setEmail] = useState('');
+  const { login, token } = useAuth();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignIn = async () => {
     try {
-      const token = await authService.login(email, password);
-      console.log(`Login successful ${email}`, token);
+      const newToken = await authService.login(email, password);
+      const user = await authService.getUser(newToken);
+      login(newToken, user);
+      console.log(`Login successful: ${email}`);
     } catch (error) {
-      console.error(`Error has been found in handleSignIn : ${error}`);
+      console.error(`Error in handleSignIn: ${error}`);
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      // Fetch user information when the component mounts
+      authService.getUser(token);
+    }
+  }, [token]);
 
   return (
     <div className="app__signin">

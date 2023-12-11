@@ -49,3 +49,16 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+
+
+exports.getUser = async (req, res) => {
+  try {
+    // You can access the user details from the request object
+    const user = req.user;
+    res.status(200).json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
