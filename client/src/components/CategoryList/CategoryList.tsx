@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Category } from "../../utils/searchBarConstants";
+import { Category } from "../../models/category";
 import { useNavigate } from "react-router-dom";
 import { categoriesService } from "../../services/categoryService";
 
 interface CategoryListProps {
-  // Assuming there's an endpoint like '/api/categories' that returns categories
+  // Assuming there's an endpoint like '/categories' that returns categories
   categories: Category[];
 }
 

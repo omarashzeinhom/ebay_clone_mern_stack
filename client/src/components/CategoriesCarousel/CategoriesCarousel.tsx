@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Link } from "react-router-dom"; // Import Link
 import "./CategoriesCarousel.scss";
-import { Category } from "../../utils/searchBarConstants";
+import { Category } from "../../models/category";
 import { Scrollbar } from "swiper/modules";
 import { categoriesService } from "../../services/categoryService";
 
