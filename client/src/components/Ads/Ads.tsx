@@ -1,7 +1,7 @@
 // Ads.tsx
 
-import React from 'react';
-import './Ads.scss';
+import React from "react";
+import "./Ads.scss";
 
 const Ads: React.FC = () => {
   return (
@@ -35,7 +35,10 @@ const Ads: React.FC = () => {
             alt="Adidas Savings"
           />
           <h3>Unwrap holiday savings on adidas</h3>
-          <p>Save an additional 50% on gift-worthy faves with code ADI5OSALE Shop now →</p>
+          <p>
+            Save an additional 50% on gift-worthy faves with code ADI5OSALE Shop
+            now →
+          </p>
           <button className="button">Shop Adidas</button>
         </div>
 
@@ -45,7 +48,10 @@ const Ads: React.FC = () => {
             alt="Tire Installation"
           />
           <h3>Get local tire installation</h3>
-          <p>Have your new set installed by our network of experts. Shop top brands →</p>
+          <p>
+            Have your new set installed by our network of experts. Shop top
+            brands →
+          </p>
           <button className="button">Shop Tires</button>
         </div>
       </div>

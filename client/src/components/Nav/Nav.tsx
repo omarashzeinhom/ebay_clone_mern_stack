@@ -3,9 +3,16 @@ import { FaRegBell } from "react-icons/fa";
 import { TbShoppingCart } from "react-icons/tb";
 import { navItems, myEbayItems } from "../../utils/constants";
 import "./Nav.scss";
+import { useAuth } from "../../context/AuthContext";
 
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { token, user, logout } = useAuth();
+  console.log(user, token ,logout);
+  
+  const handleLogOut = () => {
+    logout();
+  }
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -16,11 +23,22 @@ const Nav = () => {
       <div className="app__nav-mobile-icon" onClick={handleMobileMenuToggle}>
         ☰
       </div>
-      <ul className={`app__nav-items ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
+      <ul
+        className={`app__nav-items ${mobileMenuOpen ? "mobile-menu-open" : ""}`}
+      >
         <div className="app__nav-left">
-          <li>
-            Hi! <a href="/signin">Sign in</a> or <a href="/register">register</a>
-          </li>
+          {token ? (
+            <>
+              Hi, {user?.email}!<button onClick={handleLogOut}>Logout</button>
+            </>
+          ) : (
+            <>
+              <li>
+                Hi! <a href="/signin">Sign in</a> or{" "}
+                <a href="/register">register</a>
+              </li>
+            </>
+          )}
         </div>
         {navItems.map((item, index) => (
           <li key={index}>

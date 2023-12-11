@@ -1,5 +1,4 @@
 require("dotenv").config({ path: "./config.env" });
-require("./db/connection");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require('mongoose');
@@ -33,6 +32,8 @@ app.get("/auth/register", (req, res) => {
   res.send("Hello, this is the register route!");
 });
 app.get("/auth/login", (req, res) => {
+  const {email, password} = req.body;
+  res.send(email,password);
   res.send("Hello, this is the login route!");
 });
 

@@ -26,7 +26,7 @@ const SignInForm: React.FC = () => {
   const handleSignIn = async () => {
     try {
       const token = await authService.login(email, password);
-      console.log("Login successful", token);
+      console.log(`Login successful ${email}`, token);
     } catch (error) {
       console.error(`Error has been found in handleSignIn : ${error}`);
     }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay,Navigation } from "swiper/modules";
 import "./AdsCarousel.scss";
 
 interface Image {
@@ -65,15 +65,13 @@ const AdsCarousel: React.FC = () => {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay,  Navigation]}
         className="mySwiper"
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
+       
       >
         {images.map((image) => (
           <SwiperSlide key={image.id}>

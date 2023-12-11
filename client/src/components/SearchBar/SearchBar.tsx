@@ -44,7 +44,7 @@ export default function SearchBar() {
           alt="searchbarlogo"
         />
       </a>
-      <select onChange={handleChange} className="app__searchbar-form-dropDown">
+      <select id="categories" onChange={handleChange} className="app__searchbar-form-dropDown">
         {!isMobile && <option hidden>All Categories</option>}
         {Object.entries(groupedCategories).map(([parent, categories]) => (
           <optgroup key={parent} label={parent}>
