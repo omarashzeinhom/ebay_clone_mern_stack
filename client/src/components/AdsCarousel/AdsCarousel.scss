@@ -16,9 +16,11 @@
       max-width: 1024px;
       max-height: 590px;
       @media screen and (max-width: 500px) {
-        max-height: 300px;
+        max-height: 250px;
+        max-width: 500px;
         border-radius: 8px;
       }
+      
     }
     .slide-container {
       position: relative;

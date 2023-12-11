@@ -20,6 +20,17 @@ const AdsCarousel: React.FC = () => {
 
     fetchCategories();
   }, []);
+
+  const shuffleArray = (array: Category[]): Category[] => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  const shuffledData = shuffleArray([...categoryData]);
+
   return (
     <>
       <Swiper
@@ -33,8 +44,9 @@ const AdsCarousel: React.FC = () => {
           delay: 2500,
           disableOnInteraction: false,
         }}
+        loop={shuffledData.length > 0} // Enable loop only if there are enough slides
       >
-        {categoryData.map((category) => (
+        {shuffledData.map((category) => (
           <SwiperSlide key={category?.name}>
             <div className="slide-container">
               <img
