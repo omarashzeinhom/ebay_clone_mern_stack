@@ -20,12 +20,12 @@ const SignInNav = () => {
 };
 
 const SignInForm: React.FC = () => {
-  const [username, setUsername] = useState("");
+  const [ email, setEmail] = useState('');
   const [password, setPassword] = useState("");
 
   const handleSignIn = async () => {
     try {
-      const token = await authService.login(username, password);
+      const token = await authService.login(email, password);
       console.log("Login successful", token);
     } catch (error) {
       console.error(`Error has been found in handleSignIn : ${error}`);
@@ -47,7 +47,7 @@ const SignInForm: React.FC = () => {
             className="app__signin-input"
             id="email"
             autoComplete="true"
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
         type="password"

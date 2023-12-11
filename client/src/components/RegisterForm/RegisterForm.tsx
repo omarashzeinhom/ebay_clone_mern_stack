@@ -4,29 +4,29 @@ import { authService } from '../../services/authService';
 
 
 
-const RegisterForm: React.FC = ()=>{
-
-    const [ username, setUsername] = useState('');
-    const [ password, setPassword] = useState('');
-
+const RegisterForm: React.FC = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+  
     const handleRegister = async () => {
-        try {
-            await authService.register(username,password);
-            console.log('Registration was successfull');
-        }catch(error){
-            console.error(`Registration failed due to : ${error}`);
-            alert(error);
-        }
+      try {
+        console.log(email, password); // Log the current values when the button is clicked
+        await authService.register(email, password);
+        console.log('Registration was successful');
+      } catch (error) {
+        console.error(`Registration failed due to: ${error}`);
+        alert(error);
+      }
     };
-
+  
     return (
-        <div>
-            <h2>Register</h2>
+      <div>
+        <h2>Register</h2>
         <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
@@ -35,8 +35,9 @@ const RegisterForm: React.FC = ()=>{
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={handleRegister}>Register</button>
-        </div>
-    )
-}
-
-export default RegisterForm;
+      </div>
+    );
+  };
+  
+  export default RegisterForm;
+  
