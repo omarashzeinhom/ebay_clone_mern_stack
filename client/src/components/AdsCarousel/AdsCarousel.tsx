@@ -1,63 +1,25 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay,Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "./AdsCarousel.scss";
-
-interface Image {
-  id: number;
-  imageUrl: string;
-  alt: string;
-  buttonText: string;
-}
+import { categoriesService } from "../../services/categoryService";
+import { useState, useEffect } from "react";
+import { Category } from "../../models/category";
 
 const AdsCarousel: React.FC = () => {
-  const [images, setImages] = useState<Image[]>([]);
-
-  const fetchRandomImages = async () => {
-    try {
-      const response = await axios.get(
-        "https://api.pexels.com/v1/search?query=product&size=small&orientation=landscape&per_page=7",
-        {
-          headers: {
-            Authorization:
-              "N9wgadcmAj2BqNR2TD6PWN8YMJvuqgSH9U339yI1uoM9QQhmJPhPDyBX",
-          },
-        }
-      );
-
-      const texts = [
-        "Product A",
-        "Amazing Deals",
-        "Limited Time Offer",
-        "Shop Now",
-      ];
-
-      const randomImages = response.data.photos.map(
-        (photo: any, index: number) => ({
-          id: photo.id,
-          imageUrl: photo.src.large,
-          alt: photo.url,
-          buttonText: texts[index % texts.length],
-        })
-      );
-
-      return randomImages;
-    } catch (error) {
-      console.error("Error fetching images:", error);
-      return [];
-    }
-  };
+  const [categoryData, setCategoryData] = useState<Category[]>([]);
 
   useEffect(() => {
-    const getImages = async () => {
-      const randomImages = await fetchRandomImages();
-      setImages(randomImages);
+    const fetchCategories = async () => {
+      try {
+        const data = await categoriesService.getAllCategories();
+        setCategoryData(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
     };
 
-    getImages();
+    fetchCategories();
   }, []);
-
   return (
     <>
       <Swiper
@@ -65,28 +27,27 @@ const AdsCarousel: React.FC = () => {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
-        modules={[Autoplay,  Navigation]}
+        modules={[Autoplay, Navigation]}
         className="mySwiper"
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-       
       >
-        {images.map((image) => (
-          <SwiperSlide key={image.id}>
+        {categoryData.map((category) => (
+          <SwiperSlide key={category?.name}>
             <div className="slide-container">
               <img
-                src={image.imageUrl}
-                alt={image.alt}
+                src={category?.img}
+                alt={category?.name}
                 width={50}
                 height={50}
                 loading="lazy"
-                style={{ objectFit: "cover" }}
+                className="carousel-image"
               />
               <div className="image-buttons">
                 <button className="generate-text-button">
-                  {image.buttonText}
+                  {category?.name}
                 </button>
               </div>
             </div>
