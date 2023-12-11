@@ -9,6 +9,8 @@ import Deals from "./Deals/Deals";
 import Ads from "./Ads/Ads";
 import SignInForm from "./SignInForm/SignInForm";
 import RegisterForm from "./RegisterForm/RegisterForm";
+import ProductList from "./ProductList/ProductList";
+import CategoryList from "./CategoryList/CategoryList";
 import Footer from "./Footer/Footer";
 
-export {Header, Nav,  SearchBar, AdsCarousel, CategoriesCarousel, Categories, TrendingProducts , Deals , Ads, SignInForm, RegisterForm, Footer};
+export {Header, Nav,  SearchBar, AdsCarousel, CategoriesCarousel, Categories, TrendingProducts , Deals , Ads, SignInForm, RegisterForm, ProductList, CategoryList, Footer};

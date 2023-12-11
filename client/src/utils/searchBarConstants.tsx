@@ -825,6 +825,12 @@ const productData: Product[] = [
     price: 399.99,
     parent: "Entertainment & Toys",
   },
+  {
+    name: "Gun Safe",
+    img: "https://source.unsplash.com/featured/?gunsafe",
+    price: 199.99,
+    parent: "Hunting Equipment",
+    },
 ];
 
 export { categoryData, productData };

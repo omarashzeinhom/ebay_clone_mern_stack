@@ -4,17 +4,25 @@ import React, { useState } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import "./SearchBar.scss";
 import { categoryData, Category } from "../../utils/searchBarConstants";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
-    null
-  );
-    console.log(selectedCategory);
+  const [selectedCategory, setSelectedCategory] = useState<String | null>(null);
+  console.log(selectedCategory);
+
+  const navigate = useNavigate(); // React Router's useNavigate hook
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedIndex = event.target.selectedIndex;
-    setSelectedCategory(
-      selectedIndex === 0 ? null : categoryData[selectedIndex - 1]
-    );
+    const selectedCategoryValue =
+      selectedIndex === 0 ? null : categoryData[selectedIndex - 1].name;
+
+    setSelectedCategory(selectedCategoryValue);
+
+    // Navigate to the selected category
+    if (selectedCategoryValue) {
+      navigate(`/category/${encodeURIComponent(selectedCategoryValue)}`);
+    }
   };
 
   const isMobile = window.innerWidth <= 500; // Check if the screen width is less than or equal to 500px
@@ -44,12 +52,16 @@ export default function SearchBar() {
           alt="searchbarlogo"
         />
       </a>
-      <select id="categories" onChange={handleChange} className="app__searchbar-form-dropDown">
+      <select
+        id="categories"
+        onChange={handleChange}
+        className="app__searchbar-form-dropDown"
+      >
         {!isMobile && <option hidden>All Categories</option>}
         {Object.entries(groupedCategories).map(([parent, categories]) => (
           <optgroup key={parent} label={parent}>
             {categories.map((category: Category, index: number) => (
-              <option key={index} value={category.name}>
+              <option key={index} value={encodeURIComponent(category.name)}>
                 {category.name}
               </option>
             ))}

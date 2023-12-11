@@ -5,8 +5,10 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home, SignIn, Register } from "./pages";
 import { AuthProvider } from "./context/AuthContext";
+import { CategoryList, ProductList } from "./components";
+import { categoryData, productData } from "./utils/searchBarConstants";
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: "/",
     element: <Home />,
@@ -17,9 +19,23 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <Register/>,
+    element: <Register />,
   },
-]);
+  {
+    path: "/",
+    element: <CategoryList categories={categoryData} />,
+    children: categoryData.map((category) => ({
+      path: `/category/${encodeURIComponent(category.name)}`,
+      element: (
+        <ProductList
+          products={productData.filter((p) => p.parent === category.name)}
+        />
+      ),
+    })),
+  },
+];
+
+const router = createBrowserRouter(routes);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -28,12 +44,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <AuthProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
