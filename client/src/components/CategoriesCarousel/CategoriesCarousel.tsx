@@ -44,14 +44,13 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
         scrollbar={{
           hide: true,
         }}
-        loop={true}
+        loop={shuffledData.length > 2} // Enable loop only if there are enough slides
         slidesPerView={3}
         spaceBetween={10}
         breakpoints={{
-          
           768: {
-            slidesPerView: 5, 
-           
+            slidesPerView: 5,
+            loop: shuffledData.length > 4,
           },
           1024: {
             slidesPerView: 6,
