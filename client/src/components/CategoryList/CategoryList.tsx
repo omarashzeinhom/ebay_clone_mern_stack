@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Category } from "../../utils/searchBarConstants";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import "./CategoryList.scss";
+import { useNavigate } from "react-router-dom";
+import { categoriesService } from "../../services/categoryService";
 
 interface CategoryListProps {
+  // Assuming there's an endpoint like '/api/categories' that returns categories
   categories: Category[];
 }
 
-const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
+const CategoryList: React.FC<CategoryListProps> = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch categories from the server when the component mounts
+    const fetchCategories = async () => {
+      try {
+        const data = await categoriesService.getAllCategories();
+        setCategories(data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   const groupedCategories: { [parent: string]: Category[] } = {};
   categories.forEach((category) => {
     const parent = category.parent || "Other";
@@ -17,13 +35,10 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
     groupedCategories[parent].push(category);
   });
 
-  const navigate = useNavigate(); // Use useNavigate for navigation
-
   const handleCategoryChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedCategory = event.target.value;
-    // Update the URL using useNavigate
     if (selectedCategory) {
       navigate(selectedCategory);
     }
@@ -35,7 +50,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
       <select
         onChange={handleCategoryChange}
         name="handleCategoryList"
-        value={window.location.pathname} // Use window.location.pathname to get the current URL
+        value={window.location.pathname}
       >
         {Object.entries(groupedCategories).map(([parent, categoryList]) => (
           <optgroup label={parent} key={parent}>
@@ -50,13 +65,6 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
           </optgroup>
         ))}
       </select>
-
-      {/**
-         * DEBUG
-         * {window.location.pathname !== "/" && (
-        <p>Selected Category: {decodeURIComponent(window.location.pathname.replace("/category/", ""))}</p>
-      )}
-         */}
     </div>
   );
 };

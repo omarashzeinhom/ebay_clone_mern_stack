@@ -7,18 +7,17 @@ import { categoryData, Category } from "../../utils/searchBarConstants";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
-  const [selectedCategory, setSelectedCategory] = useState<String | null>(null);
+  let [selectedCategory, setSelectedCategory] = useState<String | null>(null);
   // console.log(selectedCategory);
 
   const navigate = useNavigate(); // React Router's useNavigate hook
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedIndex = event.target.selectedIndex;
-    const selectedCategoryValue =
-      selectedIndex === 0 ? null : categoryData[selectedIndex - 1].name;
-
+    const selectedCategoryValue = selectedIndex === 0 ? null : categoryData[selectedIndex - 1].name;
     setSelectedCategory(selectedCategoryValue);
-
+    selectedCategory = selectedCategoryValue;
+    console.log(selectedCategory);
     // Navigate to the selected category
     if (selectedCategoryValue) {
       navigate(`/category/${encodeURIComponent(selectedCategoryValue)}`);

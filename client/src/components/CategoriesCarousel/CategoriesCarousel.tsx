@@ -1,18 +1,35 @@
 // CategoriesCarousel.tsx
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Link } from "react-router-dom"; // Import Link
 import "./CategoriesCarousel.scss";
-import { Category, categoryData } from "../../utils/searchBarConstants";
+import { Category } from "../../utils/searchBarConstants";
 import { Scrollbar } from "swiper/modules";
+import { categoriesService } from "../../services/categoryService";
 
 interface CategoriesCarouselProps {
   // Add any props if needed
 }
 
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
+  const [categoryData, setCategoryData] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await categoriesService.getAllCategories();
+
+        setCategoryData(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   const shuffleArray = (array: Category[]): Category[] => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

@@ -1,22 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Product } from "../../utils/searchBarConstants";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
+import { productService } from "../../services/productService";
 
 interface ProductListProps {
+  // Assuming there's an endpoint like '/api/products' that returns products
   products: Product[];
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products }) => {
+const ProductList: React.FC<ProductListProps> = () => {
+  const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const navigate = useNavigate(); // Use useNavigate for navigation
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch products from the server when the component mounts
+    const fetchProducts = async () => {
+      try {
+        const data = await productService.getAllProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
-    // Update the URL using useNavigate
     if (category) {
       navigate(`/category/${encodeURIComponent(category)}`);
     } else {
-      navigate("/"); // Navigate to the home page if no category is selected
+      navigate("/");
     }
   };
 
@@ -27,14 +43,13 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
       {/* UI to change the selected category */}
       <div>
         <button onClick={() => handleCategoryChange("")}>
-        All Categories
+          All Categories
         </button>
         {/* Add more buttons or UI elements for other categories */}
       </div>
 
       <ul>
         {products.map((product) => (
-          /* Check if no category is selected or if the product matches the selected category */
           (!selectedCategory || product.parent === selectedCategory) && (
             <li key={product.name}>
               <div>

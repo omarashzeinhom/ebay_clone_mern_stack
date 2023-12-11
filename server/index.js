@@ -2,7 +2,9 @@ require("dotenv").config({ path: "./config.env" });
 const express = require("express");
 const cors = require("cors");
 const mongoose = require('mongoose');
+const productRoutes= require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -37,10 +39,18 @@ app.get("/auth/login", (req, res) => {
   res.send("Hello, this is the login route!");
 });
 
-app.get('/products', ProductController.getProducts);
+
+app.use('/products', productRoutes ,(req, res)=>{
+  const {product} = req.body;
+  console.log(product);
+  res.send("Product Page");
+
+})
+
+app.use('/categories', categoryRoutes);
 
 // Connect to MongoDB
-mongoose.connect(process.env.ATLAS_URI, {  useUnifiedTopology: true });
+mongoose.connect(process.env.ATLAS_URI, {   });
 const connection = mongoose.connection;
 
 connection.once('open', () => {
