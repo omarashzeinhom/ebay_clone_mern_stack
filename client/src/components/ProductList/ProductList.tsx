@@ -1,64 +1,54 @@
-import React, { useState, useEffect } from "react";
-import { Product } from "../../utils/searchBarConstants";
+// ProductList.tsx
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { productService } from "../../services/productService";
+import { useProductContext } from "../../context/ProductContext";
+import "./ProductList.scss"; // Import the SCSS file
 
 interface ProductListProps {
-  // Assuming there's an endpoint like '/api/products' that returns products
-  products: Product[];
+  selectedCategory: string;
 }
 
-const ProductList: React.FC<ProductListProps> = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+const ProductList: React.FC<ProductListProps> = ({ selectedCategory }) => {
+  const { products, fetchProducts } = useProductContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch products from the server when the component mounts
-    const fetchProducts = async () => {
-      try {
-        const data = await productService.getAllProducts();
-        setProducts(data);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
     fetchProducts();
-  }, []);
+  }, [selectedCategory, fetchProducts]);
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-    if (category) {
-      navigate(`/category/${encodeURIComponent(category)}`);
-    } else {
-      navigate("/");
-    }
+  const handleCategoryChange = () => {
+    navigate("/");
   };
 
   return (
-    <div>
-      <h2>Products</h2>
+    <div className="product-list">
+      <h2 className="product-list__header">Products</h2>
 
       {/* UI to change the selected category */}
       <div>
-        <button onClick={() => handleCategoryChange("")}>
+        <button
+          className="product-list__category-button"
+          onClick={handleCategoryChange}
+        >
           All Categories
         </button>
-        {/* Add more buttons or UI elements for other categories */}
       </div>
 
-      <ul>
+      <ul className="product-list__product-list">
         {products.map((product) => (
-          (!selectedCategory || product.parent === selectedCategory) && (
-            <li key={product.name}>
-              <div>
-                <img src={product.img} alt={product.name} />
-                <p>{product.name}</p>
-                <p>${product.price}</p>
-              </div>
-            </li>
-          )
+          <li key={product.name} className="product-list__product-list-item">
+            <div>
+              <img
+                className="product-list__product-list-image"
+                src={product.img}
+                alt={product.name}
+              />
+              <p className="product-list__product-list-name">{product.name}</p>
+              <p className="product-list__product-list-price">
+                ${product.price}
+              </p>
+            </div>
+          </li>
         ))}
       </ul>
     </div>

@@ -40,12 +40,7 @@ app.get("/auth/login", (req, res) => {
 });
 
 
-app.use('/products', productRoutes ,(req, res)=>{
-  const {product} = req.body;
-  console.log(product);
-  res.send("Product Page");
-
-})
+app.use('/products', productRoutes)
 
 app.use('/categories', categoryRoutes);
 

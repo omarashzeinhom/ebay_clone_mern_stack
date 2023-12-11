@@ -1,0 +1,42 @@
+// ProductList.scss
+
+.product-list {
+  &__header {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  &__category-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  &__product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    &-item {
+      margin-bottom: 20px;
+    }
+
+    &-image {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+    }
+
+    &-name {
+      font-size: 1rem;
+      margin-top: 5px;
+    }
+
+    &-price {
+      font-weight: bold;
+      color: #007bff;
+      margin-top: 5px;
+    }
+  }
+}

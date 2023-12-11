@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Category } from "../../models/category";
 import { useNavigate } from "react-router-dom";
 import { categoriesService } from "../../services/categoryService";
+import "./CategoryList.scss";
+import { Nav, SearchBar } from "..";
 
 interface CategoryListProps {
   // Assuming there's an endpoint like '/categories' that returns categories
@@ -19,7 +21,7 @@ const CategoryList: React.FC<CategoryListProps> = () => {
         const data = await categoriesService.getAllCategories();
         setCategories(data);
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error("Error fetching categories:", error);
       }
     };
 
@@ -45,27 +47,31 @@ const CategoryList: React.FC<CategoryListProps> = () => {
   };
 
   return (
-    <div className="app__category-List">
-      <h2>Categories</h2>
-      <select
-        onChange={handleCategoryChange}
-        name="handleCategoryList"
-        value={window.location.pathname}
-      >
-        {Object.entries(groupedCategories).map(([parent, categoryList]) => (
-          <optgroup label={parent} key={parent}>
-            {categoryList.map((category) => (
-              <option
-                key={category.name}
-                value={`/category/${encodeURIComponent(category.name)}`}
-              >
-                {category.name}
-              </option>
-            ))}
-          </optgroup>
-        ))}
-      </select>
-    </div>
+    <>
+      <Nav />
+      <SearchBar />
+      <div className="app__category-List">
+        <h2>Categories</h2>
+        <select
+          onChange={handleCategoryChange}
+          name="handleCategoryList"
+          value={window.location.pathname}
+        >
+          {Object.entries(groupedCategories).map(([parent, categoryList]) => (
+            <optgroup label={parent} key={parent}>
+              {categoryList.map((category) => (
+                <option
+                  key={category.name}
+                  value={`/category/${encodeURIComponent(category.name)}`}
+                >
+                  {category.name}
+                </option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
+      </div>
+    </>
   );
 };
 

@@ -1,54 +1,55 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, SignIn, Register } from "./pages";
-import { AuthProvider } from "./context/AuthContext";
-import {
-  CategoryList,
-  ErrorBoundary,
-  NotFound,
-  ProductList,
-} from "./components";
-import { categoryData, productData } from "./utils/searchBarConstants";
+// index.tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Home, SignIn, Register } from './pages';
+import { AuthProvider } from './context/AuthContext';
+import { ErrorBoundary, NotFound } from './components';
+import { CategoryList } from './components/';
+import { ProductList } from './components/';
+import { ProductProvider } from './context/ProductContext';
+import { categoryData } from './utils/searchBarConstants';
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
   {
-    path: "/signin",
+    path: '/signin',
     element: <SignIn />,
   },
   {
-    path: "/register",
+    path: '/register',
     element: <Register />,
   },
   {
-    path: "/",
-  element: <CategoryList categories={categoryData} />,
-  children: categoryData.map((category) => ({
-    path: `/category/${encodeURIComponent(category.name)}`,
+    path: '/',
     element: (
-      <ProductList
-        products={productData.filter((p) => p.parent === category.name)}
-      />
+      <ProductProvider>
+        <CategoryList categories={categoryData} />
+      </ProductProvider>
     ),
+    children: categoryData.map((category) => ({
+      path: `/category/${encodeURIComponent(category.name)}`,
+      element: (
+        <ProductProvider key={category.name}>
+          <ProductList selectedCategory={category?.name} />
+        </ProductProvider>
+      ),
     })),
   },
   {
-    path: "*",
+    path: '*',
     element: <NotFound />,
   },
 ];
 
 const router = createBrowserRouter(routes);
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   <React.StrictMode>
@@ -57,7 +58,7 @@ root.render(
         <RouterProvider router={router} />
       </AuthProvider>
     </ErrorBoundary>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 
 reportWebVitals();
