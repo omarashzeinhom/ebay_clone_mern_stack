@@ -8,11 +8,11 @@ import { useAuth } from "../../context/AuthContext";
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { token, user, logout } = useAuth();
-  console.log(user, token ,logout);
-  
+  console.log(user, token, logout);
+
   const handleLogOut = () => {
     logout();
-  }
+  };
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -29,7 +29,8 @@ const Nav = () => {
         <div className="app__nav-left">
           {token ? (
             <>
-              Hi, {user?.email}!<button onClick={handleLogOut}>Logout</button>
+              Hi, {user?.email || user?.userId}!
+              <button onClick={handleLogOut}>Logout</button>
             </>
           ) : (
             <>

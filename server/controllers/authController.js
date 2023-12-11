@@ -41,7 +41,7 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id, email: user.email }, secretKey, { expiresIn: '1h' });
 
     res.status(200).json({ token, expiresIn: 3600 });
   } catch (error) {
@@ -56,7 +56,8 @@ exports.getUser = async (req, res) => {
   try {
     // You can access the user details from the request object
     const user = req.user;
-    res.status(200).json(user);
+    console.log(user);
+    res.status(200).json({ email: user.email, userId: user.userId });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });

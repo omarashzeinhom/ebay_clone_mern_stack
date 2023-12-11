@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 interface User {
+  userId: string;
   email: string;
   password: string;
   // Add other user properties as needed
@@ -47,6 +48,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setToken(newToken);
     setUser(newUser);
     localStorage.setItem("token", newToken);
+    // Set the user information
+    localStorage.setItem("user", JSON.stringify(newUser));
   };
 
   const logout = () => {
