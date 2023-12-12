@@ -5,26 +5,26 @@ import { useProductContext } from "../../context/ProductContext";
 import "./ProductList.scss"; // Import the SCSS file
 
 interface ProductListProps {
-  selectedCategory: string;
+  selectedCategory?: string;
 }
 
 const ProductList: React.FC<ProductListProps> = ({ selectedCategory }) => {
-  const { products, fetchProducts } = useProductContext();
+  const { products, fetchProducts, setCategory } = useProductContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchProducts();
-  }, [selectedCategory, fetchProducts]);
+    setCategory(selectedCategory || "");
+  }, [selectedCategory, fetchProducts, setCategory]);
 
   const handleCategoryChange = () => {
+    setCategory(selectedCategory || "");
     navigate("/");
   };
 
   return (
     <div className="product-list">
       <h2 className="product-list__header">Products</h2>
-
-      {/* UI to change the selected category */}
+  
       <div>
         <button
           className="product-list__category-button"
@@ -33,7 +33,7 @@ const ProductList: React.FC<ProductListProps> = ({ selectedCategory }) => {
           All Categories
         </button>
       </div>
-
+  
       <ul className="product-list__product-list">
         {products.map((product) => (
           <li key={product.name} className="product-list__product-list-item">
@@ -56,3 +56,5 @@ const ProductList: React.FC<ProductListProps> = ({ selectedCategory }) => {
 };
 
 export default ProductList;
+
+

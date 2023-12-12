@@ -9,13 +9,16 @@ interface ProductContextProps {
 
 interface ProductContextValue {
   products: Product[];
-  fetchProducts: () => void;
+  selectedCategory: string;
+  setCategory: (category: string) => void;
+  fetchProducts: () => void; // Add fetchProducts to the interface
 }
 
 const ProductContext = createContext<ProductContextValue | undefined>(undefined);
 
 export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
 
   const fetchProducts = async () => {
     try {
@@ -30,8 +33,12 @@ export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => 
     fetchProducts();
   }, []);
 
+  const setCategory = (category: string) => {
+    setSelectedCategory(category);
+  };
+
   return (
-    <ProductContext.Provider value={{ products, fetchProducts }}>
+    <ProductContext.Provider value={{ products, selectedCategory, setCategory, fetchProducts }}>
       {children}
     </ProductContext.Provider>
   );

@@ -12,6 +12,8 @@ interface CategoryListProps {
 
 const CategoryList: React.FC<CategoryListProps> = () => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,6 +43,8 @@ const CategoryList: React.FC<CategoryListProps> = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedCategory = event.target.value;
+    console.log("Selected Category:", selectedCategory);
+    setSelectedCategory(selectedCategory);
     if (selectedCategory) {
       navigate(selectedCategory);
     }
@@ -55,7 +59,7 @@ const CategoryList: React.FC<CategoryListProps> = () => {
         <select
           onChange={handleCategoryChange}
           name="handleCategoryList"
-          value={window.location.pathname}
+          value={selectedCategory}
         >
           {Object.entries(groupedCategories).map(([parent, categoryList]) => (
             <optgroup label={parent} key={parent}>
