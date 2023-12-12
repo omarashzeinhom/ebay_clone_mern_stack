@@ -1,434 +1,716 @@
 [
-    {
-      "name": "Wheel Bearing Kit",
-      "img": "https://source.unsplash.com/featured/?wheelbearingkit",
-      "price": 49.99,
-      "parent": "Parts & accessories"
-    },
-    {
-      "name": "Oil Filter",
-      "img": "https://source.unsplash.com/featured/?oilfilter",
-      "price": 24.99,
-      "parent": "Parts & accessories"
-    },
-    {
-      "name": "Air Filter",
-      "img": "https://source.unsplash.com/featured/?airfilter",
-      "price": 19.99,
-      "parent": "Parts & accessories"
-    },
-    {
-      "name": "Ford Mustang",
-      "img": "https://source.unsplash.com/featured/?fordmustang",
-      "price": 29.999,
-      "parent": "Cars & trucks"
-    },
-    {
-      "name": "Chevrolet Silverado",
-      "img": "https://source.unsplash.com/featured/?chevroletsilverado",
-      "price": 28.999,
-      "parent": "Cars & trucks"
-    },
-    {
-      "name": "Honda Accord",
-      "img": "https://source.unsplash.com/featured/?hondaaccord",
-      "price": 27.999,
-      "parent": "Cars & trucks"
-    },
-    {
-      "name": "Dodge Challenger",
-      "img": "https://source.unsplash.com/featured/?dodgeschallenger",
-      "price": 31.999,
-      "parent": "Cars & trucks"
-    },
-    {
-      "name": "Nissan Frontier",
-      "img": "https://source.unsplash.com/featured/?nissanfrontier",
-      "price": 26.999,
-      "parent": "Cars & trucks"
-    },
-    {
-      "name": "Toyota Camry",
-      "img": "https://source.unsplash.com/featured/?toyotacamry",
-      "price": 26.999,
-      "parent": "Cars & trucks"
-    },
-    {
-      "name": "Smart Thermostat",
-      "img": "https://source.unsplash.com/featured/?smartthermostat",
-      "price": 99.99,
-      "parent": "Electronics & communication equipment"
-    },
-    {
-      "name": "Rain Gear",
-      "img": "https://source.unsplash.com/featured/?raingear",
-      "price": 69.99,
-      "parent": "Outdoor Recreation Equipment"
-    },
-    {
-      "name": "Drone with Camera",
-      "img": "https://source.unsplash.com/featured/?dronewithcamera",
-      "price": 149.99,
-      "parent": "Audio & video equipment"
-    },
-    {
-      "name": "Automotive Brake Pad",
-      "img": "https://source.unsplash.com/featured/?automotivebrakepad",
-      "price": 19.99,
-      "parent": "Personal Transportation"
-    },
-    {
-      "name": "Home Theater System",
-      "img": "https://source.unsplash.com/featured/?hometheatersystem",
-      "price": 799.99,
-      "parent": "Audio & video equipment"
-    },
-    {
-      "name": "Musical Instrument Case",
-      "img": "https://source.unsplash.com/featured/?musicalinstrumentcase",
-      "price": 39.99,
-      "parent": "Music Equipment"
-    },
-    {
-      "name": "Dress Shoes",
-      "img": "https://source.unsplash.com/featured/?dressshoes",
-      "price": 89.99,
-      "parent": "Fashion & Clothing"
-    },
-    {
-      "name": "Comfy Couch",
-      "img": "https://source.unsplash.com/featured/?comfycouch",
-      "price": 699.99,
-      "parent": "Furniture & Decor"
-    },
-    {
-      "name": "3D Printer",
-      "img": "https://source.unsplash.com/featured/?3dprinter",
-      "price": 799.99,
-      "parent": "Industrial & maintenance equipment"
-    },
-    {
-      "name": "Art Paints Set",
-      "img": "https://source.unsplash.com/featured/?artpaintsset",
-      "price": 59.99,
-      "parent": "Arts & Entertainment"
-    },
-    {
-      "name": "Exercise Ball",
-      "img": "https://source.unsplash.com/featured/?exerciseball",
-      "price": 29.99,
-      "parent": "Fitness & Exercise"
-    },
-    {
-      "name": "Dog Leash",
-      "img": "https://source.unsplash.com/featured/?dogleash",
-      "price": 9.99,
-      "parent": "Pet Supplies"
-    },
-    {
-      "name": "Computer Keyboard",
-      "img": "https://source.unsplash.com/featured/?computerkeyboard",
-      "price": 79.99,
-      "parent": "Computer & Office Equipment"
-    },
-    {
-      "name": "Kitchen Sink",
-      "img": "https://source.unsplash.com/featured/?kitchensink",
-      "price": 249.99,
-      "parent": "Kitchen & Cookware"
-    },
-    {
-      "name": "Running Shoes",
-      "img": "https://source.unsplash.com/featured/?runningshoes",
-      "price": 89.99,
-      "parent": "Sports & Outdoors"
-    },
-    {
-      "name": "Dermatology Machine",
-      "img": "https://source.unsplash.com/featured/?dermatologymachine",
-      "price": 599.99,
-      "parent": "Medical & healthcare equipment"
-    },
-    {
-      "name": "Homework Desk",
-      "img": "https://source.unsplash.com/featured/?homeworkdesk",
-      "price": 249.99,
-      "parent": "Education & Training"
-    },
-    {
-      "name": "Tennis Racket",
-      "img": "https://source.unsplash.com/featured/?tennisracket",
-      "price": 99.99,
-      "parent": "Sports & Outdoors"
-    },
-    {
-      "name": "Diving Gear",
-      "img": "https://source.unsplash.com/featured/?divinggear",
-      "price": 299.99,
-      "parent": "Outdoor Recreation Equipment"
-    },
-    {
-      "name": "Camera Lens",
-      "img": "https://source.unsplash.com/featured/?cameralens",
-      "price": 249.99,
-      "parent": "Audio & video equipment"
-    },
-    {
-      "name": "Beach Tent",
-      "img": "https://source.unsplash.com/featured/?beachtent",
-      "price": 149.99,
-      "parent": "Outdoor Recreation Equipment"
-    },
-    {
-      "name": "Pool Cleaner",
-      "img": "https://source.unsplash.com/featured/?poolcleaner",
-      "price": 299.99,
-      "parent": "Indoor Living & Home"
-    },
-    {
-      "name": "Barbecue Grill",
-      "img": "https://source.unsplash.com/featured/?barbecuegrill",
-      "price": 249.99,
-      "parent": "Outdoor Living & Home"
-    },
-    {
-      "name": "Yoga Mat",
-      "img": "https://source.unsplash.com/featured/?yogamat",
-      "price": 39.99,
-      "parent": "Fitness & Exercise"
-    },
-    {
-      "name": "Meditation Cushion",
-      "img": "https://source.unsplash.com/featured/?meditationcushion",
-      "price": 19.99,
-      "parent": "Relaxation & Meditation"
-    },
-    {
-      "name": "Laser Cutter",
-      "img": "https://source.unsplash.com/featured/?lasercutter",
-      "price": 799.99,
-      "parent": "Industrial & maintenance equipment"
-    },
-    {
-      "name": "Car Alarm System",
-      "img": "https://source.unsplash.com/featured/?caralarmsystem",
-      "price": 99.99,
-      "parent": "Personal Transportation"
-    },
-    {
-      "name": "Motion Sensor Security Camera",
-      "img": "https://source.unsplash.com/featured/?motionsensorsecuritycamera",
-      "price": 199.99,
-      "parent": "Audio & video equipment"
-    },
-    {
-      "name": "Electric Shaver",
-      "img": "https://source.unsplash.com/featured/?electricshaver",
-      "price": 39.99,
-      "parent": "Personal Grooming & Health"
-    },
-    {
-      "name": "Heated Towel Radiator",
-      "img": "https://source.unsplash.com/featured/?heatedtowelradiator",
-      "price": 79.99,
-      "parent": "Bath & Shower"
-    },
-    {
-      "name": "Digital Audio Player",
-      "img": "https://source.unsplash.com/featured/?digitalaudioplayer",
-      "price": 69.99,
-      "parent": "Audio & video equipment"
-    },
-    {
-      "name": "Headphones",
-      "img": "https://source.unsplash.com/featured/?headphones",
-      "price": 199.99,
-      "parent": "Audio & video equipment"
-    },
-    {
-      "name": "Laptop Bag",
-      "img": "https://source.unsplash.com/featured/?laptopbag",
-      "price": 59.99,
-      "parent": "Computer & Office Equipment"
-    },
-    {
-      "name": "Camera Tripod",
-      "img": "https://source.unsplash.com/featured/?cameratripod",
-      "price": 79.99,
-      "parent": "Audio & video equipment"
-    },
-    {
-      "name": "Rolling Suitcase",
-      "img": "https://source.unsplash.com/featured/?rollingsuitcase",
-      "price": 99.99,
-      "parent": "Luggage & Travel"
-    },
-    {
-      "name": "E-Bike",
-      "img": "https://source.unsplash.com/featured/?ebike",
-      "price": 499.99,
-      "parent": "Sports & Outdoors"
-    },
-    {
-      "name": "Handyman Tool Set",
-      "img": "https://source.unsplash.com/featured/?handymantoolset",
-      "price": 249.99,
-      "parent": "Industrial & maintenance equipment"
-    },
-    {
-      "name": "Table Tennis Racket",
-      "img": "https://source.unsplash.com/featured/?pingpongracket",
-      "price": 79.99,
-      "parent": "Sports & Outdoors"
-    },
-    {
-      "name": "Baseball Glove",
-      "img": "https://source.unsplash.com/featured/?baseballglove",
-      "price": 69.99,
-      "parent": "Sports & Outdoors"
-    },
-    {
-      "name": "Rock Climbing Shoes",
-      "img": "https://source.unsplash.com/featured/?rockclimbingshoes",
-      "price": 149.99,
-      "parent": "Outdoor Recreation Equipment"
-    },
-    {
-      "name": "Hockey Stick",
-      "img": "https://source.unsplash.com/featured/?hockeystick",
-      "price": 79.99,
-      "parent": "Sports & Outdoors"
-    },
-    {
-      "name": "Football",
-      "img": "https://source.unsplash.com/featured/?football",
-      "price": 29.99,
-      "parent": "Sports & Outdoors"
-    },
-    {
-      "name": "Paintball Guns",
-      "img": "https://source.unsplash.com/featured/?paintballguns",
-      "price": 399.99,
-      "parent": "Sports & Outdoors"
-    },
-    {
-      "name": "Hiking Boots",
-      "img": "https://source.unsplash.com/featured/?hikingboots",
-      "price": 199.99,
-      "parent": "Outdoor Recreation Equipment"
-    },
-    {
-      "name": "Kayak",
-      "img": "https://source.unsplash.com/featured/?kayak",
-      "price": 699.99,
-      "parent": "Water Sports & Outdoors"
-    },
-    {
-      "name": "Paddle Board",
-      "img": "https://source.unsplash.com/featured/?paddleboard",
-      "price": 799.99,
-      "parent": "Water Sports & Outdoors"
-    },
-    {
-      "name": "Kitesurfing Board",
-      "img": "https://source.unsplash.com/featured/?kitesurfingboard",
-      "price": 1299.99,
-      "parent": "Water Sports & Outdoors"
-    },
-    {
-      "name": "Stand Up Paddleboard",
-      "img": "https://source.unsplash.com/featured/?supboard",
-      "price": 799.99,
-      "parent": "Water Sports & Outdoors"
-    },
-    {
-      "name": "Personal Watercraft",
-      "img": "https://source.unsplash.com/featured/?jetski",
-      "price": 5999.99,
-      "parent": "Water Sports & Outdoors"
-    },
-    {
-      "name": "Drone",
-      "img": "https://source.unsplash.com/featured/?drone",
-      "price": 2499.99,
-      "parent": "Aerospace & Drone"
-    },
-    {
-      "name": "Wi-Fi Hotspot",
-      "img": "https://source.unsplash.com/featured/?wifihotspot",
-      "price": 249.99,
-      "parent": "Computer & Office Equipment"
-    },
-    {
-      "name": "Fireworks Kit",
-      "img": "https://source.unsplash.com/featured/?fireworkskit",
-      "price": 49.99,
-      "parent": "Entertainment & Toys"
-    },
-    {
-      "name": "Oscillating Humidifier",
-      "img": "https://source.unsplash.com/featured/?oscillatinghumidifier",
-      "price": 99.99,
-      "parent": "Indoor Living & Home"
-    },
-    {
-      "name": "LED Grow Light",
-      "img": "https://source.unsplash.com/featured/?ledgrowlight",
-      "price": 49.99,
-      "parent": "Indoor Living & Home"
-    },
-    {
-      "name": "Dimmable Wall Switch",
-      "img": "https://source.unsplash.com/featured/?dimmablewallswitch",
-      "price": 24.99,
-      "parent": "Indoor Living & Home"
-    },
-    {
-      "name": "Hardware Organizer",
-      "img": "https://source.unsplash.com/featured/?hardwareorganizer",
-      "price": 29.99,
-      "parent": "Indoor Living & Home"
-    },
-    {
-      "name": "Home Theater System",
-      "img": "https://source.unsplash.com/featured/?hometheatersystem",
-      "price": 2499.99,
-      "parent": "Entertainment & Toys"
-    },
-    {
-      "name": "Sound Bar",
-      "img": "https://source.unsplash.com/featured/?soundbar",
-      "price": 599.99,
-      "parent": "Entertainment & Toys"
-    },
-    {
-      "name": "PlayStation",
-      "img": "https://source.unsplash.com/featured/?playstation",
-      "price": 399.99,
-      "parent": "Entertainment & Toys"
-    },
-    {
-      "name": "Xbox",
-      "img": "https://source.unsplash.com/featured/?xbox",
-      "price": 399.99,
-      "parent": "Entertainment & Toys"
-    },
-    {
-      "name": "Gun Safe",
-      "img": "https://source.unsplash.com/featured/?gunsafe",
-      "price": 199.99,
-      "parent": "Hunting Equipment"
-    },
-    {
-      "name": "Women Heels",
-      "img": "https://source.unsplash.com/featured/?womenheels",
-      "price": 199.99,
-      "parent": "Women"
-    },
-    {
-      "name": "Women Makeup",
-      "img": "https://source.unsplash.com/featured/?makeup",
-      "price": 99.99,
-      "parent": "Women"
-    }
-  ]
+{
+"name":"WheelBearingKit",
+"img":"https://source.unsplash.com/featured/?wheelbearingkit",
+"price":49.99,
+"parent":"Parts&accessories"
+},
+{
+"name":"OilFilter",
+"img":"https://source.unsplash.com/featured/?oilfilter",
+"price":24.99,
+"parent":"Parts&accessories"
+},
+{
+"name":"AirFilter",
+"img":"https://source.unsplash.com/featured/?airfilter",
+"price":19.99,
+"parent":"Parts&accessories"
+},
+{
+"name":"FordMustang",
+"img":"https://source.unsplash.com/featured/?fordmustang",
+"price":29.999,
+"parent":"Cars&trucks"
+},
+{
+"name":"ChevroletSilverado",
+"img":"https://source.unsplash.com/featured/?chevroletsilverado",
+"price":28.999,
+"parent":"Cars&trucks"
+},
+{
+"name":"HondaAccord",
+"img":"https://source.unsplash.com/featured/?hondaaccord",
+"price":27.999,
+"parent":"Cars&trucks"
+},
+{
+"name":"DodgeChallenger",
+"img":"https://source.unsplash.com/featured/?dodgeschallenger",
+"price":31.999,
+"parent":"Cars&trucks"
+},
+{
+"name":"NissanFrontier",
+"img":"https://source.unsplash.com/featured/?nissanfrontier",
+"price":26.999,
+"parent":"Cars&trucks"
+},
+{
+"name":"ToyotaCamry",
+"img":"https://source.unsplash.com/featured/?toyotacamry",
+"price":26.999,
+"parent":"Cars&trucks"
+},
+{
+"name":"SmartThermostat",
+"img":"https://source.unsplash.com/featured/?smartthermostat",
+"price":99.99,
+"parent":"Electronics&communicationequipment"
+},
+{
+"name":"RainGear",
+"img":"https://source.unsplash.com/featured/?raingear",
+"price":69.99,
+"parent":"OutdoorRecreationEquipment"
+},
+{
+"name":"DronewithCamera",
+"img":"https://source.unsplash.com/featured/?dronewithcamera",
+"price":149.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"AutomotiveBrakePad",
+"img":"https://source.unsplash.com/featured/?automotivebrakepad",
+"price":19.99,
+"parent":"PersonalTransportation"
+},
+{
+"name":"HomeTheaterSystem",
+"img":"https://source.unsplash.com/featured/?hometheatersystem",
+"price":799.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"MusicalInstrumentCase",
+"img":"https://source.unsplash.com/featured/?musicalinstrumentcase",
+"price":39.99,
+"parent":"MusicEquipment"
+},
+{
+"name":"DressShoes",
+"img":"https://source.unsplash.com/featured/?dressshoes",
+"price":89.99,
+"parent":"Fashion&Clothing"
+},
+{
+"name":"ComfyCouch",
+"img":"https://source.unsplash.com/featured/?comfycouch",
+"price":699.99,
+"parent":"Furniture&Decor"
+},
+{
+"name":"3DPrinter",
+"img":"https://source.unsplash.com/featured/?3dprinter",
+"price":799.99,
+"parent":"Industrial&maintenanceequipment"
+},
+{
+"name":"ArtPaintsSet",
+"img":"https://source.unsplash.com/featured/?artpaintsset",
+"price":59.99,
+"parent":"Arts&Entertainment"
+},
+{
+"name":"ExerciseBall",
+"img":"https://source.unsplash.com/featured/?exerciseball",
+"price":29.99,
+"parent":"Fitness&Exercise"
+},
+{
+"name":"DogLeash",
+"img":"https://source.unsplash.com/featured/?dogleash",
+"price":9.99,
+"parent":"PetSupplies"
+},
+{
+"name":"ComputerKeyboard",
+"img":"https://source.unsplash.com/featured/?computerkeyboard",
+"price":79.99,
+"parent":"Computer&OfficeEquipment"
+},
+{
+"name":"KitchenSink",
+"img":"https://source.unsplash.com/featured/?kitchensink",
+"price":249.99,
+"parent":"Kitchen&Cookware"
+},
+{
+"name":"RunningShoes",
+"img":"https://source.unsplash.com/featured/?runningshoes",
+"price":89.99,
+"parent":"Sports&Outdoors"
+},
+{
+"name":"DermatologyMachine",
+"img":"https://source.unsplash.com/featured/?dermatologymachine",
+"price":599.99,
+"parent":"Medical&healthcareequipment"
+},
+{
+"name":"HomeworkDesk",
+"img":"https://source.unsplash.com/featured/?homeworkdesk",
+"price":249.99,
+"parent":"Education&Training"
+},
+{
+"name":"TennisRacket",
+"img":"https://source.unsplash.com/featured/?tennisracket",
+"price":99.99,
+"parent":"Sports&Outdoors"
+},
+{
+"name":"DivingGear",
+"img":"https://source.unsplash.com/featured/?divinggear",
+"price":299.99,
+"parent":"OutdoorRecreationEquipment"
+},
+{
+"name":"CameraLens",
+"img":"https://source.unsplash.com/featured/?cameralens",
+"price":249.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"BeachTent",
+"img":"https://source.unsplash.com/featured/?beachtent",
+"price":149.99,
+"parent":"OutdoorRecreationEquipment"
+},
+{
+"name":"PoolCleaner",
+"img":"https://source.unsplash.com/featured/?poolcleaner",
+"price":299.99,
+"parent":"IndoorLiving&Home"
+},
+{
+"name":"BarbecueGrill",
+"img":"https://source.unsplash.com/featured/?barbecuegrill",
+"price":249.99,
+"parent":"OutdoorLiving&Home"
+},
+{
+"name":"YogaMat",
+"img":"https://source.unsplash.com/featured/?yogamat",
+"price":39.99,
+"parent":"Fitness&Exercise"
+},
+{
+"name":"MeditationCushion",
+"img":"https://source.unsplash.com/featured/?meditationcushion",
+"price":19.99,
+"parent":"Relaxation&Meditation"
+},
+{
+"name":"LaserCutter",
+"img":"https://source.unsplash.com/featured/?lasercutter",
+"price":799.99,
+"parent":"Industrial&maintenanceequipment"
+},
+{
+"name":"CarAlarmSystem",
+"img":"https://source.unsplash.com/featured/?caralarmsystem",
+"price":99.99,
+"parent":"PersonalTransportation"
+},
+{
+"name":"MotionSensorSecurityCamera",
+"img":"https://source.unsplash.com/featured/?motionsensorsecuritycamera",
+"price":199.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"ElectricShaver",
+"img":"https://source.unsplash.com/featured/?electricshaver",
+"price":39.99,
+"parent":"PersonalGrooming&Health"
+},
+{
+"name":"HeatedTowelRadiator",
+"img":"https://source.unsplash.com/featured/?heatedtowelradiator",
+"price":79.99,
+"parent":"Bath&Shower"
+},
+{
+"name":"DigitalAudioPlayer",
+"img":"https://source.unsplash.com/featured/?digitalaudioplayer",
+"price":69.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"Headphones",
+"img":"https://source.unsplash.com/featured/?headphones",
+"price":199.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"LaptopBag",
+"img":"https://source.unsplash.com/featured/?laptopbag",
+"price":59.99,
+"parent":"Computer&OfficeEquipment"
+},
+{
+"name":"CameraTripod",
+"img":"https://source.unsplash.com/featured/?cameratripod",
+"price":79.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"RollingSuitcase",
+"img":"https://source.unsplash.com/featured/?rollingsuitcase",
+"price":99.99,
+"parent":"Luggage&Travel"
+},
+{
+"name":"E-Bike",
+"img":"https://source.unsplash.com/featured/?ebike",
+"price":499.99,
+"parent":"Sports&Outdoors"
+},
+{
+"name":"HandymanToolSet",
+"img":"https://source.unsplash.com/featured/?handymantoolset",
+"price":249.99,
+"parent":"Industrial&maintenanceequipment"
+},
+{
+"name":"TableTennisRacket",
+"img":"https://source.unsplash.com/featured/?pingpongracket",
+"price":79.99,
+"parent":"Sports&Outdoors"
+},
+{
+"name":"BaseballGlove",
+"img":"https://source.unsplash.com/featured/?baseballglove",
+"price":69.99,
+"parent":"Sports&Outdoors"
+},
+{
+"name":"RockClimbingShoes",
+"img":"https://source.unsplash.com/featured/?rockclimbingshoes",
+"price":149.99,
+"parent":"OutdoorRecreationEquipment"
+},
+{
+"name":"HockeyStick",
+"img":"https://source.unsplash.com/featured/?hockeystick",
+"price":79.99,
+"parent":"Sports&Outdoors"
+},
+{
+"name":"Football",
+"img":"https://source.unsplash.com/featured/?football",
+"price":29.99,
+"parent":"Sports&Outdoors"
+},
+{
+"name":"PaintballGuns",
+"img":"https://source.unsplash.com/featured/?paintballguns",
+"price":399.99,
+"parent":"Sports&Outdoors"
+},
+{
+"name":"HikingBoots",
+"img":"https://source.unsplash.com/featured/?hikingboots",
+"price":199.99,
+"parent":"OutdoorRecreationEquipment"
+},
+{
+"name":"Kayak",
+"img":"https://source.unsplash.com/featured/?kayak",
+"price":699.99,
+"parent":"WaterSports&Outdoors"
+},
+{
+"name":"PaddleBoard",
+"img":"https://source.unsplash.com/featured/?paddleboard",
+"price":799.99,
+"parent":"WaterSports&Outdoors"
+},
+{
+"name":"KitesurfingBoard",
+"img":"https://source.unsplash.com/featured/?kitesurfingboard",
+"price":1299.99,
+"parent":"WaterSports&Outdoors"
+},
+{
+"name":"StandUpPaddleboard",
+"img":"https://source.unsplash.com/featured/?supboard",
+"price":799.99,
+"parent":"WaterSports&Outdoors"
+},
+{
+"name":"PersonalWatercraft",
+"img":"https://source.unsplash.com/featured/?jetski",
+"price":5999.99,
+"parent":"WaterSports&Outdoors"
+},
+{
+"name":"Drone",
+"img":"https://source.unsplash.com/featured/?drone",
+"price":2499.99,
+"parent":"Aerospace&Drone"
+},
+{
+"name":"Wi-FiHotspot",
+"img":"https://source.unsplash.com/featured/?wifihotspot",
+"price":249.99,
+"parent":"Computer&OfficeEquipment"
+},
+{
+"name":"FireworksKit",
+"img":"https://source.unsplash.com/featured/?fireworkskit",
+"price":49.99,
+"parent":"Entertainment&Toys"
+},
+{
+"name":"OscillatingHumidifier",
+"img":"https://source.unsplash.com/featured/?oscillatinghumidifier",
+"price":99.99,
+"parent":"IndoorLiving&Home"
+},
+{
+"name":"LEDGrowLight",
+"img":"https://source.unsplash.com/featured/?ledgrowlight",
+"price":49.99,
+"parent":"IndoorLiving&Home"
+},
+{
+"name":"DimmableWallSwitch",
+"img":"https://source.unsplash.com/featured/?dimmablewallswitch",
+"price":24.99,
+"parent":"IndoorLiving&Home"
+},
+{
+"name":"HardwareOrganizer",
+"img":"https://source.unsplash.com/featured/?hardwareorganizer",
+"price":29.99,
+"parent":"IndoorLiving&Home"
+},
+{
+"name":"HomeTheaterSystem",
+"img":"https://source.unsplash.com/featured/?hometheatersystem",
+"price":2499.99,
+"parent":"Entertainment&Toys"
+},
+{
+"name":"SoundBar",
+"img":"https://source.unsplash.com/featured/?soundbar",
+"price":599.99,
+"parent":"Entertainment&Toys"
+},
+{
+"name":"PlayStation",
+"img":"https://source.unsplash.com/featured/?playstation",
+"price":399.99,
+"parent":"Entertainment&Toys"
+},
+{
+"name":"Xbox",
+"img":"https://source.unsplash.com/featured/?xbox",
+"price":399.99,
+"parent":"Entertainment&Toys"
+},
+{
+"name":"GunSafe",
+"img":"https://source.unsplash.com/featured/?gunsafe",
+"price":199.99,
+"parent":"HuntingEquipment"
+},
+{
+"name":"WomenHeels",
+"img":"https://source.unsplash.com/featured/?womenheels",
+"price":199.99,
+"parent":"Women"
+},
+{
+"name":"WomenMakeup",
+"img":"https://source.unsplash.com/featured/?makeup",
+"price":99.99,
+"parent":"Women"
+},
+{
+"name":"CameraLens",
+"img":"https://source.unsplash.com/featured/?cameralens?",
+"price":249.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"LaptopComputer",
+"img":"https://source.unsplash.com/featured/?laptopcomputer?",
+"price":999.99,
+"parent":"Computer&OfficeEquipment"
+},
+{
+"name":"HandheldVacuumCleaner",
+"img":"https://source.unsplash.com/featured/?handheldvacuumcleaner?",
+"price":129.99,
+"parent":"Cleaning&Household"
+},
+{
+"name":"HandheldSpiralizer",
+"img":"https://source.unsplash.com/featured/?handheldspiralizer?",
+"price":14.99,
+"parent":"Kitchen&Cookware"
+},
+{
+"name":"IndustrialMixer",
+"img":"https://source.unsplash.com/featured/?industrialmixer?",
+"price":349.99,
+"parent":"Industrial&maintenanceequipment"
+},
+{
+"name":"HospitalGown",
+"img":"https://source.unsplash.com/featured/?hospitalgown?",
+"price":24.99,
+"parent":"Medical&healthcareequipment"
+},
+{
+"name":"OutdoorFishingKit",
+"img":"https://source.unsplash.com/featured/?outdoorfishingkit?",
+"price":69.99,
+"parent":"OutdoorRecreationEquipment"
+},
+{
+"name":"IndustrialOven",
+"img":"https://source.unsplash.com/featured/?industrialoven?",
+"price":3299.99,
+"parent":"Industrial&maintenanceequipment"
+},
+{
+"name":"Stethoscope",
+"img":"https://source.unsplash.com/featured/?stethoscope?",
+"price":34.99,
+"parent":"Medical&healthcareequipment"
+},
+{
+"name":"FitnessGymEquipment",
+"img":"https://source.unsplash.com/featured/?fitnessgymequipment?",
+"price":999.99,
+"parent":"Health&PersonalCare"
+},
+{
+"name":"FashionSewingMachine",
+"img":"https://source.unsplash.com/featured/?fashionsewingmachine?",
+"price":349.99,
+"parent":"Arts&Entertainment"
+},
+{
+"name":"TabletComputer",
+"img":"https://source.unsplash.com/featured/?tabletcomputer?",
+"price":399.99,
+"parent":"Computer&OfficeEquipment"
+},
+{
+"name":"PedestalDesk",
+"img":"https://source.unsplash.com/featured/?pedestaldesk?",
+"price":249.99,
+"parent":"Officeequipment&supplies"
+},
+{
+"name":"OfficeChair",
+"img":"https://source.unsplash.com/featured/?officechair?",
+"price":199.99,
+"parent":"Officeequipment&supplies"
+},
+{
+"name":"VehicleTransmission",
+"img":"https://source.unsplash.com/featured/?vehicletransmission?",
+"price":3299.99,
+"parent":"AutomotiveEquipment&Parts"
+},
+{
+"name":"DigitalVideoRecorder",
+"img":"https://source.unsplash.com/featured/?digitalvideorecorder?",
+"price":99.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"FireExtinguisher",
+"img":"https://source.unsplash.com/featured/?fireextinguisher?",
+"price":49.99,
+"parent":"Industrial&maintenanceequipment"
+},
+{
+"name":"PortableDustExtractor",
+"img":"https://source.unsplash.com/featured/?portabledustextractor?",
+"price":99.99,
+"parent":"Industrial&maintenanceequipment"
+},
+{
+"name":"MiniTableSaw",
+"img":"https://source.unsplash.com/featured/?minitablesaw?",
+"price":299.99,
+"parent":"Homeimprovementequipment"
+},
+{
+"name":"PetGPSTracker",
+"img":"https://source.unsplash.com/featured/?petgpstracker?",
+"price":59.99,
+"parent":"PetSupplies"
+},
+{
+"name":"3DPrinter",
+"img":"https://source.unsplash.com/featured/?3dprinter?",
+"price":3299.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"VirtualRealityHeadset",
+"img":"https://source.unsplash.com/featured/?virtualrealityheadset?",
+"price":599.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"RaspberryPi",
+"img":"https://source.unsplash.com/featured/?raspberrypi?",
+"price":34.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"RoboticsKit",
+"img":"https://source.unsplash.com/featured/?roboticskit?",
+"price":249.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"GPSWatch",
+"img":"https://source.unsplash.com/featured/?gpswatch?",
+"price":199.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"DigitalSoundbar",
+"img":"https://source.unsplash.com/featured/?digitalsoundbar?",
+"price":249.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"LEDWallClock",
+"img":"https://source.unsplash.com/featured/?ledwallclock?",
+"price":99.99,
+"parent":"Clocks&watches"
+},
+{
+"name":"RollingCounter",
+"img":"https://source.unsplash.com/featured/?rollingcounter?",
+"price":499.99,
+"parent":"Industrial&maintenanceequipment"
+},
+{
+"name":"ConveyorBeltSystem",
+"img":"https://source.unsplash.com/featured/?conveyorbeltsystem?",
+"price":3999.99,
+"parent":"Industrial&maintenanceequipment"
+},
+{
+"name":"FishingGPSSystem",
+"img":"https://source.unsplash.com/featured/?fishinggpssystem?",
+"price":349.99,
+"parent":"Outdoorgear"
+},
+{
+"name":"360DegreeGoProCamera",
+"img":"https://source.unsplash.com/featured/?360degreegoprocamera?",
+"price":599.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"RemoteControlBoat",
+"img":"https://source.unsplash.com/featured/?remotecontrolboat?",
+"price":349.99,
+"parent":"Watersportsequipment"
+},
+{
+"name":"GamingPC",
+"img":"https://source.unsplash.com/featured/?gamingpc?",
+"price":3499.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"SteamController",
+"img":"https://source.unsplash.com/featured/?steamcontroller?",
+"price":69.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"PlayStation5",
+"img":"https://source.unsplash.com/featured/?playstation5?",
+"price":499.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"XboxSeriesX",
+"img":"https://source.unsplash.com/featured/?xboxseriesx?",
+"price":499.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"iPhone13ProMax",
+"img":"https://source.unsplash.com/featured/?iphone13promax?",
+"price":1199.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"SamsungGalaxyS21+",
+"img":"https://source.unsplash.com/featured/?samsunggalaxys21+?",
+"price":999.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"32GBRAMDDR4-3200",
+"img":"https://source.unsplash.com/featured/?32gbramddr4-3200?",
+"price":2499.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"GeForceRTX3090GraphicsCard",
+"img":"https://source.unsplash.com/featured/?geforcertx3090graphicscard?",
+"price":1599.99,
+"parent":"Electronics&Technology"
+},
+{
+"name":"HomeTheaterSystem",
+"img":"https://source.unsplash.com/featured/?hometheatersystem?",
+"price":4999.99,
+"parent":"Audio&videoequipment"
+},
+{
+"name":"NestHubMax",
+"img":"https://source.unsplash.com/featured/?nesthubmax?",
+"price":299.99,
+"parent":"Smarthomedevices"
+},
+{
+"name":"NestThermostatE",
+"img":"https://source.unsplash.com/featured/?nestthermostate?",
+"price":399.99,
+"parent":"Smarthomedevices"
+},
+{
+"name":"Heels",
+"img":"https://source.unsplash.com/featured/?heels?",
+"price":399.99,
+"parent":"Women"
+},
+{
+"name":"Shoes",
+"img":"https://source.unsplash.com/featured/?menshoes?",
+"price":199.99,
+"parent":"Men"
+},
+{
+"name":"Handbag",
+"img":"https://source.unsplash.com/featured/?handbag?",
+"price":99.99,
+"parent":"Handbags"
+},
+{
+"name":"Sneakers",
+"img":"https://source.unsplash.com/featured/?heels?",
+"price":299.99,
+"parent":"CollectibleSneakers"
+}
+]
