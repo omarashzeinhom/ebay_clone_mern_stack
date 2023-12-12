@@ -1,17 +1,64 @@
 import React from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Home, SignIn, Register } from './pages';
 import { AuthProvider } from './context/AuthContext';
-import { Register, SignIn } from './pages';
+import { ErrorBoundary, NotFound } from './components';
+import { CategoryList , ProductList, CustomerService } from './components/';
+import { ProductProvider } from './context/ProductContext';
+import { categoryData } from './utils/searchBarConstants';
+
+const routes = [
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/signin',
+    element: <SignIn />,
+  },
+  {
+    path: '/register',
+    element: <Register />,
+  },
+  {
+    path: '/',
+    element: (
+      <ProductProvider>
+        <CategoryList categories={categoryData} />
+      </ProductProvider>
+    ),
+    children: categoryData.map((category) => ({
+      path: `/category/${encodeURIComponent(category.name)}`,
+      element: (
+        <ProductProvider key={category.name}>
+          <ProductList selectedCategory={category?.name} />
+        </ProductProvider>
+      ),
+    })),
+  },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
+  {
+    path: '/help&contact',
+    element: <CustomerService/>, 
+  },
+];
+
+const router = createBrowserRouter(routes);
+
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <React.StrictMode>
+    <ErrorBoundary>
       <AuthProvider>
-          <Route path="/register" element={<Register/>} />
-          <Route path="/login" element={<SignIn/>} />
-       
+        <RouterProvider router={router} />
       </AuthProvider>
-    </Router>
+    </ErrorBoundary>
+  </React.StrictMode>
   );
 };
 

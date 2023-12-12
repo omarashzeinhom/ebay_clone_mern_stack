@@ -17,7 +17,7 @@ export default function SearchBar() {
     const selectedCategoryValue = selectedIndex === 0 ? null : categoryData[selectedIndex - 1].name;
     setSelectedCategory(selectedCategoryValue);
     selectedCategory = selectedCategoryValue;
-    console.log(selectedCategory);
+    console.log(selectedCategory)
     // Navigate to the selected category
     if (selectedCategoryValue) {
       navigate(`/category/${encodeURIComponent(selectedCategoryValue)}`);

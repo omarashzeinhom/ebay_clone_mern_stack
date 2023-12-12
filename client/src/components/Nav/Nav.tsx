@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { token, user, logout } = useAuth();
+
   //console.log(user, token, logout);
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -23,6 +24,8 @@ const Nav = () => {
     // Redirect to /user/${user?.userId} route
     navigate(`/user/${user?.userId}`);
   };
+
+  
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
       <div className="app__nav-mobile-icon" onClick={handleMobileMenuToggle}>
@@ -34,6 +37,7 @@ const Nav = () => {
         <div className="app__nav-left">
           {token ? (
             <select
+              id="categoriesDropDown"
               className="app__nav-dropdown"
               onChange={(e) => {
                 if (e.target.value === "logout") {
@@ -45,7 +49,7 @@ const Nav = () => {
             >
               <option value="">Hi, {user?.email || user?.userId}!</option>
               <option onClick={handleUserRoute}>{user?.userId || " "}!</option>
-              <option value="logout" className="">
+              <option value="logout" >
                 Sign out
               </option>
             </select>
