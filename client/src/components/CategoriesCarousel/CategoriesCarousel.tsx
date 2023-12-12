@@ -2,16 +2,17 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
-import { Link } from "react-router-dom";
-import "./CategoriesCarousel.scss";
+import { useNavigate } from "react-router-dom";
 import { Category } from "../../models/category";
 import { Scrollbar, Navigation } from "swiper/modules";
 import { categoriesService } from "../../services/categoryService";
+import "./CategoriesCarousel.scss";
 
 interface CategoriesCarouselProps {}
 
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   const [categoryData, setCategoryData] = useState<Category[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -36,6 +37,9 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
 
   const shuffledData = shuffleArray([...categoryData]);
 
+  const handleCategoryClick = (categoryName: string) => {
+    navigate(`/category/${encodeURIComponent(categoryName)}`);
+  };
   return (
     <div className="app__categories-Carousel">
       <h2>Shop By Category</h2>
@@ -58,13 +62,14 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
         }}
       >
         {shuffledData.map((category, index) => (
-          <SwiperSlide key={index}>
-            <Link to={`/category/${encodeURIComponent(category.name)}`}>
-              <div className="swiper-slide">
-                <img src={category.img} alt={category.name} loading="lazy" />
-                <p className="category-name">{category.name.slice(0, 15)}</p>
-              </div>
-            </Link>
+          <SwiperSlide
+            key={index}
+            onClick={() => handleCategoryClick(category.name)}
+          >
+            <div className="swiper-slide">
+              <img src={category.img} alt={category.name} loading="lazy" />
+              <p className="category-name">{category.name.slice(0, 15)}</p>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

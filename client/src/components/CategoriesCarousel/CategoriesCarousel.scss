@@ -1,4 +1,3 @@
-// CategoriesCarousel.scss
 .app__categories-Carousel {
   h2 {
     text-align: center;
@@ -11,13 +10,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: 0.2s ease-in-out;
+    padding: 0.5rem 0.1rem 0.1rem 0.1rem;
+    cursor: pointer;
+
+    &:hover {
+      outline: 0.1rem solid black;
+      border-radius: 50%;
+    }
 
     a {
-      text-decoration: none;
       cursor: pointer;
-
       &:hover {
         text-decoration: none;
+        outline: none;
       }
     }
 
@@ -29,8 +35,17 @@
       object-fit: cover;
       border-radius: 50%;
       margin-bottom: 15px;
-      box-shadow: 0 0 10px rgb(255, 247, 140);
-      transition: box-shadow 0.3s;
+      transition: 0.2s ease-in-out;
+      box-shadow: 0.1rem 0.1rem 0.5rem 0.1rem rgb(255, 242, 171);
+
+      &:not(:hover) {
+        outline: none;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgb(0, 0, 0);
+      }
     }
 
     p.category-name {
@@ -39,7 +54,7 @@
       color: black;
       text-decoration: none;
       text-align: center;
-      transition: color 0.3s, text-decoration 0.3s;
+      transition: 0.2s ease-in-out;
       margin-bottom: 25px;
 
       &:hover {
@@ -48,20 +63,11 @@
         text-underline-offset: 3px;
         font-weight: bold;
       }
-
-      &:not(:hover) {
-        text-decoration: none;
-      }
-    }
-
-    &:hover {
-      img {
-        box-shadow: 0 0 15px rgb(255, 247, 140);
-      }
     }
 
     &.swiper-slide-active {
       transition: 0.2s ease-in-out;
+
       img {
         box-shadow: 0 0 10px rgb(0, 0, 0);
         transform: scaleX(1.1);

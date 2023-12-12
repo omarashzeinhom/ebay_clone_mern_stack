@@ -4,9 +4,11 @@ import "./AdsCarousel.scss";
 import { categoriesService } from "../../services/categoryService";
 import { useState, useEffect } from "react";
 import { Category } from "../../models/category";
+import { useNavigate } from "react-router-dom";
 
 const AdsCarousel: React.FC = () => {
   const [categoryData, setCategoryData] = useState<Category[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -30,7 +32,9 @@ const AdsCarousel: React.FC = () => {
   };
 
   const shuffledData = shuffleArray([...categoryData]);
-
+  const handleCategoryClick = (categoryName: string) => {
+    navigate(`/category/${encodeURIComponent(categoryName)}`);
+  };
   return (
     <>
       <Swiper
@@ -58,7 +62,10 @@ const AdsCarousel: React.FC = () => {
                 className="carousel-image"
               />
               <div className="image-buttons">
-                <button className="generate-text-button">
+                <button
+                  className="generate-text-button"
+                  onClick={() => handleCategoryClick(category?.name)}
+                >
                   {category?.name}
                 </button>
               </div>
