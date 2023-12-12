@@ -1,6 +1,10 @@
 // ProductList.scss
 
 .product-list {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  d
   &__header {
     font-size: 1.5rem;
     margin-bottom: 10px;
@@ -25,6 +29,8 @@
     &-image {
       width: 100%;
       max-width: 200px;
+      border-radius: 28px;
+      box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem black;
       height: auto;
     }
 

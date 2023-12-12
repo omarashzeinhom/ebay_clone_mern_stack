@@ -1,34 +1,33 @@
 // SearchBar.tsx
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import "./SearchBar.scss";
-import { categoryData, Category } from "../../utils/searchBarConstants";
 import { useNavigate } from "react-router-dom";
+import { Category } from "../../models/category";
+import { categoriesService } from "../../services/categoryService";
 
 export default function SearchBar() {
-  let [selectedCategory, setSelectedCategory] = useState<String | null>(null);
-  // console.log(selectedCategory);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [categories, setCategories] = useState<Category[]>([]);
 
-  const navigate = useNavigate(); // React Router's useNavigate hook
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedIndex = event.target.selectedIndex;
-    const selectedCategoryValue = selectedIndex === 0 ? null : categoryData[selectedIndex - 1].name;
+    const selectedCategoryValue = selectedIndex === 0 ? null : categories[selectedIndex - 1].name;
     setSelectedCategory(selectedCategoryValue);
-    selectedCategory = selectedCategoryValue;
-    console.log(selectedCategory)
+    
     // Navigate to the selected category
     if (selectedCategoryValue) {
       navigate(`/category/${encodeURIComponent(selectedCategoryValue)}`);
     }
   };
 
-  const isMobile = window.innerWidth <= 500; // Check if the screen width is less than or equal to 500px
+  const isMobile = window.innerWidth <= 500;
 
-  // Group categories by parent
   const groupedCategories: { [key: string]: Category[] } = {};
-  categoryData.forEach((category) => {
+  categories.forEach((category) => {
     if (category.parent) {
       if (!groupedCategories[category.parent]) {
         groupedCategories[category.parent] = [];
@@ -42,6 +41,20 @@ export default function SearchBar() {
     }
   });
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await categoriesService.getAllCategories();
+        setCategories(data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+
   return (
     <div className="app__searchbar">
       <a href="/">
@@ -52,9 +65,10 @@ export default function SearchBar() {
         />
       </a>
       <select
-        id="categories"
+      id="categories"
         onChange={handleChange}
         className="app__searchbar-form-dropDown"
+        value={selectedCategory || ""}
       >
         {!isMobile && <option hidden>All Categories</option>}
         {Object.entries(groupedCategories).map(([parent, categories]) => (
@@ -84,7 +98,7 @@ export default function SearchBar() {
             id="categories"
           >
             {!isMobile && <option hidden>All Categories</option>}
-            {categoryData.map((category: Category, index: number) => (
+            {categories.map((category: Category, index: number) => (
               <option key={index} value={category.name}>
                 {category.name}
               </option>

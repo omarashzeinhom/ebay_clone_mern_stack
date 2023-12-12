@@ -43,13 +43,21 @@ const CategoryList: React.FC<CategoryListProps> = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedCategory = event.target.value;
-    console.log("Selected Category:", selectedCategory);
-    setSelectedCategory(selectedCategory);
-    if (selectedCategory) {
-      navigate(selectedCategory);
+    // console.log("Selected Category:", selectedCategory);
+    
+    // Extract only the category name from the full path
+    const categoryName = decodeURIComponent(selectedCategory.replace('/category/', ''));
+    
+    // console.log(categoryName);
+    setSelectedCategory(categoryName);
+    
+    if (categoryName) {
+      navigate(`/category/${encodeURIComponent(categoryName)}`);
+    } else {
+      navigate("/products");
     }
   };
-
+  
   return (
     <>
       <Nav />
