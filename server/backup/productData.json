@@ -18,6 +18,66 @@
     "parent": "Parts & accessories"
   },
   {
+    "name": "Toyota Camry",
+    "img": "https://source.unsplash.com/featured/?toyotacamry",
+    "price": 26999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "Ford Mustang",
+    "img": "https://source.unsplash.com/featured/?fordmustang",
+    "price": 32999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "Chevrolet Silverado",
+    "img": "https://source.unsplash.com/featured/?chevroletsilverado",
+    "price": 37999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "Honda Civic",
+    "img": "https://source.unsplash.com/featured/?hondacivic",
+    "price": 24999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "Nissan Rogue",
+    "img": "https://source.unsplash.com/featured/?nissanrogue",
+    "price": 29999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "Jeep Wrangler",
+    "img": "https://source.unsplash.com/featured/?jeepwrangler",
+    "price": 35999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "BMW X5",
+    "img": "https://source.unsplash.com/featured/?bmwx5",
+    "price": 49999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "Tesla Model 3",
+    "img": "https://source.unsplash.com/featured/?teslamodel3",
+    "price": 45999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "Audi Q7",
+    "img": "https://source.unsplash.com/featured/?audiq7",
+    "price": 53999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "Mercedes-Benz S-Class",
+    "img": "https://source.unsplash.com/featured/?mercedessclass",
+    "price": 69999,
+    "parent": "Cars & trucks"
+  },
+  {
     "name": "Ford Mustang",
     "img": "https://source.unsplash.com/featured/?fordmustang",
     "price": 29.999,
@@ -53,11 +113,708 @@
     "price": 26.999,
     "parent": "Cars & trucks"
   },
+  
+  {
+    "name": "Toyota Camry",
+    "img": "https://source.unsplash.com/featured/?toyotacamry",
+    "price": 26.999,
+    "parent": "Cars & trucks"
+  },
+  {
+    "name": "Harley Davidson Sportster",
+    "img": "https://source.unsplash.com/featured/?harleydavidsonsportster",
+    "price": 15.999,
+    "parent": "Motorcycles"
+  },
+  {
+    "name": "Honda CBR600RR",
+    "img": "https://source.unsplash.com/featured/?hondacbr600rr",
+    "price": 12.499,
+    "parent": "Motorcycles"
+  },
+  {
+    "name": "Kawasaki Ninja 650",
+    "img": "https://source.unsplash.com/featured/?kawasakininja650",
+    "price": 8.999,
+    "parent": "Motorcycles"
+  },
+  {
+    "name": "Yamaha MT-07",
+    "img": "https://source.unsplash.com/featured/?yamahamt07",
+    "price": 9.999,
+    "parent": "Motorcycles"
+  },
+  {
+    "name": "Ducati Panigale V2",
+    "img": "https://source.unsplash.com/featured/?ducatipanigalev2",
+    "price": 17.999,
+    "parent": "Motorcycles"
+  },
+  {
+    "name": "Chevrolet Silverado",
+    "img": "https://source.unsplash.com/featured/?chevroletsilverado",
+    "price": 35.999,
+    "parent": "Other vehicles"
+  },
+  {
+    "name": "Ford F-150",
+    "img": "https://source.unsplash.com/featured/?fordf150",
+    "price": 32.499,
+    "parent": "Other vehicles"
+  },
+  {
+    "name": "Mercedes-Benz Sprinter",
+    "img": "https://source.unsplash.com/featured/?mercedesbenzsprinter",
+    "price": 45.999,
+    "parent": "Other vehicles"
+  },
+  {
+    "name": "Harley Davidson Electra Glide",
+    "img": "https://source.unsplash.com/featured/?harleydavidsonelectraglide",
+    "price": 28.999,
+    "parent": "Other vehicles"
+  },
+  {
+    "name": "Tesla Model X",
+    "img": "https://source.unsplash.com/featured/?teslamodelx",
+    "price": 79.999,
+    "parent": "Other vehicles"
+  },
+  {
+    "name": "Elegant Dress",
+    "img": "https://source.unsplash.com/featured/?womendress",
+    "price": 49.99,
+    "parent": "Women"
+  },
+  {
+    "name": "Stylish Handbag",
+    "img": "https://source.unsplash.com/featured/?womenhandbag",
+    "price": 29.99,
+    "parent": "Women"
+  },
+  {
+    "name": "Fashionable Heels",
+    "img": "https://source.unsplash.com/featured/?womenheels",
+    "price": 59.99,
+    "parent": "Women"
+  },
+  {
+    "name": "Chic Sunglasses",
+    "img": "https://source.unsplash.com/featured/?womensunglasses",
+    "price": 19.99,
+    "parent": "Women"
+  },
+  {
+    "name": "Trendy Necklace",
+    "img": "https://source.unsplash.com/featured/?womennecklace",
+    "price": 39.99,
+    "parent": "Women"
+  },
+  {
+    "name": "Classic Watch",
+    "img": "https://source.unsplash.com/featured/?menwatch",
+    "price": 79.99,
+    "parent": "Men"
+  },
+  {
+    "name": "Leather Wallet",
+    "img": "https://source.unsplash.com/featured/?menwallet",
+    "price": 39.99,
+    "parent": "Men"
+  },
+  {
+    "name": "Casual Sneakers",
+    "img": "https://source.unsplash.com/featured/?mensneakers",
+    "price": 54.99,
+    "parent": "Men"
+  },
+  {
+    "name": "Business Suit",
+    "img": "https://source.unsplash.com/featured/?mensuit",
+    "price": 149.99,
+    "parent": "Men"
+  },
+  {
+    "name": "Grooming Kit",
+    "img": "https://source.unsplash.com/featured/?mengrooming",
+    "price": 29.99,
+    "parent": "Men"
+  },
+  {
+    "name": "Leather Tote",
+    "img": "https://source.unsplash.com/featured/?leathertote",
+    "price": 89.99,
+    "parent": "Handbags"
+  },
+  {
+    "name": "Designer Clutch",
+    "img": "https://source.unsplash.com/featured/?designerclutch",
+    "price": 129.99,
+    "parent": "Handbags"
+  },
+  {
+    "name": "Crossbody Bag",
+    "img": "https://source.unsplash.com/featured/?crossbodybag",
+    "price": 49.99,
+    "parent": "Handbags"
+  },
+  {
+    "name": "Fashion Backpack",
+    "img": "https://source.unsplash.com/featured/?fashionbackpack",
+    "price": 69.99,
+    "parent": "Handbags"
+  },
+  {
+    "name": "Evening Purse",
+    "img": "https://source.unsplash.com/featured/?eveningpurse",
+    "price": 59.99,
+    "parent": "Handbags"
+  },
+  {
+    "name": "Air Jordan 1",
+    "img": "https://source.unsplash.com/featured/?airjordan1",
+    "price": 199.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "Yeezy Boost 350",
+    "img": "https://source.unsplash.com/featured/?yeezyboost350",
+    "price": 249.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "Nike SB Dunk",
+    "img": "https://source.unsplash.com/featured/?nikesbdunk",
+    "price": 159.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "Adidas NMD",
+    "img": "https://source.unsplash.com/featured/?adidasnmd",
+    "price": 179.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "Converse Chuck Taylor",
+    "img": "https://source.unsplash.com/featured/?chucktaylor",
+    "price": 129.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "Puma RS-X",
+    "img": "https://source.unsplash.com/featured/?pumarsx",
+    "price": 139.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "New Balance 990",
+    "img": "https://source.unsplash.com/featured/?newbalance990",
+    "price": 169.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "Vans Old Skool",
+    "img": "https://source.unsplash.com/featured/?vansoldskool",
+    "price": 109.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "Reebok Classic Leather",
+    "img": "https://source.unsplash.com/featured/?reebokclassicleather",
+    "price": 119.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "Asics Gel-Lyte III",
+    "img": "https://source.unsplash.com/featured/?asicsgellyteiii",
+    "price": 149.99,
+    "parent": "Collectible Sneakers"
+  },
+  {
+    "name": "Leupold VX-3i Scope",
+    "img": "https://source.unsplash.com/featured/?leupoldscope",
+    "price": 499.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Remington 700 Rifle",
+    "img": "https://source.unsplash.com/featured/?remington700",
+    "price": 799.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Yeti Tundra Cooler",
+    "img": "https://source.unsplash.com/featured/?yetitundra",
+    "price": 299.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Sitka Gear Camo Jacket",
+    "img": "https://source.unsplash.com/featured/?sitkagear",
+    "price": 199.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Cabela's Compound Bow",
+    "img": "https://source.unsplash.com/featured/?cabelasbow",
+    "price": 599.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Vortex Optics Binoculars",
+    "img": "https://source.unsplash.com/featured/?vortexbinoculars",
+    "price": 349.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Thermacell Mosquito Repeller",
+    "img": "https://source.unsplash.com/featured/?thermacell",
+    "price": 39.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Gerber Multi-Tool",
+    "img": "https://source.unsplash.com/featured/?gerbermultitool",
+    "price": 69.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Browning Trail Camera",
+    "img": "https://source.unsplash.com/featured/?browningcamera",
+    "price": 129.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Winchester Ammunition",
+    "img": "https://source.unsplash.com/featured/?winchesterammo",
+    "price": 29.99,
+    "parent": "Hunting Equipment"
+  },
+  {
+    "name": "Titleist Pro V1 Golf Balls",
+    "img": "https://source.unsplash.com/featured/?titleistgolfballs",
+    "price": 49.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "Callaway Rogue Driver",
+    "img": "https://source.unsplash.com/featured/?callawayroguedriver",
+    "price": 399.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "TaylorMade P790 Irons",
+    "img": "https://source.unsplash.com/featured/?taylormadep790",
+    "price": 899.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "Ping G425 Fairway Wood",
+    "img": "https://source.unsplash.com/featured/?pingg425",
+    "price": 249.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "Odyssey White Hot Putter",
+    "img": "https://source.unsplash.com/featured/?odysseywhitehot",
+    "price": 149.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "FootJoy Pro SL Golf Shoes",
+    "img": "https://source.unsplash.com/featured/?footjoyprosl",
+    "price": 129.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "Bushnell Golf Rangefinder",
+    "img": "https://source.unsplash.com/featured/?bushnellrangefinder",
+    "price": 199.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "Sun Mountain Golf Bag",
+    "img": "https://source.unsplash.com/featured/?sunmountaingolfbag",
+    "price": 179.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "Cleveland CBX Wedge",
+    "img": "https://source.unsplash.com/featured/?clevelandcbx",
+    "price": 119.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "Golf Pride Grips",
+    "img": "https://source.unsplash.com/featured/?golfpridegrips",
+    "price": 9.99,
+    "parent": "Golfing Equipment"
+  },
+  {
+    "name": "Cannondale Trail 6 Mountain Bike",
+    "img": "https://source.unsplash.com/featured/?cannondalemountainbike",
+    "price": 799.99,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "The North Face Men's Venture 2 Jacket",
+    "img": "https://source.unsplash.com/featured/?thenorthfacejacket",
+    "price": 119.99,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "YETI Tundra 65 Cooler",
+    "img": "https://source.unsplash.com/featured/?yetitundra",
+    "price": 349.99,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "Osprey Atmos AG 65 Backpack",
+    "img": "https://source.unsplash.com/featured/?ospreyatmos",
+    "price": 289.99,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "ENO DoubleNest Hammock",
+    "img": "https://source.unsplash.com/featured/?enohammock",
+    "price": 69.99,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "Keen Targhee III Waterproof Hiking Boots",
+    "img": "https://source.unsplash.com/featured/?keenhikingboots",
+    "price": 139.99,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "Garmin inReach Explorer+ GPS",
+    "img": "https://source.unsplash.com/featured/?garmininreach",
+    "price": 449.99,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "Patagonia Arbor Grande 32L Backpack",
+    "img": "https://source.unsplash.com/featured/?patagoniabackpack",
+    "price": 129.99,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "Black Diamond Spot Headlamp",
+    "img": "https://source.unsplash.com/featured/?blackdiamondheadlamp",
+    "price": 39.99,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "Hydro Flask 32 oz Wide Mouth Bottle",
+    "img": "https://source.unsplash.com/featured/?hydroflaskbottle",
+    "price": 44.95,
+    "parent": "Outdoor sports"
+  },
+  {
+    "name": "Specialized Roubaix Road Bike",
+    "img": "https://source.unsplash.com/featured/?specializedroubaix",
+    "price": 2499.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Giro Aether MIPS Helmet",
+    "img": "https://source.unsplash.com/featured/?giroaether",
+    "price": 299.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Shimano Ultegra R8000 Groupset",
+    "img": "https://source.unsplash.com/featured/?shimanoultegra",
+    "price": 899.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Garmin Edge 830 Cycling Computer",
+    "img": "https://source.unsplash.com/featured/?garminedge830",
+    "price": 399.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Thule T2 Pro XT Bike Rack",
+    "img": "https://source.unsplash.com/featured/?thulet2proxt",
+    "price": 599.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Assos Equipe RS Bib Shorts",
+    "img": "https://source.unsplash.com/featured/?assosequipers",
+    "price": 249.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Park Tool PCS-10.2 Bike Repair Stand",
+    "img": "https://source.unsplash.com/featured/?parktoolpcs10",
+    "price": 229.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Continental Grand Prix 5000 Tires",
+    "img": "https://source.unsplash.com/featured/?continentalgp5000",
+    "price": 79.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Lezyne Super GPS Bike Computer",
+    "img": "https://source.unsplash.com/featured/?lezynebikecomputer",
+    "price": 149.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Wahoo Kickr Smart Trainer",
+    "img": "https://source.unsplash.com/featured/?wahoosmarttrainer",
+    "price": 1199.99,
+    "parent": "Cycling Equipment"
+  },
+  {
+    "name": "Samsung 4K Smart TV",
+    "img": "https://source.unsplash.com/featured/?samsungtv",
+    "price": 699.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "Apple iPhone 13",
+    "img": "https://source.unsplash.com/featured/?iphone13",
+    "price": 999.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "Sony Noise-Canceling Headphones",
+    "img": "https://source.unsplash.com/featured/?sonyheadphones",
+    "price": 249.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "Canon DSLR Camera",
+    "img": "https://source.unsplash.com/featured/?canoncamera",
+    "price": 799.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "DJI Mavic Air Drone",
+    "img": "https://source.unsplash.com/featured/?djidrone",
+    "price": 899.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "Bose Soundbar",
+    "img": "https://source.unsplash.com/featured/?bosesoundbar",
+    "price": 349.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "Fitbit Versa Smartwatch",
+    "img": "https://source.unsplash.com/featured/?fitbitsmartwatch",
+    "price": 149.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "Amazon Echo Dot",
+    "img": "https://source.unsplash.com/featured/?amazonechodot",
+    "price": 39.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "LG Sound System",
+    "img": "https://source.unsplash.com/featured/?lgsoundsystem",
+    "price": 499.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "Xbox Series X Gaming Console",
+    "img": "https://source.unsplash.com/featured/?xboxseriesx",
+    "price": 499.99,
+    "parent": "Electronics"
+  },
+  {
+    "name": "Dell Inspiron Laptop",
+    "img": "https://source.unsplash.com/featured/?dellinspiron",
+    "price": 899.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
+  {
+    "name": "Apple iPad Pro",
+    "img": "https://source.unsplash.com/featured/?appleipadpro",
+    "price": 1099.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
+  {
+    "name": "HP Desktop Computer",
+    "img": "https://source.unsplash.com/featured/?hpdesktop",
+    "price": 749.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
+  {
+    "name": "Samsung Galaxy Tablet",
+    "img": "https://source.unsplash.com/featured/?samsunggalaxytablet",
+    "price": 599.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
+  {
+    "name": "Lenovo ThinkPad Laptop",
+    "img": "https://source.unsplash.com/featured/?lenovothinkpad",
+    "price": 999.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
+  {
+    "name": "Asus Gaming Laptop",
+    "img": "https://source.unsplash.com/featured/?asusgaminglaptop",
+    "price": 1299.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
+  {
+    "name": "Netgear WiFi Router",
+    "img": "https://source.unsplash.com/featured/?netgearrouter",
+    "price": 79.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
+  {
+    "name": "Logitech Wireless Mouse",
+    "img": "https://source.unsplash.com/featured/?logitechmouse",
+    "price": 29.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
+  {
+    "name": "Microsoft Surface Pro",
+    "img": "https://source.unsplash.com/featured/?microsoftsurfacepro",
+    "price": 1199.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
+  {
+    "name": "Cisco Network Switch",
+    "img": "https://source.unsplash.com/featured/?cisconetworkswitch",
+    "price": 299.99,
+    "parent": "Computers, Tablets & Network Hardware"
+  },
   {
     "name": "Smart Thermostat",
     "img": "https://source.unsplash.com/featured/?smartthermostat",
     "price": 99.99,
     "parent": "Electronics & communication equipment"
+  },
+  {
+    "name": "Samsung Galaxy S21",
+    "img": "https://source.unsplash.com/featured/?samsunggalaxys21",
+    "price": 899.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "Apple Watch Series 7",
+    "img": "https://source.unsplash.com/featured/?applewatchseries7",
+    "price": 349.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "Google Pixel 6",
+    "img": "https://source.unsplash.com/featured/?googlepixel6",
+    "price": 799.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "Wireless Charging Pad",
+    "img": "https://source.unsplash.com/featured/?chargingpad",
+    "price": 29.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "Bluetooth Earbuds",
+    "img": "https://source.unsplash.com/featured/?bluetoothearbuds",
+    "price": 79.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "Phone Mount for Car",
+    "img": "https://source.unsplash.com/featured/?phonemount",
+    "price": 19.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "Smartphone Tripod",
+    "img": "https://source.unsplash.com/featured/?smartphonetripod",
+    "price": 24.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "Portable Power Bank",
+    "img": "https://source.unsplash.com/featured/?powerbank",
+    "price": 39.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "Screen Protector for iPhone",
+    "img": "https://source.unsplash.com/featured/?screenprotector",
+    "price": 9.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "Smartphone Camera Lens Kit",
+    "img": "https://source.unsplash.com/featured/?cameralenskit",
+    "price": 49.99,
+    "parent": "Cell Phones Smart Watches & Accessories"
+  },
+  {
+    "name": "PlayStation 5",
+    "img": "https://source.unsplash.com/featured/?playstation5",
+    "price": 499.99,
+    "parent": "Video Games & Consoles"
+  },
+  {
+    "name": "Xbox Series X",
+    "img": "https://source.unsplash.com/featured/?xboxseriesx",
+    "price": 499.99,
+    "parent": "Video Games & Consoles"
+  },
+  {
+    "name": "Nintendo Switch",
+    "img": "https://source.unsplash.com/featured/?nintendoswitch",
+    "price": 299.99,
+    "parent": "Video Games & Consoles"
+  },
+  {
+    "name": "Gaming Laptop",
+    "img": "https://source.unsplash.com/featured/?gaminglaptop",
+    "price": 1299.99,
+    "parent": "Video Games & Consoles"
+  },
+  {
+    "name": "VR Headset",
+    "img": "https://source.unsplash.com/featured/?vrheadset",
+    "price": 399.99,
+    "parent": "Video Games & Consoles"
+  },
+  {
+    "name": "Gaming Mouse and Keyboard",
+    "img": "https://source.unsplash.com/featured/?gamingmousekeyboard",
+    "price": 99.99,
+    "parent": "Video Games & Consoles"
+  },
+  {
+    "name": "Nintendo Switch Games Bundle",
+    "img": "https://source.unsplash.com/featured/?switchgamesbundle",
+    "price": 59.99,
+    "parent": "Video Games & Consoles"
+  },
+  {
+    "name": "PlayStation Controller",
+    "img": "https://source.unsplash.com/featured/?pscontroller",
+    "price": 59.99,
+    "parent": "Video Games & Consoles"
+  },
+  {
+    "name": "Xbox Wireless Headset",
+    "img": "https://source.unsplash.com/featured/?xboxheadset",
+    "price": 99.99,
+    "parent": "Video Games & Consoles"
+  },
+  {
+    "name": "Gaming Desk and Chair Set",
+    "img": "https://source.unsplash.com/featured/?gamingdeskchair",
+    "price": 299.99,
+    "parent": "Video Games & Consoles"
   },
   {
     "name": "Rain Gear",
@@ -71,6 +828,7 @@
     "price": 149.99,
     "parent": "Audio & video equipment"
   },
+
   {
     "name": "Automotive Brake Pad",
     "img": "https://source.unsplash.com/featured/?automotivebrakepad",
@@ -699,6 +1457,12 @@
     "name": "Shoes",
     "img": "https://source.unsplash.com/featured/?menshoes? ",
     "price": 199.99,
+    "parent": "Men"
+  },
+  {
+    "name": "Tailored Shoes",
+    "img": "https://source.unsplash.com/featured/?mentailoredshoe? ",
+    "price": 99.99,
     "parent": "Men"
   },
   {
