@@ -55,7 +55,7 @@ const App: React.FC = () => {
     },
     {
       path: "/register",
-      element: <Register />,
+      element: <Register/>,
     },
     {
       path: "/help&contact",

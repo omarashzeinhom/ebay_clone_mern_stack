@@ -7,7 +7,7 @@ const User = require('../models/userModel');
 const secretKey = process.env.JWT_SECRET;
 
 exports.register = async (req, res) => {
-  const { email, password } = req.body;
+  const { name , email, role , password } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });

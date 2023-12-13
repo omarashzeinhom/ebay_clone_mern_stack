@@ -1,4 +1,4 @@
-export default function User() {
+export default function UserProfile() {
     return (
         <>
         <p>User name here</p>

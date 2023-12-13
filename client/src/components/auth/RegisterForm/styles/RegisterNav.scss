@@ -1,0 +1,21 @@
+
+.app__register-nav {
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem; // Add padding for better spacing
+  }
+  
+  .app__register-nav-left,
+  .app__register-nav-right {
+    flex: 1; // Make the left and right sections flexible
+  }
+  
+  .app__register-nav-left {
+    text-align: left;
+  }
+  
+  .app__register-nav-right {
+    text-align: right;
+  }
+  

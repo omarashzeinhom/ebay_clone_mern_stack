@@ -1,0 +1,25 @@
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+
+  label {
+    margin-right: 20px;
+  }
+
+  .personal-account {
+    .social-buttons {
+      flex-direction: row;
+
+      button {
+        width: 33%;
+      }
+    }
+  }
+
+  .business-account {
+    // Add styles for business account if needed
+  }
+}

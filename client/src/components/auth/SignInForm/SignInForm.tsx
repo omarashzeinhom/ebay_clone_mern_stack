@@ -1,8 +1,8 @@
 import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
 import "./SignInForm.scss";
 import { useState, useEffect } from "react";
-import { authService } from "../../services/authService";
-import { useAuth } from "../../context/AuthContext";
+import { authService } from "../../../services/authService";
+import { useAuth } from "../../../context/AuthContext";
 
 const SignInNav = () => {
   return (

@@ -1,0 +1,48 @@
+
+  
+    .app__register-input {
+      width: 100%;
+      height: 100%;
+      padding: 1rem 0;
+      border-radius: 7px;
+      margin-bottom: 1rem; // Add margin between inputs
+    }
+  
+    .app__register-Btn {
+      border-radius: 28px;
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      color: #050505;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      background-color: #f3f3f3;
+      margin-bottom: 1rem; // Add margin between buttons
+      transition: background-color 0.3s; // Added transition for hover effect
+  
+      &:hover {
+        background-color: #0056b3; // Darker blue on hover
+      }
+    }
+  
+    small {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+  
+      p {
+        margin-bottom: 5px;
+      }
+  
+      a {
+        text-decoration: none;
+        color: #007bff;
+      }
+    }
+  
+  
+
+  
