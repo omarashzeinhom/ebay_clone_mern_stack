@@ -1,10 +1,15 @@
+// imports
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
-const verifyToken = require("../middleware/verifyToken"); // Add this line
+const verifyToken = require("../middleware/verifyToken"); 
 
-router.post("/register", authController.register);
+// POSTED Routes
 router.post("/login", authController.login);
-router.get("/user", verifyToken, authController.getUser); // Add this line
+router.post("/loginb", authController.loginBusiness);
+router.post("/register", authController.register);
+router.post("/registerb", authController.registerBusiness);
+router.get("/business", verifyToken, authController.getBusiness); 
+router.get("/user", verifyToken, authController.getUser); 
 
 module.exports = router;

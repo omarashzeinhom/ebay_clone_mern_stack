@@ -1,17 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-
-interface User {
-  userId: string;
-  email: string;
-  password: string;
-  // Add other user properties as needed
-}
+import { User } from "../models/user";
+import { Business } from "../models/business";
 
 interface AuthContextType {
   token: string | null;
   user: User | null;
-  login: (token: string, user: User) => void;
+  business: Business | null;
+  loginBusiness: (token: string, data: Business) => void;
+  logoutBusiness: () => void;
+  login: (token: string, data: User) => void;
   logout: () => void;
 }
 
@@ -22,13 +20,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
+  const [business, setBusiness] = useState<Business | null>(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
       // Fetch user information from the server using the stored token
-      fetchUserInformation(storedToken);
+      fetchUserInformation(storedToken) ||
+        fetchBusinessInformation(storedToken);
     }
   }, []);
 
@@ -57,9 +57,43 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUser(null);
     localStorage.removeItem("token");
   };
+  const fetchBusinessInformation = async (token: string) => {
+    try {
+      const response = await axios.get("http://localhost:3001/auth/business", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setBusiness(response.data);
+    } catch (error) {
+      console.error("Error fetching user information:", error);
+      // Handle error (e.g., log out the user)
+    }
+  };
 
+  const loginBusiness = (newToken: string, newBusiness: Business) => {
+    setToken(newToken);
+    setBusiness(newBusiness);
+    localStorage.setItem("token", newToken);
+    // Set the user information
+    localStorage.setItem("business", JSON.stringify(newBusiness));
+  };
+
+  const logoutBusiness = () => {
+    setToken(null);
+    setBusiness(null);
+    localStorage.removeItem("token");
+  };
   return (
-    <AuthContext.Provider value={{ token, user, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        token,
+        user,
+        login,
+        logout,
+        business,
+        loginBusiness,
+        logoutBusiness,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

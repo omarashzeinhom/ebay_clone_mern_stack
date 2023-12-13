@@ -26,6 +26,9 @@ const ProductList: React.FC<ProductListProps> = () => {
     : products.filter((product) => categoryName === product?.parent);
 
   console.log(filteredProducts);
+
+  const productLink = (productId: string) => `/item/${productId}`;
+
   return (
     <div className="product-list">
       <h2 className="product-list__header">Products</h2>
@@ -43,7 +46,10 @@ const ProductList: React.FC<ProductListProps> = () => {
                 />
                 <p>Category: {product?.parent}</p>
                 <p className="product-list__product-list-name">
+                  <a href={productLink(product?._id)}>
                   {product?.name}
+
+                  </a>
                 </p>
                 <p className="product-list__product-list-price">
                   ${product?.price}

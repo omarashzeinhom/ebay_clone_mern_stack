@@ -21,16 +21,20 @@ const SignInNav = () => {
 };
 
 const SignInForm: React.FC = () => {
-  const { login, token, user } = useAuth();
+  const { login, loginBusiness, token, user, business } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSignIn = async () => {
     try {
       const newToken = await authService.login(email, password);
-      const user = await authService.getUser(newToken);
-      login(newToken, user);
-      console.log(`Login successful: ${email}`);
+      const userData = await authService.getUser(newToken);
+      login(newToken, userData);
+
+      const newBToken = await authService.loginBusiness(email, password);
+      const businessData = await authService.getBusiness(newBToken);
+      loginBusiness(newBToken, businessData);
+      console.log(`Business Login successful: ${email}`);
     } catch (error) {
       console.error(`Error in handleSignIn: ${error}`);
     }
@@ -38,12 +42,24 @@ const SignInForm: React.FC = () => {
 
   useEffect(() => {
     if (token) {
-      // Fetch user information when the component mounts
-      authService.getUser(token);
+      // Fetch user or business information when the component mounts
+      const fetchData = async () => {
+        try {
+          const data = await authService.getUser(token); // || await (authService.getBusiness(token));
+
+          login(token, data);
+        } catch (error) {
+          console.error(`Error fetching data: ${error}`);
+        }
+      };
+
+      fetchData();
     }
+    // eslint-disable-next-line
   }, [token]);
 
   const userLink = `/user/${user?.userId}`;
+  const businessLink = `/business/${business?.businessId}`;
 
   return (
     <div className="app__signin">
@@ -52,7 +68,9 @@ const SignInForm: React.FC = () => {
       {token ? (
         <>
           Nothing to show here already Signed in As
-          <a href={userLink}>{user?.email}</a>
+          <a href={userLink || businessLink || ""}>
+            {user?.email || business?.businessName || "No Found Data"}
+          </a>
           <a href="/">Return Home</a>
         </>
       ) : (

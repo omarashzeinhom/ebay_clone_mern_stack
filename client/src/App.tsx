@@ -5,7 +5,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home, SignIn, Register } from "./pages";
 import { AuthProvider } from "./context/AuthContext";
 import { ErrorBoundary, NotFound } from "./components";
-import { CategoryList, ProductList, CustomerService } from "./components/";
+import {
+  CategoryList,
+  ProductList,
+  CustomerService,
+  ProductDetail,
+} from "./components/";
 import { ProductProvider } from "./context/ProductContext";
 import { Category } from "./models/category";
 import { categoriesService } from "./services/categoryService";
@@ -55,7 +60,7 @@ const App: React.FC = () => {
     },
     {
       path: "/register",
-      element: <Register/>,
+      element: <Register />,
     },
     {
       path: "/help&contact",
@@ -78,6 +83,14 @@ const App: React.FC = () => {
           <ProductList />
         </ProductProvider>
       ),
+    },
+    {
+      path: "/item/:productId",
+      element: <ProductDetail />,
+    },
+    {
+      path: "/",
+      element: <ProductDetail />,
     },
     {
       path: "*",

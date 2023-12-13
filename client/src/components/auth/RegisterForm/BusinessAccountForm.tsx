@@ -51,7 +51,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
       />
       <select
         id="businessLocation"
-        value={businessLocation}
+        value={businessLocation }
         className="app__baform-input"
         onChange={(e) =>
           setBusiness({ ...business, businessLocation: e.target.value })

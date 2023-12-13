@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Product } from "../models/product";
 
 const API_BASE_URL = "http://localhost:3001/products";
 
@@ -13,5 +14,19 @@ export const productService = {
       params: { name, price, parent, img },
     });
     return response.data;
+  },
+  getProductById: async (productId: string): Promise<Product | undefined> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/${productId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch product");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching product by ID:", error);
+      return undefined;
+    }
   },
 };
