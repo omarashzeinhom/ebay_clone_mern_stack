@@ -1,12 +1,11 @@
-// RegisterForm.tsx
+import "./RegisterForm.scss";
 import React, { useState } from "react";
 import PersonalAccountForm from "./PersonalAccountForm";
 import BusinessAccountForm from "./BusinessAccountForm"; // Fix typo in import
 import RegisterNav from "./RegisterNav";
-import "./RegisterForm.scss";
-import { authService } from "../../../services/authService";
 import { User } from "../../../models/user";
 import { Business } from "../../../models/business";
+import { authService } from "../../../services/authService";
 
 const RegisterForm: React.FC = () => {
   const [accountType, setAccountType] = useState<string>("");
@@ -26,11 +25,16 @@ const RegisterForm: React.FC = () => {
     businessActive: true || false,
   });
 
-  const { firstName, lastName, email } = user;
+  const { firstName, lastName, email, password } = user;
   const { businessName, businessEmail, businessPassword, businessLocation } =
     business;
 
-  console.log(firstName, lastName);
+  //DEBUG User
+  // console.log(firstName, lastName,email,password);
+
+  // Debug Business
+
+  // console.log(businessName, businessEmail, businessPassword, businessLocation )
 
   const handleRegister = async () => {
     try {
@@ -56,25 +60,28 @@ const RegisterForm: React.FC = () => {
   return (
     <>
       <RegisterNav />
-      <div className="registration-form">
-        <label>
-          <input
-            type="radio"
-            name="accountType"
-            value="Personal account"
-            onChange={() => handleRoleChange("Personal account")}
-          />
-          Personal account
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="accountType"
-            value="Business account"
-            onChange={() => handleRoleChange("Business account")}
-          />
-          Business account
-        </label>
+      <div className="app__registration-container">
+        <h2>Create an account </h2>
+        <div className="app__registration-radioBtns">
+          <label>
+            <input
+              type="radio"
+              name="accountType"
+              value="Personal account"
+              onChange={() => handleRoleChange("Personal account")}
+            />
+            Personal account
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="accountType"
+              value="Business account"
+              onChange={() => handleRoleChange("Business account")}
+            />
+            Business account
+          </label>
+        </div>
 
         {accountType === "Personal account" && (
           <PersonalAccountForm

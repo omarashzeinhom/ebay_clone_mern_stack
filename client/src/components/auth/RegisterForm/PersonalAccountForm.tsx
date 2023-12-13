@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import "./styles/PersonalAccountForm.scss";
-import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
+import React, { useState } from "react";
 import { User } from "../../../models/user";
+import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
 
 interface PersonalAccountFormProps {
   user: {
@@ -29,66 +29,64 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
   const [localUser, setLocalUser] = useState(user);
 
   const handleChange = (field: string, value: string) => {
-    // Create a new User object with updated values
     const updatedUser: User = { ...localUser, [field]: value };
-
-    // Update local state
     setLocalUser(updatedUser);
-
-    // Update parent state with the new User object
     setUser(updatedUser);
   };
+
   const { firstName, lastName, email, password } = localUser;
 
   return (
-    <>
-      <h2>Register</h2>
-      <input
-        type="text"
-        placeholder="First Name"
-        value={firstName}
-        onChange={(e) => handleChange("firstName", e.target.value)}
-        className="app__register-input"
-      />
-      <input
-        type="text"
-        placeholder="Last Name"
-        value={lastName}
-        onChange={(e) => handleChange("lastName", e.target.value)}
-        className="app__register-input"
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => handleChange("email", e.target.value)}
-        className="app__register-input"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => handleChange("password", e.target.value)}
-        className="app__register-input"
-      />
-      <button onClick={handleRegister} className="app__register-Btn">
-        Register
-      </button>
-      <div className="social-buttons">
-        <button className="google-button">
+    <div className="app__paform">
+      <div className="app__paform-left">
+        <input
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => handleChange("firstName", e.target.value)}
+          className="app__paform-inputAlt"
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => handleChange("lastName", e.target.value)}
+          className="app__paform-inputAlt"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => handleChange("email", e.target.value)}
+          className="app__paform-input"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => handleChange("password", e.target.value)}
+          className="app__paform-input"
+        />
+        <button onClick={handleRegister} className="app__paform-Btn">
+          Register
+        </button>
+      </div>
+
+      <div className="app__paform-left">
+        <button className="app__google-Btn">
           <FaGoogle /> Continue with Google
         </button>
-        <button className="facebook-button">
+        <button className="app__facebook-Btn">
           <FaFacebook /> Continue with Facebook
         </button>
-        <button className="apple-button">
+        <button className="app__apple-Btn">
           <FaApple /> Continue with Apple
         </button>
       </div>
       <small>
         <p>Already have an account?</p> <a href="/signin">SignIn!</a>
       </small>
-    </>
+    </div>
   );
 };
 

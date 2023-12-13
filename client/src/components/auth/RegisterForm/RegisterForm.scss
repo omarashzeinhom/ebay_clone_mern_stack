@@ -1,25 +1,14 @@
+.app__registration-container {
+  h2 {
+    text-align: center;
+    font-size: xx-large;
+  }
+}
 
-.registration-form {
+.app__registration-radioBtns {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  margin-top: 20px;
-
-  label {
-    margin-right: 20px;
-  }
-
-  .personal-account {
-    .social-buttons {
-      flex-direction: row;
-
-      button {
-        width: 33%;
-      }
-    }
-  }
-
-  .business-account {
-    // Add styles for business account if needed
-  }
+  justify-content: center;
+  margin: 0.1rem 0rem 0.5rem 0rem;
 }

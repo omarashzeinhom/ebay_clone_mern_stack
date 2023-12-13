@@ -18,8 +18,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
     business;
 
   return (
-    <>
-      <h2>Register</h2>
+    <div className="app__baform">
       <input
         type="text"
         placeholder="Business Name"
@@ -27,7 +26,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         onChange={(e) =>
           setBusiness({ ...business, businessName: e.target.value })
         }
-        className="app__register-input"
+        className="app__baform-input"
       />
       <input
         type="email"
@@ -36,7 +35,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         onChange={(e) =>
           setBusiness({ ...business, businessEmail: e.target.value })
         }
-        className="app__register-input"
+        className="app__baform-input"
       />
       <input
         type="password"
@@ -45,22 +44,22 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         onChange={(e) =>
           setBusiness({ ...business, businessPassword: e.target.value })
         }
-        className="app__register-input"
+        className="app__baform-input"
       />
       <select
         value={businessLocation}
         onChange={(e) =>
           setBusiness({ ...business, businessLocation: e.target.value })
         }
-        className="app__register-input"
+        className="app__baform-input"
       >
         <option>Egypt</option>
       </select>
 
-      <button onClick={handleRegister} className="app__register-Btn">
+      <button onClick={handleRegister} className="app__baform-Btn">
         Register
       </button>
-    </>
+    </div>
   );
 };
 
