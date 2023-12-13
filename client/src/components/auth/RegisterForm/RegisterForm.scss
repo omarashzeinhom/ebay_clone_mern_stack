@@ -11,4 +11,9 @@
   align-items: center;
   justify-content: center;
   margin: 0.1rem 0rem 0.5rem 0rem;
+  @media screen and (max-width: 500px) {
+    display: grid;
+    text-align: center;
+    grid-column: 1fr;
+  }
 }

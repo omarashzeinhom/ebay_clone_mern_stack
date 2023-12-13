@@ -8,7 +8,7 @@ import { Business } from "../../../models/business";
 import { authService } from "../../../services/authService";
 
 const RegisterForm: React.FC = () => {
-  const [accountType, setAccountType] = useState<string>("");
+  const [accountType, setAccountType] = useState<string>("Personal account");
   const [user, setUser] = useState<User>({
     firstName: "",
     lastName: "",
@@ -67,6 +67,7 @@ const RegisterForm: React.FC = () => {
             <input
               type="radio"
               name="accountType"
+              checked={accountType === "Personal account"} // Check if accountType is "Personal account"
               value="Personal account"
               onChange={() => handleRoleChange("Personal account")}
             />
@@ -76,6 +77,7 @@ const RegisterForm: React.FC = () => {
             <input
               type="radio"
               name="accountType"
+              checked={accountType === "Business account"} // Check if accountType is "Business account"
               value="Business account"
               onChange={() => handleRoleChange("Business account")}
             />
