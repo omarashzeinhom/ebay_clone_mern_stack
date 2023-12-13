@@ -123,11 +123,7 @@ const SignInForm: React.FC = () => {
           <details>
             <summary>Learn More</summary>
             <small>
-              With this box checked, we'll keep you signed in, making it easier
-              to bid and buy. You'll also be all set to pay if you've saved your
-              payment info. You can always turn off this feature in My eBay. We
-              may ask you to sign in again for some activities, such as making
-              changes to your account.
+              {summaryBoxText}
             </small>
           </details>
         </div>
@@ -137,3 +133,9 @@ const SignInForm: React.FC = () => {
 };
 
 export default SignInForm;
+
+const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
+to bid and buy. You'll also be all set to pay if you've saved your
+payment info. You can always turn off this feature in My eBay. We
+may ask you to sign in again for some activities, such as making
+changes to your account.`

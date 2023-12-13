@@ -41,7 +41,7 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
     navigate(`/category/${encodeURIComponent(categoryName)}`);
   };
   return (
-    <div className="app__categories-Carousel">
+    <div className="app__categories-carousel">
       <h2>Shop By Category</h2>
       <Swiper
         modules={[Scrollbar, Navigation]}
@@ -66,9 +66,9 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
             key={index}
             onClick={() => handleCategoryClick(category.name)}
           >
-            <div className="swiper-slide">
+            <div className="app__categories-slide">
               <img src={category.img} alt={category.name} loading="lazy" />
-              <p className="category-name">{category.name.slice(0, 15)}</p>
+              <p className="app__categories-category-name">{category.name.slice(0, 15)}</p>
             </div>
           </SwiperSlide>
         ))}

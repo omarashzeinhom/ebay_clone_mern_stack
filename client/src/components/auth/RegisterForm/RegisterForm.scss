@@ -1,3 +1,13 @@
+.app__signed-in{
+  h2{
+    font-size: 2rem;
+    text-align: left;
+    @media screen and (max-width:500px) {
+      text-align: center;
+    }
+  }
+}
+
 .app__registration-container {
   h2 {
     text-align: center;
@@ -17,3 +27,5 @@
     grid-column: 1fr;
   }
 }
+
+

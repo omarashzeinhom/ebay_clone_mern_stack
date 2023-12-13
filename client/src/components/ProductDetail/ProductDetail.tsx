@@ -1,7 +1,11 @@
 // ProductDetail.tsx
+
+import "./ProductDetail.scss";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useProductContext } from "../../context/ProductContext";
+import Nav from "../Nav/Nav";
+import SearchBar from "../SearchBar/SearchBar";
 
 const ProductDetail: React.FC = () => {
   const { productId } = useParams();
@@ -20,16 +24,31 @@ const ProductDetail: React.FC = () => {
   }, [productId, getProductById]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   return (
-    <div>
-      <h2>{product.name}</h2>
-      <p>Category: {product.parent}</p>
-      <p>Price: ${product.price}</p>
-      {/* Add other product details here */}
-    </div>
+    <>
+      <Nav />
+      <SearchBar />
+      <div className="product-detail">
+        <h2 className="product-detail__title">{product?.name}</h2>
+        <p className="product-detail__category">Category: {product?.parent}</p>
+        <p className="product-detail__price">${product?.price}</p>
+        <img
+          className="product-detail__image"
+          alt={product?.name}
+          src={product?.img}
+          width={150}
+          height={150}
+          loading="lazy"
+        />
+        <div className="product-detail__buttongroup">
+          <button className="product-detail__button">+</button>
+          <button className="product-detail__altbutton">-</button>
+        </div>
+      </div>
+    </>
   );
 };
 

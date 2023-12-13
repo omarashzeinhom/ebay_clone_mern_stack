@@ -62,7 +62,7 @@ const CategoryList: React.FC<CategoryListProps> = () => {
     <>
       <Nav />
       <SearchBar />
-      <div className="app__category-List">
+      <div className="app-category__list">
         <h2>Categories</h2>
         <select
           onChange={handleCategoryChange}

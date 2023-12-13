@@ -1,3 +1,5 @@
+// AdsCarousel.tsx
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "./AdsCarousel.scss";
@@ -35,47 +37,48 @@ const AdsCarousel: React.FC = () => {
   const handleCategoryClick = (categoryName: string) => {
     navigate(`/category/${encodeURIComponent(categoryName)}`);
   };
+
   return (
-    <>
-      <Swiper
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
-        modules={[Autoplay, Navigation]}
-        className="mySwiper"
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        loop={shuffledData.length > 0} // Enable loop only if there are enough slides
-      >
-        {shuffledData.map((category) => (
-          <SwiperSlide key={category?.name}>
-            <div className="slide-container">
-              <img
-                src={category?.img}
-                alt={category?.name}
-                width={50}
-                height={50}
-                loading="lazy"
-                className="carousel-image"
-              />
-              <div className="image-buttons">
+    <Swiper
+      navigation={{
+        nextEl: ".ads-swiper__button-next",
+        prevEl: ".ads-swiper__button-prev",
+      }}
+      modules={[Autoplay, Navigation]}
+      className="ads-swiper"
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
+      loop={shuffledData.length > 0} // Enable loop only if there are enough slides
+    >
+      {shuffledData.map((category) => (
+        <SwiperSlide key={category?.name}>
+          <div className="ads-swiper__slide">
+            <img
+              src={category?.img}
+              alt={category?.name}
+              width={50}
+              height={50}
+              loading="lazy"
+              className="ads-swiper__image"
+            />
+            <div className="ads-swiper__slide-container">
+              <div className="ads-swiper__image-buttons">
                 <button
-                  className="generate-text-button"
+                  className="ads-swiper__generate-text-button"
                   onClick={() => handleCategoryClick(category?.name)}
                 >
                   {category?.name}
                 </button>
               </div>
             </div>
-          </SwiperSlide>
-        ))}
-        <div className="swiper-button-next"></div>
-        <div className="swiper-button-prev"></div>
-      </Swiper>
-    </>
+          </div>
+        </SwiperSlide>
+      ))}
+      <div className="ads-swiper__button-next"></div>
+      <div className="ads-swiper__button-prev"></div>
+    </Swiper>
   );
 };
 

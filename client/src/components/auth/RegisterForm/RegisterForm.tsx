@@ -1,13 +1,17 @@
 import "./RegisterForm.scss";
 import React, { useState } from "react";
-import PersonalAccountForm from "./PersonalAccountForm";
-import BusinessAccountForm from "./BusinessAccountForm"; // Fix typo in import
 import RegisterNav from "./RegisterNav";
 import { User } from "../../../models/user";
 import { Business } from "../../../models/business";
+import { useAuth } from "../../../context/AuthContext";
+import PersonalAccountForm from "./PersonalAccountForm";
+import BusinessAccountForm from "./BusinessAccountForm"; 
 import { authService } from "../../../services/authService";
 
+
+
 const RegisterForm: React.FC = () => {
+  const { token } = useAuth();
   const [accountType, setAccountType] = useState<string>("Personal account");
   const [user, setUser] = useState<User>({
     firstName: "",
@@ -80,47 +84,57 @@ const RegisterForm: React.FC = () => {
   return (
     <>
       <RegisterNav />
-      <div className="app__registration-container">
-        <h2>Create an account </h2>
-        <div className="app__registration-radioBtns">
-          <label>
-            <input
-              type="radio"
-              name="accountType"
-              checked={accountType === "Personal account"} // Check if accountType is "Personal account"
-              value="Personal account"
-              onChange={() => handleRoleChange("Personal account")}
-            />
-            Personal account
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="accountType"
-              checked={accountType === "Business account"} // Check if accountType is "Business account"
-              value="Business account"
-              onChange={() => handleRoleChange("Business account")}
-            />
-            Business account
-          </label>
+
+      {token ? (
+        <div className="app__signed-in">
+          <h2>Already Signed In </h2>
+          <p>
+            Head back <a href="/">home</a>
+          </p>
         </div>
+      ) : (
+        <div className="app__registration-container">
+          <h2>Create an account </h2>
+          <div className="app__registration-radioBtns">
+            <label>
+              <input
+                type="radio"
+                name="accountType"
+                checked={accountType === "Personal account"} // Check if accountType is "Personal account"
+                value="Personal account"
+                onChange={() => handleRoleChange("Personal account")}
+              />
+              Personal account
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="accountType"
+                checked={accountType === "Business account"} // Check if accountType is "Business account"
+                value="Business account"
+                onChange={() => handleRoleChange("Business account")}
+              />
+              Business account
+            </label>
+          </div>
 
-        {accountType === "Personal account" && (
-          <PersonalAccountForm
-            user={user}
-            handleRegister={handleRegister}
-            setUser={setUser}
-          />
-        )}
+          {accountType === "Personal account" && (
+            <PersonalAccountForm
+              user={user}
+              handleRegister={handleRegister}
+              setUser={setUser}
+            />
+          )}
 
-        {accountType === "Business account" && (
-          <BusinessAccountForm
-            business={business}
-            handleRegister={handleRegister}
-            setBusiness={setBusiness}
-          />
-        )}
-      </div>
+          {accountType === "Business account" && (
+            <BusinessAccountForm
+              business={business}
+              handleRegister={handleRegister}
+              setBusiness={setBusiness}
+            />
+          )}
+        </div>
+      )}
     </>
   );
 };
