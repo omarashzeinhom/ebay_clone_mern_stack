@@ -41,31 +41,36 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
       <div className="app__paform-left">
         <input
           type="text"
-          placeholder="First Name"
+          id="firstName"
           value={firstName}
-          onChange={(e) => handleChange("firstName", e.target.value)}
+          placeholder="First Name"
           className="app__paform-inputAlt"
+          onChange={(e) => handleChange("firstName", e.target.value)}
         />
         <input
           type="text"
-          placeholder="Last Name"
+          id="lastName"
           value={lastName}
-          onChange={(e) => handleChange("lastName", e.target.value)}
+          placeholder="Last Name"
           className="app__paform-inputAlt"
+          onChange={(e) => handleChange("lastName", e.target.value)}
         />
         <input
+          id="email"
           type="email"
-          placeholder="Email"
           value={email}
-          onChange={(e) => handleChange("email", e.target.value)}
+          placeholder="Email"
           className="app__paform-input"
+          autoComplete="useremail@email.com"
+          onChange={(e) => handleChange("email", e.target.value)}
         />
         <input
+          id="password"
           type="password"
-          placeholder="Password"
           value={password}
-          onChange={(e) => handleChange("password", e.target.value)}
+          placeholder="Password"
           className="app__paform-input"
+          onChange={(e) => handleChange("password", e.target.value)}
         />
         <button onClick={handleRegister} className="app__paform-Btn">
           Register

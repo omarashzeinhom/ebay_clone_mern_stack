@@ -21,37 +21,41 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
     <div className="app__baform">
       <input
         type="text"
-        placeholder="Business Name"
+        id="businessName"
         value={businessName}
+        placeholder="Business Name"
+        className="app__baform-input"
         onChange={(e) =>
           setBusiness({ ...business, businessName: e.target.value })
         }
-        className="app__baform-input"
       />
       <input
         type="email"
-        placeholder="Business Email"
+        id="businessEmail"
         value={businessEmail}
+        placeholder="Business Email"
+        className="app__baform-input"
         onChange={(e) =>
           setBusiness({ ...business, businessEmail: e.target.value })
         }
-        className="app__baform-input"
       />
       <input
         type="password"
-        placeholder="Business Password"
+        id="businessPassword"
         value={businessPassword}
+        placeholder="Business Password"
+        className="app__baform-input"
         onChange={(e) =>
           setBusiness({ ...business, businessPassword: e.target.value })
         }
-        className="app__baform-input"
       />
       <select
+        id="businessLocation"
         value={businessLocation}
+        className="app__baform-input"
         onChange={(e) =>
           setBusiness({ ...business, businessLocation: e.target.value })
         }
-        className="app__baform-input"
       >
         <option>Egypt</option>
       </select>
