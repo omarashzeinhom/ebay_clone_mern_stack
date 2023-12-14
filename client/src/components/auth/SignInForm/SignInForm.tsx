@@ -27,16 +27,24 @@ const SignInForm: React.FC = () => {
 
   const handleSignIn = async () => {
     try {
-      const newToken = await authService.login(email, password);
-      const userData = await authService.getUser(newToken);
-      login(newToken, userData);
-
-      const newBToken = await authService.loginBusiness(email, password);
-      const businessData = await authService.getBusiness(newBToken);
-      loginBusiness(newBToken, businessData);
-      console.log(`Business Login successful: ${email}`);
-    } catch (error) {
-      console.error(`Error in handleSignIn: ${error}`);
+      // Try signing in as a regular user
+      const userToken = await authService.login(email, password);
+      const userData = await authService.getUser(userToken);
+      login(userToken, userData);
+  
+      console.log(`User Login successful: ${email}`);
+    } catch (userError) {
+      try {
+        // If signing in as a regular user fails, try signing in as a business
+        const businessToken = await authService.loginBusiness(email, password);
+        const businessData = await authService.getBusiness(businessToken);
+        loginBusiness(businessToken, businessData);
+  
+        console.log(`Business Login successful: ${email}`);
+      } catch (businessError) {
+        // If both attempts fail, log the error
+        console.error(`Error in handleSignIn: ${userError || businessError}`);
+      }
     }
   };
 

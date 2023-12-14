@@ -72,10 +72,12 @@ exports.registerBusiness = async (req, res) => {
     businessName,
     businessEmail,
     businessPassword: hashedBusinessPassword,
-    businessLocation: businessLocation || ' Egypt',
+    businessLocation: businessLocation || 'Egypt',
     businessActive: businessActive || true,
   });
   await newBusiness.save();
+  console.log(newBusiness);
+  
 };
 
 exports.login = async (req, res) => {
@@ -132,12 +134,16 @@ exports.loginBusiness = async (req, res) => {
       }
     );
 
+    // Add a debug log
+    console.log("Business login successful");
+
     res.status(200).json({ token, expiresIn: 3600 });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 
 exports.getUser = async (req, res) => {
   try {
@@ -168,6 +174,42 @@ exports.getBusiness = async (req, res) => {
       businessEmail: business.businessEmail,
       businessName: business.businessName,
     });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+exports.register = async (req, res) => {
+  const { firstName, lastName, email, password } = req.body;
+
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+    });
+    await newUser.save();
+
+    // Check for existing business using businessEmail
+    const existingBusiness = await Business.findOne({ businessEmail: email });
+    if (existingBusiness) {
+      return res
+        .status(400)
+        .json({ message: "User already exists as a business" });
+    }
+
+    // Add the business registration logic here...
+
+    res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });

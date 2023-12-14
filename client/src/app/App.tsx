@@ -1,19 +1,18 @@
 // App.tsx
 import React, { useState, useEffect } from "react";
-import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, SignIn, Register } from "./pages";
-import { AuthProvider } from "./context/AuthContext";
-import { ErrorBoundary, NotFound } from "./components";
+import { Home, SignIn, Register } from "../pages";
+import { AuthProvider } from "../context/AuthContext";
+import { ErrorBoundary, NotFound } from "../components";
 import {
   CategoryList,
   ProductList,
   CustomerService,
   ProductDetail,
-} from "./components/";
-import { ProductProvider } from "./context/ProductContext";
-import { Category } from "./models/category";
-import { categoriesService } from "./services/categoryService";
+} from "../components";
+import { ProductProvider } from "../context/ProductContext";
+import { Category } from "../models/category";
+import { categoriesService } from "../services/categoryService";
 
 const App: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
