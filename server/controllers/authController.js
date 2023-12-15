@@ -52,32 +52,48 @@ exports.register = async (req, res) => {
 };
 
 exports.registerBusiness = async (req, res) => {
-  const {
-    businessName,
-    businessEmail,
-    businessPassword,
-    businessLocation,
-    businessActive,
-  } = req.body;
-  const existingUser = await User.findOne({ businessEmail });
-  const existingBusiness = await Business.findOne({ businessEmail });
-  if (existingBusiness || existingUser) {
-    return res
-      .status(400)
-      .json({ message: "User already exists as a business or customer" });
-  }
-  const hashedBusinessPassword = await bcrypt.hash(businessPassword, 10);
+  try {
+    const {
+      businessName,
+      businessEmail,
+      businessPassword,
+      businessLocation,
+      businessActive,
+    } = req.body;
 
-  const newBusiness = new Business({
-    businessName,
-    businessEmail,
-    businessPassword: hashedBusinessPassword,
-    businessLocation: businessLocation || 'Egypt',
-    businessActive: businessActive || true,
-  });
-  await newBusiness.save();
-  console.log(newBusiness);
-  
+    // Check if the email is already associated with a user or a business
+    const existingUser = await User.findOne({ businessEmail });
+    const existingBusiness = await Business.findOne({ businessEmail });
+
+    if (existingBusiness || existingUser) {
+      return res
+        .status(400)
+        .json({ message: "User already exists as a business or customer" });
+    }
+
+    // Hash the business password before saving it
+    const hashedBusinessPassword = await bcrypt.hash(businessPassword, 10);
+
+    // Create a new business instance and save it to the database
+    const newBusiness = new Business({
+      businessName,
+      businessEmail,
+      businessPassword: hashedBusinessPassword,
+      businessLocation: businessLocation || 'Egypt',
+      businessActive: businessActive || true,
+    });
+
+    await newBusiness.save();
+
+    console.log("New business registered:", newBusiness);
+
+    // Respond with a success message or any relevant data
+    res.status(201).json({ message: "Business registration successful", business: newBusiness });
+  } catch (error) {
+    // Handle any errors that occurred during the registration process
+    console.error("Error in registerBusiness:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 exports.login = async (req, res) => {
@@ -135,7 +151,8 @@ exports.loginBusiness = async (req, res) => {
     );
 
     // Add a debug log
-    console.log("Business login successful");
+    // console.log("Business login successful");
+    alert(`${businessEmail} has Logged In Successfully 🚀`)
 
     res.status(200).json({ token, expiresIn: 3600 });
   } catch (error) {
@@ -167,7 +184,7 @@ exports.getBusiness = async (req, res) => {
   try {
     // You can access the user details from the request object
     const business = req.business;
-    console.log(req.user);
+    console.log(req.business);
     //res.json(user);
     res.status(200).json({
       businessId: business.businessId,

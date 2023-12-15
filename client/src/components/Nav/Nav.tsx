@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaRegBell } from "react-icons/fa";
 import { TbShoppingCart } from "react-icons/tb";
 import { navItems, myEbayItems } from "../../utils/constants";
 import "./Nav.scss";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { authService } from "../../services/authService";
+import { Business } from "../../models/business";
 
 const Nav = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { token, user, logout } = useAuth();
-  //console.log(user?.firstName);
-  //console.log(user, token, logout);
+  //console.log(business?.businessEmail);
+  const [business, setBusiness] = useState<Business>();
+
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleLogOut = () => {
@@ -25,6 +28,30 @@ const Nav = () => {
     navigate(`/user/${user?.userId}`);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (token) {
+          // Check if business data is in localStorage
+          const storedBusiness = localStorage.getItem("business");
+          if (storedBusiness) {
+            // If available, set it to the state
+            setBusiness(JSON.parse(storedBusiness));
+          } else {
+            // If not, fetch the business information from the server
+            const businessData = await authService.getBusiness(token);
+            setBusiness(businessData);
+            // Save business data to localStorage
+            localStorage.setItem("business", JSON.stringify(businessData));
+          }
+        }
+      } catch (error) {
+        console.error(`Error fetching business data: ${error}`);
+      }
+    };
+
+    fetchData();
+  }, [token]);
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
       <div className="app__nav-mobile-icon" onClick={handleMobileMenuToggle}>
@@ -47,7 +74,13 @@ const Nav = () => {
               }}
             >
               <option value="">
-                Hi, {user?.firstName || user?.email || " "}!
+                Hi,{" "}
+                {business?.businessName ||
+                  user?.firstName ||
+                  business?.businessEmail ||
+                  user?.email ||
+                  " "}
+                !
               </option>
               <option onClick={handleUserRoute}>
                 {user?.userId?.slice(1, 7) || " "}!

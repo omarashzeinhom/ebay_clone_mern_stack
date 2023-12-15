@@ -57,12 +57,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUser(null);
     localStorage.removeItem("token");
   };
+
   const fetchBusinessInformation = async (token: string) => {
     try {
       const response = await axios.get("http://localhost:3001/auth/business", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBusiness(response.data);
+      console.log(response)
     } catch (error) {
       console.error("Error fetching user information:", error);
       // Handle error (e.g., log out the user)

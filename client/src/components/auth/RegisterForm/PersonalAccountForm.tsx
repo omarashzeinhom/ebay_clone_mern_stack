@@ -37,7 +37,7 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
   const { firstName, lastName, email, password } = localUser;
 
   return (
-    <div className="app__paform">
+    <form className="app__paform">
       <div className="app__paform-left">
         <input
           type="text"
@@ -68,6 +68,7 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
           id="password"
           type="password"
           value={password}
+          autoComplete="current-password"
           placeholder="Password"
           className="app__paform-input"
           onChange={(e) => handleChange("password", e.target.value)}
@@ -91,7 +92,7 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
       <small>
         <p>Already have an account?</p> <a href="/signin">SignIn!</a>
       </small>
-    </div>
+    </form>
   );
 };
 

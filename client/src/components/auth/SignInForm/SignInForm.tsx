@@ -31,15 +31,17 @@ const SignInForm: React.FC = () => {
       const userToken = await authService.login(email, password);
       const userData = await authService.getUser(userToken);
       login(userToken, userData);
-  
+
       console.log(`User Login successful: ${email}`);
     } catch (userError) {
+      console.log(userError);
+
       try {
         // If signing in as a regular user fails, try signing in as a business
         const businessToken = await authService.loginBusiness(email, password);
         const businessData = await authService.getBusiness(businessToken);
         loginBusiness(businessToken, businessData);
-  
+
         console.log(`Business Login successful: ${email}`);
       } catch (businessError) {
         // If both attempts fail, log the error
@@ -58,6 +60,12 @@ const SignInForm: React.FC = () => {
           login(token, data);
         } catch (error) {
           console.error(`Error fetching data: ${error}`);
+          try {
+            const dataB = await authService.getBusiness(token); // || await (authService.getBusiness(token));
+            loginBusiness(token, dataB);
+          } catch (businessError) {
+            console.error(businessError);
+          }
         }
       };
 
@@ -74,13 +82,17 @@ const SignInForm: React.FC = () => {
       <SignInNav />
 
       {token ? (
-        <>
-          Nothing to show here already Signed in As
+        <div className="app__signin-container">
+          <p> Nothing to show here already Signed in As</p>
           <a href={userLink || businessLink || ""}>
-            {user?.email || business?.businessName || "No Found Data"}
+            {user?.email ||
+              business?.businessName ||
+              "No user data was found !"}
           </a>
+          <hr />
+
           <a href="/">Return Home</a>
-        </>
+        </div>
       ) : (
         <div className="app__signin-container">
           <h1>Hello</h1>
@@ -130,9 +142,7 @@ const SignInForm: React.FC = () => {
           </small>
           <details>
             <summary>Learn More</summary>
-            <small>
-              {summaryBoxText}
-            </small>
+            <small>{summaryBoxText}</small>
           </details>
         </div>
       )}
@@ -146,4 +156,4 @@ const summaryBoxText = `With this box checked, we'll keep you signed in, making 
 to bid and buy. You'll also be all set to pay if you've saved your
 payment info. You can always turn off this feature in My eBay. We
 may ask you to sign in again for some activities, such as making
-changes to your account.`
+changes to your account.`;

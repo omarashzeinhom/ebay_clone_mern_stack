@@ -18,7 +18,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
     business;
 
   return (
-    <div className="app__baform">
+    <form className="app__baform" onClick={handleRegister}>
       <input
         type="text"
         id="businessName"
@@ -33,6 +33,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         type="email"
         id="businessEmail"
         value={businessEmail}
+        autoComplete="email"
         placeholder="Business Email"
         className="app__baform-input"
         onChange={(e) =>
@@ -45,6 +46,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         value={businessPassword}
         placeholder="Business Password"
         className="app__baform-input"
+        autoComplete="current-password"
         onChange={(e) =>
           setBusiness({ ...business, businessPassword: e.target.value })
         }
@@ -63,7 +65,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
       <button onClick={handleRegister} className="app__baform-Btn">
         Register
       </button>
-    </div>
+    </form>
   );
 };
 

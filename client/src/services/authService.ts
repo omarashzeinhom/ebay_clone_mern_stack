@@ -4,9 +4,8 @@ import { Business } from "../models/business";
 
 const API_BASE_URL = "http://localhost:3001/auth";
 
-
-
 export const authService = {
+  /* <--- User services start ---> */
   register: async (
     firstName: string,
     lastName: string,
@@ -49,6 +48,9 @@ export const authService = {
       throw new Error(`Failed to get user: ${error}`);
     }
   },
+  /* <---User services end ---> */
+
+  /* <--- Business services start ---> */
 
   registerBusiness: async (
     businessName: string,
@@ -57,13 +59,20 @@ export const authService = {
     businessLocation: string,
     businessActive: boolean
   ): Promise<void> => {
-    await axios.post(`${API_BASE_URL}/registerb`, {
-      businessName,
-      businessEmail,
-      businessPassword,
-      businessLocation,
-      businessActive,
-    });
+    try {
+      const response = await axios.post(`${API_BASE_URL}/registerb`, {
+        businessName,
+        businessEmail,
+        businessPassword,
+        businessLocation,
+        businessActive,
+      });
+
+      console.log("Business registration response:", response.data);
+    } catch (error) {
+      console.error("Business registration failed:", error);
+      throw error; // Rethrow the error to be caught in the calling function
+    }
   },
 
   loginBusiness: async (
@@ -92,9 +101,12 @@ export const authService = {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      return response.data;
+      console.log(response?.data);
+
+      return response?.data;
     } catch (error) {
       throw new Error(`Failed to get business: ${error}`);
     }
   },
+  /* <--- Business services end ---> */
 };

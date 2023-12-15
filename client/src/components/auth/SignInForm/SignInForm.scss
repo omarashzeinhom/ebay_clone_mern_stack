@@ -51,7 +51,11 @@
   top: 0;
   display: flex;
   justify-content: space-between;
-  padding: 1rem; /* Add padding for better spacing */
+  padding: 1rem; 
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 .app__signin-nav-left,
