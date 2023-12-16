@@ -1,10 +1,10 @@
 import "./ShoppingCart.scss";
-import CartItem from "../CartItem/CartItem";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useProductContext } from "../../../context/ProductContext";
+import  { useEffect, useState  } from "react";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
+import CartItem from "../CartItem/CartItem";
 import { currencyFormatter } from "../../../utilities/currencyFormatter";
+import { useProductContext } from "../../../context/ProductContext";
+import { useParams } from "react-router-dom";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -12,11 +12,9 @@ type ShoppingCartProps = {
 
 export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems, cartQuantity } = useShoppingCart();
-  const { fetchProducts,products,getProductById,  } = useProductContext();
-  const {increaseCartQuantity, decreaseCartQuantity, removefromCart , getItemQuantity} = useShoppingCart();
+  const { fetchProducts, products, getProductById } = useProductContext();
   const { productId } = useParams();
   const [product, setProduct] = useState<any | null>(null);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,14 +27,12 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
     fetchData();
   }, [productId, getProductById]);
 
-  useEffect(()=>{
-  fetchProducts();
-  getProductById(productId || "");
+  useEffect(() => {
+    fetchProducts();
+    getProductById(productId || "");
 
     console.log(products);
-  },[])
-
-
+  }, []);
 
   const storeProducts: any[] = products; // Get All Store Products here
 
@@ -45,11 +41,22 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
       {cartQuantity > 0 && (
         <>
           {cartQuantity}
-          {cartItems.map((item, index) => {
-            <CartItem price={0} parent={""} _id={""} name={""} img={""} key={item?.id} {...item} />;
-            <button onClick={()=> removefromCart(item?.id)}> Remove</button>
-
-          })}
+          {cartItems.map((item, index) => 
+           (
+              <>
+                <CartItem
+                  price={item?.price}
+                  parent={item?.parent}
+                  _id={item?._id}
+                  name={item?.name}
+                  img={item?.img}
+                  key={item?.id}
+                  id={item?.id}
+                  quantity={item?.quantity}
+                />
+              
+              </>
+            ))}
         </>
       )}
 
@@ -61,10 +68,6 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
             return total + (item?.price || 0) * cartItem?.quantity;
           }, 0)
         )}
-      </div>
-
-      <div>
-
       </div>
     </>
   );

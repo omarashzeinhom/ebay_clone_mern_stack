@@ -1,5 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import useLocalStorage from "../hook/useLocalStorage";
+import {CartItemProps} from "../models/cartitem";
 
 // Adding Shopping Cart Provider
 
@@ -7,10 +8,6 @@ type ShoppingCartProviderProps = {
   children: ReactNode;
 };
 
-type CartItemProps = {
-  id: number;
-  quantity: number;
-};
 
 type ShoppingCartContextProps = {
   openCart: () => void;
@@ -52,23 +49,20 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   function getItemQuantity(id: number) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
   }
-
   function increaseCartQuantity(id: number) {
     setCartItems((currentItems) => {
-      if (currentItems.find((item) => item.id === id) == null) {
-        return [...currentItems, { id: id, quantity: 1 }];
-      } else {
-        return currentItems.map((item) => {
-          if (item.id === id) {
-            return { ...item, quantity: item.quantity + 1 };
-          } else {
-            return item;
-          }
-        });
+      const updatedItems = currentItems.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+  
+      // If the item with the given id is not in the cart, add it
+      if (updatedItems.every((item) => item.id !== id)) {
+        updatedItems.push({ id, quantity: 1, _id: '', name: '', img: '', price: 0, parent: '' });
       }
+  
+      return updatedItems;
     });
   }
-
   function decreaseCartQuantity(id: number) {
     setCartItems((currentItems) => {
       if (currentItems.find((item) => item.id == id) == null) {

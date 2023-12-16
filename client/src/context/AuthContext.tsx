@@ -27,7 +27,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (storedToken) {
       setToken(storedToken);
       // Fetch user information from the server using the stored token
-      fetchUserInformation(storedToken) 
+      fetchUserInformation(storedToken);
       fetchBusinessInformation(storedToken);
     }
   }, []);

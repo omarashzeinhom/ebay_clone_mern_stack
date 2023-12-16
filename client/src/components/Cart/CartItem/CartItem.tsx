@@ -2,16 +2,9 @@
 import React from "react";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { currencyFormatter } from "../../../utilities/currencyFormatter";
+import { CartItemProps } from "../../../models/cartitem";
 
-type CartItemProps = {
-  _id: string;
-  id: number; 
-  quantity: number;
-  name: string;
-  img: string;
-  price: number;
-  parent: string;
-};
+
 
 const CartItem: React.FC<CartItemProps> = ({
   id,
@@ -26,9 +19,9 @@ const CartItem: React.FC<CartItemProps> = ({
 
   return (
     <>
-      <div key={_id} className="d-flex align-items-center">
-        <span>{id}</span>
-<p>{parent}</p>
+      <div key={id} className="d-flex align-items-center">
+        <span>{_id}</span>
+        <p>{parent}</p>
         <img
           src={img}
           alt={name}
@@ -36,26 +29,22 @@ const CartItem: React.FC<CartItemProps> = ({
           className="rounded-circle"
         />
         <div className="ms-3">
-          <p className="fw-bold mb-1">{name}</p>
-          <p className="text-muted mb-0">
-            {currencyFormatter((price || 0) * quantity)}
-          </p>
+          <p className="">{name}</p>
+          <p className="">{currencyFormatter((price || 0) * quantity)}</p>
         </div>
       </div>
       {quantity > 1 && <div>x{quantity}</div>}
-      // Within CartItem component
-      <div key={id} className="d-flex align-items-center">
+      <div key={id} className="">
         <img
           src={img}
           alt={name}
           style={{ width: "45px", height: "45px" }}
           className="rounded-circle"
         />
-        <div className="ms-3">
-          <p className="fw-bold mb-1">{name}</p>
-          <p className="text-muted mb-0">
-            {currencyFormatter((price || 0) * quantity)}
-          </p>
+        <div className="">
+          <p className="">{name}</p>
+          <p className="">{currencyFormatter((price || 0) * quantity)}</p>
+          <button onClick={() => removefromCart(id)}>&times;</button>
         </div>
       </div>
     </>
