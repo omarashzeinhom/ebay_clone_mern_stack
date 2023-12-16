@@ -3,1478 +3,1863 @@
     "name": "Wheel Bearing Kit",
     "img": "https://source.unsplash.com/featured/?wheelbearingkit",
     "price": 49.99,
-    "parent": "Parts & accessories"
+    "parent": "Parts & accessories",
+    "description": "Ensure smooth and efficient performance with this wheel bearing kit. Crafted with precision, it provides durability and reliability, making it an essential part for your vehicle's maintenance."
   },
   {
     "name": "Oil Filter",
     "img": "https://source.unsplash.com/featured/?oilfilter",
     "price": 24.99,
-    "parent": "Parts & accessories"
+    "parent": "Parts & accessories",
+    "description": "Keep your engine running smoothly with this high-quality oil filter. Designed to trap impurities and maintain oil purity, it contributes to the longevity of your vehicle's engine."
   },
   {
     "name": "Air Filter",
     "img": "https://source.unsplash.com/featured/?airfilter",
     "price": 19.99,
-    "parent": "Parts & accessories"
+    "parent": "Parts & accessories",
+    "description": "Enhance your vehicle's performance with this reliable air filter. Engineered to filter out contaminants, it ensures clean air intake, optimizing fuel efficiency and protecting your engine."
   },
   {
     "name": "Toyota Camry",
     "img": "https://source.unsplash.com/featured/?toyotacamry",
     "price": 26999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Experience the perfect blend of style and performance with the Toyota Camry. With its sleek design and advanced features, this car redefines driving comfort and reliability."
   },
   {
     "name": "Ford Mustang",
     "img": "https://source.unsplash.com/featured/?fordmustang",
     "price": 32999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Unleash the power and iconic design of the Ford Mustang. This legendary car delivers exhilarating performance, combining cutting-edge technology with a timeless sense of American muscle."
   },
   {
     "name": "Chevrolet Silverado",
     "img": "https://source.unsplash.com/featured/?chevroletsilverado",
     "price": 37999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Conquer the road with the Chevrolet Silverado. Built for strength and versatility, this truck offers a perfect balance of power, capability, and modern amenities for an exceptional driving experience."
   },
   {
     "name": "Honda Civic",
     "img": "https://source.unsplash.com/featured/?hondacivic",
     "price": 24999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Embrace the Honda Civic, a symbol of reliability and efficiency. Explore the city with confidence, enjoying its fuel efficiency and innovative features that redefine the compact car experience."
   },
   {
     "name": "Nissan Rogue",
     "img": "https://source.unsplash.com/featured/?nissanrogue",
     "price": 29999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Elevate your driving experience with the Nissan Rogue. Combining sleek design with advanced technology, this SUV delivers versatility, comfort, and safety for your every journey."
+  },
+  {
+    "name": "Home Theater System",
+    "img": "https://source.unsplash.com/featured/?hometheatersystem",
+    "price": 4999.99,
+    "parent": "Audio & video equipment",
+    "description": "Immerse yourself in cinematic audio and visual excellence with this Home Theater System. Elevate your entertainment space with powerful sound and stunning visuals for an unparalleled viewing experience."
+  },
+  {
+    "name": "Nest Hub Max",
+    "img": "https://source.unsplash.com/featured/?nesthubmax",
+    "price": 299.99,
+    "parent": "Smart home devices",
+    "description": "Transform your living space into a smart haven with the Nest Hub Max. Control your home, stay connected, and enjoy multimedia experiences with this versatile and intuitive smart home device."
+  },
+  {
+    "name": "Nest Thermostat E",
+    "img": "https://source.unsplash.com/featured/?nestthermostate",
+    "price": 399.99,
+    "parent": "Smart home devices",
+    "description": "Optimize your home's energy efficiency with the Nest Thermostat E. Easy to install and smartly designed, it brings comfort and savings by learning your preferences and creating a personalized heating and cooling schedule."
+  },
+  {
+    "name": "Heels",
+    "img": "https://source.unsplash.com/featured/?heels",
+    "price": 399.99,
+    "parent": "Women",
+    "description": "Step into elegance and confidence with these stylish heels. Whether for a special occasion or everyday glamour, these heels complement your outfit, making you stand out with every step."
+  },
+  {
+    "name": "Shoes",
+    "img": "https://source.unsplash.com/featured/?menshoes",
+    "price": 199.99,
+    "parent": "Men",
+    "description": "Experience comfort and style with these versatile shoes for men. From casual outings to formal occasions, these shoes are crafted for durability and fashion, ensuring you step out with confidence."
+  },
+  {
+    "name": "Tailored Shoes",
+    "img": "https://source.unsplash.com/featured/?mentailoredshoe",
+    "price": 99.99,
+    "parent": "Men",
+    "description": "Elevate your look with these tailored shoes for men. The perfect blend of sophistication and comfort, these shoes are designed to complement your formal attire and leave a lasting impression."
+  },
+  {
+    "name": "Handbag",
+    "img": "https://source.unsplash.com/featured/?handbag",
+    "price": 99.99,
+    "parent": "Handbags",
+    "description": "Carry your essentials in style with this chic handbag. Featuring a blend of fashion and functionality, this handbag is the perfect accessory to complete your ensemble with flair."
+  },
+  {
+    "name": "Sneakers",
+    "img": "https://source.unsplash.com/featured/?sneakers",
+    "price": 299.99,
+    "parent": "Collectible Sneakers",
+    "description": "Step into the world of urban fashion with these collectible sneakers. Combining comfort and street style, these sneakers are a statement piece for sneaker enthusiasts and trendsetters alike."
   },
   {
     "name": "Jeep Wrangler",
     "img": "https://source.unsplash.com/featured/?jeepwrangler",
     "price": 35999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Embark on thrilling adventures with the Jeep Wrangler. Combining rugged design with off-road capability, this iconic vehicle ensures an unmatched driving experience, whether on or off the beaten path."
   },
   {
     "name": "BMW X5",
     "img": "https://source.unsplash.com/featured/?bmwx5",
     "price": 49999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Experience luxury and performance with the BMW X5. Crafted with precision and elegance, this SUV redefines driving pleasure, offering a perfect blend of style, comfort, and cutting-edge technology."
   },
   {
     "name": "Tesla Model 3",
     "img": "https://source.unsplash.com/featured/?teslamodel3",
     "price": 45999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Step into the future of automotive innovation with the Tesla Model 3. This electric car combines sleek design, impressive range, and advanced features, setting new standards for sustainable and stylish driving."
   },
   {
     "name": "Audi Q7",
     "img": "https://source.unsplash.com/featured/?audiq7",
     "price": 53999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Indulge in luxury and performance with the Audi Q7. From its captivating design to advanced technology, this SUV delivers a premium driving experience, blending style, comfort, and cutting-edge innovation."
   },
   {
     "name": "Mercedes-Benz S-Class",
     "img": "https://source.unsplash.com/featured/?mercedessclass",
     "price": 69999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Experience automotive excellence with the Mercedes-Benz S-Class. Unmatched in luxury and innovation, this sedan embodies sophistication, offering a driving experience that exceeds expectations."
   },
   {
     "name": "Ford Mustang",
     "img": "https://source.unsplash.com/featured/?fordmustang",
     "price": 29.999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Feel the power of American muscle with the Ford Mustang. Iconic in design and performance, this legendary car is a symbol of speed, style, and a thrilling driving experience."
   },
   {
     "name": "Chevrolet Silverado",
     "img": "https://source.unsplash.com/featured/?chevroletsilverado",
     "price": 28.999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Dominate the road with the Chevrolet Silverado. Built for strength and durability, this truck delivers a perfect blend of capability, comfort, and rugged design for your every journey."
   },
   {
     "name": "Honda Accord",
     "img": "https://source.unsplash.com/featured/?hondaaccord",
     "price": 27.999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Discover reliability and style with the Honda Accord. Known for its efficiency and advanced features, this sedan offers a comfortable and enjoyable driving experience for every adventure."
   },
   {
     "name": "Dodge Challenger",
     "img": "https://source.unsplash.com/featured/?dodgeschallenger",
     "price": 31.999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Unleash the beast with the Dodge Challenger. This muscle car blends power and retro-inspired design, ensuring an adrenaline-pumping driving experience that turns heads on the road."
   },
   {
     "name": "Nissan Frontier",
     "img": "https://source.unsplash.com/featured/?nissanfrontier",
     "price": 26.999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Conquer the off-road terrain with the Nissan Frontier. Built for adventure, this midsize truck offers rugged capability and dependable performance, making it the perfect companion for your outdoor escapades."
   },
   {
     "name": "Toyota Camry",
     "img": "https://source.unsplash.com/featured/?toyotacamry",
     "price": 26.999,
-    "parent": "Cars & trucks"
-  },
-  
-  {
-    "name": "Toyota Camry",
-    "img": "https://source.unsplash.com/featured/?toyotacamry",
-    "price": 26.999,
-    "parent": "Cars & trucks"
+    "parent": "Cars & trucks",
+    "description": "Experience the perfect balance of efficiency and style with the Toyota Camry. This reliable sedan offers a smooth ride, advanced safety features, and timeless design for an enjoyable driving experience."
   },
   {
     "name": "Harley Davidson Sportster",
     "img": "https://source.unsplash.com/featured/?harleydavidsonsportster",
     "price": 15.999,
-    "parent": "Motorcycles"
+    "parent": "Motorcycles",
+    "description": "Embark on a journey of freedom with the Harley Davidson Sportster. This iconic motorcycle combines classic design with modern performance, delivering an exhilarating ride for enthusiasts seeking the open road."
   },
   {
     "name": "Honda CBR600RR",
     "img": "https://source.unsplash.com/featured/?hondacbr600rr",
     "price": 12.499,
-    "parent": "Motorcycles"
+    "parent": "Motorcycles",
+    "description": "Experience the thrill of the track with the Honda CBR600RR. This high-performance sportbike is designed for speed and agility, delivering a dynamic riding experience for those who crave adrenaline."
   },
   {
     "name": "Kawasaki Ninja 650",
     "img": "https://source.unsplash.com/featured/?kawasakininja650",
     "price": 8.999,
-    "parent": "Motorcycles"
+    "parent": "Motorcycles",
+    "description": "Master the streets with the Kawasaki Ninja 650. A perfect blend of power and versatility, this sportbike offers a thrilling ride for riders seeking a dynamic and agile motorcycle experience."
   },
   {
     "name": "Yamaha MT-07",
     "img": "https://source.unsplash.com/featured/?yamahamt07",
     "price": 9.999,
-    "parent": "Motorcycles"
+    "parent": "Motorcycles",
+    "description": "Experience the dark side of Japan with the Yamaha MT-07. This naked bike combines a torquey engine with agile handling, delivering a unique and exciting riding experience for motorcycle enthusiasts."
   },
   {
     "name": "Ducati Panigale V2",
     "img": "https://source.unsplash.com/featured/?ducatipanigalev2",
     "price": 17.999,
-    "parent": "Motorcycles"
+    "parent": "Motorcycles",
+    "description": "Unleash the Italian elegance and performance of the Ducati Panigale V2. This superbike combines cutting-edge technology with stunning design, offering a thrilling and captivating ride for motorcycle enthusiasts."
   },
   {
     "name": "Chevrolet Silverado",
     "img": "https://source.unsplash.com/featured/?chevroletsilverado",
     "price": 35.999,
-    "parent": "Other vehicles"
+    "parent": "Other vehicles",
+    "description": "Conquer tough terrain with the Chevrolet Silverado. Built for heavy-duty tasks, this truck offers reliability, capability, and advanced features, making it the ideal choice for those who demand more from their vehicles."
   },
   {
     "name": "Ford F-150",
     "img": "https://source.unsplash.com/featured/?fordf150",
     "price": 32.499,
-    "parent": "Other vehicles"
+    "parent": "Other vehicles",
+    "description": "Redefine versatility with the Ford F-150. This iconic truck combines power and innovation, delivering exceptional towing capacity and advanced features, making it a reliable companion for work and play."
   },
   {
     "name": "Mercedes-Benz Sprinter",
     "img": "https://source.unsplash.com/featured/?mercedesbenzsprinter",
     "price": 45.999,
-    "parent": "Other vehicles"
+    "parent": "Other vehicles",
+    "description": "Experience luxury and functionality with the Mercedes-Benz Sprinter. This versatile van is designed for comfort and efficiency, offering a spacious interior and advanced features for your business or leisure needs."
   },
   {
     "name": "Harley Davidson Electra Glide",
     "img": "https://source.unsplash.com/featured/?harleydavidsonelectraglide",
     "price": 28.999,
-    "parent": "Other vehicles"
+    "parent": "Other vehicles",
+    "description": "Embark on the open road with the Harley Davidson Electra Glide. This touring motorcycle combines comfort with classic design, providing a smooth and enjoyable ride for riders who seek adventure with style."
   },
   {
     "name": "Tesla Model X",
     "img": "https://source.unsplash.com/featured/?teslamodelx",
     "price": 79.999,
-    "parent": "Other vehicles"
+    "parent": "Other vehicles",
+    "description": "Experience the future of electric SUVs with the Tesla Model X. This innovative vehicle combines cutting-edge technology, impressive range, and striking design, setting new standards for electric luxury vehicles."
   },
   {
     "name": "Elegant Dress",
     "img": "https://source.unsplash.com/featured/?womendress",
     "price": 49.99,
-    "parent": "Women"
+    "parent": "Women",
+    "description": "Step into timeless elegance with this elegant dress. Crafted with attention to detail, this dress is perfect for special occasions, making you the center of attention with its sophisticated design."
   },
   {
     "name": "Stylish Handbag",
     "img": "https://source.unsplash.com/featured/?womenhandbag",
     "price": 29.99,
-    "parent": "Women"
+    "parent": "Women",
+    "description": "Complete your look with this stylish handbag. Designed for both fashion and functionality, this handbag is a versatile accessory that adds a touch of chic to your ensemble."
   },
   {
     "name": "Fashionable Heels",
     "img": "https://source.unsplash.com/featured/?womenheels",
     "price": 59.99,
-    "parent": "Women"
+    "parent": "Women",
+    "description": "Step out in style with these fashionable heels. Elevate your outfit with the perfect blend of comfort and sophistication, making a statement wherever your day takes you."
   },
   {
     "name": "Chic Sunglasses",
     "img": "https://source.unsplash.com/featured/?womensunglasses",
     "price": 19.99,
-    "parent": "Women"
-  },
-  {
-    "name": "Trendy Necklace",
-    "img": "https://source.unsplash.com/featured/?womennecklace",
-    "price": 39.99,
-    "parent": "Women"
+    "parent": "Women",
+    "description": "Shield your eyes with these chic sunglasses. Whether for sun protection or as a stylish accessory, these sunglasses add a touch of glamour to your look, making you stand out with every glance."
   },
   {
     "name": "Classic Watch",
     "img": "https://source.unsplash.com/featured/?menwatch",
     "price": 79.99,
-    "parent": "Men"
+    "parent": "Men",
+    "description": "Enhance your style with the Classic Watch. This timeless accessory combines sophistication with functionality, making it a must-have for any occasion. Whether you're in a boardroom meeting or enjoying a casual day out, this watch complements your every look."
   },
   {
     "name": "Leather Wallet",
     "img": "https://source.unsplash.com/featured/?menwallet",
     "price": 39.99,
-    "parent": "Men"
+    "parent": "Men",
+    "description": "Upgrade your essentials with the Leather Wallet. Crafted from premium leather, this wallet combines durability with a sleek design. It features ample space for cards and cash, ensuring both style and practicality in your everyday life."
   },
   {
     "name": "Casual Sneakers",
     "img": "https://source.unsplash.com/featured/?mensneakers",
     "price": 54.99,
-    "parent": "Men"
+    "parent": "Men",
+    "description": "Step into comfort and style with these Casual Sneakers. Designed for the modern man, these sneakers offer a perfect blend of fashion and functionality. Whether you're strolling through the city or meeting friends, these sneakers add a trendy touch to your look."
   },
   {
     "name": "Business Suit",
     "img": "https://source.unsplash.com/featured/?mensuit",
     "price": 149.99,
-    "parent": "Men"
+    "parent": "Men",
+    "description": "Elevate your professional attire with the Business Suit. Tailored to perfection, this suit exudes confidence and sophistication. Ideal for formal events and business meetings, it ensures you make a lasting impression with your sharp and refined style."
   },
   {
     "name": "Grooming Kit",
     "img": "https://source.unsplash.com/featured/?mengrooming",
     "price": 29.99,
-    "parent": "Men"
+    "parent": "Men",
+    "description": "Maintain a well-groomed appearance with the Grooming Kit. This comprehensive set includes essential tools for grooming, from trimming your beard to perfecting your hairstyle. Embrace a polished look effortlessly with this must-have grooming kit for men."
   },
   {
     "name": "Leather Tote",
     "img": "https://source.unsplash.com/featured/?leathertote",
     "price": 89.99,
-    "parent": "Handbags"
+    "parent": "Handbags",
+    "description": "Carry your essentials in style with the Leather Tote. Crafted from high-quality leather, this tote combines fashion with functionality. Its spacious design and elegant finish make it the perfect accessory for any occasion, from casual outings to formal events."
   },
   {
     "name": "Designer Clutch",
     "img": "https://source.unsplash.com/featured/?designerclutch",
     "price": 129.99,
-    "parent": "Handbags"
+    "parent": "Handbags",
+    "description": "Make a statement with the Designer Clutch. This exquisite clutch combines luxury and sophistication, elevating your evening look. The meticulous design, premium materials, and attention to detail ensure you stand out at any social gathering."
   },
   {
     "name": "Crossbody Bag",
     "img": "https://source.unsplash.com/featured/?crossbodybag",
     "price": 49.99,
-    "parent": "Handbags"
+    "parent": "Handbags",
+    "description": "Stay on-the-go with the Crossbody Bag. Designed for convenience and style, this bag offers hands-free carrying while keeping your essentials organized. Whether you're exploring the city or running errands, this crossbody bag is the perfect companion."
   },
   {
     "name": "Fashion Backpack",
     "img": "https://source.unsplash.com/featured/?fashionbackpack",
     "price": 69.99,
-    "parent": "Handbags"
+    "parent": "Handbags",
+    "description": "Embrace urban chic with the Fashion Backpack. This backpack is not only a practical choice for carrying your belongings but also a stylish accessory to complement your daily look. The modern design and durable materials make it a versatile addition to your wardrobe."
   },
   {
     "name": "Evening Purse",
     "img": "https://source.unsplash.com/featured/?eveningpurse",
     "price": 59.99,
-    "parent": "Handbags"
+    "parent": "Handbags",
+    "description": "Dazzle at special occasions with the Evening Purse. This glamorous purse is designed to add a touch of elegance to your evening ensemble. With its compact size and eye-catching details, it's the perfect accessory for a night out on the town."
   },
   {
     "name": "Air Jordan 1",
     "img": "https://source.unsplash.com/featured/?airjordan1",
     "price": 199.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Own a piece of sneaker history with the iconic Air Jordan 1. Renowned for its classic silhouette and cultural significance, these sneakers deliver both style and substance. A must-have for sneaker enthusiasts and fashion-forward individuals alike."
   },
   {
     "name": "Yeezy Boost 350",
     "img": "https://source.unsplash.com/featured/?yeezyboost350",
     "price": 249.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Step into the world of high fashion and streetwear with the Yeezy Boost 350. Designed by Kanye West, these sneakers combine cutting-edge design with unmatched comfort. Elevate your sneaker collection with this coveted and stylish pair."
   },
   {
     "name": "Nike SB Dunk",
     "img": "https://source.unsplash.com/featured/?nikesbdunk",
     "price": 159.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Make a bold statement with the Nike SB Dunk. Known for its vibrant colorways and unique collaborations, the SB Dunk is a favorite among sneaker enthusiasts. Whether you're into skateboarding or street style, these sneakers deliver on both performance and aesthetics."
   },
   {
     "name": "Adidas NMD",
     "img": "https://source.unsplash.com/featured/?adidasnmd",
     "price": 179.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Experience the perfect blend of comfort and style with the Adidas NMD. These sneakers feature innovative cushioning technology and a sleek design, making them ideal for everyday wear. Elevate your streetwear game with this modern and versatile pair."
   },
   {
     "name": "Converse Chuck Taylor",
     "img": "https://source.unsplash.com/featured/?chucktaylor",
     "price": 129.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Step into timeless style with the Converse Chuck Taylor. A classic since its inception, these sneakers are a symbol of authenticity and self-expression. Whether you're a sneaker connoisseur or embracing casual comfort, the Chuck Taylor is a wardrobe essential."
   },
   {
     "name": "Puma RS-X",
     "img": "https://source.unsplash.com/featured/?pumarsx",
     "price": 139.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Embrace retro-futuristic style with the Puma RS-X. Known for its chunky silhouette and bold colorways, these sneakers capture the essence of street culture. Elevate your sneaker collection with the RS-X, a perfect blend of nostalgia and contemporary design."
   },
   {
     "name": "New Balance 990",
     "img": "https://source.unsplash.com/featured/?newbalance990",
     "price": 169.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Experience comfort and craftsmanship with the New Balance 990. A symbol of American-made quality, these sneakers combine premium materials with timeless design. Whether you're an avid runner or a sneaker enthusiast, the 990 delivers on both performance and style."
   },
   {
     "name": "Vans Old Skool",
     "img": "https://source.unsplash.com/featured/?vansoldskool",
     "price": 109.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Step into casual coolness with the Vans Old Skool. A skateboarding classic turned streetwear icon, these sneakers exude laid-back style. Versatile and comfortable, the Old Skool is a must-have for those who appreciate a blend of fashion and functionality."
   },
   {
     "name": "Reebok Classic Leather",
     "img": "https://source.unsplash.com/featured/?reebokclassicleather",
     "price": 119.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Celebrate heritage and classic style with the Reebok Classic Leather. Timeless in design and comfortable in wear, these sneakers pay homage to Reebok's legacy. Whether you're hitting the streets or adding to your sneaker collection, the Classic Leather is a stylish choice."
   },
   {
     "name": "Asics Gel-Lyte III",
     "img": "https://source.unsplash.com/featured/?asicsgellyteiii",
     "price": 149.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Step into retro elegance with the Asics Gel-Lyte III. Known for its split tongue design and comfort-focused technology, these sneakers offer a unique blend of style and functionality. Elevate your sneaker game with this iconic and comfortable choice."
   },
   {
     "name": "Leupold VX-3i Scope",
     "img": "https://source.unsplash.com/featured/?leupoldscope",
     "price": 499.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Enhance your hunting experience with the Leupold VX-3i Scope. Known for its precision and clarity, this scope delivers optimal performance in the field. Whether you're a seasoned hunter or an outdoor enthusiast, the VX-3i Scope is a reliable companion for your adventures."
   },
   {
     "name": "Remington 700 Rifle",
     "img": "https://source.unsplash.com/featured/?remington700",
     "price": 799.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Take aim with the Remington 700 Rifle, a symbol of precision and reliability in the world of firearms. Whether you're a marksman or a seasoned hunter, the Remington 700 delivers consistent accuracy and durability. Elevate your shooting experience with this iconic rifle."
   },
   {
     "name": "Yeti Tundra Cooler",
     "img": "https://source.unsplash.com/featured/?yetitundra",
     "price": 299.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Keep your provisions cool and fresh with the Yeti Tundra Cooler. Built to withstand the toughest outdoor conditions, this cooler is a must-have for camping, fishing, and hunting trips. Experience unmatched ice retention and durability with the Yeti Tundra."
   },
   {
     "name": "Sitka Gear Camo Jacket",
     "img": "https://source.unsplash.com/featured/?sitkagear",
     "price": 199.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Blend into your surroundings with the Sitka Gear Camo Jacket. Designed for stealth and comfort, this jacket is an essential part of your hunting gear. Whether you're stalking prey or observing wildlife, the Sitka Gear Camo Jacket ensures you stay concealed and protected."
   },
   {
     "name": "Cabela's Compound Bow",
     "img": "https://source.unsplash.com/featured/?cabelasbow",
     "price": 599.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Unleash precision and power with Cabela's Compound Bow. Engineered for accuracy and performance, this bow is a favorite among archery enthusiasts. Whether you're a seasoned bowhunter or a beginner, Cabela's Compound Bow provides a reliable and enjoyable shooting experience."
   },
   {
     "name": "Vortex Optics Binoculars",
     "img": "https://source.unsplash.com/featured/?vortexbinoculars",
     "price": 349.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Enhance your wildlife observation with Vortex Optics Binoculars. These high-quality binoculars provide crystal-clear optics and a durable, weather-resistant design. Whether you're birdwatching or hunting, these binoculars deliver exceptional performance and reliability."
   },
   {
     "name": "Thermacell Mosquito Repeller",
     "img": "https://source.unsplash.com/featured/?thermacell",
     "price": 39.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Enjoy the great outdoors without the annoyance of mosquitoes with the Thermacell Mosquito Repeller. This portable device creates a mosquito-free zone, allowing you to relax during camping trips, fishing adventures, or any outdoor activity. Compact and effective, it's a must-have for bug-free experiences."
   },
   {
     "name": "Gerber Multi-Tool",
     "img": "https://source.unsplash.com/featured/?gerbermultitool",
     "price": 69.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Be prepared for any outdoor challenge with the Gerber Multi-Tool. This versatile tool combines essential functions in one compact design, featuring pliers, knives, screwdrivers, and more. Whether you're camping, hiking, or hunting, this reliable multi-tool is your go-to companion."
   },
   {
     "name": "Browning Trail Camera",
     "img": "https://source.unsplash.com/featured/?browningcamera",
     "price": 129.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Capture wildlife moments with the Browning Trail Camera. This high-resolution camera is designed for outdoor enthusiasts and hunters, providing clear images and videos day or night. With durable construction and advanced features, it's an essential tool for tracking game and exploring nature."
   },
   {
     "name": "Winchester Ammunition",
     "img": "https://source.unsplash.com/featured/?winchesterammo",
     "price": 29.99,
-    "parent": "Hunting Equipment"
+    "parent": "Hunting Equipment",
+    "description": "Load up for your next hunting adventure with Winchester Ammunition. Known for its reliability and performance, this ammunition ensures accuracy and precision in every shot. Whether you're a seasoned hunter or a sports shooter, Winchester Ammunition is a trusted choice for superior results."
   },
   {
     "name": "Titleist Pro V1 Golf Balls",
     "img": "https://source.unsplash.com/featured/?titleistgolfballs",
     "price": 49.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Elevate your golf game with Titleist Pro V1 Golf Balls. Renowned for their exceptional feel and performance, these golf balls deliver unmatched consistency and distance. Whether you're a professional or an avid golfer, the Titleist Pro V1 is the go-to choice for a premium golfing experience."
   },
   {
     "name": "Callaway Rogue Driver",
     "img": "https://source.unsplash.com/featured/?callawayroguedriver",
     "price": 399.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Unleash your full potential off the tee with the Callaway Rogue Driver. Engineered for maximum distance and forgiveness, this driver features advanced technology to optimize your swing. Whether you're a beginner or a seasoned pro, the Callaway Rogue is designed to elevate your golfing experience."
   },
   {
     "name": "TaylorMade P790 Irons",
     "img": "https://source.unsplash.com/featured/?taylormadep790",
     "price": 899.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Experience unmatched performance on the golf course with TaylorMade P790 Irons. These premium irons combine speed, distance, and playability, making them a favorite among golf enthusiasts. Elevate your iron play and enjoy the precision and feel of TaylorMade P790 for an unforgettable round."
   },
   {
     "name": "Ping G425 Fairway Wood",
     "img": "https://source.unsplash.com/featured/?pingg425",
     "price": 249.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Achieve outstanding fairway shots with the Ping G425 Fairway Wood. Engineered for distance and accuracy, this fairway wood features innovative technology to enhance your performance on the golf course. Whether you're hitting from the tee or the fairway, the Ping G425 delivers consistent results."
   },
   {
     "name": "Odyssey White Hot Putter",
     "img": "https://source.unsplash.com/featured/?odysseywhitehot",
     "price": 149.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Master the greens with the Odyssey White Hot Putter. Renowned for its iconic design and superior feel, this putter is a favorite among golfers seeking precision and consistency on the putting surface. Elevate your short game and sink more putts with the Odyssey White Hot."
   },
   {
     "name": "FootJoy Pro SL Golf Shoes",
     "img": "https://source.unsplash.com/featured/?footjoyprosl",
     "price": 129.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Step onto the golf course in style and comfort with FootJoy Pro SL Golf Shoes. Designed for performance and durability, these shoes provide exceptional stability and traction on every swing. Whether you're walking or riding, the FootJoy Pro SL ensures a comfortable and confident stride."
   },
   {
     "name": "Bushnell Golf Rangefinder",
     "img": "https://source.unsplash.com/featured/?bushnellrangefinder",
     "price": 199.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Take precision to the next level with the Bushnell Golf Rangefinder. This advanced device allows you to accurately measure distances on the golf course, helping you make informed club selections. Whether you're a casual golfer or a competitive player, the Bushnell Rangefinder is an essential tool for improving your game."
   },
   {
     "name": "Sun Mountain Golf Bag",
     "img": "https://source.unsplash.com/featured/?sunmountaingolfbag",
     "price": 179.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Carry your golf essentials in style with the Sun Mountain Golf Bag. This lightweight and durable bag offer ample storage space for clubs, balls, and accessories. With ergonomic design and convenient features, the Sun Mountain Golf Bag ensures a hassle-free and enjoyable golfing experience."
   },
   {
     "name": "Cleveland CBX Wedge",
     "img": "https://source.unsplash.com/featured/?clevelandcbx",
     "price": 119.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Enhance your short game with the Cleveland CBX Wedge. Engineered for versatility and control, this wedge provides exceptional spin and precision on approach shots and around the green. Whether you're a novice or a seasoned player, the Cleveland CBX is a valuable addition to your golf bag."
   },
   {
     "name": "Golf Pride Grips",
     "img": "https://source.unsplash.com/featured/?golfpridegrips",
     "price": 9.99,
-    "parent": "Golfing Equipment"
+    "parent": "Golf Equipment",
+    "description": "Upgrade your golf clubs with Golf Pride Grips. Known for their quality and performance, these grips offer a comfortable and confident hold on the club. Whether you're regripping your entire set or replacing a worn-out grip, Golf Pride Grips ensure a secure and responsive connection between you and the golf club."
   },
   {
     "name": "Cannondale Trail 6 Mountain Bike",
     "img": "https://source.unsplash.com/featured/?cannondalemountainbike",
     "price": 799.99,
-    "parent": "Outdoor sports"
+    "parent": "Outdoor sports",
+    "description": "Conquer the trails with the Cannondale Trail 6 Mountain Bike. Designed for off-road adventures, this mountain bike features a lightweight frame and responsive suspension for a smooth and exhilarating ride. Whether you're a beginner or an experienced rider, the Cannondale Trail 6 delivers performance and durability on every trail."
   },
   {
     "name": "The North Face Men's Venture 2 Jacket",
     "img": "https://source.unsplash.com/featured/?thenorthfacejacket",
     "price": 119.99,
-    "parent": "Outdoor sports"
+    "parent": "Outdoor sports",
+    "description": "Stay protected in unpredictable weather with The North Face Men's Venture 2 Jacket. This waterproof and breathable jacket is designed for outdoor enthusiasts, providing reliable protection against rain and wind. Whether you're hiking, camping, or just exploring, The North Face Venture 2 is a versatile and essential outer layer for your adventures."
   },
   {
     "name": "YETI Tundra 65 Cooler",
     "img": "https://source.unsplash.com/featured/?yetitundra",
     "price": 349.99,
-    "parent": "Outdoor sports"
+    "parent": "Outdoor sports",
+    "description": "Keep your refreshments cool on outdoor excursions with the YETI Tundra 65 Cooler. Known for its rugged durability and superior ice retention, this cooler is essential for camping trips, tailgates, and picnics. Whether you're enjoying a day by the water or a weekend in the wilderness, the YETI Tundra 65 ensures your drinks stay cold and refreshing."
   },
   {
     "name": "Osprey Atmos AG 65 Backpack",
     "img": "https://source.unsplash.com/featured/?ospreyatmos",
     "price": 289.99,
-    "parent": "Outdoor sports"
+    "parent": "Outdoor sports",
+    "description": "Embark on epic journeys with the Osprey Atmos AG 65 Backpack. This high-performance backpack is designed for comfort and functionality on extended hikes and backpacking trips. With innovative features like the Anti-Gravity suspension system, the Osprey Atmos AG 65 ensures a balanced and enjoyable adventure, mile after mile."
   },
   {
     "name": "ENO DoubleNest Hammock",
     "img": "https://source.unsplash.com/featured/?enohammock",
     "price": 69.99,
-    "parent": "Outdoor sports"
+    "parent": "Outdoor sports",
+    "description": "Relax and unwind in the great outdoors with the ENO DoubleNest Hammock. Perfect for camping, backpacking, or lounging in the backyard, this lightweight and compact hammock sets up in minutes. Crafted from durable materials, the ENO DoubleNest provides a comfortable and secure place to kick back and enjoy the beauty of nature."
   },
   {
     "name": "Keen Targhee III Waterproof Hiking Boots",
     "img": "https://source.unsplash.com/featured/?keenhikingboots",
     "price": 139.99,
-    "parent": "Outdoor sports"
+    "parent": "Outdoor sports",
+    "description": "Conquer challenging trails with the Keen Targhee III Waterproof Hiking Boots. Engineered for durability and comfort, these boots feature waterproof technology to keep your feet dry in various conditions. Whether you're hiking through mud, rocks, or streams, the Keen Targhee III provides the support and traction you need for an enjoyable hiking experience."
   },
   {
     "name": "Garmin inReach Explorer+ GPS",
     "img": "https://source.unsplash.com/featured/?garmininreach",
     "price": 449.99,
-    "parent": "Outdoor sports"
-  },
-  {
-    "name": "Patagonia Arbor Grande 32L Backpack",
-    "img": "https://source.unsplash.com/featured/?patagoniabackpack",
-    "price": 129.99,
-    "parent": "Outdoor sports"
+    "parent": "Outdoor sports",
+    "description": "Navigate the wilderness with confidence using the Garmin inReach Explorer+ GPS. This rugged and reliable GPS device provides real-time tracking, communication, and navigation, ensuring you stay connected and on course during your outdoor adventures. Whether you're backpacking, camping, or exploring remote areas, the Garmin inReach Explorer+ is a vital tool for your journey."
   },
   {
     "name": "Black Diamond Spot Headlamp",
     "img": "https://source.unsplash.com/featured/?blackdiamondheadlamp",
     "price": 39.99,
-    "parent": "Outdoor sports"
+    "parent": "Outdoor sports",
+    "description": "Illuminate your adventures with the Black Diamond Spot Headlamp. Designed for outdoor enthusiasts, this headlamp features a powerful beam and multiple lighting modes, making it perfect for camping, hiking, and night activities. The lightweight and durable design ensures comfort during extended use."
   },
   {
     "name": "Hydro Flask 32 oz Wide Mouth Bottle",
     "img": "https://source.unsplash.com/featured/?hydroflaskbottle",
     "price": 44.95,
-    "parent": "Outdoor sports"
+    "parent": "Outdoor sports",
+    "description": "Stay hydrated on the go with the Hydro Flask 32 oz Wide Mouth Bottle. This premium stainless steel bottle keeps your beverages at the desired temperature for hours. Whether you're hiking, biking, or working out, the wide mouth allows for easy sipping and convenient filling."
   },
   {
     "name": "Specialized Roubaix Road Bike",
     "img": "https://source.unsplash.com/featured/?specializedroubaix",
     "price": 2499.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Experience the thrill of the open road with the Specialized Roubaix Road Bike. Engineered for performance and comfort, this bike features advanced technology and a lightweight frame. Whether you're a seasoned cyclist or a beginner, the Roubaix delivers a smooth and responsive ride."
   },
   {
     "name": "Giro Aether MIPS Helmet",
     "img": "https://source.unsplash.com/featured/?giroaether",
     "price": 299.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Prioritize safety without compromising style with the Giro Aether MIPS Helmet. This high-performance helmet combines aerodynamics, ventilation, and MIPS technology for enhanced protection. Whether you're racing or cruising, the Aether provides the comfort and confidence you need on the road."
   },
   {
     "name": "Shimano Ultegra R8000 Groupset",
     "img": "https://source.unsplash.com/featured/?shimanoultegra",
     "price": 899.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Upgrade your cycling experience with the Shimano Ultegra R8000 Groupset. Known for its precision and reliability, this groupset delivers smooth and efficient shifting. Whether you're a professional racer or a weekend rider, the Ultegra R8000 enhances your bike's performance on every ride."
   },
   {
     "name": "Garmin Edge 830 Cycling Computer",
     "img": "https://source.unsplash.com/featured/?garminedge830",
     "price": 399.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Navigate, track, and analyze your rides with the Garmin Edge 830 Cycling Computer. Packed with features like GPS navigation, performance monitoring, and training insights, this compact device is a must-have for cyclists. Stay connected and make the most of your cycling adventures with the Edge 830."
   },
   {
     "name": "Thule T2 Pro XT Bike Rack",
     "img": "https://source.unsplash.com/featured/?thulet2proxt",
     "price": 599.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Transport your bikes securely and conveniently with the Thule T2 Pro XT Bike Rack. This hitch-mounted rack accommodates various bike sizes and styles, providing stability and protection during travel. Whether you're heading to the trailhead or embarking on a road trip, the T2 Pro XT ensures easy loading and unloading."
   },
   {
     "name": "Assos Equipe RS Bib Shorts",
     "img": "https://source.unsplash.com/featured/?assosequipers",
     "price": 249.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Ride in comfort and style with the Assos Equipe RS Bib Shorts. Crafted for performance, these bib shorts feature advanced materials and a race-oriented fit. The Equipe RS provides support where you need it, ensuring a comfortable and aerodynamic cycling experience."
   },
   {
     "name": "Park Tool PCS-10.2 Bike Repair Stand",
     "img": "https://source.unsplash.com/featured/?parktoolpcs10",
     "price": 229.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Maintain and repair your bike with ease using the Park Tool PCS-10.2 Bike Repair Stand. Designed for home mechanics, this sturdy stand provides a stable platform for various repair and maintenance tasks. Foldable and adjustable, it's a versatile tool for keeping your bike in top condition."
   },
   {
     "name": "Continental Grand Prix 5000 Tires",
     "img": "https://source.unsplash.com/featured/?continentalgp5000",
     "price": 79.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Enhance your ride with the Continental Grand Prix 5000 Tires. Known for their exceptional performance, these road bike tires offer low rolling resistance, excellent grip, and puncture protection. Whether you're racing or enjoying a casual ride, the Grand Prix 5000 ensures a smooth and reliable cycling experience."
   },
   {
     "name": "Lezyne Super GPS Bike Computer",
     "img": "https://source.unsplash.com/featured/?lezynebikecomputer",
     "price": 149.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Stay on course and track your cycling metrics with the Lezyne Super GPS Bike Computer. This compact and feature-packed device offers GPS navigation, performance analytics, and smartphone connectivity. Whether you're exploring new routes or training for a race, the Super GPS keeps you informed and on track."
   },
   {
     "name": "Wahoo Kickr Smart Trainer",
     "img": "https://source.unsplash.com/featured/?wahoosmarttrainer",
     "price": 1199.99,
-    "parent": "Cycling Equipment"
+    "parent": "Cycling Equipment",
+    "description": "Take your indoor cycling to the next level with the Wahoo Kickr Smart Trainer. This high-tech trainer provides realistic road feel, accurate power measurement, and interactive training features. Connect it to your favorite cycling apps and enjoy a immersive and effective indoor riding experience."
   },
   {
     "name": "Samsung 4K Smart TV",
     "img": "https://source.unsplash.com/featured/?samsungtv",
     "price": 699.99,
-    "parent": "Electronics"
+    "parent": "Electronics",
+    "description": "Immerse yourself in stunning visuals with the Samsung 4K Smart TV. Featuring a vibrant 4K display and smart TV capabilities, this television brings your favorite shows and movies to life. With advanced features like voice control and multiple connectivity options, the Samsung 4K Smart TV offers a seamless entertainment experience."
   },
   {
     "name": "Apple iPhone 13",
     "img": "https://source.unsplash.com/featured/?iphone13",
     "price": 999.99,
-    "parent": "Electronics"
+    "parent": "Electronics",
+    "description": "Experience innovation and power with the Apple iPhone 13. This cutting-edge smartphone boasts a sleek design, powerful camera system, and advanced performance. Whether you're capturing memories, staying productive, or enjoying multimedia, the iPhone 13 delivers a premium and seamless mobile experience."
   },
   {
     "name": "Sony Noise-Canceling Headphones",
     "img": "https://source.unsplash.com/featured/?sonyheadphones",
     "price": 249.99,
-    "parent": "Electronics"
+    "parent": "Electronics",
+    "description": "Immerse yourself in a world of music with Sony Noise-Canceling Headphones. These over-ear headphones combine exceptional sound quality with advanced noise-canceling technology, creating an immersive listening experience. Whether you're traveling, working, or relaxing, Sony's headphones deliver crystal-clear audio and comfort."
   },
   {
     "name": "Canon DSLR Camera",
     "img": "https://source.unsplash.com/featured/?canoncamera",
     "price": 799.99,
-    "parent": "Electronics"
+    "parent": "Electronics",
+    "description": "Capture life's moments with precision using the Canon DSLR Camera. Known for its superior image quality and versatile features, this camera is a favorite among photographers of all levels. Whether you're shooting landscapes, portraits, or action, the Canon DSLR ensures stunning and professional-looking photos."
   },
   {
     "name": "DJI Mavic Air Drone",
     "img": "https://source.unsplash.com/featured/?djidrone",
     "price": 899.99,
-    "parent": "Electronics"
+    "parent": "Electronics",
+    "description": "Elevate your photography and videography with the DJI Mavic Air Drone. This compact and foldable drone combines portability with advanced technology, offering 4K video recording and intelligent flight features. Whether you're a professional filmmaker or a hobbyist, the Mavic Air empowers you to capture breathtaking aerial footage."
   },
   {
     "name": "Bose Soundbar",
     "img": "https://source.unsplash.com/featured/?bosesoundbar",
     "price": 349.99,
-    "parent": "Electronics"
+    "parent": "Electronics",
+    "description": "Transform your home entertainment with the Bose Soundbar. This sleek and powerful soundbar enhances your audio experience, delivering immersive sound for movies, music, and games. With advanced features like Bluetooth connectivity and voice control, the Bose Soundbar elevates your living room into a cinematic space."
   },
   {
     "name": "Fitbit Versa Smartwatch",
     "img": "https://source.unsplash.com/featured/?fitbitsmartwatch",
     "price": 149.99,
-    "parent": "Electronics"
+    "parent": "Electronics",
+    "description": "Stay active and connected with the Fitbit Versa Smartwatch. Designed for fitness enthusiasts, this smartwatch tracks your workouts, heart rate, and sleep patterns. With a stylish and comfortable design, the Versa seamlessly transitions from the gym to everyday life, helping you achieve your health and wellness goals."
   },
   {
     "name": "Amazon Echo Dot",
     "img": "https://source.unsplash.com/featured/?amazonechodot",
     "price": 39.99,
-    "parent": "Electronics"
+    "parent": "Electronics",
+    "description": "Bring the power of voice control to your home with the Amazon Echo Dot. This compact smart speaker connects to Alexa, allowing you to play music, control smart devices, and get information with just your voice. Whether you're a smart home enthusiast or a casual user, the Echo Dot adds convenience to your daily life."
   },
   {
     "name": "LG Sound System",
     "img": "https://source.unsplash.com/featured/?lgsoundsystem",
     "price": 499.99,
-    "parent": "Electronics"
-  },
-  {
-    "name": "Xbox Series X Gaming Console",
-    "img": "https://source.unsplash.com/featured/?xboxseriesx",
-    "price": 499.99,
-    "parent": "Electronics"
+    "parent": "Electronics",
+    "description": "Immerse yourself in a cinematic audio experience with the LG Sound System. This high-fidelity sound system delivers powerful and clear audio, enhancing your movies, music, and gaming. With advanced features like wireless connectivity and customizable sound settings, the LG Sound System transforms your living space into an entertainment hub."
   },
   {
     "name": "Dell Inspiron Laptop",
     "img": "https://source.unsplash.com/featured/?dellinspiron",
     "price": 899.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Unleash productivity with the Dell Inspiron Laptop. This reliable and versatile laptop is equipped with powerful hardware, a vibrant display, and a sleek design. Whether you're working, studying, or streaming, the Inspiron provides a seamless and efficient computing experience."
   },
   {
     "name": "Apple iPad Pro",
     "img": "https://source.unsplash.com/featured/?appleipadpro",
     "price": 1099.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Experience the cutting edge of tablet technology with the Apple iPad Pro. Boasting a stunning display, powerful performance, and the versatility of the Apple Pencil and Magic Keyboard, the iPad Pro is a creative powerhouse. Whether you're designing, gaming, or multitasking, the iPad Pro redefines what a tablet can do."
   },
   {
     "name": "HP Desktop Computer",
     "img": "https://source.unsplash.com/featured/?hpdesktop",
     "price": 749.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Elevate your computing experience with the HP Desktop Computer. Designed for performance and efficiency, this desktop PC delivers reliable power for work and entertainment. With a sleek and space-saving design, the HP Desktop is an ideal addition to any home or office setup."
   },
   {
     "name": "Samsung Galaxy Tablet",
     "img": "https://source.unsplash.com/featured/?samsunggalaxytablet",
     "price": 599.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Immerse yourself in the Samsung Galaxy Tablet experience. This sleek and powerful tablet combines a vibrant display, robust performance, and versatile features. Whether you're browsing, gaming, or multitasking, the Galaxy Tablet offers a portable and enjoyable computing experience."
   },
   {
     "name": "Lenovo ThinkPad Laptop",
     "img": "https://source.unsplash.com/featured/?lenovothinkpad",
     "price": 999.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Experience business-class performance with the Lenovo ThinkPad Laptop. Known for its reliability and durability, the ThinkPad series combines powerful hardware with a legendary keyboard. Whether you're working on projects or on the go, the ThinkPad ensures productivity without compromise."
   },
   {
     "name": "Asus Gaming Laptop",
     "img": "https://source.unsplash.com/featured/?asusgaminglaptop",
     "price": 1299.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Unleash the gaming beast within with the Asus Gaming Laptop. Engineered for high-performance gaming, this laptop features top-tier hardware, advanced cooling, and a striking design. Whether you're into esports or immersive single-player adventures, the Asus Gaming Laptop takes your gaming experience to the next level."
   },
   {
     "name": "Netgear WiFi Router",
     "img": "https://source.unsplash.com/featured/?netgearrouter",
     "price": 79.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Power up your home network with the Netgear WiFi Router. Delivering reliable and high-speed internet connectivity, this router is perfect for streaming, gaming, and connecting multiple devices. With advanced features and easy setup, the Netgear router ensures a smooth and seamless online experience."
   },
   {
     "name": "Logitech Wireless Mouse",
     "img": "https://source.unsplash.com/featured/?logitechmouse",
     "price": 29.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Navigate your digital world with precision using the Logitech Wireless Mouse. This ergonomic and reliable mouse provides smooth tracking and a comfortable grip. Whether you're working, gaming, or browsing, the Logitech Wireless Mouse enhances your computing experience with wireless freedom and accuracy."
   },
   {
     "name": "Microsoft Surface Pro",
     "img": "https://source.unsplash.com/featured/?microsoftsurfacepro",
     "price": 1199.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Redefined versatility meets portability with the Microsoft Surface Pro. This 2-in-1 laptop-tablet hybrid combines the power of a laptop with the flexibility of a tablet. With a high-resolution touchscreen and powerful performance, the Surface Pro adapts to your work and creative needs seamlessly."
   },
   {
     "name": "Cisco Network Switch",
     "img": "https://source.unsplash.com/featured/?cisconetworkswitch",
     "price": 299.99,
-    "parent": "Computers, Tablets & Network Hardware"
+    "parent": "Computers, Tablets & Network Hardware",
+    "description": "Empower your network infrastructure with the Cisco Network Switch. Designed for reliability and performance, this switch provides seamless connectivity for businesses and homes. Whether you're managing a small office or a growing enterprise, the Cisco Network Switch ensures efficient data flow and network management."
   },
   {
     "name": "Smart Thermostat",
     "img": "https://source.unsplash.com/featured/?smartthermostat",
     "price": 99.99,
-    "parent": "Electronics & communication equipment"
+    "parent": "Electronics & communication equipment",
+    "description": "Upgrade your home's climate control with the Smart Thermostat. This intelligent device offers precise temperature management, energy efficiency, and smart home integration. Whether you're at home or on the go, the Smart Thermostat ensures optimal comfort while helping you reduce energy consumption."
   },
   {
     "name": "Samsung Galaxy S21",
     "img": "https://source.unsplash.com/featured/?samsunggalaxys21",
     "price": 899.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Unleash the power of innovation with the Samsung Galaxy S21. This flagship smartphone combines cutting-edge technology, stunning design, and a powerful camera system. Whether you're capturing moments, staying connected, or enjoying multimedia, the Galaxy S21 delivers a premium and seamless mobile experience."
   },
   {
     "name": "Apple Watch Series 7",
     "img": "https://source.unsplash.com/featured/?applewatchseries7",
     "price": 349.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Elevate your fitness and connectivity with the Apple Watch Series 7. This advanced smartwatch features a larger and always-on Retina display, fitness tracking, and a wide range of apps. Whether you're working out, staying organized, or monitoring your health, the Apple Watch Series 7 keeps you in control and connected."
   },
   {
     "name": "Google Pixel 6",
     "img": "https://source.unsplash.com/featured/?googlepixel6",
     "price": 799.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Capture life's moments and enjoy powerful performance with the Google Pixel 6. This flagship smartphone features a stunning camera system, a sleek design, and the latest Android technology. Whether you're taking photos, streaming content, or multitasking, the Pixel 6 offers a premium and personalized mobile experience."
   },
   {
     "name": "Wireless Charging Pad",
     "img": "https://source.unsplash.com/featured/?chargingpad",
     "price": 29.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Experience the convenience of wireless charging with the Wireless Charging Pad. This sleek and compact pad provides a fast and cable-free charging solution for your Qi-enabled devices. Whether you're at home or the office, the Wireless Charging Pad keeps your smartphone powered up and ready to go."
   },
   {
     "name": "Bluetooth Earbuds",
     "img": "https://source.unsplash.com/featured/?bluetoothearbuds",
     "price": 79.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Immerse yourself in premium sound quality and wireless convenience with Bluetooth Earbuds. These sleek and ergonomic earbuds offer a comfortable fit, noise isolation, and hands-free calling. Whether you're commuting, working out, or relaxing, Bluetooth Earbuds deliver an immersive audio experience without the tangle of wires."
   },
   {
     "name": "Phone Mount for Car",
     "img": "https://source.unsplash.com/featured/?phonemount",
     "price": 19.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Stay connected and hands-free on the road with the Phone Mount for Car. This versatile and secure mount keeps your smartphone within easy reach for navigation, calls, and music. Whether you're on a road trip or a daily commute, the Phone Mount for Car enhances safety and convenience."
   },
   {
     "name": "Smartphone Tripod",
     "img": "https://source.unsplash.com/featured/?smartphonetripod",
     "price": 24.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Capture stable and professional-looking photos with the Smartphone Tripod. This compact and adjustable tripod provide a stable base for your smartphone, ensuring clear and blur-free shots. Whether you're a content creator or a photography enthusiast, the Smartphone Tripod is a versatile tool for elevating your mobile photography."
   },
   {
     "name": "Portable Power Bank",
     "img": "https://source.unsplash.com/featured/?powerbank",
     "price": 39.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Stay powered up on the go with the Portable Power Bank. This compact and high-capacity power bank provide a reliable charging solution for your devices. Whether you're traveling, camping, or facing a busy day, the Portable Power Bank ensures you stay connected without worrying about running out of battery."
   },
   {
     "name": "Screen Protector for iPhone",
     "img": "https://source.unsplash.com/featured/?screenprotector",
     "price": 9.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Protect your iPhone's display with the Screen Protector. This ultra-thin and durable protector offer high transparency and scratch resistance. Whether you're commuting, working, or adventuring, the Screen Protector ensures that your iPhone's screen remains crystal clear and free from scratches."
   },
   {
     "name": "Smartphone Camera Lens Kit",
     "img": "https://source.unsplash.com/featured/?cameralenskit",
     "price": 49.99,
-    "parent": "Cell Phones Smart Watches & Accessories"
+    "parent": "Cell Phones Smart Watches & Accessories",
+    "description": "Expand your smartphone photography capabilities with the Smartphone Camera Lens Kit. This versatile kit includes a variety of lenses, such as fisheye, macro, and wide-angle, allowing you to capture creative and professional-looking photos with your smartphone. Whether you're a photography enthusiast or a casual shooter, the Camera Lens Kit adds a new dimension to your mobile photography."
   },
   {
     "name": "PlayStation 5",
     "img": "https://source.unsplash.com/featured/?playstation5",
     "price": 499.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Immerse yourself in the next generation of gaming with the PlayStation 5. This high-performance gaming console delivers stunning graphics, ultra-fast loading times, and a new level of gaming immersion. Whether you're into action, adventure, or sports games, the PlayStation 5 takes your gaming experience to new heights."
   },
   {
     "name": "Xbox Series X",
     "img": "https://source.unsplash.com/featured/?xboxseriesx",
     "price": 499.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Immerse yourself in the world of gaming with the Xbox Series X. This powerful console delivers stunning graphics and fast loading times, providing an unparalleled gaming experience. With a sleek design and advanced features, it's a must-have for any gaming enthusiast."
   },
   {
     "name": "Nintendo Switch",
     "img": "https://source.unsplash.com/featured/?nintendoswitch",
     "price": 299.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Experience the versatility of gaming with the Nintendo Switch. Whether you're at home or on the go, this console adapts to your lifestyle. Enjoy a wide range of games in various modes, from solo adventures to multiplayer fun. The Nintendo Switch brings gaming to a new level of flexibility."
   },
   {
     "name": "Gaming Laptop",
     "img": "https://source.unsplash.com/featured/?gaminglaptop",
     "price": 1299.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Elevate your gaming experience with this high-performance gaming laptop. Packed with cutting-edge technology, powerful graphics, and a lightning-fast processor, it's designed for serious gamers. Immerse yourself in the world of virtual adventures with this top-tier gaming laptop."
   },
   {
     "name": "VR Headset",
     "img": "https://source.unsplash.com/featured/?vrheadset",
     "price": 399.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Step into the realm of virtual reality with this advanced VR headset. Experience immersive gaming, 360-degree videos, and virtual environments like never before. With high-resolution displays and responsive tracking, this VR headset takes your gaming and entertainment to new dimensions."
   },
   {
     "name": "Gaming Mouse and Keyboard",
     "img": "https://source.unsplash.com/featured/?gamingmousekeyboard",
     "price": 99.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Dominate the gaming arena with precision and style using this gaming mouse and keyboard combo. Designed for speed and accuracy, the mouse and keyboard feature customizable lighting and programmable keys. Gain the competitive edge and enjoy a responsive gaming experience with this dynamic duo."
   },
   {
     "name": "Nintendo Switch Games Bundle",
     "img": "https://source.unsplash.com/featured/?switchgamesbundle",
     "price": 59.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Expand your gaming library with this exciting Nintendo Switch games bundle. Featuring a curated collection of diverse titles, this bundle offers hours of entertainment for gamers of all ages. From action-packed adventures to family-friendly fun, there's something for everyone in this exclusive bundle."
   },
   {
     "name": "PlayStation Controller",
     "img": "https://source.unsplash.com/featured/?pscontroller",
     "price": 59.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Enhance your gaming experience with the PlayStation Controller. With responsive controls, ergonomic design, and innovative features, this controller offers precision and comfort during intense gameplay. Take control of your favorite games and enjoy immersive gaming sessions with this top-tier controller."
   },
   {
     "name": "Xbox Wireless Headset",
     "img": "https://source.unsplash.com/featured/?xboxheadset",
     "price": 99.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Immerse yourself in crystal-clear audio and seamless communication with the Xbox Wireless Headset. Designed for comfort and performance, this wireless headset delivers immersive soundscapes and clear voice chat. Whether you're gaming or enjoying multimedia content, this headset provides an unparalleled audio experience."
   },
   {
     "name": "Gaming Desk and Chair Set",
     "img": "https://source.unsplash.com/featured/?gamingdeskchair",
     "price": 299.99,
-    "parent": "Video Games & Consoles"
+    "parent": "Video Games & Consoles",
+    "description": "Create the ultimate gaming setup with this gaming desk and chair set. The ergonomic design of the chair ensures comfort during extended gaming sessions, while the spacious desk provides ample room for your gaming gear. Elevate your gaming experience with this stylish and functional desk and chair combination."
   },
   {
     "name": "Rain Gear",
     "img": "https://source.unsplash.com/featured/?raingear",
     "price": 69.99,
-    "parent": "Outdoor Recreation Equipment"
+    "parent": "Outdoor Recreation Equipment",
+    "description": "Stay dry and comfortable in the great outdoors with this high-quality rain gear. Designed to withstand the elements, this rain gear set includes a waterproof jacket and pants. Whether you're hiking, camping, or just navigating a rainy day, this rain gear keeps you protected and ready for adventure."
   },
   {
     "name": "Drone with Camera",
     "img": "https://source.unsplash.com/featured/?dronewithcamera",
     "price": 149.99,
-    "parent": "Audio & video equipment"
+    "parent": "Audio & Video Equipment",
+    "description": "Capture stunning aerial footage with this feature-packed drone with a built-in camera. Whether you're an aspiring photographer or a drone enthusiast, this device offers advanced flight capabilities and high-definition camera quality. Take your creativity to new heights with this versatile and powerful drone."
   },
-
   {
     "name": "Automotive Brake Pad",
     "img": "https://source.unsplash.com/featured/?automotivebrakepad",
     "price": 19.99,
-    "parent": "Personal Transportation"
+    "parent": "Personal Transportation",
+    "description": "Ensure the safety of your journeys with these high-quality automotive brake pads. Engineered for reliable performance and durability, these brake pads provide responsive stopping power. Upgrade your vehicle's braking system with this essential component for a smoother and safer ride."
   },
   {
     "name": "Home Theater System",
     "img": "https://source.unsplash.com/featured/?hometheatersystem",
     "price": 799.99,
-    "parent": "Audio & video equipment"
+    "parent": "Audio & video equipment",
+    "description": "Transform your living space into a cinematic haven with this state-of-the-art home theater system. Immerse yourself in rich, high-fidelity audio and crystal-clear visuals. Whether you're watching movies, gaming, or streaming your favorite content, this home theater system delivers an unparalleled audio-visual experience."
   },
   {
     "name": "Musical Instrument Case",
     "img": "https://source.unsplash.com/featured/?musicalinstrumentcase",
     "price": 39.99,
-    "parent": "Music Equipment"
+    "parent": "Music Equipment",
+    "description": "Protect your musical instruments in style with this durable and sleek instrument case. Designed for musicians on the go, this case offers secure storage and transportation for your valuable instruments. Combine practicality with a touch of elegance for your musical gear with this instrument case."
   },
   {
     "name": "Dress Shoes",
     "img": "https://source.unsplash.com/featured/?dressshoes",
     "price": 89.99,
-    "parent": "Fashion & Clothing"
+    "parent": "Fashion & Clothing",
+    "description": "Step out in style with these sophisticated dress shoes. Crafted with precision and elegance, these shoes complement formal attire, making them ideal for special occasions or professional settings. Elevate your wardrobe with these comfortable and fashionable dress shoes that make a lasting impression."
   },
   {
     "name": "Comfy Couch",
     "img": "https://source.unsplash.com/featured/?comfycouch",
     "price": 699.99,
-    "parent": "Furniture & Decor"
+    "parent": "Furniture & Decor",
+    "description": "Experience ultimate comfort and relaxation with this plush and stylish comfy couch. Designed for both aesthetics and functionality, this couch adds a touch of luxury to your living space. Whether you're entertaining guests or unwinding after a long day, this comfy couch is the perfect centerpiece for your home."
   },
   {
     "name": "3D Printer",
     "img": "https://source.unsplash.com/featured/?3dprinter",
     "price": 799.99,
-    "parent": "Industrial & maintenance equipment"
+    "parent": "Industrial & maintenance equipment",
+    "description": "Unleash your creativity and bring your ideas to life with this advanced 3D printer. Perfect for prototyping and DIY projects, this printer offers precision and versatility. From intricate designs to functional prototypes, explore the endless possibilities of 3D printing with this cutting-edge technology."
   },
   {
     "name": "Art Paints Set",
     "img": "https://source.unsplash.com/featured/?artpaintsset",
     "price": 59.99,
-    "parent": "Arts & Entertainment"
+    "parent": "Arts & Entertainment",
+    "description": "Fuel your artistic expression with this comprehensive art paints set. Featuring a vibrant array of colors and high-quality pigments, this set is perfect for both beginners and experienced artists. Whether you're painting on canvas or paper, this art paints set opens up a world of creative possibilities."
   },
   {
     "name": "Exercise Ball",
     "img": "https://source.unsplash.com/featured/?exerciseball",
     "price": 29.99,
-    "parent": "Fitness & Exercise"
+    "parent": "Fitness & Exercise",
+    "description": "Enhance your fitness routine with this versatile exercise ball. Ideal for core strengthening and stability exercises, this ball adds an extra dimension to your workouts. From yoga to pilates, this exercise ball is a must-have for anyone looking to improve their balance, flexibility, and overall fitness."
   },
   {
     "name": "Dog Leash",
     "img": "https://source.unsplash.com/featured/?dogleash",
     "price": 9.99,
-    "parent": "Pet Supplies"
+    "parent": "Pet Supplies",
+    "description": "Take your furry friend on walks with this durable and reliable dog leash. Crafted for comfort and control, this leash ensures a secure and enjoyable outdoor experience for both you and your dog. Make every stroll a joyous adventure with this essential accessory for pet owners."
   },
   {
     "name": "Computer Keyboard",
     "img": "https://source.unsplash.com/featured/?computerkeyboard",
     "price": 79.99,
-    "parent": "Computer & Office Equipment"
+    "parent": "Computer & Office Equipment",
+    "description": "Elevate your typing experience with this sleek and responsive computer keyboard. Designed for efficiency and comfort, this keyboard enhances your productivity during work or gaming sessions. With customizable features and a modern design, this keyboard is a stylish addition to your computer setup."
   },
   {
     "name": "Kitchen Sink",
     "img": "https://source.unsplash.com/featured/?kitchensink",
     "price": 249.99,
-    "parent": "Kitchen & Cookware"
+    "parent": "Kitchen & Cookware",
+    "description": "Upgrade your kitchen with this high-quality and stylish kitchen sink. Featuring durable materials and a functional design, this sink makes dishwashing a breeze. Whether you're a culinary enthusiast or a busy home chef, this kitchen sink adds both practicality and elegance to your culinary space."
   },
   {
     "name": "Running Shoes",
     "img": "https://source.unsplash.com/featured/?runningshoes",
     "price": 89.99,
-    "parent": "Sports & Outdoors"
+    "parent": "Sports & Outdoors",
+    "description": "Hit the pavement in style and comfort with these performance-oriented running shoes. Engineered for runners, these shoes provide support, cushioning, and breathability. Whether you're training for a marathon or enjoying a casual jog, these running shoes are your perfect companion for every stride."
   },
   {
     "name": "Dermatology Machine",
     "img": "https://source.unsplash.com/featured/?dermatologymachine",
     "price": 599.99,
-    "parent": "Medical & healthcare equipment"
+    "parent": "Medical & healthcare equipment",
+    "description": "Experience advanced skincare with this cutting-edge dermatology machine. Designed for professional-grade treatments, this machine offers a range of skincare solutions. From rejuvenation to blemish removal, this dermatology machine brings the expertise of a skincare clinic to the comfort of your home."
   },
   {
     "name": "Homework Desk",
     "img": "https://source.unsplash.com/featured/?homeworkdesk",
     "price": 249.99,
-    "parent": "Education & Training"
+    "parent": "Education & Training",
+    "description": "Create a conducive study environment with this practical and stylish homework desk. Featuring ample storage and a spacious work surface, this desk is perfect for students of all ages. Whether it's for homework, research, or creative projects, this desk provides a dedicated space for focused learning."
   },
   {
     "name": "Tennis Racket",
     "img": "https://source.unsplash.com/featured/?tennisracket",
     "price": 99.99,
-    "parent": "Sports & Outdoors"
+    "parent": "Sports & Outdoors",
+    "description": "Serve up your best game with this high-performance tennis racket. Engineered for power and precision, this racket enhances your tennis skills on the court. Whether you're a casual player or a seasoned competitor, this tennis racket is your key to mastering the game of tennis."
   },
   {
     "name": "Diving Gear",
     "img": "https://source.unsplash.com/featured/?divinggear",
     "price": 299.99,
-    "parent": "Outdoor Recreation Equipment"
+    "parent": "Outdoor Recreation Equipment",
+    "description": "Explore the wonders of the underwater world with this complete diving gear set. Designed for safety and comfort, this set includes a mask, snorkel, fins, and more. Whether you're a beginner or an experienced diver, this diving gear ensures an unforgettable underwater adventure."
   },
   {
     "name": "Camera Lens",
     "img": "https://source.unsplash.com/featured/?cameralens",
     "price": 249.99,
-    "parent": "Audio & video equipment"
+    "parent": "Audio & video equipment",
+    "description": "Capture breathtaking moments with precision and clarity using this professional-grade camera lens. Whether you're a photography enthusiast or a professional, this lens delivers stunning image quality and versatility. Elevate your photography skills and unleash your creativity with this exceptional camera lens."
   },
   {
     "name": "Beach Tent",
     "img": "https://source.unsplash.com/featured/?beachtent",
     "price": 149.99,
-    "parent": "Outdoor Recreation Equipment"
+    "parent": "Outdoor Recreation Equipment",
+    "description": "Enjoy sun-soaked days at the beach with this convenient and spacious beach tent. Designed for easy setup and UV protection, this tent provides a shady oasis for relaxation. Whether you're picnicking, reading, or simply soaking up the beach vibes, this beach tent is your go-to seaside companion."
   },
   {
     "name": "Pool Cleaner",
     "img": "https://source.unsplash.com/featured/?poolcleaner",
     "price": 299.99,
-    "parent": "Indoor Living & Home"
+    "parent": "Indoor Living & Home",
+    "description": "Maintain a pristine pool with this efficient and automated pool cleaner. Designed for easy operation and thorough cleaning, this pool cleaner keeps your pool water crystal clear. Spend more time enjoying your pool and less time on maintenance with this essential tool for every pool owner."
   },
   {
     "name": "Barbecue Grill",
     "img": "https://source.unsplash.com/featured/?barbecuegrill",
     "price": 249.99,
-    "parent": "Outdoor Living & Home"
+    "parent": "Outdoor Living & Home",
+    "description": "Elevate your outdoor cooking experience with this high-performance barbecue grill. Whether you're hosting a backyard barbecue or enjoying a family cookout, this grill delivers delicious results. With versatile features and a durable design, this barbecue grill is your go-to appliance for outdoor culinary adventures."
   },
   {
     "name": "Yoga Mat",
     "img": "https://source.unsplash.com/featured/?yogamat",
     "price": 39.99,
-    "parent": "Fitness & Exercise"
+    "parent": "Fitness & Exercise",
+    "description": "Find your zen and enhance your yoga practice with this comfortable and non-slip yoga mat. Designed for stability and support, this mat provides a cushioned surface for your yoga routines. Whether you're a seasoned yogi or a beginner, this yoga mat is an essential companion for your wellness journey."
   },
   {
     "name": "Meditation Cushion",
     "img": "https://source.unsplash.com/featured/?meditationcushion",
     "price": 19.99,
-    "parent": "Relaxation & Meditation"
+    "parent": "Relaxation & Meditation",
+    "description": "Create a serene space for mindfulness and relaxation with this soft and supportive meditation cushion. Designed for comfort and proper posture, this cushion enhances your meditation experience. Whether you're a seasoned meditator or just starting your journey, this meditation cushion provides a tranquil foundation for inner peace."
   },
   {
     "name": "Laser Cutter",
     "img": "https://source.unsplash.com/featured/?lasercutter",
     "price": 799.99,
-    "parent": "Industrial & maintenance equipment"
+    "parent": "Industrial & maintenance equipment",
+    "description": "Unleash the power of precision with this advanced laser cutter. Ideal for creative projects and industrial applications, this cutter offers unparalleled accuracy and versatility. From intricate designs to efficient manufacturing, this laser cutter is a valuable tool for makers, artists, and professionals alike."
+  },
+  {
+    "name": "Meditation Cushion",
+    "img": "https://source.unsplash.com/featured/?meditationcushion",
+    "price": 19.99,
+    "parent": "Relaxation & Meditation",
+    "description": "Enhance your meditation practice with this comfortable and supportive meditation cushion. Designed for proper posture and relaxation, this cushion provides a cozy foundation for your mindfulness sessions. Elevate your meditation experience and create a tranquil space for inner peace with this essential accessory."
+  },
+  {
+    "name": "Laser Cutter",
+    "img": "https://source.unsplash.com/featured/?lasercutter",
+    "price": 799.99,
+    "parent": "Industrial & maintenance equipment",
+    "description": "Explore the world of precision cutting and engraving with this advanced laser cutter. Ideal for makers, craftsmen, and professionals, this cutter delivers accuracy and versatility. From intricate designs to efficient manufacturing, this laser cutter is a valuable tool for turning your creative visions into reality."
   },
   {
     "name": "Car Alarm System",
     "img": "https://source.unsplash.com/featured/?caralarmsystem",
     "price": 99.99,
-    "parent": "Personal Transportation"
+    "parent": "Personal Transportation",
+    "description": "Protect your vehicle with this reliable car alarm system. Engineered for security and peace of mind, this system provides advanced features to deter theft and ensure the safety of your personal transportation. Upgrade your vehicle's security and drive with confidence using this essential car alarm system."
   },
   {
     "name": "Motion Sensor Security Camera",
     "img": "https://source.unsplash.com/featured/?motionsensorsecuritycamera",
     "price": 199.99,
-    "parent": "Audio & video equipment"
+    "parent": "Audio & video equipment",
+    "description": "Keep a watchful eye on your surroundings with this high-tech motion sensor security camera. Designed for both residential and commercial use, this camera provides reliable surveillance with motion detection capabilities. Enhance your security setup with this advanced camera for 24/7 monitoring and peace of mind."
   },
   {
     "name": "Electric Shaver",
     "img": "https://source.unsplash.com/featured/?electricshaver",
     "price": 39.99,
-    "parent": "Personal Grooming & Health"
+    "parent": "Personal Grooming & Health",
+    "description": "Achieve a smooth and precise shave with this efficient electric shaver. Designed for comfort and convenience, this shaver ensures a clean and effortless grooming experience. Say goodbye to nicks and cuts and enjoy a hassle-free grooming routine with this essential electric shaver for personal care."
   },
   {
     "name": "Heated Towel Radiator",
     "img": "https://source.unsplash.com/featured/?heatedtowelradiator",
     "price": 79.99,
-    "parent": "Bath & Shower"
+    "parent": "Bath & Shower",
+    "description": "Indulge in the luxury of warm towels with this practical heated towel radiator. Perfect for bathrooms and spas, this radiator provides a cozy and functional solution for keeping your towels toasty. Elevate your bathing experience with this stylish and efficient heated towel radiator for a touch of comfort."
   },
   {
     "name": "Digital Audio Player",
     "img": "https://source.unsplash.com/featured/?digitalaudioplayer",
     "price": 69.99,
-    "parent": "Audio & video equipment"
+    "parent": "Audio & video equipment",
+    "description": "Immerse yourself in high-quality audio with this sleek digital audio player. Whether you're on the go or relaxing at home, this player delivers rich sound and convenient playback features. Elevate your music experience with this compact and stylish digital audio player for an audio journey like no other."
   },
   {
     "name": "Headphones",
     "img": "https://source.unsplash.com/featured/?headphones",
     "price": 199.99,
-    "parent": "Audio & video equipment"
+    "parent": "Audio & video equipment",
+    "description": "Experience immersive sound quality with these premium headphones. Engineered for comfort and superior audio performance, these headphones deliver an unparalleled listening experience. Whether you're into music, gaming, or movies, these headphones provide a stylish and high-fidelity audio solution for every audio enthusiast."
   },
   {
     "name": "Laptop Bag",
     "img": "https://source.unsplash.com/featured/?laptopbag",
     "price": 59.99,
-    "parent": "Computer & Office Equipment"
+    "parent": "Computer & Office Equipment",
+    "description": "Protect your laptop in style with this functional and fashionable laptop bag. Designed for convenience and durability, this bag offers secure storage for your laptop and accessories. Whether you're commuting to work or traveling, this laptop bag is a must-have for tech-savvy individuals on the go."
   },
   {
     "name": "Camera Tripod",
     "img": "https://source.unsplash.com/featured/?cameratripod",
     "price": 79.99,
-    "parent": "Audio & video equipment"
+    "parent": "Audio & video equipment",
+    "description": "Capture steady and stunning shots with this reliable camera tripod. Ideal for photographers and videographers, this tripod provides stability for your camera or smartphone. Whether you're shooting landscapes or creating content, this camera tripod is an essential tool for achieving professional-level photography and videography."
   },
   {
     "name": "Rolling Suitcase",
     "img": "https://source.unsplash.com/featured/?rollingsuitcase",
     "price": 99.99,
-    "parent": "Luggage & Travel"
+    "parent": "Luggage & Travel",
+    "description": "Travel with ease using this practical and durable rolling suitcase. Designed for convenience and style, this suitcase offers ample storage space and smooth mobility. Whether you're jet-setting around the world or going on a weekend getaway, this rolling suitcase is your trusted companion for hassle-free travel."
   },
   {
     "name": "E-Bike",
     "img": "https://source.unsplash.com/featured/?ebike",
     "price": 499.99,
-    "parent": "Sports & Outdoors"
+    "parent": "Sports & Outdoors",
+    "description": "Embark on eco-friendly adventures with this versatile and electric-powered E-Bike. Perfect for commuting or leisure rides, this bike combines the convenience of electric assistance with the joy of cycling. Whether you're navigating city streets or exploring nature trails, this E-Bike is your ticket to effortless and enjoyable rides."
   },
   {
     "name": "Handyman Tool Set",
     "img": "https://source.unsplash.com/featured/?handymantoolset",
     "price": 249.99,
-    "parent": "Industrial & maintenance equipment"
+    "parent": "Industrial & maintenance equipment",
+    "description": "Equip yourself with the essentials for DIY projects with this comprehensive handyman tool set. Designed for versatility and durability, this set includes a variety of tools for various tasks. Whether you're a seasoned handyman or a DIY enthusiast, this tool set is your go-to solution for tackling home improvement projects."
   },
   {
     "name": "Table Tennis Racket",
     "img": "https://source.unsplash.com/featured/?pingpongracket",
     "price": 79.99,
-    "parent": "Sports & Outdoors"
+    "parent": "Sports & Outdoors",
+    "description": "Serve up some fun with this high-performance table tennis racket. Designed for precision and control, this racket enhances your skills on the ping pong table. Whether you're playing recreationally or competitively, this table tennis racket is your key to enjoying fast-paced and exciting matches with friends and family."
   },
   {
     "name": "Baseball Glove",
     "img": "https://source.unsplash.com/featured/?baseballglove",
     "price": 69.99,
-    "parent": "Sports & Outdoors"
+    "parent": "Sports & Outdoors",
+    "description": "Step up to the plate with confidence using this quality baseball glove. Designed for comfort and durability, this glove provides a secure grip and reliable performance on the baseball field. Whether you're a seasoned player or just starting, this baseball glove is an essential piece of equipment for America's favorite pastime."
   },
   {
     "name": "Rock Climbing Shoes",
     "img": "https://source.unsplash.com/featured/?rockclimbingshoes",
     "price": 149.99,
-    "parent": "Outdoor Recreation Equipment"
+    "parent": "Outdoor Recreation Equipment",
+    "description": "Conquer new heights with these specialized rock climbing shoes. Designed for grip and precision, these shoes provide the traction needed for a successful climb. Whether you're a beginner or an experienced climber, these rock climbing shoes are your reliable companions for scaling cliffs and reaching breathtaking summits."
   },
   {
     "name": "Hockey Stick",
     "img": "https://source.unsplash.com/featured/?hockeystick",
     "price": 79.99,
-    "parent": "Sports & Outdoors"
+    "parent": "Sports & Outdoors",
+    "description": "Hit the ice with this high-quality hockey stick. Designed for power and control, this stick is perfect for both casual games and competitive play. Whether you're skating in a local league or enjoying a friendly match, this hockey stick is your essential equipment for delivering powerful shots and scoring goals."
   },
   {
     "name": "Football",
     "img": "https://source.unsplash.com/featured/?football",
     "price": 29.99,
-    "parent": "Sports & Outdoors"
+    "parent": "Sports & Outdoors",
+    "description": "Get ready for the big game with this durable and reliable football. Designed for precision and durability, this football is perfect for practice sessions and friendly matches. Whether you're tossing the ball around with friends or playing in an organized league, this football is your go-to choice for gridiron action."
   },
   {
     "name": "Paintball Guns",
     "img": "https://source.unsplash.com/featured/?paintballguns",
     "price": 399.99,
-    "parent": "Sports & Outdoors"
+    "parent": "Sports & Outdoors",
+    "description": "Gear up for intense paintball battles with this high-performance paintball gun. Designed for accuracy and speed, this gun ensures a thrilling and competitive paintball experience. Whether you're a seasoned player or a beginner, this paintball gun is your key to strategic and adrenaline-pumping paintball action."
   },
   {
     "name": "Hiking Boots",
     "img": "https://source.unsplash.com/featured/?hikingboots",
     "price": 199.99,
-    "parent": "Outdoor Recreation Equipment"
+    "parent": "Outdoor Recreation Equipment",
+    "description": "Embark on outdoor adventures with confidence wearing these rugged and durable hiking boots. Designed for comfort and stability, these boots provide the support needed for challenging trails. Whether you're hiking through forests or conquering mountain peaks, these hiking boots are your reliable companions for exploring the great outdoors."
   },
   {
     "name": "Kayak",
     "img": "https://source.unsplash.com/featured/?kayak",
     "price": 699.99,
-    "parent": "Water Sports & Outdoors"
+    "parent": "Water Sports & Outdoors",
+    "description": "Paddle through serene waters and explore scenic landscapes with this versatile kayak. Designed for stability and performance, this kayak is perfect for both beginners and experienced paddlers. Whether you're gliding across lakes or navigating rivers, this kayak is your ticket to exciting water adventures and unforgettable journeys."
   },
   {
     "name": "Paddle Board",
     "img": "https://source.unsplash.com/featured/?paddleboard",
     "price": 799.99,
-    "parent": "Water Sports & Outdoors"
+    "parent": "Water Sports & Outdoors",
+    "description": "Experience the thrill of stand-up paddleboarding with this premium paddleboard. Designed for stability and maneuverability, this board is ideal for riders of all skill levels. Whether you're cruising along coastlines or riding waves, this paddleboard is your essential gear for enjoying the sun, surf, and sea."
   },
   {
     "name": "Kitesurfing Board",
     "img": "https://source.unsplash.com/featured/?kitesurfingboard",
     "price": 1299.99,
-    "parent": "Water Sports & Outdoors"
+    "parent": "Water Sports & Outdoors",
+    "description": "Ride the wind and waves with this specialized kitesurfing board. Designed for adrenaline-pumping action, this board is perfect for kitesurfers of all levels. Whether you're performing tricks or gliding across the water, this kitesurfing board is your key to an exhilarating and unforgettable kitesurfing experience."
   },
   {
     "name": "Stand Up Paddleboard",
     "img": "https://source.unsplash.com/featured/?supboard",
     "price": 799.99,
-    "parent": "Water Sports & Outdoors"
+    "parent": "Water Sports & Outdoors",
+    "description": "Explore tranquil waters with this versatile stand-up paddleboard. Designed for stability and ease of use, this paddleboard is perfect for beginners and experienced paddlers alike. Whether you're practicing yoga on the water or simply enjoying a leisurely paddle, this stand-up paddleboard is your go-to choice for aquatic adventures."
   },
   {
     "name": "Personal Watercraft",
     "img": "https://source.unsplash.com/featured/?jetski",
     "price": 5999.99,
-    "parent": "Water Sports & Outdoors"
+    "parent": "Water Sports & Outdoors",
+    "description": "Experience the ultimate thrill on the water with this powerful personal watercraft. Designed for speed and maneuverability, this watercraft is perfect for riders seeking high-adrenaline adventures. Whether you're cruising across lakes or tearing through waves, this personal watercraft is your ticket to excitement and aquatic fun."
   },
   {
     "name": "Drone",
     "img": "https://source.unsplash.com/featured/?drone",
     "price": 2499.99,
-    "parent": "Aerospace & Drone"
+    "parent": "Aerospace & Drone",
+    "description": "Take your photography and videography to new heights with this advanced drone. Designed for aerial exploration, this drone offers stunning views and creative possibilities. Whether you're capturing breathtaking landscapes or recording memorable moments, this drone is your high-tech companion for achieving cinematic and professional-quality aerial footage."
   },
   {
     "name": "Wi-Fi Hotspot",
     "img": "https://source.unsplash.com/featured/?wifihotspot",
     "price": 249.99,
-    "parent": "Computer & Office Equipment"
+    "parent": "Computer & Office Equipment",
+    "description": "Stay connected on the go with this portable and reliable Wi-Fi hotspot. Designed for convenience, this hotspot provides secure and fast internet access wherever you are. Whether you're traveling for work or leisure, this Wi-Fi hotspot is your essential tool for staying connected and productive."
   },
   {
     "name": "Fireworks Kit",
     "img": "https://source.unsplash.com/featured/?fireworkskit",
     "price": 49.99,
-    "parent": "Entertainment & Toys"
+    "parent": "Entertainment & Toys",
+    "description": "Experience a dazzling display of lights and colors with the Fireworks Kit. Perfect for celebrations and creating magical moments."
   },
   {
     "name": "Oscillating Humidifier",
     "img": "https://source.unsplash.com/featured/?oscillatinghumidifier",
     "price": 99.99,
-    "parent": "Indoor Living & Home"
+    "parent": "Indoor Living & Home",
+    "description": "Maintain optimal humidity levels in your home with the Oscillating Humidifier. Enjoy comfort and improved air quality."
   },
   {
     "name": "LED Grow Light",
     "img": "https://source.unsplash.com/featured/?ledgrowlight",
     "price": 49.99,
-    "parent": "Indoor Living & Home"
+    "parent": "Indoor Living & Home",
+    "description": "Boost plant growth with the LED Grow Light. Ideal for indoor gardening, providing the right spectrum of light for optimal development."
   },
   {
     "name": "Dimmable Wall Switch",
     "img": "https://source.unsplash.com/featured/?dimmablewallswitch",
     "price": 24.99,
-    "parent": "Indoor Living & Home"
+    "parent": "Indoor Living & Home",
+    "description": "Customize your lighting ambiance with the Dimmable Wall Switch. Effortlessly control the brightness to suit any mood."
   },
   {
     "name": "Hardware Organizer",
     "img": "https://source.unsplash.com/featured/?hardwareorganizer",
     "price": 29.99,
-    "parent": "Indoor Living & Home"
+    "parent": "Indoor Living & Home",
+    "description": "Keep your tools and hardware in order with the Hardware Organizer. A must-have for any DIY enthusiast or professional."
   },
   {
     "name": "Home Theater System",
     "img": "https://source.unsplash.com/featured/?hometheatersystem",
     "price": 2499.99,
-    "parent": "Entertainment & Toys"
-  },
-  {
-    "name": "Sound Bar",
-    "img": "https://source.unsplash.com/featured/?soundbar",
-    "price": 599.99,
-    "parent": "Entertainment & Toys"
-  },
-  {
-    "name": "PlayStation",
-    "img": "https://source.unsplash.com/featured/?playstation",
-    "price": 399.99,
-    "parent": "Entertainment & Toys"
-  },
-  {
-    "name": "Xbox",
-    "img": "https://source.unsplash.com/featured/?xbox",
-    "price": 399.99,
-    "parent": "Entertainment & Toys"
-  },
-  {
-    "name": "Gun Safe",
-    "img": "https://source.unsplash.com/featured/?gunsafe",
-    "price": 199.99,
-    "parent": "Hunting Equipment"
-  },
-  {
-    "name": "Women Heels",
-    "img": "https://source.unsplash.com/featured/?womenheels",
-    "price": 199.99,
-    "parent": "Women"
-  },
-  {
-    "name": "Women Makeup",
-    "img": "https://source.unsplash.com/featured/?makeup",
-    "price": 99.99,
-    "parent": "Women"
-  },
-  {
-    "name": "Camera Lens",
-    "img": "https://source.unsplash.com/featured/?cameralens? ",
-    "price": 249.99,
-    "parent": "Audio & video equipment"
-  },
-  {
-    "name": "Laptop Computer",
-    "img": "https://source.unsplash.com/featured/?laptopcomputer? ",
-    "price": 999.99,
-    "parent": "Computer & Office Equipment"
-  },
-  {
-    "name": "Handheld Vacuum Cleaner",
-    "img": "https://source.unsplash.com/featured/?handheldvacuumcleaner? ",
-    "price": 129.99,
-    "parent": "Cleaning & Household"
-  },
-  {
-    "name": "Handheld Spiralizer",
-    "img": "https://source.unsplash.com/featured/?handheldspiralizer? ",
-    "price": 14.99,
-    "parent": "Kitchen & Cookware"
-  },
-  {
-    "name": "Industrial Mixer",
-    "img": "https://source.unsplash.com/featured/?industrialmixer? ",
-    "price": 349.99,
-    "parent": "Industrial & maintenance equipment"
-  },
-  {
-    "name": "Hospital Gown",
-    "img": "https://source.unsplash.com/featured/?hospitalgown? ",
-    "price": 24.99,
-    "parent": "Medical & healthcare equipment"
-  },
-  {
-    "name": "Outdoor Fishing Kit",
-    "img": "https://source.unsplash.com/featured/?outdoorfishingkit? ",
-    "price": 69.99,
-    "parent": "Outdoor Recreation Equipment"
-  },
-  {
-    "name": "Industrial Oven",
-    "img": "https://source.unsplash.com/featured/?industrialoven? ",
-    "price": 3299.99,
-    "parent": "Industrial & maintenance equipment"
-  },
-  {
-    "name": "Stethoscope",
-    "img": "https://source.unsplash.com/featured/?stethoscope? ",
-    "price": 34.99,
-    "parent": "Medical & healthcare equipment"
-  },
-  {
-    "name": "Fitness Gym Equipment",
-    "img": "https://source.unsplash.com/featured/?fitnessgymequipment? ",
-    "price": 999.99,
-    "parent": "Health & Personal Care"
-  },
-  {
-    "name": "Fashion Sewing Machine",
-    "img": "https://source.unsplash.com/featured/?fashionsewingmachine? ",
-    "price": 349.99,
-    "parent": "Arts & Entertainment"
-  },
-  {
-    "name": "Tablet Computer",
-    "img": "https://source.unsplash.com/featured/?tabletcomputer? ",
-    "price": 399.99,
-    "parent": "Computer & Office Equipment"
-  },
-  {
-    "name": "Pedestal Desk",
-    "img": "https://source.unsplash.com/featured/?pedestaldesk? ",
-    "price": 249.99,
-    "parent": "Office equipment & supplies"
-  },
-  {
-    "name": "Office Chair",
-    "img": "https://source.unsplash.com/featured/?officechair? ",
-    "price": 199.99,
-    "parent": "Office equipment & supplies"
-  },
-  {
-    "name": "Vehicle Transmission",
-    "img": "https://source.unsplash.com/featured/?vehicletransmission? ",
-    "price": 3299.99,
-    "parent": "Automotive Equipment & Parts"
-  },
-  {
-    "name": "Digital Video Recorder",
-    "img": "https://source.unsplash.com/featured/?digitalvideorecorder? ",
-    "price": 99.99,
-    "parent": "Audio & video equipment"
-  },
-  {
-    "name": "Fire Extinguisher",
-    "img": "https://source.unsplash.com/featured/?fireextinguisher? ",
-    "price": 49.99,
-    "parent": "Industrial & maintenance equipment"
-  },
-  {
-    "name": "Portable Dust Extractor",
-    "img": "https://source.unsplash.com/featured/?portabledustextractor? ",
-    "price": 99.99,
-    "parent": "Industrial & maintenance equipment"
-  },
-  {
-    "name": "Mini Table Saw",
-    "img": "https://source.unsplash.com/featured/?minitablesaw? ",
-    "price": 299.99,
-    "parent": "Home improvement equipment"
-  },
-  {
-    "name": "Pet GPS Tracker",
-    "img": "https://source.unsplash.com/featured/?petgpstracker? ",
-    "price": 59.99,
-    "parent": "Pet Supplies"
-  },
-  {
-    "name": "3D Printer",
-    "img": "https://source.unsplash.com/featured/?3dprinter? ",
-    "price": 3299.99,
-    "parent": "Electronics & Technology"
-  },
-  {
-    "name": "Virtual Reality Headset",
-    "img": "https://source.unsplash.com/featured/?virtualrealityheadset? ",
-    "price": 599.99,
-    "parent": "Electronics & Technology"
-  },
-  {
-    "name": "Raspberry Pi",
-    "img": "https://source.unsplash.com/featured/?raspberrypi? ",
-    "price": 34.99,
-    "parent": "Electronics & Technology"
-  },
-  {
-    "name": "Robotics Kit",
-    "img": "https://source.unsplash.com/featured/?robotics kit? ",
-    "price": 249.99,
-    "parent": "Electronics & Technology"
-  },
-  {
-    "name": "GPS Watch",
-    "img": "https://source.unsplash.com/featured/?gpswatch? ",
-    "price": 199.99,
-    "parent": "Electronics & Technology"
-  },
-  {
-    "name": "Digital Soundbar",
-    "img": "https://source.unsplash.com/featured/?digitalsoundbar? ",
-    "price": 249.99,
-    "parent": "Audio & video equipment"
-  },
-  {
-    "name": "LED Wall Clock",
-    "img": "https://source.unsplash.com/featured/?ledwallclock? ",
-    "price": 99.99,
-    "parent": "Clocks & watches"
-  },
-  {
-    "name": "Rolling Counter",
-    "img": "https://source.unsplash.com/featured/?rollingcounter? ",
-    "price": 499.99,
-    "parent": "Industrial & maintenance equipment"
-  },
-  {
-    "name": "Conveyor Belt System",
-    "img": "https://source.unsplash.com/featured/?conveyorbelt system? ",
-    "price": 3999.99,
-    "parent": "Industrial & maintenance equipment"
-  },
-  {
-    "name": "Fishing GPS System",
-    "img": "https://source.unsplash.com/featured/?fishinggpssystem? ",
-    "price": 349.99,
-    "parent": "Outdoor gear"
-  },
-  {
-    "name": "360 Degree GoPro Camera",
-    "img": "https://source.unsplash.com/featured/?360degree gopro camera? ",
-    "price": 599.99,
-    "parent": "Audio & video equipment"
-  },
-  {
-    "name": "Remote Control Boat",
-    "img": "https://source.unsplash.com/featured/?remotecontrolboat? ",
-    "price": 349.99,
-    "parent": "Water sports equipment"
+    "parent": "Entertainment & Toys",
+    "description": "Transform your living room into a cinematic experience with the Home Theater System. Immerse yourself in high-quality audio and visuals."
   },
   {
     "name": "Gaming PC",
     "img": "https://source.unsplash.com/featured/?gamingpc? ",
     "price": 3499.99,
-    "parent": "Electronics & Technology"
+    "parent": "Electronics & Technology",
+    "description": "Immerse yourself in the world of high-performance gaming with this Gaming PC. Designed for enthusiasts who demand cutting-edge graphics and speed."
   },
   {
     "name": "Steam Controller",
     "img": "https://source.unsplash.com/featured/?steamcontroller? ",
     "price": 69.99,
-    "parent": "Electronics & Technology"
+    "parent": "Electronics & Technology",
+    "description": "Enhance your gaming experience with the Steam Controller. Precision control and customization for a wide range of games on the Steam platform."
   },
   {
     "name": "PlayStation 5",
     "img": "https://source.unsplash.com/featured/?playstation5? ",
     "price": 499.99,
-    "parent": "Electronics & Technology"
+    "parent": "Electronics & Technology",
+    "description": "Enter the next generation of gaming with the PlayStation 5. Powerful hardware and advanced features for a truly immersive gaming experience."
   },
   {
     "name": "Xbox Series X",
     "img": "https://source.unsplash.com/featured/?xboxseriesx? ",
     "price": 499.99,
-    "parent": "Electronics & Technology"
+    "parent": "Electronics & Technology",
+    "description": "Unleash the full potential of gaming with the Xbox Series X. Experience stunning graphics, fast loading times, and a vast library of games."
   },
   {
     "name": "iPhone 13 Pro Max",
     "img": "https://source.unsplash.com/featured/?iphone13promax? ",
     "price": 1199.99,
-    "parent": "Electronics & Technology"
+    "parent": "Electronics & Technology",
+    "description": "Upgrade to the latest in smartphone technology with the iPhone 13 Pro Max. Capture stunning photos, enjoy a vibrant display, and experience unmatched performance."
   },
   {
     "name": "Samsung Galaxy S21+",
     "img": "https://source.unsplash.com/featured/?samsunggalaxys21+? ",
     "price": 999.99,
-    "parent": "Electronics & Technology"
+    "parent": "Electronics & Technology",
+    "description": "Stay connected in style with the Samsung Galaxy S21+. Featuring a sleek design, powerful camera, and advanced technology for a seamless experience."
   },
   {
     "name": "32GB RAM DDR4-3200",
     "img": "https://source.unsplash.com/featured/?32gbramddr4-3200? ",
     "price": 2499.99,
-    "parent": "Electronics & Technology"
+    "parent": "Electronics & Technology",
+    "description": "Upgrade your computer's performance with 32GB RAM DDR4-3200. Experience faster multitasking and improved overall system responsiveness."
+  },
+  {
+    "name": "Lipstick Set",
+    "img": "https://source.unsplash.com/featured/?lipstickset",
+    "price": 14.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Enhance your beauty with this exquisite lipstick set. Featuring a variety of shades, this collection is perfect for any occasion."
+  },
+  {
+    "name": "Hair Dryer",
+    "img": "https://source.unsplash.com/featured/?hairdryer",
+    "price": 49.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Achieve salon-quality hair styling at home with this powerful and efficient hair dryer. Say goodbye to frizz and hello to silky-smooth hair."
+  },
+  {
+    "name": "Facial Cleanser",
+    "img": "https://source.unsplash.com/featured/?facialcleanser",
+    "price": 19.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Gentle yet effective facial cleanser to cleanse and refresh your skin. Suitable for all skin types, leaving your face feeling rejuvenated."
+  },
+  {
+    "name": "Manicure Kit",
+    "img": "https://source.unsplash.com/featured/?manicurekit",
+    "price": 24.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Complete manicure kit for professional-looking nails at home. Treat yourself to a spa-like experience with this versatile nail care set."
+  },
+  {
+    "name": "Electric Toothbrush",
+    "img": "https://source.unsplash.com/featured/?electrictoothbrush",
+    "price": 34.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Upgrade your oral care routine with this high-performance electric toothbrush. Keep your smile bright and your teeth healthy."
+  },
+  {
+    "name": "Perfume Sampler Set",
+    "img": "https://source.unsplash.com/featured/?perfumesamplerset",
+    "price": 29.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Discover your signature scent with this luxurious perfume sampler set. A collection of captivating fragrances for any occasion."
+  },
+  {
+    "name": "Skin Moisturizer",
+    "img": "https://source.unsplash.com/featured/?skinmoisturizer",
+    "price": 17.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Hydrate and nourish your skin with this lightweight and non-greasy moisturizer. Achieve a radiant and healthy complexion every day."
+  },
+  {
+    "name": "Eyeshadow Palette",
+    "img": "https://source.unsplash.com/featured/?eyeshadowpalette",
+    "price": 39.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Create stunning eye looks with this versatile eyeshadow palette. Featuring a range of colors for endless possibilities in your makeup routine."
+  },
+  {
+    "name": "Hair Straightener",
+    "img": "https://source.unsplash.com/featured/?hairstraightener",
+    "price": 54.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Achieve sleek and shiny hair with this advanced hair straightener. Perfect for creating various hairstyles with ease and precision."
+  },
+  {
+    "name": "Facial Mask Set",
+    "img": "https://source.unsplash.com/featured/?facialmaskset",
+    "price": 22.99,
+    "parent": "Beauty & personal care equipment",
+    "description": "Pamper your skin with this rejuvenating facial mask set. Indulge in a spa-like experience from the comfort of your home."
   },
   {
     "name": "GeForce RTX 3090 Graphics Card",
     "img": "https://source.unsplash.com/featured/?geforcertx3090graphicscard? ",
     "price": 1599.99,
-    "parent": "Electronics & Technology"
+    "parent": "Electronics & Technology",
+    "description": "Elevate your gaming and graphics performance with the GeForce RTX 3090 Graphics Card. Unleash the power of real-time ray tracing and high-speed rendering."
+  },
+  {
+    "name": "Lab Safety Goggles",
+    "img": "https://source.unsplash.com/featured/?labsafetygoggles",
+    "price": 19.99,
+    "parent": "Lab & scientific equipment",
+    "description": "Ensure safety in the laboratory with these durable and comfortable safety goggles. Designed to protect your eyes from chemical splashes and debris."
+  },
+  {
+    "name": "Microscope Slides",
+    "img": "https://source.unsplash.com/featured/?microscopeslides",
+    "price": 12.49,
+    "parent": "Lab & scientific equipment",
+    "description": "High-quality microscope slides for conducting detailed microscopic examinations. Suitable for various biological and chemical applications."
+  },
+  {
+    "name": "Bunsen Burner",
+    "img": "https://source.unsplash.com/featured/?bunsenburner",
+    "price": 34.99,
+    "parent": "Lab & scientific equipment",
+    "description": "A reliable Bunsen burner for precise and controlled heating in scientific experiments. Ideal for chemistry laboratories and educational settings."
+  },
+  {
+    "name": "Laboratory Flask Set",
+    "img": "https://source.unsplash.com/featured/?labflaskset",
+    "price": 49.99,
+    "parent": "Lab & scientific equipment",
+    "description": "Complete set of laboratory flasks for various liquid handling tasks. Made from high-quality materials for accurate and reliable results."
+  },
+  {
+    "name": "Precision Pipettes",
+    "img": "https://source.unsplash.com/featured/?precisionpipettes",
+    "price": 29.99,
+    "parent": "Lab & scientific equipment",
+    "description": "Accurate and precise pipettes for measuring and transferring small volumes of liquids. Essential tools for laboratory research and experiments."
+  },
+  {
+    "name": "Scientific Calculators",
+    "img": "https://source.unsplash.com/featured/?scientificcalculators",
+    "price": 22.99,
+    "parent": "Lab & scientific equipment",
+    "description": "Advanced scientific calculators for scientific and engineering calculations. Features a range of functions for complex mathematical tasks."
+  },
+  {
+    "name": "Laboratory Notebooks",
+    "img": "https://source.unsplash.com/featured/?labnotebooks",
+    "price": 14.99,
+    "parent": "Lab & scientific equipment",
+    "description": "Durable laboratory notebooks for recording experimental procedures, observations, and results. Keep your research organized and accessible."
+  },
+  {
+    "name": "Chemistry Model Kit",
+    "img": "https://source.unsplash.com/featured/?chemistrymodelkit",
+    "price": 39.99,
+    "parent": "Lab & scientific equipment",
+    "description": "Educational chemistry model kit for hands-on learning of molecular structures and chemical reactions. Suitable for students and enthusiasts."
+  },
+  {
+    "name": "Lab Coats",
+    "img": "https://source.unsplash.com/featured/?labcoats",
+    "price": 29.99,
+    "parent": "Lab & scientific equipment",
+    "description": "Professional lab coats for researchers and scientists. Designed for comfort and protection during laboratory work."
+  },
+  {
+    "name": "Lab Thermometers",
+    "img": "https://source.unsplash.com/featured/?labthermometers",
+    "price": 9.99,
+    "parent": "Lab & scientific equipment",
+    "description": "Accurate lab thermometers for measuring temperature in scientific experiments. Essential tools for precise temperature control."
+  },
+  {
+    "name": "Pencils",
+    "img": "https://source.unsplash.com/featured/?pencils",
+    "price": 9.99,
+    "parent": "Education & training equipment",
+    "description": "High-quality wooden pencils suitable for various writing and drawing tasks. The set includes a variety of lead grades for different applications."
+  },
+  {
+    "name": "Notebooks",
+    "img": "https://source.unsplash.com/featured/?notebooks",
+    "price": 14.99,
+    "parent": "Education & training equipment",
+    "description": "A set of stylish notebooks with durable covers and high-quality paper. Perfect for note-taking, journaling, and planning your daily tasks."
+  },
+  {
+    "name": "Educational Flashcards",
+    "img": "https://source.unsplash.com/featured/?flashcards",
+    "price": 12.99,
+    "parent": "Education & training equipment",
+    "description": "Engaging flashcards designed to enhance learning and memory retention. Ideal for students of all ages and subjects."
+  },
+  {
+    "name": "Colorful Markers",
+    "img": "https://source.unsplash.com/featured/?markers",
+    "price": 8.49,
+    "parent": "Education & training equipment",
+    "description": "Vibrant markers for creating colorful and visually appealing notes. Great for highlighting important information and creating mind maps."
+  },
+  {
+    "name": "Sound Bar",
+    "img": "https://source.unsplash.com/featured/?soundbar",
+    "price": 599.99,
+    "parent": "Entertainment & Toys",
+    "description": "Enhance your TV audio with the Sound Bar. Enjoy rich, immersive sound for movies, music, and gaming."
+  },
+  {
+    "name": "PlayStation",
+    "img": "https://source.unsplash.com/featured/?playstation",
+    "price": 399.99,
+    "parent": "Entertainment & Toys",
+    "description": "Unleash the power of gaming with the PlayStation. Immerse yourself in a world of cutting-edge graphics and interactive entertainment."
+  },
+  {
+    "name": "Graphing Calculator",
+    "img": "https://source.unsplash.com/featured/?graphingcalculator",
+    "price": 49.99,
+    "parent": "Education & training equipment",
+    "description": "A powerful graphing calculator for advanced mathematical calculations. Suitable for students in math, physics, and engineering courses."
+  },
+  {
+    "name": "Learning Games",
+    "img": "https://source.unsplash.com/featured/?learninggames",
+    "price": 29.99,
+    "parent": "Education & training equipment",
+    "description": "Interactive and educational games for children to enhance their cognitive skills. Make learning fun with these engaging activities."
+  },
+  {
+    "name": "Educational Posters",
+    "img": "https://source.unsplash.com/featured/?educationalposters",
+    "price": 16.99,
+    "parent": "Education & training equipment",
+    "description": "Informative and visually appealing posters covering a range of educational topics. Perfect for classrooms and study spaces."
+  },
+  {
+    "name": "Scientific Microscope",
+    "img": "https://source.unsplash.com/featured/?scientificmicroscope",
+    "price": 79.99,
+    "parent": "Education & training equipment",
+    "description": "Explore the microscopic world with this high-quality scientific microscope. Ideal for biology and chemistry experiments."
+  },
+  {
+    "name": "Learning Tablets",
+    "img": "https://source.unsplash.com/featured/?learningtablets",
+    "price": 39.99,
+    "parent": "Education & training equipment",
+    "description": "Interactive learning tablets designed for children to develop early literacy and numeracy skills. Features educational apps and games."
+  },
+  {
+    "name": "Mathematics Workbooks",
+    "img": "https://source.unsplash.com/featured/?mathworkbooks",
+    "price": 18.99,
+    "parent": "Education & training equipment",
+    "description": "Comprehensive mathematics workbooks covering various topics for students to practice and reinforce their math skills."
+  },
+  {
+    "name": "Pencils",
+    "img": "https://source.unsplash.com/featured/?pencils",
+    "price": 9.99,
+    "parent": "Learning & educational aids",
+    "description": "High-quality wooden pencils suitable for various writing and drawing tasks. The set includes a variety of lead grades for different applications."
+  },
+  {
+    "name": "Notebooks",
+    "img": "https://source.unsplash.com/featured/?notebooks",
+    "price": 14.99,
+    "parent": "Learning & educational aids",
+    "description": "A set of stylish notebooks with durable covers and high-quality paper. Perfect for note-taking, journaling, and planning your daily tasks."
+  },
+  {
+    "name": "Educational Flashcards",
+    "img": "https://source.unsplash.com/featured/?flashcards",
+    "price": 12.99,
+    "parent": "Learning & educational aids",
+    "description": "Engaging flashcards designed to enhance learning and memory retention. Ideal for students of all ages and subjects."
+  },
+  {
+    "name": "Colorful Markers",
+    "img": "https://source.unsplash.com/featured/?markers",
+    "price": 8.49,
+    "parent": "Learning & educational aids",
+    "description": "Vibrant markers for creating colorful and visually appealing notes. Great for highlighting important information and creating mind maps."
+  },
+  {
+    "name": "Graphing Calculator",
+    "img": "https://source.unsplash.com/featured/?graphingcalculator",
+    "price": 49.99,
+    "parent": "Learning & educational aids",
+    "description": "A powerful graphing calculator for advanced mathematical calculations. Suitable for students in math, physics, and engineering courses."
+  },
+  {
+    "name": "Learning Games",
+    "img": "https://source.unsplash.com/featured/?learninggames",
+    "price": 29.99,
+    "parent": "Learning & educational aids",
+    "description": "Interactive and educational games for children to enhance their cognitive skills. Make learning fun with these engaging activities."
+  },
+  {
+    "name": "Educational Posters",
+    "img": "https://source.unsplash.com/featured/?educationalposters",
+    "price": 16.99,
+    "parent": "Learning & educational aids",
+    "description": "Informative and visually appealing posters covering a range of educational topics. Perfect for classrooms and study spaces."
+  },
+  {
+    "name": "Scientific Microscope",
+    "img": "https://source.unsplash.com/featured/?scientificmicroscope",
+    "price": 79.99,
+    "parent": "Learning & educational aids",
+    "description": "Explore the microscopic world with this high-quality scientific microscope. Ideal for biology and chemistry experiments."
+  },
+  {
+    "name": "Learning Tablets",
+    "img": "https://source.unsplash.com/featured/?learningtablets",
+    "price": 39.99,
+    "parent": "Learning & educational aids",
+    "description": "Interactive learning tablets designed for children to develop early literacy and numeracy skills. Features educational apps and games."
+  },
+  {
+    "name": "Mathematics Workbooks",
+    "img": "https://source.unsplash.com/featured/?mathworkbooks",
+    "price": 18.99,
+    "parent": "Learning & educational aids",
+    "description": "Comprehensive mathematics workbooks covering various topics for students to practice and reinforce their math skills."
+  },
+
+  {
+    "name": "Pencils",
+    "img": "https://source.unsplash.com/featured/?pencils",
+    "price": 9.99,
+    "parent": "Library & office equipment",
+    "description": "High-quality wooden pencils suitable for various writing and drawing tasks. The set includes a variety of lead grades for different applications."
+  },
+  {
+    "name": "Notebooks",
+    "img": "https://source.unsplash.com/featured/?notebooks",
+    "price": 14.99,
+    "parent": "Library & office equipment",
+    "description": "A set of stylish notebooks with durable covers and high-quality paper. Perfect for note-taking, journaling, and planning your daily tasks."
+  },
+  {
+    "name": "Desk Organizer",
+    "img": "https://source.unsplash.com/featured/?deskorganizer",
+    "price": 24.99,
+    "parent": "Library & office equipment",
+    "description": "Keep your workspace tidy with this practical desk organizer. Features multiple compartments for pens, pencils, paper clips, and more."
+  },
+  {
+    "name": "Ballpoint Pens",
+    "img": "https://source.unsplash.com/featured/?ballpointpens",
+    "price": 6.99,
+    "parent": "Library & office equipment",
+    "description": "A set of smooth-writing ballpoint pens. Ideal for everyday use, these pens deliver consistent ink flow and comfortable grip."
+  },
+  {
+    "name": "Sticky Notes",
+    "img": "https://source.unsplash.com/featured/?stickynotes",
+    "price": 7.49,
+    "parent": "Library & office equipment",
+    "description": "Colorful sticky notes for quick reminders and organization. Easily stick them to surfaces and remove without leaving residue."
+  },
+  {
+    "name": "Highlighters",
+    "img": "https://source.unsplash.com/featured/?highlighters",
+    "price": 12.99,
+    "parent": "Library & office equipment",
+    "description": "Bright and vibrant highlighters for emphasizing important information. These markers are perfect for studying and note-taking."
+  },
+  {
+    "name": "Desk Lamp",
+    "img": "https://source.unsplash.com/featured/?desklamp",
+    "price": 39.99,
+    "parent": "Library & office equipment",
+    "description": "Illuminate your workspace with this modern desk lamp. Adjustable brightness levels and a sleek design make it a stylish addition to your desk."
+  },
+  {
+    "name": "Paper Shredder",
+    "img": "https://source.unsplash.com/featured/?papershredder",
+    "price": 59.99,
+    "parent": "Library & office equipment",
+    "description": "Securely dispose of sensitive documents with this powerful paper shredder. Shred confidential papers to protect your privacy."
+  },
+  {
+    "name": "Mouse Pad",
+    "img": "https://source.unsplash.com/featured/?mousepad",
+    "price": 8.99,
+    "parent": "Library & office equipment",
+    "description": "Enhance your computing experience with a comfortable and durable mouse pad. Provides smooth and precise mouse movements."
+  },
+  {
+    "name": "Calculators",
+    "img": "https://source.unsplash.com/featured/?calculators",
+    "price": 19.99,
+    "parent": "Library & office equipment",
+    "description": "Efficient and reliable calculators for various mathematical tasks. Suitable for students, professionals, and everyday use."
   },
   {
     "name": "Home Theater System",
     "img": "https://source.unsplash.com/featured/?hometheatersystem? ",
     "price": 4999.99,
-    "parent": "Audio & video equipment"
-  },
-  {
-    "name": "Nest Hub Max",
-    "img": "https://source.unsplash.com/featured/?nesthubmax? ",
-    "price": 299.99,
-    "parent": "Smart home devices"
+    "parent": "Audio & video equipment",
+    "description": "Immerse yourself in the ultimate entertainment experience with this cutting-edge home theater system. Featuring high-quality audio and stunning visuals, it transforms your living space into a cinematic haven."
   },
   {
     "name": "Nest Thermostat E",
     "img": "https://source.unsplash.com/featured/?nestthermostate? ",
     "price": 399.99,
-    "parent": "Smart home devices"
+    "parent": "Smart home devices",
+    "description": "Enhance your home's energy efficiency with the Nest Thermostat E. Smart, sleek, and easy to use, it adapts to your preferences, creating a comfortable environment while helping you save on energy costs."
   },
   {
     "name": "Heels",
     "img": "https://source.unsplash.com/featured/?heels? ",
     "price": 399.99,
-    "parent": "Women"
+    "parent": "Women",
+    "description": "Elevate your style with these chic heels that effortlessly combine fashion and comfort. Perfect for any occasion, these shoes add a touch of sophistication to your wardrobe."
   },
   {
     "name": "Shoes",
     "img": "https://source.unsplash.com/featured/?menshoes? ",
     "price": 199.99,
-    "parent": "Men"
+    "parent": "Men",
+    "description": "Step out in style with these versatile and trendy shoes for men. Crafted for both comfort and fashion, they complement your casual and semi-formal looks with ease."
   },
   {
     "name": "Tailored Shoes",
     "img": "https://source.unsplash.com/featured/?mentailoredshoe? ",
     "price": 99.99,
-    "parent": "Men"
+    "parent": "Men",
+    "description": "Experience the perfect blend of craftsmanship and style with these tailored shoes for men. Meticulously designed for a sharp and polished appearance, they are a must-have in any gentleman's wardrobe."
   },
   {
     "name": "Handbag",
     "img": "https://source.unsplash.com/featured/?handbag? ",
     "price": 99.99,
-    "parent": "Handbags"
+    "parent": "Handbags",
+    "description": "Carry your essentials in style with this elegant handbag. Designed for both fashion and functionality, it's the perfect accessory to complete your ensemble and keep your belongings organized."
+  },
+  {
+    "name": "Purse",
+    "img": "https://source.unsplash.com/featured/?purse? ",
+    "price": 99.99,
+    "parent": "Handbags",
+    "description": "Carry your essentials in style with this elegant purse. Designed for both fashion and functionality, it's the perfect accessory to complete your ensemble and keep your belongings organized."
   },
   {
     "name": "Sneakers",
     "img": "https://source.unsplash.com/featured/?heels? ",
     "price": 299.99,
-    "parent": "Collectible Sneakers"
+    "parent": "Collectible Sneakers",
+    "description": "Unleash your sneaker obsession with this collectible pair. Combining street style with comfort, these sneakers make a bold statement, reflecting your unique taste in footwear."
   }
 ]
