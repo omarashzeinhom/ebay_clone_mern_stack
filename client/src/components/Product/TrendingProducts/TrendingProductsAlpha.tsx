@@ -1,10 +1,9 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import "./TrendingProductsAlpha.scss";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { useProductContext } from "../../../context/ProductContext";
 
 interface TrendingProductsAlphaProps {

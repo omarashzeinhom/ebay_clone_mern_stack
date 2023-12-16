@@ -31,6 +31,7 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   // rendering the cart
   const [isOpen, setIsOpen] = useState(false);
+  console.log(`isOpen: ${isOpen}`)
   const [cartItems, setCartItems] = useLocalStorage<CartItemProps[]>(
     "Default Shopping",
     []
@@ -65,7 +66,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
   function decreaseCartQuantity(id: number) {
     setCartItems((currentItems) => {
-      if (currentItems.find((item) => item.id == id) == null) {
+      if (currentItems.find((item) => item.id === id) == null) {
         return currentItems.filter((item) => item.id !== id);
       } else {
         return currentItems.map((item) => {

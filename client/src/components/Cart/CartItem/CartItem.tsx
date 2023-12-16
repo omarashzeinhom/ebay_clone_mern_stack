@@ -4,8 +4,6 @@ import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { currencyFormatter } from "../../../utilities/currencyFormatter";
 import { CartItemProps } from "../../../models/cartitem";
 
-
-
 const CartItem: React.FC<CartItemProps> = ({
   id,
   _id,
@@ -19,7 +17,7 @@ const CartItem: React.FC<CartItemProps> = ({
 
   return (
     <>
-      <div key={id} className="d-flex align-items-center">
+      <div key={id * 10} className="d-flex align-items-center">
         <span>{_id}</span>
         <p>{parent}</p>
         <img

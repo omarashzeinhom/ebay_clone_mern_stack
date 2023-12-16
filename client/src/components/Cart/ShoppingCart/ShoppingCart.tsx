@@ -16,6 +16,8 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { productId } = useParams();
   const [product, setProduct] = useState<any | null>(null);
 
+  console.log(closeCart , product);
+
   useEffect(() => {
     const fetchData = async () => {
       if (productId) {
@@ -31,7 +33,6 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
     fetchProducts();
     getProductById(productId || "");
 
-    console.log(products);
   }, []);
 
   const storeProducts: any[] = products; // Get All Store Products here

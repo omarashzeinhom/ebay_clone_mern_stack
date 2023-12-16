@@ -8,9 +8,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Scrollbar } from "swiper/modules";
 
-interface TrendingProductsProps {
-  // Add any props if needed
-}
+interface TrendingProductsProps {}
 interface Image {
   id: number;
   imageUrl: string;
@@ -55,8 +53,6 @@ const TrendingProducts: React.FC<TrendingProductsProps> = () => {
       return [];
     }
   };
-
-  
 
   useEffect(() => {
     const getImages = async () => {

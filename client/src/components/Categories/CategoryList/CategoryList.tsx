@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Category } from "../../../models/category";
-import { useNavigate } from "react-router-dom";
-import { categoriesService } from "../../../services/categoryService";
 import "./CategoryList.scss";
+import { useNavigate } from "react-router-dom";
 import { Nav, SearchBar } from "../..";
+import { Category } from "../../../models/category";
+import { categoriesService } from "../../../services/categoryService";
 
 interface CategoryListProps {
   // Assuming there's an endpoint like '/categories' that returns categories
