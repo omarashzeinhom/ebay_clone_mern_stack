@@ -5,10 +5,8 @@ import { User } from "../../../models/user";
 import { Business } from "../../../models/business";
 import { useAuth } from "../../../context/AuthContext";
 import PersonalAccountForm from "./PersonalAccountForm";
-import BusinessAccountForm from "./BusinessAccountForm"; 
+import BusinessAccountForm from "./BusinessAccountForm";
 import { authService } from "../../../services/authService";
-
-
 
 const RegisterForm: React.FC = () => {
   const { token } = useAuth();
@@ -46,6 +44,7 @@ const RegisterForm: React.FC = () => {
   // console.log(businessName, businessEmail, businessPassword, businessLocation )
 
   const handleRegister = async () => {
+    console.log(accountType);
     try {
       if (accountType === "Personal account") {
         console.log(email, user.password);
@@ -57,14 +56,13 @@ const RegisterForm: React.FC = () => {
           businessName &&
           businessEmail &&
           businessPassword &&
-          businessLocation &&
           businessActive !== undefined
         ) {
           await authService.registerBusiness(
             businessName,
             businessEmail,
             businessPassword,
-            businessLocation,
+            businessLocation || "",
             businessActive
           );
         }

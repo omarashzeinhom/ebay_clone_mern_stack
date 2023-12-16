@@ -1,66 +1,49 @@
 import "./Nav.scss";
 import { FaRegBell } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TbShoppingCart } from "react-icons/tb";
-import { Business } from "../../models/business";
+//import { Business } from "../../models/business";
 import { useAuth } from "../../context/AuthContext";
-import { authService } from "../../services/authService";
+//import { authService } from "../../services/authService";
 import { navItems, myEbayItems } from "../../utils/constants";
 
 const Nav = () => {
-  const { token, user, logout } = useAuth();
-  const [business, setBusiness] = useState<Business>();
+  const { token, user, logout,business } = useAuth();
+  //const [business, setBusiness] = useState<Business>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navigate = useNavigate(); 
-
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     logout();
     localStorage.removeItem("business");
     localStorage.removeItem("user");
+    if (user) {
+      alert(" User has Logout successfully");
+    } else {
+      if (business) {
+        alert(" Business has Logout successfully");
+      }
+    }
+    navigate(`/`);
   };
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  // Define fetchData outside of useEffect
-  const fetchData = async () => {
-    try {
-      if (token) {
-        const storedBusiness = localStorage.getItem("business");
-        if (storedBusiness) {
-          setBusiness(JSON.parse(storedBusiness));
-        } else {
-          const businessData = await authService.getBusiness(token);
-          setBusiness(businessData);
-          localStorage.setItem("business", JSON.stringify(businessData));
-        }
-      }
-    } catch (error) {
-      console.error(`Error fetching business data: ${error}`);
-    }
-  };
-
-  const handleUserRoute = () => {
-    if (user) {
+  const handleRoute = () => {
+    if (user?.userId !== undefined) {
       navigate(`/user/${user?.userId}`);
+    } else if (business?.businessId !== undefined) {
+      navigate(`/business/${business?.businessId}`);
     } else {
-      // Use fetchData directly, don't call fetchData() here
-      fetchData().then(() => {
-        if (business) {
-          navigate(`/business/${business?.businessId}`);
-        }
-      });
+      console.error("User and business have no ID");
     }
   };
 
-  useEffect(() => {
-    // Call fetchData here
-    fetchData();
-  }, [token]);
+
 
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
@@ -89,12 +72,13 @@ const Nav = () => {
                   user?.firstName ||
                   business?.businessEmail ||
                   user?.email ||
-                  " "}
+                  "User"}
                 !
               </option>
-              <option onClick={handleUserRoute}>
+              <option onClick={handleRoute}>
                 {user?.userId?.slice(1, 7) ||
-                  business?.businessId?.slice(1, 7) ||
+                  `${business?.businessName.slice(0, 5)}
+                 ${business?.businessId?.slice(1, 10)}` ||
                   " "}
                 !
               </option>

@@ -27,8 +27,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (storedToken) {
       setToken(storedToken);
       // Fetch user information from the server using the stored token
-      fetchUserInformation(storedToken) ||
-        fetchBusinessInformation(storedToken);
+      fetchUserInformation(storedToken) 
+      fetchBusinessInformation(storedToken);
     }
   }, []);
 
@@ -64,10 +64,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         headers: { Authorization: `Bearer ${token}` },
       });
       setBusiness(response.data);
-      console.log(response)
     } catch (error) {
       console.error("Error fetching user information:", error);
-      // Handle error (e.g., log out the user)
     }
   };
 

@@ -152,7 +152,6 @@ exports.loginBusiness = async (req, res) => {
 
     // Add a debug log
     // console.log("Business login successful");
-    alert(`${businessEmail} has Logged In Successfully 🚀`)
 
     res.status(200).json({ token, expiresIn: 3600 });
   } catch (error) {

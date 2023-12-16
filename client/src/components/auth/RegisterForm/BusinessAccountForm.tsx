@@ -62,7 +62,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         <option>Egypt</option>
       </select>
 
-      <button onClick={handleRegister} className="app__baform-Btn">
+      <button className="app__baform-Btn">
         Register
       </button>
     </form>

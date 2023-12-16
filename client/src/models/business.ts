@@ -3,6 +3,6 @@ export interface Business {
     businessName: string,
     businessEmail: string,
     businessPassword: string,
-    businessLocation?: string ,
+    businessLocation: string ,
     businessActive?: boolean,
 }
