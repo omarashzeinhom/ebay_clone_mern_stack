@@ -24,23 +24,37 @@
        background-color: #343a40;
        color: #fff;
     }
+    
+
+
+    .scroll-totop__btn {
+      background-color: #1c1c1c;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 8px 16px;
+      position: fixed; // Change to fixed
+      bottom: 10px;
+      right: 10px;
+      transition: background-color 0.3s;
+  
+      &:hover {
+        background-color: #282828;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
    }
 
 
-
-.to-top {
-    background-color: #1c1c1c;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 8px 16px;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    transition: background-color 0.3s;
-
-    &:hover {
-        background-color: #282828;
-    }
-}

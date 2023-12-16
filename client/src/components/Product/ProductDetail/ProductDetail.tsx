@@ -36,7 +36,7 @@ const ProductDetail: React.FC = () => {
   if (!product) {
     return <div className="loading">Loading...</div>;
   }
-  const id = product?._id;
+  const id = product?.id;
 
   const quantity = getItemQuantity(id);
   console.log(quantity);
@@ -63,19 +63,35 @@ const ProductDetail: React.FC = () => {
           height={150}
           loading="lazy"
         />
-        <p>{product?.description}</p>
-        <span> {quantity}</span>
+        <p>
+          <strong>
+            <em>Description :</em>{" "}
+          </strong>
+          {product?.description}
+        </p>
+        <span>
+          <strong>
+            <em>Available Quantity :</em>
+          </strong>{" "}
+          {product?.quantity}
+        </span>
+        <p>
+          <strong>
+            <em>Selected Quantity :</em>
+          </strong>{" "}
+          {quantity}
+        </p>
 
         <div className="product-detail__buttongroup">
           <button
             className="product-detail__button"
-            onClick={() => increaseCartQuantity}
+            onClick={() => increaseCartQuantity(id)}
           >
             +
           </button>
           <button
             className="product-detail__altbutton"
-            onClick={() => decreaseCartQuantity}
+            onClick={() => decreaseCartQuantity(id)}
           >
             -
           </button>

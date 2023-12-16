@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Footer.scss";
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -6,6 +6,7 @@ interface FooterLink {
   title?: string;
   href?: string;
 }
+
 interface FooterProps {
   footerLinks: FooterLink[];
 }
@@ -19,7 +20,7 @@ const Footer: React.FC<FooterProps> = ({ footerLinks }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 300) {
+      if (window.pageYOffset > 700) {
         setShowToTop(true);
       } else {
         setShowToTop(false);
@@ -44,7 +45,7 @@ const Footer: React.FC<FooterProps> = ({ footerLinks }) => {
       </ul>
       <small>Omar Ashraf Zeinhom © 2023 - 2024</small>
       {showToTop && (
-        <button className="to-top" onClick={scrollToTop}>
+        <button className="scroll-totop__btn" onClick={scrollToTop}>
           <IoIosArrowUp />
         </button>
       )}
