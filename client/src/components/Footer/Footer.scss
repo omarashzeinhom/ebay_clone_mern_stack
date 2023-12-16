@@ -1,0 +1,46 @@
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+   
+    &__links {
+       display: flex;
+       justify-content: center;
+       list-style-type: none;
+       padding: 0;
+    }
+   
+    &__link {
+       margin: 0 10px;
+   
+       a {
+         color: #212529;
+         text-decoration: none;
+       }
+    }
+   }
+   
+   @media (max-width: 767px) {
+    .footer {
+       background-color: #343a40;
+       color: #fff;
+    }
+   }
+
+
+
+.to-top {
+    background-color: #1c1c1c;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 16px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #282828;
+    }
+}

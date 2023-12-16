@@ -1,7 +1,7 @@
 // ProductList.tsx
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useProductContext } from "../../context/ProductContext";
+import { useProductContext } from "../../../context/ProductContext";
 import "./ProductList.scss";
 
 interface ProductListProps {}

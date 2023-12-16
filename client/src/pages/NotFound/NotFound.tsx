@@ -1,7 +1,7 @@
 // NotFound.tsx
 import React from "react";
 import "./NotFound.scss"; // Import the corresponding SCSS file
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const NotFound: React.FC = () => {
   return (

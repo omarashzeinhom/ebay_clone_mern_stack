@@ -1,15 +1,14 @@
 // App.tsx
 import React, { useState, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, SignIn, Register } from "../pages";
+import { Home, SignIn, Register, CustomerService, NotFound } from "../pages";
 import { AuthProvider } from "../context/AuthContext";
-import { ErrorBoundary, NotFound } from "../components";
 import {
   CategoryList,
   ProductList,
-  CustomerService,
   ProductDetail,
   Profile,
+  ErrorBoundary,
 } from "../components";
 import { ProductProvider } from "../context/ProductContext";
 import { Category } from "../models/category";

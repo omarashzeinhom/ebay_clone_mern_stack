@@ -3,9 +3,9 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "./AdsCarousel.scss";
-import { categoriesService } from "../../services/categoryService";
+import { categoriesService } from "../../../services/categoryService";
 import { useState, useEffect } from "react";
-import { Category } from "../../models/category";
+import { Category } from "../../../models/category";
 import { useNavigate } from "react-router-dom";
 
 const AdsCarousel: React.FC = () => {

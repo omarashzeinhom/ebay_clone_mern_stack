@@ -10,6 +10,7 @@ import {
     Ads,
     Footer,
   } from "../../components";
+  import {footerLinks} from "../../utilities/constants";
 
 export default function Home(){
 
@@ -24,7 +25,7 @@ export default function Home(){
         <TrendingProducts />
         <Deals />
         <Ads />
-        <Footer />
+        <Footer footerLinks={footerLinks}/>
      </>
     )
 }

@@ -3,9 +3,9 @@
 import "./ProductDetail.scss";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useProductContext } from "../../context/ProductContext";
-import Nav from "../Nav/Nav";
-import SearchBar from "../SearchBar/SearchBar";
+import { useProductContext } from "../../../context/ProductContext";
+import Nav from "../../Nav/Nav";
+import SearchBar from "../../SearchBar/SearchBar";
 
 const ProductDetail: React.FC = () => {
   const { productId } = useParams();

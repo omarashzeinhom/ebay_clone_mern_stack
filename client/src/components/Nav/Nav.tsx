@@ -6,7 +6,7 @@ import { TbShoppingCart } from "react-icons/tb";
 //import { Business } from "../../models/business";
 import { useAuth } from "../../context/AuthContext";
 //import { authService } from "../../services/authService";
-import { navItems, myEbayItems } from "../../utils/constants";
+import { navItems, myEbayItems } from "../../utilities/constants";
 
 const Nav = () => {
   const { token, user, logout,business } = useAuth();

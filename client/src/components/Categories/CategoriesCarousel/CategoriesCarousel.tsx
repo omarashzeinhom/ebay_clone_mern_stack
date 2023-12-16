@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { useNavigate } from "react-router-dom";
-import { Category } from "../../models/category";
+import { Category } from "../../../models/category";
 import { Scrollbar, Navigation } from "swiper/modules";
-import { categoriesService } from "../../services/categoryService";
+import { categoriesService } from "../../../services/categoryService";
 import "./CategoriesCarousel.scss";
 
 interface CategoriesCarouselProps {}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './CustomerService.scss';
-import {Nav} from "..";
+import {Nav} from "../../components";
 
 
 const CustomerServiceNav = () => {
