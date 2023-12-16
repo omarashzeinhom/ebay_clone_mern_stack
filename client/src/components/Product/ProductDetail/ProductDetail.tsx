@@ -6,8 +6,15 @@ import { useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/ProductContext";
 import Nav from "../../Nav/Nav";
 import SearchBar from "../../SearchBar/SearchBar";
+import { useShoppingCart } from "../../../context/ShoppingCartContext";
 
 const ProductDetail: React.FC = () => {
+  const {
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removefromCart,
+    getItemQuantity,
+  } = useShoppingCart();
   const { productId } = useParams();
   const { getProductById } = useProductContext();
   const [product, setProduct] = useState<any | null>(null);
@@ -26,6 +33,10 @@ const ProductDetail: React.FC = () => {
   if (!product) {
     return <div className="loading">Loading...</div>;
   }
+  const id = product?._id;
+
+  const quantity = getItemQuantity(id);
+  console.log(quantity);
 
   return (
     <>
@@ -43,9 +54,20 @@ const ProductDetail: React.FC = () => {
           height={150}
           loading="lazy"
         />
+        {quantity}
         <div className="product-detail__buttongroup">
-          <button className="product-detail__button">+</button>
-          <button className="product-detail__altbutton">-</button>
+          <button
+            className="product-detail__button"
+            onClick={() => increaseCartQuantity}
+          >
+            +
+          </button>
+          <button
+            className="product-detail__altbutton"
+            onClick={() => decreaseCartQuantity}
+          >
+            -
+          </button>
         </div>
       </div>
     </>

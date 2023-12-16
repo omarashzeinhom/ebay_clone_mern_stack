@@ -1,12 +1,12 @@
 // CategoriesCarousel.tsx
 
+import "./Deals.scss";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
-import "./Deals.css";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import "swiper/swiper-bundle.css";
 import { Scrollbar } from "swiper/modules";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 interface DealsProps {
   // Add any props if needed

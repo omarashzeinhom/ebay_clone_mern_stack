@@ -1,19 +1,13 @@
-// App.tsx
+import "./App.scss";
 import React, { useState, useEffect } from "react";
+import { Category } from "../models/category";
+import { AuthProvider } from "../context/AuthContext";
+import { ProductProvider } from "../context/ProductContext";
+import { categoriesService } from "../services/categoryService";
+import { ShoppingCartProvider } from "../context/ShoppingCartContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home, SignIn, Register, CustomerService, NotFound } from "../pages";
-import { AuthProvider } from "../context/AuthContext";
-import {
-  CategoryList,
-  ProductList,
-  ProductDetail,
-  Profile,
-  ErrorBoundary,
-} from "../components";
-import { ProductProvider } from "../context/ProductContext";
-import { Category } from "../models/category";
-import { categoriesService } from "../services/categoryService";
-
+import {CategoryList,ProductList,ProductDetail,Profile,ErrorBoundary } from "../components";
 const App: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -32,6 +26,7 @@ const App: React.FC = () => {
   }, []);
 
   const routes = [
+    /* <--- Main Routes Start --->  */
     {
       path: "/",
       element: <Home />,
@@ -48,7 +43,12 @@ const App: React.FC = () => {
       path: "/help&contact",
       element: <CustomerService />,
     },
-
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+    /* <--- Main Routes End --->  */
+    /* <--- Product & Categories Start ---> */
     {
       path: "/",
       element: (
@@ -77,7 +77,7 @@ const App: React.FC = () => {
       ),
     },
     {
-      path: "/category/:categoryName", // Add this route for category
+      path: "/category/:categoryName",
       element: (
         <ProductProvider>
           <CategoryList categories={categories} />
@@ -93,6 +93,8 @@ const App: React.FC = () => {
       path: "/",
       element: <ProductDetail />,
     },
+    /* <--- Product & Categories End ---> */
+    /* <--- Auth & Profile Start  ---> */
     {
       path: "/",
       element: <Profile />,
@@ -105,11 +107,7 @@ const App: React.FC = () => {
       path: "/business/:businessId",
       element: <Profile />,
     },
-
-    {
-      path: "*",
-      element: <NotFound />,
-    },
+    /* <--- Auth & Profile End  ---> */
   ];
 
   const router = createBrowserRouter(routes);
@@ -117,11 +115,13 @@ const App: React.FC = () => {
   return (
     <React.StrictMode>
       <ErrorBoundary>
-        <ProductProvider>
-          <AuthProvider>
-            <RouterProvider router={router} />
-          </AuthProvider>
-        </ProductProvider>
+        <ShoppingCartProvider>
+          <ProductProvider>
+            <AuthProvider>
+              <RouterProvider router={router} />
+            </AuthProvider>
+          </ProductProvider>
+        </ShoppingCartProvider>
       </ErrorBoundary>
     </React.StrictMode>
   );

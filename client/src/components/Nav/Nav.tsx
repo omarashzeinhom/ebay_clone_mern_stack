@@ -7,6 +7,7 @@ import { TbShoppingCart } from "react-icons/tb";
 import { useAuth } from "../../context/AuthContext";
 //import { authService } from "../../services/authService";
 import { navItems, myEbayItems } from "../../utilities/constants";
+import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
 
 const Nav = () => {
   const { token, user, logout,business } = useAuth();
@@ -132,6 +133,7 @@ const Nav = () => {
           <li className="app__nav-rightItem">
             <a href="#shoppingcart">
               <TbShoppingCart className="app__nav-rightIcon" />
+              <ShoppingCart isOpen={false}/>
             </a>
           </li>
         </div>
