@@ -9,6 +9,7 @@ import {
   ProductList,
   CustomerService,
   ProductDetail,
+  Profile,
 } from "../components";
 import { ProductProvider } from "../context/ProductContext";
 import { Category } from "../models/category";
@@ -37,6 +38,19 @@ const App: React.FC = () => {
       element: <Home />,
     },
     {
+      path: "/signin",
+      element: <SignIn />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/help&contact",
+      element: <CustomerService />,
+    },
+
+    {
       path: "/",
       element: (
         <ProductProvider>
@@ -53,18 +67,7 @@ const App: React.FC = () => {
         ),
       })),
     },
-    {
-      path: "/signin",
-      element: <SignIn />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    },
-    {
-      path: "/help&contact",
-      element: <CustomerService />,
-    },
+
     {
       path: "/products",
       element: (
@@ -91,6 +94,19 @@ const App: React.FC = () => {
       path: "/",
       element: <ProductDetail />,
     },
+    {
+      path: "/",
+      element: <Profile />,
+    },
+    {
+      path: "/user/:userId",
+      element: <Profile />,
+    },
+    {
+      path: "/business/:businessId",
+      element: <Profile />,
+    },
+
     {
       path: "*",
       element: <NotFound />,

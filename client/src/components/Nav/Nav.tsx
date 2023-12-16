@@ -1,57 +1,67 @@
-import { useEffect, useState } from "react";
-import { FaRegBell } from "react-icons/fa";
-import { TbShoppingCart } from "react-icons/tb";
-import { navItems, myEbayItems } from "../../utils/constants";
 import "./Nav.scss";
-import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { authService } from "../../services/authService";
+import { FaRegBell } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { TbShoppingCart } from "react-icons/tb";
 import { Business } from "../../models/business";
+import { useAuth } from "../../context/AuthContext";
+import { authService } from "../../services/authService";
+import { navItems, myEbayItems } from "../../utils/constants";
 
 const Nav = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { token, user, logout } = useAuth();
-  //console.log(business?.businessEmail);
   const [business, setBusiness] = useState<Business>();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
+
 
   const handleLogOut = () => {
     logout();
+    localStorage.removeItem("business");
+    localStorage.removeItem("user");
   };
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
+  // Define fetchData outside of useEffect
+  const fetchData = async () => {
+    try {
+      if (token) {
+        const storedBusiness = localStorage.getItem("business");
+        if (storedBusiness) {
+          setBusiness(JSON.parse(storedBusiness));
+        } else {
+          const businessData = await authService.getBusiness(token);
+          setBusiness(businessData);
+          localStorage.setItem("business", JSON.stringify(businessData));
+        }
+      }
+    } catch (error) {
+      console.error(`Error fetching business data: ${error}`);
+    }
+  };
+
   const handleUserRoute = () => {
-    // Redirect to /user/${user?.userId} route
-    navigate(`/user/${user?.userId}`);
+    if (user) {
+      navigate(`/user/${user?.userId}`);
+    } else {
+      // Use fetchData directly, don't call fetchData() here
+      fetchData().then(() => {
+        if (business) {
+          navigate(`/business/${business?.businessId}`);
+        }
+      });
+    }
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (token) {
-          // Check if business data is in localStorage
-          const storedBusiness = localStorage.getItem("business");
-          if (storedBusiness) {
-            // If available, set it to the state
-            setBusiness(JSON.parse(storedBusiness));
-          } else {
-            // If not, fetch the business information from the server
-            const businessData = await authService.getBusiness(token);
-            setBusiness(businessData);
-            // Save business data to localStorage
-            localStorage.setItem("business", JSON.stringify(businessData));
-          }
-        }
-      } catch (error) {
-        console.error(`Error fetching business data: ${error}`);
-      }
-    };
-
+    // Call fetchData here
     fetchData();
   }, [token]);
+
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
       <div className="app__nav-mobile-icon" onClick={handleMobileMenuToggle}>
@@ -83,7 +93,10 @@ const Nav = () => {
                 !
               </option>
               <option onClick={handleUserRoute}>
-                {user?.userId?.slice(1, 7) || " "}!
+                {user?.userId?.slice(1, 7) ||
+                  business?.businessId?.slice(1, 7) ||
+                  " "}
+                !
               </option>
               <option value="logout">Sign out</option>
             </select>

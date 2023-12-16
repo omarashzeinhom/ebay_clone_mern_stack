@@ -14,7 +14,7 @@ import CategoryList from "./CategoryList/CategoryList";
 import NotFound from "./NotFound/NotFound";
 import CustomerService from "./CustomerService/CustomerService";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-import UserProfile from "./UserProfile/UserProfile";
+import Profile from "./Profile/Profile";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import Footer from "./Footer/Footer";
 
@@ -35,7 +35,7 @@ export {
   NotFound,
   CustomerService,
   ErrorBoundary,
-  UserProfile,
+  Profile,
   ProductDetail,
   Footer,
 };
