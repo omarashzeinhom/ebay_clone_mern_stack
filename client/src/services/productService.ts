@@ -32,4 +32,13 @@ export const productService = {
       return undefined;
     }
   },
+  getProductsByCategory: async (category: string): Promise<Product[]> => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}?category=${encodeURIComponent(category)}`);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching products for category ${category}:`, error);
+      throw error;
+    }
+  },
 };

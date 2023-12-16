@@ -14,7 +14,7 @@ const SignInNav = () => {
       </div>
 
       <div className="app__signin-nav-right">
-        <a href="/survery">Tell us what you think</a>
+        <a href="/survey">Tell us what you think</a>
       </div>
     </div>
   );

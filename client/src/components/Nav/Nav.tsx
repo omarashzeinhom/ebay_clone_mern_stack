@@ -131,10 +131,8 @@ const Nav = () => {
             </a>
           </li>
           <li className="app__nav-rightItem">
-            <a href="#shoppingcart">
               <TbShoppingCart className="app__nav-rightIcon" />
               <ShoppingCart isOpen={false}/>
-            </a>
           </li>
         </div>
       </ul>

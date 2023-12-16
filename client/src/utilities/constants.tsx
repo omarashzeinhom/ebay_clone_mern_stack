@@ -2,7 +2,7 @@
 const navItems = [
   {
     title: "Daily Deals",
-    link: "/dailydeals",
+    link: "/#dailydeals",
   },
 
   {

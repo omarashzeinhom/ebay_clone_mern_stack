@@ -1,0 +1,50 @@
+.shopping-cart-modal {
+    display: none; // Default to hide modal
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 400px; // Adjust the max-width as needed
+    
+    &.visible {
+      display: block; // Display modal when .visible class is present
+    }
+  }
+  
+  .overlay {
+    display: none; // Default to hide overlay
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  
+    &.visible {
+      display: block; // Display overlay when .visible class is present
+    }
+  }
+  
+  // Add your existing styles for cart items and total here
+  // ...
+  
+  // Example styling for close button
+  .close-button {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    color: #555;
+  
+    &:hover {
+      color: #333;
+    }
+  }
+  

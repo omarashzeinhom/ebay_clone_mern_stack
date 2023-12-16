@@ -4,7 +4,8 @@ import {
     SearchBar,
     AdsCarousel,
     CategoriesCarousel,
-    Categories,
+    TrendingProductsAlpha,
+
     TrendingProducts,
     Deals,
     Ads,
@@ -21,7 +22,7 @@ export default function Home(){
         <SearchBar />
         <AdsCarousel/>
         <CategoriesCarousel />
-        <Categories />
+        <  TrendingProductsAlpha/>
         <TrendingProducts />
         <Deals />
         <Ads />

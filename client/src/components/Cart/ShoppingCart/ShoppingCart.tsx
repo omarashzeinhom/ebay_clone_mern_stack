@@ -1,11 +1,10 @@
 import "./ShoppingCart.scss";
-import React, { useEffect, useState } /*useState, useEffect */ from "react";
-import { Product } from "../../../models/product";
-import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import CartItem from "../CartItem/CartItem";
-import { currencyFormatter } from "../../../utilities/currencyFormatter";
-import { useProductContext } from "../../../context/ProductContext";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useProductContext } from "../../../context/ProductContext";
+import { useShoppingCart } from "../../../context/ShoppingCartContext";
+import { currencyFormatter } from "../../../utilities/currencyFormatter";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -47,7 +46,9 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
         <>
           {cartQuantity}
           {cartItems.map((item, index) => {
-            <CartItem _id={""} name={""} img={""} key={item?.id} {...item} />;
+            <CartItem price={0} parent={""} _id={""} name={""} img={""} key={item?.id} {...item} />;
+            <button onClick={()=> removefromCart(item?.id)}> Remove</button>
+
           })}
         </>
       )}
@@ -60,6 +61,10 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
             return total + (item?.price || 0) * cartItem?.quantity;
           }, 0)
         )}
+      </div>
+
+      <div>
+
       </div>
     </>
   );

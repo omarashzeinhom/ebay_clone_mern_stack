@@ -6,8 +6,21 @@ import { ProductProvider } from "../context/ProductContext";
 import { categoriesService } from "../services/categoryService";
 import { ShoppingCartProvider } from "../context/ShoppingCartContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home, SignIn, Register, CustomerService, NotFound } from "../pages";
-import {CategoryList,ProductList,ProductDetail,Profile,ErrorBoundary } from "../components";
+import {
+  Home,
+  SignIn,
+  Register,
+  CustomerService,
+  Survey,
+  NotFound,
+} from "../pages";
+import {
+  CategoryList,
+  ProductList,
+  ProductDetail,
+  Profile,
+  ErrorBoundary,
+} from "../components";
 const App: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -42,6 +55,10 @@ const App: React.FC = () => {
     {
       path: "/help&contact",
       element: <CustomerService />,
+    },
+    {
+      path: "/survey",
+      element: <Survey />,
     },
     {
       path: "*",

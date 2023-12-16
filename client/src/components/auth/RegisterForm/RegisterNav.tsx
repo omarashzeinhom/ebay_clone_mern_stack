@@ -9,7 +9,7 @@ import "./styles/RegisterNav.scss";
           </a>
         </div>
         <div className="app__register-nav-right">
-          <a href="/survery">Tell us what you think</a>
+          <a href="/survey">Tell us what you think</a>
         </div>
       </div>
     );

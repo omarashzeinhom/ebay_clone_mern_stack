@@ -66,7 +66,7 @@ const Deals: React.FC<DealsProps> = () => {
   }, []);
 
   return (
-    <div>
+    <section id="dailydeals">
       <h2>Today's Deals – All With Free Shipping</h2>
       <Swiper
         modules={[Scrollbar]}
@@ -85,7 +85,7 @@ const Deals: React.FC<DealsProps> = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 
