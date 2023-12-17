@@ -1,11 +1,9 @@
-import React, { useState } from "react";
 import "./ShoppingCart.scss";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import CartItem from "../CartItem/CartItem";
 import { currencyFormatter } from "../../../utilities/currencyFormatter";
 import { useProductContext } from "../../../context/ProductContext";
-import { useParams } from "react-router-dom";
 import { TbShoppingCart } from "react-icons/tb";
 
 type ShoppingCartProps = {
@@ -13,28 +11,9 @@ type ShoppingCartProps = {
 };
 
 export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
-  let { closeCart, cartItems, cartQuantity } = useShoppingCart();
-  const { fetchProducts, products, getProductById } = useProductContext();
-  const { productId } = useParams();
-  const [product, setProduct] = useState<any | null>(null);
+  const { cartItems, cartQuantity } = useShoppingCart();
+  const { products } = useProductContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (productId) {
-        const productData = await getProductById(productId);
-        setProduct(productData);
-        console.log(`productData ---> ${productData}`);
-      }
-    };
-
-    fetchData();
-  }, [productId, getProductById]);
-
-  useEffect(() => {
-    fetchProducts();
-    getProductById(productId || "");
-  }, []);
 
   const storeProducts: any[] = products; // Get All Store Products here
 
@@ -46,16 +25,14 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
         <TbShoppingCart className="app__nav-rightIcon" />
       </span>
 
-      {/* Modal */}
       <div className={`modal ${isModalVisible ? "visible" : ""}`}>
         <div className="modal-content">
-          <h2>Modal Content</h2>
+          <h2>Shopping Cart </h2>
           {cartQuantity > 0 && (
             <>
               {cartQuantity}
-
               <>
-                {cartItems.map((item, index) => (
+                {cartItems.map((item) => (
                   <CartItem
                     key={item?.id}
                     price={item?.price}
@@ -71,7 +48,7 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
             </>
           )}
 
-          <div className="">
+          <div className="total">
             Total :{" "}
             {currencyFormatter(
               cartItems.reduce((total, cartItem) => {
@@ -80,7 +57,6 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
               }, 0)
             )}
           </div>
-          {/* Add your modal content here */}
           <button onClick={() => setIsModalVisible(false)}>&times;</button>
         </div>
       </div>
