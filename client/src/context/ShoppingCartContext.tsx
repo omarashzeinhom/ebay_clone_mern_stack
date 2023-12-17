@@ -1,13 +1,13 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import useLocalStorage from "../hook/useLocalStorage";
-import {CartItemProps} from "../models/cartitem";
+import { CartItemProps } from "../models/cartitem";
+import { Product } from "../models/product";
 
 // Adding Shopping Cart Provider
 
 type ShoppingCartProviderProps = {
   children: ReactNode;
 };
-
 
 type ShoppingCartContextProps = {
   openCart: () => void;
@@ -18,6 +18,7 @@ type ShoppingCartContextProps = {
   removefromCart: (id: number) => void;
   cartQuantity: number;
   cartItems: CartItemProps[];
+  addItemToCart: (product: Product) => void;
 };
 
 const ShoppingCartContext = createContext({} as ShoppingCartContextProps);
@@ -31,11 +32,8 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   // rendering the cart
   const [isOpen, setIsOpen] = useState(false);
-  console.log(`isOpen: ${isOpen}`)
-  const [cartItems, setCartItems] = useLocalStorage<CartItemProps[]>(
-    "Default Shopping",
-    []
-  );
+  console.log(`isOpen: ${isOpen}`);
+  const [cartItems, setCartItems] = useLocalStorage<CartItemProps[]>(" ", []);
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -55,12 +53,20 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       const updatedItems = currentItems.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity + 1 } : item
       );
-  
+
       // If the item with the given id is not in the cart, add it
       if (updatedItems.every((item) => item.id !== id)) {
-        updatedItems.push({ id, quantity: 1, _id: '', name: '', img: '', price: 0, parent: '' });
+        updatedItems.push({
+          id,
+          quantity: 1,
+          _id: "",
+          name: "",
+          img: "",
+          price: 0,
+          parent: "",
+        });
       }
-  
+
       return updatedItems;
     });
   }
@@ -86,6 +92,22 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     });
   }
 
+  function addItemToCart(product: Product) {
+    const newItem: Product = {
+      id: product.id,
+      _id: product._id,
+      name: product.name,
+      img: product.img,
+      price: product.price,
+      parent: product.parent,
+      quantity: 1, // Set an initial quantity, you can adjust this as needed
+    };
+
+    // Add the new item to the cart
+    // Ensure that you are updating the cartItems array correctly
+    setCartItems((prevItems) => [...prevItems, newItem]);
+  }
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -97,6 +119,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         closeCart,
         cartItems,
         cartQuantity,
+        addItemToCart,
       }}
     >
       {children}

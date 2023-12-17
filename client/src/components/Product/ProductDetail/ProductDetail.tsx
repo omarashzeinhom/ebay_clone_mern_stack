@@ -13,6 +13,7 @@ const ProductDetail: React.FC = () => {
   const navigate = useNavigate();
 
   const {
+    addItemToCart,
     increaseCartQuantity,
     decreaseCartQuantity,
     getItemQuantity,
@@ -85,7 +86,7 @@ const ProductDetail: React.FC = () => {
         <div className="product-detail__buttongroup">
           <button
             className="product-detail__button"
-            onClick={() => increaseCartQuantity(id)}
+            onClick={() => addItemToCart(product)}
           >
             +
           </button>

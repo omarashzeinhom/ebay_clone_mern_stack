@@ -17,7 +17,7 @@ const CartItem: React.FC<CartItemProps> = ({
 
 
 
-  console.log("CartItem render", id, _id, quantity, price, img, name, parent);
+  console.log("Cart Item render", id, _id, quantity, price, img, name, parent);
 
   return (
     <>

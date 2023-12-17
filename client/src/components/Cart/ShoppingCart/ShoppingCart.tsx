@@ -5,6 +5,7 @@ import CartItem from "../CartItem/CartItem";
 import { currencyFormatter } from "../../../utilities/currencyFormatter";
 import { useProductContext } from "../../../context/ProductContext";
 import { TbShoppingCart } from "react-icons/tb";
+import { Product } from "../../../models/product";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -15,7 +16,11 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { products } = useProductContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const storeProducts: any[] = products; // Get All Store Products here
+  const storeProducts: Product[] = products; 
+
+  const cartItemsStr = JSON.stringify(cartItems);
+  console.log(`cartItems----->${cartItemsStr}`);
+  console.log('storeProducts:', storeProducts);
 
   return (
     <>
@@ -34,14 +39,14 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
               <>
                 {cartItems.map((item) => (
                   <CartItem
-                    key={item?.id}
-                    price={item?.price}
-                    parent={item?.parent}
-                    _id={item?._id}
-                    name={item?.name}
-                    img={item?.img}
-                    id={item?.id}
-                    quantity={item?.quantity}
+                  key={item?.id}
+                  price={item?.price}
+                  parent={item?.parent}
+                  _id={item?._id}
+                  name={item?.name}
+                  img={item?.img}
+                  id={item?.id}
+                  quantity={item?.quantity}
                   />
                 ))}
               </>
