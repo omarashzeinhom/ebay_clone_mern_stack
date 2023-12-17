@@ -14,10 +14,10 @@ const ProductDetail: React.FC = () => {
 
   const {
     addItemToCart,
-    increaseCartQuantity,
     decreaseCartQuantity,
     getItemQuantity,
     /*,removefromCart */
+    /*increaseCartQuantity,*/
   } = useShoppingCart();
   const { productId } = useParams();
   const { getProductById } = useProductContext();
@@ -52,9 +52,7 @@ const ProductDetail: React.FC = () => {
       <SearchBar />
       <div className="product-detail">
         <h2 className="product-detail__title">{product?.name}</h2>
-        <p className="product-detail__category">
-          Category: <button onClick={handleRouting}>{product?.parent}</button>
-        </p>
+
         <p className="product-detail__price">${product?.price}</p>
         <img
           className="product-detail__image"
@@ -64,6 +62,14 @@ const ProductDetail: React.FC = () => {
           height={150}
           loading="lazy"
         />
+        <p className="product-detail__category">
+          <strong>
+            <em>Category: </em>
+          </strong>{" "}
+          <button onClick={handleRouting} className="product-detail__button">
+            {product?.parent}
+          </button>
+        </p>
         <p>
           <strong>
             <em>Description :</em>{" "}

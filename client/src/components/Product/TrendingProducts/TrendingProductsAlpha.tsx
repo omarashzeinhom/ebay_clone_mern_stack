@@ -1,14 +1,13 @@
-import React from "react";
+// TrendingProductsAlpha.tsx
+
+import React, { useEffect } from "react";
 import "swiper/swiper-bundle.css";
-import "./TrendingProductsAlpha.scss";
-import { useEffect } from "react";
-import { Scrollbar } from "swiper/modules";
+import { Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useProductContext } from "../../../context/ProductContext";
+import "./TrendingProductsAlpha.scss";
 
-interface TrendingProductsAlphaProps {
-  // Add any props if needed
-}
+interface TrendingProductsAlphaProps {}
 
 const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
   const { products, fetchProducts } = useProductContext();
@@ -17,31 +16,53 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
     fetchProducts();
     // eslint-disable-next-line
   }, []);
-  //DEBUG console.log(categoryName);
 
-  const filteredProducts = "Collectible Sneakers"
-    ? products.filter((product) => product?.parent === "Collectible Sneakers")
-    : products.filter((product) => "Collectible Sneakers" === product?.parent);
+  const filteredProducts = products.filter(
+    (product) => product?.parent === "Collectible Sneakers"
+  );
 
   return (
-    <div>
-      <h2>Score these trending Kicks</h2>
+    <div className="app-trending-products-alpha__carousel">
+      <h2>Score These Trending Kicks</h2>
       <Swiper
-        slidesPerView={4}
-        modules={[Scrollbar]}
+        slidesPerView={3}
+        modules={[Scrollbar, Navigation]}
         scrollbar={{
-          hide: false,
+          hide: true,
         }}
-        spaceBetween={30}
-        className="myCustomSwiper"
+        loop={products.length > 2} // Enable loop only if there are enough slides
+        spaceBetween={10}
+        breakpoints={{
+          768: {
+            slidesPerView: 5,
+          },
+          1024: {
+            slidesPerView: 6,
+          },
+        }}
       >
         {filteredProducts.map((product, index) => {
           const productLink = `http://localhost:3000/item/${product?._id}`;
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide
+              key={index}
+              className="app-trending-products-alpha__carousel__slide"
+            >
               <div className="category-slide">
                 <a href={productLink}>
-                  <img src={product?.img} alt={product?.name} loading="lazy" />
+                  <img
+                    src={product?.img}
+                    alt={product?.name}
+                    loading="lazy"
+                    className="app-trending-products-alpha__carousel__slide__img"
+                  />
+                  <small className="app-trending-products-alpha__carousel__slide__name">
+                    {product?.name}
+                  </small>
+                  <br />
+                  <small className="app-trending-products-alpha__carousel__slide__price">
+                    Price:{product?.price} $
+                  </small>
                 </a>
               </div>
             </SwiperSlide>
