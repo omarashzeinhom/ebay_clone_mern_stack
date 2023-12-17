@@ -14,10 +14,10 @@ const ProductDetail: React.FC = () => {
 
   const {
     addItemToCart,
+    /*increaseCartQuantity, */
     decreaseCartQuantity,
     getItemQuantity,
     /*,removefromCart */
-    /*increaseCartQuantity,*/
   } = useShoppingCart();
   const { productId } = useParams();
   const { getProductById } = useProductContext();
@@ -91,7 +91,7 @@ const ProductDetail: React.FC = () => {
 
         <div className="product-detail__buttongroup">
           {/* TODO Remove Access to add More products inside the ProductDetail to avoid  console.js:213 Warning: Encountered two children with the same key, `52*/}
-          {quantity !== 1 && (
+          {quantity === 0 && (
             <button
               className="product-detail__button"
               onClick={() => addItemToCart(product)}
