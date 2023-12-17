@@ -5,19 +5,15 @@ import { CartItemProps } from "../../../models/cartitem";
 
 const CartItem: React.FC<CartItemProps> = ({
   id,
-  _id,
   quantity,
   price,
   img,
   name,
-  parent,
 }) => {
-  const { removefromCart,  } = useShoppingCart();
+  const { removefromCart, decreaseCartQuantity, increaseCartQuantity } =
+    useShoppingCart();
 
-
-
-
-  console.log("Cart Item render", id, _id, quantity, price, img, name, parent);
+  // console.log("Cart Item render", id, _id, quantity, price, img, name, parent);
 
   return (
     <>
@@ -29,12 +25,30 @@ const CartItem: React.FC<CartItemProps> = ({
               alt={name}
               style={{ width: "45px", height: "45px", borderRadius: "50%" }}
             />
-            <div className="ms-3">
+            <div className="">
               <p className="">{name}</p>
-              <p className="">{currencyFormatter((price || 0))}</p>
+              <p className="">{currencyFormatter(price || 0)}</p>
             </div>
           </div>
-          <button onClick={()=> removefromCart(id)} style={{backgroundColor: "red"}}>&times;</button>
+          <p>Quantity:{quantity}</p>
+          <button
+            onClick={() => increaseCartQuantity(id)}
+            style={{ backgroundColor: "green", color: "white" }}
+          >
+            +
+          </button>
+          <button
+            onClick={() => decreaseCartQuantity(id)}
+            style={{ backgroundColor: "red", color: "white" }}
+          >
+            -
+          </button>
+          <button
+            onClick={() => removefromCart(id)}
+            style={{ backgroundColor: "yellow", color: "black" }}
+          >
+            &times;{" "}
+          </button>
         </div>
       )}
     </>

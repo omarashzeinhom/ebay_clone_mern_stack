@@ -40,7 +40,7 @@ const ProductDetail: React.FC = () => {
   const id = product?.id;
 
   const quantity = getItemQuantity(id);
-  console.log(quantity);
+  //console.log(quantity);
 
   function handleRouting() {
     navigate(`/category/${encodeURIComponent(product?.parent)}`);
@@ -84,12 +84,16 @@ const ProductDetail: React.FC = () => {
         </p>
 
         <div className="product-detail__buttongroup">
-          <button
-            className="product-detail__button"
-            onClick={() => addItemToCart(product)}
-          >
-            +
-          </button>
+          {/* TODO Remove Access to add More products inside the ProductDetail to avoid  console.js:213 Warning: Encountered two children with the same key, `52*/}
+          {quantity !== 1 && (
+            <button
+              className="product-detail__button"
+              onClick={() => addItemToCart(product)}
+            >
+              Add to Cart
+            </button>
+          )}
+
           <button
             className="product-detail__altbutton"
             onClick={() => decreaseCartQuantity(id)}

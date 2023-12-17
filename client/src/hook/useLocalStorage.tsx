@@ -17,6 +17,9 @@ export default function useLocalStorage<T>(
 
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
+
+    // localStorage.removeItem(key)
   }, [key, value]);
+
   return [value, setValue] as [typeof value, typeof setValue];
 }

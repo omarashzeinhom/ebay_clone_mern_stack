@@ -2,10 +2,7 @@ import "./Nav.scss";
 import { FaRegBell } from "react-icons/fa";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TbShoppingCart } from "react-icons/tb";
-//import { Business } from "../../models/business";
 import { useAuth } from "../../context/AuthContext";
-//import { authService } from "../../services/authService";
 import { navItems, myEbayItems } from "../../utilities/constants";
 import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
 

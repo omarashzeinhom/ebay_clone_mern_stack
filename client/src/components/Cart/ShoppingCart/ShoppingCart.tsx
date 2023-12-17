@@ -20,7 +20,7 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
 
   const cartItemsStr = JSON.stringify(cartItems);
   console.log(`cartItems----->${cartItemsStr}`);
-  console.log('storeProducts:', storeProducts);
+  // console.log('storeProducts:', storeProducts);
 
   return (
     <>

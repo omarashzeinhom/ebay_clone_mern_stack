@@ -33,7 +33,10 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   // rendering the cart
   const [isOpen, setIsOpen] = useState(false);
   console.log(`isOpen: ${isOpen}`);
-  const [cartItems, setCartItems] = useLocalStorage<CartItemProps[]>(" ", []);
+  const [cartItems, setCartItems] = useLocalStorage<CartItemProps[]>(
+    "Default Shopping",
+    []
+  );
 
   const cartQuantity = cartItems.reduce(
     (quantity, item) => item.quantity + quantity,
@@ -60,8 +63,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
           id,
           quantity: 1,
           _id: "",
-          name: "",
-          img: "",
+          name: " ",
+          img: " ",
           price: 0,
           parent: "",
         });
@@ -77,7 +80,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       } else {
         return currentItems.map((item) => {
           if (item.id === id) {
-            return { ...item, quantity: item.quantity - 1 };
+            return { ...item, quantity: Math.max(item.quantity - 1, 0) };
           } else {
             return item;
           }
