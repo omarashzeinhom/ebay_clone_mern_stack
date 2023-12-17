@@ -5,9 +5,7 @@ import {
     AdsCarousel,
     CategoriesCarousel,
     TrendingProductsAlpha,
-
     TrendingProducts,
-    Deals,
     Ads,
     Footer,
   } from "../../components";
@@ -22,9 +20,8 @@ export default function Home(){
         <SearchBar />
         <AdsCarousel/>
         <CategoriesCarousel />
-        <  TrendingProductsAlpha/>
+        <TrendingProductsAlpha/>
         <TrendingProducts />
-        <Deals />
         <Ads />
         <Footer footerLinks={footerLinks}/>
      </>

@@ -36,6 +36,7 @@ const ProductList: React.FC<ProductListProps> = () => {
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <li key={product?._id} className="product-list__product-list-item">
+                <a className="product-list__product-link"href={productLink(product?._id)}>
               <div>
                 <img
                   className="product-list__product-list-image"
@@ -44,12 +45,14 @@ const ProductList: React.FC<ProductListProps> = () => {
                 />
                 <p>Category: {product?.parent}</p>
                 <p className="product-list__product-list-name">
-                  <a href={productLink(product?._id)}>{product?.name}</a>
+                {product?.name}
                 </p>
                 <p className="product-list__product-list-price">
                   ${product?.price}
                 </p>
+                
               </div>
+              </a>
             </li>
           ))
         ) : (

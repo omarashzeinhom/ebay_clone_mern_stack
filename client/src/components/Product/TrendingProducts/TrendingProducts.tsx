@@ -1,87 +1,73 @@
-// CategoriesCarousel.tsx
+// TrendingProductsAlpha.tsx
 
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useEffect } from "react";
 import "swiper/swiper-bundle.css";
+import { Navigation, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProducts.scss";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Scrollbar } from "swiper/modules";
 
 interface TrendingProductsProps {}
-interface Image {
-  id: number;
-  imageUrl: string;
-  alt: string;
-  buttonText: string;
-}
 
 const TrendingProducts: React.FC<TrendingProductsProps> = () => {
-  const [images, setImages] = useState<Image[]>([]);
-
-  const fetchRandomImages = async () => {
-    try {
-      const response = await axios.get(
-        "https://api.pexels.com/v1/search?query=christmas&size=small&orientation=landscape",
-        {
-          headers: {
-            Authorization:
-              "N9wgadcmAj2BqNR2TD6PWN8YMJvuqgSH9U339yI1uoM9QQhmJPhPDyBX",
-          },
-        }
-      );
-
-      const texts = [
-        "Product A",
-        "Amazing Deals",
-        "Limited Time Offer",
-        "Shop Now",
-      ];
-
-      const randomImages = response.data.photos.map(
-        (photo: any, index: number) => ({
-          id: photo.id,
-          imageUrl: photo.src.large,
-          alt: photo.url,
-          buttonText: texts[index % texts.length],
-        })
-      );
-
-      return randomImages;
-    } catch (error) {
-      console.error("Error fetching images:", error);
-      return [];
-    }
-  };
+  const { products, fetchProducts } = useProductContext();
 
   useEffect(() => {
-    const getImages = async () => {
-      const randomImages = await fetchRandomImages();
-      setImages(randomImages);
-    };
-
-    getImages();
+    fetchProducts();
+    // eslint-disable-next-line
   }, []);
 
+  const filteredProducts = products.filter(
+    (product) => product?.parent === "Video Games & Consoles"
+  );
+
   return (
-    <div>
-      <h2>Holiday essentials</h2>
+    <div className="app-trending-products-alpha__carousel" id="deals">
+      <h2>Today deals on consoles</h2>
       <Swiper
-        slidesPerView={4}
-        modules={[Scrollbar]}
+        slidesPerView={3}
+        modules={[Scrollbar, Navigation]}
         scrollbar={{
-          hide: false,
+          hide: true,
         }}
-        spaceBetween={30}
-        className="myCustomSwiper"
+        loop={products.length > 2} // Enable loop only if there are enough slides
+        spaceBetween={10}
+        breakpoints={{
+          768: {
+            slidesPerView: 5,
+          },
+          1024: {
+            slidesPerView: 6,
+          },
+        }}
       >
-        {images.map((image, index) => (
-          <SwiperSlide key={index}>
-            <div className="category-slide">
-              <img src={image?.imageUrl} alt={image.alt} loading="lazy" />
-            </div>
-          </SwiperSlide>
-        ))}
+        {filteredProducts.map((product, index) => {
+          const productLink = `http://localhost:3000/item/${product?._id}`;
+          return (
+            <SwiperSlide
+              key={index}
+              className="app-trending-products-alpha__carousel__slide"
+            >
+              <div className="category-slide">
+                <a href={productLink}>
+                  <img
+                    src={product?.img}
+                    alt={product?.name}
+                    loading="lazy"
+                    className="app-trending-products-alpha__carousel__slide__img"
+                  />
+                  <small className="app-trending-products-alpha__carousel__slide__name">
+                    {product?.name}
+                  </small>
+                  <br />
+                  <small className="app-trending-products-alpha__carousel__slide__price">
+                    Price:{product?.price} $
+                  </small>
+                </a>
+              </div>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

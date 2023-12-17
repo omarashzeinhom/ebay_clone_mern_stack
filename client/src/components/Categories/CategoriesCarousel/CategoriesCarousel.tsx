@@ -54,7 +54,7 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
         breakpoints={{
           768: {
             slidesPerView: 5,
-            loop: shuffledData.length > 4,
+            loop: shuffledData.length > 3,
           },
           1024: {
             slidesPerView: 6,

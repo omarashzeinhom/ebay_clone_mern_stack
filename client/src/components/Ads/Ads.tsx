@@ -8,16 +8,19 @@ const Ads: React.FC = () => {
     <div className="ads">
     <div className="ads__featured">
       <h2 className="ads__featured__title">Featured</h2>
-      {items.map((item) => (
-          <div key={item.id} className={`ads__featured__item ads__${item.category}-item`}>
-            <img
+      {items?.map((item) => (
+          <div key={item?.id} className={`ads__featured__item ads__${item?.category}-item`}>
+            <a href={item?.link} >
+               <img
               className="ads__featured__item__img"
-              src={item.imageUrl}
-              alt={item.title}
+              src={item?.imageUrl}
+              alt={item?.title}
             />
-            <h3 className="ads__featured__item__title">{item.title}</h3>
-            <p className="ads__featured__item__description">{item.description}</p>
+            <h3 className="ads__featured__item__title">{item?.title}</h3>
+            <p className="ads__featured__item__description">{item?.description}</p>
             <button className="ads__featured__item__button">Shop Now</button>
+            </a>
+           
           </div>
         ))}
     </div>
@@ -34,6 +37,7 @@ const items = [
     title: "eBay Deals made easy all year long",
     description: "Free shipping. Best prices. Get your thing →→",
     imageUrl: "https://source.unsplash.com/800x400/?ebay",
+    link: "/category/Video Games & Consoles",
   },
   {
     id: 2,
@@ -41,6 +45,8 @@ const items = [
     title: "Up to 60% off holiday gifts",
     description: "Shop candles, cookware, décor, and more. Take a look →",
     imageUrl: "https://source.unsplash.com/800x400/?holiday,gifts",
+    link: "/category/Video Games & Consoles",
+
   },
   {
     id: 3,
@@ -48,6 +54,8 @@ const items = [
     title: "Unwrap holiday savings on adidas",
     description: "Save an additional 50% on gift-worthy faves with code ADI5OSALE. Shop now →",
     imageUrl: "https://source.unsplash.com/800x400/?adidas",
+    link: "/category/Collectible Sneakers",
+
   },
   {
     id: 4,
@@ -55,5 +63,7 @@ const items = [
     title: "Get local tire installation",
     description: "Have your new set installed by our network of experts. Shop top brands →",
     imageUrl: "https://source.unsplash.com/800x400/?tire,installation",
+    link: "/category/Parts & accessories",
+
   },
 ];

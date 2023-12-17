@@ -38,24 +38,26 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
           <h2>Shopping Cart </h2>
           {cartQuantity > 0 && (
             <>
-              <>
-                {cartItems.map((item) => (
-                  <>
-                    {" "}
-                    <CartItem
-                      key={item?.id}
-                      price={item?.price}
-                      parent={item?.parent}
-                      _id={item?._id}
-                      name={item?.name}
-                      img={item?.img}
-                      id={item?.id}
-                      quantity={item?.quantity}
-                    />
-                    <hr />{" "}
-                  </>
-                ))}
-              </>
+              {cartItems.map((item, index) => (
+                <>
+                  <CartItem
+                    key={item?.id}
+                    price={item?.price}
+                    parent={item?.parent}
+                    _id={item?._id}
+                    name={item?.name}
+                    img={item?.img}
+                    id={item?.id}
+                    quantity={item?.quantity}
+                  />
+                  <hr />{" "}
+                </>
+              ))}
+            </>
+          )}
+          {cartQuantity === 0 && (
+            <>
+              <p>No Products Added👽</p>
             </>
           )}
           <div className="total">

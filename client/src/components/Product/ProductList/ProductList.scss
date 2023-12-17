@@ -1,10 +1,8 @@
-// ProductList.scss
-
 .product-list {
   align-items: center;
   text-align: center;
   justify-content: center;
-  d
+
   &__header {
     font-size: 1.5rem;
     margin-bottom: 10px;
@@ -21,9 +19,26 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    display: grid;
+    grid-template-columns: 12fr;
 
     &-item {
       margin-bottom: 20px;
+      border-radius: 12px;
+      outline: 1px solid black;
+
+      @media (min-width: 576px) {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      & .product-list__product-link {
+        color: black;
+        text-decoration: none;
+        transition: 0.2s ease-in-out;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
     }
 
     &-image {

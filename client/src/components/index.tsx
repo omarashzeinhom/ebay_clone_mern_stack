@@ -16,7 +16,6 @@ import ProductList from "./Product/ProductList/ProductList";
 import ProductDetail from "./Product/ProductDetail/ProductDetail";
 import TrendingProducts from "./Product/TrendingProducts/TrendingProducts";
 import TrendingProductsAlpha from "./Product/TrendingProducts/TrendingProductsAlpha";
-import Deals from "./Deals/Deals";
 // Auth
 import SignInForm from "./Auth/SignInForm/SignInForm";
 import RegisterForm from "./Auth/RegisterForm/RegisterForm";
@@ -32,7 +31,6 @@ export {
   AdsCarousel,
   CategoryList,
   CategoriesCarousel,
-  Deals,
   CartItem,
   ShoppingCart,
   ProductList,
