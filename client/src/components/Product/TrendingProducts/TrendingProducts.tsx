@@ -42,7 +42,7 @@ const TrendingProducts: React.FC<TrendingProductsProps> = () => {
         }}
       >
         {filteredProducts.map((product, index) => {
-          const productLink = `http://localhost:3000/item/${product?._id}`;
+          const productLink = `https://ebayclonemern.netlify.app/item/${product?._id}`;
           return (
             <SwiperSlide
               key={index}

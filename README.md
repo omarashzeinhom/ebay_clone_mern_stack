@@ -21,7 +21,23 @@ ATLAS_URI=mongodb+srv://<username>:<password>@cluster0.vr0db7g.mongodb.net/?retr
 JWT_SECRET=
 ```
 
-### References
+
+
+### Deploy 
+
+1. Front End
+
+```bash
+yarn build
+```
+- Then Deploy Static File to [netlify](https://app.netlify.com/)
+
+2. Back End 
+
+Deploy to [cyclic](https://www.cyclic.sh/)
+
+
+#### References
 
 1. [MERN Stack Tutorial - mongodb](https://www.mongodb.com/languages/mern-stack-tutorial)
 2. [react-icons](https://react-icons.github.io/)
