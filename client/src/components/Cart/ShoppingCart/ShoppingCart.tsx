@@ -7,6 +7,7 @@ import { useProductContext } from "../../../context/ProductContext";
 import { TbShoppingCart } from "react-icons/tb";
 import { Product } from "../../../models/product";
 import Checkout from "../CheckOut/CheckOut";
+import React from "react";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -42,19 +43,18 @@ export default function ShoppingCart({ isOpen, total }: ShoppingCartProps) {
           {cartQuantity > 0 && (
             <>
               {cartItems.map((item, index) => (
-                <>
-                  <CartItem
-                    key={item?.id}
-                    price={item?.price}
-                    parent={item?.parent}
-                    _id={item?._id}
-                    name={item?.name}
-                    img={item?.img}
-                    id={item?.id}
-                    quantity={item?.quantity}
-                  />
-                  <hr />{" "}
-                </>
+                <React.Fragment key={item?.id}>
+                <CartItem
+                  price={item?.price}
+                  parent={item?.parent}
+                  _id={item?._id}
+                  name={item?.name}
+                  img={item?.img}
+                  id={item?.id}
+                  quantity={item?.quantity}
+                />
+                <hr />
+              </React.Fragment>
               ))}
             </>
           )}

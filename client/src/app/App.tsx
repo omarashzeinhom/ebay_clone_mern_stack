@@ -138,13 +138,13 @@ const App: React.FC<AppProps> = ({total}) => {
   return (
     <React.StrictMode>
       <ErrorBoundary>
+      <ProductProvider>
         <ShoppingCartProvider>
-          <ProductProvider>
             <AuthProvider>
               <RouterProvider router={router} />
             </AuthProvider>
-          </ProductProvider>
         </ShoppingCartProvider>
+        </ProductProvider>
       </ErrorBoundary>
     </React.StrictMode>
   );
