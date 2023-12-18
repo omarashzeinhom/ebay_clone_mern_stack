@@ -38,6 +38,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
         //setPaymentError(error?.message);
       } else {
         console.log('Payment successful! Token:', token);
+        alert(`Payment successfull ${JSON.stringify(token)}`);
         // Handle the token on your server (send it to your backend API for payment processing)
         // Once payment is successful, you may want to clear the cart
         clearCart();
@@ -56,6 +57,11 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
           Card details
           <CardElement />
         </label>
+        <h3>Demo Credentials</h3>
+        <small>Test with card number 4242 4242 4242 4242</small>
+        <small>Expiration Date: 12/34</small>
+        <small>CVC:123</small>
+
         {paymentError && <div className="error">{paymentError}</div>}
         <button type="submit" disabled={!stripe}>
           Pay  {currencyFormatter(

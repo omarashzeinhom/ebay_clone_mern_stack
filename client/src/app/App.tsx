@@ -20,13 +20,12 @@ import {
   ProductDetail,
   Profile,
   ErrorBoundary,
-  Checkout,
 } from "../components";
 
 type AppProps = {
   total: number;
-}
-const App: React.FC<AppProps> = ({total}) => {
+};
+const App: React.FC<AppProps> = ({ total }) => {
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -45,7 +44,7 @@ const App: React.FC<AppProps> = ({total}) => {
 
   const routes = [
     /* <--- Main Routes Start --->  */
-  
+
     {
       path: "/",
       element: <Home total={total} />,
@@ -60,7 +59,7 @@ const App: React.FC<AppProps> = ({total}) => {
     },
     {
       path: "/help&contact",
-      element: <CustomerService total={total}/>,
+      element: <CustomerService total={total} />,
     },
     {
       path: "/survey",
@@ -76,7 +75,7 @@ const App: React.FC<AppProps> = ({total}) => {
       path: "/",
       element: (
         <ProductProvider>
-          <CategoryList categories={categories} total={total}/>
+          <CategoryList categories={categories} total={total} />
           <ProductList />
         </ProductProvider>
       ),
@@ -94,7 +93,7 @@ const App: React.FC<AppProps> = ({total}) => {
       path: "/products",
       element: (
         <ProductProvider>
-          <CategoryList categories={categories} total={total}/>
+          <CategoryList categories={categories} total={total} />
           <ProductList />
         </ProductProvider>
       ),
@@ -110,25 +109,25 @@ const App: React.FC<AppProps> = ({total}) => {
     },
     {
       path: "/item/:productId",
-      element: <ProductDetail total={total}/>,
+      element: <ProductDetail total={total} />,
     },
     {
       path: "/",
-      element: <ProductDetail total={total}/>,
+      element: <ProductDetail total={total} />,
     },
     /* <--- Product & Categories End ---> */
     /* <--- Auth & Profile Start  ---> */
     {
       path: "/",
-      element: <Profile total={total}/>,
+      element: <Profile total={total} />,
     },
     {
       path: "/user/:userId",
-      element: <Profile total={total}/>,
+      element: <Profile total={total} />,
     },
     {
       path: "/business/:businessId",
-      element: <Profile total={total}/>,
+      element: <Profile total={total} />,
     },
     /* <--- Auth & Profile End  ---> */
   ];
@@ -138,12 +137,12 @@ const App: React.FC<AppProps> = ({total}) => {
   return (
     <React.StrictMode>
       <ErrorBoundary>
-      <ProductProvider>
-        <ShoppingCartProvider>
+        <ProductProvider>
+          <ShoppingCartProvider>
             <AuthProvider>
               <RouterProvider router={router} />
             </AuthProvider>
-        </ShoppingCartProvider>
+          </ShoppingCartProvider>
         </ProductProvider>
       </ErrorBoundary>
     </React.StrictMode>

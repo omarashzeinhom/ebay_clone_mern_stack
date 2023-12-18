@@ -5,7 +5,6 @@ import { Elements } from "@stripe/react-stripe-js";
 import stripePromise from "./features/stripe"; // Adjust the path
 import { useShoppingCart } from "./context/ShoppingCartContext";
 import { ProductProvider, useProductContext } from "./context/ProductContext";
-import { useEffect } from "react";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
