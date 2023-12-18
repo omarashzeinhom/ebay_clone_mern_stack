@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { User } from "../models/user";
 import { Business } from "../models/business";
 
-const API_BASE_URL = "http://localhost:3001/auth";
+const API_BASE_URL = "https://uptight-hen-fez.cyclic.app/auth";
 
 export const authService = {
   /* <--- User services start ---> */
