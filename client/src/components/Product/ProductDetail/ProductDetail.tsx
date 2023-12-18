@@ -52,7 +52,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
 
   return (
     <>
-      <Nav total={total}/>
+      <Nav total={total} />
       <SearchBar />
       <div className="product-detail">
         <h2 className="product-detail__title">{product?.name}</h2>

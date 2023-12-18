@@ -131,7 +131,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
             </a>
           </li>
           <li className="app__nav-rightItem">
-              <ShoppingCart isOpen={false} total={total}/>
+              <ShoppingCart  total={total}/>
           </li>
         </div>
       </ul>

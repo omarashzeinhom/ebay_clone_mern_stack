@@ -5,10 +5,10 @@ import SearchBar from "../SearchBar/SearchBar";
 
 
 type ProfileProps = {
-  total: number
+  total: number;
 }
 
-export default function Profile({total}: ProfileProps) {
+export default function Profile({total }: ProfileProps) {
   const { user, business } = useAuth();
   const navigate = useNavigate();
   const { userId, businessId } = useParams();
@@ -26,7 +26,7 @@ export default function Profile({total}: ProfileProps) {
     <>
       {userId && (
         <>
-          <Nav total={total}/>
+          <Nav total={total} />
           <SearchBar />
           <div>
             <p>{user?.userId}</p>
@@ -40,7 +40,7 @@ export default function Profile({total}: ProfileProps) {
 
       {businessId && (
         <>
-          <Nav  total={total}/>
+          <Nav  total={total} />
           <SearchBar />
           <div>
             <h3>{business?.businessName}</h3>

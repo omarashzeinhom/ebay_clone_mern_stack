@@ -61,7 +61,7 @@ const CategoryList: React.FC<CategoryListProps> = ({total}) => {
   
   return (
     <>
-      <Nav total={total} />
+      <Nav total={total}/>
       <SearchBar />
       <div className="app-category__list">
         <h2>Categories</h2>

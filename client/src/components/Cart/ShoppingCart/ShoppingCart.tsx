@@ -10,12 +10,11 @@ import Checkout from "../CheckOut/CheckOut";
 import React from "react";
 
 type ShoppingCartProps = {
-  isOpen: boolean;
   total: number; // Add total as a prop
 
 };
 
-export default function ShoppingCart({ isOpen, total }: ShoppingCartProps) {
+export default function ShoppingCart({  total }: ShoppingCartProps) {
   const { cartItems, cartQuantity } = useShoppingCart();
   const { products } = useProductContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
