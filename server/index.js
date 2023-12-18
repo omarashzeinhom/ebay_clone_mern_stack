@@ -50,7 +50,7 @@ app.get("/auth/registerb", (req, res) => {
   res.send("Hello, this is the register business route!");
 });
 app.get("/auth/loginb", (req, res) => {
-  const { email, password } = req.body;
+  //const { email, password } = req.body;
   //res.send(email,password);
   res.send("Hello, this is the Business login route!");
 });

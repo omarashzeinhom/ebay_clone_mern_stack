@@ -34,10 +34,10 @@ const TrendingProducts: React.FC<TrendingProductsProps> = () => {
         spaceBetween={10}
         breakpoints={{
           768: {
-            slidesPerView: 5,
+            slidesPerView: 4,
           },
           1024: {
-            slidesPerView: 6,
+            slidesPerView: 5,
           },
         }}
       >
@@ -57,7 +57,7 @@ const TrendingProducts: React.FC<TrendingProductsProps> = () => {
                     className="app-trending-products-alpha__carousel__slide__img"
                   />
                   <small className="app-trending-products-alpha__carousel__slide__name">
-                    {product?.name}
+                    {product?.name.slice(0,10)}
                   </small>
                   <br />
                   <small className="app-trending-products-alpha__carousel__slide__price">
