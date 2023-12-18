@@ -1,5 +1,28 @@
 # Ebay clone in MERN Stack
 
+- [Demo](https://ebayclonemern.netlify.app/)
+
+- Built With
+- [React Documentation](https://reactjs.org/)
+- [Node.js Documentation](https://nodejs.org/)
+- [Express.js Documentation](https://expressjs.com/)
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [Mongoose Documentation](https://mongoosejs.com/)
+- [axios Documentation](https://axios-http.com/)
+- [bcrypt Documentation](https://www.npmjs.com/package/bcrypt)
+- [jsonwebtoken Documentation](https://www.npmjs.com/package/jsonwebtoken)
+
+- **React Router - `useNavigate`:**
+  - [React Router `useNavigate` documentation](https://reactrouter.com/web/api/useNavigate)
+- **React Swiper:**
+  - [Swiper documentation](https://swiperjs.com/react)
+  - [Swiper Options](https://swiperjs.com/swiper-api#parameters)
+  - [Swiper Modules](https://swiperjs.com/swiper-api/modules)
+- **React Context API:**
+  - [React Context documentation](https://reactjs.org/docs/context.html)
+- **Sass:**
+  - [Sass documentation](https://sass-lang.com/documentation)
+
 ## Start By
 
 - Frontend
@@ -21,24 +44,71 @@ ATLAS_URI=mongodb+srv://<username>:<password>@cluster0.vr0db7g.mongodb.net/?retr
 JWT_SECRET=
 ```
 
-
-
-### Deploy 
+### Deploy
 
 1. Front End
 
 ```bash
 yarn build
 ```
+
 - Then Deploy Static File to [netlify](https://app.netlify.com/)
 
-2. Back End 
+Replace links
+
+```bash
+// Production
+// https://ebayclonemern.netlify.app/
+- const productLink = `https://ebayclonemern.netlify.app/item/${product?._id}`;
+- const productLink = `https://ebayclonemern.netlify.app/item/${product?._id}`;
+- "http://localhost:3000/" // For Development
+// Backend API
+- "https://uptight-hen-fez.cyclic.app/" // For Production
+- "http://localhost:3001/" // For Development
+```
+
+2. Back End
 
 Deploy to [cyclic](https://www.cyclic.sh/)
 
-
 #### References
 
-1. [MERN Stack Tutorial - mongodb](https://www.mongodb.com/languages/mern-stack-tutorial)
-2. [react-icons](https://react-icons.github.io/)
-3. [MERN Stack Project Structure: Best Practices - Kingsley Amankwah](https://dev.to/kingsley/mern-stack-project-structure-best-practices-2adk)
+- [MERN Stack Tutorial - MongoDB](https://www.mongodb.com/languages/mern-stack-tutorial)
+- [react-icons Documentation](https://react-icons.github.io/)
+- [MERN Stack Project Structure: Best Practices - Kingsley Amankwah](https://dev.to/kingsley/mern-stack-project-structure-best-practices-2adk)
+- [React Router DOM Documentation](https://reactrouter.com/web/guides/quick-start)
+- [Swiper API Documentation](https://swiperjs.com/swiper-api)
+- [React Documentation - React.FC](https://reactjs.org/docs/hooks-faq.html#should-i-use-function-component-or-class-component)
+- [React Router DOM - useNavigate](https://reactrouter.com/web/api/Navigate)
+- [Swiper Documentation - Swiper and Modules](https://swiperjs.com/react)
+- [React Router Documentation](https://reactrouter.com/)
+- [useParams Hook](https://reactrouter.com/web/api/Hooks/useparams)
+- [React Context Documentation](https://reactjs.org/docs/context.html)
+- [State Management in React](https://reactjs.org/docs/state-and-lifecycle.html)
+- [Understanding Infinite Loops in React](https://reactjs.org/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects)
+- [Unsplash](https://unsplash.com/)
+- [Pexels](https://www.pexels.com/)
+- [React Icons Library](https://react-icons.github.io/react-icons/)
+- [React](https://reactjs.org/)
+- [React.useState()](https://reactjs.org/docs/hooks-state.html)
+- [React Functional Components](https://reactjs.org/docs/components-and-props.html#function-and-class-components)
+- [React Forms](https://reactjs.org/docs/forms.html)
+- [React Conditional Rendering](https://reactjs.org/docs/conditional-rendering.html)
+- [React Events](https://reactjs.org/docs/handling-events.html)
+- [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout)
+- [CSS Transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions)
+- [DOM Warning: Password field is not contained in a form](https://goo.gl/9p2vKq)
+- [React Documentation](https://reactjs.org/)
+- [Node.js Documentation](https://nodejs.org/)
+- [Express.js Documentation](https://expressjs.com/)
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [Mongoose Documentation](https://mongoosejs.com/)
+- [axios Documentation](https://axios-http.com/)
+- [bcrypt Documentation](https://www.npmjs.com/package/bcrypt)
+- [jsonwebtoken Documentation](https://www.npmjs.com/package/jsonwebtoken)
+- [React Router `useNavigate` documentation](https://reactrouter.com/web/api/useNavigate)
+- [Swiper documentation](https://swiperjs.com/react)
+- [Swiper Options](https://swiperjs.com/swiper-api#parameters)
+- [Swiper Modules](https://swiperjs.com/swiper-api/modules)
+- [React Context documentation](https://reactjs.org/docs/context.html)
+- [Sass documentation](https://sass-lang.com/documentation)

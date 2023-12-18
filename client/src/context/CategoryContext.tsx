@@ -1,16 +1,20 @@
 // CategoryContext.tsx
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Category } from '../models/category';
-import { categoriesService } from '../services/categoryService';
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { Category } from "../models/category";
+import { categoriesService } from "../services/categoryService";
 
 interface CategoryContextProps {
   categoryData: Category[];
   setCategoryData: React.Dispatch<React.SetStateAction<Category[]>>;
 }
 
-const CategoryContext = createContext<CategoryContextProps | undefined>(undefined);
+const CategoryContext = createContext<CategoryContextProps | undefined>(
+  undefined
+);
 
-export const CategoryProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const CategoryProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [categoryData, setCategoryData] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -19,7 +23,7 @@ export const CategoryProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         const data = await categoriesService.getAllCategories();
         setCategoryData(data);
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error("Error fetching categories:", error);
       }
     };
 
@@ -36,7 +40,9 @@ export const CategoryProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 export const useCategoryContext = () => {
   const context = useContext(CategoryContext);
   if (!context) {
-    throw new Error('useCategoryContext must be used within a CategoryProvider');
+    throw new Error(
+      "useCategoryContext must be used within a CategoryProvider"
+    );
   }
   return context;
 };

@@ -34,9 +34,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchUserInformation = async (token: string) => {
     try {
-      const response = await axios.get("https://uptight-hen-fez.cyclic.app/auth/user", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        "https://uptight-hen-fez.cyclic.app/auth/user",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setUser(response.data);
     } catch (error) {
       console.error("Error fetching user information:", error);
@@ -60,9 +63,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchBusinessInformation = async (token: string) => {
     try {
-      const response = await axios.get("https://uptight-hen-fez.cyclic.app/auth/business", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        "https://uptight-hen-fez.cyclic.app/auth/business",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setBusiness(response.data);
     } catch (error) {
       console.error("Error fetching user information:", error);
