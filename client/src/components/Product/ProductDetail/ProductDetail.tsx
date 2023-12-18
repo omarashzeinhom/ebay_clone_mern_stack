@@ -9,7 +9,11 @@ import SearchBar from "../../SearchBar/SearchBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 // import { Product } from "../../../models/product";
 
-const ProductDetail: React.FC = () => {
+type ProductDetailProps = {
+total: number;
+}
+
+const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
   const navigate = useNavigate();
 
   const {
@@ -48,7 +52,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <>
-      <Nav />
+      <Nav total={total}/>
       <SearchBar />
       <div className="product-detail">
         <h2 className="product-detail__title">{product?.name}</h2>

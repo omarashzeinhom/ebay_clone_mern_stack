@@ -43,14 +43,14 @@ const ProductList: React.FC<ProductListProps> = () => {
                   src={product?.img}
                   alt={product?.name}
                 />
-                <p>Category: {product?.parent}</p>
                 <p className="product-list__product-list-name">
                 {product?.name}
                 </p>
                 <p className="product-list__product-list-price">
                   ${product?.price}
                 </p>
-                
+                <p>Category: {product?.parent}</p>
+
               </div>
               </a>
             </li>

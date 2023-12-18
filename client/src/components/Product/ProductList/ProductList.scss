@@ -43,10 +43,11 @@
 
     &-image {
       width: 100%;
-      max-width: 200px;
+      max-width: 300px;
+      max-height: 150px;
+      object-fit: cover;
       border-radius: 28px;
       box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem black;
-      height: auto;
     }
 
     &-name {

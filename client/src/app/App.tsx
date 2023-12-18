@@ -20,8 +20,13 @@ import {
   ProductDetail,
   Profile,
   ErrorBoundary,
+  Checkout,
 } from "../components";
-const App: React.FC = () => {
+
+type AppProps = {
+  total: number;
+}
+const App: React.FC<AppProps> = ({total}) => {
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -40,9 +45,10 @@ const App: React.FC = () => {
 
   const routes = [
     /* <--- Main Routes Start --->  */
+  
     {
       path: "/",
-      element: <Home />,
+      element: <Home total={total} />,
     },
     {
       path: "/signin",
@@ -54,7 +60,7 @@ const App: React.FC = () => {
     },
     {
       path: "/help&contact",
-      element: <CustomerService />,
+      element: <CustomerService total={total}/>,
     },
     {
       path: "/survey",
@@ -70,7 +76,7 @@ const App: React.FC = () => {
       path: "/",
       element: (
         <ProductProvider>
-          <CategoryList categories={categories} />
+          <CategoryList categories={categories} total={total}/>
           <ProductList />
         </ProductProvider>
       ),
@@ -88,7 +94,7 @@ const App: React.FC = () => {
       path: "/products",
       element: (
         <ProductProvider>
-          <CategoryList categories={categories} />
+          <CategoryList categories={categories} total={total}/>
           <ProductList />
         </ProductProvider>
       ),
@@ -97,32 +103,32 @@ const App: React.FC = () => {
       path: "/category/:categoryName",
       element: (
         <ProductProvider>
-          <CategoryList categories={categories} />
+          <CategoryList categories={categories} total={total} />
           <ProductList />
         </ProductProvider>
       ),
     },
     {
       path: "/item/:productId",
-      element: <ProductDetail />,
+      element: <ProductDetail total={total}/>,
     },
     {
       path: "/",
-      element: <ProductDetail />,
+      element: <ProductDetail total={total}/>,
     },
     /* <--- Product & Categories End ---> */
     /* <--- Auth & Profile Start  ---> */
     {
       path: "/",
-      element: <Profile />,
+      element: <Profile total={total}/>,
     },
     {
       path: "/user/:userId",
-      element: <Profile />,
+      element: <Profile total={total}/>,
     },
     {
       path: "/business/:businessId",
-      element: <Profile />,
+      element: <Profile total={total}/>,
     },
     /* <--- Auth & Profile End  ---> */
   ];

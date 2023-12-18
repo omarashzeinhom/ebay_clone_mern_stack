@@ -6,12 +6,15 @@ import { currencyFormatter } from "../../../utilities/currencyFormatter";
 import { useProductContext } from "../../../context/ProductContext";
 import { TbShoppingCart } from "react-icons/tb";
 import { Product } from "../../../models/product";
+import Checkout from "../CheckOut/CheckOut";
 
 type ShoppingCartProps = {
   isOpen: boolean;
+  total: number; // Add total as a prop
+
 };
 
-export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
+export default function ShoppingCart({ isOpen, total }: ShoppingCartProps) {
   const { cartItems, cartQuantity } = useShoppingCart();
   const { products } = useProductContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -71,6 +74,7 @@ export default function ShoppingCart({ isOpen }: ShoppingCartProps) {
               }, 0)
             )}
           </div>
+          <Checkout total={total}/>
         </div>
       </div>
     </>

@@ -3,7 +3,12 @@ import { useAuth } from "../../context/AuthContext";
 import Nav from "../Nav/Nav";
 import SearchBar from "../SearchBar/SearchBar";
 
-export default function Profile() {
+
+type ProfileProps = {
+  total: number
+}
+
+export default function Profile({total}: ProfileProps) {
   const { user, business } = useAuth();
   const navigate = useNavigate();
   const { userId, businessId } = useParams();
@@ -21,7 +26,7 @@ export default function Profile() {
     <>
       {userId && (
         <>
-          <Nav />
+          <Nav total={total}/>
           <SearchBar />
           <div>
             <p>{user?.userId}</p>
@@ -35,7 +40,7 @@ export default function Profile() {
 
       {businessId && (
         <>
-          <Nav />
+          <Nav  total={total}/>
           <SearchBar />
           <div>
             <h3>{business?.businessName}</h3>

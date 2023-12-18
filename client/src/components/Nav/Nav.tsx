@@ -5,8 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { navItems, myEbayItems } from "../../utilities/constants";
 import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
+type NavProps = {
+  total: number;
+}
 
-const Nav = () => {
+const Nav: React.FC<NavProps> = ({ total }) => {
   const { token, user, logout,business } = useAuth();
   //const [business, setBusiness] = useState<Business>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -128,7 +131,7 @@ const Nav = () => {
             </a>
           </li>
           <li className="app__nav-rightItem">
-              <ShoppingCart isOpen={false}/>
+              <ShoppingCart isOpen={false} total={total}/>
           </li>
         </div>
       </ul>

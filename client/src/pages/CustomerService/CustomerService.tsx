@@ -2,6 +2,9 @@ import React from 'react';
 import './CustomerService.scss';
 import {Nav} from "../../components";
 
+type CustomerServiceProps = {
+  total: number;
+}
 
 const CustomerServiceNav = () => {
     return (
@@ -14,10 +17,10 @@ const CustomerServiceNav = () => {
       </div>
     );
  };
- const CustomerService: React.FC = () => {
+ const CustomerService: React.FC<CustomerServiceProps> = ({total}) => {
     return (
       <>
-        <Nav />
+        <Nav total={total} />
         <CustomerServiceNav />
         <div className="customer-service">
           <h2>How can we help you today?</h2>

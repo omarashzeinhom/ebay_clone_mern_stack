@@ -1,29 +1,32 @@
 import {
-    Header,
-    Nav,
-    SearchBar,
-    AdsCarousel,
-    CategoriesCarousel,
-    TrendingProductsAlpha,
-    TrendingProducts,
-    Ads,
-    Footer,
-  } from "../../components";
-  import {footerLinks} from "../../utilities/constants";
+  Header,
+  Nav,
+  SearchBar,
+  AdsCarousel,
+  CategoriesCarousel,
+  TrendingProductsAlpha,
+  TrendingProducts,
+  Ads,
+  Footer,
+} from "../../components";
+import { footerLinks } from "../../utilities/constants";
 
-export default function Home(){
+type HomeProps = {
+  total: number;
+};
 
-    return (
-     <>
-        <Header />
-        <Nav />
-        <SearchBar />
-        <AdsCarousel/>
-        <CategoriesCarousel />
-        <TrendingProductsAlpha/>
-        <TrendingProducts />
-        <Ads />
-        <Footer footerLinks={footerLinks}/>
-     </>
-    )
+export default function Home({ total }: HomeProps) {
+  return (
+    <>
+      <Header />
+      <Nav total={total} />
+      <SearchBar />
+      <AdsCarousel />
+      <CategoriesCarousel />
+      <TrendingProductsAlpha />
+      <TrendingProducts />
+      <Ads />
+      <Footer footerLinks={footerLinks} />
+    </>
+  );
 }

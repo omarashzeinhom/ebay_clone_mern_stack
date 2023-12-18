@@ -8,9 +8,10 @@ import { categoriesService } from "../../../services/categoryService";
 interface CategoryListProps {
   // Assuming there's an endpoint like '/categories' that returns categories
   categories: Category[];
+  total: number;
 }
 
-const CategoryList: React.FC<CategoryListProps> = () => {
+const CategoryList: React.FC<CategoryListProps> = ({total}) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
@@ -60,7 +61,7 @@ const CategoryList: React.FC<CategoryListProps> = () => {
   
   return (
     <>
-      <Nav />
+      <Nav total={total} />
       <SearchBar />
       <div className="app-category__list">
         <h2>Categories</h2>

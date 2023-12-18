@@ -12,6 +12,7 @@ type ShoppingCartProviderProps = {
 type ShoppingCartContextProps = {
   openCart: () => void;
   closeCart: () => void;
+  clearCart: ()=> void;
   getItemQuantity: (id: number) => number;
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void; // <-- Corrected name
@@ -110,20 +111,26 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     // Ensure that you are updating the cartItems array correctly
     setCartItems((prevItems) => [...prevItems, newItem]);
   }
+ function clearCart (){
+    setCartItems([]);
+  };
+
+  const contextValue = {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removefromCart,
+    clearCart,
+    openCart,
+    closeCart,
+    cartItems,
+    cartQuantity,
+    addItemToCart,
+  }
 
   return (
     <ShoppingCartContext.Provider
-      value={{
-        getItemQuantity,
-        increaseCartQuantity,
-        decreaseCartQuantity,
-        removefromCart,
-        openCart,
-        closeCart,
-        cartItems,
-        cartQuantity,
-        addItemToCart,
-      }}
+      value={contextValue}
     >
       {children}
     </ShoppingCartContext.Provider>
