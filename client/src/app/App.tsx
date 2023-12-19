@@ -13,7 +13,7 @@ import {
   CustomerService,
   Survey,
   NotFound,
-} from "../pages";
+} from "../../pages/CustomerService"
 import {
   CategoryList,
   ProductList,
