@@ -18,8 +18,8 @@ import ProductDetail from "./Product/ProductDetail/ProductDetail";
 import TrendingProducts from "./Product/TrendingProducts/TrendingProducts";
 import TrendingProductsAlpha from "./Product/TrendingProducts/TrendingProductsAlpha";
 // Auth
-import SignInForm from "./Auth/SignInForm/SignInForm";
-import RegisterForm from "./Auth/RegisterForm/RegisterForm";
+import SignInForm from "./auth/SignInForm/SignInForm";
+import RegisterForm from "./auth/RegisterForm/RegisterForm";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import Profile from "./Profile/Profile";
 
