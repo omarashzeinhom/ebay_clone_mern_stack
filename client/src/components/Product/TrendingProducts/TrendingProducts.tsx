@@ -6,6 +6,8 @@ import { Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProducts.scss";
+import { HOME_URL } from "../../../utilities/constants";
+
 
 interface TrendingProductsProps {}
 
@@ -42,7 +44,7 @@ const TrendingProducts: React.FC<TrendingProductsProps> = () => {
         }}
       >
         {filteredProducts.map((product, index) => {
-          const productLink = `http://localhost:3000/item/${product?._id}`;
+          const productLink = `${HOME_URL}${product?._id}`;
           return (
             <SwiperSlide
               key={index}

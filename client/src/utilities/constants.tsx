@@ -1,3 +1,6 @@
+const HOME_URL = 'https://ebay-clone-mern-stack.vercel.app/';
+const DEVELOP_URL = "localhost:3000";
+
 /* NavBar Items Start */
 const navItems = [
   {
@@ -80,4 +83,4 @@ const footerLinks = [
 
 ];
 
-export { navItems, myEbayItems, footerLinks };
+export { navItems, myEbayItems, footerLinks , HOME_URL, DEVELOP_URL };
