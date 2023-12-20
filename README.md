@@ -4,16 +4,6 @@ The eBay clone in MERN Stack is a web application that replicates the core funct
 
 - [Demo](https://ebayclonemern.netlify.app/)
 
-- Built With
-- [React Documentation](https://reactjs.org/)
-- [Node.js Documentation](https://nodejs.org/)
-- [Express.js Documentation](https://expressjs.com/)
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [Mongoose Documentation](https://mongoosejs.com/)
-- [axios Documentation](https://axios-http.com/)
-- [bcrypt Documentation](https://www.npmjs.com/package/bcrypt)
-- [jsonwebtoken Documentation](https://www.npmjs.com/package/jsonwebtoken)
-
 - **React Router - `useNavigate`:**
   - [React Router `useNavigate` documentation](https://reactrouter.com/web/api/useNavigate)
 - **React Swiper:**
@@ -74,6 +64,16 @@ Replace links
 Deploy to [cyclic](https://www.cyclic.sh/)
 
 #### References
+
+- Built With
+- [React Documentation](https://reactjs.org/)
+- [Node.js Documentation](https://nodejs.org/)
+- [Express.js Documentation](https://expressjs.com/)
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [Mongoose Documentation](https://mongoosejs.com/)
+- [axios Documentation](https://axios-http.com/)
+- [bcrypt Documentation](https://www.npmjs.com/package/bcrypt)
+- [jsonwebtoken Documentation](https://www.npmjs.com/package/jsonwebtoken)
 
 - [MERN Stack Tutorial - MongoDB](https://www.mongodb.com/languages/mern-stack-tutorial)
 - [react-icons Documentation](https://react-icons.github.io/)
