@@ -1,11 +1,7 @@
 # Ebay clone in MERN Stack
 
 The eBay clone in MERN Stack is a web application that replicates the core functionalities of the eBay platform using the MERN (MongoDB, Express.js, React, Node.js) technology stack. This clone allows users to buy and sell products in an online marketplace environment. It incorporates features such as user authentication, product listings, bidding or purchasing capabilities, and seller profiles. Utilizing the power of MERN, the application provides a responsive and dynamic user interface, real-time updates, and seamless interactions for a user-friendly online shopping experience reminiscent of eBay.
-<<<<<<< HEAD
 =======
-
-- [Demo](https://ebayclonemern.netlify.app/)
->>>>>>> 3cfeae3d486a1dfa2842975932ade733c9c3afeb
 
 - [Demo](https://ebayclonemern.netlify.app/)
 
