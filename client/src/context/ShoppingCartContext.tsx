@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext } from "react";
 import useLocalStorage from "../hook/useLocalStorage";
 import { CartItemProps } from "../models/cartitem";
 import { Product } from "../models/product";
@@ -10,9 +10,7 @@ type ShoppingCartProviderProps = {
 };
 
 type ShoppingCartContextProps = {
-  openCart: () => void;
-  closeCart: () => void;
-  clearCart: ()=> void;
+  clearCart: () => void;
   getItemQuantity: (id: number) => number;
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void; // <-- Corrected name
@@ -32,8 +30,7 @@ export function useShoppingCart() {
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   // rendering the cart
-  const [isOpen, setIsOpen] = useState(false);
-  console.log(`isOpen: ${isOpen}`);
+
   const [cartItems, setCartItems] = useLocalStorage<CartItemProps[]>(
     "Default Shopping",
     []
@@ -43,11 +40,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     (quantity, item) => item.quantity + quantity,
     0
   );
-
-  const openCart = () => setIsOpen(true);
-  const closeCart = () => {
-    setIsOpen(false);
-  };
 
   function getItemQuantity(id: number) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -111,9 +103,9 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     // Ensure that you are updating the cartItems array correctly
     setCartItems((prevItems) => [...prevItems, newItem]);
   }
- function clearCart (){
+  function clearCart() {
     setCartItems([]);
-  };
+  }
 
   const contextValue = {
     getItemQuantity,
@@ -121,17 +113,14 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     decreaseCartQuantity,
     removefromCart,
     clearCart,
-    openCart,
-    closeCart,
+
     cartItems,
     cartQuantity,
     addItemToCart,
-  }
+  };
 
   return (
-    <ShoppingCartContext.Provider
-      value={contextValue}
-    >
+    <ShoppingCartContext.Provider value={contextValue}>
       {children}
     </ShoppingCartContext.Provider>
   );

@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { User } from "../models/user";
 import { Business } from "../models/business";
 
-const API_BASE_URL = "https://uptight-hen-fez.cyclic.app/auth";
+const API_BASE_URL = "http://localhost:3001/auth";
 
 export const authService = {
   /* <--- User services start ---> */
@@ -10,13 +10,15 @@ export const authService = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string
+    password: string,
+    avatar: string,
   ): Promise<void> => {
     await axios.post(`${API_BASE_URL}/register`, {
       firstName,
       lastName,
       email,
       password,
+      avatar,
     });
   },
 
@@ -43,7 +45,8 @@ export const authService = {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      return response.data;
+      console.log(response?.data)
+      return response?.data;
     } catch (error) {
       throw new Error(`Failed to get user: ${error}`);
     }
@@ -57,7 +60,8 @@ export const authService = {
     businessEmail: string,
     businessPassword: string,
     businessLocation: string,
-    businessActive: boolean
+    businessActive: boolean,
+    businessAvatar: string,
   ): Promise<void> => {
     try {
       const response = await axios.post(`${API_BASE_URL}/registerb`, {
@@ -66,6 +70,7 @@ export const authService = {
         businessPassword,
         businessLocation,
         businessActive,
+        businessAvatar,
       });
 
       console.log("Business registration response:", response.data);

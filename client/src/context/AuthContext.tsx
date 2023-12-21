@@ -7,11 +7,14 @@ interface AuthContextType {
   token: string | null;
   user: User | null;
   business: Business | null;
+  fetchUserInformation : (token: string) => Promise<void>;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>  ; 
   loginBusiness: (token: string, data: Business) => void;
   logoutBusiness: () => void;
   login: (token: string, data: User) => void;
   logout: () => void;
 }
+
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -32,20 +35,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
+
   const fetchUserInformation = async (token: string) => {
     try {
-      const response = await axios.get(
-        "https://uptight-hen-fez.cyclic.app/auth/user",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      setUser(response.data);
+      const response = await axios.get("http://localhost:3001/auth/user", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setUser(response?.data);
+      console.log(response?.data);
     } catch (error) {
       console.error("Error fetching user information:", error);
       // Handle error (e.g., log out the user)
     }
   };
+
 
   const login = (newToken: string, newUser: User) => {
     setToken(newToken);
@@ -61,17 +64,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("token");
   };
 
-  const fetchBusinessInformation = async (token: string) => {
+const fetchBusinessInformation = async (token: string) => {
     try {
-      const response = await axios.get(
-        "https://uptight-hen-fez.cyclic.app/auth/business",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      setBusiness(response.data);
+      const response = await axios.get("http://localhost:3001/auth/business", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setBusiness(response?.data);
+      //console.log(response?.data);
     } catch (error) {
       console.error("Error fetching user information:", error);
+      // Handle error (e.g., log out the user)
     }
   };
 
@@ -93,9 +95,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       value={{
         token,
         user,
+        setUser,
         login,
         logout,
         business,
+        fetchUserInformation,
         loginBusiness,
         logoutBusiness,
       }}

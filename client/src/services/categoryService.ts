@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://uptight-hen-fez.cyclic.app/categories";
+const API_BASE_URL = "http://localhost:3001/categories";
 
 export const categoriesService = {
   getAllCategories: async (

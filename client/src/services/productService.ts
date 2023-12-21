@@ -1,13 +1,13 @@
 import axios from "axios";
 import { Product } from "../models/product";
 
-const API_BASE_URL = "https://uptight-hen-fez.cyclic.app/products";
+const API_BASE_URL = "http://localhost:3001/products";
 
 export const productService = {
   getAllProducts: async (
     _id: string = "",
     id: number = 0,
-    quantity: number  =0,
+    quantity: number = 0,
     name: string = "",
     price: number = 0,
     parent: string = "",
@@ -34,7 +34,9 @@ export const productService = {
   },
   getProductsByCategory: async (category: string): Promise<Product[]> => {
     try {
-      const response = await axios.get(`${API_BASE_URL}?category=${encodeURIComponent(category)}`);
+      const response = await axios.get(
+        `${API_BASE_URL}?category=${encodeURIComponent(category)}`
+      );
       return response.data;
     } catch (error) {
       console.error(`Error fetching products for category ${category}:`, error);

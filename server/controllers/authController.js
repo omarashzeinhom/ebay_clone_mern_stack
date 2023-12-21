@@ -4,13 +4,34 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const Business = require("../models/businessModel");
+const cloudinary = require("cloudinary").v2;
+
+// Cloudinary configuration 
+// Return "https" URLs by setting secure: true
+cloudinary.config({
+  secure: true,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Log the configuration
+// console.log(cloudinary.config());
 
 const secretKey = process.env.JWT_SECRET;
 
 exports.register = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, avatar } = req.body;
+  // console.log(avatar);
+
 
   try {
+    // Upload avatar to Cloudinary
+    const cloudinaryResponse = await cloudinary.v2.uploader.upload(avatar, {
+      folder: "ebay-clone-images/user-avatars",
+    });
+
+    // console.log(cloudinaryResponse);
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
@@ -23,26 +44,10 @@ exports.register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
+      avatar: cloudinaryResponse.secure_url,
     });
+
     await newUser.save();
-
-    // const newBusiness = new Business
-    const existingBusiness = await Business.findOne({ email });
-    if (existingBusiness || existingUser) {
-      return res
-        .status(400)
-        .json({ message: "User already exists as a business or customer" });
-    }
-    const hashedBusinessPassword = await bcrypt.hash(businessPassword, 10);
-
-    const newBusiness = new Business({
-      businessName,
-      businessEmail,
-      businessPassword: hashedBusinessPassword,
-      businessLocation,
-      businessActive,
-    });
-    await newBusiness.save();
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
@@ -50,7 +55,6 @@ exports.register = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 exports.registerBusiness = async (req, res) => {
   try {
     const {
@@ -59,6 +63,7 @@ exports.registerBusiness = async (req, res) => {
       businessPassword,
       businessLocation,
       businessActive,
+      businessAvatar,
     } = req.body;
 
     // Check if the email is already associated with a user or a business
@@ -79,16 +84,22 @@ exports.registerBusiness = async (req, res) => {
       businessName,
       businessEmail,
       businessPassword: hashedBusinessPassword,
-      businessLocation: businessLocation || 'Egypt',
+      businessLocation: businessLocation || "Egypt",
       businessActive: businessActive || true,
+      businessAvatar: businessAvatar || "",
     });
 
     await newBusiness.save();
 
-    console.log("New business registered:", newBusiness);
+    // console.log("New business registered:", newBusiness);
 
     // Respond with a success message or any relevant data
-    res.status(201).json({ message: "Business registration successful", business: newBusiness });
+    res
+      .status(201)
+      .json({
+        message: "Business registration successful",
+        business: newBusiness,
+      });
   } catch (error) {
     // Handle any errors that occurred during the registration process
     console.error("Error in registerBusiness:", error);
@@ -160,18 +171,19 @@ exports.loginBusiness = async (req, res) => {
   }
 };
 
-
 exports.getUser = async (req, res) => {
   try {
     // You can access the user details from the request object
-    const user = req.user;
-    //console.log(req.user);
-    //res.json(user);
+    const user = req?.user;
+    
+    console.log(`firstName --- >${JSON.stringify(req?.user)}`);
+
     res.status(200).json({
-      userId: user.userId,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      userId: user?.userId,
+      email: user?.email,
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      avatar: user?.avatar,
     });
   } catch (error) {
     console.error(error);
@@ -182,13 +194,13 @@ exports.getUser = async (req, res) => {
 exports.getBusiness = async (req, res) => {
   try {
     // You can access the user details from the request object
-    const business = req.business;
-    console.log(req.business);
+    const business = req?.business;
+    //console.log(req?.business);
     //res.json(user);
     res.status(200).json({
-      businessId: business.businessId,
-      businessEmail: business.businessEmail,
-      businessName: business.businessName,
+      businessId: business?.businessId,
+      businessEmail: business?.businessEmail,
+      businessName: business?.businessName,
     });
   } catch (error) {
     console.error(error);
@@ -228,6 +240,23 @@ exports.register = async (req, res) => {
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+exports.updateAvatar = async (req, res) => {
+  const { avatar , avatarLink} = req.body;
+
+  try {
+    // Assuming you have a user ID available in req.user.userId
+    const userId = req.user.userId;
+
+    // Update the user's avatar in the database
+    await User.findByIdAndUpdate(userId, { avatar:avatarLink });
+
+    res.status(200).json({ message: "User avatar updated successfully" });
+  } catch (error) {
+    console.error("Error updating user avatar:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };

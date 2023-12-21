@@ -9,16 +9,13 @@ interface PersonalAccountFormProps {
     lastName: string;
     email: string;
     password: string;
+    avatar?: string;
   };
   handleRegister: () => void;
   setUser: React.Dispatch<
-    React.SetStateAction<{
-      firstName: string;
-      lastName: string;
-      email: string;
-      password: string;
-    }>
+    React.SetStateAction<User>
   >;
+  
 }
 
 const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
@@ -26,15 +23,21 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
   handleRegister,
   setUser,
 }) => {
-  const [localUser, setLocalUser] = useState(user);
+  const [localUser, setLocalUser] = useState<User>(user);
+
 
   const handleChange = (field: string, value: string) => {
-    const updatedUser: User = { ...localUser, [field]: value };
+    const updatedUser: User = {
+      ...localUser,
+      [field]: value, // Update the specific field in the updatedUser
+    };
     setLocalUser(updatedUser);
     setUser(updatedUser);
   };
+  const { firstName, lastName, email, password, avatar } = localUser;
 
-  const { firstName, lastName, email, password } = localUser;
+  //console.log(avatar);
+  // console.log(`https://res-console.cloudinary.com/dmbzzkneb/media_explorer_thumbnails/${myImage}`)
 
   return (
     <form className="app__paform">
@@ -42,6 +45,7 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
         <input
           type="text"
           id="firstName"
+          required
           value={firstName}
           placeholder="First Name"
           className="app__paform-inputAlt"
@@ -50,6 +54,8 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
         <input
           type="text"
           id="lastName"
+          required
+
           value={lastName}
           placeholder="Last Name"
           className="app__paform-inputAlt"
@@ -57,6 +63,7 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
         />
         <input
           id="email"
+          required
           type="email"
           value={email}
           placeholder="Email"
@@ -65,6 +72,8 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
           onChange={(e) => handleChange("email", e.target.value)}
         />
         <input
+        
+
           id="password"
           type="password"
           value={password}
@@ -73,6 +82,16 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
           className="app__paform-input"
           onChange={(e) => handleChange("password", e.target.value)}
         />
+        <input
+        id="avatar"
+        type="text"
+        hidden
+        value={avatar}
+        className="app__paform-Btn"
+        onChange={(e) => handleChange("avatar", e.target.value)}
+        />
+        {/*ADD HIDDEN INPUT WITH IMAGE URL */}
+
         <button onClick={handleRegister} className="app__paform-Btn">
           Register
         </button>

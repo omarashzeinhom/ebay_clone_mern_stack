@@ -6,9 +6,12 @@ const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const bodyParser = require("body-parser");
+//const cloudinary = require("cloudinary").v2;
 
 const app = express();
 const port = process.env.PORT || 5007;
+
+
 
 // CORS configuration
 const corsOptions = {

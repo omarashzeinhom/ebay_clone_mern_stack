@@ -15,7 +15,7 @@ const RegisterForm: React.FC = () => {
     firstName: "",
     lastName: "",
     email: "",
-    avatar: "",
+    avatar: "" , 
     password: "",
   });
 
@@ -25,15 +25,17 @@ const RegisterForm: React.FC = () => {
     businessPassword: "",
     businessLocation: "",
     businessActive: true || false,
+    businesssAvatar: "" || undefined ,
   });
 
-  const { firstName, lastName, email, password } = user;
+  const { firstName, lastName, email, password, avatar } = user;
   const {
     businessName,
     businessEmail,
     businessPassword,
     businessLocation,
     businessActive,
+    businesssAvatar,
   } = business;
 
   //DEBUG User
@@ -44,11 +46,11 @@ const RegisterForm: React.FC = () => {
   // console.log(businessName, businessEmail, businessPassword, businessLocation )
 
   const handleRegister = async () => {
-    console.log(accountType);
+    //console.log(accountType);
     try {
       if (accountType === "Personal account") {
         console.log(email, user.password);
-        await authService.register(firstName, lastName, email, password);
+        await authService.register(firstName, lastName, email, password, avatar || " ");
       } else if (accountType === "Business account") {
         console.log(businessEmail, businessPassword);
         // Implement the registration logic for the business account
@@ -56,6 +58,7 @@ const RegisterForm: React.FC = () => {
           businessName &&
           businessEmail &&
           businessPassword &&
+          (businesssAvatar || "") &&
           businessActive !== undefined
         ) {
           await authService.registerBusiness(
@@ -63,11 +66,12 @@ const RegisterForm: React.FC = () => {
             businessEmail,
             businessPassword,
             businessLocation || "",
-            businessActive
+            businessActive || true,
+            businesssAvatar || "",
           );
         }
       }
-
+  
       console.log("Registration was successful");
     } catch (error) {
       console.error(`Registration failed due to: ${error}`);
@@ -118,8 +122,8 @@ const RegisterForm: React.FC = () => {
 
           {accountType === "Personal account" && (
             <PersonalAccountForm
-              user={user}
-              handleRegister={handleRegister}
+            user={user}
+            handleRegister={handleRegister}
               setUser={setUser}
             />
           )}

@@ -11,5 +11,6 @@ router.post("/register", authController.register);
 router.post("/registerb", authController.registerBusiness);
 router.get("/business", verifyToken, authController.getBusiness); 
 router.get("/user", verifyToken, authController.getUser); 
+router.patch("/update-avatar", verifyToken, authController.updateAvatar);
 
 module.exports = router;

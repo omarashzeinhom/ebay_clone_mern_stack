@@ -1,19 +1,20 @@
 import "./Nav.scss";
 import { FaRegBell } from "react-icons/fa";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { navItems, myEbayItems } from "../../utilities/constants";
 import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
 type NavProps = {
   total: number;
-}
+};
 
 const Nav: React.FC<NavProps> = ({ total }) => {
-  const { token, user, logout,business } = useAuth();
+  const { token, user, logout, business,fetchUserInformation } = useAuth();
   //const [business, setBusiness] = useState<Business>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  // const { userId, businessId } = useParams();
+  //console.log(userId, businessId);
   const navigate = useNavigate();
 
   const handleLogOut = () => {
@@ -45,7 +46,19 @@ const Nav: React.FC<NavProps> = ({ total }) => {
   };
 
 
+  useEffect(()=>{
+    fetchUserInformation(`${token}`);
+    console.log(user);
+  },[])
 
+  const userIdInfo = `${user?.firstName?.slice(0, 5)}${user?.userId?.slice(
+    1,
+    7
+  )}`;
+  const businessIdInfo = `${business?.businessName?.slice(
+    0,
+    5
+  )}  ${business?.businessId?.slice(1, 10)}`;
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
       <div className="app__nav-mobile-icon" onClick={handleMobileMenuToggle}>
@@ -62,26 +75,26 @@ const Nav: React.FC<NavProps> = ({ total }) => {
               onChange={(e) => {
                 if (e.target.value === "logout") {
                   handleLogOut();
-                } else {
+                } else if (user?.userId) {
                   navigate(`/user/${user?.userId}`);
+                } else if (business?.businessId) {
+                  navigate(`/business/${business?.businessId}`);
+                } else {
+                  navigate(`/signin`);
                 }
               }}
             >
               <option value="">
                 Hi,{" "}
-                {business?.businessName ||
-                  user?.firstName ||
-                  business?.businessEmail ||
+                {user?.firstName ||
                   user?.email ||
+                  business?.businessName ||
+                  business?.businessEmail ||
                   "User"}
                 !
               </option>
               <option onClick={handleRoute}>
-                {user?.userId?.slice(1, 7) ||
-                  `${business?.businessName.slice(0, 5)}
-                 ${business?.businessId?.slice(1, 10)}` ||
-                  " "}
-                !
+                {userIdInfo || businessIdInfo || "User"}!
               </option>
               <option value="logout">Sign out</option>
             </select>
@@ -131,7 +144,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
             </a>
           </li>
           <li className="app__nav-rightItem">
-              <ShoppingCart  total={total}/>
+            <ShoppingCart total={total} />
           </li>
         </div>
       </ul>
