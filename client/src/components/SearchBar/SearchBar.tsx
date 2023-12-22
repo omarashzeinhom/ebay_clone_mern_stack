@@ -29,10 +29,10 @@ export default function SearchBar() {
   const groupedCategories: { [key: string]: Category[] } = {};
   categories.forEach((category) => {
     if (category.parent) {
-      if (!groupedCategories[category.parent]) {
-        groupedCategories[category.parent] = [];
+      if (!groupedCategories[category?.name]) {
+        groupedCategories[category?.name] = [];
       }
-      groupedCategories[category.parent].push(category);
+      groupedCategories[category?.name].push(category);
     } else {
       if (!groupedCategories["Others"]) {
         groupedCategories["Others"] = [];
