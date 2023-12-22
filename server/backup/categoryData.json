@@ -29,6 +29,11 @@
     "img": "https://source.unsplash.com/featured/?men"
   },
   {
+    "name": "Furniture & Decor",
+    "parent": "Household goods",
+    "img": "https://source.unsplash.com/featured/?furniture"
+  },
+  {
     "name": "Handbags",
     "parent": "Clothing & Accessories",
     "img": "https://source.unsplash.com/featured/?handbag"
@@ -67,6 +72,11 @@
     "name": "Computers, Tablets & Network Hardware",
     "parent": "Electronics",
     "img": "https://source.unsplash.com/featured/?computer"
+  },
+   {
+    "name": "Smart home devices",
+    "parent": "Electronics",
+    "img": "https://source.unsplash.com/featured/?smarthome"
   },
   {
     "name": "Cell Phones, Smart Watches & Accessories",
@@ -174,7 +184,19 @@
     "img": "https://source.unsplash.com/featured/?hvac"
   },
   {
-    "name": "Audio equipment",
+    "name": "Personal Grooming & Health",
+    "parent": "Health & Personal Care",
+    "img": "https://source.unsplash.com/featured/?grooming"
+
+  },
+  {
+    "name": "Bath & Shower",
+    "parent": "Health & Personal Care",
+    "img": "https://source.unsplash.com/featured/?showerproducts"
+
+  },
+  {
+    "name": "Audio & Video Equipment",
     "parent": "Household goods",
     "img": "https://source.unsplash.com/featured/?audio"
   },
@@ -209,8 +231,13 @@
     "img": "https://source.unsplash.com/featured/?crafts"
   },
   {
-    "name": "Gym & fitness equipment",
+    "name": "Fitness & Exercise",
     "parent": "Sports & Fitness",
+    "img": "https://source.unsplash.com/featured/?gym"
+  },
+  {
+    "name": "Relaxation & Meditation",
+    "parent": "Health & Personal Care",
     "img": "https://source.unsplash.com/featured/?gym"
   },
   {
@@ -222,6 +249,27 @@
     "name": "Cycling & Fitness bikes",
     "parent": "Sports & Fitness",
     "img": "https://source.unsplash.com/featured/?cyclingfitness"
+  },
+  {
+    "name": "Indoor Living & Home",
+    "parent": "Household goods",
+    "img": "https://source.unsplash.com/featured/?indoor"
+  },
+  {
+    "name": "Outdoor Living & Home",
+    "parent": "Household goods",
+    "img": "https://source.unsplash.com/featured/?outdoor"
+  },
+  {
+    "name": "Entertainment & Toys",
+    "parent": "Kids Toys",
+    "img": "https://source.unsplash.com/featured/?Toys"
+
+  },
+  {
+    "name": "Electronics & Technology",
+    "parent": "Electronics",
+    "img": "https://source.unsplash.com/featured/?Toys"
   },
   {
     "name": "Indoor & outdoor sports equipment",
@@ -309,10 +357,16 @@
     "img": "https://source.unsplash.com/featured/?dinnerwaretableware"
   },
   {
-    "name": "Barware & Restaurant supplies",
+    "name": "Restaurant supplies",
     "parent": "Kitchen & Cookware",
     "img": "https://source.unsplash.com/featured/?barwarerestaurant"
   },
+  {
+    "name": "Pet Supplies",
+    "parent": "Pets",
+    "img": "https://source.unsplash.com/featured/?barwarerestaurant"
+  },
+  
   {
     "name": "Medical & healthcare equipment",
     "parent": "Health & Personal Care",
@@ -379,7 +433,11 @@
     "parent": "Sports & Outdoors",
     "img": "https://source.unsplash.com/featured/?outdoorrecreation"
   },
-
+  {
+    "name": "Water Sports & Outdoors",
+    "parent": "Sports & Outdoors",
+    "img": "https://source.unsplash.com/featured/?watersports"
+  },
   {
     "name": "Personal Transportation",
     "parent": "Auto, Transport & Industrial",
@@ -390,5 +448,11 @@
     "name": "Computer & Office Equipment",
     "parent": "Professional & Technical",
     "img": "https://source.unsplash.com/featured/?computerofficeequipment"
-  }
+  },
+  {
+    "name": "Luggage & Travel",
+    "parent": "Travelling Equipment",
+    "img": "https://source.unsplash.com/featured/?computerofficeequipment" 
+  },
+  {}
 ]
