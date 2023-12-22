@@ -1,5 +1,5 @@
 // BusinessAccountForm.tsx
-import React from "react";
+import React, { useState } from "react";
 import { Business } from "../../../models/business";
 import "./styles/BusinessAccountForm.scss";
 
@@ -14,20 +14,28 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
   handleRegister,
   setBusiness,
 }) => {
-  const { businessName, businessEmail, businessPassword, businessLocation } =
-    business;
 
+    const [localBusiness, setLocalBusiness] = useState<Business>(business);
+
+    const handleChange = (field: string, value: string) => {
+      const updatedBusiness: Business = {
+        ...localBusiness,
+        [field]: value, // Update the specific field in the updatedUser
+      };
+      setLocalBusiness( updatedBusiness);
+      setBusiness( updatedBusiness);
+    };
+    const { businessName, businessEmail, businessPassword, businessLocation } = localBusiness;
   return (
-    <form className="app__baform" onClick={handleRegister}>
+    <div className="app__baform">
+      <form>
       <input
         type="text"
         id="businessName"
         value={businessName}
         placeholder="Business Name"
         className="app__baform-input"
-        onChange={(e) =>
-          setBusiness({ ...business, businessName: e.target.value })
-        }
+        onChange={(e) => handleChange("businessName", e.target.value)}
       />
       <input
         type="email"
@@ -36,9 +44,8 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         autoComplete="email"
         placeholder="Business Email"
         className="app__baform-input"
-        onChange={(e) =>
-          setBusiness({ ...business, businessEmail: e.target.value })
-        }
+        onChange={(e) => handleChange("businessEmail", e.target.value)}
+
       />
       <input
         type="password"
@@ -47,25 +54,28 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         placeholder="Business Password"
         className="app__baform-input"
         autoComplete="current-password"
-        onChange={(e) =>
-          setBusiness({ ...business, businessPassword: e.target.value })
-        }
+        onChange={(e) => handleChange("businessPassword", e.target.value)}
+
       />
       <select
         id="businessLocation"
         value={businessLocation }
         className="app__baform-input"
-        onChange={(e) =>
-          setBusiness({ ...business, businessLocation: e.target.value })
-        }
+        onChange={(e) => handleChange("businessLocation", e.target.value)}
+
       >
         <option>Egypt</option>
       </select>
 
-      <button className="app__baform-Btn">
+      <button className="app__baform-Btn" onClick={handleRegister}>
         Register
       </button>
-    </form>
+      </form>
+      
+      <small>
+        <p>Already have an account?</p> <a href="/signin">SignIn!</a>
+      </small>
+    </div>
   );
 };
 

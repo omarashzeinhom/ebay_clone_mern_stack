@@ -24,8 +24,7 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-// Routes
-app.use("/auth", authRoutes);
+
 // Define a route for the root URL
 app.get("/", (req, res) => {
   res.send("Hello, this is the root route!");
@@ -57,7 +56,8 @@ app.get("/auth/loginb", (req, res) => {
   //res.send(email,password);
   res.send("Hello, this is the Business login route!");
 });
-
+// Routes
+app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/business", authRoutes);

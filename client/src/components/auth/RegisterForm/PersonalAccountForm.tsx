@@ -4,13 +4,7 @@ import { User } from "../../../models/user";
 import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
 
 interface PersonalAccountFormProps {
-  user: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    avatar?: string;
-  };
+  user: User;
   handleRegister: () => void;
   setUser: React.Dispatch<
     React.SetStateAction<User>

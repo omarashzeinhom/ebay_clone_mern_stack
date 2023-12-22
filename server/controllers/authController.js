@@ -24,13 +24,8 @@ exports.register = async (req, res) => {
   const { firstName, lastName, email, password, avatar } = req.body;
   // console.log(avatar);
 
-
   try {
     // Upload avatar to Cloudinary
-    const cloudinaryResponse = await cloudinary.v2.uploader.upload(avatar, {
-      folder: "ebay-clone-images/user-avatars",
-    });
-
     // console.log(cloudinaryResponse);
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -44,7 +39,7 @@ exports.register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      avatar: cloudinaryResponse.secure_url,
+      avatar,
     });
 
     await newUser.save();
@@ -208,41 +203,7 @@ exports.getBusiness = async (req, res) => {
   }
 };
 
-exports.register = async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
 
-  try {
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-    });
-    await newUser.save();
-
-    // Check for existing business using businessEmail
-    const existingBusiness = await Business.findOne({ businessEmail: email });
-    if (existingBusiness) {
-      return res
-        .status(400)
-        .json({ message: "User already exists as a business" });
-    }
-
-    // Add the business registration logic here...
-
-    res.status(201).json({ message: "User registered successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
 
 exports.updateAvatar = async (req, res) => {
   const { avatar , avatarLink} = req.body;

@@ -25,7 +25,7 @@ const RegisterForm: React.FC = () => {
     businessPassword: "",
     businessLocation: "",
     businessActive: true || false,
-    businesssAvatar: "" || undefined ,
+    businessAvatar: "" || undefined ,
   });
 
   const { firstName, lastName, email, password, avatar } = user;
@@ -35,7 +35,7 @@ const RegisterForm: React.FC = () => {
     businessPassword,
     businessLocation,
     businessActive,
-    businesssAvatar,
+    businessAvatar,
   } = business;
 
   //DEBUG User
@@ -58,7 +58,7 @@ const RegisterForm: React.FC = () => {
           businessName &&
           businessEmail &&
           businessPassword &&
-          (businesssAvatar || "") &&
+          (businessAvatar || "") &&
           businessActive !== undefined
         ) {
           await authService.registerBusiness(
@@ -67,7 +67,7 @@ const RegisterForm: React.FC = () => {
             businessPassword,
             businessLocation || "",
             businessActive || true,
-            businesssAvatar || "",
+            businessAvatar || "",
           );
         }
       }

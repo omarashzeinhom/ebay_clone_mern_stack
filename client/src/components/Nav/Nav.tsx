@@ -1,7 +1,7 @@
 import "./Nav.scss";
 import { FaRegBell } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { navItems, myEbayItems } from "../../utilities/constants";
 import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
@@ -10,7 +10,7 @@ type NavProps = {
 };
 
 const Nav: React.FC<NavProps> = ({ total }) => {
-  const { token, user, logout, business,fetchUserInformation } = useAuth();
+  const { token, user, logout, business } = useAuth();
   //const [business, setBusiness] = useState<Business>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const { userId, businessId } = useParams();
@@ -44,12 +44,6 @@ const Nav: React.FC<NavProps> = ({ total }) => {
       console.error("User and business have no ID");
     }
   };
-
-
-  useEffect(()=>{
-    fetchUserInformation(`${token}`);
-    console.log(user);
-  },[])
 
   const userIdInfo = `${user?.firstName?.slice(0, 5)}${user?.userId?.slice(
     1,
@@ -94,7 +88,13 @@ const Nav: React.FC<NavProps> = ({ total }) => {
                 !
               </option>
               <option onClick={handleRoute}>
-                {userIdInfo || businessIdInfo || "User"}!
+                User Profile:{" "}
+                {userIdInfo ||
+                  user?.userId ||
+                  business?.businessId ||
+                  businessIdInfo ||
+                  "User Profile"}
+                !
               </option>
               <option value="logout">Sign out</option>
             </select>

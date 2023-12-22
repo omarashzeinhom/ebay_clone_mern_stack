@@ -8,7 +8,7 @@ export const categoriesService = {
     parent: string = "",
     img: string = ""
   ): Promise<any> => {
-    const response = await axios.get(API_BASE_URL, {
+    const response = await axios.get("http://localhost:3001/categories", {
       params: { name, parent, img }, // Pass the parameters as query parameters
     });
     return response.data;
