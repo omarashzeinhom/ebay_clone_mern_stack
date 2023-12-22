@@ -171,11 +171,7 @@
     "parent": "Education & Training",
     "img": "https://source.unsplash.com/featured/?educationtaid"
   },
-  {
-    "name": "Learning & educational aids",
-    "parent": "Education & Training",
-    "img": "https://source.unsplash.com/featured/?learningeducationalaids"
-  },
+ 
   {
     "name": "Library & office equipment",
     "parent": "Education & Training",
