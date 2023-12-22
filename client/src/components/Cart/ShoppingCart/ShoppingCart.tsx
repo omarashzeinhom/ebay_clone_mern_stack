@@ -11,10 +11,9 @@ import React from "react";
 
 type ShoppingCartProps = {
   total: number; // Add total as a prop
-
 };
 
-export default function ShoppingCart({  total }: ShoppingCartProps) {
+export default function ShoppingCart({ total }: ShoppingCartProps) {
   const { cartItems, cartQuantity } = useShoppingCart();
   const { products } = useProductContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -43,17 +42,18 @@ export default function ShoppingCart({  total }: ShoppingCartProps) {
             <>
               {cartItems.map((item, index) => (
                 <React.Fragment key={item?.id}>
-                <CartItem
-                  price={item?.price}
-                  parent={item?.parent}
-                  _id={item?._id}
-                  name={item?.name}
-                  img={item?.img}
-                  id={item?.id}
-                  quantity={item?.quantity}
-                />
-                <hr />
-              </React.Fragment>
+                  <CartItem
+                    price={item?.price}
+                    parent={item?.parent}
+                    _id={item?._id}
+                    name={item?.name}
+                    img={item?.img}
+                    id={item?.id}
+                    quantity={item?.quantity}
+                    category={item?.category}
+                  />
+                  <hr />
+                </React.Fragment>
               ))}
             </>
           )}
@@ -73,7 +73,7 @@ export default function ShoppingCart({  total }: ShoppingCartProps) {
               }, 0)
             )}
           </div>
-          <Checkout total={total}/>
+          <Checkout total={total} />
         </div>
       </div>
     </>

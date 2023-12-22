@@ -11,7 +11,7 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const { token, user, logout, business } = useAuth();
-  console.log(business);
+  console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business)}`);
   //const [business, setBusiness] = useState<Business>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const { userId, businessId } = useParams();

@@ -22,8 +22,8 @@ const ProductList: React.FC<ProductListProps> = () => {
   //DEBUG console.log(categoryName);
 
   const filteredProducts = categoryName
-    ? products.filter((product) => product?.parent === categoryName)
-    : products.filter((product) => categoryName === product?.parent);
+    ? products.filter((product) => product?.category  === categoryName)
+    : products.filter((product) => categoryName === product?.category);
 
   //DEBUG console.log(filteredProducts);
 

@@ -11,9 +11,8 @@ interface CategoryListProps {
   total: number;
 }
 
-const CategoryList: React.FC<CategoryListProps> = ({total}) => {
+const CategoryList: React.FC<CategoryListProps> = ({ total }) => {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -23,6 +22,7 @@ const CategoryList: React.FC<CategoryListProps> = ({total}) => {
       try {
         const data = await categoriesService.getAllCategories();
         setCategories(data);
+        console.log(`fetchCategories data is -->${data}`);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -33,7 +33,7 @@ const CategoryList: React.FC<CategoryListProps> = ({total}) => {
 
   const groupedCategories: { [parent: string]: Category[] } = {};
   categories.forEach((category) => {
-    const parent = category.parent || "Other";
+    const parent = category?.parent || "Other";
     if (!groupedCategories[parent]) {
       groupedCategories[parent] = [];
     }
@@ -45,31 +45,28 @@ const CategoryList: React.FC<CategoryListProps> = ({total}) => {
   ) => {
     const selectedCategory = event.target.value;
     // console.log("Selected Category:", selectedCategory);
-    
+
     // Extract only the category name from the full path
-    const categoryName = decodeURIComponent(selectedCategory.replace('/category/', ''));
-    
+    const categoryName = decodeURIComponent(
+      selectedCategory.replace("/category/", "")
+    );
+
     // console.log(categoryName);
-    setSelectedCategory(categoryName);
-    
+
     if (categoryName) {
       navigate(`/category/${encodeURIComponent(categoryName)}`);
     } else {
       navigate("/products");
     }
   };
-  
+
   return (
     <>
-      <Nav total={total}/>
+      <Nav total={total} />
       <SearchBar />
       <div className="app-category__list">
         <h2>Categories</h2>
-        <select
-          onChange={handleCategoryChange}
-          name="handleCategoryList"
-          value={selectedCategory}
-        >
+        <select onChange={handleCategoryChange} name="handleCategoryList">
           {Object.entries(groupedCategories).map(([parent, categoryList]) => (
             <optgroup label={parent} key={parent}>
               {categoryList.map((category) => (
