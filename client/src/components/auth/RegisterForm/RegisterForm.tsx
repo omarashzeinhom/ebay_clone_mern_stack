@@ -15,7 +15,6 @@ const RegisterForm: React.FC = () => {
     firstName: "",
     lastName: "",
     email: "",
-    avatar: "" , 
     password: "",
   });
 
@@ -25,17 +24,15 @@ const RegisterForm: React.FC = () => {
     businessPassword: "",
     businessLocation: "",
     businessActive: true || false,
-    businessAvatar: "" || undefined ,
   });
 
-  const { firstName, lastName, email, password, avatar } = user;
+  const { firstName, lastName, email, password } = user;
   const {
     businessName,
     businessEmail,
     businessPassword,
     businessLocation,
     businessActive,
-    businessAvatar,
   } = business;
 
   //DEBUG User
@@ -50,7 +47,7 @@ const RegisterForm: React.FC = () => {
     try {
       if (accountType === "Personal account") {
         console.log(email, user.password);
-        await authService.register(firstName, lastName, email, password, avatar || " ");
+        await authService.register(firstName, lastName, email, password, );
       } else if (accountType === "Business account") {
         console.log(businessEmail, businessPassword);
         // Implement the registration logic for the business account
@@ -58,7 +55,6 @@ const RegisterForm: React.FC = () => {
           businessName &&
           businessEmail &&
           businessPassword &&
-          (businessAvatar || "") &&
           businessActive !== undefined
         ) {
           await authService.registerBusiness(
@@ -67,7 +63,6 @@ const RegisterForm: React.FC = () => {
             businessPassword,
             businessLocation || "",
             businessActive || true,
-            businessAvatar || "",
           );
         }
       }

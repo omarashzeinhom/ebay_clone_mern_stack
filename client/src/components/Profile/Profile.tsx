@@ -7,17 +7,14 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import { useState } from "react";
 import CloudinaryUploadWidget from "../auth/RegisterForm/CloudinaryUploadWidget/CloudinaryUploadWidget";
 import axios from "axios"; // Import axios for making HTTP requests
-import { User } from "../../models/user";
 
 type ProfileProps = {
   total: number;
 };
 
 export default function Profile<User>({ total }: ProfileProps) {
-  const [updatedUser, setUpdatedUser] = useState<User>();
   const [isEditing, setIsEditing] = useState("");
-  const { user, business, token , setUser , fetchUserInformation} = useAuth();
-  const navigate = useNavigate();
+  const { user, business, token  } = useAuth();
   const { businessId, userId } = useParams();
 
   console.log(userId);
@@ -50,7 +47,7 @@ export default function Profile<User>({ total }: ProfileProps) {
   });
 
   const myImage = cld.image(publicId);
-  console.log(user?.avatar );
+  console.log(myImage);
 
   const handleImageUpload = async (url: string) => {
     try {
@@ -60,15 +57,7 @@ export default function Profile<User>({ total }: ProfileProps) {
       });
 
       // Update the local user state with the new avatar
-      setUser((prevUser) => {
-        if (prevUser) {
-          return {
-            ...prevUser,
-            avatar: user?.avatar,
-          };
-        }
-        return prevUser;
-      });
+     
 
       // Update the avatar information in local storage
       const storedUser = localStorage.getItem("user");

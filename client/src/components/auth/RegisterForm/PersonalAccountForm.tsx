@@ -34,7 +34,7 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
   // console.log(`https://res-console.cloudinary.com/dmbzzkneb/media_explorer_thumbnails/${myImage}`)
 
   return (
-    <form className="app__paform">
+    <form className="app__paform" method="POST">
       <div className="app__paform-left">
         <input
           type="text"
@@ -86,7 +86,7 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
         />
         {/*ADD HIDDEN INPUT WITH IMAGE URL */}
 
-        <button onClick={handleRegister} className="app__paform-Btn">
+        <button onClick={handleRegister} className="app__paform-Btn" type="button" >
           Register
         </button>
       </div>

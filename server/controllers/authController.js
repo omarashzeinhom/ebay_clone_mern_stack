@@ -6,7 +6,7 @@ const User = require("../models/userModel");
 const Business = require("../models/businessModel");
 const cloudinary = require("cloudinary").v2;
 
-// Cloudinary configuration 
+// Cloudinary configuration
 // Return "https" URLs by setting secure: true
 cloudinary.config({
   secure: true,
@@ -50,6 +50,7 @@ exports.register = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 exports.registerBusiness = async (req, res) => {
   try {
     const {
@@ -60,6 +61,8 @@ exports.registerBusiness = async (req, res) => {
       businessActive,
       businessAvatar,
     } = req.body;
+
+    console.log("Received business registration request:", req.body);
 
     // Check if the email is already associated with a user or a business
     const existingUser = await User.findOne({ businessEmail });
@@ -85,16 +88,14 @@ exports.registerBusiness = async (req, res) => {
     });
 
     await newBusiness.save();
+    console.log(`New business registered: -->>> ${newBusiness}`);
 
-    // console.log("New business registered:", newBusiness);
 
     // Respond with a success message or any relevant data
-    res
-      .status(201)
-      .json({
-        message: "Business registration successful",
-        business: newBusiness,
-      });
+    res.status(201).json({
+      message: "Business registration successful",
+      business: newBusiness,
+    });
   } catch (error) {
     // Handle any errors that occurred during the registration process
     console.error("Error in registerBusiness:", error);
@@ -166,12 +167,13 @@ exports.loginBusiness = async (req, res) => {
   }
 };
 
+
 exports.getUser = async (req, res) => {
   try {
     // You can access the user details from the request object
     const user = req?.user;
-    
-    console.log(`firstName --- >${JSON.stringify(req?.user)}`);
+
+    console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
 
     res.status(200).json({
       userId: user?.userId,
@@ -203,17 +205,15 @@ exports.getBusiness = async (req, res) => {
   }
 };
 
-
-
 exports.updateAvatar = async (req, res) => {
-  const { avatar , avatarLink} = req.body;
+  const { avatar, avatarLink } = req.body;
 
   try {
     // Assuming you have a user ID available in req.user.userId
     const userId = req.user.userId;
 
     // Update the user's avatar in the database
-    await User.findByIdAndUpdate(userId, { avatar:avatarLink });
+    await User.findByIdAndUpdate(userId, { avatar: avatarLink });
 
     res.status(200).json({ message: "User avatar updated successfully" });
   } catch (error) {

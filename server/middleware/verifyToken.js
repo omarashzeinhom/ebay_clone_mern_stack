@@ -1,6 +1,3 @@
-const jwt = require("jsonwebtoken");
-const secretKey = process.env.JWT_SECRET;
-
 module.exports = (req, res, next) => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
 
@@ -8,9 +5,15 @@ module.exports = (req, res, next) => {
 
   try {
     const verified = jwt.verify(token, secretKey);
-    req.user = verified;
 
-    req.business = verified;
+    // If it's a regular user
+    if (verified.userId) {
+      req.user = verified;
+    }
+    // If it's a business
+    else if (verified.businessId) {
+      req.business = verified;
+    }
 
     next();
   } catch (error) {

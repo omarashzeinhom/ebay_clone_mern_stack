@@ -10,15 +10,13 @@ export const authService = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
-    avatar: string,
+    password: string
   ): Promise<void> => {
     await axios.post(`${API_BASE_URL}/register`, {
       firstName,
       lastName,
       email,
       password,
-      avatar,
     });
   },
 
@@ -45,8 +43,7 @@ export const authService = {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(response?.data)
-      return response?.data;
+      return response.data;
     } catch (error) {
       throw new Error(`Failed to get user: ${error}`);
     }
@@ -61,7 +58,6 @@ export const authService = {
     businessPassword: string,
     businessLocation: string,
     businessActive: boolean,
-    businessAvatar: string,
   ): Promise<void> => {
     try {
       const response = await axios.post(`${API_BASE_URL}/registerb`, {
@@ -70,7 +66,6 @@ export const authService = {
         businessPassword,
         businessLocation,
         businessActive,
-        businessAvatar,
       });
 
       console.log("Business registration response:", response.data);
