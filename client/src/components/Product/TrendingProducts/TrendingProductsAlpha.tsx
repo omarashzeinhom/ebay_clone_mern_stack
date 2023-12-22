@@ -19,7 +19,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
   }, []);
 
   const filteredProducts = products.filter(
-    (product) => product?.parent === "Collectible Sneakers"
+    (product) => product?.category === "Collectible Sneakers"
   );
 
   return (

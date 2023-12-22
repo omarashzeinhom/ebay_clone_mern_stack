@@ -20,7 +20,7 @@ const TrendingProducts: React.FC<TrendingProductsProps> = () => {
   }, []);
 
   const filteredProducts = products.filter(
-    (product) => product?.parent === "Video Games & Consoles"
+    (product) => product?.category === "Video Games & Consoles"
   );
 
   return (
