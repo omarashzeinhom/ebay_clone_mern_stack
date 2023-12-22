@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./Profile.scss";
 import { useAuth } from "../../context/AuthContext";
 import Nav from "../Nav/Nav";
@@ -7,14 +7,15 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import { useState } from "react";
 import CloudinaryUploadWidget from "../auth/RegisterForm/CloudinaryUploadWidget/CloudinaryUploadWidget";
 import axios from "axios"; // Import axios for making HTTP requests
+//import { User } from "../../models/user";
 
 type ProfileProps = {
   total: number;
 };
 
-export default function Profile<User>({ total }: ProfileProps) {
+export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("");
-  const { user, business, token  } = useAuth();
+  const { user, business, token } = useAuth();
   const { businessId, userId } = useParams();
 
   console.log(userId);
@@ -52,12 +53,15 @@ export default function Profile<User>({ total }: ProfileProps) {
   const handleImageUpload = async (url: string) => {
     try {
       // Make a request to your server to store the image URL in MongoDB
-      await axios.patch("http://localhost:3001/auth/update-avatar", { avatar: user?.avatar }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.patch(
+        "http://localhost:3001/auth/update-avatar",
+        { avatar: user?.avatar },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       // Update the local user state with the new avatar
-     
 
       // Update the avatar information in local storage
       const storedUser = localStorage.getItem("user");
@@ -86,60 +90,107 @@ export default function Profile<User>({ total }: ProfileProps) {
   };
 
   const ProfileContainer = () => {
-    return (
-      <div className="app__profile-container">
-        <table>
-          <thead>
-            <tr>
-              <th>User Information</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <h4>Avatar:</h4>
-                <img
-                  src={uploadedImageUrl || user?.avatar}
-                  alt={user?.avatar || "No user avatar uploaded"}
-                  width={25}
-                  height={25}
-                />
+    if (user?.userId || userId) {
+      return (
+        <div className="app__profile-container">
+          <table>
+            <thead>
+              <tr>
+                <th>User Information</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <h4>Avatar:</h4>
+                  <img
+                    src={uploadedImageUrl || user?.avatar}
+                    alt={user?.avatar || "No user avatar uploaded"}
+                    width={25}
+                    height={25}
+                  />
 
-                {/* Add Handle Update the avatar */}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>User Id:</h4>
-                {user?.userId}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>Email:</h4>
-                {user?.email}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>First Name:</h4>
-                <p>{user?.firstName}</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>Last Name:</h4>
-                <p>{user?.lastName}</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
+                  {/* Add Handle Update the avatar */}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>User Id:</h4>
+                  {user?.userId}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Email:</h4>
+                  {user?.email}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>First Name:</h4>
+                  <p>{user?.firstName}</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Last Name:</h4>
+                  <p>{user?.lastName}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      );
+    } else if (business?.businessId || businessId) {
+      return (
+        <div className="app__profile-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Business Information</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <h4>Avatar:</h4>
+                  <img
+                    src={""}
+                    alt={user?.avatar || "No user avatar uploaded"}
+                    width={25}
+                    height={25}
+                  />
+
+                  {/* Add Handle Update the avatar */}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Business Id:</h4>
+                  {business?.businessId}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Email:</h4>
+                  {business?.businessEmail}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h4>Business Name:</h4>
+                  <p>{business?.businessName}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      );
+    }
   };
 
   const handleUserUpdate = () => {
-    const data = " "; // await updateUserUsingId
+    //const data = " "; // await updateUserUsingId
   };
 
   const EditProfileForm = () => {
@@ -196,56 +247,47 @@ export default function Profile<User>({ total }: ProfileProps) {
             </form>
           </>
         )}
-        {businessId && (
-          <>
-            <img src={user?.avatar || " "} alt={user?.email || "User Photo"} />
-            <CloudinaryUploadWidget
-              uwConfig={uwConfig}
-              setPublicId={setPublicId}
-              onSuccess={(result) =>
-                handleUploadSuccess(result?.info?.secure_url)
-              }
-            />
-            <form className="app-profile-edit__form">
-              <label> First Name </label>
-              <input
-                id="firstName"
-                className=""
-                alt=""
-                placeholder={user?.firstName || "John"}
-                type="text"
+        {business?.businessId ||
+          (businessId && (
+            <>
+              <img src={" "} alt={business?.businessEmail || "User Photo"} />
+              <CloudinaryUploadWidget
+                uwConfig={uwConfig}
+                setPublicId={setPublicId}
+                onSuccess={(result) =>
+                  handleUploadSuccess(result?.info?.secure_url)
+                }
               />
-              <label> Last Name </label>
-              <input
-                id="lastName"
-                className=""
-                alt=""
-                placeholder={user?.lastName || "Doe"}
-                type="text"
-              />
-              <label> Email</label>
-              <input
-                id="email"
-                className=""
-                alt=""
-                placeholder={user?.email || "johndoe@email.com"}
-                type="email"
-              />
-              <input
-                id="avatarUrl "
-                className=""
-                alt=""
-                placeholder=""
-                type="text"
-                hidden
-              />
-              <hr />
-              <button onClick={() => handleUserUpdate()}>
-                Update User Info
-              </button>
-            </form>
-          </>
-        )}
+              <form className="app-profile-edit__form">
+                <label>
+                  {" "}
+                  Business Name
+                  <input
+                    id="businessName"
+                    className=""
+                    alt=""
+                    placeholder={business?.businessEmail || "John Doe Inc"}
+                    type="text"
+                  />
+                </label>
+                <label> Email</label>
+                <input
+                  id="businessEmail"
+                  className=""
+                  alt=""
+                  placeholder={
+                    business?.businessEmail || "johndoeinc@email.com"
+                  }
+                  type="email"
+                />
+
+                <hr />
+                <button onClick={() => handleUserUpdate()}>
+                  Update User Info
+                </button>
+              </form>
+            </>
+          ))}
       </div>
     );
   };

@@ -90,7 +90,6 @@ exports.registerBusiness = async (req, res) => {
     await newBusiness.save();
     console.log(`New business registered: -->>> ${newBusiness}`);
 
-
     // Respond with a success message or any relevant data
     res.status(201).json({
       message: "Business registration successful",
@@ -166,7 +165,6 @@ exports.loginBusiness = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 
 exports.getUser = async (req, res) => {
   try {

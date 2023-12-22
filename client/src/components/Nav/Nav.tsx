@@ -11,6 +11,7 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const { token, user, logout, business } = useAuth();
+  console.log(business);
   //const [business, setBusiness] = useState<Business>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const { userId, businessId } = useParams();
@@ -78,7 +79,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
                 }
               }}
             >
-              <option value="">
+              <option value="" className="app__nav-itemLeft">
                 Hi,{" "}
                 {user?.firstName ||
                   user?.email ||
@@ -87,21 +88,21 @@ const Nav: React.FC<NavProps> = ({ total }) => {
                   "User"}
                 !
               </option>
-              <option onClick={handleRoute}>
+              <option onClick={handleRoute} className="app__nav-itemLeft">
                 User Profile:{" "}
                 {userIdInfo ||
                   user?.userId ||
                   business?.businessId ||
-                  businessIdInfo ||
+                  businessIdInfo || business?.businessName ||
                   "User Profile"}
                 !
               </option>
-              <option value="logout">Sign out</option>
+              <option value="logout" className="app__nav-itemLeft">Sign out</option>
             </select>
           ) : (
             <li>
-              Hi! <a href="/signin">Sign in</a> or{" "}
-              <a href="/register">register</a>
+              Hi! <a href="/signin" className="app__nav-item">Sign in</a> or{" "}
+              <a href="/register" >register</a>
             </li>
           )}
         </div>
@@ -122,7 +123,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
         </button>
         <div className="app__nav-right">
           <li className="app__nav-rightItem">
-            <a href="/sell">Sell</a>
+            <a className="app__nav-rightItem" href="/sell">Sell</a>
           </li>
           <li>
             <select
@@ -130,9 +131,9 @@ const Nav: React.FC<NavProps> = ({ total }) => {
               className="app__nav-right-dropDown"
               id="MyEbay"
             >
-              <option hidden>My Ebay</option>
+              <option hidden className="app__nav-rightItem">My Ebay</option>
               {myEbayItems.map((ebayItem, index) => (
-                <option key={index} id={ebayItem?.title}>
+                <option key={index} id={ebayItem?.title} className="app__nav-rightItem">
                   {ebayItem?.title}
                 </option>
               ))}

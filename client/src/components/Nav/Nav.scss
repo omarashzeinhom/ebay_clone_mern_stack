@@ -14,7 +14,7 @@
       display: block;
     }
 
-    .app__nav-items {
+    .app__nav-items,.app__nav-itemLeft {
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -63,6 +63,7 @@
   color: black;
   font-weight: bold;
   padding: 0;
+
 }
 
 .app__nav-item {
@@ -92,6 +93,7 @@
 .app__nav-right-dropDown {
   color: black;
   cursor: pointer;
+  
 }
 
 .app__nav-rightItem:hover {
