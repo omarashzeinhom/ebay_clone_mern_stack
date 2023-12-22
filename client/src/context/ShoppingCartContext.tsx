@@ -2,7 +2,6 @@ import { ReactNode, createContext, useContext } from "react";
 import useLocalStorage from "../hook/useLocalStorage";
 import { CartItemProps } from "../models/cartitem";
 import { Product } from "../models/product";
-import { prettyDOM } from "@testing-library/react";
 
 // Adding Shopping Cart Provider
 
@@ -57,8 +56,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
           id,
           quantity: 1,
           _id: "",
-          name: " ",
-          img: " ",
+          name: "",
+          img: "",
           price: 0,
           category: "",
           parent: "",
@@ -116,7 +115,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     decreaseCartQuantity,
     removefromCart,
     clearCart,
-
     cartItems,
     cartQuantity,
     addItemToCart,

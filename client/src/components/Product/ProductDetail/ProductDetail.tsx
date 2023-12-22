@@ -47,7 +47,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
   //console.log(quantity);
 
   function handleRouting() {
-    navigate(`/category/${encodeURIComponent(product?.parent)}`);
+    navigate(`/category/${encodeURIComponent(product?.category)}`);
   }
 
   return (
@@ -71,7 +71,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
             <em>Category: </em>
           </strong>{" "}
           <button onClick={handleRouting} className="product-detail__button">
-            {product?.parent}
+            {product?.category}
           </button>
         </p>
         <p>

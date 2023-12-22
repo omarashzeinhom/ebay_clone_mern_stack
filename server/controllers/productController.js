@@ -8,8 +8,7 @@ class ProductController {
       if (!products || products.length === 0) {
         return res.status(404).json({ message: "Products not found" });
       }
-      //console.log(products);
-
+      // console.log(products);
       res.json(products);
     } catch (error) {
       console.error(error);

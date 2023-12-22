@@ -11,8 +11,6 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 5007;
 
-
-
 // CORS configuration
 const corsOptions = {
   origin: "*",
@@ -24,13 +22,12 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-
 // Define a route for the root URL
 app.get("/", (req, res) => {
   res.send("Hello, this is the root route!");
 });
 
-// User Routes 
+// User Routes
 app.use("/user", authRoutes);
 
 app.get("/auth/register", (req, res) => {
@@ -38,12 +35,11 @@ app.get("/auth/register", (req, res) => {
 });
 app.get("/auth/login", (req, res) => {
   const { email, password } = req.body;
-  
+
   res.send("Hello, this is the login route!");
 });
 
-
-// Business Routes 
+// Business Routes
 app.use("/user", authRoutes);
 
 app.use("/business", authRoutes);
@@ -52,10 +48,8 @@ app.get("/auth/registerb", (req, res) => {
   res.send("Hello, this is the register business route!");
 });
 app.get("/auth/loginb", (req, res) => {
-  
   res.send("Hello, this is the Business login route!");
 });
-
 
 // Routes
 app.use("/auth", authRoutes);

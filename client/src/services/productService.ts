@@ -10,17 +10,18 @@ export const productService = {
     quantity: number = 0,
     name: string = "",
     price: number = 0,
+    category: string = "",
     parent: string = "",
     img: string = ""
   ): Promise<any> => {
-    const response = await axios.get(API_BASE_URL, {
-      params: { _id, id, quantity, name, price, parent, img },
+    const response = await axios.get(`${API_BASE_URL}`, {
+      params: { _id, id, quantity, name, price, parent, img,category },
     });
     return response.data;
   },
   getProductById: async (productId: string): Promise<Product | undefined> => {
     try {
-      const response = await fetch(`http://localhost:3001/products/${productId}`);
+      const response = await fetch(`${API_BASE_URL}/${productId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch product");
       }
