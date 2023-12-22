@@ -63,13 +63,13 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
       >
         {shuffledData.map((category, index) => (
           <SwiperSlide
-            key={index}
-            onClick={() => handleCategoryClick(category.name)}
+            key={category?.name}
+            onClick={() => handleCategoryClick(category?.name)}
           >
             <div className="app__categories-slide">
-              <img src={category.img} alt={category.name} loading="lazy" />
+              <img src={category?.img} alt={category?.name} loading="lazy" />
               <p className="app__categories-category-name">
-                {category.name.slice(0, 15)}
+                {category?.name}
               </p>
             </div>
           </SwiperSlide>
