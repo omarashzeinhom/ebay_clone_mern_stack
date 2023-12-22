@@ -8,8 +8,6 @@
     "parent": "Motors",
     "category": "Parts & accessories",
     "description": "Ensure smooth and efficient performance with this wheel bearing kit Crafted with precision, it provides durability and reliability, making it an essential part for your vehicle's maintenance"
-
-  
   },
   {
     "id": 2,
@@ -116,7 +114,7 @@
     "name": "Heels",
     "img": "https://sourceunsplashcom/featured/?heels",
     "price": 39999,
-    "category": "Women",
+    "category": "Women Clothing",
     "parent": "Clothing & Accessories",
     "description": "Step into elegance and confidence with these stylish heels Whether for a special occasion or everyday glamour, these heels complement your outfit, making you stand out with every step"
   },
@@ -126,7 +124,7 @@
     "name": "Shoes",
     "img": "https://sourceunsplashcom/featured/?menshoes",
     "price": 19999,
-    "category": "Men",
+    "category": "Men Clothing",
     "parent": "Clothing & Accessories",
     "description": "Experience comfort and style with these versatile shoes for men From casual outings to formal occasions, these shoes are crafted for durability and fashion, ensuring you step out with confidence"
   },
@@ -136,7 +134,7 @@
     "name": "Tailored Shoes",
     "img": "https://sourceunsplashcom/featured/?mentailoredshoe",
     "price": 9999,
-    "category": "Men",
+    "category": "Men Clothing",
     "parent": "Clothing & Accessories",
     "description": "Elevate your look with these tailored shoes for men The perfect blend of sophistication and comfort, these shoes are designed to complement your formal attire and leave a lasting impression"
   },
@@ -146,7 +144,7 @@
     "name": "Handbag",
     "img": "https://sourceunsplashcom/featured/?handbag",
     "price": 9999,
-    "category": "Handbags",
+    "category": "Women Handbags",
     "parent": "Clothing & Accessories",
     "description": "Carry your essentials in style with this chic handbag Featuring a blend of fashion and functionality, this handbag is the perfect accessory to complete your ensemble with flair"
   },
@@ -374,40 +372,40 @@
     "id": 38,
     "quantity": 10,
     "name": "Elegant Dress",
-    "img": "https://sourceunsplashcom/featured/?womendress",
+    "img": "https://sourceunsplashcom/featured/?Women Clothingdress",
     "price": 4999,
     "parent": "Clothing & Accessories",
-    "category": "Women",
+    "category": "Women Clothing",
     "description": "Step into timeless elegance with this elegant dress Crafted with attention to detail, this dress is perfect for special occasions, making you the center of attention with its sophisticated design"
   },
   {
     "id": 39,
     "quantity": 10,
     "name": "Stylish Handbag",
-    "img": "https://sourceunsplashcom/featured/?womenhandbag",
+    "img": "https://sourceunsplashcom/featured/?Women Clothinghandbag",
     "price": 2999,
     "parent": "Clothing & Accessories",
-    "category": "Women",
+    "category": "Women Clothing",
     "description": "Complete your look with this stylish handbag Designed for both fashion and functionality, this handbag is a versatile accessory that adds a touch of chic to your ensemble"
   },
   {
     "id": 40,
     "quantity": 10,
     "name": "Fashionable Heels",
-    "img": "https://sourceunsplashcom/featured/?womenheels",
+    "img": "https://sourceunsplashcom/featured/?Women Clothingheels",
     "price": 5999,
     "parent": "Clothing & Accessories",
-    "category": "Women",
+    "category": "Women Clothing",
     "description": "Step out in style with these fashionable heels Elevate your outfit with the perfect blend of comfort and sophistication, making a statement wherever your day takes you"
   },
   {
     "id": 41,
     "quantity": 10,
     "name": "Chic Sunglasses",
-    "img": "https://sourceunsplashcom/featured/?womensunglasses",
+    "img": "https://sourceunsplashcom/featured/?Women Clothingsunglasses",
     "price": 1999,
     "parent": "Clothing & Accessories",
-    "category": "Women",
+    "category": "Women Clothing",
     "description": "Shield your eyes with these chic sunglasses Whether for sun protection or as a stylish accessory, these sunglasses add a touch of glamour to your look, making you stand out with every glance"
   },
   {
@@ -417,7 +415,7 @@
     "img": "https://sourceunsplashcom/featured/?menwatch",
     "price": 7999,
     "parent": "Clothing & Accessories",
-    "category": "Men",
+    "category": "Men Clothing",
     "description": "Enhance your style with the Classic Watch This timeless accessory combines sophistication with functionality, making it a must-have for any occasion Whether you're in a boardroom meeting or enjoying a casual day out, this watch complements your every look"
   },
   {
@@ -427,7 +425,7 @@
     "img": "https://sourceunsplashcom/featured/?menwallet",
     "price": 3999,
     "parent": "Clothing & Accessories",
-    "category": "Men",
+    "category": "Men Clothing",
     "description": "Upgrade your essentials with the Leather Wallet Crafted from premium leather, this wallet combines durability with a sleek design It features ample space for cards and cash, ensuring both style and practicality in your everyday life"
   },
   {
@@ -437,7 +435,7 @@
     "img": "https://sourceunsplashcom/featured/?mensneakers",
     "price": 5499,
     "parent": "Clothing & Accessories",
-    "category": "Men",
+    "category": "Men Clothing",
     "description": "Step into comfort and style with these Casual Sneakers Designed for the modern man, these sneakers offer a perfect blend of fashion and functionality Whether you're strolling through the city or meeting friends, these sneakers add a trendy touch to your look"
   },
   {
@@ -447,7 +445,7 @@
     "img": "https://sourceunsplashcom/featured/?mensuit",
     "price": 14999,
     "parent": "Clothing & Accessories",
-    "category": "Men",
+    "category": "Men Clothing",
     "description": "Elevate your professional attire with the Business Suit Tailored to perfection, this suit exudes confidence and sophistication Ideal for formal events and business meetings, it ensures you make a lasting impression with your sharp and refined style"
   },
   {
@@ -457,7 +455,7 @@
     "img": "https://sourceunsplashcom/featured/?mengrooming",
     "price": 2999,
     "parent": "Clothing & Accessories",
-    "category": "Men",
+    "category": "Men Clothing",
     "description": "Maintain a well-groomed appearance with the Grooming Kit This comprehensive set includes essential tools for grooming, from trimming your beard to perfecting your hairstyle Embrace a polished look effortlessly with this must-have grooming kit for men"
   },
   {
@@ -467,7 +465,7 @@
     "img": "https://sourceunsplashcom/featured/?leathertote",
     "price": 8999,
     "parent": "Clothing & Accessories",
-    "category": "Handbags",
+    "category": "Women Handbags",
     "description": "Carry your essentials in style with the Leather Tote Crafted from high-quality leather, this tote combines fashion with functionality Its spacious design and elegant finish make it the perfect accessory for any occasion, from casual outings to formal events"
   },
   {
@@ -477,7 +475,7 @@
     "img": "https://sourceunsplashcom/featured/?designerclutch",
     "price": 12999,
     "parent": "Clothing & Accessories",
-    "category": "Handbags",
+    "category": "Women Handbags",
     "description": "Make a statement with the Designer Clutch This exquisite clutch combines luxury and sophistication, elevating your evening look The meticulous design, premium materials, and attention to detail ensure you stand out at any social gathering"
   },
   {
@@ -487,7 +485,7 @@
     "img": "https://sourceunsplashcom/featured/?crossbodybag",
     "price": 4999,
     "parent": "Clothing & Accessories",
-    "category": "Handbags",
+    "category": "Women Handbags",
     "description": "Stay on-the-go with the Crossbody Bag Designed for convenience and style, this bag offers hands-free carrying while keeping your essentials organized Whether you're exploring the city or running errands, this crossbody bag is the perfect companion"
   },
   {
@@ -497,7 +495,7 @@
     "img": "https://sourceunsplashcom/featured/?fashionbackpack",
     "price": 6999,
     "parent": "Clothing & Accessories",
-    "category": "Handbags",
+    "category": "Women Handbags",
     "description": "Embrace urban chic with the Fashion Backpack This backpack is not only a practical choice for carrying your belongings but also a stylish accessory to complement your daily look The modern design and durable materials make it a versatile addition to your wardrobe"
   },
   {
@@ -507,7 +505,7 @@
     "img": "https://sourceunsplashcom/featured/?eveningpurse",
     "price": 5999,
     "parent": "Clothing & Accessories",
-    "category": "Handbags",
+    "category": "Women Handbags",
     "description": "Dazzle at special occasions with the Evening Purse This glamorous purse is designed to add a touch of elegance to your evening ensemble With its compact size and eye-catching details, it's the perfect accessory for a night out on the town"
   },
   {
@@ -1355,7 +1353,7 @@
     "id": 136,
     "name": "Drone with Camera",
     "img": "https://sourceunsplashcom/featured/?dronewithcamera",
-    "price": 14999,    
+    "price": 14999,
     "parent": "Household goods",
     "category": "Audio & Video Equipment",
     "description": "Capture stunning aerial footage with this feature-packed drone with a built-in camera Whether you're an aspiring photographer or a drone enthusiast, this device offers advanced flight capabilities and high-definition camera quality Take your creativity to new heights with this versatile and powerful drone",
@@ -1367,7 +1365,7 @@
     "img": "https://sourceunsplashcom/featured/?automotivebrakepad",
     "price": 1999,
     "parent": "Auto, Transport & Industrial",
-    "category": "Personal Transportation",    
+    "category": "Personal Transportation",
     "description": "Ensure the safety of your journeys with these high-quality automotive brake pads Engineered for reliable performance and durability, these brake pads provide responsive stopping power Upgrade your vehicle's braking system with this essential component for a smoother and safer ride",
     "quantity": 11
   },
@@ -1397,7 +1395,7 @@
     "img": "https://sourceunsplashcom/featured/?dressshoes",
     "price": 899,
     "parent": "Clothing & Accessories",
-    "category": "Women",
+    "category": "Women Clothing",
     "description": "Step out in style with these sophisticated dress shoes",
     "quantity": 10
   },
@@ -1921,6 +1919,7 @@
     "img": "https://sourceunsplashcom/featured/?gamingpc? ",
     "price": 349999,
     "category": "Electronics & Technology",
+    "parent": "Electronics",
     "description": "Immerse yourself in the world of high-performance gaming with this Gaming PC Designed for enthusiasts who demand cutting-edge graphics and speed",
     "quantity": 10
   },
@@ -1930,6 +1929,7 @@
     "img": "https://sourceunsplashcom/featured/?steamcontroller? ",
     "price": 6999,
     "category": "Electronics & Technology",
+    "parent": "Electronics",
     "description": "Enhance your gaming experience with the Steam Controller Precision control and customization for a wide range of games on the Steam platform",
     "quantity": 10
   },
@@ -1939,6 +1939,7 @@
     "img": "https://sourceunsplashcom/featured/?playstation5? ",
     "price": 49999,
     "category": "Electronics & Technology",
+    "parent": "Electronics",
     "description": "Enter the next generation of gaming with the PlayStation 5 Powerful hardware and advanced features for a truly immersive gaming experience",
     "quantity": 10
   },
@@ -1948,6 +1949,7 @@
     "img": "https://sourceunsplashcom/featured/?xboxseriesx? ",
     "price": 49999,
     "category": "Electronics & Technology",
+    "parent": "Electronics",
     "description": "Unleash the full potential of gaming with the Xbox Series X Experience stunning graphics, fast loading times, and a vast library of games",
     "quantity": 10
   },
@@ -1957,6 +1959,7 @@
     "img": "https://sourceunsplashcom/featured/?iphone13promax? ",
     "price": 119999,
     "category": "Electronics & Technology",
+    "parent": "Electronics",
     "description": "Upgrade to the latest in smartphone technology with the iPhone 13 Pro Max Capture stunning photos, enjoy a vibrant display, and experience unmatched performance",
     "quantity": 10
   },
@@ -1966,6 +1969,7 @@
     "img": "https://sourceunsplashcom/featured/?samsunggalaxys21+? ",
     "price": 99999,
     "category": "Electronics & Technology",
+    "parent": "Electronics",
     "description": "Stay connected in style with the Samsung Galaxy S21+ Featuring a sleek design, powerful camera, and advanced technology for a seamless experience",
     "quantity": 10
   },
@@ -1975,6 +1979,7 @@
     "img": "https://sourceunsplashcom/featured/?32gbramddr4-3200? ",
     "price": 249999,
     "category": "Electronics & Technology",
+    "parent": "Electronics",
     "description": "Upgrade your computer's performance with 32GB RAM DDR4-3200 Experience faster multitasking and improved overall system responsiveness",
     "quantity": 10
   },
@@ -1983,6 +1988,7 @@
     "name": "Lipstick Set",
     "img": "https://sourceunsplashcom/featured/?lipstickset",
     "price": 1499,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Enhance your beauty with this exquisite lipstick set Featuring a variety of shades, this collection is perfect for any occasion",
     "quantity": 10
@@ -1992,6 +1998,7 @@
     "name": "Hair Dryer",
     "img": "https://sourceunsplashcom/featured/?hairdryer",
     "price": 4999,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Achieve salon-quality hair styling at home with this powerful and efficient hair dryer Say goodbye to frizz and hello to silky-smooth hair",
     "quantity": 10
@@ -2001,6 +2008,7 @@
     "name": "Facial Cleanser",
     "img": "https://sourceunsplashcom/featured/?facialcleanser",
     "price": 1999,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Gentle yet effective facial cleanser to cleanse and refresh your skin Suitable for all skin types, leaving your face feeling rejuvenated",
     "quantity": 10
@@ -2010,6 +2018,7 @@
     "name": "Manicure Kit",
     "img": "https://sourceunsplashcom/featured/?manicurekit",
     "price": 2499,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Complete manicure kit for professional-looking nails at home Treat yourself to a spa-like experience with this versatile nail care set",
     "quantity": 10
@@ -2019,6 +2028,7 @@
     "name": "Electric Toothbrush",
     "img": "https://sourceunsplashcom/featured/?electrictoothbrush",
     "price": 3499,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Upgrade your oral care routine with this high-performance electric toothbrush Keep your smile bright and your teeth healthy",
     "quantity": 10
@@ -2028,6 +2038,7 @@
     "name": "Perfume Sampler Set",
     "img": "https://sourceunsplashcom/featured/?perfumesamplerset",
     "price": 2999,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Discover your signature scent with this luxurious perfume sampler set A collection of captivating fragrances for any occasion",
     "quantity": 10
@@ -2037,6 +2048,7 @@
     "name": "Skin Moisturizer",
     "img": "https://sourceunsplashcom/featured/?skinmoisturizer",
     "price": 1799,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Hydrate and nourish your skin with this lightweight and non-greasy moisturizer Achieve a radiant and healthy complexion every day",
     "quantity": 10
@@ -2046,6 +2058,7 @@
     "name": "Eyeshadow Palette",
     "img": "https://sourceunsplashcom/featured/?eyeshadowpalette",
     "price": 3999,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Create stunning eye looks with this versatile eyeshadow palette Featuring a range of colors for endless possibilities in your makeup routine",
     "quantity": 10
@@ -2055,6 +2068,7 @@
     "name": "Hair Straightener",
     "img": "https://sourceunsplashcom/featured/?hairstraightener",
     "price": 5499,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Achieve sleek and shiny hair with this advanced hair straightener Perfect for creating various hairstyles with ease and precision",
     "quantity": 10
@@ -2064,6 +2078,7 @@
     "name": "Facial Mask Set",
     "img": "https://sourceunsplashcom/featured/?facialmaskset",
     "price": 2299,
+    "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
     "description": "Pamper your skin with this rejuvenating facial mask set Indulge in a spa-like experience from the comfort of your home",
     "quantity": 10
@@ -2074,6 +2089,7 @@
     "img": "https://sourceunsplashcom/featured/?geforcertx3090graphicscard? ",
     "price": 159999,
     "category": "Electronics & Technology",
+    "parent": "Electronics",
     "description": "Elevate your gaming and graphics performance with the GeForce RTX 3090 Graphics Card Unleash the power of real-time ray tracing and high-speed rendering",
     "quantity": 10
   },
@@ -2092,6 +2108,7 @@
     "img": "https://sourceunsplashcom/featured/?microscopeslides",
     "price": 1249,
     "category": "Lab & scientific equipment",
+    "parent": "Health & Personal Care",
     "description": "High-quality microscope slides for conducting detailed microscopic examinations Suitable for various biological and chemical applications",
     "quantity": 10
   },
@@ -2101,6 +2118,7 @@
     "img": "https://sourceunsplashcom/featured/?bunsenburner",
     "price": 3499,
     "category": "Lab & scientific equipment",
+    "parent": "Health & Personal Care",
     "description": "A reliable Bunsen burner for precise and controlled heating in scientific experiments Ideal for chemistry laboratories and educational settings",
     "quantity": 10
   },
@@ -2109,6 +2127,7 @@
     "name": "Laboratory Flask Set",
     "img": "https://sourceunsplashcom/featured/?labflaskset",
     "price": 4999,
+    "parent": "Health & Personal Care",
     "category": "Lab & scientific equipment",
     "description": "Complete set of laboratory flasks for various liquid handling tasks Made from high-quality materials for accurate and reliable results",
     "quantity": 10
@@ -2118,6 +2137,7 @@
     "name": "Precision Pipettes",
     "img": "https://sourceunsplashcom/featured/?precisionpipettes",
     "price": 2999,
+    "parent": "Health & Personal Care",
     "category": "Lab & scientific equipment",
     "description": "Accurate and precise pipettes for measuring and transferring small volumes of liquids Essential tools for laboratory research and experiments",
     "quantity": 10
@@ -2127,6 +2147,7 @@
     "name": "Scientific Calculators",
     "img": "https://sourceunsplashcom/featured/?scientificcalculators",
     "price": 2299,
+    "parent": "Health & Personal Care",
     "category": "Lab & scientific equipment",
     "description": "Advanced scientific calculators for scientific and engineering calculations Features a range of functions for complex mathematical tasks",
     "quantity": 10
@@ -2136,6 +2157,7 @@
     "name": "Laboratory Notebooks",
     "img": "https://sourceunsplashcom/featured/?labnotebooks",
     "price": 1499,
+    "parent": "Health & Personal Care",
     "category": "Lab & scientific equipment",
     "description": "Durable laboratory notebooks for recording experimental procedures, observations, and results Keep your research organized and accessible",
     "quantity": 10
@@ -2145,6 +2167,7 @@
     "name": "Chemistry Model Kit",
     "img": "https://sourceunsplashcom/featured/?chemistrymodelkit",
     "price": 3999,
+    "parent": "Health & Personal Care",
     "category": "Lab & scientific equipment",
     "description": "Educational chemistry model kit for hands-on learning of molecular structures and chemical reactions Suitable for students and enthusiasts",
     "quantity": 10
@@ -2154,6 +2177,7 @@
     "name": "Lab Coats",
     "img": "https://sourceunsplashcom/featured/?labcoats",
     "price": 2999,
+    "parent": "Health & Personal Care",
     "category": "Lab & scientific equipment",
     "description": "Professional lab coats for researchers and scientists Designed for comfort and protection during laboratory work",
     "quantity": 10
@@ -2163,6 +2187,7 @@
     "name": "Lab Thermometers",
     "img": "https://sourceunsplashcom/featured/?labthermometers",
     "price": 999,
+    "parent": "Health & Personal Care",
     "category": "Lab & scientific equipment",
     "description": "Accurate lab thermometers for measuring temperature in scientific experiments Essential tools for precise temperature control",
     "quantity": 10
@@ -2172,6 +2197,7 @@
     "name": "Pencils",
     "img": "https://sourceunsplashcom/featured/?pencils",
     "price": 999,
+    "parent": "Education & Training",
     "category": "Education & training equipment",
     "description": "High-quality wooden pencils suitable for various writing and drawing tasks The set includes a variety of lead grades for different applications",
     "quantity": 10
@@ -2181,6 +2207,7 @@
     "name": "Notebooks",
     "img": "https://sourceunsplashcom/featured/?notebooks",
     "price": 1499,
+    "parent": "Education & Training",
     "category": "Education & training equipment",
     "description": "A set of stylish notebooks with durable covers and high-quality paper Perfect for note-taking, journaling, and planning your daily tasks",
     "quantity": 10
@@ -2190,6 +2217,7 @@
     "name": "Educational Flashcards",
     "img": "https://sourceunsplashcom/featured/?flashcards",
     "price": 1299,
+    "parent": "Education & Training",
     "category": "Education & training equipment",
     "description": "Engaging flashcards designed to enhance learning and memory retention Ideal for students of all ages and subjects",
     "quantity": 10
@@ -2199,6 +2227,7 @@
     "name": "Colorful Markers",
     "img": "https://sourceunsplashcom/featured/?markers",
     "price": 849,
+    "parent": "Education & Training",
     "category": "Education & training equipment",
     "description": "Vibrant markers for creating colorful and visually appealing notes Great for highlighting important information and creating mind maps",
     "quantity": 10
@@ -2208,15 +2237,17 @@
     "name": "Sound Bar",
     "img": "https://sourceunsplashcom/featured/?soundbar",
     "price": 59999,
+    "parent": "Kids Toys",
     "category": "Entertainment & Toys",
     "description": "Enhance your TV audio with the Sound Bar Enjoy rich, immersive sound for movies, music, and gaming",
     "quantity": 10
   },
   {
     "id": 226,
-    "name": "PlayStation",
+    "name": "PlayStation4",
     "img": "https://sourceunsplashcom/featured/?playstation",
-    "price": 39999,
+    "price": 250,
+    "parent": "Kids Toys",
     "category": "Entertainment & Toys",
     "description": "Unleash the power of gaming with the PlayStation Immerse yourself in a world of cutting-edge graphics and interactive entertainment",
     "quantity": 10
@@ -2226,6 +2257,7 @@
     "name": "Graphing Calculator",
     "img": "https://sourceunsplashcom/featured/?graphingcalculator",
     "price": 4999,
+    "parent": "Education & Training",
     "category": "Education & training equipment",
     "description": "A powerful graphing calculator for advanced mathematical calculations Suitable for students in math, physics, and engineering courses",
     "quantity": 10
@@ -2235,6 +2267,7 @@
     "name": "Learning Games",
     "img": "https://sourceunsplashcom/featured/?learninggames",
     "price": 2999,
+    "parent": "Education & Training",
     "category": "Education & training equipment",
     "description": "Interactive and educational games for children to enhance their cognitive skills Make learning fun with these engaging activities",
     "quantity": 10
@@ -2244,6 +2277,7 @@
     "name": "Educational Posters",
     "img": "https://sourceunsplashcom/featured/?educationalposters",
     "price": 1699,
+    "parent": "Education & Training",
     "category": "Learning & educational aids",
     "description": "Informative and visually appealing posters covering a range of educational topics Perfect for classrooms and study spaces",
     "quantity": 10
@@ -2253,6 +2287,7 @@
     "name": "Scientific Microscope",
     "img": "https://sourceunsplashcom/featured/?scientificmicroscope",
     "price": 7999,
+    "parent": "Education & Training",
     "category": "Learning & educational aids",
     "description": "Explore the microscopic world with this high-quality scientific microscope Ideal for biology and chemistry experiments",
     "quantity": 10
@@ -2262,6 +2297,7 @@
     "name": "Learning Tablets",
     "img": "https://sourceunsplashcom/featured/?learningtablets",
     "price": 3999,
+    "parent": "Education & Training",
     "category": "Learning & educational aids",
     "description": "Interactive learning tablets designed for children to develop early literacy and numeracy skills Features educational apps and games",
     "quantity": 10
@@ -2271,6 +2307,7 @@
     "name": "Mathematics Workbooks",
     "img": "https://sourceunsplashcom/featured/?mathworkbooks",
     "price": 1899,
+    "parent": "Education & Training",
     "category": "Learning & educational aids",
     "description": "Comprehensive mathematics workbooks covering various topics for students to practice and reinforce their math skills",
     "quantity": 10
@@ -2280,6 +2317,7 @@
     "name": "Pencils",
     "img": "https://sourceunsplashcom/featured/?pencils",
     "price": 999,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "High-quality wooden pencils suitable for various writing and drawing tasks The set includes a variety of lead grades for different applications",
     "quantity": 10
@@ -2289,6 +2327,7 @@
     "name": "Notebooks",
     "img": "https://sourceunsplashcom/featured/?notebooks",
     "price": 1499,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "A set of stylish notebooks with durable covers and high-quality paper Perfect for note-taking, journaling, and planning your daily tasks",
     "quantity": 10
@@ -2298,6 +2337,7 @@
     "name": "Desk Organizer",
     "img": "https://sourceunsplashcom/featured/?deskorganizer",
     "price": 2499,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "Keep your workspace tidy with this practical desk organizer Features multiple compartments for pens, pencils, paper clips, and more",
     "quantity": 10
@@ -2307,6 +2347,7 @@
     "name": "Ballpoint Pens",
     "img": "https://sourceunsplashcom/featured/?ballpointpens",
     "price": 699,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "A set of smooth-writing ballpoint pens Ideal for everyday use, these pens deliver consistent ink flow and comfortable grip",
     "quantity": 10
@@ -2315,7 +2356,8 @@
     "id": 237,
     "name": "Sticky Notes",
     "img": "https://sourceunsplashcom/featured/?stickynotes",
-    "price": 749,
+    "price": 7,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "Colorful sticky notes for quick reminders and organization Easily stick them to surfaces and remove without leaving residue",
     "quantity": 10
@@ -2324,7 +2366,8 @@
     "id": 238,
     "name": "Highlighters",
     "img": "https://sourceunsplashcom/featured/?highlighters",
-    "price": 1299,
+    "price": 129,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "Bright and vibrant highlighters for emphasizing important information These markers are perfect for studying and note-taking",
     "quantity": 10
@@ -2333,7 +2376,8 @@
     "id": 239,
     "name": "Desk Lamp",
     "img": "https://sourceunsplashcom/featured/?desklamp",
-    "price": 3999,
+    "price": 39,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "Illuminate your workspace with this modern desk lamp Adjustable brightness levels and a sleek design make it a stylish addition to your desk",
     "quantity": 10
@@ -2342,7 +2386,8 @@
     "id": 240,
     "name": "Paper Shredder",
     "img": "https://sourceunsplashcom/featured/?papershredder",
-    "price": 5999,
+    "price": 599,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "Securely dispose of sensitive documents with this powerful paper shredder Shred confidential papers to protect your privacy",
     "quantity": 10
@@ -2351,7 +2396,8 @@
     "id": 241,
     "name": "Mouse Pad",
     "img": "https://sourceunsplashcom/featured/?mousepad",
-    "price": 899,
+    "price": 8.99,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "Enhance your computing experience with a comfortable and durable mouse pad Provides smooth and precise mouse movements",
     "quantity": 10
@@ -2360,7 +2406,8 @@
     "id": 242,
     "name": "Calculators",
     "img": "https://sourceunsplashcom/featured/?calculators",
-    "price": 1999,
+    "price": 50,
+    "parent": "Education & Training",
     "category": "Library & office equipment",
     "description": "Efficient and reliable calculators for various mathematical tasks Suitable for students, professionals, and everyday use",
     "quantity": 10
@@ -2369,7 +2416,8 @@
     "id": 243,
     "name": "Home Theater System",
     "img": "https://sourceunsplashcom/featured/?hometheatersystem? ",
-    "price": 499999,
+    "price": 4999,
+    "parent": "Professional & Technical",
     "category": "Audio & video equipment",
     "description": "Immerse yourself in the ultimate entertainment experience with this cutting-edge home theater system Featuring high-quality audio and stunning visuals, it transforms your living space into a cinematic haven",
     "quantity": 10
@@ -2379,6 +2427,7 @@
     "name": "Nest Thermostat E",
     "img": "https://sourceunsplashcom/featured/?nestthermostate? ",
     "price": 39999,
+    "parent": "Electronics",
     "category": "Smart home devices",
     "description": "Enhance your home's energy efficiency with the Nest Thermostat E Smart, sleek, and easy to use, it adapts to your preferences, creating a comfortable environment while helping you save on energy costs",
     "quantity": 10
@@ -2388,7 +2437,7 @@
     "name": "Heels",
     "img": "https://sourceunsplashcom/featured/?heels? ",
     "price": 39999,
-    "category": "Women",
+    "category": "Women Clothing",
     "description": "Elevate your style with these chic heels that effortlessly combine fashion and comfort Perfect for any occasion, these shoes add a touch of sophistication to your wardrobe",
     "quantity": 10
   },
@@ -2397,7 +2446,7 @@
     "name": "Shoes",
     "img": "https://sourceunsplashcom/featured/?menshoes? ",
     "price": 19999,
-    "category": "Men",
+    "category": "Men Clothing",
     "description": "Step out in style with these versatile and trendy shoes for men Crafted for both comfort and fashion, they complement your casual and semi-formal looks with ease",
     "quantity": 10
   },
@@ -2406,7 +2455,7 @@
     "name": "Tailored Shoes",
     "img": "https://sourceunsplashcom/featured/?mentailoredshoe? ",
     "price": 9999,
-    "category": "Men",
+    "category": "Men Clothing",
     "description": "Experience the perfect blend of craftsmanship and style with these tailored shoes for men Meticulously designed for a sharp and polished appearance, they are a must-have in any gentleman's wardrobe",
     "quantity": 10
   },
@@ -2415,7 +2464,7 @@
     "name": "Handbag",
     "img": "https://sourceunsplashcom/featured/?handbag? ",
     "price": 9999,
-    "category": "Handbags",
+    "category": "Women Handbags",
     "description": "Carry your essentials in style with this elegant handbag Designed for both fashion and functionality, it's the perfect accessory to complete your ensemble and keep your belongings organized",
     "quantity": 10
   },
@@ -2424,7 +2473,7 @@
     "name": "Purse",
     "img": "https://sourceunsplashcom/featured/?purse? ",
     "price": 9999,
-    "category": "Handbags",
+    "category": "Women Handbags",
     "description": "Carry your essentials in style with this elegant purse Designed for both fashion and functionality, it's the perfect accessory to complete your ensemble and keep your belongings organized",
     "quantity": 10
   },
