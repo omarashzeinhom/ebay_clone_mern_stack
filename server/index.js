@@ -30,37 +30,37 @@ app.get("/", (req, res) => {
   res.send("Hello, this is the root route!");
 });
 
+// User Routes 
+app.use("/user", authRoutes);
+
 app.get("/auth/register", (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
-  //res.send(email,password);
   res.send("Hello, this is the register route!");
 });
 app.get("/auth/login", (req, res) => {
   const { email, password } = req.body;
-  //res.send(email,password);
+  
   res.send("Hello, this is the login route!");
 });
+
+
+// Business Routes 
+app.use("/user", authRoutes);
+
+app.use("/business", authRoutes);
+
 app.get("/auth/registerb", (req, res) => {
-  const {
-    businessName,
-    businessEmail,
-    businessPassword,
-    businessLocation,
-    businessActive,
-  } = req.body;
-  //res.send(email,password);
   res.send("Hello, this is the register business route!");
 });
 app.get("/auth/loginb", (req, res) => {
-  //const { email, password } = req.body;
-  //res.send(email,password);
+  
   res.send("Hello, this is the Business login route!");
 });
+
+
 // Routes
 app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
-app.use("/business", authRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.ATLAS_URI, {});

@@ -5,4 +5,5 @@ export interface Business {
     businessPassword: string,
     businessLocation: string ,
     businessActive?: boolean,
+    businessAvatar?: string, 
 }

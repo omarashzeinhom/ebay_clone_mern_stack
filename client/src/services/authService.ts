@@ -10,13 +10,15 @@ export const authService = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string
+    password: string,
+    avatar?: string
   ): Promise<void> => {
     await axios.post(`${API_BASE_URL}/register`, {
       firstName,
       lastName,
       email,
       password,
+      avatar: avatar || "",
     });
   },
 
@@ -58,14 +60,16 @@ export const authService = {
     businessPassword: string,
     businessLocation: string,
     businessActive: boolean,
+    businessAvatar?: string
   ): Promise<void> => {
     try {
       const response = await axios.post(`${API_BASE_URL}/registerb`, {
         businessName,
         businessEmail,
         businessPassword,
-        businessLocation,
-        businessActive,
+        businessLocation: businessLocation || " ",
+        businessActive: businessActive || true,
+        businessAvatar: businessAvatar || " ",
       });
 
       console.log("Business registration response:", response.data);

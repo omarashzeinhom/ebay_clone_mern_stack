@@ -20,13 +20,15 @@ cloudinary.config({
 
 const secretKey = process.env.JWT_SECRET;
 
+/* <---------- User Async Functions Start ----------> */
+
 exports.register = async (req, res) => {
   const { firstName, lastName, email, password, avatar } = req.body;
-  // console.log(avatar);
+
+  //Debug
+  console.log(`Received User register request: ---> ${req?.body}`);
 
   try {
-    // Upload avatar to Cloudinary
-    // console.log(cloudinaryResponse);
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
@@ -39,7 +41,7 @@ exports.register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      avatar,
+      avatar: avatar | " ",
     });
 
     await newUser.save();
@@ -50,6 +52,55 @@ exports.register = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+exports.getUser = async (req, res) => {
+  try {
+    // You can access the user details from the request object
+    const user = req?.user;
+
+    res.status(200).json({
+      userId: user?.userId | "",
+      email: user?.email | "",
+      firstName: user?.firstName | " ",
+      lastName: user?.lastName | "",
+      avatar: user?.avatar | " ", // added prop for avatar url
+    });
+    //Debug
+    console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    const token = jwt.sign({ userId: user._id, email: user.email }, secretKey, {
+      expiresIn: "1h",
+    });
+
+    //Debug
+    console.log(`User login successful: ---> ${req?.body}`);
+
+    res.status(200).json({ token, expiresIn: 3600 });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+/* <---------- User Async Functions End ----------> */
+
+/* <---------- Business Async Functions Start ----------> */
 
 exports.registerBusiness = async (req, res) => {
   try {
@@ -62,7 +113,8 @@ exports.registerBusiness = async (req, res) => {
       businessAvatar,
     } = req.body;
 
-    console.log("Received business registration request:", req.body);
+    //Debug
+    console.log(`Received Business register request: ---> ${req?.body}`);
 
     // Check if the email is already associated with a user or a business
     const existingUser = await User.findOne({ businessEmail });
@@ -102,31 +154,6 @@ exports.registerBusiness = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(401).json({ message: "Invalid email or password" });
-    }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid email or password" });
-    }
-
-    const token = jwt.sign({ userId: user._id, email: user.email }, secretKey, {
-      expiresIn: "1h",
-    });
-
-    res.status(200).json({ token, expiresIn: 3600 });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
 exports.loginBusiness = async (req, res) => {
   const { businessEmail, businessPassword } = req.body;
 
@@ -156,8 +183,8 @@ exports.loginBusiness = async (req, res) => {
       }
     );
 
-    // Add a debug log
-    // console.log("Business login successful");
+    //Debug
+    console.log(`Business login successful: ---> ${req?.body}`);
 
     res.status(200).json({ token, expiresIn: 3600 });
   } catch (error) {
@@ -166,32 +193,13 @@ exports.loginBusiness = async (req, res) => {
   }
 };
 
-exports.getUser = async (req, res) => {
-  try {
-    // You can access the user details from the request object
-    const user = req?.user;
-
-    console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
-
-    res.status(200).json({
-      userId: user?.userId,
-      email: user?.email,
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      avatar: user?.avatar,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
-
 exports.getBusiness = async (req, res) => {
   try {
-    // You can access the user details from the request object
     const business = req?.business;
-    //console.log(req?.business);
-    //res.json(user);
+
+    //Debug
+    console.log(`getBusiness request : ---> ${req?.body}`);
+
     res.status(200).json({
       businessId: business?.businessId,
       businessEmail: business?.businessEmail,
@@ -202,6 +210,8 @@ exports.getBusiness = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+/* <---------- Business Async Functions End ----------> */
 
 exports.updateAvatar = async (req, res) => {
   const { avatar, avatarLink } = req.body;

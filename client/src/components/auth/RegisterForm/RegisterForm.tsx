@@ -26,13 +26,14 @@ const RegisterForm: React.FC = () => {
     businessActive: true || false,
   });
 
-  const { firstName, lastName, email, password } = user;
+  const { firstName, lastName, email, password, avatar } = user;
   const {
     businessName,
     businessEmail,
     businessPassword,
     businessLocation,
     businessActive,
+    businessAvatar,
   } = business;
 
   //DEBUG User
@@ -43,11 +44,17 @@ const RegisterForm: React.FC = () => {
   // console.log(businessName, businessEmail, businessPassword, businessLocation )
 
   const handleRegister = async () => {
-    //console.log(accountType);
+    console.log(`accountType ---> ${accountType}`);
     try {
       if (accountType === "Personal account") {
         console.log(email, user.password);
-        await authService.register(firstName, lastName, email, password, );
+        await authService.register(
+          firstName,
+          lastName,
+          email,
+          password,
+          avatar || ""
+        );
       } else if (accountType === "Business account") {
         console.log(businessEmail, businessPassword);
         // Implement the registration logic for the business account
@@ -63,10 +70,11 @@ const RegisterForm: React.FC = () => {
             businessPassword,
             businessLocation || "",
             businessActive || true,
+            businessAvatar || ""
           );
         }
       }
-  
+
       console.log("Registration was successful");
     } catch (error) {
       console.error(`Registration failed due to: ${error}`);
@@ -117,8 +125,8 @@ const RegisterForm: React.FC = () => {
 
           {accountType === "Personal account" && (
             <PersonalAccountForm
-            user={user}
-            handleRegister={handleRegister}
+              user={user}
+              handleRegister={handleRegister}
               setUser={setUser}
             />
           )}

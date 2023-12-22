@@ -14,7 +14,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
   handleRegister,
   setBusiness,
 }) => {
-  const { businessName, businessEmail, businessPassword, businessLocation } =
+  const { businessName, businessEmail, businessPassword, businessLocation, businessAvatar } =
     business;
 
   return (
@@ -49,6 +49,17 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         autoComplete="current-password"
         onChange={(e) =>
           setBusiness({ ...business, businessPassword: e.target.value })
+        }
+      />
+        <input
+        type="text"
+        id="businessAvatar"
+        value={businessAvatar}
+        placeholder="Business Avatar"
+        className="app__baform-input"
+        hidden
+        onChange={(e) =>
+          setBusiness({ ...business, businessAvatar: e.target.value })
         }
       />
       <select

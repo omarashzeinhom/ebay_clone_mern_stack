@@ -46,14 +46,8 @@ const Nav: React.FC<NavProps> = ({ total }) => {
     }
   };
 
-  const userIdInfo = `${user?.firstName?.slice(0, 5)}${user?.userId?.slice(
-    1,
-    7
-  )}`;
-  const businessIdInfo = `${business?.businessName?.slice(
-    0,
-    5
-  )}  ${business?.businessId?.slice(1, 10)}`;
+
+
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
       <div className="app__nav-mobile-icon" onClick={handleMobileMenuToggle}>
@@ -90,10 +84,10 @@ const Nav: React.FC<NavProps> = ({ total }) => {
               </option>
               <option onClick={handleRoute} className="app__nav-itemLeft">
                 User Profile:{" "}
-                {userIdInfo ||
+                {
                   user?.userId ||
                   business?.businessId ||
-                  businessIdInfo || business?.businessName ||
+                   business?.businessName ||
                   "User Profile"}
                 !
               </option>
