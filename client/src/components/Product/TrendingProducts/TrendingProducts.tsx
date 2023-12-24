@@ -25,7 +25,7 @@ const TrendingProducts: React.FC<TrendingProductsProps> = () => {
 
   return (
     <div className="app-trending-products-alpha__carousel" id="deals">
-      <h2>Today deals on consoles</h2>
+      <h2>Todays deals on consoles</h2>
       <Swiper
         slidesPerView={3}
         modules={[Scrollbar, Navigation]}
@@ -44,7 +44,7 @@ const TrendingProducts: React.FC<TrendingProductsProps> = () => {
         }}
       >
         {filteredProducts.map((product, index) => {
-          const productLink = `${HOME_URL}${product?._id}`;
+          const productLink = `${HOME_URL}item/${product?._id}`;
           return (
             <SwiperSlide
               key={index}

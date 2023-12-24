@@ -65,7 +65,7 @@ exports.getUser = async (req, res) => {
       avatar: user?.avatar , // added prop for avatar url
     });
     //Debug
-    console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
+   console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -73,7 +73,7 @@ exports.getUser = async (req, res) => {
 };
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
+  // console.log(`logged in with ${email} ${password}`);
 
   try {
     const user = await User.findOne({ email });
@@ -199,7 +199,7 @@ exports.getBusiness = async (req, res) => {
     const business = req?.business;
 
     //Debug
-    console.log(`getBusiness request : ---> ${req?.body}`);
+    // console.log(`getBusiness request : ---> ${req?.body}`);
 
     res.status(200).json({
       businessId: business?.businessId,

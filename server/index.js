@@ -34,17 +34,15 @@ app.get("/auth/register", (req, res) => {
   res.send("Hello, this is the register route!");
 });
 app.get("/auth/login", (req, res) => {
-  const { email, password } = req.body;
-
+  //const { email, password } = req.body;
   res.send("Hello, this is the login route!");
 });
 
 // Business Routes
 
 app.use("/business", authRoutes);
-
 app.get("/auth/registerb", (req, res) => {
-  res.send("Hello, this is the register business route!");
+  res.send("Hello, this is the Business register route!");
 });
 app.get("/auth/loginb", (req, res) => {
   res.send("Hello, this is the Business login route!");

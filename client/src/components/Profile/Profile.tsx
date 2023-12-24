@@ -3,11 +3,11 @@ import "./Profile.scss";
 import { useAuth } from "../../context/AuthContext";
 import Nav from "../Nav/Nav";
 import SearchBar from "../SearchBar/SearchBar";
-import { Cloudinary } from "@cloudinary/url-gen";
+// import { Cloudinary } from "@cloudinary/url-gen";
 import { useState } from "react";
-import CloudinaryUploadWidget from "../auth/RegisterForm/CloudinaryUploadWidget/CloudinaryUploadWidget";
-import axios from "axios"; // Import axios for making HTTP requests
-//import { User } from "../../models/user";
+// import CloudinaryUploadWidget from "../auth/RegisterForm/CloudinaryUploadWidget/CloudinaryUploadWidget";
+// import axios from "axios"; // Import axios for making HTTP requests
+// import { User } from "../../models/user";
 
 type ProfileProps = {
   total: number;
@@ -18,17 +18,19 @@ export default function Profile({ total }: ProfileProps) {
   const { user, business, token ,updateUser } = useAuth();
   const { businessId, userId } = useParams();
 
-  console.log(userId);
-
+  // console.log(user);
+/* 
   const [publicId, setPublicId] = useState("");
   const [cloudName] = useState(
     `${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}`
   );
   const [uploadPreset] = useState(
     `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
-  );
-  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
+  ); */
+// const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
 
+
+/*
   const uwConfig = {
     cloudName,
     uploadPreset,
@@ -49,8 +51,6 @@ export default function Profile({ total }: ProfileProps) {
 
   const myImage = cld.image(publicId);
   console.log(myImage);
-
-/*
 
   const handleImageUpload = async (url: string) => {
     try {
@@ -108,7 +108,7 @@ export default function Profile({ total }: ProfileProps) {
                 <td>
                   <h4>Avatar:</h4>
                   <img
-                    src={uploadedImageUrl || user?.avatar}
+                    src={user?.avatar || "No user avatar uploaded"}
                     alt={user?.avatar || "No user avatar uploaded"}
                     width={25}
                     height={25}
@@ -227,16 +227,17 @@ export default function Profile({ total }: ProfileProps) {
                 id="email"
                 className=""
                 alt=""
-                placeholder={user?.email || "johndoe@email.com"}
+                placeholder={user?.email || "useremail@tmail.com"}
                 type="email"
               />
+              <small></small>
               <input
                 id="avatarUrl "
                 className=""
-                alt=""
+                alt={ user?.avatar || user?.email || "User Avatar"}
                 placeholder=""
-                type="text"
-                hidden
+                type="file"
+              
               />
               <hr />
               <button onClick={() => {
@@ -246,6 +247,7 @@ export default function Profile({ total }: ProfileProps) {
     // Handle the case where token is null, e.g., show an error message or take appropriate action
   }
 }}>
+  Update User
               </button>
             </form>
           </>

@@ -54,6 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUser(newUser);
     localStorage.setItem("token", newToken);
     // Set the user information
+    console.log(newUser);
     localStorage.setItem("user", JSON.stringify(newUser));
   };
 
@@ -89,16 +90,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const updateUser = (newToken: string, updUser: User) => {
-
-
- if(newToken){
-  setUpdatedUser(updatedUser);
-  setUser(updUser);
-  setToken(newToken);
-  // Updating the new user logged info 
-  localStorage.setItem("token", newToken);
-  localStorage.setItem("user", JSON.stringify(updUser));
-}
+  if(newToken){
+    setUpdatedUser(updatedUser);
+    setUser(updUser);
+    setToken(newToken);
+    // Updating the new user logged info 
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("user", JSON.stringify(updUser));
+  }
 
   };
 
