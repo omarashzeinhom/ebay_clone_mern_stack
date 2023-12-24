@@ -15,9 +15,10 @@ export default function SearchBar() {
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedIndex = event.target.selectedIndex;
-    const selectedCategoryValue = selectedIndex === 0 ? null : categories[selectedIndex - 1].name;
+    const selectedCategoryValue =
+      selectedIndex === 0 ? null : categories[selectedIndex - 1].name;
     setSelectedCategory(selectedCategoryValue);
-    
+
     // Navigate to the selected category
     if (selectedCategoryValue) {
       navigate(`/category/${encodeURIComponent(selectedCategoryValue)}`);
@@ -34,7 +35,6 @@ export default function SearchBar() {
     }
     groupedCategories[parent].push(category);
   });
-  
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -49,7 +49,6 @@ export default function SearchBar() {
     fetchCategories();
   }, []);
 
-
   return (
     <div className="app__searchbar">
       <a href="/">
@@ -60,22 +59,22 @@ export default function SearchBar() {
         />
       </a>
       <select
-  id="categories"
-  onChange={handleChange}
-  className="app__searchbar-form-dropDown"
-  value={selectedCategory || ""}
->
-  {!isMobile && <option hidden>Shop by category</option>}
-  {Object.entries(groupedCategories).map(([parent, categories]) => (
-    <optgroup key={parent} label={parent}>
-      {categories.map((category: Category, index: number) => (
-        <option key={index} value={encodeURIComponent(category.name)}>
-          {category.name}
-        </option>
-      ))}
-    </optgroup>
-  ))}
-</select>
+        id="categories"
+        onChange={handleChange}
+        className="app__searchbar-form-dropDown"
+        value={selectedCategory || ""}
+      >
+        {!isMobile && <option hidden>Shop by category</option>}
+        {Object.entries(groupedCategories).map(([parent, categories]) => (
+          <optgroup key={parent} label={parent}>
+            {categories.map((category: Category, index: number) => (
+              <option key={index} value={encodeURIComponent(category.name)}>
+                {category.name}
+              </option>
+            ))}
+          </optgroup>
+        ))}
+      </select>
 
       <form className="app__searchbar-form">
         <div className="app__searchbar-formSearch">
