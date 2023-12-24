@@ -28,18 +28,13 @@ export default function SearchBar() {
 
   const groupedCategories: { [key: string]: Category[] } = {};
   categories.forEach((category) => {
-    if (category.parent) {
-      if (!groupedCategories[category?.name]) {
-        groupedCategories[category?.name] = [];
-      }
-      groupedCategories[category?.name].push(category);
-    } else {
-      if (!groupedCategories["Others"]) {
-        groupedCategories["Others"] = [];
-      }
-      groupedCategories["Others"].push(category);
+    const parent = category?.parent || "Others"; // Use the parent category, or default to "Others"
+    if (!groupedCategories[parent]) {
+      groupedCategories[parent] = [];
     }
+    groupedCategories[parent].push(category);
   });
+  
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -65,22 +60,22 @@ export default function SearchBar() {
         />
       </a>
       <select
-      id="categories"
-        onChange={handleChange}
-        className="app__searchbar-form-dropDown"
-        value={selectedCategory || ""}
-      >
-        {!isMobile && <option hidden>All Categories</option>}
-        {Object.entries(groupedCategories).map(([parent, categories]) => (
-          <optgroup key={parent} label={parent}>
-            {categories.map((category: Category, index: number) => (
-              <option key={index} value={encodeURIComponent(category.name)}>
-                {category.name}
-              </option>
-            ))}
-          </optgroup>
-        ))}
-      </select>
+  id="categories"
+  onChange={handleChange}
+  className="app__searchbar-form-dropDown"
+  value={selectedCategory || ""}
+>
+  {!isMobile && <option hidden>Shop by category</option>}
+  {Object.entries(groupedCategories).map(([parent, categories]) => (
+    <optgroup key={parent} label={parent}>
+      {categories.map((category: Category, index: number) => (
+        <option key={index} value={encodeURIComponent(category.name)}>
+          {category.name}
+        </option>
+      ))}
+    </optgroup>
+  ))}
+</select>
 
       <form className="app__searchbar-form">
         <div className="app__searchbar-formSearch">
