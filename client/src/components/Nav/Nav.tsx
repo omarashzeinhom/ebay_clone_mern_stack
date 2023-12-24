@@ -11,6 +11,7 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const { token, user, logout, business } = useAuth();
+  
   console.log(
     `user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(
       business

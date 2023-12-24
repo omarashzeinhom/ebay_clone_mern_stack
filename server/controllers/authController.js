@@ -58,11 +58,11 @@ exports.getUser = async (req, res) => {
     const user = req?.user;
 
     res.status(200).json({
-      userId: user?.userId | "",
-      email: user?.email | "",
-      firstName: user?.firstName | " ",
-      lastName: user?.lastName | "",
-      avatar: user?.avatar | " ", // added prop for avatar url
+      userId: user?.userId,
+      email: user?.email, 
+      firstName: user?.firstName ,
+      lastName: user?.lastName ,
+      avatar: user?.avatar , // added prop for avatar url
     });
     //Debug
     console.log(`req?.user--- >${JSON.stringify(req?.user)}`);

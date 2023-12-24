@@ -50,6 +50,8 @@ export default function Profile({ total }: ProfileProps) {
   const myImage = cld.image(publicId);
   console.log(myImage);
 
+/*
+
   const handleImageUpload = async (url: string) => {
     try {
       // Make a request to your server to store the image URL in MongoDB
@@ -88,6 +90,8 @@ export default function Profile({ total }: ProfileProps) {
     setUploadedImageUrl(result?.info?.secure_url);
     handleImageUpload(result?.info?.secure_url);
   };
+
+*/
 
   const ProfileContainer = () => {
     if (user?.userId || userId) {
@@ -200,13 +204,7 @@ export default function Profile({ total }: ProfileProps) {
         {userId && (
           <>
             <img src={user?.avatar || " "} alt={user?.email || "User Photo"} />
-            <CloudinaryUploadWidget
-              uwConfig={uwConfig}
-              setPublicId={setPublicId}
-              onSuccess={(result) =>
-                handleUploadSuccess(result?.info?.secure_url)
-              }
-            />
+     
             <form className="app-profile-edit__form">
               <label> First Name </label>
               <input
@@ -256,13 +254,7 @@ export default function Profile({ total }: ProfileProps) {
           (businessId && (
             <>
               <img src={" "} alt={business?.businessEmail || "User Photo"} />
-              <CloudinaryUploadWidget
-                uwConfig={uwConfig}
-                setPublicId={setPublicId}
-                onSuccess={(result) =>
-                  handleUploadSuccess(result?.info?.secure_url)
-                }
-              />
+             
               <form className="app-profile-edit__form">
                 <label>
                   {" "}

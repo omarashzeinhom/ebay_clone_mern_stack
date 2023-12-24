@@ -39,27 +39,12 @@ export const authService = {
     }
   },
 
-  getUser: async (token: string): Promise<User> => {
-    try {
-      const response: AxiosResponse<User> = await axios.get(
-        `${API_BASE_URL}/user`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      console.log('User data from server:', response.data); // Add this line
-
-      return response?.data;
-    } catch (error) {
-      throw new Error(`Failed to get user: ${error}`);
-    }
-  },
 
 
 updateUser: async(token: string, firstName: string , lastName:string, email:string, password: string, avatar: string): Promise<User>=>{
   try{
     const response: AxiosResponse<User>= await axios.patch(
-      `${API_BASE_URL}/user`,
+      `http://localhost:3001/auth/user`,
     {
       header: {Authorization: `Bearer ${token}`},
       user: {
@@ -81,6 +66,29 @@ updateUser: async(token: string, firstName: string , lastName:string, email:stri
 
 
 
+getUser: async (token: string): Promise<User> => {
+  try {
+    const response: AxiosResponse<User> = await axios.get(
+      `${API_BASE_URL}/user`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    console.log('User data from server:', response?.data); // Add this line
+
+    return {
+      userId: response?.data?.userId || '',
+      email: response?.data?.email || '',
+      password: response?.data.password || '',
+      firstName: response?.data?.firstName || '',
+      lastName: response?.data?.lastName || '',
+      avatar: response?.data?.avatar || '',
+    };
+
+  } catch (error) {
+    throw new Error(`Failed to get user: ${error}`);
+  }
+},
 
 
 

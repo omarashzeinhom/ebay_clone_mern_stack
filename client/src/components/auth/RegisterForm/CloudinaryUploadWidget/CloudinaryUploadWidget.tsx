@@ -27,6 +27,7 @@ function CloudinaryUploadWidget({
   const [avatarLink , setAvatarLink]= useState("");
   const [updatedUser, setUpdatedUser] = useState<User>(
 {
+  userId: user?.userId || "",
   firstName:  user?.firstName || "",
   lastName:  user?.lastName || "",
   email: user?.email || "",

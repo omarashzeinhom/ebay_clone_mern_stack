@@ -11,7 +11,7 @@ interface AuthContextType {
   logoutBusiness: () => void;
   login: (token: string, data: User) => void;
   logout: () => void;
-  updateUser: (newToken: string, newUser: User) => void;
+  updateUser: (newToken: string, updUser: User) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -22,7 +22,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [business, setBusiness] = useState<Business | null>(null);
-  //const [updatedUser, setUpdatedUser] = useState<User>();
+  const [updatedUser, setUpdatedUser] = useState<User>();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -39,6 +39,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       const response = await axios.get("http://localhost:3001/auth/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log(
+        `fetchUserInformation ======> ${JSON.stringify(response?.data)}`
+      );
       setUser(response.data);
     } catch (error) {
       console.error("Error fetching user information:", error);
@@ -85,21 +88,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("token");
   };
 
-  const updateUser = (newToken: string, newUser: User) => {
-/**
- * 
- * if(newToken){
-  let updatedUser = newUser;
+  const updateUser = (newToken: string, updUser: User) => {
+
+
+ if(newToken){
   setUpdatedUser(updatedUser);
-  setUser(updatedUser);
+  setUser(updUser);
   setToken(newToken);
   // Updating the new user logged info 
   localStorage.setItem("token", newToken);
-  localStorage.setItem("user", JSON.stringify(newUser));
+  localStorage.setItem("user", JSON.stringify(updUser));
 }
- */
 
   };
+
   return (
     <AuthContext.Provider
       value={{

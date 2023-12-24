@@ -12,6 +12,7 @@ const RegisterForm: React.FC = () => {
   const { token } = useAuth();
   const [accountType, setAccountType] = useState<string>("Personal account");
   const [user, setUser] = useState<User>({
+    userId: "",
     firstName: "",
     lastName: "",
     email: "",
