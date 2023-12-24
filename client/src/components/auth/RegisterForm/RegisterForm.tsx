@@ -1,11 +1,10 @@
 import "./RegisterForm.scss";
 import React, { useState } from "react";
-import RegisterNav from "./RegisterNav";
 import { User } from "../../../models/user";
 import { Business } from "../../../models/business";
 import { useAuth } from "../../../context/AuthContext";
-import PersonalAccountForm from "./PersonalAccountForm";
-import BusinessAccountForm from "./BusinessAccountForm";
+import UserAccountForm from "./User/UserAccountForm";
+import BusinessAccountForm from "./Business/BusinessAccountForm";
 import { authService } from "../../../services/authService";
 
 const RegisterForm: React.FC = () => {
@@ -87,6 +86,27 @@ const RegisterForm: React.FC = () => {
     setAccountType(selectedRole);
   };
 
+
+const RegisterNav = () => {
+  return (
+    <div className="app__register-nav">
+    <div className="app__register-nav-left">
+      <a href="/">
+        <img src="/ebaylogo.png" alt="ebaylogo" width={140} height={57} />
+      </a>
+    </div>
+    <div className="app__register-nav-right">
+      <a href="/survey">Tell us what you think</a>
+    </div>
+  </div>
+  );
+}
+
+
+
+
+
+
   return (
     <>
       <RegisterNav />
@@ -125,7 +145,7 @@ const RegisterForm: React.FC = () => {
           </div>
 
           {accountType === "Personal account" && (
-            <PersonalAccountForm
+            <UserAccountForm
               user={user}
               handleRegister={handleRegister}
               setUser={setUser}

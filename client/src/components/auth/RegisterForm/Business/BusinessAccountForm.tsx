@@ -1,7 +1,7 @@
 // BusinessAccountForm.tsx
 import React from "react";
-import { Business } from "../../../models/business";
-import "./styles/BusinessAccountForm.scss";
+import { Business } from "../../../../models/business";
+import "./BusinessAccountForm.scss";
 
 interface BusinessAccountFormProps {
   business: Business;
@@ -14,8 +14,13 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
   handleRegister,
   setBusiness,
 }) => {
-  const { businessName, businessEmail, businessPassword, businessLocation, businessAvatar } =
-    business;
+  const {
+    businessName,
+    businessEmail,
+    businessPassword,
+    businessLocation,
+    businessAvatar,
+  } = business;
 
   return (
     <form className="app__baform" onClick={handleRegister}>
@@ -51,7 +56,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
           setBusiness({ ...business, businessPassword: e.target.value })
         }
       />
-        <input
+      <input
         type="text"
         id="businessAvatar"
         value={businessAvatar}
@@ -64,7 +69,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
       />
       <select
         id="businessLocation"
-        value={businessLocation }
+        value={businessLocation}
         className="app__baform-input"
         onChange={(e) =>
           setBusiness({ ...business, businessLocation: e.target.value })
@@ -73,9 +78,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         <option>Egypt</option>
       </select>
 
-      <button className="app__baform-Btn">
-        Register
-      </button>
+      <button className="app__baform-Btn">Register</button>
     </form>
   );
 };

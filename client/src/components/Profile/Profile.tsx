@@ -5,15 +5,38 @@ import Nav from "../Nav/Nav";
 import SearchBar from "../SearchBar/SearchBar";
 import { useState } from "react";
 import { countryList } from "../../utilities/constants";
+import { User } from "../../models/user";
 
 type ProfileProps = {
   total: number;
 };
 
 export default function Profile({ total }: ProfileProps) {
+  
   const [isEditing, setIsEditing] = useState("");
-  const { user, business, token, updateUser } = useAuth();
+  const {business, token, updateUser,user } = useAuth();
   const { businessId, userId } = useParams();
+
+  const [localUser, setLocalUser] = useState<User>();
+
+
+  const handleChange = (field: string, value: string) => {
+   /**
+    * 
+    * 
+    *  const updatedUser: User = {
+      ...localUser,
+      [field]: value, // Update the specific field in the updatedUser
+    };
+    setLocalUser(updatedUser);
+    */
+    //setUser(updatedUser);
+  };
+  //const { firstName, lastName, email, password, avatar } = user;
+
+
+
+
 
   const ProfileContainer = () => {
     if (user?.userId || userId) {
@@ -111,9 +134,7 @@ export default function Profile({ total }: ProfileProps) {
     }
   };
 
-  const handleUserUpdate = () => {
-    //const data = " "; // await updateUserUsingId
-  };
+
 
   const EditProfileForm = () => {
     return (
@@ -129,6 +150,7 @@ export default function Profile({ total }: ProfileProps) {
                   alt=""
                   placeholder={user?.firstName || "John"}
                   type="text"
+          onChange={(e) => handleChange("firstName", e.target.value)}
                 />
               </div>
               <div className="app-profile-container__form__group">
@@ -139,6 +161,8 @@ export default function Profile({ total }: ProfileProps) {
                   alt=""
                   placeholder={user?.lastName || "Doe"}
                   type="text"
+                  onChange={(e) => handleChange("lastName", e.target.value)}
+
                 />
               </div>
               <div className="app-profile-container__form__group">
@@ -149,6 +173,8 @@ export default function Profile({ total }: ProfileProps) {
                   alt=""
                   placeholder={user?.email || "useremail@tmail.com"}
                   type="email"
+                  onChange={(e) => handleChange("email", e.target.value)}
+
                 />
               </div>
               <div className="app-profile-container__form__group">
@@ -166,18 +192,13 @@ export default function Profile({ total }: ProfileProps) {
                   alt={user?.avatar || user?.email || "User Avatar"}
                   placeholder=""
                   type="file"
+                  onChange={(e) => handleChange("avatar", e.target.value)}
+
                 />
               </div>
               <hr />
               <button
-                onClick={() => {
-                  if (token !== null && user !== null) {
-                    updateUser(token, user);
-                  } else {
-                    // Handle the case where token is null, e.g., show an error message or take appropriate action
-                  }
-                }}
-              >
+                onClick={() => {}} >
                 Update User
               </button>
             </form>
@@ -244,7 +265,7 @@ export default function Profile({ total }: ProfileProps) {
                   );
                 })}
               </select>
-              <button onClick={() => handleUserUpdate()}>
+              <button onClick={() =>{}}>
                 Update Business Info
               </button>
             </form>

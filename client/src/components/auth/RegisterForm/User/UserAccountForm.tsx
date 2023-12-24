@@ -1,9 +1,9 @@
-import "./styles/PersonalAccountForm.scss";
+import "./UserAccountForm.scss";
 import React, { useState } from "react";
-import { User } from "../../../models/user";
+import { User } from "../../../../models/user";
 import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
 
-interface PersonalAccountFormProps {
+interface UserAccountFormProps {
   user: User;
   handleRegister: () => void;
   setUser: React.Dispatch<
@@ -12,7 +12,7 @@ interface PersonalAccountFormProps {
   
 }
 
-const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
+const UserAccountForm: React.FC<UserAccountFormProps> = ({
   user,
   handleRegister,
   setUser,
@@ -109,4 +109,4 @@ const PersonalAccountForm: React.FC<PersonalAccountFormProps> = ({
   );
 };
 
-export default PersonalAccountForm;
+export default UserAccountForm;
