@@ -31,6 +31,8 @@ export const authService = {
           password,
         }
       );
+      console.log(response.data.token);
+
       return response.data.token;
     } catch (error) {
       throw new Error(`Login failed: ${error}`);
@@ -45,11 +47,44 @@ export const authService = {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      return response.data;
+      console.log('User data from server:', response.data); // Add this line
+
+      return response?.data;
     } catch (error) {
       throw new Error(`Failed to get user: ${error}`);
     }
   },
+
+
+updateUser: async(token: string, firstName: string , lastName:string, email:string, password: string, avatar: string): Promise<User>=>{
+  try{
+    const response: AxiosResponse<User>= await axios.patch(
+      `${API_BASE_URL}/user`,
+    {
+      header: {Authorization: `Bearer ${token}`},
+      user: {
+          firstName,
+          lastName,
+          email,
+          password,
+          avatar: avatar || "",
+      }
+    },
+    
+      )
+      return response?.data;
+  }catch(error){
+    throw new Error(`Failed to get user: ${error}`);
+
+  }
+},
+
+
+
+
+
+
+
   /* <---User services end ---> */
 
   /* <--- Business services start ---> */

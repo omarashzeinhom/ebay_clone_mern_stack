@@ -40,7 +40,6 @@ app.get("/auth/login", (req, res) => {
 });
 
 // Business Routes
-app.use("/user", authRoutes);
 
 app.use("/business", authRoutes);
 

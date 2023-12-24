@@ -11,7 +11,11 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const { token, user, logout, business } = useAuth();
-  console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business)}`);
+  console.log(
+    `user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(
+      business
+    )}`
+  );
   //const [business, setBusiness] = useState<Business>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const { userId, businessId } = useParams();
@@ -45,8 +49,6 @@ const Nav: React.FC<NavProps> = ({ total }) => {
       console.error("User and business have no ID");
     }
   };
-
-
 
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
@@ -84,19 +86,23 @@ const Nav: React.FC<NavProps> = ({ total }) => {
               </option>
               <option onClick={handleRoute} className="app__nav-itemLeft">
                 User Profile:{" "}
-                {
-                  user?.userId ||
+                {user?.userId ||
                   business?.businessId ||
-                   business?.businessName ||
+                  business?.businessName ||
                   "User Profile"}
                 !
               </option>
-              <option value="logout" className="app__nav-itemLeft">Sign out</option>
+              <option value="logout" className="app__nav-itemLeft">
+                Sign out
+              </option>
             </select>
           ) : (
             <li>
-              Hi! <a href="/signin" className="app__nav-item">Sign in</a> or{" "}
-              <a href="/register" >register</a>
+              Hi!{" "}
+              <a href="/signin" className="app__nav-item">
+                Sign in
+              </a>{" "}
+              or <a href="/register">register</a>
             </li>
           )}
         </div>
@@ -117,7 +123,9 @@ const Nav: React.FC<NavProps> = ({ total }) => {
         </button>
         <div className="app__nav-right">
           <li className="app__nav-rightItem">
-            <a className="app__nav-rightItem" href="/sell">Sell</a>
+            <a className="app__nav-rightItem" href="/sell">
+              Sell
+            </a>
           </li>
           <li>
             <select
@@ -125,9 +133,15 @@ const Nav: React.FC<NavProps> = ({ total }) => {
               className="app__nav-right-dropDown"
               id="MyEbay"
             >
-              <option hidden className="app__nav-rightItem">My Ebay</option>
+              <option hidden className="app__nav-rightItem">
+                My Ebay
+              </option>
               {myEbayItems.map((ebayItem, index) => (
-                <option key={index} id={ebayItem?.title} className="app__nav-rightItem">
+                <option
+                  key={index}
+                  id={ebayItem?.title}
+                  className="app__nav-rightItem"
+                >
                   {ebayItem?.title}
                 </option>
               ))}

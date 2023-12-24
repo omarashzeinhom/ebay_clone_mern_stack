@@ -15,7 +15,7 @@ type ProfileProps = {
 
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("");
-  const { user, business, token } = useAuth();
+  const { user, business, token ,updateUser } = useAuth();
   const { businessId, userId } = useParams();
 
   console.log(userId);
@@ -241,8 +241,13 @@ export default function Profile({ total }: ProfileProps) {
                 hidden
               />
               <hr />
-              <button onClick={() => handleUserUpdate()}>
-                Update User Info
+              <button onClick={() => {
+  if (token !== null && user !== null) {
+    updateUser(token, user);
+  } else {
+    // Handle the case where token is null, e.g., show an error message or take appropriate action
+  }
+}}>
               </button>
             </form>
           </>

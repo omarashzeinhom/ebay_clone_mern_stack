@@ -24,24 +24,23 @@ const SignInForm: React.FC = () => {
   const { login, loginBusiness, token, user, business } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const handleSignIn = async () => {
     try {
       // Try signing in as a regular user
       const userToken = await authService.login(email, password);
       const userData = await authService.getUser(userToken);
       login(userToken, userData);
-
+  
       console.log(`User Login successful: ${email}`);
     } catch (userError) {
       console.log(userError);
-
+  
       try {
         // If signing in as a regular user fails, try signing in as a business
         const businessToken = await authService.loginBusiness(email, password);
         const businessData = await authService.getBusiness(businessToken);
         loginBusiness(businessToken, businessData);
-
+  
         console.log(`Business Login successful: ${email}`);
       } catch (businessError) {
         // If both attempts fail, log the error
@@ -49,7 +48,6 @@ const SignInForm: React.FC = () => {
       }
     }
   };
-
   useEffect(() => {
     if (token) {
       // Fetch user or business information when the component mounts

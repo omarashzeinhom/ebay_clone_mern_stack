@@ -11,6 +11,7 @@ interface AuthContextType {
   logoutBusiness: () => void;
   login: (token: string, data: User) => void;
   logout: () => void;
+  updateUser: (newToken: string, newUser: User) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,6 +22,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [business, setBusiness] = useState<Business | null>(null);
+  //const [updatedUser, setUpdatedUser] = useState<User>();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -82,6 +84,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setBusiness(null);
     localStorage.removeItem("token");
   };
+
+  const updateUser = (newToken: string, newUser: User) => {
+/**
+ * 
+ * if(newToken){
+  let updatedUser = newUser;
+  setUpdatedUser(updatedUser);
+  setUser(updatedUser);
+  setToken(newToken);
+  // Updating the new user logged info 
+  localStorage.setItem("token", newToken);
+  localStorage.setItem("user", JSON.stringify(newUser));
+}
+ */
+
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -92,6 +110,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         business,
         loginBusiness,
         logoutBusiness,
+        updateUser,
       }}
     >
       {children}
