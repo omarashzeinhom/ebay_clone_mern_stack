@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { User } from "../models/user";
 import { Business } from "../models/business";
 
-const API_BASE_URL = "http://localhost:3001/auth";
+const API_BASE_URL = "https://server-ebay-clone.onrender.com/auth";
 
 export const authService = {
   /* <--- User services start ---> */
@@ -44,7 +44,7 @@ export const authService = {
 updateUser: async(token: string, firstName: string , lastName:string, email:string, password: string, avatar: string): Promise<User>=>{
   try{
     const response: AxiosResponse<User>= await axios.patch(
-      `http://localhost:3001/auth/user`,
+      `https://server-ebay-clone.onrender.com/auth/user`,
     {
       header: {Authorization: `Bearer ${token}`},
       user: {

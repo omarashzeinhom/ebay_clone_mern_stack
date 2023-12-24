@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchUserInformation = async (token: string) => {
     try {
-      const response = await axios.get("http://localhost:3001/auth/user", {
+      const response = await axios.get("https://server-ebay-clone.onrender.com/auth/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(
@@ -66,7 +66,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchBusinessInformation = async (token: string) => {
     try {
-      const response = await axios.get("http://localhost:3001/auth/business", {
+      const response = await axios.get("https://server-ebay-clone.onrender.com/auth/business", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBusiness(response.data);

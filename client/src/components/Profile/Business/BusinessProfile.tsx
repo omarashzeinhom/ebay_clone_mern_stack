@@ -1,4 +1,4 @@
-import { Business } from "../../models/business";
+import { Business } from "../../../models/business";
 
 interface BusinessProfileProps {
     business: Business;

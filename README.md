@@ -57,7 +57,7 @@ Replace links
 - "http://localhost:3000/" // For Development
 // Backend API
 - "https://uptight-hen-fez.cyclic.app/" // For Production
-- "http://localhost:3001/" // For Development
+- "https://server-ebay-clone.onrender.com/" // For Development
 ```
 
 2. Back End

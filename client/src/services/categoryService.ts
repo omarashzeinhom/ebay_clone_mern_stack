@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "http://localhost:3001/categories";
+const API_BASE_URL = "https://server-ebay-clone.onrender.com/categories";
 
 export const categoriesService = {
   getAllCategories: async (
