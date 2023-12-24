@@ -8,7 +8,6 @@ import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProducts.scss";
 import { HOME_URL } from "../../../utilities/constants";
 
-
 interface TrendingProductsProps {}
 
 const TrendingProducts: React.FC<TrendingProductsProps> = () => {

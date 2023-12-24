@@ -3,11 +3,8 @@ import "./Profile.scss";
 import { useAuth } from "../../context/AuthContext";
 import Nav from "../Nav/Nav";
 import SearchBar from "../SearchBar/SearchBar";
-// import { Cloudinary } from "@cloudinary/url-gen";
 import { useState } from "react";
-// import CloudinaryUploadWidget from "../auth/RegisterForm/CloudinaryUploadWidget/CloudinaryUploadWidget";
-// import axios from "axios"; // Import axios for making HTTP requests
-// import { User } from "../../models/user";
+import { countryList } from "../../utilities/constants";
 
 type ProfileProps = {
   total: number;
@@ -15,88 +12,13 @@ type ProfileProps = {
 
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("");
-  const { user, business, token ,updateUser } = useAuth();
+  const { user, business, token, updateUser } = useAuth();
   const { businessId, userId } = useParams();
-
-  // console.log(user);
-/* 
-  const [publicId, setPublicId] = useState("");
-  const [cloudName] = useState(
-    `${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}`
-  );
-  const [uploadPreset] = useState(
-    `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
-  ); */
-// const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
-
-
-/*
-  const uwConfig = {
-    cloudName,
-    uploadPreset,
-    cropping: true,
-    multiple: false,
-    folder: user
-      ? "ebay-clone-images/user-avatars"
-      : "ebay-clone-images/business-avatars",
-    tags: [user ? "users" : "businesses"],
-    theme: "blue",
-  };
-
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName,
-    },
-  });
-
-  const myImage = cld.image(publicId);
-  console.log(myImage);
-
-  const handleImageUpload = async (url: string) => {
-    try {
-      // Make a request to your server to store the image URL in MongoDB
-      await axios.patch(
-        "http://localhost:3001/auth/update-avatar",
-        { avatar: user?.avatar },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      // Update the local user state with the new avatar
-
-      // Update the avatar information in local storage
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        const parsedUser = JSON.parse(storedUser);
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            ...parsedUser,
-            avatar: url,
-          })
-        );
-      }
-
-      console.log("User avatar updated successfully");
-    } catch (error) {
-      console.error("Error updating user avatar:", error);
-      // Handle error (e.g., show an error message)
-    }
-  };
-
-  const handleUploadSuccess = (result: any) => {
-    setPublicId(result?.info?.public_id);
-    setUploadedImageUrl(result?.info?.secure_url);
-    handleImageUpload(result?.info?.secure_url);
-  };
-
-*/
 
   const ProfileContainer = () => {
     if (user?.userId || userId) {
       return (
-        <div className="app__profile-container">
+        <div className="app-profile-container__info">
           <table>
             <thead>
               <tr>
@@ -113,8 +35,6 @@ export default function Profile({ total }: ProfileProps) {
                     width={25}
                     height={25}
                   />
-
-                  {/* Add Handle Update the avatar */}
                 </td>
               </tr>
               <tr>
@@ -147,7 +67,7 @@ export default function Profile({ total }: ProfileProps) {
       );
     } else if (business?.businessId || businessId) {
       return (
-        <div className="app__profile-container">
+        <div className="app-profile-container__info">
           <table>
             <thead>
               <tr>
@@ -164,8 +84,6 @@ export default function Profile({ total }: ProfileProps) {
                     width={25}
                     height={25}
                   />
-
-                  {/* Add Handle Update the avatar */}
                 </td>
               </tr>
               <tr>
@@ -200,76 +118,86 @@ export default function Profile({ total }: ProfileProps) {
   const EditProfileForm = () => {
     return (
       <div>
-        <label> Avatar </label>
         {userId && (
-          <>
-            <img src={user?.avatar || " "} alt={user?.email || "User Photo"} />
-     
-            <form className="app-profile-edit__form">
-              <label> First Name </label>
-              <input
-                id="firstName"
-                className=""
-                alt=""
-                placeholder={user?.firstName || "John"}
-                type="text"
-              />
-              <label> Last Name </label>
-              <input
-                id="lastName"
-                className=""
-                alt=""
-                placeholder={user?.lastName || "Doe"}
-                type="text"
-              />
-              <label> Email</label>
-              <input
-                id="email"
-                className=""
-                alt=""
-                placeholder={user?.email || "useremail@tmail.com"}
-                type="email"
-              />
-              <small></small>
-              <input
-                id="avatarUrl "
-                className=""
-                alt={ user?.avatar || user?.email || "User Avatar"}
-                placeholder=""
-                type="file"
-              
-              />
+          <div className="app-profile-container__form">
+            <form>
+              <div className="app-profile-container__form__group">
+                <label> First Name </label>
+                <input
+                  id="firstName"
+                  className=""
+                  alt=""
+                  placeholder={user?.firstName || "John"}
+                  type="text"
+                />
+              </div>
+              <div className="app-profile-container__form__group">
+                <label> Last Name </label>
+                <input
+                  id="lastName"
+                  className=""
+                  alt=""
+                  placeholder={user?.lastName || "Doe"}
+                  type="text"
+                />
+              </div>
+              <div className="app-profile-container__form__group">
+                <label> Email</label>
+                <input
+                  id="email"
+                  className=""
+                  alt=""
+                  placeholder={user?.email || "useremail@tmail.com"}
+                  type="email"
+                />
+              </div>
+              <div className="app-profile-container__form__group">
+                <small></small>
+                <img
+                  src={user?.avatar || " "}
+                  alt={user?.email || "User Photo"}
+                />
+              </div>
+              <div className="app-profile-container__form__group">
+                <label> Avatar </label>
+                <input
+                  id="avatarUrl "
+                  className=""
+                  alt={user?.avatar || user?.email || "User Avatar"}
+                  placeholder=""
+                  type="file"
+                />
+              </div>
               <hr />
-              <button onClick={() => {
-  if (token !== null && user !== null) {
-    updateUser(token, user);
-  } else {
-    // Handle the case where token is null, e.g., show an error message or take appropriate action
-  }
-}}>
-  Update User
+              <button
+                onClick={() => {
+                  if (token !== null && user !== null) {
+                    updateUser(token, user);
+                  } else {
+                    // Handle the case where token is null, e.g., show an error message or take appropriate action
+                  }
+                }}
+              >
+                Update User
               </button>
             </form>
-          </>
+          </div>
         )}
-        {business?.businessId ||
-          (businessId && (
-            <>
-              <img src={" "} alt={business?.businessEmail || "User Photo"} />
-             
-              <form className="app-profile-edit__form">
-                <label>
-                  {" "}
-                  Business Name
-                  <input
-                    id="businessName"
-                    className=""
-                    alt=""
-                    placeholder={business?.businessEmail || "John Doe Inc"}
-                    type="text"
-                  />
-                </label>
-                <label> Email</label>
+        {business?.businessId && (
+          <div className="app-profile-container__form">
+            <form>
+              <div className="app-profile-container__form__group">
+                <label> Business Name </label>
+                <input
+                  id="businessName"
+                  className=""
+                  alt=""
+                  placeholder={business?.businessEmail || "John Doe Inc"}
+                  type="text"
+                />
+              </div>
+              <div className="app-profile-container__form__group">
+                <label> Email </label>
                 <input
                   id="businessEmail"
                   className=""
@@ -279,14 +207,49 @@ export default function Profile({ total }: ProfileProps) {
                   }
                   type="email"
                 />
-
-                <hr />
-                <button onClick={() => handleUserUpdate()}>
-                  Update User Info
-                </button>
-              </form>
-            </>
-          ))}
+              </div>
+              <div className="app-profile-container__form__group">
+                <label> Active ? </label>
+                <input
+                  id="businessEmail"
+                  className=""
+                  alt=""
+                  placeholder={business?.businessEmail || ""}
+                  type="email"
+                />
+                {business?.businessActive}
+              </div>
+              <div className="app-profile-container__form__group">
+                <label> Avatar </label>
+                <input
+                  id="businessAvatar"
+                  className=""
+                  alt={business?.businessName || ""}
+                  placeholder={business?.businessAvatar || ""}
+                  type="file"
+                />
+                <img
+                  src={business?.businessAvatar || ""}
+                  alt={
+                    business?.businessName ||
+                    business?.businessEmail ||
+                    "Business Photo"
+                  }
+                />
+              </div>
+              <select>
+                {countryList.map((country, index) => {
+                  return (
+                    <option key={country || index}>{country}</option>
+                  );
+                })}
+              </select>
+              <button onClick={() => handleUserUpdate()}>
+                Update Business Info
+              </button>
+            </form>
+          </div>
+        )}
       </div>
     );
   };
@@ -297,7 +260,7 @@ export default function Profile({ total }: ProfileProps) {
 
   const RadioButtons = () => {
     return (
-      <div>
+      <div className="app-profile-container">
         <h2>{userId ? " User " : " Business "}Profile</h2>
         <div>
           <label>
@@ -332,10 +295,11 @@ export default function Profile({ total }: ProfileProps) {
           <Nav total={total} />
           <SearchBar />
           <RadioButtons />
+          <div className="app-profile-container">
+            {isEditing === "View" && <ProfileContainer />}
 
-          {isEditing === "View" && <ProfileContainer />}
-
-          {isEditing === "Edit" && <EditProfileForm />}
+            {isEditing === "Edit" && <EditProfileForm />}
+          </div>
         </>
       ) : (
         <button onClick={() => (window.location.href = "/login")}>Login</button>
