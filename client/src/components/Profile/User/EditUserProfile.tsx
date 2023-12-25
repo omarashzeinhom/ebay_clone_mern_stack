@@ -43,7 +43,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({
     }
   
     try {
-      const response = await axios.put(`/auth/user/${user?.userId}`, formData);
+      const response = await axios.put(`http://localhost:3001/auth/user/${user?.userId}`, formData);
       // Handle the response as needed
       console.log(response.data);
     } catch (error) {

@@ -6,6 +6,7 @@ const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const bodyParser = require("body-parser");
+const User = require("./models/userModel");
 //const cloudinary = require("cloudinary").v2;
 
 const app = express();
@@ -50,13 +51,13 @@ app.get("/auth/loginb", (req, res) => {
 
 // Update user route
 app.put("/auth/user/:id", async (req, res) => {
-  const userId = parseInt(req.params.id, 10);
+  const userId = req.params.id; // Assuming userId is a string
   const updatedFields = req.body;
+  console.log("Received update data:", updatedFields);
 
   try {
-    // Update the user in MongoDB
-    const updatedUser = await UserModel.findOneAndUpdate(
-      { id: userId },
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: userId },
       updatedFields,
       { new: true }
     );
