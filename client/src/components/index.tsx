@@ -10,6 +10,7 @@ import AdsCarousel from "./Ads/AdsCarousel/AdsCarousel";
 import CategoryList from "./Categories/CategoryList/CategoryList";
 import CategoriesCarousel from "./Categories/CategoriesCarousel/CategoriesCarousel";
 // Products
+import Loading from "./Loading/Loading";
 import Checkout from "./Cart/CheckOut/CheckOut";
 import CartItem from "./Cart/CartItem/CartItem";
 import ShoppingCart from "./Cart/ShoppingCart/ShoppingCart";
@@ -32,6 +33,7 @@ export {
   AdsCarousel,
   CategoryList,
   CategoriesCarousel,
+  Loading,
   Checkout,
   CartItem,
   ShoppingCart,

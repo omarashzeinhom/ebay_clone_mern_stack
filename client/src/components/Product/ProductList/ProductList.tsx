@@ -3,12 +3,14 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/ProductContext";
 import "./ProductList.scss";
+import Loading from "../../Loading/Loading";
 
 interface ProductListProps {}
 
 const ProductList: React.FC<ProductListProps> = () => {
   const { categoryName } = useParams();
   const { products, fetchProducts } = useProductContext();
+
 
   useEffect(() => {
     // Fetch products when the category changes, but only if categoryName is defined
@@ -56,7 +58,9 @@ const ProductList: React.FC<ProductListProps> = () => {
             </li>
           ))
         ) : (
-          <li className="product-list__product-list-item">No Products found</li>
+          <li className="product-list__product-list-item">
+<Loading/>
+          </li>
         )}
       </ul>
     </div>
@@ -64,3 +68,5 @@ const ProductList: React.FC<ProductListProps> = () => {
 };
 
 export default ProductList;
+
+
