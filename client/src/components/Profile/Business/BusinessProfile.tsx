@@ -1,24 +1,13 @@
-import { useParams } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
-import { Business } from "../../../models/business";
-import { useState } from "react";
-import { User } from "../../../models/user";
-
-interface BusinessProfileProps {
-
-};
 
 
-const BusinessProfile: React.FC<BusinessProfileProps> = ({
+
+
+const BusinessProfile: React.FC = ({
     
 
 })=> {
-
     const {business} = useAuth();
-    const { businessId} = useParams();
-  
-  
-
     return (
         <div className="app-profile-container__info">
         <table>

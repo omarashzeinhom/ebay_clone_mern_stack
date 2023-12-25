@@ -6,13 +6,14 @@ import { Business } from "../models/business";
 interface AuthContextType {
   token: string | null;
   user: User | null;
-  setUser:  React.Dispatch<React.SetStateAction<User | null>>,
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
   business: Business | null;
   loginBusiness: (token: string, data: Business) => void;
   logoutBusiness: () => void;
   login: (token: string, data: User) => void;
   logout: () => void;
-  updateUser: (newToken: string, updUser: User) => void;
+  updateUser: (token: string | null, updUser: User | null) => void;
+  updatedUser: User | undefined; // New state variable
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,7 +24,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [business, setBusiness] = useState<Business | null>(null);
-  const [updatedUser, setUpdatedUser] = useState<User>();
+  const [updatedUser, setUpdatedUser] = useState<User | undefined>(undefined); // Initialize with undefined
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -90,16 +91,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("token");
   };
 
-  const updateUser = (newToken: string, updUser: User) => {
-  if(newToken){
-    setUpdatedUser(updatedUser);
-    setUser(updUser);
-    setToken(newToken);
-    // Updating the new user logged info 
-    localStorage.setItem("token", newToken);
-    localStorage.setItem("user", JSON.stringify(updUser));
-  }
-
+  const updateUser = (token: string | null, updUser: User | null) => {
+    if (token) {
+      setUpdatedUser(updUser || undefined); // Update with User | undefined
+      setUser(updUser);
+      setToken(token);
+      // Updating the new user logged info
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(updUser));
+    }
   };
 
   return (
@@ -107,6 +107,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       value={{
         token,
         user,
+        updatedUser,
         login,
         logout,
         business,

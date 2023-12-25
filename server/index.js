@@ -53,12 +53,14 @@ app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 
+
+
 // Connect to MongoDB
 mongoose.connect(process.env.ATLAS_URI, {});
 const connection = mongoose.connection;
 
 connection.once("open", () => {
-  console.log("MongoDB database connection established successfully");
+  console.log("MongoDB database connection established successfully 🚀");
 });
 // Start the server
 app.listen(port, () => {

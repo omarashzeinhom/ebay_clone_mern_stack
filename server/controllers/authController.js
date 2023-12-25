@@ -65,7 +65,7 @@ exports.getUser = async (req, res) => {
       avatar: user?.avatar , // added prop for avatar url
     });
     //Debug
-   console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
+   // console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -217,27 +217,38 @@ exports.getBusiness = async (req, res) => {
 
 
 
-exports.updateUser= async(req,res)=>{
-  let { firstName, lastName , email, avatar,} =req.body
+exports.updateUser = async (req, res) => {
+  let { firstName, lastName, email, avatar } = req.body;
 
-  console.log(`user inputs from front end firstName:${firstName} lastName:${lastName} email:${email} avatar:${avatar}`)
-
-  try{
-    const result = await cloudinary.v2.uploader.upload(avatar).then((result)=> console.log(result));
-  // ** Add Cloudinary image link to mongodb instead of uploading it to mongodb aswell //
-  const avatarLink = result?.secure_url;
-
-  const updatedUser = await User.updateOne(
-    { email: email },
-    { firstName: firstName, lastName: lastName, avatar: avatarLink }
+  console.log(
+    `user inputs from front end firstName:${firstName} lastName:${lastName} email:${email} avatar:${avatar}`
   );
-  console.log(updatedUser);
 
-  res.status(200).json({ message: "User updated successfully", updatedUser });
+  try {
+    // Upload the avatar to Cloudinary
+    const result = await cloudinary.v2.uploader.upload(avatar);
+    // Add Cloudinary image link to MongoDB instead of uploading it to MongoDB as well
+    const avatarLink = result?.secure_url;
 
+    // Update user in MongoDB with the new avatar link
+    const updatedUser = await User.updateOne(
+      { email: email },
+      { firstName: firstName, lastName: lastName, avatar: avatarLink }
+    );
+
+    console.log(updatedUser);
+
+    // Set headers to prevent caching
+    res.setHeader("ETag", generateNewETag());
+    res.setHeader("Cache-Control", "no-store");
+
+    res.status(200).json({
+      message: "User updated successfully",
+      updatedUser,
+      avatarLink, // Send back the updated avatar link to the frontend
+    });
   } catch (error) {
     console.log(`Error in updateUser: ${error}`);
     res.status(500).json({ message: "Internal Server Error" });
   }
-
-}
+};

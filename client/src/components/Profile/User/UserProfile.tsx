@@ -1,8 +1,6 @@
 import { useAuth } from "../../../context/AuthContext";
 
-type UserProfileProps = {
 
-}
 
 export default function UserProfile (){
     const {user } = useAuth();
