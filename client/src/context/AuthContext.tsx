@@ -6,6 +6,7 @@ import { Business } from "../models/business";
 interface AuthContextType {
   token: string | null;
   user: User | null;
+  setUser:  React.Dispatch<React.SetStateAction<User | null>>,
   business: Business | null;
   loginBusiness: (token: string, data: Business) => void;
   logoutBusiness: () => void;
@@ -36,7 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchUserInformation = async (token: string) => {
     try {
-      const response = await axios.get("https://server-ebay-clone.onrender.com/auth/user", {
+      const response = await axios.get("http://localhost:3001/auth/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(
@@ -66,7 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchBusinessInformation = async (token: string) => {
     try {
-      const response = await axios.get("https://server-ebay-clone.onrender.com/auth/business", {
+      const response = await axios.get("http://localhost:3001/auth/business", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBusiness(response.data);
@@ -112,6 +113,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         loginBusiness,
         logoutBusiness,
         updateUser,
+        setUser,
       }}
     >
       {children}

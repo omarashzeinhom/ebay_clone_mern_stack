@@ -216,9 +216,7 @@ exports.getBusiness = async (req, res) => {
 
 
 
-/**
- * 
- * 
+
 exports.updateUser= async(req,res)=>{
   let { firstName, lastName , email, avatar,} =req.body
 
@@ -233,6 +231,7 @@ exports.updateUser= async(req,res)=>{
     { email: email },
     { firstName: firstName, lastName: lastName, avatar: avatarLink }
   );
+  console.log(updatedUser);
 
   res.status(200).json({ message: "User updated successfully", updatedUser });
 
@@ -242,5 +241,3 @@ exports.updateUser= async(req,res)=>{
   }
 
 }
- * 
- */
