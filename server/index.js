@@ -48,12 +48,34 @@ app.get("/auth/loginb", (req, res) => {
   res.send("Hello, this is the Business login route!");
 });
 
+// Update user route
+app.put("/auth/user/:id", async (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  const updatedFields = req.body;
+
+  try {
+    // Update the user in MongoDB
+    const updatedUser = await UserModel.findOneAndUpdate(
+      { id: userId },
+      updatedFields,
+      { new: true }
+    );
+
+    if (updatedUser) {
+      res.json(updatedUser);
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Routes
 app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
-
-
 
 // Connect to MongoDB
 mongoose.connect(process.env.ATLAS_URI, {});

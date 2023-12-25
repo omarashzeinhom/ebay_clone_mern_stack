@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { User } from "../../../models/user";
+import axios from "axios";
 
 interface EditUserProfileProps {
   user: User;
@@ -9,7 +10,6 @@ interface EditUserProfileProps {
 
 const EditUserProfile: React.FC<EditUserProfileProps> = ({
   user,
-  updateUser,
   setUser,
 }) => {
   const { firstName, lastName, email, avatar } = user;
@@ -30,11 +30,42 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({
     }
   };
 
+  const updateUser = async (selectedAvatar: File | undefined) => {
+    const formData = new FormData();
+    formData.append("firstName", user.firstName);
+    formData.append("lastName", user.lastName);
+    formData.append("email", user.email);
+    // ... (other fields)
+  
+    // Append the selectedAvatar if it exists
+    if (selectedAvatar) {
+      formData.append("avatar", selectedAvatar);
+    }
+  
+    try {
+      const response = await axios.put(`/auth/user/${user?.userId}`, formData);
+      // Handle the response as needed
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+  
+
+
+
+
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     // Pass the selectedAvatar to the updateUser function
     await updateUser(selectedAvatar);
   };
+// In your updateUser function in the frontend
+
+
+
+
 
   return (
     <div className="app-profile-container__form">
