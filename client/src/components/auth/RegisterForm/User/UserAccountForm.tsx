@@ -20,15 +20,15 @@ const UserAccountForm: React.FC<UserAccountFormProps> = ({
   const [localUser, setLocalUser] = useState<User>(user);
 
 
-  const handleChange = (field: string, value: string) => {
+  const handleChange = (field: string, value: string | File | undefined) => {
     const updatedUser: User = {
       ...localUser,
-      [field]: value, // Update the specific field in the updatedUser
+      [field]: value,
     };
     setLocalUser(updatedUser);
     setUser(updatedUser);
   };
-  const { firstName, lastName, email, password, avatar } = localUser;
+  const { firstName, lastName, email, password, /* avatar  */} = localUser;
 
   //console.log(avatar);
   // console.log(`https://res-console.cloudinary.com/dmbzzkneb/media_explorer_thumbnails/${myImage}`)
@@ -76,15 +76,17 @@ const UserAccountForm: React.FC<UserAccountFormProps> = ({
           className="app__paform-input"
           onChange={(e) => handleChange("password", e.target.value)}
         />
-        <input
+<input
         id="avatar"
-        type="text"
-        hidden
-        value={avatar}
+        type="file"
+        accept="image/*"
         className="app__paform-Btn"
-        onChange={(e) => handleChange("avatar", e.target.value)}
-        />
-        {/*ADD HIDDEN INPUT WITH IMAGE URL */}
+   
+     onChange={(e) => {
+          const file = e.target.files?.[0];
+          handleChange("avatar", file);
+        }} 
+      />
 
         <button onClick={handleRegister} className="app__paform-Btn" type="button" >
           Register

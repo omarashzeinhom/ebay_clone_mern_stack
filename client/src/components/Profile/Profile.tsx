@@ -14,7 +14,7 @@ type ProfileProps = {
 
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("");
-  const { business, user, setUser, updateUser, token } = useAuth();
+  const { business, user, setUser, updateUser, /* */} = useAuth();
   const { businessId, userId } = useParams();
 
   const ProfileContainer = () => {
@@ -34,9 +34,10 @@ export default function Profile({ total }: ProfileProps) {
           <EditUserProfile
             user={user}
             setUser={() => setUser}
-            updateUser={async () => updateUser(token, user)}
+            updateUser={async (selectedAvatar) => updateUser(selectedAvatar)}
+
           />
-        )}
+        )} 
         {business?.businessId && <BusinessProfile />}
       </div>
     );

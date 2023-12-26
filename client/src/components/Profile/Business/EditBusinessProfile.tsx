@@ -66,7 +66,7 @@ export default function EditBusinessProfile(){
                   );
                 })}
               </select>
-              <button onClick={() =>{}}>
+              <button >
                 Update Business Info
               </button>
             </form>

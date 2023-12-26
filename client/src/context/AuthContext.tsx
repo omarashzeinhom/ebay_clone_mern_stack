@@ -12,7 +12,7 @@ interface AuthContextType {
   logoutBusiness: () => void;
   login: (token: string, data: User) => void;
   logout: () => void;
-  updateUser: (token: string | null, updUser: User | null) => void;
+  updateUser: (selectedAvatar: File | undefined) => Promise<void>;
   updatedUser: User | undefined; // New state variable
 }
 
@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [business, setBusiness] = useState<Business | null>(null);
-  const [updatedUser, setUpdatedUser] = useState<User | undefined>(undefined); // Initialize with undefined
+  const [updatedUser, setUpdatedUser] = useState<User | undefined>(undefined);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -45,6 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         `fetchUserInformation ======> ${JSON.stringify(response?.data)}`
       );
       setUser(response.data);
+      setUpdatedUser(response.data); // Update updatedUser when user information changes
     } catch (error) {
       console.error("Error fetching user information:", error);
       // Handle error (e.g., log out the user)
@@ -91,14 +92,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("token");
   };
 
-  const updateUser = (token: string | null, updUser: User | null) => {
-    if (token) {
-      setUpdatedUser(updUser || undefined); // Update with User | undefined
-      setUser(updUser);
-      setToken(token);
-      // Updating the new user logged info
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(updUser));
+  const updateUser = async (selectedAvatar: File | undefined) => {
+    const formData = new FormData();
+    if (user?.firstName) formData.append("firstName", user?.firstName);
+    if (user?.lastName) formData.append("lastName", user?.lastName);
+    if (user?.email) formData.append("email", user?.email);
+
+    console.log(formData);
+    // Append the selectedAvatar if it exists
+    if (selectedAvatar) {
+      formData.append("avatar", selectedAvatar);
+    }
+
+    try {
+      const response = await axios.put(
+        `http://localhost:3001/auth/user/${user?.userId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`, // Include the authorization header if needed
+          },
+        }
+      );
+
+      // Handle the response as needed
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error updating user:", error);
     }
   };
 
