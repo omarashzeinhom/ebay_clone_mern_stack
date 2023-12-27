@@ -17,8 +17,8 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
     undefined
   );
 
-  const handleInputChange = (e: React.FormEvent | any) => {
-    const { name, value } = e?.target;
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setUpdatedUser((prevData) => ({
       ...prevData,
       [name]: value,
@@ -74,6 +74,8 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             First Name
             <input
               placeholder={user?.firstName || "John"}
+              value={updatedUser?.updatedFirstName || ""}
+
               type="text"
               onChange={handleInputChange}
               name="updatedFirstName"
@@ -86,6 +88,8 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             Last Name
             <input
               placeholder={user?.lastName || "Doe"}
+              value={updatedUser?.updatedLastName|| ""}
+
               type="text"
               name="updatedLastName"
               onChange={handleInputChange}
@@ -97,6 +101,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             {" "}
             Email
             <input
+              value={updatedUser?.updatedEmail|| ""}
               placeholder={user?.email || "useremail@tmail.com"}
               type="email"
               name="updatedEmail"
@@ -115,7 +120,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
           type="file"
           name="updatedAvatar"
           onChange={(e) => handleFileChange(e.target.files?.[0])}
-        />
+          />
         <hr />
         <button type="submit">Update User</button>
       </form>

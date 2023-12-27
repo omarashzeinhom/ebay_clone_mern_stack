@@ -7,14 +7,15 @@ import { useProductContext } from "../../../context/ProductContext";
 import Nav from "../../Nav/Nav";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
-// import { Product } from "../../../models/product";
 
 type ProductDetailProps = {
 total: number;
+
 }
 
 const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
   const navigate = useNavigate();
+
 
   const {
     addItemToCart,

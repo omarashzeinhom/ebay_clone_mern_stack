@@ -1,9 +1,9 @@
-import React from "react";
 import { useAuth } from "../../../context/AuthContext";
 
 export default function UserProfile() {
   const { user } = useAuth();
-  console.log(user);
+  console.log(`user in UserProfile.tsx =====> ${user}`);
+
 
   return (
     <div className="app-profile-container__info">

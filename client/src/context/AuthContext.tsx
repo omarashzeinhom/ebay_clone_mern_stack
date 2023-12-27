@@ -4,7 +4,7 @@ import { User } from "../models/user";
 import { Business } from "../models/business";
 
 interface AuthContextType {
-  token: string | null;
+  token: string | null ;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   business: Business | null;
@@ -29,7 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [business, setBusiness] = useState<Business | null>(null);
-  const [updatedUser, setUpdatedUser] = useState<UpdatedUser | undefined>(undefined);
+  const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({});
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -114,7 +114,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
+      
+
       );
 
       setUpdatedUser(response.data);

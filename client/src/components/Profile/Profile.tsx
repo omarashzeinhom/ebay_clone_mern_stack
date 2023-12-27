@@ -14,7 +14,7 @@ type ProfileProps = {
 
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("");
-  const { business, user, setUser, updateUser, updatedUser, setUpdatedUser, token } =
+  const { business, user, setUser, updateUser, updatedUser, setUpdatedUser, /* token  */} =
     useAuth();
   const { businessId, userId } = useParams();
 

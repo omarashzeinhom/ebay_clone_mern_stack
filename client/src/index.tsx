@@ -35,7 +35,7 @@ const AppWrapper = () => {
 
   return (
     <Elements stripe={stripePromise}>
-      <App total={dynamicTotal} />
+      <App total={dynamicTotal}  />
     </Elements>
   );
 };

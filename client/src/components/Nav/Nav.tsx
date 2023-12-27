@@ -7,6 +7,7 @@ import { navItems, myEbayItems } from "../../utilities/constants";
 import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
 type NavProps = {
   total: number;
+  
 };
 
 const Nav: React.FC<NavProps> = ({ total }) => {
@@ -53,9 +54,14 @@ const Nav: React.FC<NavProps> = ({ total }) => {
 
   
   useEffect(()=>{
-    fetchUserInformation(`${token}`);
+    console.log(`token in Nav.tsx ====> ${token}`);
+    console.log(`user in Nav.tsx ====> ${user}`);
+    if(token){
+      fetchUserInformation(token);
+    }
 
-  },[])
+
+  }, []);
 
 
   return (
