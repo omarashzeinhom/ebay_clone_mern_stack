@@ -52,6 +52,7 @@ app.get("/auth/loginb", (req, res) => {
 // Update user route
 app.put("/auth/user/:id", async (req, res) => {
   const userId = req.params.id; // Assuming userId is a string
+  console.log(userId);
   const updatedFields = req.body;
   console.log("Received update data:", updatedFields);
 

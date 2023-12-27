@@ -43,20 +43,20 @@ export const authService = {
 
 updateUser: async(token: string, firstName: string , lastName:string, email:string, password: string, avatar: string): Promise<User>=>{
   try{
-    const response: AxiosResponse<User>= await axios.patch(
+    const response: AxiosResponse<User> = await axios.patch(
       `http://localhost:3001/auth/user`,
-    {
-      header: {Authorization: `Bearer ${token}`},
-      user: {
-          firstName,
-          lastName,
-          email,
-          password,
-          avatar: avatar || "",
+      {
+        firstName,
+        lastName,
+        email,
+        password,
+        avatar: avatar || "",
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
       }
-    },
-    
-      )
+    );
+  
       return response?.data;
   }catch(error){
     throw new Error(`Failed to get user: ${error}`);

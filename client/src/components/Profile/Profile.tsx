@@ -14,8 +14,12 @@ type ProfileProps = {
 
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("");
-  const { business, user, setUser, updateUser, /* */} = useAuth();
+  const { business, user, setUser, updateUser, updatedUser, setUpdatedUser, token } =
+    useAuth();
   const { businessId, userId } = useParams();
+
+  const businessB = localStorage.getItem("business");
+  console.log(businessB);
 
   const ProfileContainer = () => {
     if (user?.userId || userId) {
@@ -34,11 +38,14 @@ export default function Profile({ total }: ProfileProps) {
           <EditUserProfile
             user={user}
             setUser={() => setUser}
-            updateUser={async (selectedAvatar) => updateUser(selectedAvatar)}
-
+            updatedUser={updatedUser}
+            setUpdatedUser={() => setUpdatedUser}
+            updateUser={async (selectedAvatar) =>
+              updateUser(selectedAvatar, updatedUser)
+            }
           />
-        )} 
-        {business?.businessId && <BusinessProfile />}
+        )}
+        {business?.businessId || (businessId && <BusinessProfile />)}
       </div>
     );
   };
@@ -77,6 +84,9 @@ export default function Profile({ total }: ProfileProps) {
     );
   };
 
+
+
+
   return (
     <>
       {user?.userId || business?.businessId ? (
@@ -91,7 +101,15 @@ export default function Profile({ total }: ProfileProps) {
           </div>
         </>
       ) : (
-        <button onClick={() => (window.location.href = "/login")}>Login</button>
+        <>
+          <Nav total={total} />
+          <SearchBar />
+          <div className="app-profile-container">
+            <button onClick={() => (window.location.href = "/signin")}>
+              Sign In{" "}
+            </button>
+          </div>
+        </>
       )}
     </>
   );

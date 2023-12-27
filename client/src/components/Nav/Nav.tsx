@@ -1,6 +1,6 @@
 import "./Nav.scss";
 import { FaRegBell } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { navItems, myEbayItems } from "../../utilities/constants";
@@ -10,18 +10,17 @@ type NavProps = {
 };
 
 const Nav: React.FC<NavProps> = ({ total }) => {
-  const { token, user, logout, business } = useAuth();
-  
+  const navigate = useNavigate();
+  const { token, user, logout, business,fetchUserInformation } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+
+  // Debug
   console.log(
     `user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(
       business
     )}`
   );
-  //const [business, setBusiness] = useState<Business>();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const { userId, businessId } = useParams();
-  //console.log(userId, businessId);
-  const navigate = useNavigate();
 
   const handleLogOut = () => {
     logout();
@@ -50,6 +49,14 @@ const Nav: React.FC<NavProps> = ({ total }) => {
       console.error("User and business have no ID");
     }
   };
+
+
+  
+  useEffect(()=>{
+    fetchUserInformation(`${token}`);
+
+  },[])
+
 
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>

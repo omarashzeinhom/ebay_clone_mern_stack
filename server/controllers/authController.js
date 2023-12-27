@@ -16,7 +16,7 @@ cloudinary.config({
 });
 
 // Log the configuration
-// console.log(cloudinary.config());
+console.log(cloudinary.config());
 
 const secretKey = process.env.JWT_SECRET;
 
@@ -41,7 +41,7 @@ exports.register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      avatar: avatar | " ",
+      avatar: avatar || " ",
     });
 
     await newUser.save();
@@ -227,6 +227,7 @@ exports.updateUser = async (req, res) => {
   try {
     // Upload the avatar to Cloudinary
     const result = await cloudinary.v2.uploader.upload(avatar);
+    console.log(result);
     // Add Cloudinary image link to MongoDB instead of uploading it to MongoDB as well
     const avatarLink = result?.secure_url;
 

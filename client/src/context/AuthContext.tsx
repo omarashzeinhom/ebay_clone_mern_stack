@@ -12,8 +12,13 @@ interface AuthContextType {
   logoutBusiness: () => void;
   login: (token: string, data: User) => void;
   logout: () => void;
-  updateUser: (selectedAvatar: File | undefined) => Promise<void>;
-  updatedUser: User | undefined; // New state variable
+  updateUser: (
+    selectedAvatar: File | undefined,
+    updatedUser: UpdatedUser | undefined
+  ) => Promise<void>;
+  updatedUser: UpdatedUser | undefined;
+  setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
+  fetchUserInformation: (token: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -24,13 +29,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [business, setBusiness] = useState<Business | null>(null);
-  const [updatedUser, setUpdatedUser] = useState<User | undefined>(undefined);
+  const [updatedUser, setUpdatedUser] = useState<UpdatedUser | undefined>(undefined);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
-      // Fetch user information from the server using the stored token
       fetchUserInformation(storedToken);
       fetchBusinessInformation(storedToken);
     }
@@ -41,14 +45,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       const response = await axios.get("http://localhost:3001/auth/user", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(
-        `fetchUserInformation ======> ${JSON.stringify(response?.data)}`
-      );
       setUser(response.data);
-      setUpdatedUser(response.data); // Update updatedUser when user information changes
+      setUpdatedUser(response.data);
     } catch (error) {
       console.error("Error fetching user information:", error);
-      // Handle error (e.g., log out the user)
     }
   };
 
@@ -56,8 +56,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setToken(newToken);
     setUser(newUser);
     localStorage.setItem("token", newToken);
-    // Set the user information
-    console.log(newUser);
     localStorage.setItem("user", JSON.stringify(newUser));
   };
 
@@ -82,7 +80,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setToken(newToken);
     setBusiness(newBusiness);
     localStorage.setItem("token", newToken);
-    // Set the user information
     localStorage.setItem("business", JSON.stringify(newBusiness));
   };
 
@@ -92,16 +89,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("token");
   };
 
-  const updateUser = async (selectedAvatar: File | undefined) => {
+  const updateUser = async (
+    selectedAvatar: File | undefined,
+    updatedUser: UpdatedUser | undefined
+  ) => {
     const formData = new FormData();
-    if (user?.firstName) formData.append("firstName", user?.firstName);
-    if (user?.lastName) formData.append("lastName", user?.lastName);
-    if (user?.email) formData.append("email", user?.email);
+    if (updatedUser?.updatedFirstName)
+      formData.append("firstName", updatedUser?.updatedFirstName);
+    if (updatedUser?.updatedLastName)
+      formData.append("lastName", updatedUser?.updatedLastName);
+    if (updatedUser?.updatedEmail)
+      formData.append("email", updatedUser?.updatedEmail);
 
-    console.log(formData);
-    // Append the selectedAvatar if it exists
     if (selectedAvatar) {
-      formData.append("avatar", selectedAvatar);
+      formData.append("updatedAvatar", selectedAvatar);
     }
 
     try {
@@ -111,33 +112,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`, // Include the authorization header if needed
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      // Handle the response as needed
-      console.log(response.data);
+      setUpdatedUser(response.data);
+      console.log(formData);
+      console.log(updatedUser);
     } catch (error) {
       console.error("Error updating user:", error);
     }
   };
 
+  const contextValue: AuthContextType = {
+    token,
+    user,
+    updatedUser,
+    login,
+    logout,
+    business,
+    loginBusiness,
+    logoutBusiness,
+    fetchUserInformation,
+    updateUser,
+    setUser,
+    setUpdatedUser: setUpdatedUser as React.Dispatch<
+      React.SetStateAction<UpdatedUser | undefined>
+    >,
+  };
+
   return (
-    <AuthContext.Provider
-      value={{
-        token,
-        user,
-        updatedUser,
-        login,
-        logout,
-        business,
-        loginBusiness,
-        logoutBusiness,
-        updateUser,
-        setUser,
-      }}
-    >
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );

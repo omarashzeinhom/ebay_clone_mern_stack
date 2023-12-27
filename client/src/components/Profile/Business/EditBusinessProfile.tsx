@@ -14,7 +14,7 @@ export default function EditBusinessProfile(){
                   id="businessName"
                   className=""
                   alt=""
-                  placeholder={business?.businessEmail || "John Doe Inc"}
+                  placeholder={business?.businessEmail || "Enter company name here"}
                   type="text"
                 />
               </div>
@@ -25,7 +25,7 @@ export default function EditBusinessProfile(){
                   className=""
                   alt=""
                   placeholder={
-                    business?.businessEmail || "johndoeinc@email.com"
+                    business?.businessEmail || "Enter company email here"
                   }
                   type="email"
                 />

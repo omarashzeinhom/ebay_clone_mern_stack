@@ -6,32 +6,16 @@ interface EditUserProfileProps {
   user: User;
   updateUser: (selectedAvatar: File | undefined) => Promise<void>; // Updated the function signature
   setUser: React.Dispatch<React.SetStateAction<User>>;
+  updatedUser: UpdatedUser | undefined; // New state variable
+  setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
 }
 
 const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
-  const { updateUser } = useAuth();
+  const { updateUser, updatedUser, setUpdatedUser } = useAuth();
   let { firstName, lastName, email, avatar } = user;
   const [selectedAvatar, setSelectedAvatar] = useState<File | undefined>(
     undefined
   );
-
-
-  let [updatedUser, setUpdatedUser] = useState({
-    updatedFirstName: "",
-    updatedLastName: "",
-    updatedEmail: "",
-    updatedAvatar: "",
-  });
-
-  const [formData, setFormData] = useState({
-    updatedFirstName: "",
-    updatedLastName: "",
-    updatedEmail: "",
-    updatedAvatar: "",
-  });
-
-
-
 
   const handleInputChange = (e: React.FormEvent | any) => {
     const { name, value } = e?.target;
@@ -39,10 +23,16 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
       ...prevData,
       [name]: value,
     }));
+    setUser((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   console.log(
-    `user ===> ${user} and its props ===>> ${firstName} ${lastName} ${email} ${avatar}`
+    `user ===> ${JSON.stringify(
+      user
+    )} and its props ===>> ${firstName} ${lastName} ${email} ${avatar}`
   );
 
   const handleFileChange = (file: File | undefined) => {
@@ -56,8 +46,21 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    // Pass the selectedAvatar to the updateUser function
-    await updateUser(selectedAvatar);
+    await updateUser(selectedAvatar, updatedUser);
+    setUpdatedUser((prevUser) => ({
+      ...prevUser,
+      firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
+      lastName: updatedUser?.updatedLastName || prevUser?.updatedLastName,
+      email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
+      avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
+    }));
+    setUser((prevUser) => ({
+      ...prevUser,
+      firstName: updatedUser?.updatedFirstName || prevUser?.firstName,
+      lastName: updatedUser?.updatedLastName || prevUser?.lastName,
+      email: updatedUser?.updatedEmail || prevUser?.email,
+      avatar: updatedUser?.updatedAvatar || prevUser?.avatar,
+    }));
   };
 
   console.log(updatedUser);
@@ -111,15 +114,10 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
           alt={user?.firstName || user?.email || "User Avatar"}
           type="file"
           name="updatedAvatar"
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            handleFileChange(file);
-          }}
+          onChange={(e) => handleFileChange(e.target.files?.[0])}
         />
         <hr />
-        <button type="submit" onSubmit={handleSubmit}>
-          Update User
-        </button>
+        <button type="submit">Update User</button>
       </form>
     </div>
   );

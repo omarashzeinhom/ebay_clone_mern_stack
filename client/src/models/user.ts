@@ -3,6 +3,7 @@ export interface User {
     firstName:string,
     lastName: string,
     email : string,
-    avatar?: string | File, 
+    avatar?: any, // ADD Generic Types for image and string using an array
     password: string,
+    
 }
