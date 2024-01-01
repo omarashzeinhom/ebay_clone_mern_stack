@@ -23,6 +23,7 @@ const CartItem: React.FC<CartItemProps> = ({
             <img
               src={img}
               alt={name}
+              loading="lazy"
               style={{ width: "45px", height: "45px", borderRadius: "50%" }}
             />
             <div className="">

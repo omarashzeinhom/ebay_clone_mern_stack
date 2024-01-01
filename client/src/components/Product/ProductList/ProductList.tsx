@@ -50,6 +50,7 @@ const ProductList: React.FC<ProductListProps> = ({products: productListProp }) =
                   className="product-list__product-list-image"
                   src={product?.img}
                   alt={product?.name}
+                  loading="lazy"
                 />
                 <p className="product-list__product-list-name">
                 {product?.name}

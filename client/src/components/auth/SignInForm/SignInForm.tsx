@@ -9,7 +9,13 @@ const SignInNav = () => {
     <div className="app__signin-nav">
       <div className="app__signin-nav-left">
         <a href="/">
-          <img src="/ebaylogo.png" alt="ebaylogo" width={140} height={57} />
+          <img
+            src="/ebaylogo.png"
+            alt="ebaylogo"
+            width={140}
+            height={57}
+            loading="lazy"
+          />
         </a>
       </div>
 

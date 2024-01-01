@@ -54,7 +54,9 @@ const RegisterForm: React.FC = () => {
           lastName,
           email,
           password,
-          avatar && typeof avatar !== 'string' ? URL.createObjectURL(avatar) : avatar || ''
+          avatar && typeof avatar !== "string"
+            ? URL.createObjectURL(avatar)
+            : avatar || ""
         );
       } else if (accountType === "Business account") {
         console.log(businessEmail, businessPassword);
@@ -72,20 +74,19 @@ const RegisterForm: React.FC = () => {
             businessPassword,
             businessLocation || "",
             businessActive || true,
-            businessAvatar && typeof businessAvatar !== 'string'
+            businessAvatar && typeof businessAvatar !== "string"
               ? URL.createObjectURL(businessAvatar)
-              : businessAvatar || ''
+              : businessAvatar || ""
           );
         }
       }
-  
+
       console.log("Registration was successful");
     } catch (error) {
       console.error(`Registration failed due to: ${error}`);
       alert(error);
     }
   };
-  
 
   const handleRoleChange = (selectedRole: string) => {
     setAccountType(selectedRole);
@@ -96,7 +97,13 @@ const RegisterForm: React.FC = () => {
       <div className="app__register-nav">
         <div className="app__register-nav-left">
           <a href="/">
-            <img src="/ebaylogo.png" alt="ebaylogo" width={140} height={57} />
+            <img
+              src="/ebaylogo.png"
+              alt="ebaylogo"
+              width={140}
+              height={57}
+              loading="lazy"
+            />
           </a>
         </div>
         <div className="app__register-nav-right">

@@ -120,7 +120,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             />
           </label>
           {typeof user?.avatar === "string" && (
-            <img src={user?.avatar || " "} alt={user?.email || "User Photo"} />
+            <img src={user?.avatar || " "} alt={user?.email || "User Photo"} loading="lazy"/>
           )}{" "}
         </div>
         <label> Avatar </label>

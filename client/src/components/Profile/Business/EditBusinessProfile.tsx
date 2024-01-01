@@ -51,6 +51,7 @@ export default function EditBusinessProfile(){
                   type="file"
                 />
                 <img
+                loading="lazy"
                   src={business?.businessAvatar || ""}
                   alt={
                     business?.businessName ||

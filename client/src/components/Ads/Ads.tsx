@@ -15,6 +15,7 @@ const Ads: React.FC = () => {
               className="ads__featured__item__img"
               src={item?.imageUrl}
               alt={item?.title}
+              loading="lazy"
             />
             <h3 className="ads__featured__item__title">{item?.title}</h3>
             <p className="ads__featured__item__description">{item?.description}</p>

@@ -57,9 +57,12 @@ export const productService = {
     businessId?: string | undefined;
   }) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/product/:${product._id}`, product);
+      const response = await axios.post(
+        `${API_BASE_URL}/product/:${product._id}`,
+        product
+      );
       return response?.data;
-    } catch(error) {
+    } catch (error) {
       console.error(`Error in createProduct, in productService.ts: ${error}`);
       throw error; // Re-throw the error to let the calling code handle it
     }
@@ -92,7 +95,10 @@ export const productService = {
       );
       return response.data;
     } catch (error) {
-      console.error(`Error fetching products for search query ${searchQuery}:`, error);
+      console.error(
+        `Error fetching products for search query ${searchQuery}:`,
+        error
+      );
       throw error;
     }
   },

@@ -10,7 +10,7 @@ const CustomerServiceNav = () => {
     return (
       <div className="app__customerservice-nav">
           <a href="/">
-            <img src="/ebaylogo.png" alt="ebaylogo" width={140} height={57} />
+            <img src="/ebaylogo.png" alt="ebaylogo" width={140} height={57} loading="lazy"/>
           </a>
           <h2> Customer Service</h2>
         

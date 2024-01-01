@@ -57,24 +57,19 @@ export default function SearchBar() {
   const handleSearch = async () => {
     if (searchQuery.trim() !== "") {
       try {
-        // Fetch products based on search query
-        const searchResults = await productService.getProductsBySearch(
-          searchQuery
-        );
+        const searchResults = await productService.getProductsBySearch(searchQuery);
   
-        // Console.log to check if searchResults are fetched
         console.log("Search Results:", searchResults);
   
-        // Set search results in the context
         setSearchResults(searchResults);
-  
-        // Navigate to the search results page with the search query as a parameter
         navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`);
       } catch (error) {
         console.error("Error fetching search results:", error);
+        // Provide user feedback, e.g., display an error message to the user
       }
     }
   };
+  
   return (
     <div className="app__searchbar">
       <a href="/">
@@ -82,6 +77,7 @@ export default function SearchBar() {
           className="app__searchbar-logo"
           src="/ebaylogo.png"
           alt="searchbarlogo"
+          loading="lazy"
         />
       </a>
       <select
@@ -102,7 +98,7 @@ export default function SearchBar() {
         ))}
       </select>
 
-      <div className="app__searchbar-form" onSubmit={()=> handleSearch()}>
+      <div className="app__searchbar-form" onSubmit={handleSearch}>
         <div className="app__searchbar-formSearch">
           <input
             type="text"

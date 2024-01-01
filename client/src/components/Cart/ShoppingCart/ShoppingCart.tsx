@@ -51,6 +51,7 @@ export default function ShoppingCart({ total }: ShoppingCartProps) {
                     id={item?.id}
                     quantity={item?.quantity}
                     category={item?.category}
+                    
                   />
                   <hr />
                 </React.Fragment>

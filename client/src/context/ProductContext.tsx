@@ -25,7 +25,6 @@ interface ProductContextValue {
   deleteProduct: () => void;
   searchResults: Product[]; // Add this line
   setSearchResults: (results: Product[]) => void; // Add this line
-
 }
 
 const ProductContext = createContext<ProductContextValue | undefined>(
@@ -38,8 +37,6 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
-
-
 
   const getProductById = async (
     productId: string
@@ -124,7 +121,7 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
         setCategory,
         fetchProducts,
         getProductById,
-        searchResults, 
+        searchResults,
         setSearchResults,
       }}
     >

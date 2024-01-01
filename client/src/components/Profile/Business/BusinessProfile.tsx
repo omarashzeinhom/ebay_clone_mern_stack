@@ -19,6 +19,7 @@ const BusinessProfile: React.FC = () => {
                 alt={business?.businessAvatar || "No user avatar uploaded"}
                 width={25}
                 height={25}
+                loading="lazy"
               />
             </td>
           </tr>
