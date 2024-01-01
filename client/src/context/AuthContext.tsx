@@ -23,6 +23,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
@@ -42,7 +44,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchUserInformation = async (token: string) => {
     try {
-      const response = await axios.get("http://localhost:3001/auth/user", {
+      const response = await axios.get(`${API_BASE_URL}auth/user`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(response.data);
@@ -67,7 +69,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchBusinessInformation = async (token: string) => {
     try {
-      const response = await axios.get("http://localhost:3001/auth/business", {
+      const response = await axios.get(`${API_BASE_URL}auth/business`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBusiness(response.data);
@@ -108,7 +110,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/auth/user/${user?.userId}`,
+        `${API_BASE_URL}auth/user/${user?.userId}`,
         formData,
         {
           headers: {

@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { User } from "../models/user";
 import { Business } from "../models/business";
 
-const API_BASE_URL = "http://localhost:3001/auth";
+const API_BASE_URL = "https://server-ebay-clone.onrender.com/auth";
 
 export const authService = {
   /* <--- User services start ---> */
@@ -57,7 +57,7 @@ export const authService = {
   
     try {
       const response = await axios.put(
-        `http://localhost:3001/auth/user`,
+        `${API_BASE_URL}/user`,
         formData,
         {
           headers: {
