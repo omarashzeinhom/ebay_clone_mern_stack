@@ -5,7 +5,8 @@ const authController = require("../controllers/authController");
 const verifyToken = require("../middleware/verifyToken"); 
 
 // POSTED Routes
-
+// Update user route
+router.post("/user/:id", verifyToken, authController.updateUser);
 // User Routes 
 router.post("/login", authController.login);
 router.post("/register", authController.register);

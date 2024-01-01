@@ -59,13 +59,13 @@ exports.getUser = async (req, res) => {
 
     res.status(200).json({
       userId: user?.userId,
-      email: user?.email, 
-      firstName: user?.firstName ,
-      lastName: user?.lastName ,
-      avatar: user?.avatar , // added prop for avatar url
+      email: user?.email,
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      avatar: user?.avatar, // added prop for avatar url
     });
     //Debug
-   // console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
+    // console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -214,11 +214,8 @@ exports.getBusiness = async (req, res) => {
 
 /* <---------- Business Async Functions End ----------> */
 
-
-
-
 exports.updateUser = async (req, res) => {
-  const { email, avatar } = req.body;
+  const { email, avatar, userId } = req.body;
   const { updatedFirstName, updatedLastName, updatedEmail } = req.body;
 
   try {
@@ -230,12 +227,13 @@ exports.updateUser = async (req, res) => {
     }
 
     const updatedUser = await User.findByIdAndUpdate(
-      { email: email },
+      { _id: userId },
       {
+        _id: userId,
         firstName: updatedFirstName || firstName,
         lastName: updatedLastName || lastName,
         email: updatedEmail || email,
-        avatar: avatarLink,
+        avatar: avatarLink || avatar,
         password: password,
       },
       { new: true } // Return the updated document

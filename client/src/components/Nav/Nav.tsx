@@ -7,21 +7,15 @@ import { navItems, myEbayItems } from "../../utilities/constants";
 import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
 type NavProps = {
   total: number;
-  
 };
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const navigate = useNavigate();
-  const { token, user, logout, business,fetchUserInformation } = useAuth();
+  const { token, user, logout, business, fetchUserInformation } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-
   // Debug
-  console.log(
-    `user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(
-      business
-    )}`
-  );
+  // console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business )}`);
 
   const handleLogOut = () => {
     logout();
@@ -51,18 +45,16 @@ const Nav: React.FC<NavProps> = ({ total }) => {
     }
   };
 
-
-  
-  useEffect(()=>{
-    console.log(`token in Nav.tsx ====> ${token}`);
-    console.log(`user in Nav.tsx ====> ${user}`);
-    if(token){
+  useEffect(() => {
+    // DEBUG
+    // console.log(`token in Nav.tsx ====> ${token}`);
+    // console.log(`user in Nav.tsx ====> ${user}`);
+    if (token) {
       fetchUserInformation(token);
     }
     // Causes Infinte loop error if the dependency is added
     // eslint-disable-next-line
   }, []);
-
 
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>

@@ -13,6 +13,7 @@ import {
   CustomerService,
   Survey,
   NotFound,
+  SellPage,
 } from "../pages";
 import {
   CategoryList,
@@ -64,6 +65,10 @@ const App: React.FC<AppProps> = ({ total }) => {
     {
       path: "/survey",
       element: <Survey />,
+    },
+    {
+      path: "/sell",
+      element: <SellPage total={total} />,
     },
     {
       path: "*",
@@ -137,15 +142,13 @@ const App: React.FC<AppProps> = ({ total }) => {
   return (
     <React.StrictMode>
       <ErrorBoundary>
-      <AuthProvider>
-
-        <ProductProvider>
-          <ShoppingCartProvider>
+        <AuthProvider>
+          <ProductProvider>
+            <ShoppingCartProvider>
               <RouterProvider router={router} />
-          </ShoppingCartProvider>
-        </ProductProvider>
+            </ShoppingCartProvider>
+          </ProductProvider>
         </AuthProvider>
-
       </ErrorBoundary>
     </React.StrictMode>
   );

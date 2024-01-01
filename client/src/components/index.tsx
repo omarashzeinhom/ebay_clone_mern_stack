@@ -18,6 +18,8 @@ import ProductList from "./Product/ProductList/ProductList";
 import ProductDetail from "./Product/ProductDetail/ProductDetail";
 import TrendingProducts from "./Product/TrendingProducts/TrendingProducts";
 import TrendingProductsAlpha from "./Product/TrendingProducts/TrendingProductsAlpha";
+// Products
+import Sell from "./Sell/Sell";
 // Auth
 import SignInForm from "./auth/SignInForm/SignInForm";
 import RegisterForm from "./auth/RegisterForm/RegisterForm";
@@ -45,4 +47,5 @@ export {
   SignInForm,
   RegisterForm,
   ErrorBoundary,
+  Sell,
 };

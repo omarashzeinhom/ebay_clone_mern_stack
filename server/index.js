@@ -49,33 +49,6 @@ app.get("/auth/loginb", (req, res) => {
   res.send("Hello, this is the Business login route!");
 });
 
-// Update user route
-app.put("/auth/user/:id", async (req, res) => {
-  const userId = req.params.id; // Assuming userId is a string
-  console.log(userId);
-  const updatedFields = req.body;
-  console.log(req.body);
-
-  console.log("Received update data:", updatedFields);
-
-  try {
-    const updatedUser = await User.findOneAndUpdate(
-      { _id: userId },
-      updatedFields,
-      { new: true }
-    );
-
-    if (updatedUser) {
-      res.json(updatedUser);
-    } else {
-      res.status(404).json({ error: "User not found" });
-    }
-  } catch (error) {
-    console.error("Error updating user:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
 // Routes
 app.use("/auth", authRoutes);
 app.use("/auth/user/:id", authRoutes);

@@ -21,7 +21,7 @@ const AppWrapper = () => {
     // Handle the case where cartItems is undefined
     return (
       <Elements stripe={stripePromise}>
-        <App total={0}/>
+        <App total={0} />
       </Elements>
     );
   }
@@ -31,11 +31,11 @@ const AppWrapper = () => {
     const item = storeProducts.find((i) => i.id === cartItem.id);
     return total + (item?.price || 0) * (cartItem?.quantity || 0);
   }, 0);
-  console.log(`Dyanmic total is`,dynamicTotal)
+  console.log(`Dyanmic total is`, dynamicTotal);
 
   return (
     <Elements stripe={stripePromise}>
-      <App total={dynamicTotal}  />
+      <App total={dynamicTotal} />
     </Elements>
   );
 };

@@ -93,6 +93,8 @@
 .app__nav-right-dropDown {
   color: black;
   cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s ease-in;
 }
 
 .app__nav-rightItem:hover {
