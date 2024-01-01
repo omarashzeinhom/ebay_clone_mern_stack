@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Product } from "../models/product";
 
-const API_BASE_URL = "http://localhost:3001/products";
+const API_BASE_URL = "https://server-ebay-clone.onrender.com/products";
 
 export const productService = {
   getAllProducts: async (
