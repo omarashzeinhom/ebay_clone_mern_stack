@@ -1,5 +1,5 @@
 // AdsCarousel.tsx
-import React from "react";
+import React, { useCallback } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "./AdsCarousel.scss";
@@ -34,10 +34,10 @@ const AdsCarousel: React.FC = () => {
   };
 
   const shuffledData = shuffleArray([...categoryData]);
-  const handleCategoryClick = (categoryName: string) => {
+  const handleCategoryClick = useCallback((categoryName: string) => {
     navigate(`/category/${encodeURIComponent(categoryName)}`);
-  };
-
+  }, [navigate]);
+  
   return (
     <Swiper
       navigation={{

@@ -1,31 +1,40 @@
 // Ads.tsx
 
-import React from "react";
+import React, { useMemo } from "react";
 import "./Ads.scss";
 
 const Ads: React.FC = () => {
-  return (
-    <div className="ads">
-    <div className="ads__featured">
-      <h2 className="ads__featured__title">Featured</h2>
-      {items?.map((item) => (
-          <div key={item?.id} className={`ads__featured__item ads__${item?.category}-item`}>
-            <a href={item?.link} >
-               <img
+  const adItems = useMemo(
+    () =>
+      items.map((item) => (
+        <div
+          key={item?.id}
+          className={`ads__featured__item ads__${item?.category}-item`}
+        >
+          <a href={item?.link}>
+            <img
               className="ads__featured__item__img"
               src={item?.imageUrl}
               alt={item?.title}
               loading="lazy"
             />
             <h3 className="ads__featured__item__title">{item?.title}</h3>
-            <p className="ads__featured__item__description">{item?.description}</p>
+            <p className="ads__featured__item__description">
+              {item?.description}
+            </p>
             <button className="ads__featured__item__button">Shop Now</button>
-            </a>
-           
-          </div>
-        ))}
+          </a>
+        </div>
+      )),
+    []
+  );
+  return (
+    <div className="ads">
+      <div className="ads__featured">
+        <h2 className="ads__featured__title">Featured</h2>
+        {adItems}
+      </div>
     </div>
-  </div>
   );
 };
 
@@ -47,24 +56,23 @@ const items = [
     description: "Shop candles, cookware, décor, and more. Take a look →",
     imageUrl: "https://source.unsplash.com/800x400/?holiday,gifts",
     link: "/category/Video Games & Consoles",
-
   },
   {
     id: 3,
     category: "adidas",
     title: "Unwrap holiday savings on adidas",
-    description: "Save an additional 50% on gift-worthy faves with code ADI5OSALE. Shop now →",
+    description:
+      "Save an additional 50% on gift-worthy faves with code ADI5OSALE. Shop now →",
     imageUrl: "https://source.unsplash.com/800x400/?adidas",
     link: "/category/Collectible Sneakers",
-
   },
   {
     id: 4,
     category: "tire-installation",
     title: "Get local tire installation",
-    description: "Have your new set installed by our network of experts. Shop top brands →",
+    description:
+      "Have your new set installed by our network of experts. Shop top brands →",
     imageUrl: "https://source.unsplash.com/800x400/?tire,installation",
     link: "/category/Parts & accessories",
-
   },
 ];

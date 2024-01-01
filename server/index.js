@@ -22,6 +22,7 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(cors());
 
 // Define a route for the root URL
 app.get("/", (req, res) => {

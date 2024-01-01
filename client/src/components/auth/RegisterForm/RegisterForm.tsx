@@ -10,6 +10,7 @@ import { authService } from "../../../services/authService";
 const RegisterForm: React.FC = () => {
   const { token } = useAuth();
   const [accountType, setAccountType] = useState<string>("Personal account");
+
   const [user, setUser] = useState<User>({
     userId: "",
     firstName: "",
@@ -26,57 +27,35 @@ const RegisterForm: React.FC = () => {
     businessActive: true || false,
   });
 
-  const { firstName, lastName, email, password, avatar } = user;
-  const {
-    businessName,
-    businessEmail,
-    businessPassword,
-    businessLocation,
-    businessActive,
-    businessAvatar,
-  } = business;
-
-  //DEBUG User
-  // console.log(firstName, lastName,email,password);
-
-  // Debug Business
-
-  // console.log(businessName, businessEmail, businessPassword, businessLocation )
-
   const handleRegister = async () => {
-    console.log(`accountType ---> ${accountType}`);
     try {
       if (accountType === "Personal account") {
-        console.log(email, user.password);
-        // Check if avatar is a File, convert it to a string (e.g., URL) before passing to register
         await authService.register(
-          firstName,
-          lastName,
-          email,
-          password,
-          avatar && typeof avatar !== "string"
-            ? URL.createObjectURL(avatar)
-            : avatar || ""
+          user.firstName,
+          user.lastName,
+          user.email,
+          user.password,
+          user.avatar && typeof user.avatar !== "string"
+            ? URL.createObjectURL(user.avatar)
+            : user.avatar || ""
         );
       } else if (accountType === "Business account") {
-        console.log(businessEmail, businessPassword);
-        // Implement the registration logic for the business account
         if (
-          businessName &&
-          businessEmail &&
-          businessPassword &&
-          businessActive !== undefined
+          business.businessName &&
+          business.businessEmail &&
+          business.businessPassword &&
+          business.businessActive !== undefined
         ) {
-          // Check if businessAvatar is a File, convert it to a string (e.g., URL) before passing to registerBusiness
           await authService.registerBusiness(
-            businessName,
-            businessEmail,
-            businessPassword,
-            businessLocation || "",
-            businessActive || true,
-            businessAvatar && typeof businessAvatar !== "string"
-              ? URL.createObjectURL(businessAvatar)
-              : businessAvatar || ""
+            business.businessName,
+            business.businessEmail,
+            business.businessPassword,
+            business.businessLocation || "",
+            business.businessActive || true,
+            business.businessAvatar &&
+              typeof business.businessAvatar !== "string"
+              ? URL.createObjectURL(business.businessAvatar)
+              : business.businessAvatar || ""
           );
         }
       }
@@ -132,7 +111,7 @@ const RegisterForm: React.FC = () => {
               <input
                 type="radio"
                 name="accountType"
-                checked={accountType === "Personal account"} // Check if accountType is "Personal account"
+                checked={accountType === "Personal account"}
                 value="Personal account"
                 onChange={() => handleRoleChange("Personal account")}
               />
@@ -142,7 +121,7 @@ const RegisterForm: React.FC = () => {
               <input
                 type="radio"
                 name="accountType"
-                checked={accountType === "Business account"} // Check if accountType is "Business account"
+                checked={accountType === "Business account"}
                 value="Business account"
                 onChange={() => handleRoleChange("Business account")}
               />

@@ -6,10 +6,7 @@ import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
 interface UserAccountFormProps {
   user: User;
   handleRegister: () => void;
-  setUser: React.Dispatch<
-    React.SetStateAction<User>
-  >;
-  
+  setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
 const UserAccountForm: React.FC<UserAccountFormProps> = ({
@@ -19,7 +16,6 @@ const UserAccountForm: React.FC<UserAccountFormProps> = ({
 }) => {
   const [localUser, setLocalUser] = useState<User>(user);
 
-
   const handleChange = (field: string, value: string | File | undefined) => {
     const updatedUser: User = {
       ...localUser,
@@ -28,10 +24,8 @@ const UserAccountForm: React.FC<UserAccountFormProps> = ({
     setLocalUser(updatedUser);
     setUser(updatedUser);
   };
-  const { firstName, lastName, email, password, /* avatar  */} = localUser;
 
-  //console.log(avatar);
-  // console.log(`https://res-console.cloudinary.com/dmbzzkneb/media_explorer_thumbnails/${myImage}`)
+  const { firstName, lastName, email, password } = localUser;
 
   return (
     <form className="app__paform" method="POST">
@@ -49,7 +43,6 @@ const UserAccountForm: React.FC<UserAccountFormProps> = ({
           type="text"
           id="lastName"
           required
-
           value={lastName}
           placeholder="Last Name"
           className="app__paform-inputAlt"
@@ -66,8 +59,6 @@ const UserAccountForm: React.FC<UserAccountFormProps> = ({
           onChange={(e) => handleChange("email", e.target.value)}
         />
         <input
-        
-
           id="password"
           type="password"
           value={password}
@@ -76,19 +67,18 @@ const UserAccountForm: React.FC<UserAccountFormProps> = ({
           className="app__paform-input"
           onChange={(e) => handleChange("password", e.target.value)}
         />
-<input
-        id="avatar"
-        type="file"
-        accept="image/*"
-        className="app__paform-Btn"
-   
-     onChange={(e) => {
-          const file = e.target.files?.[0];
-          handleChange("avatar", file);
-        }} 
-      />
+        <input
+          id="avatar"
+          type="file"
+          accept="image/*"
+          className="app__paform-Btn"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            handleChange("avatar", file);
+          }}
+        />
 
-        <button onClick={handleRegister} className="app__paform-Btn" type="button" >
+        <button onClick={handleRegister} className="app__paform-Btn" type="button">
           Register
         </button>
       </div>

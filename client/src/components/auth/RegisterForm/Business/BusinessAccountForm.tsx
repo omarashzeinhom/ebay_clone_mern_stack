@@ -1,4 +1,3 @@
-// BusinessAccountForm.tsx
 import React from "react";
 import { Business } from "../../../../models/business";
 import "./BusinessAccountForm.scss";
