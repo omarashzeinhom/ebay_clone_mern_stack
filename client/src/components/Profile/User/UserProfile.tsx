@@ -1,10 +1,8 @@
 import { useAuth } from "../../../context/AuthContext";
 
 export default function UserProfile() {
-  const { user } = useAuth();
-  console.log(`user in UserProfile.tsx =====> ${user}`);
-
-
+  const { user, updatedUser } = useAuth();
+  console.log(`user in UserProfile.tsx =====> ${JSON.stringify(user)}`);
   return (
     <div className="app-profile-container__info">
       <table>
@@ -17,11 +15,11 @@ export default function UserProfile() {
           <tr>
             <td>
               <h4>Avatar:</h4>
-              {user?.avatar ? (
+              {updatedUser?.updatedAvatar || user?.avatar ? (
                 // If avatar is a string (URL), display the image
                 <img
-                  src={user.avatar as string}
-                  alt={user?.email || "No user avatar uploaded"}
+                  src={user?.avatar as string || updatedUser?.updatedAvatar}
+                  alt={user?.email || updatedUser?.updatedEmail ||"No user avatar uploaded"}
                   width={25}
                   height={25}
                 />
@@ -35,25 +33,25 @@ export default function UserProfile() {
           <tr>
             <td>
               <h4>User Id:</h4>
-              {user?.userId}
+              {user?.userId }
             </td>
           </tr>
           <tr>
             <td>
               <h4>Email:</h4>
-              {user?.email}
+              {updatedUser?.updatedEmail || user?.email}
             </td>
           </tr>
           <tr>
             <td>
               <h4>First Name:</h4>
-              <p>{user?.firstName}</p>
+              <p>{updatedUser?.updatedFirstName ||user?.firstName}</p>
             </td>
           </tr>
           <tr>
             <td>
               <h4>Last Name:</h4>
-              <p>{user?.lastName}</p>
+              <p>{updatedUser?.updatedLastName ||user?.lastName}</p>
             </td>
           </tr>
         </tbody>

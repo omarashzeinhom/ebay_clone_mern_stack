@@ -41,28 +41,37 @@ export const authService = {
 
 
 
-updateUser: async(token: string, firstName: string , lastName:string, email:string, password: string, avatar: string): Promise<User>=>{
-  try{
-    const response: AxiosResponse<User> = await axios.patch(
-      `http://localhost:3001/auth/user`,
-      {
-        firstName,
-        lastName,
-        email,
-        password,
-        avatar: avatar || "",
-      },
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+  updateUser: async (
+    selectedAvatar: File | undefined,
+    updatedUser: UpdatedUser | undefined,
+    token: string,
+  ) => {
+    const formData = new FormData();
+    formData.append("updatedFirstName", updatedUser?.updatedFirstName || "");
+    formData.append("updatedLastName", updatedUser?.updatedLastName || "");
+    formData.append("updatedEmail", updatedUser?.updatedEmail || "");
   
+    if (selectedAvatar) {
+      formData.append("avatar", selectedAvatar);
+    }
+  
+    try {
+      const response = await axios.put(
+        `http://localhost:3001/auth/user`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+  
+      console.log(response?.data);
       return response?.data;
-  }catch(error){
-    throw new Error(`Failed to get user: ${error}`);
-
-  }
-},
+    } catch (error) {
+      throw new Error(`Failed to update user: ${error}`);
+    }
+  },
 
 
 

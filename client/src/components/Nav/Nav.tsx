@@ -59,8 +59,8 @@ const Nav: React.FC<NavProps> = ({ total }) => {
     if(token){
       fetchUserInformation(token);
     }
-
-
+    // Causes Infinte loop error if the dependency is added
+    // eslint-disable-next-line
   }, []);
 
 

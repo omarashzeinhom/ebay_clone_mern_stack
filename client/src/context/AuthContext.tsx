@@ -46,7 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(response.data);
-      setUpdatedUser(response.data);
+      //setUpdatedUser(response.data);
     } catch (error) {
       console.error("Error fetching user information:", error);
     }
@@ -105,6 +105,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       formData.append("updatedAvatar", selectedAvatar);
     }
 
+
     try {
       const response = await axios.put(
         `http://localhost:3001/auth/user/${user?.userId}`,
@@ -114,14 +115,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
-        },
-      
-
+        }
       );
+  
+      setUpdatedUser((prevUser) => ({
+        ...prevUser,
+        firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
+        lastName: updatedUser?.updatedLastName || prevUser?.updatedLastName,
+        email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
+        avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
+      }));
+      
+      setUser((prevUser) => ({
+        ...prevUser!,
+        firstName: updatedUser?.updatedFirstName || prevUser?.firstName || '',
+        lastName: updatedUser?.updatedLastName || prevUser?.lastName || '',
+        email: updatedUser?.updatedEmail || prevUser?.email || '',
+        avatar: updatedUser?.updatedAvatar || prevUser?.avatar || '',
+      }));
 
-      setUpdatedUser(response.data);
-      console.log(formData);
-      console.log(updatedUser);
+  
+      console.log(response?.data);
     } catch (error) {
       console.error("Error updating user:", error);
     }

@@ -218,38 +218,36 @@ exports.getBusiness = async (req, res) => {
 
 
 exports.updateUser = async (req, res) => {
-  let { firstName, lastName, email, avatar } = req.body;
-
-  console.log(
-    `user inputs from front end firstName:${firstName} lastName:${lastName} email:${email} avatar:${avatar}`
-  );
+  const { email, avatar } = req.body;
+  const { updatedFirstName, updatedLastName, updatedEmail } = req.body;
 
   try {
-    // Upload the avatar to Cloudinary
-    const result = await cloudinary.v2.uploader.upload(avatar);
-    console.log(result);
-    // Add Cloudinary image link to MongoDB instead of uploading it to MongoDB as well
-    const avatarLink = result?.secure_url;
+    let avatarLink = avatar; // Default to the existing avatar
+    if (avatar) {
+      // Upload the avatar to Cloudinary only if it's provided
+      const result = await cloudinary.v2.uploader.upload(avatar);
+      avatarLink = result?.secure_url;
+    }
 
-    // Update user in MongoDB with the new avatar link
-    const updatedUser = await User.updateOne(
+    const updatedUser = await User.findByIdAndUpdate(
       { email: email },
-      { firstName: firstName, lastName: lastName, avatar: avatarLink }
+      {
+        firstName: updatedFirstName || firstName,
+        lastName: updatedLastName || lastName,
+        email: updatedEmail || email,
+        avatar: avatarLink,
+        password: password,
+      },
+      { new: true } // Return the updated document
     );
-
-    console.log(updatedUser);
-
-    // Set headers to prevent caching
-    res.setHeader("ETag", generateNewETag());
-    res.setHeader("Cache-Control", "no-store");
 
     res.status(200).json({
       message: "User updated successfully",
       updatedUser,
-      avatarLink, // Send back the updated avatar link to the frontend
+      avatarLink,
     });
   } catch (error) {
-    console.log(`Error in updateUser: ${error}`);
+    console.error(`Error in updateUser: ${error}`);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };

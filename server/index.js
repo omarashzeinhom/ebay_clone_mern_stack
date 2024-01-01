@@ -54,6 +54,8 @@ app.put("/auth/user/:id", async (req, res) => {
   const userId = req.params.id; // Assuming userId is a string
   console.log(userId);
   const updatedFields = req.body;
+  console.log(req.body);
+
   console.log("Received update data:", updatedFields);
 
   try {
@@ -76,6 +78,7 @@ app.put("/auth/user/:id", async (req, res) => {
 
 // Routes
 app.use("/auth", authRoutes);
+app.use("/auth/user/:id", authRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 
