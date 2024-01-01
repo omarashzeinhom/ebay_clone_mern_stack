@@ -19,6 +19,11 @@ interface ProductContextValue {
   setCategory: (category: string) => void;
   fetchProducts: () => void; // Add fetchProducts to the interface
   getProductById: (productId: string) => Promise<Product | undefined>;
+  createProduct: ()=> void;
+  readProduct: ()=> void;
+  updateProduct: ()=> void;
+  deleteProduct: ()=> void;
+
 }
 
 const ProductContext = createContext<ProductContextValue | undefined>(
@@ -61,9 +66,47 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     setSelectedCategory(category);
   };
 
+
+const createProduct = async () =>{
+  try {
+
+  }catch (error){
+    console.error(`Error creating a product : ${error}`);
+  }
+}
+
+const updateProduct = async () =>{
+  try {
+
+  }catch (error){
+    console.error(`Error creating a product : ${error}`);
+  }
+}
+
+const readProduct = async () =>{
+  try {
+
+  }catch (error){
+    console.error(`Error creating a product : ${error}`);
+  }
+}
+
+const deleteProduct = async () =>{
+  try {
+
+  }catch (error){
+    console.error(`Error creating a product : ${error}`);
+  }
+}
+
+
   return (
     <ProductContext.Provider
       value={{
+        createProduct,
+        updateProduct,
+        readProduct,
+        deleteProduct,
         products,
         selectedCategory,
         setCategory,

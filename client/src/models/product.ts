@@ -7,4 +7,5 @@ export type Product = {
   price: number;
   category: string;
   parent: string;
+  businessId?: string;
 };

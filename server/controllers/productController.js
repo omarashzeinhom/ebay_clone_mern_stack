@@ -31,6 +31,40 @@ class ProductController {
       res.status(500).json({ message: "Internal Server Error" });
     }
   }
+
+async createProduct (req, res) {
+  try {
+    const {
+      _id,
+      id,
+      quantity,
+      name,
+      img,
+      price,
+      category,
+      parent,
+      businessId,
+    } = req.body;
+
+    const newProduct = new Product({
+      _id,
+      id,
+      quantity,
+      name,
+      img,
+      price,
+      category,
+      parent,
+      businessId,
+    });
+
+    const savedProduct = await newProduct.save();
+    res.json(savedProduct);
+  } catch (error) {
+    console.error('Error creating product:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 }
 
 module.exports = new ProductController();

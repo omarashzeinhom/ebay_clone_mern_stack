@@ -22,6 +22,7 @@
   border-radius: 7px;
   margin-bottom: 1rem; /* Add margin between inputs */
 }
+
 .app__signin-Btn,
 .app__signin-Btn-alt,
 .app__signOut-Btn {
@@ -43,15 +44,17 @@
   background-color: rgb(243, 243, 243);
   color: rgb(5, 5, 5);
 }
+
 .app__signOut-Btn {
   background-color: rgb(255, 0, 0);
   color: rgb(255, 251, 251);
 }
+
 .app__signin-nav {
   top: 0;
   display: flex;
   justify-content: space-between;
-  padding: 1rem; 
+  padding: 1rem;
   @media screen and (max-width: 500px) {
     width: 100%;
     max-width: 300px;
@@ -69,4 +72,16 @@
 
 .app__signin-nav-right {
   text-align: right;
+}
+
+.notification {
+  background-color: #4caf50; /* Green background color */
+  color: white; /* White text color */
+  text-align: center;
+  padding: 16px; /* Padding */
+  position: fixed; /* Fixed position - sit on top of the page */
+  z-index: 1; /* Add a z-index if needed */
+  top: 0; /* Top position */
+  width: 100%; /* Full width */
+  transition: top 0.5s ease; /* Transition effect, 0.5 second ease when sliding in or out */
 }

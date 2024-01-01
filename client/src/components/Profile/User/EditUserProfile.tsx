@@ -16,6 +16,8 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
   const [selectedAvatar, setSelectedAvatar] = useState<File | undefined>(
     undefined
   );
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,22 +47,31 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    await updateUser(selectedAvatar, updatedUser);
-    setUpdatedUser((prevUser) => ({
-      ...prevUser,
-      firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
-      lastName: updatedUser?.updatedLastName || prevUser?.updatedLastName,
-      email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
-      avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
-    }));
-    setUser((prevUser) => ({
-      ...prevUser,
-      firstName: updatedUser?.updatedFirstName || prevUser?.firstName,
-      lastName: updatedUser?.updatedLastName || prevUser?.lastName,
-      email: updatedUser?.updatedEmail || prevUser?.email,
-      avatar: updatedUser?.updatedAvatar || prevUser?.avatar,
-    }));
+    try {
+      setLoading(true);
+      setError(null);
+      event.preventDefault();
+      await updateUser(selectedAvatar, updatedUser);
+      setUpdatedUser((prevUser) => ({
+        ...prevUser,
+        firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
+        lastName: updatedUser?.updatedLastName || prevUser?.updatedLastName,
+        email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
+        avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
+      }));
+      setUser((prevUser) => ({
+        ...prevUser,
+        firstName: updatedUser?.updatedFirstName || prevUser?.firstName,
+        lastName: updatedUser?.updatedLastName || prevUser?.lastName,
+        email: updatedUser?.updatedEmail || prevUser?.email,
+        avatar: updatedUser?.updatedAvatar || prevUser?.avatar,
+      }));
+    } catch (error) {
+      console.error("Error creating product:", error);
+      setError("Failed to create the product. Please try again."); // Set an appropriate error message
+    } finally {
+      setLoading(false);
+    }
   };
 
   console.log(updatedUser);
@@ -68,6 +79,8 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
   return (
     <div className="app-profile-container__form">
       <form onSubmit={handleSubmit}>
+        {loading && <p>Loading...</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="app-profile-container__form__group">
           <label>
             {" "}
@@ -75,7 +88,6 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             <input
               placeholder={user?.firstName || "John"}
               value={updatedUser?.updatedFirstName || ""}
-
               type="text"
               onChange={handleInputChange}
               name="updatedFirstName"
@@ -88,8 +100,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             Last Name
             <input
               placeholder={user?.lastName || "Doe"}
-              value={updatedUser?.updatedLastName|| ""}
-
+              value={updatedUser?.updatedLastName || ""}
               type="text"
               name="updatedLastName"
               onChange={handleInputChange}
@@ -101,7 +112,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             {" "}
             Email
             <input
-              value={updatedUser?.updatedEmail|| ""}
+              value={updatedUser?.updatedEmail || ""}
               placeholder={user?.email || "useremail@tmail.com"}
               type="email"
               name="updatedEmail"
@@ -120,7 +131,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
           type="file"
           name="updatedAvatar"
           onChange={(e) => handleFileChange(e.target.files?.[0])}
-          />
+        />
         <hr />
         <button type="submit">Update User</button>
       </form>

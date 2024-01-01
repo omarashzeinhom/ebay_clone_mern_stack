@@ -24,42 +24,60 @@ const SignInForm: React.FC = () => {
   const { login, loginBusiness, token, user, business } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [notification, setNotification] = useState<string | null>(null);
+
+  const showNotification = (message: string) => {
+    setNotification(message);
+    // Clear the notification after a certain time
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000); // Adjust the duration as needed
+  };
+
   const handleSignIn = async () => {
     try {
       // Try signing in as a regular user
       const userToken = await authService.login(email, password);
       const userData = await authService.getUser(userToken);
       login(userToken, userData);
-  
+
+      // Show success notification
+      showNotification("User Login Successful!");
+
       console.log(`User Login successful: ${email}`);
     } catch (userError) {
       console.log(userError);
-  
+
       try {
         // If signing in as a regular user fails, try signing in as a business
         const businessToken = await authService.loginBusiness(email, password);
         const businessData = await authService.getBusiness(businessToken);
         loginBusiness(businessToken, businessData);
-  
+
+        // Show success notification
+        showNotification("Business Login Successful!");
+
         console.log(`Business Login successful: ${email}`);
       } catch (businessError) {
         // If both attempts fail, log the error
         console.error(`Error in handleSignIn: ${userError || businessError}`);
+        // Show error notification
+        showNotification("Login failed. Please try again.");
       }
     }
   };
+
   useEffect(() => {
     if (token) {
       // Fetch user or business information when the component mounts
       const fetchData = async () => {
         try {
-          const data = await authService.getUser(token); // || await (authService.getBusiness(token));
-
+          const data = await authService.getUser(token);
           login(token, data);
         } catch (error) {
           console.error(`Error fetching data: ${error}`);
           try {
-            const dataB = await authService.getBusiness(token); // || await (authService.getBusiness(token));
+            const dataB = await authService.getBusiness(token);
             loginBusiness(token, dataB);
           } catch (businessError) {
             console.error(businessError);
@@ -78,6 +96,7 @@ const SignInForm: React.FC = () => {
   return (
     <div className="app__signin">
       <SignInNav />
+      {notification && <div className="notification">{notification}</div>}
 
       {token ? (
         <div className="app__signin-container">

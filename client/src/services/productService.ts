@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Product } from "../models/product";
 
-const API_BASE_URL = "https://server-ebay-clone.onrender.com/products";
+const API_BASE_URL = "http://localhost:3001/products";
 
 export const productService = {
   getAllProducts: async (
@@ -15,7 +15,7 @@ export const productService = {
     img: string = ""
   ): Promise<any> => {
     const response = await axios.get(`${API_BASE_URL}`, {
-      params: { _id, id, quantity, name, price, parent, img,category },
+      params: { _id, id, quantity, name, price, parent, img, category },
     });
     return response.data;
   },
@@ -36,12 +36,53 @@ export const productService = {
   getProductsByCategory: async (category: string): Promise<Product[]> => {
     try {
       const response = await axios.get(
-        `https://server-ebay-clone.onrender.com/category=${encodeURIComponent(category)}`
+        `${API_BASE_URL}/category=${encodeURIComponent(category)}`
       );
       return response.data;
     } catch (error) {
       console.error(`Error fetching products for category ${category}:`, error);
       throw error;
     }
+  },
+
+  createProduct: async (product: {
+    _id: string;
+    id: number;
+    quantity: number;
+    name: string;
+    img: string;
+    price: number;
+    category: string;
+    parent: string;
+    businessId?: string | undefined;
+  }) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/product/:${product._id}`, product);
+      return response?.data;
+    } catch(error) {
+      console.error(`Error in createProduct, in productService.ts: ${error}`);
+      throw error; // Re-throw the error to let the calling code handle it
+    }
+  },
+
+  updateProduct: async (product: {}) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/product/:${product}`);
+      return response?.data;
+    } catch {}
+  },
+
+  readProduct: async (product: {}) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/product/:${product}`);
+      return response?.data;
+    } catch {}
+  },
+
+  deleteProduct: async (product: {}) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/product/:${product}`);
+      return response?.data;
+    } catch {}
   },
 };

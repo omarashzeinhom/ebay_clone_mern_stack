@@ -9,4 +9,6 @@ router.get("/", productController.getProducts);
 // Route to get a product by ID
 router.get("/:productId", productController.getProductById);
 
+router.post('/product', productController.createProduct);
+
 module.exports = router;
