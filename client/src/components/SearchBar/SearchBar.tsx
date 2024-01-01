@@ -6,10 +6,15 @@ import "./SearchBar.scss";
 import { useNavigate } from "react-router-dom";
 import { Category } from "../../models/category";
 import { categoriesService } from "../../services/categoryService";
+import { productService } from "../../services/productService";
+import { useProductContext } from "../../context/ProductContext";
 
 export default function SearchBar() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const { setSearchResults } = useProductContext();
+  console.log(searchQuery);
 
   const navigate = useNavigate();
 
@@ -49,6 +54,27 @@ export default function SearchBar() {
     fetchCategories();
   }, []);
 
+  const handleSearch = async () => {
+    if (searchQuery.trim() !== "") {
+      try {
+        // Fetch products based on search query
+        const searchResults = await productService.getProductsBySearch(
+          searchQuery
+        );
+  
+        // Console.log to check if searchResults are fetched
+        console.log("Search Results:", searchResults);
+  
+        // Set search results in the context
+        setSearchResults(searchResults);
+  
+        // Navigate to the search results page with the search query as a parameter
+        navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`);
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      }
+    }
+  };
   return (
     <div className="app__searchbar">
       <a href="/">
@@ -76,13 +102,15 @@ export default function SearchBar() {
         ))}
       </select>
 
-      <form className="app__searchbar-form">
+      <div className="app__searchbar-form" onSubmit={()=> handleSearch()}>
         <div className="app__searchbar-formSearch">
           <input
-            type="search"
+            type="text"
             name="searchbar"
             className="app__searchbar-input"
             placeholder="Search for anything"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <select
             onChange={handleChange}
@@ -100,10 +128,11 @@ export default function SearchBar() {
           </select>
         </div>
 
-        <button className="app__searchbar-searchBtn" id="searchBtn">
+        <button className="app__searchbar-searchBtn" id="searchBtn" onClick={()=> handleSearch()}
+>
           <HiMagnifyingGlass className="app__searchbar-searchicon" />
         </button>
-      </form>
+      </div>
     </div>
   );
 }

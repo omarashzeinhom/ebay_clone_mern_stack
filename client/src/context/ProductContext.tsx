@@ -19,10 +19,12 @@ interface ProductContextValue {
   setCategory: (category: string) => void;
   fetchProducts: () => void; // Add fetchProducts to the interface
   getProductById: (productId: string) => Promise<Product | undefined>;
-  createProduct: ()=> void;
-  readProduct: ()=> void;
-  updateProduct: ()=> void;
-  deleteProduct: ()=> void;
+  createProduct: () => void;
+  readProduct: () => void;
+  updateProduct: () => void;
+  deleteProduct: () => void;
+  searchResults: Product[]; // Add this line
+  setSearchResults: (results: Product[]) => void; // Add this line
 
 }
 
@@ -35,6 +37,9 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+
+
 
   const getProductById = async (
     productId: string
@@ -49,10 +54,19 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     }
   };
 
-  const fetchProducts = async () => {
+  const fetchProducts = async (searchQuery?: string, categoryName?: string) => {
     try {
-      const data = await productService.getAllProducts();
-      setProducts(data);
+      let products;
+
+      if (searchQuery) {
+        products = await productService.getProductsBySearch(searchQuery);
+      } else if (categoryName) {
+        products = await productService.getProductsByCategory(categoryName);
+      } else {
+        products = await productService.getAllProducts();
+      }
+
+      setProducts(products);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -66,39 +80,37 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     setSelectedCategory(category);
   };
 
+  const createProduct = async () => {
+    try {
+      // Implement create product functionality
+    } catch (error) {
+      console.error(`Error creating a product: ${error}`);
+    }
+  };
 
-const createProduct = async () =>{
-  try {
+  const updateProduct = async () => {
+    try {
+      // Implement update product functionality
+    } catch (error) {
+      console.error(`Error updating a product: ${error}`);
+    }
+  };
 
-  }catch (error){
-    console.error(`Error creating a product : ${error}`);
-  }
-}
+  const readProduct = async () => {
+    try {
+      // Implement read product functionality
+    } catch (error) {
+      console.error(`Error reading a product: ${error}`);
+    }
+  };
 
-const updateProduct = async () =>{
-  try {
-
-  }catch (error){
-    console.error(`Error creating a product : ${error}`);
-  }
-}
-
-const readProduct = async () =>{
-  try {
-
-  }catch (error){
-    console.error(`Error creating a product : ${error}`);
-  }
-}
-
-const deleteProduct = async () =>{
-  try {
-
-  }catch (error){
-    console.error(`Error creating a product : ${error}`);
-  }
-}
-
+  const deleteProduct = async () => {
+    try {
+      // Implement delete product functionality
+    } catch (error) {
+      console.error(`Error deleting a product: ${error}`);
+    }
+  };
 
   return (
     <ProductContext.Provider
@@ -112,6 +124,8 @@ const deleteProduct = async () =>{
         setCategory,
         fetchProducts,
         getProductById,
+        searchResults, 
+        setSearchResults,
       }}
     >
       {children}

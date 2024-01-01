@@ -85,4 +85,15 @@ export const productService = {
       return response?.data;
     } catch {}
   },
+  getProductsBySearch: async (searchQuery: string): Promise<Product[]> => {
+    try {
+      const response = await axios.get(
+        `${API_BASE_URL}/search?query=${encodeURIComponent(searchQuery)}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching products for search query ${searchQuery}:`, error);
+      throw error;
+    }
+  },
 };

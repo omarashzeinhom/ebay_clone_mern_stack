@@ -2,7 +2,7 @@ import "./App.scss";
 import React, { useState, useEffect } from "react";
 import { Category } from "../models/category";
 import { AuthProvider } from "../context/AuthContext";
-import { ProductProvider } from "../context/ProductContext";
+import { ProductProvider, useProductContext } from "../context/ProductContext";
 import { categoriesService } from "../services/categoryService";
 import { ShoppingCartProvider } from "../context/ShoppingCartContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -21,6 +21,7 @@ import {
   ProductDetail,
   Profile,
   ErrorBoundary,
+  SearchResults,
 } from "../components";
 
 type AppProps = {
@@ -28,6 +29,7 @@ type AppProps = {
 };
 const App: React.FC<AppProps> = ({ total }) => {
   const [categories, setCategories] = useState<Category[]>([]);
+  const {searchResults} = useProductContext();
 
   useEffect(() => {
     // Fetch categories from the server when the component mounts
@@ -67,6 +69,10 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: <Survey />,
     },
     {
+      path: "/search-results", // Define the route for search results
+      element: <SearchResults  />,
+    },
+    {
       path: "/sell",
       element: <SellPage total={total} />,
     },
@@ -81,14 +87,14 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList />
+          <ProductList products={searchResults}/>
         </ProductProvider>
       ),
       children: categories.map((category) => ({
         path: `/category/${encodeURIComponent(category?.name)}`,
         element: (
           <ProductProvider key={category?.name || " "}>
-            <ProductList />
+            <ProductList products={searchResults} />
           </ProductProvider>
         ),
       })),
@@ -99,7 +105,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList />
+          <ProductList products={searchResults}/>
         </ProductProvider>
       ),
     },
@@ -108,7 +114,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList />
+          <ProductList products={searchResults}/>
         </ProductProvider>
       ),
     },

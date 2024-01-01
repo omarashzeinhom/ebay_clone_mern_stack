@@ -4,15 +4,21 @@ import { useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/ProductContext";
 import "./ProductList.scss";
 import Loading from "../../Loading/Loading";
+import { Product } from "../../../models/product";
 
-interface ProductListProps {}
+interface ProductListProps {
+  products: Product[]; // Replace YourProductType with the actual type of your products
 
-const ProductList: React.FC<ProductListProps> = () => {
+}
+
+const ProductList: React.FC<ProductListProps> = ({products: productListProp }) => {
   const { categoryName } = useParams();
   const { products, fetchProducts } = useProductContext();
 
 
   useEffect(() => {
+    console.log("Products in ProductList component:", productListProp);
+
     // Fetch products when the category changes, but only if categoryName is defined
     if (categoryName !== undefined) {
       fetchProducts();

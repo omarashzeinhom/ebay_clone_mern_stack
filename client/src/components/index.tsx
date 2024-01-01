@@ -1,8 +1,10 @@
 // Navs
 import Header from "./Header/Header";
 import Nav from "./Nav/Nav";
-import SearchBar from "./SearchBar/SearchBar";
 import Footer from "./Footer/Footer";
+// Search 
+import SearchBar from "./SearchBar/SearchBar";
+import SearchResults from "./SearchBar/SearchResults";
 // Ads
 import Ads from "./Ads/Ads";
 import AdsCarousel from "./Ads/AdsCarousel/AdsCarousel";
@@ -30,6 +32,7 @@ export {
   Header,
   Nav,
   SearchBar,
+  SearchResults,
   Footer,
   Ads,
   AdsCarousel,
