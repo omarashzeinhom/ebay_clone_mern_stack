@@ -7,6 +7,7 @@ import { useState } from "react";
 import UserProfile from "./User/UserProfile";
 import BusinessProfile from "./Business/BusinessProfile";
 import EditUserProfile from "./User/EditUserProfile";
+import EditBusinessProfile from "./Business/EditBusinessProfile";
 
 type ProfileProps = {
   total: number;
@@ -45,7 +46,7 @@ export default function Profile({ total }: ProfileProps) {
             }
           />
         )}
-        {business?.businessId || (businessId && <BusinessProfile />)}
+        {business?.businessId && (<EditBusinessProfile />)}
       </div>
     );
   };
