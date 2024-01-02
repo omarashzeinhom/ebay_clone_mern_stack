@@ -27,8 +27,8 @@ const TrendingProducts: React.FC = () => {
       <h2>Todays deals on consoles</h2>
       <Swiper
       lazyPreloadPrevNext={5}
-      lazyPreloaderClass="swiper-lazy"
-        navigation={{
+      lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
+      navigation={{
           nextEl: ".ads-swiper__button-next",
           prevEl: ".ads-swiper__button-prev",
         }}
