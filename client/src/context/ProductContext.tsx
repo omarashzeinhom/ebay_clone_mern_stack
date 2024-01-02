@@ -19,10 +19,7 @@ interface ProductContextValue {
   setCategory: (category: string) => void;
   fetchProducts: () => void; // Add fetchProducts to the interface
   getProductById: (productId: string) => Promise<Product | undefined>;
-  createProduct: () => void;
-  readProduct: () => void;
-  updateProduct: () => void;
-  deleteProduct: () => void;
+
   searchResults: Product[]; // Add this line
   setSearchResults: (results: Product[]) => void; // Add this line
 }
@@ -77,45 +74,12 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     setSelectedCategory(category);
   };
 
-  const createProduct = async () => {
-    try {
-      // Implement create product functionality
-    } catch (error) {
-      console.error(`Error creating a product: ${error}`);
-    }
-  };
 
-  const updateProduct = async () => {
-    try {
-      // Implement update product functionality
-    } catch (error) {
-      console.error(`Error updating a product: ${error}`);
-    }
-  };
-
-  const readProduct = async () => {
-    try {
-      // Implement read product functionality
-    } catch (error) {
-      console.error(`Error reading a product: ${error}`);
-    }
-  };
-
-  const deleteProduct = async () => {
-    try {
-      // Implement delete product functionality
-    } catch (error) {
-      console.error(`Error deleting a product: ${error}`);
-    }
-  };
 
   return (
     <ProductContext.Provider
       value={{
-        createProduct,
-        updateProduct,
-        readProduct,
-        deleteProduct,
+
         products,
         selectedCategory,
         setCategory,

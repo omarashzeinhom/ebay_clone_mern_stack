@@ -1,5 +1,6 @@
 const Product = require("../models/productModel");
 const Category = require("../models/categoryModel");
+const uploadEndPoint = "";
 
 class ProductController {
   async getProducts(req, res) {
@@ -33,6 +34,13 @@ class ProductController {
   }
 
 async createProduct (req, res) {
+  const cloudinaryResponse = await fetch(uploadEndPoint, {
+    method: "POST",
+    body: imageData,
+  });
+  
+  const cloudinaryData = await cloudinaryResponse.json();
+  const cloudinaryImageUrl = cloudinaryData.secure_url;
   try {
     const {
       id,
@@ -49,7 +57,7 @@ async createProduct (req, res) {
       id,
       quantity,
       name,
-      img,
+      img: cloudinaryImageUrl, // Use the Cloudinary URL here
       price,
       category,
       parent,

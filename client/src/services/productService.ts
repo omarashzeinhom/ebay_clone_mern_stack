@@ -49,7 +49,7 @@ export const productService = {
     id: number;
     quantity: number;
     name: string;
-    img: string;
+    img: string | File; 
     price: number;
     category: string;
     parent: string;

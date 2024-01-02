@@ -1,18 +1,44 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { Category } from "../../../../models/category";
 import "./CreateProduct.scss";
 import { categoriesService } from "../../../../services/categoryService";
 import { productService } from "../../../../services/productService";
 import { useAuth } from "../../../../context/AuthContext";
 
+type FormData = {
+  id: number;
+  businessId: string;
+  img: File | string;
+  name: string;
+  description: string;
+  price: number;
+  quantity: number;
+  category: string;
+  parent: string;
+};
+
 export default function CreateProduct() {
   const { business } = useAuth();
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [formData, setFormData] = useState<FormData>({
+    id: 0,
+    businessId: "",
+    img: "",
+    name: "",
+    description: "",
+    price: 0,
+    quantity: 0,
+    category: "",
+    parent: "",
+  });
+
+  const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
+  const folderPath = "ebay-clone-images/products";
+  const uploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload/${folderPath}`;
 
   useEffect(() => {
-    // Fetch categories from the server when the component mounts
     const fetchCategories = async () => {
       try {
         const data = await categoriesService.getAllCategories();
@@ -35,136 +61,153 @@ export default function CreateProduct() {
     groupedCategories[parent].push(category);
   });
 
-  const CreateProductForm = () => {
-    const [formData, setFormData] = useState({
-      businessIdProducts: "",
-      name: "",
-      description: "",
-      price: 0,
-      quantity: 0,
-      category: "",
-      parent: "",
-      // Add other form fields as needed
-    });
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      setError(null);
 
-    const handleSubmit = async () => {
-      try {
-        setLoading(true);
-        setError(null);
 
-        // Add form validation here if needed
-        console.log("Sending request data:", formData);
+      const formDataToSend = new FormData();
+      formDataToSend.append("id", formData.id.toString());
+      formDataToSend.append("businessId", formData.businessId);
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("img", formData.img as File);
+      formDataToSend.append("description", formData.description);
+      formDataToSend.append("price", formData.price.toString());
+      formDataToSend.append("quantity", formData.quantity.toString());
+      formDataToSend.append("category", formData.category);
+      formDataToSend.append("parent", formData.parent);
+      
+      console.log("FormData to Send:", formDataToSend);
 
-        const data = await productService.createProduct({
-          businessId: "",
-          id: 0,
-          quantity: formData?.quantity,
-          name: formData?.name,
-          img: "", // Add img property if needed
-          price: formData?.price,
-          category: formData?.category,
-          parent: "",
-          // Add businessId if needed
-        });
+      const cloudinaryResponse = await fetch(uploadEndPoint, {
+        method: "POST",
+        body: formDataToSend,
+      });
 
-        // Handle the response or perform additional actions
-        console.log("Product created:", data);
-      } catch (error) {
-        console.error("Error creating product:", error);
-        setError("Failed to create the product. Please try again."); // Set an appropriate error message
-      } finally {
-        setLoading(false);
-      }
-    };
+      const cloudinaryData = await cloudinaryResponse.json();
+      const cloudinaryImageUrl = cloudinaryData.secure_url;
+      
+      console.log("Cloudinary API Response:", cloudinaryData);
 
-    const handleChange = (
-      e: React.ChangeEvent<
-        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-      >
-    ) => {
+      const updatedFormData: FormData = {
+        ...formData,
+        img: cloudinaryImageUrl,
+      };
+
+      const data = await productService.createProduct(updatedFormData);
+
+      console.log("Product created:", data);
+    } catch (error) {
+      console.error("Error creating product:", error);
+      setError("Failed to create the product. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    fieldName: string
+  ) => {
+    if (fieldName === "img" && e.target && e.target instanceof HTMLInputElement && e.target.files) {
+      const inputElement = e.target as HTMLInputElement;
+      setFormData((prevState) => ({
+        ...prevState,
+        [fieldName]: inputElement.files![0],
+      }));
+    } else {
       const { name, value } = e.target;
-
       setFormData((prevState) => ({
         ...prevState,
         [name]: value,
       }));
-    };
-
-    return (
-      <form onSubmit={handleSubmit}>
-        {loading && <p>Loading...</p>}
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <input
-          hidden
-          type="text"
-          value={`${business?.businessId}`}
-          name="businessId"
-          onChange={handleChange}
-        />
-        <label>
-          Product Name:
-          <input
-            name="name"
-            type="text"
-            value={formData?.name}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label>
-          Product Description:
-          <textarea
-            name="description"
-            value={formData?.description}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label>
-          Product Price:
-          <input
-            name="price"
-            type="number"
-            value={formData?.price}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label>
-          Product Quantity:
-          <input
-            name="quantity"
-            type="number"
-            value={formData?.quantity}
-            onChange={handleChange}
-          />
-        </label>
-
-        <label>
-          Product Category:
-          <select onChange={handleChange} name="category">
-            {Object.entries(groupedCategories).map(([parent, categoryList]) => (
-              <optgroup label={parent} key={parent}>
-                {categoryList.map((category) => (
-                  <option key={category?.name} value={category?.name}>
-                    {category?.name}
-                  </option>
-                ))}
-              </optgroup>
-            ))}
-          </select>
-        </label>
-
-        <button type="submit">Create Product</button>
-      </form>
-    );
+    }
   };
-
   return (
     <div className="create-product-container">
       <h2> Create Product</h2>
       <div className="create-product-form">
-        <CreateProductForm />
+        <form onSubmit={handleSubmit}>
+          {loading && <p>Loading...</p>}
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <input
+            hidden
+            type="text"
+            value={business?.businessId}
+            name="businessId"
+            onChange={(e) => handleChange(e, "businessId")}
+          />
+          <label>
+            Product Name:
+            <input
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={(e) => handleChange(e, "name")}
+            />
+          </label>
+          <label>
+            Product Image:
+            <input
+              name="img"
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleChange(e, "img")}
+            />
+          </label>
+          <label>
+            Product Description:
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={(e) => handleChange(e, "description")}
+            />
+          </label>
+
+          <label>
+            Product Price:
+            <input
+              name="price"
+              type="number"
+              value={formData.price}
+              onChange={(e) => handleChange(e, "price")}
+            />
+          </label>
+
+          <label>
+            Product Quantity:
+            <input
+              name="quantity"
+              type="number"
+              value={formData.quantity}
+              onChange={(e) => handleChange(e, "quantity")}
+            />
+          </label>
+
+          <label>
+            Product Category:
+            <select
+              onChange={(e) => handleChange(e, "category")}
+              name="category"
+            >
+              {Object.entries(groupedCategories).map(
+                ([parent, categoryList]) => (
+                  <optgroup label={parent} key={parent}>
+                    {categoryList.map((category) => (
+                      <option key={category?.name} value={category?.name}>
+                        {category?.name}
+                      </option>
+                    ))}
+                  </optgroup>
+                )
+              )}
+            </select>
+          </label>
+
+          <button type="submit">Create Product</button>
+        </form>
       </div>
     </div>
   );
