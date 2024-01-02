@@ -7,6 +7,8 @@ const authRoutes = require("./routes/authRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const bodyParser = require("body-parser");
 const User = require("./models/userModel");
+const fetch = require('node-fetch');
+
 //const cloudinary = require("cloudinary").v2;
 
 const app = express();
@@ -50,11 +52,32 @@ app.get("/auth/loginb", (req, res) => {
   res.send("Hello, this is the Business login route!");
 });
 
+
+
+
+
 // Routes
 app.use("/auth", authRoutes);
 app.use("/auth/user/:id", authRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
+
+
+// STRIPE 
+
+app.get('/stripe-config', async (req, res) => {
+  try {
+    const stripeResponse = await fetch('https://merchant-ui-api.stripe.com/elements/wallet-config');
+    const stripeData = await stripeResponse.json();
+    res.json(stripeData);
+  } catch (error) {
+    console.error('Error fetching Stripe config:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.ATLAS_URI, {});

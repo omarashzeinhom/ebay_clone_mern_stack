@@ -26,6 +26,12 @@ const TrendingProducts: React.FC = () => {
     <div className="app-trending-products-alpha__carousel" id="deals">
       <h2>Todays deals on consoles</h2>
       <Swiper
+      lazyPreloadPrevNext={5}
+      lazyPreloaderClass="swiper-lazy"
+        navigation={{
+          nextEl: ".ads-swiper__button-next",
+          prevEl: ".ads-swiper__button-prev",
+        }}
         slidesPerView={3}
         modules={[Scrollbar, Navigation]}
         scrollbar={{

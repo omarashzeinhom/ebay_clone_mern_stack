@@ -44,6 +44,12 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
     <div className="app__categories-carousel">
       <h2>Shop By Category</h2>
       <Swiper
+      lazyPreloadPrevNext={5}
+      lazyPreloaderClass="swiper-lazy"
+        navigation={{
+          nextEl: ".ads-swiper__button-next",
+          prevEl: ".ads-swiper__button-prev",
+        }}
         modules={[Scrollbar, Navigation]}
         scrollbar={{
           hide: true,
