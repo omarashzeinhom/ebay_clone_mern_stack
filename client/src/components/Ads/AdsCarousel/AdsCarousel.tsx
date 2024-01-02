@@ -44,6 +44,7 @@ const AdsCarousel: React.FC = () => {
   return (
     <Swiper
       lazyPreloadPrevNext={5}
+      
       lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
       navigation={{
         nextEl: ".ads-swiper__button-next",
@@ -58,7 +59,7 @@ const AdsCarousel: React.FC = () => {
       loop={shuffledData.length > 0} // Enable loop only if there are enough slides
     >
       {shuffledData.map((category) => (
-        <SwiperSlide key={category?.name}>
+        <SwiperSlide key={category?.name} lazy={true}>
           <div className="ads-swiper__slide">
             <img
               src={category?.img}

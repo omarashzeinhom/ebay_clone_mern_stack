@@ -52,6 +52,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
           const productLink = `${HOME_URL}item/${product?._id}`;
           return (
             <SwiperSlide
+              lazy={true}
               key={index}
               className="app-trending-products-alpha__carousel__slide"
             >
