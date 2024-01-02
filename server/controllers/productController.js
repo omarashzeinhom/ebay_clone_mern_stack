@@ -35,7 +35,6 @@ class ProductController {
 async createProduct (req, res) {
   try {
     const {
-      _id,
       id,
       quantity,
       name,
@@ -47,7 +46,6 @@ async createProduct (req, res) {
     } = req.body;
 
     const newProduct = new Product({
-      _id,
       id,
       quantity,
       name,

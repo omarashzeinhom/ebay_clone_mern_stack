@@ -15,30 +15,20 @@ interface SellProps {
 
 export default function Sell({ total }: SellProps) {
   const { user, business } = useAuth();
+
   const [selectedBtn, setSelectedBtn] = useState("");
   const handleBtnChange = (selectedButton: string) => {
     setSelectedBtn(selectedButton);
   };
-  if (!user?.userId) {
-    // No user is logged in
-    return (
-      <>
-        <Nav total={total} />
-        <SearchBar />
-        <h2>Sell</h2>
-        <h2>
-          Register your <Link to="/register">business</Link> to start selling
-        </h2>
-      </>
-    );
-  }
+
   return (
     <>
       <Nav total={total} />
       <SearchBar />
+
       {user?.userId && (
         <>
-              <h2>Sell</h2>
+          <h2>Sell</h2>
 
           <h2>
             Register your <Link to="/register">business</Link> to start selling
@@ -46,10 +36,18 @@ export default function Sell({ total }: SellProps) {
         </>
       )}
 
-      {business?.businessId && (
+      {!business?.businessId && (
         <>
-                      <h2>Sell</h2>
+          <h2>Sell</h2>
 
+          <h2>
+            Register your <Link to="/register">business</Link> to start selling
+          </h2>
+        </>
+      )}
+      {business?.businessId != null && (
+        <>
+          <h2>Sell</h2>
           {SellButtons.map((sellBtn, index) => {
             return (
               <label key={index}>

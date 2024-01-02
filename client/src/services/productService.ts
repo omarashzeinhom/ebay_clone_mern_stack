@@ -46,7 +46,6 @@ export const productService = {
   },
 
   createProduct: async (product: {
-    _id: string;
     id: number;
     quantity: number;
     name: string;
@@ -54,13 +53,14 @@ export const productService = {
     price: number;
     category: string;
     parent: string;
-    businessId?: string | undefined;
+    businessId: string | undefined;
   }) => {
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/product/:${product._id}`,
+        `${API_BASE_URL}/product`,
         product
       );
+      
       return response?.data;
     } catch (error) {
       console.error(`Error in createProduct, in productService.ts: ${error}`);
