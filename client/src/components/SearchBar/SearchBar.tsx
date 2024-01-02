@@ -81,7 +81,7 @@ export default function SearchBar() {
         />
       </a>
       <select
-        id="categories"
+       id="categories__left"
         onChange={handleChange}
         className="app__searchbar-form-dropDown"
         value={selectedCategory || ""}
@@ -104,6 +104,7 @@ export default function SearchBar() {
             type="text"
             name="searchbar"
             className="app__searchbar-input"
+            id="app__search"
             placeholder="Search for anything"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -113,7 +114,7 @@ export default function SearchBar() {
             className={`app__searchbar-form-dropDown ${
               isMobile ? "app__searchbar-form-dropDown-mobile" : ""
             }`}
-            id="categories"
+            id="categories__right"
           >
             {!isMobile && <option hidden>All Categories</option>}
             {categories.map((category: Category, index: number) => (

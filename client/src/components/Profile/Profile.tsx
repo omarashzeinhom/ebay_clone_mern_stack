@@ -15,8 +15,14 @@ type ProfileProps = {
 
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("");
-  const { business, user, setUser, updateUser, updatedUser, setUpdatedUser, /* token  */} =
-    useAuth();
+  const {
+    business,
+    user,
+    setUser,
+    updateUser,
+    updatedUser,
+    setUpdatedUser /* token  */,
+  } = useAuth();
   const { businessId, userId } = useParams();
 
   const businessB = localStorage.getItem("business");
@@ -46,7 +52,7 @@ export default function Profile({ total }: ProfileProps) {
             }
           />
         )}
-        {business?.businessId && (<EditBusinessProfile />)}
+        {business?.businessId && <EditBusinessProfile />}
       </div>
     );
   };
@@ -84,9 +90,6 @@ export default function Profile({ total }: ProfileProps) {
       </div>
     );
   };
-
-
-
 
   return (
     <>
