@@ -1,4 +1,5 @@
 // CategoriesCarousel.tsx
+
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
@@ -7,11 +8,13 @@ import { Category } from "../../../models/category";
 import { Scrollbar, Navigation } from "swiper/modules";
 import { categoriesService } from "../../../services/categoryService";
 import "./CategoriesCarousel.scss";
+import Loading from "../../Loading/Loading"; 
 
 interface CategoriesCarouselProps {}
 
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   const [categoryData, setCategoryData] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true); // Add loading state
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,8 +22,10 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
       try {
         const data = await categoriesService.getAllCategories();
         setCategoryData(data);
+        setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         console.error("Error fetching categories:", error);
+        setLoading(false); // Set loading to false on error
       }
     };
 
@@ -42,46 +47,56 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   };
   return (
     <div className="app__categories-carousel">
-      <h2>Shop By Category</h2>
-      <Swiper
-      lazyPreloadPrevNext={5}
-      lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
-      navigation={{
-          nextEl: ".ads-swiper__button-next",
-          prevEl: ".ads-swiper__button-prev",
-        }}
-        modules={[Scrollbar, Navigation]}
-        scrollbar={{
-          hide: true,
-        }}
-        loop={shuffledData.length > 2} // Enable loop only if there are enough slides
-        slidesPerView={3}
-        spaceBetween={10}
-        breakpoints={{
-          768: {
-            slidesPerView: 5,
-            loop: shuffledData.length > 3,
-          },
-          1024: {
-            slidesPerView: 6,
-          },
-        }}
-      >
-        {shuffledData.map((category, index) => (
-          <SwiperSlide
-          lazy={true}
-            key={category?.name}
-            onClick={() => handleCategoryClick(category?.name)}
+      {loading ? (
+        <Loading text="Fetching Categories..." />
+      ) : (
+        <>
+          <h2>Shop By Category</h2>
+          <Swiper
+            lazyPreloadPrevNext={1}
+            lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
+            navigation={{
+              nextEl: ".ads-swiper__button-next",
+              prevEl: ".ads-swiper__button-prev",
+            }}
+            modules={[Scrollbar, Navigation]}
+            scrollbar={{
+              hide: true,
+            }}
+            loop={shuffledData.length > 2} // Enable loop only if there are enough slides
+            slidesPerView={3}
+            spaceBetween={10}
+            breakpoints={{
+              768: {
+                slidesPerView: 5,
+                loop: shuffledData.length > 3,
+              },
+              1024: {
+                slidesPerView: 6,
+              },
+            }}
           >
-            <div className="app__categories-slide">
-              <img src={category?.img} alt={category?.name} loading="lazy" />
-              <p className="app__categories-category-name">
-                {category?.name}
-              </p>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            {shuffledData.map((category, index) => (
+              <SwiperSlide
+                lazy={true}
+                key={category?.name}
+                onClick={() => handleCategoryClick(category?.name)}
+              >
+                <div className="app__categories-slide">
+                  <img
+                    src={category?.img}
+                    alt={category?.name}
+                    loading="lazy"
+                  />
+                  <p className="app__categories-category-name">
+                    {category?.name}
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </>
+      )}
     </div>
   );
 };

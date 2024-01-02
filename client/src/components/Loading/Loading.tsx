@@ -1,15 +1,18 @@
+// Loading.tsx
+
 import React from "react";
+import "./Loading.scss";
 
 interface LoadingProps {
-  text?: string; // Optional text to display alongside the loading indicator
+  text?: string;
 }
 
 const Loading: React.FC<LoadingProps> = ({ text }) => {
   return (
-    <div style={{ textAlign: "center", marginTop: "20px" }}>
+    <div className="loading-container">
       <p>Loading...</p>
       {text && <p>{text}</p>}
-      {/* You can customize the loading indicator (e.g., using a spinner library) */}
+      <div className="spinner"></div>
     </div>
   );
 };

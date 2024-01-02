@@ -1,20 +1,31 @@
 // TrendingProductsAlpha.tsx
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "swiper/swiper-bundle.css";
 import { Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProductsAlpha.scss";
 import { HOME_URL } from "../../../utilities/constants";
+import Loading from "../../Loading/Loading"; 
 
 interface TrendingProductsAlphaProps {}
 
 const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
   const { products, fetchProducts } = useProductContext();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchProducts();
+    const fetchData = async () => {
+      try {
+        await fetchProducts();
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
     // eslint-disable-next-line
   }, []);
 
@@ -25,8 +36,11 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
   return (
     <div className="app-trending-products-alpha__carousel">
       <h2>Score These Trending Kicks</h2>
-      <Swiper
-        lazyPreloadPrevNext={5}
+      {loading ? (
+        <Loading text="Fetching Trending Products..." />
+      ) : (
+        <Swiper
+        lazyPreloadPrevNext={1}
         lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
         navigation={{
           nextEl: ".ads-swiper__button-next",
@@ -77,6 +91,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
           );
         })}
       </Swiper>
+      )}
     </div>
   );
 };
