@@ -70,8 +70,8 @@ const AdsCarousel: React.FC = () => {
                 <img
                   src={category?.img}
                   alt={category?.name}
-                  width={50}
-                  height={50}
+                  width={100}
+                  height={100}
                   loading="lazy"
                   className="ads-swiper__image"
                 />
