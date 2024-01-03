@@ -16,7 +16,7 @@ const port = process.env.PORT || 5007;
 
 // CORS configuration
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://ebay-clone-mern-stack.vercel.app/"], // Replace with your frontend domains in production
+  origin: ["http://localhost:3000", "https://ebay-clone-mern-stack.vercel.app/", "https://server-ebay-clone.onrender.com"], // Replace with your frontend domains in production
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
 
