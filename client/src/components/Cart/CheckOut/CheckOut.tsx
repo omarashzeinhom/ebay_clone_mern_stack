@@ -4,12 +4,15 @@ import { useShoppingCart } from '../../../context/ShoppingCartContext';
 import { currencyFormatter } from '../../../utilities/currencyFormatter';
 import { useProductContext } from '../../../context/ProductContext';
 import { Product } from '../../../models/product';
+import { useAuth } from '../../../context/AuthContext';
 
 export type CheckoutProps = {
   total: number; // Add total as a prop
 };
 
 const Checkout: React.FC<CheckoutProps> = ({ total }) => {
+  const { token, user,  business,} = useAuth();
+
   const stripe = useStripe();
   const elements = useElements();
   const { cartItems, clearCart } = useShoppingCart();
@@ -51,7 +54,10 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
 
   return (
     <div>
-      <h2>Checkout</h2>
+
+     {(token || user || business) && (
+      <>
+       <h2>Checkout</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Card details
@@ -72,6 +78,15 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
             )}
         </button>
       </form>
+      
+      </>
+     )
+
+     }
+
+<h3>Please Login To CheckOut</h3>
+<small></small>
+
     </div>
   );
 };

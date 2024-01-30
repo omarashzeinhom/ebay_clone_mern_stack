@@ -2,6 +2,8 @@ import "./Nav.scss";
 import { FaRegBell } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { NotificationModal } from "./NotificationModal";
+
 import { useAuth } from "../../context/AuthContext";
 import { navItems, myEbayItems } from "../../utilities/constants";
 import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
@@ -13,9 +15,18 @@ const Nav: React.FC<NavProps> = ({ total }) => {
   const navigate = useNavigate();
   const { token, user, logout, business, fetchUserInformation } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
   // Debug
   // console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business )}`);
+
+
+  const handleNotificationIconClick = () => {
+    // Show/hide the notification modal
+    setIsNotificationModalVisible(!isNotificationModalVisible);
+  };
+
+
+
 
   const handleLogOut = () => {
     logout();
@@ -154,7 +165,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
             </select>
           </li>
           <li className="app__nav-rightItem">
-            <a href="#notifications">
+            <a href="#notifications" onClick={handleNotificationIconClick}>
               <FaRegBell className="app__nav-rightIcon" />
             </a>
           </li>
@@ -162,6 +173,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
             <ShoppingCart total={total} />
           </li>
         </div>
+        {isNotificationModalVisible && <NotificationModal onClose={() => setIsNotificationModalVisible(false)} />}
       </ul>
     </nav>
   );

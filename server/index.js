@@ -18,7 +18,7 @@ const port = process.env.PORT || 5007;
 const corsOptions = {
   origin: ["http://localhost:3000", "https://ebay-clone-mern-stack.vercel.app", "https://server-ebay-clone.onrender.com"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: ["Content-Type"],
+  allowedHeaders: ["Content-Type","Authorization"],
 };
 
 // Middleware
