@@ -17,11 +17,10 @@ interface ProductContextValue {
   products: Product[];
   selectedCategory: string;
   setCategory: (category: string) => void;
-  fetchProducts: () => void; // Add fetchProducts to the interface
+  fetchProducts: () => void; 
   getProductById: (productId: string) => Promise<Product | undefined>;
-
-  searchResults: Product[]; // Add this line
-  setSearchResults: (results: Product[]) => void; // Add this line
+  searchResults: Product[]; 
+  setSearchResults: (results: Product[]) => void; 
 }
 
 const ProductContext = createContext<ProductContextValue | undefined>(
@@ -39,7 +38,7 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     productId: string
   ): Promise<Product | undefined> => {
     try {
-      // You need to implement a function in productService to get a product by ID
+     
       const product = await productService.getProductById(productId);
       return product;
     } catch (error) {
@@ -79,7 +78,6 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
   return (
     <ProductContext.Provider
       value={{
-
         products,
         selectedCategory,
         setCategory,

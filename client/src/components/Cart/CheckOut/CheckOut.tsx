@@ -55,50 +55,61 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
   const DemoCredentials = () => {
     return (
       <>
-        {" "}
-        <hr />
-        <h4>Demo Credentials</h4>
-        <small>
-          <em>Test with card number:</em>
-          4242 4242 4242 4242
-        </small>
-        <br />
-        <small>
-          <em>Expiration Date:</em> 12/34
-        </small>
-        <br />
-        <small>
-          <em>CVC:</em>123
-        </small>
-        <hr />
+        <details>
+          <summary> Demo Credentials</summary>
+          <hr />
+          <small>
+            <em>Test with card number:</em>
+            4242 4242 4242 4242
+          </small>
+          <br />
+          <small>
+            <em>Expiration Date:</em> 12/34
+          </small>
+          <br />
+          <small>
+            <em>CVC:</em>123
+          </small>
+          <hr />
+        </details>
       </>
     );
   };
 
   return (
     <div>
+                <h2>Checkout</h2>
+
       {token || user || business ? (
         <>
-          <h2>Checkout</h2>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Card details
-              <CardElement />
-            </label>
+          {cartItems.length > 0  ? (
+            <>
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Card details
+                  <CardElement />
+                </label>
 
-            <DemoCredentials />
-            {paymentError && <div className="error">{paymentError}</div>}
+                {paymentError && <div className="error">{paymentError}</div>}
 
-            <button type="submit" disabled={!stripe}>
-              Pay{" "}
-              {currencyFormatter(
-                cartItems.reduce((total, cartItem) => {
-                  const item = storeProducts.find((i) => i.id === cartItem.id);
-                  return total + (item?.price || 0) * cartItem?.quantity;
-                }, 0)
-              )}
-            </button>
-          </form>
+                <button type="submit" disabled={!stripe}>
+                  Pay{" "}
+                  {currencyFormatter(
+                    cartItems.reduce((total, cartItem) => {
+                      const item = storeProducts.find(
+                        (i) => i.id === cartItem.id
+                      );
+                      return total + (item?.price || 0) * cartItem?.quantity;
+                    }, 0)
+                  )}
+                </button>
+              </form>
+
+              <DemoCredentials />
+            </>
+          ):(
+                <p>No items in the cart. Add some products before checking out.</p>           
+          )}
         </>
       ) : (
         <>

@@ -1,0 +1,30 @@
+.notification-card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+    .icon {
+      margin-right: 12px;
+      font-size: 20px;
+    }
+  
+    .message {
+      font-size: 16px;
+    }
+  
+    &.success {
+      border-color: #4caf50;
+      color: #4caf50;
+    }
+  
+    &.error {
+      border-color: #f44336;
+      color: #f44336;
+    }
+  }
+  

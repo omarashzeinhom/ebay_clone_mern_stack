@@ -45,6 +45,7 @@ export default function Sell({ total }: SellProps) {
           </h2>
         </>
       )}
+      
       {business?.businessId != null && (
         <>
           <h2>Sell</h2>

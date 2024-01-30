@@ -81,7 +81,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         }); //return end
       } //ifend
     }); //setend
-  } //func end
+  }
 
   function removefromCart(id: number) {
     setCartItems((currentItems) => {
@@ -100,10 +100,23 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
       parent: product?.parent,
       quantity: 1, // Set an initial quantity, you can adjust this as needed
     };
+    const existingItem = cartItems.find((item) => item.id === product.id);
 
     // Add the new item to the cart
     // Ensure that you are updating the cartItems array correctly
-    setCartItems((prevItems) => [...prevItems, newItem]);
+    if (existingItem) {
+      // If the item exists, increase its quantity
+      increaseCartQuantity(product.id);
+    } else {
+      // If the item doesn't exist, add it to the cart with an initial quantity
+      setCartItems((prevItems) => [
+        ...prevItems,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]);
+    }
   }
   function clearCart() {
     setCartItems([]);

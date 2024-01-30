@@ -1,10 +1,11 @@
-import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
 import "./SignInForm.scss";
-import { useState, useEffect } from "react";
-import { authService } from "../../../services/authService";
 import { useAuth } from "../../../context/AuthContext";
+import { authService } from "../../../services/authService";
+import { summaryBoxText } from "../../../utilities/constants";
+import { useState, useEffect } from "react";
+import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
 
-const SignInNav = () => {
+export const SignInNav = () => {
   return (
     <div className="app__signin-nav">
       <div className="app__signin-nav-left">
@@ -99,6 +100,20 @@ const SignInForm: React.FC = () => {
   const userLink = `/user/${user?.userId}`;
   const businessLink = `/business/${business?.businessId}`;
 
+const DemoCredentials = ()=> {
+  return (
+  
+     <details title="DEMO Credentials">
+            <summary>DEMO Credentials</summary>
+            <h6><em>User:</em>johndoe@email.com</h6>
+            <h6><em>Password:</em>123456789</h6>
+          </details>
+   
+  )
+}
+
+
+
   return (
     <div className="app__signin">
       <SignInNav />
@@ -122,6 +137,7 @@ const SignInForm: React.FC = () => {
           <h4>
             Sign in to eBay or <a href="/register">create an account</a>
           </h4>
+         <DemoCredentials/>
           <div className="app__signin-form" id="signin">
             <input
               placeholder="Email or username"
@@ -167,6 +183,7 @@ const SignInForm: React.FC = () => {
             <summary>Learn More</summary>
             <small>{summaryBoxText}</small>
           </details>
+
         </div>
       )}
     </div>
@@ -175,8 +192,4 @@ const SignInForm: React.FC = () => {
 
 export default SignInForm;
 
-const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
-to bid and buy. You'll also be all set to pay if you've saved your
-payment info. You can always turn off this feature in My eBay. We
-may ask you to sign in again for some activities, such as making
-changes to your account.`;
+

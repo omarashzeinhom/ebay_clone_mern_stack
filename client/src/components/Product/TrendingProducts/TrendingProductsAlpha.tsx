@@ -34,7 +34,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
   );
 
   return (
-    <div className="app-trending-products-alpha__carousel">
+    <section id="dailydeals" className="app-trending-products-alpha__carousel">
       <h2>Score These Trending Kicks</h2>
       {loading ? (
         <Loading text="Fetching Trending Products..." />
@@ -92,7 +92,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
         })}
       </Swiper>
       )}
-    </div>
+    </section>
   );
 };
 

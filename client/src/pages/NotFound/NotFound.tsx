@@ -1,6 +1,6 @@
 // NotFound.tsx
 import React from "react";
-import "./NotFound.scss"; // Import the corresponding SCSS file
+import "./NotFound.scss"; 
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 const NotFound: React.FC = () => {
@@ -12,7 +12,7 @@ const NotFound: React.FC = () => {
       <hr />
       <img
         className="not-found-image"
-        src="/notfound.jpeg" // Replace with the actual meme image URL
+        src="/notfound.jpeg"
         alt="Funny Meme"
         loading="lazy"
       />

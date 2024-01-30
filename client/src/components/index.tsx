@@ -27,6 +27,9 @@ import SignInForm from "./auth/SignInForm/SignInForm";
 import RegisterForm from "./auth/RegisterForm/RegisterForm";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 import Profile from "./Profile/Profile";
+// Survey
+import NotificationCard from "./NotifcationCard/NotificationCard";
+import SurveyForm from "./SurveyForm/SurveyForm";
 
 export {
   Header,
@@ -51,4 +54,6 @@ export {
   RegisterForm,
   ErrorBoundary,
   Sell,
+  NotificationCard,
+  SurveyForm,
 };

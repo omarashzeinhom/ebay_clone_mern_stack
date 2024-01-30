@@ -1,7 +1,8 @@
-import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { User } from "../models/user";
 import { Business } from "../models/business";
+import { createContext, useContext, useEffect, useState } from "react";
+import { API_BASE_URL } from "../utilities/constants";
 
 interface AuthContextType {
   token: string | null ;
@@ -23,7 +24,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
