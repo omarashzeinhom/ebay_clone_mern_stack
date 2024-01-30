@@ -36,7 +36,7 @@ export default function CreateProduct() {
 
   const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
   const folderPath = "ebay-clone-images/products";
-  const uploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload/${folderPath}`;
+  const uploadEndPoint = `https://res.cloudinary.com/${cloudName}/image/upload/${folderPath}`;
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -67,7 +67,6 @@ export default function CreateProduct() {
       setLoading(true);
       setError(null);
 
-
       const formDataToSend = new FormData();
       formDataToSend.append("id", formData.id.toString());
       formDataToSend.append("businessId", formData.businessId);
@@ -78,17 +77,22 @@ export default function CreateProduct() {
       formDataToSend.append("quantity", formData.quantity.toString());
       formDataToSend.append("category", formData.category);
       formDataToSend.append("parent", formData.parent);
-      
+
       console.log("FormData to Send:", formDataToSend);
 
       const cloudinaryResponse = await fetch(uploadEndPoint, {
         method: "POST",
         body: formDataToSend,
       });
-
+      if (!cloudinaryResponse.ok) {
+        // Handle the error, throw an exception, or log the details
+        const errorDetails = await cloudinaryResponse.json();
+        console.error("Cloudinary API Error:", errorDetails);
+        throw new Error("Failed to upload image to Cloudinary");
+      }
       const cloudinaryData = await cloudinaryResponse.json();
       const cloudinaryImageUrl = cloudinaryData.secure_url;
-      
+
       console.log("Cloudinary API Response:", cloudinaryData);
 
       const updatedFormData: FormData = {
@@ -97,8 +101,20 @@ export default function CreateProduct() {
       };
 
       const data = await productService.createProduct(updatedFormData);
-
       console.log("Product created:", data);
+
+      // Resetting the form after successful submission
+      setFormData({
+        id: 0,
+        businessId: "",
+        img: "",
+        name: "",
+        description: "",
+        price: 0,
+        quantity: 0,
+        category: "",
+        parent: "",
+      });
     } catch (error) {
       console.error("Error creating product:", error);
       setError("Failed to create the product. Please try again.");
@@ -111,7 +127,12 @@ export default function CreateProduct() {
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
     fieldName: string
   ) => {
-    if (fieldName === "img" && e.target && e.target instanceof HTMLInputElement && e.target.files) {
+    if (
+      fieldName === "img" &&
+      e.target &&
+      e.target instanceof HTMLInputElement &&
+      e.target.files
+    ) {
       const inputElement = e.target as HTMLInputElement;
       setFormData((prevState) => ({
         ...prevState,

@@ -34,13 +34,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({});
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
       fetchUserInformation(storedToken);
       fetchBusinessInformation(storedToken);
+
+      // Set automatic logout after 1 hour (3600 seconds)
+      const logoutTimeout = setTimeout(() => {
+        logout();
+        showLogoutNotification();
+      }, 3600 * 1000); // 1 hour in milliseconds
+
+      // Clear the timeout on component unmount or when the user logs out manually
+      return () => clearTimeout(logoutTimeout);
     }
-  }, []);
+  },[]);
+
+  const showLogoutNotification = () => {
+    if (Notification.permission === 'granted') {
+      new Notification('Auto Logout', {
+        body: 'You have been logged out due to inactivity.',
+        icon: '/client/public/avataaars.png', // Replace with the path to your notification icon
+      });
+    } else if (Notification.permission !== 'denied') {
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          new Notification('Auto Logout', {
+            body: 'You have been logged out due to inactivity.',
+            icon: '/client/public/avataaars.png', // Replace with the path to your notification icon
+          });
+        }
+      });
+    }
+  };
+
 
   const fetchUserInformation = async (token: string) => {
     try {

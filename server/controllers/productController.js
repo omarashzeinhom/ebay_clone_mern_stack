@@ -1,6 +1,15 @@
 const Product = require("../models/productModel");
-const Category = require("../models/categoryModel");
-const uploadEndPoint = "";
+const cloudinary = require('cloudinary').v2;
+
+
+
+cloudinary.config({
+  cloud_name: 'dmbzzknebe',
+  api_key: '739789898716118',
+  api_secret: '3FJ6-jmKeziCkWcVwpAEiMbQM2M',
+});
+
+
 
 class ProductController {
   async getProducts(req, res) {
@@ -33,44 +42,58 @@ class ProductController {
     }
   }
 
-async createProduct (req, res) {
-  const cloudinaryResponse = await fetch(uploadEndPoint, {
-    method: "POST",
-    body: imageData,
-  });
-  
-  const cloudinaryData = await cloudinaryResponse.json();
-  const cloudinaryImageUrl = cloudinaryData.secure_url;
-  try {
-    const {
-      id,
-      quantity,
-      name,
-      img,
-      price,
-      category,
-      parent,
-      businessId,
-    } = req.body;
+  async createProduct(req, res) {
+    try {
+      // Assuming you have already processed and stored the image file in `req.file`
+      const imageData = req.file;
 
-    const newProduct = new Product({
-      id,
-      quantity,
-      name,
-      img: cloudinaryImageUrl, // Use the Cloudinary URL here
-      price,
-      category,
-      parent,
-      businessId,
-    });
+      if (!imageData) {
+        return res.status(400).json({ error: 'Image file is required' });
+      }
 
-    const savedProduct = await newProduct.save();
-    res.json(savedProduct);
-  } catch (error) {
-    console.error('Error creating product:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+      // Upload the image to Cloudinary
+      const cloudinaryResponse = await cloudinary.v2.uploader.signed_upload(imageData.path, "slyqk3p0", {
+        resource_type: "image",
+        folder: "/ebay-clone-images/products",
+        public_id: "/ebay-clone-images/products/product_",
+        overwrite: true,
+        notification_url: "http://localhost:3000",
+        headers: { 'Access-Control-Allow-Origin': 'no-cors' }, // Add this line
+      });
+
+      // Get the secure URL of the uploaded image from Cloudinary
+      const cloudinaryImageUrl = cloudinaryResponse.secure_url;
+
+      const {
+        id,
+        quantity,
+        img,
+        name,
+        price,
+        category,
+        parent,
+        businessId,
+      } = req.body;
+
+      const newProduct = new Product({
+        id,
+        quantity,
+        name,
+        img: cloudinaryImageUrl,
+        price,
+        category,
+        parent,
+        businessId,
+      });
+
+      const savedProduct = await newProduct.save();
+      res.json(savedProduct);
+    } catch (error) {
+      console.error('Error creating product:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   }
-};
+
 async getProductsBySearch(req, res) {
   const searchQuery = req.query.query;
 

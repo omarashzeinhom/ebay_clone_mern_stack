@@ -1,4 +1,4 @@
-const HOME_URL = 'http://localhost:3000/';
+const HOME_URL = 'https://ebay-clone-mern-stack.vercel.app/';
 const DEVELOP_URL = "http://localhost:3000/";
 
 /* NavBar Items Start */

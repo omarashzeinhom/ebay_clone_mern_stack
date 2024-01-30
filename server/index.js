@@ -18,15 +18,16 @@ const port = process.env.PORT || 5007;
 const corsOptions = {
   origin: ["http://localhost:3000", "https://ebay-clone-mern-stack.vercel.app", "https://server-ebay-clone.onrender.com"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: ["Content-Type"],
 };
 
 // Middleware
-app.use(cors(corsOptions));  // Apply CORS middleware with specific options
-app.use(express.json());  // Parse JSON bodies
-app.use(express.urlencoded({ extended: true }));  // Parse URL-encoded bodies
+app.use(cors(corsOptions)); 
+app.use(express.json());  
+app.use(express.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
 
-// Define a route for the root URL
+//  root URL
 app.get("/", (req, res) => {
   res.send("Hello, this is the root route!");
 });
@@ -39,7 +40,7 @@ app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 
 
-// Connect to MongoDB
+// MongoDB
 mongoose.connect(process.env.ATLAS_URI, {});
 const connection = mongoose.connection;
 
@@ -47,7 +48,7 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully 🚀");
 });
 
-// Start the server
+// Starting the server
 app.listen(port, () => {
   console.log(`Server is running on port: http://localhost:${port} 🚀`);
 });
