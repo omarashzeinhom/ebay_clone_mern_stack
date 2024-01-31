@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Product } from "../models/product";
 
 const API_BASE_URL = "https://server-ebay-clone.onrender.com/products";
@@ -88,18 +88,32 @@ export const productService = {
       return response?.data;
     } catch {}
   },
+
   getProductsBySearch: async (searchQuery: string): Promise<Product[]> => {
     try {
-      const response = await axios.get(
-        `${API_BASE_URL}/search?query=${encodeURIComponent(searchQuery)}`
+      const response: AxiosResponse<Product[]> = await axios.get(
+        `${API_BASE_URL}/search?query=${encodeURIComponent(searchQuery)}`,
+        { timeout: 5000 } // Set a timeout value in milliseconds (adjust as needed)
       );
       return response.data;
-    } catch (error) {
-      console.error(
-        `Error fetching products for search query ${searchQuery}:`,
-        error
-      );
-      throw error;
+    } catch (error: any) {
+      if (axios.isCancel(error)) {
+        console.log('Request canceled:', error.message);
+      } else if (error.response) {
+        console.log('Server responded with a non-2xx status:', error.response.status);
+      } else if (error.code === 'ECONNABORTED') {
+        console.log('The request timed out:', error.message);
+        // Return a default value or an empty array
+        return [];
+      } else {
+        console.error('Unexpected error:', error.message);
+      }
+      // Return a default value or an empty array in case of an error
+      return [];
+      // Re-throw the error only if you want to propagate it further
+      // throw error;
     }
   },
+
+
 };

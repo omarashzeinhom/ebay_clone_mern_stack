@@ -1,4 +1,3 @@
-const { Response } = require("express");
 const Category = require("../models/categoryModel");
 
 class CategoryController {

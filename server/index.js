@@ -10,22 +10,18 @@ const helmet = require("helmet");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const corsMiddleware = require("./middleware/corsMiddleware");
 
 const app = express();
 const port = process.env.PORT || 5007;
 
-// CORS configuration
-const corsOptions = {
-  origin: ["http://localhost:3000", "https://ebay-clone-mern-stack.vercel.app", "https://server-ebay-clone.onrender.com"],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: ["Content-Type","Authorization"],
-};
 
 // Middleware
-app.use(cors(corsOptions)); 
+app.use(corsMiddleware);
 app.use(express.json());  
 app.use(express.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
+app.use(helmet());
 
 //  root URL
 app.get("/", (req, res) => {
@@ -46,6 +42,12 @@ const connection = mongoose.connection;
 
 connection.once("open", () => {
   console.log("MongoDB database connection established successfully 🚀");
+});
+
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
 });
 
 // Starting the server

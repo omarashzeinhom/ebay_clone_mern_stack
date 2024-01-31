@@ -1,32 +1,43 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import { Helmet } from 'react-helmet'; 
 import "./AdsCarousel.scss";
 import { categoriesService } from "../../../services/categoryService";
 import { Category } from "../../../models/category";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading/Loading";
+import { useCategoryContext } from "../../../context/CategoryContext";
 
 const AdsCarousel: React.FC = () => {
-  const [categoryData, setCategoryData] = useState<Category[]>([]);
+  const { categoryData, setCategoryData } = useCategoryContext();
   const [loading, setLoading] = useState(true);
+  const [shuffledData, setShuffledData] = useState<Category[]>([]);
+  const [fetchError, setFetchError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await categoriesService.getAllCategories();
-        setCategoryData(data);
+        // Check if categoryData is already available
+        if (categoryData.length === 0) {
+          // Fetch categories only if not available
+          const data = await categoriesService.getAllCategories();
+          setCategoryData(data);
+          setShuffledData(shuffleArray([...data]));
+        } else {
+          // If data is available, use it directly
+          setShuffledData(shuffleArray([...categoryData]));
+        }
       } catch (error) {
         console.error("Error fetching categories:", error);
+        setFetchError("Error fetching categories");
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [categoryData, setCategoryData]);
 
   const shuffleArray = (array: Category[]): Category[] => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -36,7 +47,6 @@ const AdsCarousel: React.FC = () => {
     return array;
   };
 
-  const shuffledData = shuffleArray([...categoryData]);
   const handleCategoryClick = useCallback(
     (categoryName: string) => {
       navigate(`/category/${encodeURIComponent(categoryName)}`);
@@ -48,19 +58,18 @@ const AdsCarousel: React.FC = () => {
     <div className="ads-swiper-container">
       {loading ? (
         <Loading text="Fetching Ads..." />
+      ) : fetchError ? (
+        <div className="error-message">{fetchError}</div>
       ) : (
         <>
-          {/* Helmet component for managing the head */}
-          <Helmet>
-            {shuffledData.map((category) => (
-              <link
-                key={category?.name}
-                rel="preload"
-                as="image"
-                href={category?.img}
-              />
-            ))}
-          </Helmet>
+          {shuffledData.map((category) => (
+            <link
+              key={category?.name}
+              rel="preload"
+              as="image"
+              href={category?.img}
+            />
+          ))}
           <Swiper
             lazyPreloadPrevNext={1}
             lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"

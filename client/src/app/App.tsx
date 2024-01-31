@@ -23,13 +23,14 @@ import {
   ErrorBoundary,
   SearchResults,
 } from "../components";
+import { CategoryProvider } from "../context/CategoryContext";
 
 type AppProps = {
   total: number;
 };
 const App: React.FC<AppProps> = ({ total }) => {
   const [categories, setCategories] = useState<Category[]>([]);
-  const {searchResults} = useProductContext();
+  const { searchResults } = useProductContext();
 
   useEffect(() => {
     // Fetch categories from the server when the component mounts
@@ -70,7 +71,7 @@ const App: React.FC<AppProps> = ({ total }) => {
     },
     {
       path: "/search-results", // Define the route for search results
-      element: <SearchResults  />,
+      element: <SearchResults />,
     },
     {
       path: "/sell",
@@ -87,7 +88,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults}/>
+          <ProductList products={searchResults} />
         </ProductProvider>
       ),
       children: categories.map((category) => ({
@@ -105,7 +106,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults}/>
+          <ProductList products={searchResults} />
         </ProductProvider>
       ),
     },
@@ -114,7 +115,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults}/>
+          <ProductList products={searchResults} />
         </ProductProvider>
       ),
     },
@@ -147,15 +148,15 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   return (
     <React.StrictMode>
-      <ErrorBoundary>
-        <AuthProvider>
+      <AuthProvider>
+        <CategoryProvider>
           <ProductProvider>
             <ShoppingCartProvider>
               <RouterProvider router={router} />
             </ShoppingCartProvider>
           </ProductProvider>
-        </AuthProvider>
-      </ErrorBoundary>
+        </CategoryProvider>
+      </AuthProvider>
     </React.StrictMode>
   );
 };

@@ -17,6 +17,7 @@ interface ProductContextValue {
   products: Product[];
   selectedCategory: string;
   setCategory: (category: string) => void;
+  fetchProductsBySearch: (searchQuery: string) => Promise<void>;
   fetchProducts: () => void; 
   getProductById: (productId: string) => Promise<Product | undefined>;
   searchResults: Product[]; 
@@ -50,7 +51,7 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
   const fetchProducts = async (searchQuery?: string, categoryName?: string) => {
     try {
       let products;
-
+  
       if (searchQuery) {
         products = await productService.getProductsBySearch(searchQuery);
       } else if (categoryName) {
@@ -58,22 +59,31 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
       } else {
         products = await productService.getAllProducts();
       }
-
+  
       setProducts(products);
     } catch (error) {
       console.error("Error fetching products:", error);
+    }
+  };
+  
+
+ 
+  const setCategory = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const fetchProductsBySearch = async (searchQuery: string) => {
+    try {
+      const products = await productService.getProductsBySearch(searchQuery);
+      setSearchResults(products);
+    } catch (error) {
+      console.error("Error fetching products by search:", error);
     }
   };
 
   useEffect(() => {
     fetchProducts();
   }, []);
-
-  const setCategory = (category: string) => {
-    setSelectedCategory(category);
-  };
-
-
 
   return (
     <ProductContext.Provider
@@ -85,6 +95,7 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
         getProductById,
         searchResults,
         setSearchResults,
+        fetchProductsBySearch,
       }}
     >
       {children}

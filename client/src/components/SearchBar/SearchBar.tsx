@@ -98,8 +98,8 @@ export default function SearchBar() {
         ))}
       </select>
 
-      <div className="app__searchbar-form" onSubmit={handleSearch}>
-        <div className="app__searchbar-formSearch">
+      <form className="app__searchbar-form" onSubmit={handleSearch}>        <div className="app__searchbar-formSearch">
+          
           <input
             type="text"
             name="searchbar"
@@ -129,7 +129,8 @@ export default function SearchBar() {
 >
           <HiMagnifyingGlass className="app__searchbar-searchicon" />
         </button>
-      </div>
-    </div>
+        </form>    
+        
+        </div>
   );
 }

@@ -1,5 +1,3 @@
-// CategoriesCarousel.tsx
-
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
@@ -8,29 +6,32 @@ import { Category } from "../../../models/category";
 import { Scrollbar, Navigation } from "swiper/modules";
 import { categoriesService } from "../../../services/categoryService";
 import "./CategoriesCarousel.scss";
-import Loading from "../../Loading/Loading"; 
+import Loading from "../../Loading/Loading";
 
 interface CategoriesCarouselProps {}
 
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   const [categoryData, setCategoryData] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchData = async () => {
       try {
-        const data = await categoriesService.getAllCategories();
-        setCategoryData(data);
-        setLoading(false); // Set loading to false once data is fetched
+        // Check if category data is already available in the state
+        if (categoryData.length === 0) {
+          const data = await categoriesService.getAllCategories();
+          setCategoryData(data);
+        }
       } catch (error) {
         console.error("Error fetching categories:", error);
-        setLoading(false); // Set loading to false on error
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchCategories();
-  }, []);
+    fetchData();
+  }, [categoryData]); // Only re-run the effect when categoryData changes
 
   const shuffleArray = (array: Category[]): Category[] => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -45,6 +46,7 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   const handleCategoryClick = (categoryName: string) => {
     navigate(`/category/${encodeURIComponent(categoryName)}`);
   };
+
   return (
     <div className="app__categories-carousel">
       {loading ? (
@@ -63,7 +65,7 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
             scrollbar={{
               hide: true,
             }}
-            loop={shuffledData.length > 2} // Enable loop only if there are enough slides
+            loop={shuffledData.length > 2}
             slidesPerView={3}
             spaceBetween={10}
             breakpoints={{
@@ -83,14 +85,8 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
                 onClick={() => handleCategoryClick(category?.name)}
               >
                 <div className="app__categories-slide">
-                  <img
-                    src={category?.img}
-                    alt={category?.name}
-                    loading="lazy"
-                  />
-                  <p className="app__categories-category-name">
-                    {category?.name}
-                  </p>
+                  <img src={category?.img} alt={category?.name} loading="lazy" />
+                  <p className="app__categories-category-name">{category?.name}</p>
                 </div>
               </SwiperSlide>
             ))}

@@ -31,7 +31,7 @@ export const authService = {
           password,
         }
       );
-      console.log(response.data.token);
+      console.log(`JSON Web Token (JWT) :${response.data.token}`);
 
       return response.data.token;
     } catch (error) {

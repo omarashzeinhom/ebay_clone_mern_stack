@@ -5,8 +5,7 @@ import ProductList from "../Product/ProductList/ProductList";
 import { useLocation } from "react-router-dom";
 
 const SearchResults: React.FC = () => {
-  const { fetchProducts, searchResults } = useProductContext();
-  const location = useLocation();
+  const { fetchProductsBySearch, searchResults } = useProductContext();  const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query") || "";
 
   useEffect(() => {
@@ -14,10 +13,11 @@ const SearchResults: React.FC = () => {
     console.log("Search Results in SearchResults component:", searchResults);
 
     // Fetch products based on the search query
-    fetchProducts();
+    if (searchQuery) {
+      fetchProductsBySearch(searchQuery);
+    }
     // eslint-disable-next-line
-  }, [fetchProducts]);
-
+  }, [searchQuery]); // Only fetch products when searchQuery changes
   return (
     <div>
       <h2>Search Results for "{searchQuery}"</h2>

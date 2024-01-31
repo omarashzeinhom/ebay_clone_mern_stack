@@ -1,3 +1,5 @@
+import { ProfilerOnRenderCallback } from "react";
+
 const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
 const DEVELOP_URL = "http://localhost:3000/";
 
@@ -84,6 +86,8 @@ const footerLinks = [
 ];
 /* Footer Links End */
 
+// Country List 
+/*Credits to https://gist.github.com/incredimike/1469814 for the countryList */
 const countryList = [
   "Afghanistan",
   "Albania",
@@ -370,7 +374,41 @@ payment info. You can always turn off this feature in My eBay. We
 may ask you to sign in again for some activities, such as making
 changes to your account.`;
 
-/*Credits to https://gist.github.com/incredimike/1469814 for the countryList */
+
+
+
+// Create the onRender function
+// Define the onRender function with the correct signature
+export const onRender: ProfilerOnRenderCallback = (
+  id,
+  phase,
+  actualDuration,
+  baseDuration,
+  startTime,
+  commitTime,
+  interactions
+) => {
+  // Convert duration values to seconds
+  const actualDurationInSeconds = actualDuration / 1000;
+  const baseDurationInSeconds = baseDuration / 1000;
+  const startTimeInSeconds = startTime / 1000;
+  const commitTimeInSeconds = commitTime / 1000;
+
+  // Log the performance information
+  console.log(
+    "-------- Performance Gotten From Profiler Hook ----------------"
+  );
+  console.log(`Render ID: ${id}`);
+  console.log(`Phase: ${phase}`);
+  console.log(`Actual Duration: ${actualDurationInSeconds} s`);
+  console.log(`Base Duration: ${baseDurationInSeconds} s`);
+  console.log(`Start Time: ${startTimeInSeconds} s`);
+  console.log(`Commit Time: ${commitTimeInSeconds} s`);
+  console.log(`Interactions: ${JSON.stringify(interactions)}`);
+  console.log(
+    "---------- Performance Gotten From Profiler Hook --------------"
+  );
+};
 
 export {
   navItems,

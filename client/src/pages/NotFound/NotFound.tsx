@@ -1,9 +1,18 @@
 // NotFound.tsx
-import React from "react";
+import React, { useEffect } from "react";
 import "./NotFound.scss"; 
 import SearchBar from "../../components/SearchBar/SearchBar";
 
+
+
 const NotFound: React.FC = () => {
+  useEffect(() => {
+    document.title = 'NotFound'; // Set your desired dynamic page title here
+    return () => {
+      // Optionally, you can reset the title when the component unmounts
+      document.title = 'NotFound';
+    };
+  }, []);
   return (
   <>
     <SearchBar/>
