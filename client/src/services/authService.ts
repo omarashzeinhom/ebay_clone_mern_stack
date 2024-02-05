@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import { User } from "../models/user";
 import { Business } from "../models/business";
+import { API_BASE_URL } from "../utilities/constants";
 
-const API_BASE_URL = "https://server-ebay-clone.onrender.com/auth";
 
 export const authService = {
   /* <--- User services start ---> */
@@ -13,7 +13,7 @@ export const authService = {
     password: string,
     avatar?: string
   ): Promise<void> => {
-    await axios.post(`${API_BASE_URL}/register`, {
+    await axios.post(`${API_BASE_URL}auth/register`, {
       firstName,
       lastName,
       email,
@@ -25,7 +25,7 @@ export const authService = {
   login: async (email: string, password: string): Promise<string> => {
     try {
       const response: AxiosResponse<{ token: string }> = await axios.post(
-        `${API_BASE_URL}/login`,
+        `${API_BASE_URL}auth/login`,
         {
           email,
           password,
@@ -57,7 +57,7 @@ export const authService = {
   
     try {
       const response = await axios.put(
-        `${API_BASE_URL}/user`,
+        `${API_BASE_URL}auth/user`,
         formData,
         {
           headers: {
@@ -78,7 +78,7 @@ export const authService = {
 getUser: async (token: string): Promise<User> => {
   try {
     const response: AxiosResponse<User> = await axios.get(
-      `${API_BASE_URL}/user`,
+      `${API_BASE_URL}auth/user`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -115,7 +115,7 @@ getUser: async (token: string): Promise<User> => {
     businessAvatar?: string
   ): Promise<void> => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/registerb`, {
+      const response = await axios.post(`${API_BASE_URL}/auth/registerb`, {
         businessName,
         businessEmail,
         businessPassword,
@@ -137,7 +137,7 @@ getUser: async (token: string): Promise<User> => {
   ): Promise<string> => {
     try {
       const response: AxiosResponse<{ token: string }> = await axios.post(
-        `${API_BASE_URL}/loginb`,
+        `${API_BASE_URL}auth/loginb`,
         {
           businessEmail,
           businessPassword,
@@ -152,7 +152,7 @@ getUser: async (token: string): Promise<User> => {
   getBusiness: async (token: string): Promise<Business> => {
     try {
       const response: AxiosResponse<Business> = await axios.get(
-        `${API_BASE_URL}/business`,
+        `${API_BASE_URL}auth/business`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

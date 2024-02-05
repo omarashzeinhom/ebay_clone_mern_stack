@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Product } from "../models/product";
 
-const API_BASE_URL = "https://server-ebay-clone.onrender.com/products";
+const API_BASE_URL = "http://localhost:3001/products";
 
 export const productService = {
   getAllProducts: async (
@@ -14,7 +14,7 @@ export const productService = {
     parent: string = "",
     img: string = ""
   ): Promise<any> => {
-    const response = await axios.get(`${API_BASE_URL}`, {
+    const response = await axios.get(`${API_BASE_URL}/products`, {
       params: { _id, id, quantity, name, price, parent, img, category },
     });
     return response.data;

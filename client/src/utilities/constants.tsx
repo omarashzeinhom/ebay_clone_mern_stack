@@ -366,6 +366,8 @@ export const commonIssues = [
 /*
 Login Constants
 */
+// CHG THE LINK FOR DEPLOYMENT
+// PRODUCTION 
 export const API_BASE_URL = "http://localhost:3001/";
 
 export const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
@@ -418,3 +420,4 @@ export {
   HOME_URL,
   DEVELOP_URL,
 };
+
