@@ -1,5 +1,6 @@
 import { ProfilerOnRenderCallback } from "react";
-export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
+// CHG DEVELOPMENT AND PRODUCTION
+export const API_BASE_URL = "http://localhost:3001";
 
 const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
 const DEVELOP_URL = "http://localhost:3000/";
@@ -368,13 +369,6 @@ export const commonIssues = [
 /*
 Login Constants
 */
-<<<<<<< HEAD
-// CHG THE LINK FOR DEPLOYMENT
-// PRODUCTION 
-// https://ebay-clone-mern-stack.vercel.app/
-export const API_BASE_URL = "https://ebay-clone-mern-stack.vercel.app/";
-=======
->>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
 
 export const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
 to bid and buy. You'll also be all set to pay if you've saved your
