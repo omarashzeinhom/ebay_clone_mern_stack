@@ -1,7 +1,9 @@
 import { ProfilerOnRenderCallback } from "react";
+export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
 
 const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
 const DEVELOP_URL = "http://localhost:3000/";
+const SERVER_DEVELOP_URL = "http://localhost:3001/";
 
 /* NavBar Items Start */
 const navItems = [
@@ -86,7 +88,7 @@ const footerLinks = [
 ];
 /* Footer Links End */
 
-// Country List 
+// Country List
 /*Credits to https://gist.github.com/incredimike/1469814 for the countryList */
 const countryList = [
   "Afghanistan",
@@ -366,16 +368,12 @@ export const commonIssues = [
 /*
 Login Constants
 */
-export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
 
 export const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
 to bid and buy. You'll also be all set to pay if you've saved your
 payment info. You can always turn off this feature in My eBay. We
 may ask you to sign in again for some activities, such as making
 changes to your account.`;
-
-
-
 
 // Create the onRender function
 // Define the onRender function with the correct signature

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Product } from "../models/product";
+import { API_BASE_URL } from "../utilities/constants";
 
-const API_BASE_URL = "https://server-ebay-clone.onrender.com/products";
 
 export const productService = {
   getAllProducts: async (
@@ -14,14 +14,14 @@ export const productService = {
     parent: string = "",
     img: string = ""
   ): Promise<any> => {
-    const response = await axios.get(`${API_BASE_URL}`, {
+    const response = await axios.get(`${API_BASE_URL}products`, {
       params: { _id, id, quantity, name, price, parent, img, category },
     });
     return response.data;
   },
   getProductById: async (productId: string): Promise<Product | undefined> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/${productId}`);
+      const response = await fetch(`${API_BASE_URL}products/${productId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch product");
       }
@@ -36,7 +36,7 @@ export const productService = {
   getProductsByCategory: async (category: string): Promise<Product[]> => {
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/category=${encodeURIComponent(category)}`
+        `${API_BASE_URL}products/category=${encodeURIComponent(category)}`
       );
       return response.data;
     } catch (error) {
@@ -57,7 +57,7 @@ export const productService = {
   }) => {
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/product`,
+        `${API_BASE_URL}products/product`,
         product
       );
       
@@ -70,21 +70,21 @@ export const productService = {
 
   updateProduct: async (product: {}) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/product/:${product}`);
+      const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
       return response?.data;
     } catch {}
   },
 
   readProduct: async (product: {}) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/product/:${product}`);
+      const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
       return response?.data;
     } catch {}
   },
 
   deleteProduct: async (product: {}) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/product/:${product}`);
+      const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
       return response?.data;
     } catch {}
   },
@@ -92,7 +92,7 @@ export const productService = {
   getProductsBySearch: async (searchQuery: string): Promise<Product[]> => {
     try {
       const response: AxiosResponse<Product[]> = await axios.get(
-        `${API_BASE_URL}/search?query=${encodeURIComponent(searchQuery)}`,
+        `${API_BASE_URL}search?query=${encodeURIComponent(searchQuery)}`,
         { timeout: 5000 } // Set a timeout value in milliseconds (adjust as needed)
       );
       return response.data;

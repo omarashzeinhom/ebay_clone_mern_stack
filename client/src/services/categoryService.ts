@@ -1,6 +1,6 @@
 import axios from "axios";
+import { API_BASE_URL } from "../utilities/constants";
 
-const API_BASE_URL = "https://server-ebay-clone.onrender.com/categories";
 
 export const categoriesService = {
   getAllCategories: async (
@@ -8,7 +8,7 @@ export const categoriesService = {
     parent: string = "",
     img: string = "",
   ): Promise<any> => {
-    const response = await axios.get(`${API_BASE_URL}`, {
+    const response = await axios.get(`${API_BASE_URL}categories`, {
       params: { name, parent, img }, // Pass the parameters as query parameters
     });
     return response.data;

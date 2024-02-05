@@ -115,7 +115,7 @@ getUser: async (token: string): Promise<User> => {
     businessAvatar?: string
   ): Promise<void> => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth/registerb`, {
+      const response = await axios.post(`${API_BASE_URL}/registerb`, {
         businessName,
         businessEmail,
         businessPassword,
@@ -137,7 +137,7 @@ getUser: async (token: string): Promise<User> => {
   ): Promise<string> => {
     try {
       const response: AxiosResponse<{ token: string }> = await axios.post(
-        `${API_BASE_URL}auth/loginb`,
+        `${API_BASE_URL}/loginb`,
         {
           businessEmail,
           businessPassword,
@@ -152,14 +152,12 @@ getUser: async (token: string): Promise<User> => {
   getBusiness: async (token: string): Promise<Business> => {
     try {
       const response: AxiosResponse<Business> = await axios.get(
-        `${API_BASE_URL}auth/business`,
+        `${API_BASE_URL}auth/business`, // Incomplete URL, replace with the correct path
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(response?.data);
-
-      return response?.data;
+      return response.data;
     } catch (error) {
       throw new Error(`Failed to get business: ${error}`);
     }
