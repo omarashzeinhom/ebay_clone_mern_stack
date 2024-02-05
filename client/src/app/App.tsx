@@ -20,7 +20,7 @@ import {
   ProductList,
   ProductDetail,
   Profile,
-  ErrorBoundary,
+  /**ErrorBoundary, */
   SearchResults,
 } from "../components";
 import { CategoryProvider } from "../context/CategoryContext";
