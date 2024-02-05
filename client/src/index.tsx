@@ -4,8 +4,8 @@ import reportWebVitals from "./reportWebVitals";
 import { Elements, ElementProps } from "@stripe/react-stripe-js";import stripePromise from "./features/stripe"; // Adjust the path
 import { useShoppingCart } from "./context/ShoppingCartContext";
 import { ProductProvider, useProductContext } from "./context/ProductContext";
-import { Profiler, useState, } from "react";
-import { onRender } from "./utilities/constants";
+import { /**Profiler, */ useState, } from "react";
+//import { onRender } from "./utilities/constants";
 
 // root
 const root = ReactDOM.createRoot(
@@ -26,6 +26,7 @@ const AppWrapper = () => {
     console.error("Stripe error:", error);
     // Handle the error as needed
     setStripeError(error);
+    console.error(stripeError);
   };
 
 
@@ -56,7 +57,10 @@ const AppWrapper = () => {
 };
 
 // Development: Wrap the entire application with Profiler
-const AppWithProfiler = () => (
+/**
+ * 
+ * 
+ * const AppWithProfiler = () => (
   <Profiler id="App" onRender={onRender}>
     <ProductProvider>
       <AppWrapper />
@@ -64,6 +68,7 @@ const AppWithProfiler = () => (
   </Profiler>
 );
 
+ */
 // Production: Remove Profile in production to avoid excessive costs
 const AppWithOutProfiler = () => (
   <ProductProvider>

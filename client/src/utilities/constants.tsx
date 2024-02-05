@@ -366,7 +366,7 @@ export const commonIssues = [
 /*
 Login Constants
 */
-export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
+export const API_BASE_URL = "http://localhost:3001/";
 
 export const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
 to bid and buy. You'll also be all set to pay if you've saved your

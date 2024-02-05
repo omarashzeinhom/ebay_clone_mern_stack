@@ -10,7 +10,7 @@ const defaultTitle = "eBay Clone";
 useEffect(() => {
     // Optionally, you can perform additional logic when the title changes
     console.log('Document title changed:', document?.title);
-  }, [document?.title]);
+  }, []);
   
   
   return (

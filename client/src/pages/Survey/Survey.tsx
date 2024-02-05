@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { SurveyForm } from "../../components";
 
-const PageTitle = "Survey"
 
 export default function Survey(){
   useEffect(() => {

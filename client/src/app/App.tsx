@@ -148,6 +148,7 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   return (
     <React.StrictMode>
+      <ErrorBoundary>
       <AuthProvider>
         <CategoryProvider>
           <ProductProvider>
@@ -157,6 +158,8 @@ const App: React.FC<AppProps> = ({ total }) => {
           </ProductProvider>
         </CategoryProvider>
       </AuthProvider>
+      </ErrorBoundary>
+     
     </React.StrictMode>
   );
 };
