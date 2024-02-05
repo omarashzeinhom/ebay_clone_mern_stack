@@ -368,7 +368,8 @@ Login Constants
 */
 // CHG THE LINK FOR DEPLOYMENT
 // PRODUCTION 
-export const API_BASE_URL = "http://localhost:3001/";
+// https://ebay-clone-mern-stack.vercel.app/
+export const API_BASE_URL = "https://ebay-clone-mern-stack.vercel.app/";
 
 export const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
 to bid and buy. You'll also be all set to pay if you've saved your
