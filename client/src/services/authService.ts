@@ -152,14 +152,16 @@ getUser: async (token: string): Promise<User> => {
   getBusiness: async (token: string): Promise<Business> => {
     try {
       const response: AxiosResponse<Business> = await axios.get(
+<<<<<<< HEAD
         `${API_BASE_URL}auth/business`,
+=======
+        `${API_BASE_URL}auth/business`, // Incomplete URL, replace with the correct path
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(response?.data);
-
-      return response?.data;
+      return response.data;
     } catch (error) {
       throw new Error(`Failed to get business: ${error}`);
     }

@@ -1,7 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import { Product } from "../models/product";
 import { API_BASE_URL } from "../utilities/constants";
+<<<<<<< HEAD
 
+=======
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
 
 
 export const productService = {
@@ -37,7 +40,11 @@ export const productService = {
   getProductsByCategory: async (category: string): Promise<Product[]> => {
     try {
       const response = await axios.get(
+<<<<<<< HEAD
         `${API_BASE_URL}category=${encodeURIComponent(category)}`
+=======
+        `${API_BASE_URL}products/category=${encodeURIComponent(category)}`
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
       );
       return response.data;
     } catch (error) {
@@ -58,7 +65,11 @@ export const productService = {
   }) => {
     try {
       const response = await axios.post(
+<<<<<<< HEAD
         `${API_BASE_URL}product`,
+=======
+        `${API_BASE_URL}products/product`,
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
         product
       );
       
@@ -71,21 +82,33 @@ export const productService = {
 
   updateProduct: async (product: {}) => {
     try {
+<<<<<<< HEAD
       const response = await axios.post(`${API_BASE_URL}product/:${product}`);
+=======
+      const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
       return response?.data;
     } catch {}
   },
 
   readProduct: async (product: {}) => {
     try {
+<<<<<<< HEAD
       const response = await axios.post(`${API_BASE_URL}product/:${product}`);
+=======
+      const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
       return response?.data;
     } catch {}
   },
 
   deleteProduct: async (product: {}) => {
     try {
+<<<<<<< HEAD
       const response = await axios.post(`${API_BASE_URL}product/:${product}`);
+=======
+      const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
       return response?.data;
     } catch {}
   },

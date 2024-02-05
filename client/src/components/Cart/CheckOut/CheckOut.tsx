@@ -81,11 +81,11 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
 
   return (
     <div>
-                <h2>Checkout</h2>
+      <h2>Checkout</h2>
 
       {token || user || business ? (
         <>
-          {cartItems.length > 0  ? (
+          {cartItems.length > 0 ? (
             <>
               <form onSubmit={handleSubmit}>
                 <label>
@@ -110,8 +110,8 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
 
               <DemoCredentials />
             </>
-          ):(
-                <p>No items in the cart. Add some products before checking out.</p>           
+          ) : (
+            <p>No items in the cart. Add some products before checking out.</p>
           )}
         </>
       ) : (

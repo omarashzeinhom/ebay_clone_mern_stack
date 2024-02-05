@@ -5,7 +5,11 @@ import { Elements, ElementProps } from "@stripe/react-stripe-js";
 import stripePromise from "./features/stripe"; // Adjust the path
 import { useShoppingCart } from "./context/ShoppingCartContext";
 import { ProductProvider, useProductContext } from "./context/ProductContext";
+<<<<<<< HEAD
 import { /**Profiler, */ useState } from "react";
+=======
+import {/** Profiler, */ useState, } from "react";
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
 //import { onRender } from "./utilities/constants";
 
 // root
@@ -27,7 +31,11 @@ const AppWrapper = () => {
     console.error("Stripe error:", error);
     // Handle the error as needed
     setStripeError(error);
+<<<<<<< HEAD
     console.error(stripeError);
+=======
+    console.log(stripeError)
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
   };
 
   // Check if cartItems is defined
@@ -63,14 +71,19 @@ const AppWrapper = () => {
 // Development: Wrap the entire application with Profiler
 /**
  * 
+<<<<<<< HEAD
  * 
  * const AppWithProfiler = () => (
+=======
+ *  const AppWithProfiler = () => (
+>>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
   <Profiler id="App" onRender={onRender}>
     <ProductProvider>
       <AppWrapper />
     </ProductProvider>
   </Profiler>
 );
+ */
 
  */
 // Production: Remove Profile in production to avoid excessive costs
