@@ -70,6 +70,9 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
           <small>
             <em>CVC:</em>123
           </small>
+          <small>
+            <em>ZIP:</em>22313
+          </small>
           <hr />
         </details>
       </>
