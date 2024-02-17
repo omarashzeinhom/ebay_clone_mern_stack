@@ -9,11 +9,7 @@ export default function Header() {
 const defaultTitle = "eBay Clone";
 useEffect(() => {
     // Optionally, you can perform additional logic when the title changes
-<<<<<<< HEAD
-    console.log('Document title changed:', document?.title);
-=======
     //console.log('Document title changed:', document?.title);
->>>>>>> c5d604496437ba0065ccd5ea1300b354cb0234b8
   }, []);
   
   

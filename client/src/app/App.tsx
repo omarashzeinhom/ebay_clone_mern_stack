@@ -22,6 +22,7 @@ import {
   Profile,
   /**ErrorBoundary, */
   SearchResults,
+  ErrorBoundary,
 } from "../components";
 import { CategoryProvider } from "../context/CategoryContext";
 

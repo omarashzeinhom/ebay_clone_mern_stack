@@ -1,10 +1,10 @@
 import { ProfilerOnRenderCallback } from "react";
 // CHG DEVELOPMENT AND PRODUCTION
-export const API_BASE_URL = "http://localhost:3001";
+export const API_BASE_URL = "http://localhost:3001/";
 
 const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
 const DEVELOP_URL = "http://localhost:3000/";
-const SERVER_DEVELOP_URL = "http://localhost:3001/";
+//const SERVER_DEVELOP_URL = "http://localhost:3001/";
 
 /* NavBar Items Start */
 const navItems = [
