@@ -58,7 +58,6 @@ Replace links
 - const productLink = `https://ebayclonemern.netlify.app/item/${product?._id}`;
 - "http://localhost:3000/" // For Development
 // Backend API
-- "https://uptight-hen-fez.cyclic.app/" // For Production
 - "https://server-ebay-clone.onrender.com/" // For Development
 ```
 

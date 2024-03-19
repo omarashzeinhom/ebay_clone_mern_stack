@@ -1,28 +1,21 @@
-import React, { useState, useEffect } from "react";
-import "./CategorySideBar.scss";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Nav, SearchBar } from "../..";
-import { Category } from "../../../models/category";
 import { categoriesService } from "../../../services/categoryService";
+import "./CategorySideBar.scss";
+import { Category } from "../../../models/category";
 
-interface CategorySideBarProps {
-  // Assuming there's an endpoint like '/categories' that returns categories
-  categories: Category[];
-  total: number;
-}
+interface Props {}
 
-const CategorySideBar: React.FC<CategorySideBarProps> = ({ total }) => {
+const CategorySideBar: React.FC<Props> = () => {
   const [categories, setCategories] = useState<Category[]>([]);
-
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch categories from the server when the component mounts
     const fetchCategories = async () => {
       try {
         const data = await categoriesService.getAllCategories();
         setCategories(data);
-        console.log(`fetchCategories data is -->${data}`);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -31,57 +24,30 @@ const CategorySideBar: React.FC<CategorySideBarProps> = ({ total }) => {
     fetchCategories();
   }, []);
 
-  const groupedCategories: { [parent: string]: Category[] } = {};
-  categories.forEach((category) => {
-    const parent = category?.parent || "Other";
-    if (!groupedCategories[parent]) {
-      groupedCategories[parent] = [];
-    }
-    groupedCategories[parent].push(category);
-  });
-
-  const handleCategoryChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const selectedCategory = event.target.value;
-    // console.log("Selected Category:", selectedCategory);
-
-    // Extract only the category name from the full path
-    const categoryName = decodeURIComponent(
-      selectedCategory.replace("/category/", "")
-    );
-
-    // console.log(categoryName);
-
-    if (categoryName) {
-      navigate(`/category/${encodeURIComponent(categoryName)}`);
-    } else {
-      navigate("/products");
-    }
+  const handleCategoryClick = (categoryName: string) => {
+    setSelectedCategory(categoryName);
+    navigate(`/category/${encodeURIComponent(categoryName)}`);
   };
 
   return (
-    <>
-      <Nav total={total} />
-      <SearchBar />
-      <div className="app-category__list">
-        <h2>Categories</h2>
-        <select onChange={handleCategoryChange} name="handleCategoryList">
-          {Object.entries(groupedCategories).map(([parent, categoryList]) => (
-            <optgroup label={parent} key={parent}>
-              {categoryList.map((category) => (
-                <option
-                  key={category.name}
-                  value={`/category/${encodeURIComponent(category.name)}`}
-                >
-                  {category.name}
-                </option>
-              ))}
-            </optgroup>
-          ))}
-        </select>
+    <div className="category-sidebar">
+      <div className="category-sidebar__header">
+        <h4>Categories</h4>
       </div>
-    </>
+      <div className="category-sidebar__content">
+        <ul className="category-sidebar__list">
+          {categories.map((category: Category) => (
+            <li
+              key={category.name}
+              className={`category-sidebar__item ${selectedCategory === category.name ? 'selected' : ''}`}
+              onClick={() => handleCategoryClick(category.name)}
+            >
+              {category.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 
