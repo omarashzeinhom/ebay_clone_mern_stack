@@ -5,8 +5,12 @@ import { Elements, ElementProps } from "@stripe/react-stripe-js";
 import stripePromise from "./features/stripe"; // Adjust the path
 import { useShoppingCart } from "./context/ShoppingCartContext";
 import { ProductProvider, useProductContext } from "./context/ProductContext";
-import {Profiler, useState, } from "react";
-import { onRender } from "./utilities/constants";
+import { useState, /*Profiler */} from "react";
+
+// Debugging with Profiler imports 
+//  import {Profiler} from "react";
+//  import { onRender } from "./utilities/constants";
+
 
 // root
 const root = ReactDOM.createRoot(
@@ -62,25 +66,25 @@ const AppWrapper = () => {
 
 // Development: Wrap the entire application with Profiler
 
-const AppWithProfiler = () => (
-  <Profiler id="App" onRender={onRender}>
-    <ProductProvider>
-      <AppWrapper />
-    </ProductProvider>
-  </Profiler>
-);
+//  const AppWithProfiler = () => (
+//  <Profiler id="App" onRender={onRender}>
+//    <ProductProvider>
+//      <AppWrapper />
+//    </ProductProvider>
+//   </Profiler>
+//   );
 
 
 // Production: Remove Profile in production to avoid excessive costs
-//const AppWithOutProfiler = () => (
-//  <ProductProvider>
-//    <AppWrapper />
-//  </ProductProvider>
-// );
+const AppWithOutProfiler = () => (
+  <ProductProvider>
+    <AppWrapper />
+  </ProductProvider>
+ );
 
 // Development: Render the application with the Profiler
 // Production: Render the application without the Profiler.
 
-root.render(<AppWithProfiler />);
+root.render(<AppWithOutProfiler />);
 
 reportWebVitals();

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NotificationModal.scss";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 
 type NotificationModalProps = {
   onClose: () => void; // Callback to close the modal
@@ -8,10 +8,26 @@ type NotificationModalProps = {
 
 const NotificationModal: React.FC<NotificationModalProps> = ({ onClose }) => {
   const payment = false;
-  const { token, user, business } = useAuth();
+  const { token, user, business,login } = useAuth();
+  const [notificationCount, setNotificationCount] = useState(0); // Initial count
+  const [notifications, setNotifications] = useState([
+    "Notification 1",
+    "Notification 2",
+  ]); // Example notifications
 
+  const handleCloseNotification = () => {
+    // Decrease the notification count when a notification is closed
+    setNotificationCount((prevCount) => prevCount - 1);
+  };
+
+  const handleMarkAllRead = () => {
+    // Reset notification count and clear notifications when marking all as read
+    setNotificationCount(0);
+    setNotifications([]);
+  };
   return (
     <>
+    
       {payment ? (
         <>
           <div className="notification-modal">
@@ -40,9 +56,8 @@ const NotificationModal: React.FC<NotificationModalProps> = ({ onClose }) => {
         <>
           <div className="notification-modal">
             <div className="notification-modal-content">
-              {/* Add your notification content here */}
               <h2>Signed In Sucessfully as</h2>
-              <p>{user?.email || business?.businessName}</p>
+              <p>{user?.firstName || user?.email || business?.businessName}</p>
               <button onClick={onClose}>Close</button>
             </div>
           </div>

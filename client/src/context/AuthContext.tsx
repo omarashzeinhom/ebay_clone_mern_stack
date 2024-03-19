@@ -95,6 +95,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("token");
   };
 
+  /** Business Logic  Start*/
   const fetchBusinessInformation = async (token: string) => {
     try {
       const response = await axios.get(`${API_BASE_URL}auth/business`, {
@@ -118,6 +119,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setBusiness(null);
     localStorage.removeItem("token");
   };
+  /** Business Logic  End */
 
   const updateUser = async (
     selectedAvatar: File | undefined,

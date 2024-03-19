@@ -2,7 +2,7 @@ import "./Nav.scss";
 import { FaRegBell } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { NotificationModal } from "./NotificationModal";
+import { NotificationModal } from "./NotificationModal/NotificationModal";
 import { useAuth } from "../../context/AuthContext";
 import { navItems, myEbayItems } from "../../utilities/constants";
 import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
@@ -19,7 +19,9 @@ const Nav: React.FC<NavProps> = ({ total }) => {
   // Debug
   // console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business )}`);
 
-
+  const [notificationCount, setNotificationCount] = useState(0);  // Assuming you have a way to update the notification count
+  
+  
   const handleNotificationIconClick = () => {
     // Show/hide the notification modal
     setIsNotificationModalVisible(!isNotificationModalVisible);
@@ -168,6 +170,9 @@ const Nav: React.FC<NavProps> = ({ total }) => {
           <li className="app__nav-rightItem">
             <a href="#notifications" onClick={handleNotificationIconClick}>
               <FaRegBell className="app__nav-rightIcon" />
+              {notificationCount > 0 && (
+                <span className="notification-count">{notificationCount}</span>
+              )}
             </a>
           </li>
           <li className="app__nav-rightItem">

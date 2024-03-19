@@ -16,6 +16,10 @@ export default function SurveyForm({ total }: any) {
   const [notification, setNotification] = useState<Notification | null>(null); 
   const [loading, setLoading] = useState(false); // New state for loading
 
+
+  const name = user?.firstName;
+  console.log(`name====${name}`)
+
   const sendEmail = () => {
     const SERVICE_ID = process.env.REACT_APP_EMAIL_JS_SERVICE_ID;
     const TEMPLATE_ID = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID;
@@ -74,9 +78,7 @@ export default function SurveyForm({ total }: any) {
                   user?.firstName || business?.businessName || "John Doe"
                 }
                 className="app__signin-input"
-                defaultValue={
-                  `${user?.firstName}` || `${business?.businessName}` || ""
-                }
+                defaultValue={`${user?.firstName}` || `${business?.businessName}` || ""}
                 readOnly
               />
             </label>

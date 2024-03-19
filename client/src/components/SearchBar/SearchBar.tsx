@@ -1,5 +1,3 @@
-// SearchBar.tsx
-
 import React, { useEffect, useState } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import "./SearchBar.scss";
@@ -14,8 +12,6 @@ export default function SearchBar() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { setSearchResults } = useProductContext();
-  //console.log(searchQuery);
-
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -24,7 +20,6 @@ export default function SearchBar() {
       selectedIndex === 0 ? null : categories[selectedIndex - 1].name;
     setSelectedCategory(selectedCategoryValue);
 
-    // Navigate to the selected category
     if (selectedCategoryValue) {
       navigate(`/category/${encodeURIComponent(selectedCategoryValue)}`);
     }
@@ -34,7 +29,7 @@ export default function SearchBar() {
 
   const groupedCategories: { [key: string]: Category[] } = {};
   categories.forEach((category) => {
-    const parent = category?.parent || "Others"; // Use the parent category, or default to "Others"
+    const parent = category?.parent || "Others";
     if (!groupedCategories[parent]) {
       groupedCategories[parent] = [];
     }
@@ -58,18 +53,14 @@ export default function SearchBar() {
     if (searchQuery.trim() !== "") {
       try {
         const searchResults = await productService.getProductsBySearch(searchQuery);
-  
-        console.log("Search Results:", searchResults);
-  
-        setSearchResults(searchResults);
-        navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`);
+        setSearchResults(searchResults); // Set search results in the context
+        navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`); // Navigate to search results page
       } catch (error) {
         console.error("Error fetching search results:", error);
-        // Provide user feedback, e.g., display an error message to the user
       }
     }
   };
-  
+
   return (
     <div className="app__searchbar">
       <a href="/">
@@ -81,7 +72,7 @@ export default function SearchBar() {
         />
       </a>
       <select
-       id="categories__left"
+        id="categories__left"
         onChange={handleChange}
         className="app__searchbar-form-dropDown"
         value={selectedCategory || ""}
@@ -98,8 +89,8 @@ export default function SearchBar() {
         ))}
       </select>
 
-      <form className="app__searchbar-form" onSubmit={handleSearch}>        <div className="app__searchbar-formSearch">
-          
+      <div className="app__searchbar-form" onSubmit={handleSearch}>
+        <div className="app__searchbar-formSearch">
           <input
             type="text"
             name="searchbar"
@@ -109,28 +100,15 @@ export default function SearchBar() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <select
-            onChange={handleChange}
-            className={`app__searchbar-form-dropDown ${
-              isMobile ? "app__searchbar-form-dropDown-mobile" : ""
-            }`}
-            id="categories__right"
+          <button
+            className="app__searchbar-searchBtn"
+            id="searchBtn"
+            onClick={handleSearch}
           >
-            {!isMobile && <option hidden>All Categories</option>}
-            {categories.map((category: Category, index: number) => (
-              <option key={index} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+            <HiMagnifyingGlass className="app__searchbar-searchicon" />
+          </button>
         </div>
-
-        <button className="app__searchbar-searchBtn" id="searchBtn" onClick={()=> handleSearch()}
->
-          <HiMagnifyingGlass className="app__searchbar-searchicon" />
-        </button>
-        </form>    
-        
-        </div>
+      </div>
+    </div>
   );
 }
