@@ -37,27 +37,28 @@ const TrendingProducts: React.FC = () => {
         <Loading text="Fetching Trending Products..." />
       ) : (
         <Swiper
-          lazyPreloadPrevNext={1}
-          lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
-          navigation={{
-            nextEl: ".ads-swiper__button-next",
-            prevEl: ".ads-swiper__button-prev",
-          }}
-          slidesPerView={3}
-          modules={[Scrollbar, Navigation]}
-          scrollbar={{
-            hide: true,
-          }}
-          loop={products.length > 2} // Enable loop only if there are enough slides
-          spaceBetween={10}
-          breakpoints={{
-            768: {
-              slidesPerView: 4,
-            },
-            1024: {
-              slidesPerView: 5,
-            },
-          }}
+        lazyPreloadPrevNext={1}
+        lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
+        navigation={{
+          nextEl: ".ads-swiper__button-next",
+          prevEl: ".ads-swiper__button-prev",
+        }}
+        modules={[Scrollbar, Navigation]}
+        scrollbar={{
+          hide: true,
+        }}
+        loop={filteredProducts.length > 2}
+        slidesPerView={3}
+        spaceBetween={100}
+        breakpoints={{
+          768: {
+            slidesPerView: 5,
+            loop: filteredProducts .length > 3,
+          },
+          1024: {
+            slidesPerView: 6,
+          },
+        }}
         >
           {filteredProducts.map((product, index) => {
             const productLink = `${HOME_URL}item/${product?._id}`;

@@ -46,16 +46,17 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
           nextEl: ".ads-swiper__button-next",
           prevEl: ".ads-swiper__button-prev",
         }}
-        slidesPerView={3}
         modules={[Scrollbar, Navigation]}
         scrollbar={{
           hide: true,
         }}
-        loop={products.length > 2} // Enable loop only if there are enough slides
-        spaceBetween={10}
+        loop={filteredProducts.length > 2}
+        slidesPerView={3}
+        spaceBetween={50}
         breakpoints={{
           768: {
             slidesPerView: 5,
+            loop: filteredProducts .length > 3,
           },
           1024: {
             slidesPerView: 6,

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
 import { useNavigate } from "react-router-dom";
 import { Category } from "../../../models/category";
 import { Scrollbar, Navigation } from "swiper/modules";
