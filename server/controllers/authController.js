@@ -232,6 +232,7 @@ exports.updateUser = async (req, res) => {
       avatarLink = result?.secure_url;
     }
 
+    //Fix for  Database query built from user-controlled sources 
     const updatedUser = await User.findByIdAndUpdate(
       { _id: userId },
       {
@@ -243,8 +244,7 @@ exports.updateUser = async (req, res) => {
         password: password,
       },
       { new: true } // Return the updated document
-    );
-
+    ).lean(); // Ensure it returns a plain JavaScript object, not a Mongoose Document.
     res.status(200).json({
       message: "User updated successfully",
       updatedUser,

@@ -16,9 +16,11 @@ import { footerLinks } from "../../utilities/constants";
 
 type HomeProps = {
   total: number;
+  selectedCategory?: string;
+  handleCategoryClick?: (categoryName: string) => void;
 };
 
-export default function Home({ total }: HomeProps) {
+export default function Home({ total, selectedCategory , handleCategoryClick }: HomeProps) {
   useEffect(() => {
     document.title = 'Home'; // Set your desired dynamic page title here
     return () => {
@@ -33,7 +35,7 @@ export default function Home({ total }: HomeProps) {
       <Nav total={total} />
       <SearchBar />
       <AdsCarousel />
-      <CategoriesCarousel />
+      <CategoriesCarousel selectedCategory={selectedCategory} handleCategoryClick={handleCategoryClick}/>
       <TrendingProductsAlpha />
       <TrendingProducts />
       <Ads />

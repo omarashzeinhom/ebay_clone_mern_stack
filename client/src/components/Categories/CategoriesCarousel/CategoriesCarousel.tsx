@@ -8,7 +8,10 @@ import { categoriesService } from "../../../services/categoryService";
 import "./CategoriesCarousel.scss";
 import Loading from "../../Loading/Loading";
 
-interface CategoriesCarouselProps {}
+interface CategoriesCarouselProps {
+  selectedCategory? : string;
+  handleCategoryClick?: (categoryName: string)=> void;
+}
 
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   const [categoryData, setCategoryData] = useState<Category[]>([]);
