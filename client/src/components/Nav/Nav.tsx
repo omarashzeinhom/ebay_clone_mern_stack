@@ -103,9 +103,10 @@ const Nav: React.FC<NavProps> = ({ total }) => {
               </option>
               <option onClick={handleRoute} className="app__nav-itemLeft">
                 User Profile:{" "}
-                {user?.userId ||
-                  business?.businessId ||
+                {user?.firstName ||
+                  user?.email ||
                   business?.businessName ||
+                  business?.businessEmail ||
                   "User Profile"}
                 !
               </option>

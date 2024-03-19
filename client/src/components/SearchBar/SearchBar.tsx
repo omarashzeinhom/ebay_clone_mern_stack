@@ -14,7 +14,7 @@ export default function SearchBar() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const { setSearchResults } = useProductContext();
-  console.log(searchQuery);
+  //console.log(searchQuery);
 
   const navigate = useNavigate();
 

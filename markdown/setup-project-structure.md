@@ -8,6 +8,15 @@ Certainly! Here's the complete markdown file with the organized project structur
 - [node.js](https://nodejs.org/)
 - [VsCode](https://code.visualstudio.com/) or any Text Editor of your Choice.
 - [yarn](https://yarnpkg.com/)
+- Browser
+1. []()
+
+
+- Chrome extensions 
+-[React Developer Tools](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+
+- FireFox addons
+- [React Developer Tools](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
 
 ### Setup Instructions
 1. Create a new project directory called `mern` or `fullstackapp`

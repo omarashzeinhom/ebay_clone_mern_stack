@@ -1,8 +1,21 @@
 import { useAuth } from "../../../context/AuthContext";
+import {authService} from "../../../services/authService";
+
+
 
 export default function UserProfile() {
   const { user, updatedUser } = useAuth();
   console.log(`user in UserProfile.tsx =====> ${JSON.stringify(user)}`);
+  const token: string | null | any = localStorage.getItem('token');
+  console.log(token
+    )
+
+  console.log(`authService.getUser(token)---->${JSON.stringify(authService.getUser(token))}`);
+  
+
+  //console.log(`useAuth().fetchUserInformation----->${JSON.stringify(useAuth().fetchUserInformation)}`);
+
+ 
   return (
     <div className="app-profile-container__info">
       <table>
