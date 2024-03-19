@@ -100,15 +100,31 @@ export default function SearchBar() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button
+         
+        </div>
+        <button
             className="app__searchbar-searchBtn"
             id="searchBtn"
             onClick={handleSearch}
           >
             <HiMagnifyingGlass className="app__searchbar-searchicon" />
           </button>
-        </div>
+        <select
+            onChange={handleChange}
+            className={`app__searchbar-form-dropDown ${
+              isMobile ? "app__searchbar-form-dropDown-mobile" : ""
+            }`}
+            id="categories__right"
+          >
+            {!isMobile && <option hidden>All Categories</option>}
+            {categories.map((category: Category, index: number) => (
+              <option key={index} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+          </select>
       </div>
+      
     </div>
   );
 }

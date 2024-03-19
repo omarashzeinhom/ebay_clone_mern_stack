@@ -92,7 +92,7 @@ export const productService = {
   getProductsBySearch: async (searchQuery: string): Promise<Product[]> => {
     try {
       const response: AxiosResponse<Product[]> = await axios.get(
-        `${API_BASE_URL}search?query=${encodeURIComponent(searchQuery)}`,
+        `${API_BASE_URL}search/?query=${encodeURIComponent(searchQuery)}`,
         { timeout: 5000 } // Set a timeout value in milliseconds (adjust as needed)
       );
       return response.data;
