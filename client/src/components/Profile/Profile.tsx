@@ -14,7 +14,7 @@ type ProfileProps = {
 };
 
 export default function Profile({ total }: ProfileProps) {
-  const [isEditing, setIsEditing] = useState("");
+  const [isEditing, setIsEditing] = useState("View");
   const {
     business,
     user,
@@ -63,10 +63,10 @@ export default function Profile({ total }: ProfileProps) {
 
   const RadioButtons = () => {
     return (
-      <div className="app-profile-container">
-        <h2>{userId ? " User " : " Business "}Profile</h2>
-        <div>
-          <label>
+      <div className="radio-buttons-container">
+        <h2>{userId ? "User" : "Business"} Profile</h2>
+        <div className="radio-buttons">
+          <label className="radio-button">
             <input
               type="radio"
               name=""
@@ -74,9 +74,9 @@ export default function Profile({ total }: ProfileProps) {
               value={"View"}
               onChange={() => handleEditChange("View")}
             />
-            View
+            <span className="radio-label">View</span>
           </label>
-          <label>
+          <label className="radio-button">
             <input
               type="radio"
               name="accountType"
@@ -84,13 +84,13 @@ export default function Profile({ total }: ProfileProps) {
               value="Edit"
               onChange={() => handleEditChange("Edit")}
             />
-            Edit
+            <span className="radio-label">Edit</span>
           </label>
         </div>
       </div>
     );
   };
-
+  
   return (
     <>
       {user?.userId || business?.businessId ? (
