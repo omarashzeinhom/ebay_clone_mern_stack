@@ -1,6 +1,3 @@
-markdown
-Copy code
-
 # Express Node.js and Mongoose Server for E-commerce
 
 ## Start by
@@ -11,8 +8,8 @@ node index.js
 
 ```lua
 Project Structure
-lua
-Copy code
+
+
 ├── server
 │   ├── controllers
 │   │   ├── authController.js

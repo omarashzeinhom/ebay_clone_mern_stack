@@ -22,6 +22,7 @@ import {
   Profile,
   /**ErrorBoundary, */
   SearchResults,
+  ErrorBoundary,
 } from "../components";
 import { CategoryProvider } from "../context/CategoryContext";
 
@@ -148,15 +149,17 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   return (
     <React.StrictMode>
-      <AuthProvider>
-        <CategoryProvider>
-          <ProductProvider>
-            <ShoppingCartProvider>
-              <RouterProvider router={router} />
-            </ShoppingCartProvider>
-          </ProductProvider>
-        </CategoryProvider>
-      </AuthProvider>
+      <ErrorBoundary>
+        <AuthProvider>
+          <ShoppingCartProvider>
+            <CategoryProvider>
+              <ProductProvider>
+                <RouterProvider router={router} />
+              </ProductProvider>
+            </CategoryProvider>
+          </ShoppingCartProvider>
+        </AuthProvider>
+      </ErrorBoundary>
     </React.StrictMode>
   );
 };

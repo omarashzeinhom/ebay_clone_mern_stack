@@ -53,18 +53,25 @@ exports.register = async (req, res) => {
 };
 exports.getUser = async (req, res) => {
   try {
-    // You can access the user details from the request object
-    const user = req?.user;
+    // Verify that the user is authenticated and has a valid userId
+    if (!req.user || !req.user.userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    // Fetch the user from the database
+    const user = await User.findById(req.user.userId).populate({ path: "avatar", select: "_id name" });
+
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
 
     res.status(200).json({
-      userId: user?.userId,
-      email: user?.email,
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      avatar: user?.avatar, // added prop for avatar url
+      userId: user._id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      avatar: user.avatar ? user.avatar._id : null,
     });
-    //Debug
-    // console.log(`req?.user--- >${JSON.stringify(req?.user)}`);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -225,6 +232,7 @@ exports.updateUser = async (req, res) => {
       avatarLink = result?.secure_url;
     }
 
+    //Fix for  Database query built from user-controlled sources 
     const updatedUser = await User.findByIdAndUpdate(
       { _id: userId },
       {
@@ -236,8 +244,7 @@ exports.updateUser = async (req, res) => {
         password: password,
       },
       { new: true } // Return the updated document
-    );
-
+    ).lean(); // Ensure it returns a plain JavaScript object, not a Mongoose Document.
     res.status(200).json({
       message: "User updated successfully",
       updatedUser,

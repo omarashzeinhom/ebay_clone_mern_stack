@@ -35,16 +35,6 @@ export default function Sell({ total }: SellProps) {
           </h2>
         </>
       )}
-
-      {!business?.businessId && (
-        <>
-          <h2>Sell</h2>
-
-          <h2>
-            Register your <Link to="/register">business</Link> to start selling
-          </h2>
-        </>
-      )}
       
       {business?.businessId != null && (
         <>

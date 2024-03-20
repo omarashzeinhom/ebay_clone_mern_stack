@@ -1,11 +1,4 @@
-// ProductContext.tsx
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { Product } from "../models/product";
 import { productService } from "../services/productService";
 
@@ -18,28 +11,21 @@ interface ProductContextValue {
   selectedCategory: string;
   setCategory: (category: string) => void;
   fetchProductsBySearch: (searchQuery: string) => Promise<void>;
-  fetchProducts: () => void; 
+  fetchProducts: (categoryName?: string) => Promise<void>; 
   getProductById: (productId: string) => Promise<Product | undefined>;
-  searchResults: Product[]; 
-  setSearchResults: (results: Product[]) => void; 
+  searchResults: Product[];
+  setSearchResults: (searchResults: Product[]) => void; // Define setSearchResults
 }
 
-const ProductContext = createContext<ProductContextValue | undefined>(
-  undefined
-);
+const ProductContext = createContext<ProductContextValue | undefined>(undefined);
 
-export const ProductProvider: React.FC<ProductContextProps> = ({
-  children,
-}) => {
+export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Product[]>([]);
 
-  const getProductById = async (
-    productId: string
-  ): Promise<Product | undefined> => {
+  const getProductById = async (productId: string): Promise<Product | undefined> => {
     try {
-     
       const product = await productService.getProductById(productId);
       return product;
     } catch (error) {
@@ -48,34 +34,28 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     }
   };
 
-  const fetchProducts = async (searchQuery?: string, categoryName?: string) => {
+  const fetchProducts = async (categoryName?: string) => {
     try {
-      let products;
-  
-      if (searchQuery) {
-        products = await productService.getProductsBySearch(searchQuery);
-      } else if (categoryName) {
-        products = await productService.getProductsByCategory(categoryName);
+      let fetchedProducts;
+      if (categoryName) {
+        fetchedProducts = await productService.getProductsByCategory(categoryName);
       } else {
-        products = await productService.getAllProducts();
+        fetchedProducts = await productService.getAllProducts();
       }
-  
-      setProducts(products);
+      setProducts(fetchedProducts);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
   };
   
-
- 
   const setCategory = (category: string) => {
     setSelectedCategory(category);
   };
 
   const fetchProductsBySearch = async (searchQuery: string) => {
     try {
-      const products = await productService.getProductsBySearch(searchQuery);
-      setSearchResults(products);
+      const foundProducts = await productService.getProductsBySearch(searchQuery);
+      setSearchResults(foundProducts);
     } catch (error) {
       console.error("Error fetching products by search:", error);
     }
@@ -88,13 +68,13 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
   return (
     <ProductContext.Provider
       value={{
+        setSearchResults,
         products,
         selectedCategory,
         setCategory,
         fetchProducts,
         getProductById,
         searchResults,
-        setSearchResults,
         fetchProductsBySearch,
       }}
     >

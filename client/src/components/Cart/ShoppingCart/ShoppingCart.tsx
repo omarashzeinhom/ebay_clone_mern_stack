@@ -14,7 +14,7 @@ type ShoppingCartProps = {
 };
 
 export default function ShoppingCart({ total }: ShoppingCartProps) {
-  const { cartItems, cartQuantity } = useShoppingCart();
+  const { cartItems, cartQuantity,clearCart } = useShoppingCart();
   const { products } = useProductContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -57,6 +57,11 @@ export default function ShoppingCart({ total }: ShoppingCartProps) {
                 </React.Fragment>
               ))}
             </>
+          )}
+          {cartQuantity > 0 && (
+           <button onClick={clearCart}>
+            Clear Cart
+           </button>
           )}
           {cartQuantity === 0 && (
             <>

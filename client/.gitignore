@@ -15,11 +15,14 @@ TODOS
 
 # production
 /build
-
+e
 # misc
+./.env
+env
 .DS_Store
 .env
 /.env
+.env
 .env.local
 .env.development.local
 .env.test.local

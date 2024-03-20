@@ -115,7 +115,7 @@ getUser: async (token: string): Promise<User> => {
     businessAvatar?: string
   ): Promise<void> => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/registerb`, {
+      const response = await axios.post(`${API_BASE_URL}/auth/registerb`, {
         businessName,
         businessEmail,
         businessPassword,
@@ -137,7 +137,7 @@ getUser: async (token: string): Promise<User> => {
   ): Promise<string> => {
     try {
       const response: AxiosResponse<{ token: string }> = await axios.post(
-        `${API_BASE_URL}/loginb`,
+        `${API_BASE_URL}auth/loginb`,
         {
           businessEmail,
           businessPassword,

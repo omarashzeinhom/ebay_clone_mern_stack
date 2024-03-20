@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.css";
 import { useNavigate } from "react-router-dom";
 import { Category } from "../../../models/category";
 import { Scrollbar, Navigation } from "swiper/modules";
@@ -8,7 +7,10 @@ import { categoriesService } from "../../../services/categoryService";
 import "./CategoriesCarousel.scss";
 import Loading from "../../Loading/Loading";
 
-interface CategoriesCarouselProps {}
+interface CategoriesCarouselProps {
+  selectedCategory? : string;
+  handleCategoryClick?: (categoryName: string)=> void;
+}
 
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   const [categoryData, setCategoryData] = useState<Category[]>([]);

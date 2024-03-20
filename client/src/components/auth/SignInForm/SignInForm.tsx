@@ -4,6 +4,7 @@ import { authService } from "../../../services/authService";
 import { summaryBoxText } from "../../../utilities/constants";
 import { useState, useEffect } from "react";
 import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
+import DemoCredentials from "./DemoCredentials";
 
 export const SignInNav = () => {
   return (
@@ -99,18 +100,6 @@ const SignInForm: React.FC = () => {
 
   const userLink = `/user/${user?.userId}`;
   const businessLink = `/business/${business?.businessId}`;
-
-const DemoCredentials = ()=> {
-  return (
-  
-     <details title="DEMO Credentials">
-            <summary>DEMO Credentials</summary>
-            <h6><em>User:</em>johndoe@email.com</h6>
-            <h6><em>Password:</em>123456789</h6>
-          </details>
-   
-  )
-}
 
 
 

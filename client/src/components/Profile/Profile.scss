@@ -1,3 +1,23 @@
+.radio-buttons-container {
+  text-align: center;
+}
+
+.radio-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.radio-button {
+  margin-right: 20px;
+}
+
+.radio-label {
+  margin-left: 5px;
+}
+
+
 .app-profile-container {
   &__info,
   &__form {
