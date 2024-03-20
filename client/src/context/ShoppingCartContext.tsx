@@ -90,18 +90,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   }
 
   function addItemToCart(product: Product) {
-    const newItem: Product = {
-      id: product?.id,
-      _id: product?._id,
-      name: product?.name,
-      img: product?.img,
-      price: product?.price,
-      category: product?.category,
-      parent: product?.parent,
-      quantity: 1, // Set an initial quantity, you can adjust this as needed
-    };
     const existingItem = cartItems.find((item) => item.id === product.id);
-
     // Add the new item to the cart
     // Ensure that you are updating the cartItems array correctly
     if (existingItem) {

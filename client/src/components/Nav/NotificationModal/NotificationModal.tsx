@@ -7,13 +7,10 @@ type NotificationModalProps = {
 };
 
 const NotificationModal: React.FC<NotificationModalProps> = ({ onClose }) => {
-  const payment = false;
-  const { token, user, business,login } = useAuth();
   const [notificationCount, setNotificationCount] = useState(0); // Initial count
-  const [notifications, setNotifications] = useState([
-    "Notification 1",
-    "Notification 2",
-  ]); // Example notifications
+  const [notifications, setNotifications] = useState<string[]>([]); // Example notifications
+
+  const { token, user, business } = useAuth();
 
   const handleCloseNotification = () => {
     // Decrease the notification count when a notification is closed
@@ -25,45 +22,39 @@ const NotificationModal: React.FC<NotificationModalProps> = ({ onClose }) => {
     setNotificationCount(0);
     setNotifications([]);
   };
+
   return (
     <>
-    
-      {payment ? (
-        <>
-          <div className="notification-modal">
-            <div className="notification-modal-content">
-              {/* Add your notification content here */}
-              <h2>Notification</h2>
-              <p>Your payment was successful!</p>
-              <button onClick={onClose}>Close</button>
-            </div>
+      {notificationCount > 0 && (
+        <div className="notification-modal">
+          <div className="notification-modal-content">
+            <h2>Notifications</h2>
+            {notifications.map((notification, index) => (
+              <p key={index}>{notification}</p>
+            ))}
+            <button onClick={handleCloseNotification}>Close</button>
+            <button onClick={handleMarkAllRead}>Mark All As Read</button>
+
           </div>
-        </>
-      ) : (
-        <>
-          <div className="notification-modal">
-            <div className="notification-modal-content">
-              {/* Add your notification content here */}
-              <h2>Notification</h2>
-              <p>No New Notifications</p>
-              <button onClick={onClose}>Close</button>
-            </div>
-          </div>
-        </>
+        </div>
       )}
 
       {token || user || business ? (
-        <>
-          <div className="notification-modal">
-            <div className="notification-modal-content">
-              <h2>Signed In Sucessfully as</h2>
-              <p>{user?.firstName || user?.email || business?.businessName}</p>
-              <button onClick={onClose}>Close</button>
-            </div>
+        <div className="notification-modal">
+          <div className="notification-modal-content">
+            <h2>Signed In Successfully as</h2>
+            <p>{user?.firstName || user?.email || business?.businessName}</p>
+            <button onClick={onClose}>Close</button>
           </div>
-        </>
+        </div>
       ) : (
-        <></>
+        <div className="notification-modal">
+          <div className="notification-modal-content">
+            <h2>Notification</h2>
+            <p>No New Notifications</p>
+            <button onClick={onClose}>Close</button>
+          </div>
+        </div>
       )}
     </>
   );

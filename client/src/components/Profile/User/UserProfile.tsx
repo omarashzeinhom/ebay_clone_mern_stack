@@ -1,5 +1,4 @@
 import { useAuth } from "../../../context/AuthContext";
-import { authService } from "../../../services/authService";
 import "./UserProfile.scss";
 
 export default function UserProfile() {
