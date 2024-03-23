@@ -54,6 +54,7 @@ const TrendingProducts: React.FC = () => {
           768: {
             slidesPerView: 5,
             loop: filteredProducts .length > 3,
+            
           },
           1024: {
             slidesPerView: 6,

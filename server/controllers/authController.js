@@ -231,25 +231,37 @@ exports.updateUser = async (req, res) => {
       const result = await cloudinary.v2.uploader.upload(avatar);
       avatarLink = result?.secure_url;
     }
-
-    //Fix for  Database query built from user-controlled sources 
+    const allowedUpdates = ['firstName', 'lastName', 'email', 'avatar', 'password'];
+    const updates = {};
+    
+    // Validate and sanitize user-controlled inputs
+    if (updatedFirstName && typeof updatedFirstName === 'string') {
+      updates.firstName = updatedFirstName;
+    }
+    if (updatedLastName && typeof updatedLastName === 'string') {
+      updates.lastName = updatedLastName;
+    }
+    if (updatedEmail && typeof updatedEmail === 'string') {
+      updates.email = updatedEmail;
+    }
+    if (avatarLink && typeof avatarLink === 'string') {
+      updates.avatar = avatarLink;
+    }
+    if (password && typeof password === 'string') {
+      updates.password = password;
+    }
+    
+    // Update only the allowed fields
     const updatedUser = await User.findByIdAndUpdate(
-      { _id: userId },
-      {
-        _id: userId,
-        firstName: updatedFirstName || firstName,
-        lastName: updatedLastName || lastName,
-        email: updatedEmail || email,
-        avatar: avatarLink || avatar,
-        password: password,
-      },
+      userId,
+      updates,
       { new: true } // Return the updated document
-    ).lean(); // Ensure it returns a plain JavaScript object, not a Mongoose Document.
+    ).lean();
+    
     res.status(200).json({
-      message: "User updated successfully",
-      updatedUser,
-      avatarLink,
+      // Response data
     });
+    
   } catch (error) {
     console.error(`Error in updateUser: ${error}`);
     res.status(500).json({ message: "Internal Server Error" });

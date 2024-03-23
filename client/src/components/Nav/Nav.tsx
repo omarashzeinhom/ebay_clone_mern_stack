@@ -21,7 +21,9 @@ const Nav: React.FC<NavProps> = ({ total }) => {
 
   const [notificationCount, setNotificationCount] = useState(0);  // Assuming you have a way to update the notification count
   
-  
+  console.log(`setNotificationCount--->${setNotificationCount}`);
+  console.log(`notificationCount--->${notificationCount}`);
+
   const handleNotificationIconClick = () => {
     // Show/hide the notification modal
     setIsNotificationModalVisible(!isNotificationModalVisible);
