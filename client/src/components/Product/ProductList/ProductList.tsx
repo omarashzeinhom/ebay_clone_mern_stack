@@ -81,10 +81,9 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                       loading="lazy"
                     />
                     <p className="product-list__product-list-name">{product?.name}</p>
+
                   </a>
-                  <div>
-                    <span className="product-list__product-list-price">{product?.price}$</span>
-                    <br />
+                  <div className="product-list__product-list-price-container">
 
                     {quantity === 0 && (
                       <button
@@ -94,7 +93,7 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                         Add to Cart
                       </button>
                     )}
-
+                    <span className="product-list__product-list-price">{product?.price}$</span>
                   </div>
 
                   <p className="product-list__product-list-category">

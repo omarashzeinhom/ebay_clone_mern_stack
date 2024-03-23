@@ -38,14 +38,19 @@ exports.register = async (req, res) => {
 
     // Hash the password before storing it in the database
     const hashedPassword = await bcrypt.hash(password, 10);
-
+ // Upload avatar to Cloudinary if provided
+ let avatarUrl = "";
+ if (avatar) {
+   const result = await cloudinary.uploader.upload(avatar);
+   avatarUrl = result.secure_url;
+ }
     // Create a new user instance
     const newUser = new User({
       firstName,
       lastName,
       email,
       password: hashedPassword,
-      avatar: avatar || "", // It's better not to store default value as space
+      avatar: avatarUrl, // It's better not to store default value as space
     });
 
     // Save the new user to the database
@@ -269,28 +274,28 @@ exports.updateUser = async (req, res) => {
   const userId = req.user.userId; // Assuming userId is extracted from authentication middleware
 
   try {
-    // Upload avatar to Cloudinary if provided
-    let avatarLink = avatar;
+    // Upload new avatar to Cloudinary if provided
+    let avatarUrl = ""; // Define avatarUrl variable to store Cloudinary URL
     if (avatar) {
-      const result = await cloudinary.v2.uploader.upload(avatar);
-      avatarLink = result?.secure_url;
+      const result = await cloudinary.uploader.upload(avatar);
+      avatarUrl = result.secure_url;
     }
 
     // Construct updates object with sanitized data
     const updates = {};
-    if (updatedFirstName && typeof updatedFirstName === 'string') {
+    if (updatedFirstName && typeof updatedFirstName === "string") {
       updates.firstName = updatedFirstName;
     }
-    if (updatedLastName && typeof updatedLastName === 'string') {
+    if (updatedLastName && typeof updatedLastName === "string") {
       updates.lastName = updatedLastName;
     }
-    if (updatedEmail && typeof updatedEmail === 'string') {
+    if (updatedEmail && typeof updatedEmail === "string") {
       updates.email = updatedEmail;
     }
-    if (avatarLink && typeof avatarLink === 'string') {
-      updates.avatar = avatarLink;
+    if (avatarUrl && typeof avatarUrl === "string") {
+      updates.avatar = avatarUrl;
     }
-    if (password && typeof password === 'string') {
+    if (password && typeof password === "string") {
       // Hash the password before updating
       const hashedPassword = await bcrypt.hash(password, 10);
       updates.password = hashedPassword;

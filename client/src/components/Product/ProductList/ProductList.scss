@@ -114,6 +114,19 @@
 
      
     }
+    .product-list__product-list-price-container {
+      display: flex;
+    
+      .product-detail__button {
+        flex: 1;
+        margin-right: 5px;
+      }
+    
+      .product-list__product-list-price {
+        flex: 1;
+      }
+    }
+    
     &-price {
       display: inline-block;
       padding: 8px 16px;
@@ -121,12 +134,12 @@
       border-radius: 20px;
       /* Adjust border-radius for a rounder shape */
       font-weight: bold;
-      color: #33ff00;
+      color: #0c0c0c;
       margin-top: 5px;
       text-decoration: none;
       background-color: transparent;
       /* Set background color to transparent */
-      border: 2px solid #33ff00;
+      border: 2px solid #030303;
       /* Add border for button outline */
       transition: color 0.2s, transform 0.2s, border-color 0.2s;
 
@@ -168,14 +181,15 @@
         /* Add border width */
         outline: none;
         /* Remove outline */
-        color: #ff9100;
+        color: #3f8300;
         text-decoration: none;
         /* Remove default underline */
         transition: color 0.3s, transform 0.3s;
 
         /* Add smooth transition */
         &:hover {
-          color: #ff7300;
+          border: 3px solid #3f8300;
+          color: #285201;
           text-decoration: underline;
           transform: scale(1.1);
 
