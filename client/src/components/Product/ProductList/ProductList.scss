@@ -31,6 +31,7 @@
     padding: 0;
     margin: 0;
     display: grid;
+    gap: 5rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     /* Default 1 column with minimum width of 200px */
 
@@ -44,7 +45,7 @@
       /* Desktop */
       grid-template-columns: repeat(auto-fit, minmax(200px, calc(25% - 20px)));
       /* 4 columns */
-      gap: 1rem;
+      gap: 5rem;
       /* Gap between items for desktop */
     }
 
@@ -53,7 +54,13 @@
       margin-bottom: 20px;
       border-radius: 12px;
       outline: 1px solid black;
+      transition: 0.2s ease-in-out;
+      padding: 1rem 1rem 1rem 1rem;
+      box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem gray;
 
+      &:hover {
+        transform: scale(1.1);
+      }
 
 
 
@@ -62,9 +69,7 @@
         text-decoration: none;
         transition: 0.2s ease-in-out;
 
-        &:hover {
-          text-decoration: underline;
-        }
+
       }
     }
 
@@ -79,7 +84,24 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
+    .product-list__product-list-item-top{
+      transition: 0.2s ease-in-out;
 
+      &:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      
+  
+    }
+
+    &-name {
+      font-size: 1rem;
+      margin-top: 5px;
+      transition: 0.2s ease-in-out;
+
+      
+    }
     &-image {
       width: 100%;
       max-width: 250px;
@@ -89,21 +111,76 @@
       box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem black;
       transition: 0.2s ease-in-out;
       opacity: 0.9;
-      &:hover{
-        opacity: 1;
-        transform: scale(1.1);
-      }
-    }
 
-    &-name {
-      font-size: 1rem;
-      margin-top: 5px;
+     
     }
-
     &-price {
+      display: inline-block;
+      padding: 8px 16px;
+      /* Adjust padding to increase button size */
+      border-radius: 20px;
+      /* Adjust border-radius for a rounder shape */
       font-weight: bold;
-      color: #007bff;
+      color: #33ff00;
       margin-top: 5px;
+      text-decoration: none;
+      background-color: transparent;
+      /* Set background color to transparent */
+      border: 2px solid #33ff00;
+      /* Add border for button outline */
+      transition: color 0.2s, transform 0.2s, border-color 0.2s;
+
+      /* Add border color transition */
+      &:hover {
+        color: #03bb03;
+        border-color: #03bb03;
+        /* Change border color on hover */
+        transform: scale(1.1);
+
+      }
+
+      span {
+        font-weight: bold;
+        color: #007bff;
+        margin-top: 5px;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+          color: #035cbb;
+          text-decoration: underline;
+          transform: scale(1.1);
+
+        }
+      }
+
+    }
+
+    &-category {
+      font-weight: bold;
+
+      margin-top: 5px;
+      transition: 0.2s ease-in-out;
+
+      a {
+        padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+        border-radius: 28px;
+        border: 2px solid black;
+        /* Add border width */
+        outline: none;
+        /* Remove outline */
+        color: #ff9100;
+        text-decoration: none;
+        /* Remove default underline */
+        transition: color 0.3s, transform 0.3s;
+
+        /* Add smooth transition */
+        &:hover {
+          color: #ff7300;
+          text-decoration: underline;
+          transform: scale(1.1);
+
+        }
+      }
     }
   }
 }

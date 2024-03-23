@@ -36,6 +36,7 @@ app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 
 
+
 // MongoDB
 mongoose.connect(process.env.ATLAS_URI, {});
 const connection = mongoose.connection;

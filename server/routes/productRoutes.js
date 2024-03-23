@@ -3,6 +3,20 @@ const productController = require('../controllers/productController');
 const router = express.Router();
 const multer = require('multer');
 const upload = multer(); // Initialize multer
+const rateLimit = require("express-rate-limit");
+
+// Define rate-limiting options
+const searchRateLimitOptions = {
+  windowMs: 60 * 1000, // 1 minute
+  max: 10, // Max 10 requests per windowMs
+  message: "Too many requests from this IP, please try again later.",
+};
+
+router.get("/search", productController.getProductsBySearch);
+
+// Route to get products by search
+// Apply rate-limiting middleware to the route for searching products
+router.get("/search/:name", rateLimit(searchRateLimitOptions), productController.getProductsBySearch);
 
 // Route to get all products
 router.get("/", productController.getProducts);
@@ -10,8 +24,13 @@ router.get("/", productController.getProducts);
 // Route to get a product by ID
 router.get("/:productId", productController.getProductById);
 
-// Route to get products by search
-router.get("/search/:name", productController.getProductsBySearch);
+// Route to handle search results
+router.get("/search-results", (req, res) => {
+  const query = req.query.query; // Retrieve the value of the "query" parameter
+  // Process the query parameter as needed (e.g., perform a search)
+  // For example, you can pass the query parameter to a search function and return the results
+  res.send(`Search results for query: ${query}`);
+});
 
 // Route to create a product
 router.post('/product', upload.single('img'), productController.createProduct);

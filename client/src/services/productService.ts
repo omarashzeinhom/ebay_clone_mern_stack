@@ -49,7 +49,7 @@ export const productService = {
     id: number;
     quantity: number;
     name: string;
-    img: string | File; 
+    img: string | File;
     price: number;
     category: string;
     parent: string;
@@ -60,7 +60,7 @@ export const productService = {
         `${API_BASE_URL}products/product`,
         product
       );
-      
+
       return response?.data;
     } catch (error) {
       console.error(`Error in createProduct, in productService.ts: ${error}`);
@@ -72,21 +72,21 @@ export const productService = {
     try {
       const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
       return response?.data;
-    } catch {}
+    } catch { }
   },
 
   readProduct: async (product: {}) => {
     try {
       const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
       return response?.data;
-    } catch {}
+    } catch { }
   },
 
   deleteProduct: async (product: {}) => {
     try {
       const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
       return response?.data;
-    } catch {}
+    } catch { }
   },
 
   getProductsBySearch: async (searchQuery: string): Promise<Product[]> => {

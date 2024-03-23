@@ -1,18 +1,38 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/ProductContext";
 import "./ProductList.scss";
 import Loading from "../../Loading/Loading";
 import { Product } from "../../../models/product";
 import CategorySideBar from "../../Categories/CategorySideBar/CategorySideBar";
+import { useShoppingCart } from "../../../context/ShoppingCartContext";
 
 interface ProductListProps {
   products: Product[]; // Replace YourProductType with the actual type of your products
 }
 
 const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) => {
+  const navigate = useNavigate();
   const { categoryName } = useParams();
   const { products, fetchProducts } = useProductContext();
+  const {
+    addItemToCart,
+    getItemQuantity,
+  } = useShoppingCart();
+  const { productId } = useParams();
+  const { getProductById } = useProductContext();
+  const [product, setProduct] = useState<any | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (productId) {
+        const productData = await getProductById(productId);
+        setProduct(productData);
+      }
+    };
+
+    fetchData();
+  }, [productId, getProductById]);
 
   useEffect(() => {
     console.log("Products in ProductList component:", productListProp);
@@ -34,7 +54,14 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
   //DEBUG console.log(filteredProducts);
 
   const productLink = (productId: string) => `/item/${productId}`;
+  const id = product?.id;
 
+  const quantity = getItemQuantity(id);
+  //console.log(quantity);
+
+  function handleRouting() {
+    navigate(`/category/${encodeURIComponent(product?.category)}`);
+  }
   return (
     <div className="product-list-layout">
       <CategorySideBar />
@@ -45,8 +72,8 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <li key={product?._id} className="product-list__product-list-item">
-                <a className="product-list__product-link" href={productLink(product?._id)}>
-                  <div>
+                <div className="product-list__product-list-item-top">
+                  <a className="product-list__product-link" href={`${productLink(product?._id)}`}>
                     <img
                       className="product-list__product-list-image"
                       src={product?.img}
@@ -54,10 +81,29 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                       loading="lazy"
                     />
                     <p className="product-list__product-list-name">{product?.name}</p>
-                    <p className="product-list__product-list-price">${product?.price}</p>
-                    <p>Category: {product?.parent}</p>
+                  </a>
+                  <div>
+                    <span className="product-list__product-list-price">{product?.price}$</span>
+                    <br />
+
+                    {quantity === 0 && (
+                      <button
+                        className="product-detail__button"
+                        onClick={() => addItemToCart(product)}
+                      >
+                        Add to Cart
+                      </button>
+                    )}
+
                   </div>
-                </a>
+
+                  <p className="product-list__product-list-category">
+                    <em>Category:</em>
+                    <br />
+                    <br />
+                    <a href={`${encodeURIComponent(product?.category)}`}>
+                      {product?.category}</a></p>
+                </div>
               </li>
             ))
           ) : (

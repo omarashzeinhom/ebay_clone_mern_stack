@@ -14,7 +14,8 @@ router.post("/registerb", authController.registerBusiness);
 router.get("/business", verifyToken, authController.getBusiness); 
 
 // Update user route
-router.post("/user/:id", verifyToken, authController.updateUser);
+router.put("/user/:id", verifyToken, authController.updateUser);
+
 
 // Additional routes
 router.get("/auth/register", (req, res) => {

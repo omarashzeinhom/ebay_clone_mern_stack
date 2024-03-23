@@ -30,7 +30,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
       [name]: value,
     }));
   };
-
+  
   console.log(
     `user ===> ${JSON.stringify(
       user
@@ -51,24 +51,30 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
       setLoading(true);
       setError(null);
       event.preventDefault();
-      await updateUser(selectedAvatar, updatedUser);
-      setUpdatedUser((prevUser) => ({
-        ...prevUser,
-        firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
-        lastName: updatedUser?.updatedLastName || prevUser?.updatedLastName,
-        email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
-        avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
-      }));
-      setUser((prevUser) => ({
-        ...prevUser,
-        firstName: updatedUser?.updatedFirstName || prevUser?.firstName,
-        lastName: updatedUser?.updatedLastName || prevUser?.lastName,
-        email: updatedUser?.updatedEmail || prevUser?.email,
-        avatar: updatedUser?.updatedAvatar || prevUser?.avatar,
-      }));
+      
+      // Check if the updated user data is different from the previous user data
+      if (
+        updatedUser &&
+        (updatedUser.updatedFirstName !== user.firstName ||
+          updatedUser.updatedLastName !== user.lastName ||
+          updatedUser.updatedEmail !== user.email ||
+          updatedUser.updatedAvatar !== user.avatar)
+      ) {
+        await updateUser(selectedAvatar, updatedUser);
+        setUser((prevUser) => ({
+          ...prevUser,
+          firstName: updatedUser.updatedFirstName || prevUser.firstName,
+          lastName: updatedUser.updatedLastName || prevUser.lastName,
+          email: updatedUser.updatedEmail || prevUser.email,
+          avatar: updatedUser.updatedAvatar || prevUser.avatar,
+        }));
+        setUpdatedUser(undefined); // Reset updatedUser after successful update
+      } else {
+        console.log("User data has not changed. No update required.");
+      }
     } catch (error) {
-      console.error("Error creating product:", error);
-      setError("Failed to create the product. Please try again."); // Set an appropriate error message
+      console.error("Error updating user:", error);
+      setError("Failed to update the user. Please try again."); // Set an appropriate error message
     } finally {
       setLoading(false);
     }
