@@ -15,6 +15,7 @@ type FormData = {
   quantity: number;
   category: string;
   parent: string;
+  file: [];
 };
 
 export default function CreateProduct() {
@@ -32,12 +33,18 @@ export default function CreateProduct() {
     quantity: 0,
     category: "",
     parent: "",
+    file: []
   });
 
-  const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
-  const folderPath = "ebay-clone-images/products";
-  const uploadEndPoint = `https://res.cloudinary.com/${cloudName}/image/upload/${folderPath}`;
 
+  const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
+  const folderPath = "ebay-clone-mern-images/businesses/products";
+  const uploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+  
+  // Append folder path as a parameter
+  const uploadEndPointWithFolder = `${uploadEndPoint}?folder=${folderPath}`;
+ 
+ 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -77,10 +84,12 @@ export default function CreateProduct() {
       formDataToSend.append("quantity", formData.quantity.toString());
       formDataToSend.append("category", formData.category);
       formDataToSend.append("parent", formData.parent);
-
+      formDataToSend.append("file", formData.img);
+      formDataToSend.append("upload_preset", `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`);
+    
       console.log("FormData to Send:", formDataToSend);
 
-      const cloudinaryResponse = await fetch(uploadEndPoint, {
+      const cloudinaryResponse = await fetch(uploadEndPointWithFolder, {
         method: "POST",
         body: formDataToSend,
       });
@@ -114,6 +123,7 @@ export default function CreateProduct() {
         quantity: 0,
         category: "",
         parent: "",
+        file: [],
       });
     } catch (error) {
       console.error("Error creating product:", error);

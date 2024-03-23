@@ -54,6 +54,7 @@ export const productService = {
     category: string;
     parent: string;
     businessId: string | undefined;
+    file: [];
   }) => {
     try {
       const response = await axios.post(

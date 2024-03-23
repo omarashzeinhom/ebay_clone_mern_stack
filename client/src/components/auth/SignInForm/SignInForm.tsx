@@ -80,12 +80,12 @@ const SignInForm: React.FC = () => {
       // Fetch user or business information when the component mounts
       const fetchData = async () => {
         try {
-          const data = await authService.getUser(token);
+          const data = await authService?.getUser(token);
           login(token, data);
         } catch (error) {
           console.error(`Error fetching data: ${error}`);
           try {
-            const dataB = await authService.getBusiness(token);
+            const dataB = await authService?.getBusiness(token);
             loginBusiness(token, dataB);
           } catch (businessError) {
             console.error(businessError);

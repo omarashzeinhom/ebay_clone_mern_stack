@@ -1180,7 +1180,7 @@
     lodash.debounce "^4.0.8"
     typescript "^4.1.2"
 
-"@cloudinary/react@^1.11.2":
+"@cloudinary/react@^1.13.0":
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/@cloudinary/react/-/react-1.13.0.tgz#f38e9f82227b25370d1514272c0d3974360b4472"
   integrity sha512-S+Wmdmg4+pjWWlRLUcaHlQ0d59njecja6wGGWGJwVsQioBF/E/KUxNl09Q6NemXuJJAVW/hSW9kT/diJmI7eQQ==
@@ -1194,7 +1194,7 @@
   dependencies:
     "@cloudinary/url-gen" "^1.7.0"
 
-"@cloudinary/url-gen@^1.14.0", "@cloudinary/url-gen@^1.7.0":
+"@cloudinary/url-gen@^1.19.0", "@cloudinary/url-gen@^1.7.0":
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/@cloudinary/url-gen/-/url-gen-1.19.0.tgz#da8b0ec12a33301482a71e309a19401d241b1770"
   integrity sha512-3WSqYAMEe8lcYMFmkNPhOfv6Ql76mpf8O7YEC+CCaoIYrfBubzzeF8yENCaZK9tFJEHvMepI+uWWfilNrz48XA==

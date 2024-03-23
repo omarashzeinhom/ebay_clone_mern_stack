@@ -54,3 +54,4 @@ public
 ### References
 
 1. [optgroup: The Option Group element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup)
+2. [React image and video upload ](https://cloudinary.com/documentation/react_image_and_video_upload)

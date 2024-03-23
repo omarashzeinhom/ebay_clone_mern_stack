@@ -71,15 +71,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
 
   const fetchUserInformation = async (token: string) => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}auth/user`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUser(response.data);
-      //setUpdatedUser(response.data);
-    } catch (error) {
-      console.error("Error fetching user information:", error);
+    if(!business){
+      try {
+        const response = await axios.get(`${API_BASE_URL}auth/user`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUser(response.data);
+        //setUpdatedUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user information:", error);
+      }
+    }else{
+      console.warn(`No Business or User Logged In`);
+
     }
+ 
   };
 
   const login = (newToken: string, newUser: User) => {
@@ -97,14 +103,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   /** Business Logic  Start*/
   const fetchBusinessInformation = async (token: string) => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}auth/business`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setBusiness(response.data);
-    } catch (error) {
-      console.error("Error fetching user information:", error);
+    if(!user){
+      try {
+        const response = await axios.get(`${API_BASE_URL}auth/business`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setBusiness(response.data);
+      } catch (error) {
+        console.error("Error fetching user information:", error);
+      }
+    }else{
+      console.warn(`No Business or User Logged In`);
+
     }
+    
   };
 
   const loginBusiness = (newToken: string, newBusiness: Business) => {
