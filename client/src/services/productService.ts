@@ -44,7 +44,20 @@ export const productService = {
       throw error;
     }
   },
+  getProductByName: async (productName: string): Promise<Product | undefined> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}products/${productName}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch product");
+      }
 
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching products by Name:", error);
+      return undefined;
+    }
+  },
   createProduct: async (product: {
     id: number;
     quantity: number;

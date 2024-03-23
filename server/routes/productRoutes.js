@@ -13,17 +13,21 @@ const searchRateLimitOptions = {
   message: "Too many requests from this IP, please try again later.",
 };
 
+router.post("/search", productController.getProductsBySearch);
 router.get("/search", productController.getProductsBySearch);
 
 // Route to get products by search
 // Apply rate-limiting middleware to the route for searching products
-router.get("/search/:name", rateLimit(searchRateLimitOptions), productController.getProductsBySearch);
+router.get("/search/:name", rateLimit(searchRateLimitOptions), productController.getProductByName);
 
 // Route to get all products
 router.get("/", productController.getProducts);
 
 // Route to get a product by ID
 router.get("/:productId", productController.getProductById);
+
+// Route to get a product by Name
+router.get("/:name", productController.getProductByName);
 
 // Route to handle search results
 router.get("/search-results", (req, res) => {

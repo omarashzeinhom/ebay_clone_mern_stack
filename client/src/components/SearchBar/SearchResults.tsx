@@ -26,7 +26,7 @@ const SearchResults: React.FC = () => {
     <SearchBar/>
     <div>
       <h2>Search Results for "{searchQuery}"</h2>
-      <ProductList products={searchResults} />
+      <ProductList products={searchResults || []} />
     </div>
     </>
   );

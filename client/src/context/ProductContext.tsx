@@ -13,7 +13,8 @@ interface ProductContextValue {
   fetchProductsBySearch: (searchQuery: string) => Promise<void>;
   fetchProducts: (categoryName?: string) => Promise<void>; 
   getProductById: (productId: string) => Promise<Product | undefined>;
-  searchResults: Product[];
+  getProductByName: (productName: string) => Promise<Product | undefined>;
+  searchResults: Product[] | undefined;
   setSearchResults: (searchResults: Product[]) => void; // Define setSearchResults
 }
 
@@ -22,8 +23,17 @@ const ProductContext = createContext<ProductContextValue | undefined>(undefined)
 export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<Product[]>([]);
-
+  const [searchResults, setSearchResults] = useState<Product[] | undefined>(undefined);
+   
+  const getProductByName= async (productName: string): Promise<Product | undefined> => {
+    try {
+      const product = await productService.getProductByName(productName);
+      return product;
+    } catch (error) {
+      console.error(`Error fetching product with ID ${productName}:`, error);
+      return undefined;
+    }
+  };
   const getProductById = async (productId: string): Promise<Product | undefined> => {
     try {
       const product = await productService.getProductById(productId);
@@ -73,6 +83,7 @@ export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => 
         selectedCategory,
         setCategory,
         fetchProducts,
+        getProductByName,
         getProductById,
         searchResults,
         fetchProductsBySearch,

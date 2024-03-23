@@ -52,15 +52,15 @@ export default function SearchBar() {
   const handleSearch = async () => {
     if (searchQuery.trim() !== "") {
       try {
-        const searchResults = await productService.getProductsBySearch(searchQuery);
-        setSearchResults(searchResults); // Set search results in the context
+        const searchResult = await productService.getProductByName(searchQuery);
+        setSearchResults(searchResult ? [searchResult] : []); // Set search results as an array, even if empty
         navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`); // Navigate to search results page
       } catch (error) {
         console.error("Error fetching search results:", error);
       }
     }
   };
-
+  
   return (
     <div className="app__searchbar">
       <a href="/">

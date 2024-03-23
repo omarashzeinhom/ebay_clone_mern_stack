@@ -89,14 +89,14 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults} />
+          <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
       children: categories.map((category) => ({
         path: `/category/${encodeURIComponent(category?.name)}`,
         element: (
           <ProductProvider key={category?.name || " "}>
-            <ProductList products={searchResults} />
+            <ProductList products={searchResults || []} />
           </ProductProvider>
         ),
       })),
@@ -107,7 +107,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults} />
+          <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
     },
@@ -116,7 +116,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults} />
+          <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
     },

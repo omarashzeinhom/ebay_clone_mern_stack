@@ -87,7 +87,23 @@ class ProductController {
 
 
 
+  async getProductByName(req, res) {
+    const productName = req.params.productName;
 
+    try {
+      
+      const products = await Product.find({ name: productName });
+
+      if (!products || products.length === 0) {
+        return res.status(404).json({ message: "No products found for the search query" });
+      }
+
+      res.json(product);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
 
 
 
@@ -102,8 +118,10 @@ class ProductController {
       }
 
       const products = await Product.find({
-        $text: { $search: searchQuery },
-      });
+        // needed to search using name not $search
+      name: { $regex: new RegExp(searchQuery, "i") }
+    
+    });
 
       if (!products || products.length === 0) {
         return res.status(404).json({ message: "No products found for the search query" });
