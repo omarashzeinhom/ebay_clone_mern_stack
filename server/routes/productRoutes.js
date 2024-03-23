@@ -4,6 +4,7 @@ const router = express.Router();
 const multer = require('multer');
 const upload = require("../config/multer")
 const rateLimit = require("express-rate-limit");
+const Product = require("../models/productModel");
 
 // Define rate-limiting options
 const searchRateLimitOptions = {
@@ -36,7 +37,7 @@ router.get("/search-results", (req, res) => {
 router.post('/product', upload.single('img'), productController.createProduct);
 
 
-router.post("/create", upload.array('files', 10), ProductSchema, create)
+router.post("/create", upload.array('file', 10), Product, productController.createProduct)
 
 
 module.exports = router;

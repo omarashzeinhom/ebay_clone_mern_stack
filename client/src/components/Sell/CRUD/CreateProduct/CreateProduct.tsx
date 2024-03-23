@@ -25,7 +25,7 @@ export default function CreateProduct() {
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     id: 0,
-    businessId: "",
+    businessId: `${business?.businessId}`,
     img: "",
     name: "",
     description: "",

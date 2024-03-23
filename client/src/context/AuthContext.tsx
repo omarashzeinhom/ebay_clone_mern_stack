@@ -49,6 +49,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       // Clear the timeout on component unmount or when the user logs out manually
       return () => clearTimeout(logoutTimeout);
     }
+    // eslint-disable-next-line
   },[]);
 
   const showLogoutNotification = () => {

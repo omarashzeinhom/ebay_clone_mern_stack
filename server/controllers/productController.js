@@ -44,8 +44,8 @@ class ProductController {
       // Upload the image to Cloudinary
       const cloudinaryResponse = await cloudinary.v2.uploader.signed_upload(imageData.path, "slyqk3p0", {
         resource_type: "image",
-        folder: "/ebay-clone-images/products",
-        public_id: "/ebay-clone-images/products/product_",
+        folder: "/ebay-clone-mern-images/businesses/products",
+        public_id: "/ebay-clone-mern-images/businesses/products/product_",
         overwrite: true,
         notification_url: "http://localhost:3000",
         headers: { 'Access-Control-Allow-Origin': 'no-cors' }, // Add this line
@@ -91,30 +91,30 @@ class ProductController {
 
 
 
-  
 
-async getProductsBySearch(req, res) {
-  const searchQuery = req.query.query;
 
-  try {
-    if (!searchQuery) {
-      return res.status(400).json({ message: "Search query is required" });
+  async getProductsBySearch(req, res) {
+    const searchQuery = req.query.query;
+
+    try {
+      if (!searchQuery) {
+        return res.status(400).json({ message: "Search query is required" });
+      }
+
+      const products = await Product.find({
+        $text: { $search: searchQuery },
+      });
+
+      if (!products || products.length === 0) {
+        return res.status(404).json({ message: "No products found for the search query" });
+      }
+
+      res.json(products);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
-
-    const products = await Product.find({
-      $text: { $search: searchQuery },
-    });
-
-    if (!products || products.length === 0) {
-      return res.status(404).json({ message: "No products found for the search query" });
-    }
-
-    res.json(products);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
+  };
 }
 
 module.exports = new ProductController();
