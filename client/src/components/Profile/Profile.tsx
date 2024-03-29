@@ -28,7 +28,7 @@ export default function Profile({ total }: ProfileProps) {
   const businessB = localStorage.getItem("business");
   const userB = localStorage.getItem("user");
 
-  if( businessId != undefined){
+  if( businessId !== undefined){
     console.log(`
     ************************
     Business - Debug
@@ -41,7 +41,7 @@ export default function Profile({ total }: ProfileProps) {
     ************************** 
     `);
 
-  }else if( userId != null){
+  }else if( userId !== null){
     console.log(`
     ************************
     User - Debug

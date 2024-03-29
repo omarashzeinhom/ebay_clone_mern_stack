@@ -22,7 +22,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
   const [notificationCount, setNotificationCount] = useState(0);  // Assuming you have a way to update the notification count
   
  
-if (notificationCount != 0){
+if (notificationCount !== 0){
   console.log(`setNotificationCount--->${setNotificationCount}`);
   console.log(`notificationCount--->${notificationCount}`);
 
@@ -73,7 +73,17 @@ if (notificationCount != 0){
     }
     // Causes Infinte loop error if the dependency is added
     // eslint-disable-next-line
-  }, []);
+     // Set automatic logout after 1 hour
+   const logoutTimeout = setTimeout(() => {
+    logout();
+    alert("You have been logged out due to inactivity.");
+    navigate(`/`);
+  }, 3600 * 1000); // 1 hour in milliseconds
+  return () => clearTimeout(logoutTimeout);
+  }, [token, fetchUserInformation, logout, navigate]);
+
+
+  
 
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>

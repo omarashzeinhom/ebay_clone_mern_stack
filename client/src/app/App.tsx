@@ -26,6 +26,11 @@ import {
 } from "../components";
 import { CategoryProvider } from "../context/CategoryContext";
 
+//SSO 
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+
 type AppProps = {
   total: number;
 };
@@ -147,9 +152,13 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   const router = createBrowserRouter(routes);
 
+  const GoogSecAPIKey= process.env.REACT_APP_SSO_JS_GOOGLE_API_CLIENTID || " ";;
+  const StrGoogSecApiKey = JSON.stringify(GoogSecAPIKey)
+
   return (
     <React.StrictMode>
       <ErrorBoundary>
+      <GoogleOAuthProvider clientId={StrGoogSecApiKey}>
         <AuthProvider>
           <ShoppingCartProvider>
             <CategoryProvider>
@@ -159,6 +168,7 @@ const App: React.FC<AppProps> = ({ total }) => {
             </CategoryProvider>
           </ShoppingCartProvider>
         </AuthProvider>
+        </GoogleOAuthProvider>
       </ErrorBoundary>
     </React.StrictMode>
   );

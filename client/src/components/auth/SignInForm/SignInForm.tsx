@@ -3,8 +3,9 @@ import { useAuth } from "../../../context/AuthContext";
 import { authService } from "../../../services/authService";
 import { summaryBoxText } from "../../../utilities/constants";
 import { useState, useEffect } from "react";
-import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
+import { FaFacebook, /*FaGoogle, */ FaApple } from "react-icons/fa";
 import DemoCredentials from "./DemoCredentials";
+import { GoogleLogin } from '@react-oauth/google';
 
 export const SignInNav = () => {
   return (
@@ -101,7 +102,12 @@ const SignInForm: React.FC = () => {
   const userLink = `/user/${user?.userId}`;
   const businessLink = `/business/${business?.businessId}`;
 
-
+  const responseMessage = (response: any) => {
+    console.log(response);
+};
+const errorMessage = (error : any) => {
+    console.log(error);
+};
 
   return (
     <div className="app__signin">
@@ -151,8 +157,7 @@ const SignInForm: React.FC = () => {
             <FaFacebook /> Continue with Facebook
           </button>
           <button className="app__signin-Btn-alt">
-            <FaGoogle /> Continue with Google
-          </button>
+          <GoogleLogin onSuccess={responseMessage} onError={(()=>errorMessage)} />          </button>
           <button className="app__signin-Btn-alt">
             <FaApple /> Continue with Apple
           </button>
