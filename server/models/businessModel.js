@@ -1,3 +1,4 @@
+// businessModel
 const mongoose = require("mongoose");
 
 const BusinessSchema = new mongoose.Schema({
