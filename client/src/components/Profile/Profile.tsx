@@ -26,7 +26,37 @@ export default function Profile({ total }: ProfileProps) {
   const { businessId, userId } = useParams();
 
   const businessB = localStorage.getItem("business");
-  console.log(businessB);
+  const userB = localStorage.getItem("user");
+
+  if( businessId != undefined){
+    console.log(`
+    ************************
+    Business - Debug
+    ************************
+    1. business---> ${JSON.stringify(business)} 
+    ************************
+    2. businessB(WithLocalStorage)--->${businessB}
+    ************************
+    3. businessId-->${businessId}
+    ************************** 
+    `);
+
+  }else if( userId != null){
+    console.log(`
+    ************************
+    User - Debug
+    ************************
+    1. user---> ${JSON.stringify(user)} 
+    ************************
+    2. userB(WithLocalStorage)--->${userB}
+    ************************
+    3. userId-->${userId}
+    ************************** 
+    `);
+
+  }else {
+    console.warn(`No User Logged In - Please Login with demo credentials to test all features`)
+  }
 
   const ProfileContainer = () => {
     if (user?.userId || userId) {
@@ -44,9 +74,9 @@ export default function Profile({ total }: ProfileProps) {
         {user?.userId && (
           <EditUserProfile
             user={user}
-            setUser={() => setUser}
+            setUser={setUser}
             updatedUser={updatedUser}
-            setUpdatedUser={() => setUpdatedUser}
+            setUpdatedUser={setUpdatedUser}
             updateUser={async (selectedAvatar) =>
               updateUser(selectedAvatar, updatedUser)
             }

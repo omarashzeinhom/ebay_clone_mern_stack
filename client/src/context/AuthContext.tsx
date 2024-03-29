@@ -7,7 +7,7 @@ import { API_BASE_URL } from "../utilities/constants";
 interface AuthContextType {
   token: string | null ;
   user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setUser: React.Dispatch<React.SetStateAction<User | any>>;
   business: Business | null;
   loginBusiness: (token: string, data: Business) => void;
   logoutBusiness: () => void;

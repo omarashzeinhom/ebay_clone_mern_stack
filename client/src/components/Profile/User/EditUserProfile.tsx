@@ -18,14 +18,12 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  
+  
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUpdatedUser((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    setUser((prevData) => ({
       ...prevData,
       [name]: value,
     }));
