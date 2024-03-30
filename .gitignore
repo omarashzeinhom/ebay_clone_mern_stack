@@ -1,0 +1,4 @@
+.env
+config.env
+/client/.env
+/server/config.env
