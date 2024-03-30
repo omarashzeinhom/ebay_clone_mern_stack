@@ -15,10 +15,9 @@ TODOS
 
 # production
 /build
-e
 # misc
 ./.env
-env
+.env
 .DS_Store
 .env
 /.env
