@@ -4,6 +4,7 @@ import "./CreateProduct.scss";
 import { categoriesService } from "../../../../services/categoryService";
 import { productService } from "../../../../services/productService";
 import { useAuth } from "../../../../context/AuthContext";
+import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
 
 type FormData = {
   id: number;
@@ -37,20 +38,14 @@ export default function CreateProduct() {
   });
 
 
-  const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
-  const folderPath = "ebay-clone-mern-images/businesses/products";
-  const uploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
-  
-  // Append folder path as a parameter
-  const uploadEndPointWithFolder = `${uploadEndPoint}?folder=${folderPath}`;
- 
+
  
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const data = await categoriesService.getAllCategories();
         setCategories(data);
-        console.log(`fetchCategories data is -->${data}`);
+        //console.log(`fetchCategories data is -->${data}`);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -84,15 +79,23 @@ export default function CreateProduct() {
       formDataToSend.append("quantity", formData.quantity.toString());
       formDataToSend.append("category", formData.category);
       formDataToSend.append("parent", formData.parent);
-      formDataToSend.append("file", formData.img);
-      formDataToSend.append("upload_preset", `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`);
+      // DEBUG IF AXIOS ERROR EXISTS TO PREVENT IMAGE UPLOAD WHEN FORM
+      // IS NOT WORKING CORRECTLY
+      console.log(`error -> ${JSON.stringify(error)}`);
+
+      if (error !== "Failed to create the product. Please try again."){
+        formDataToSend.append("file", formData.img);
+        // Prevent Adding Upload preset when formData is not passed to the backend.
+        formDataToSend.append("upload_preset", `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`);
+      }
     
       console.log("FormData to Send:", formDataToSend);
 
-      const cloudinaryResponse = await fetch(uploadEndPointWithFolder, {
+      const cloudinaryResponse = await fetch(bussinessProductsFullUploadUri, {
         method: "POST",
         body: formDataToSend,
       });
+      // When there is an issue with cloudinary
       if (!cloudinaryResponse.ok) {
         // Handle the error, throw an exception, or log the details
         const errorDetails = await cloudinaryResponse.json();
@@ -156,6 +159,8 @@ export default function CreateProduct() {
       }));
     }
   };
+
+  
   return (
     <div className="create-product-container">
       <h2> Create Product</h2>

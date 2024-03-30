@@ -153,12 +153,11 @@ const App: React.FC<AppProps> = ({ total }) => {
   const router = createBrowserRouter(routes);
 
   const GoogSecAPIKey= process.env.REACT_APP_SSO_JS_GOOGLE_API_CLIENTID || " ";;
-  const StrGoogSecApiKey = JSON.stringify(GoogSecAPIKey)
 
   return (
     <React.StrictMode>
       <ErrorBoundary>
-      <GoogleOAuthProvider clientId={StrGoogSecApiKey}>
+      <GoogleOAuthProvider clientId={GoogSecAPIKey}>
         <AuthProvider>
           <ShoppingCartProvider>
             <CategoryProvider>

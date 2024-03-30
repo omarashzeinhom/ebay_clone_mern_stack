@@ -54,6 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const showLogoutNotification = () => {
     if (Notification.permission === 'granted') {
+      alert('You Have Been Logged Out Within 1 Hour Limit for your information safety')
       new Notification('Auto Logout', {
         body: 'You have been logged out due to inactivity.',
         icon: '/client/public/avataaars.png', // Replace with the path to your notification icon
@@ -63,7 +64,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         if (permission === 'granted') {
           new Notification('Auto Logout', {
             body: 'You have been logged out due to inactivity.',
-            icon: '/client/public/avataaars.png', // Replace with the path to your notification icon
+            icon: '/client/public/avatars.png', // Replace with the path to your notification icon
           });
         }
       });

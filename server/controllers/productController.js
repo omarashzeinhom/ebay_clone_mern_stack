@@ -42,11 +42,16 @@ class ProductController {
         return res.status(400).json({ error: 'Image file is required' });
       }
 
+      // Make sure to add Correct Upload Preset for each folder.
+      // Or make 1 general
+      const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET ;
+
       // Upload the image to Cloudinary
-      const cloudinaryResponse = await cloudinary.v2.uploader.signed_upload(imageData.path, "slyqk3p0", {
+      // Bear in mind the upload preset is which handles which route to upload the folders to in cloudinary
+      const cloudinaryResponse = await cloudinary.v2.uploader.signed_upload(imageData.path, uploadPreset, {
         resource_type: "image",
-        folder: "/ebay-clone-mern-images/businesses/products",
-        public_id: "/ebay-clone-mern-images/businesses/products/product_",
+        folder: "/ebay-clone-mern-images/businesses/products/",
+        public_id: "product_",
         overwrite: true,
         notification_url: "http://localhost:3000",
         headers: { 'Access-Control-Allow-Origin': 'no-cors' }, // Add this line
