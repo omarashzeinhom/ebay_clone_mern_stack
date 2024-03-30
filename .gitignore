@@ -2,3 +2,7 @@
 config.env
 /client/.env
 /server/config.env
+server/node_modules
+server/config.env
+client/node_modules
+client/.env
