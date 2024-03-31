@@ -1,0 +1,167 @@
+.app__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 0.1rem solid gray;
+  font-size: 12px;
+  padding: 10px 0;
+  flex-direction: column;
+  position: relative; /* Added to position the mobile menu */
+
+  @media screen and (max-width: 500px) {
+    .app__nav-mobile-icon {
+      display: block;
+    }
+
+    .app__nav-items,
+    .app__nav-itemLeft {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+      font-size: 1.5rem;
+      width: 100%;
+      height: 100vh; /* Use full viewport height */
+      position: fixed; /* Fixed position to cover the entire viewport */
+      top: 0;
+      right: -100%; /* Initially off-screen */
+      background-color: white;
+      z-index: 100;
+      transition: right 0.3s ease; /* Smooth transition for sliding effect */
+      @media screen and (max-width: 500px) {
+        font-size: 1rem;
+      }
+    }
+    .app__nav-close {
+      display: none;
+      border: none;
+      background-color: transparent;
+      border-radius: 1px solid transparent;
+    }
+    &.mobile-menu-open {
+      .app__nav-items {
+        right: 0; /* Slide in when the menu is open */
+      }
+    }
+  }
+}
+.app__nav-mobile-icon {
+  display: none; /* Hide by default on larger screens */
+  cursor: pointer;
+  font-size: 1.5rem;
+
+  @media screen and (max-width: 500px) {
+    display: block;
+  }
+}
+
+.app__nav-items {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  color: black;
+  font-weight: bold;
+  padding: 0;
+}
+
+.app__nav-item {
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  text-decoration: none;
+  color: black;
+}
+
+.app__nav-item:hover {
+  text-decoration: underline;
+}
+
+.app__nav-left,
+.app__nav-right {
+  display: flex;
+  gap: 2rem;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+}
+
+.app__nav-rightItem,
+.app__nav-right-dropDown {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s ease-in;
+}
+
+.app__nav-rightItem:hover {
+  text-decoration: underline;
+}
+
+.app__nav-rightIcon {
+  color: black;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.app__nav-right-dropDown {
+  outline: none;
+  border: 1px solid white;
+  cursor: pointer;
+  text-align: right;
+}
+
+/* Additional style for the MyeBay select */
+.app__nav-rightItem select,
+.app__nav-right-dropDown select {
+  padding: 5px; /* Adjust padding for select element */
+}
+
+.app__nav-close {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  &.mobile-menu-open {
+    display: block;
+  }
+
+  @media screen and (max-width: 700px) {
+    display: flex;
+  }
+}
+
+.app__left-items {
+  text-align: left;
+  justify-content: left;
+  align-items: left;
+  padding-bottom: 10px;
+}
+.app__nav-logOutBtn {
+  cursor: pointer;
+  display: flex;
+  background-color: rgb(255, 1, 1);
+  color: white;
+  border-radius: 12px;
+  font-size: smaller;
+  //trbl
+  padding: 0.14rem 0.14rem 0rem 0.14rem;
+  margin-bottom: 0.7rem;
+  border: none;
+  box-shadow: 0.05rem 0.05rem 0.05rem 0.05rem black;
+  transition: 0.2s ease-in;
+  &:hover {
+    background-color: rgb(252, 84, 84);
+  }
+}
+
+.app__nav-dropdown {
+  outline: none;
+  border: none;
+}

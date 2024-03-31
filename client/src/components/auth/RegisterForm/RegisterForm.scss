@@ -1,0 +1,50 @@
+.app__signed-in{
+  h2{
+    font-size: 2rem;
+    text-align: left;
+    @media screen and (max-width:500px) {
+      text-align: center;
+    }
+  }
+}
+
+.app__registration-container {
+  h2 {
+    text-align: center;
+    font-size: xx-large;
+  }
+}
+
+.app__registration-radioBtns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0.1rem 0rem 0.5rem 0rem;
+  @media screen and (max-width: 500px) {
+    display: grid;
+    text-align: center;
+    grid-column: 1fr;
+  }
+}
+
+
+.app__register-nav {
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem; // Add padding for better spacing
+}
+
+.app__register-nav-left,
+.app__register-nav-right {
+  flex: 1; // Make the left and right sections flexible
+}
+
+.app__register-nav-left {
+  text-align: left;
+}
+
+.app__register-nav-right {
+  text-align: right;
+}

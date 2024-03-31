@@ -1,0 +1,49 @@
+// Add this SCSS code in a separate styles.scss file or include it in your component
+
+.create-product-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .create-product-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  
+    label {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  
+    textarea {
+      resize: none; // Disable textarea resizing
+    }
+  
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+  
+      &:hover {
+        background-color: #45a049;
+      }
+    }
+  }
+  

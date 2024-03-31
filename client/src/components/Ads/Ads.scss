@@ -1,0 +1,78 @@
+// Ads.scss
+
+.ads {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+
+  &__featured {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & a {
+      color: black;
+      text-decoration: none;
+      transition: 0.2s ease-in-out;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+    &__item {
+      padding: 20px;
+      margin: 20px;
+      width: 100%;
+      text-align: center;
+      border-radius: 8px;
+      overflow: hidden;
+
+      &__img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      &__title {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      &__description {
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+
+      &__button {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #2980b9;
+        }
+      }
+    }
+
+    &__ebay-item {
+      background-color: #f8fafc;
+    }
+
+    &__holiday-gifts-item {
+      background-color: #f5f7f9;
+    }
+
+    &__adidas-item {
+      background-color: #f0f3f5;
+    }
+
+    &__tire-installation-item {
+      background-color: #e5e9eb;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+.category-sidebar {
+    width: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  .category-sidebar__header {
+    margin-bottom: 20px;
+  }
+  
+  .category-sidebar__logo {
+    width: 100px;
+    height: auto;
+  }
+  
+  .category-sidebar__content {
+    .category-sidebar__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    .category-sidebar__item {
+      padding: 10px 0;
+      font-size: 16px;
+      color: #333;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+  
+    /* Highlight selected category */
+    .category-sidebar__item.selected {
+      background-color: #007bff;
+      color: #fff;
+    }
+    
+  }
+/* Media query to hide CategorySideBar on mobile devices */
+@media (max-width: 500px) {
+    .category-sidebar {
+      display: none;
+    }
+  }

@@ -1,0 +1,200 @@
+.product-list-layout {
+  display: flex;
+  gap: 2rem;
+  /* Default gap between items */
+}
+
+.product-list {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.product-list {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  &__header {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  &__category-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  &__product-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Default 1 column with minimum width of 200px */
+
+    @media (min-width: 768px) {
+      /* Medium devices */
+      grid-template-columns: repeat(auto-fit, minmax(200px, calc(33.333% - 20px)));
+      /* 3 columns */
+    }
+
+    @media (min-width: 992px) {
+      /* Desktop */
+      grid-template-columns: repeat(auto-fit, minmax(200px, calc(25% - 20px)));
+      /* 4 columns */
+      gap: 5rem;
+      /* Gap between items for desktop */
+    }
+
+
+    &-item {
+      margin-bottom: 20px;
+      border-radius: 12px;
+      outline: 1px solid black;
+      transition: 0.2s ease-in-out;
+      padding: 1rem 1rem 1rem 1rem;
+      box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem gray;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+
+
+      & .product-list__product-link {
+        color: black;
+        text-decoration: none;
+        transition: 0.2s ease-in-out;
+
+
+      }
+    }
+
+
+    @media (min-width: 992px) {
+      /* Desktop */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    @media (min-width: 768px) {
+      /* Medium devices */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .product-list__product-list-item-top{
+      transition: 0.2s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      
+  
+    }
+
+    &-name {
+      font-size: 1rem;
+      margin-top: 5px;
+      transition: 0.2s ease-in-out;
+
+      
+    }
+    &-image {
+      width: 100%;
+      max-width: 250px;
+      max-height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem black;
+      transition: 0.2s ease-in-out;
+      opacity: 0.9;
+
+     
+    }
+    .product-list__product-list-price-container {
+      display: flex;
+    
+      .product-detail__button {
+        flex: 1;
+        margin-right: 5px;
+      }
+    
+      .product-list__product-list-price {
+        flex: 1;
+      }
+    }
+    
+    &-price {
+      display: inline-block;
+      padding: 8px 16px;
+      /* Adjust padding to increase button size */
+      border-radius: 20px;
+      /* Adjust border-radius for a rounder shape */
+      font-weight: bold;
+      color: #0c0c0c;
+      margin-top: 5px;
+      text-decoration: none;
+      background-color: transparent;
+      /* Set background color to transparent */
+      border: 2px solid #030303;
+      /* Add border for button outline */
+      transition: color 0.2s, transform 0.2s, border-color 0.2s;
+
+      /* Add border color transition */
+      &:hover {
+        color: #03bb03;
+        border-color: #03bb03;
+        /* Change border color on hover */
+        transform: scale(1.1);
+
+      }
+
+      span {
+        font-weight: bold;
+        color: #007bff;
+        margin-top: 5px;
+        transition: 0.2s ease-in-out;
+
+        &:hover {
+          color: #035cbb;
+          text-decoration: underline;
+          transform: scale(1.1);
+
+        }
+      }
+
+    }
+
+    &-category {
+      font-weight: bold;
+
+      margin-top: 5px;
+      transition: 0.2s ease-in-out;
+
+      a {
+        padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+        border-radius: 28px;
+        border: 2px solid black;
+        /* Add border width */
+        outline: none;
+        /* Remove outline */
+        color: #3f8300;
+        text-decoration: none;
+        /* Remove default underline */
+        transition: color 0.3s, transform 0.3s;
+
+        /* Add smooth transition */
+        &:hover {
+          border: 3px solid #3f8300;
+          color: #285201;
+          text-decoration: underline;
+          transform: scale(1.1);
+
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+// Loading.scss
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .loading-container {
+    text-align: center;
+    margin-top: 20px;
+  
+    p {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+  
+    // Customize the spinner style
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid #3498db;
+      animation: spin 1s linear infinite;
+    }
+  }
+  

@@ -1,0 +1,92 @@
+.product-detail {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333; // Dark text color
+  }
+
+  &__category {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #555;
+  }
+
+  &__price {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #e44d26; // Amazon uses this color for prices
+  }
+
+  &__image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  &__description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #555;
+  }
+
+  &__quantity {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #555;
+  }
+
+  &__buttongroup {
+    display: flex;
+    gap: 1rem;
+    justify-content: center; // Center buttons horizontally
+  }
+
+  &__button,
+  &__altbutton {
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease-in-out;
+  }
+
+  &__button {
+    background-color: #4caf50; // Green color
+    color: #fff;
+  }
+
+  &__altbutton {
+    background-color: #f44336; // Red color
+    color: #fff;
+    padding: 1rem ;
+
+  }
+
+
+}
+
+.loading {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+  color: #777;
+}

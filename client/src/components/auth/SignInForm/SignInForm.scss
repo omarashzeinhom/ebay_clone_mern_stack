@@ -1,0 +1,89 @@
+
+
+.app__signin {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  display: grid;
+}
+
+.app__signin-container {
+  width: 100%;
+  margin: 0 auto; /* Center the container */
+  max-width: 400px; /* Set a max-width for better mobile compatibility */
+}
+
+.app__signin-form {
+  width: 100%;
+}
+
+.app__signin-input {
+  width: 100%;
+  height: 100%;
+  padding: 1rem 0;
+  border-radius: 7px;
+  margin-bottom: 1rem; /* Add margin between inputs */
+}
+
+.app__signin-Btn,
+.app__signin-Btn-alt,
+.app__signOut-Btn {
+  background-color: rgb(0, 110, 255);
+  border-radius: 28px;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: white;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1rem; /* Add margin between buttons */
+}
+
+.app__signin-Btn-alt {
+  background-color: rgb(243, 243, 243);
+  color: rgb(5, 5, 5);
+}
+
+.app__signOut-Btn {
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 251, 251);
+}
+
+.app__signin-nav {
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+.app__signin-nav-left,
+.app__signin-nav-right {
+  flex: 1; /* Make the left and right sections flexible */
+}
+
+.app__signin-nav-left {
+  text-align: left;
+}
+
+.app__signin-nav-right {
+  text-align: right;
+}
+
+.notification {
+  background-color: #4caf50; /* Green background color */
+  color: white; /* White text color */
+  text-align: center;
+  padding: 16px; /* Padding */
+  position: fixed; /* Fixed position - sit on top of the page */
+  z-index: 1; /* Add a z-index if needed */
+  top: 0; /* Top position */
+  width: 100%; /* Full width */
+  transition: top 0.5s ease; /* Transition effect, 0.5 second ease when sliding in or out */
+}

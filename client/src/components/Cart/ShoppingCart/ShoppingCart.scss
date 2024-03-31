@@ -1,0 +1,105 @@
+// ShoppingCart.scss
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &.visible {
+    display: flex;
+  }
+
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px; // Adjust the maximum width as needed
+    text-align: center;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .item-details {
+      flex-grow: 1;
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+
+      .item-name {
+        font-weight: bold;
+      }
+
+      .item-price {
+        color: #3498db;
+      }
+    }
+
+    button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+
+  .cart-total {
+    margin-top: 20px;
+
+    p {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .total-amount {
+      font-weight: bold;
+      color: #3498db;
+    }
+  }
+}
