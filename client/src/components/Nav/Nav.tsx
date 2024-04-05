@@ -13,7 +13,7 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const navigate = useNavigate();
-  const { token, user, logout, business, fetchUserInformation } = useAuth();
+  const { token, user, logout, business, fetchUserInformation, fetchBusinessInformation } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
   // Debug
@@ -68,7 +68,7 @@ if (notificationCount !== 0){
     // DEBUG
     // console.log(`token in Nav.tsx ====> ${token}`);
     // console.log(`user in Nav.tsx ====> ${user}`);
-    if (token) {
+    if (token && user && user.userId && !business) { // Check if user exists and is not a business
       fetchUserInformation(token);
     }
     // Causes Infinte loop error if the dependency is added
@@ -80,7 +80,7 @@ if (notificationCount !== 0){
     navigate(`/`);
   }, 3600 * 1000); // 1 hour in milliseconds
   return () => clearTimeout(logoutTimeout);
-  }, [token, fetchUserInformation, logout, navigate]);
+  }, [token, fetchUserInformation, fetchBusinessInformation, logout, navigate]);
 
 
   

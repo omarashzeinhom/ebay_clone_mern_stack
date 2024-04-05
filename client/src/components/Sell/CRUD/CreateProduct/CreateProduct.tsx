@@ -4,7 +4,7 @@ import "./CreateProduct.scss";
 import { categoriesService } from "../../../../services/categoryService";
 import { productService } from "../../../../services/productService";
 import { useAuth } from "../../../../context/AuthContext";
-import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
+//import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
 
 type FormData = {
   id: number;
@@ -93,25 +93,25 @@ export default function CreateProduct() {
     
       console.log("FormData to Send:", formDataToSend);
 
-      const cloudinaryResponse = await fetch(bussinessProductsFullUploadUri, {
-        method: "POST",
-        body: formDataToSend,
-      });
+      //const cloudinaryResponse = await fetch(bussinessProductsFullUploadUri, {
+       // method: "POST",
+       // body: formDataToSend,
+      //});
       // When there is an issue with cloudinary
-      if (!cloudinaryResponse.ok) {
+      //if (!cloudinaryResponse.ok) {
         // Handle the error, throw an exception, or log the details
-        const errorDetails = await cloudinaryResponse.json();
-        console.error("Cloudinary API Error:", errorDetails);
-        throw new Error("Failed to upload image to Cloudinary");
-      }
-      const cloudinaryData = await cloudinaryResponse.json();
-      const cloudinaryImageUrl = cloudinaryData.secure_url;
+      //  const errorDetails = await cloudinaryResponse.json();
+      //  console.error("Cloudinary API Error:", errorDetails);
+      //  throw new Error("Failed to upload image to Cloudinary");
+      //}
+      //const cloudinaryData = await cloudinaryResponse.json();
+      //const cloudinaryImageUrl = cloudinaryData.secure_url;
 
-      console.log("Cloudinary API Response:", cloudinaryData);
+      //console.log("Cloudinary API Response:", cloudinaryData);
 
       const updatedFormData: FormData = {
         ...formData,
-        img: cloudinaryImageUrl,
+        //img: cloudinaryImageUrl,
       };
 
       const data = await productService.createProduct(updatedFormData);

@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { API_BASE_URL } from "../utilities/constants";
 
 interface AuthContextType {
-  token: string | null ;
+  token: string | null;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | any>>;
   business: Business | null;
@@ -20,10 +20,10 @@ interface AuthContextType {
   updatedUser: UpdatedUser | undefined;
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
   fetchUserInformation: (token: string) => Promise<void>;
+  fetchBusinessInformation: (token: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -34,7 +34,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({});
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
+    const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
       fetchUserInformation(storedToken);
@@ -50,44 +50,59 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       return () => clearTimeout(logoutTimeout);
     }
     // eslint-disable-next-line
-  },[]);
+  }, []);
 
   const showLogoutNotification = () => {
-    if (Notification.permission === 'granted') {
-      alert('You Have Been Logged Out Within 1 Hour Limit for your information safety')
-      new Notification('Auto Logout', {
-        body: 'You have been logged out due to inactivity.',
-        icon: '/client/public/avataaars.png', // Replace with the path to your notification icon
+    if (Notification.permission === "granted") {
+      alert(
+        "You Have Been Logged Out Within 1 Hour Limit for your information safety"
+      );
+      new Notification("Auto Logout", {
+        body: "You have been logged out due to inactivity.",
+        icon: "/client/public/avataaars.png", // Replace with the path to your notification icon
       });
-    } else if (Notification.permission !== 'denied') {
+    } else if (Notification.permission !== "denied") {
       Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-          new Notification('Auto Logout', {
-            body: 'You have been logged out due to inactivity.',
-            icon: '/client/public/avatars.png', // Replace with the path to your notification icon
+        if (permission === "granted") {
+          new Notification("Auto Logout", {
+            body: "You have been logged out due to inactivity.",
+            icon: "/client/public/avatars.png", // Replace with the path to your notification icon
           });
         }
       });
     }
   };
 
-
   const fetchUserInformation = async (token: string) => {
-    if(!business){
+    if (!business && !user) {
+      // Check if neither business nor user is logged in
       try {
         const response = await axios.get(`${API_BASE_URL}auth/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);
-        //setUpdatedUser(response.data);
       } catch (error) {
         console.error("Error fetching user information:", error);
       }
-    }else{
-      console.warn(`No Business or User Logged In`);
-
+    } else {
+      console.warn(`A business or user is already logged in`);
     }
- 
+  };
+
+  const fetchBusinessInformation = async (token: string) => {
+    if (!business && !user) {
+      // Check if neither business nor user is logged in
+      try {
+        const response = await axios.get(`${API_BASE_URL}auth/business`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setBusiness(response.data);
+      } catch (error) {
+        console.error("Error fetching business information:", error);
+      }
+    } else {
+      console.warn(`A business or user is already logged in`);
+    }
   };
 
   const login = (newToken: string, newUser: User) => {
@@ -104,22 +119,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   /** Business Logic  Start*/
-  const fetchBusinessInformation = async (token: string) => {
-    if(!user){
-      try {
-        const response = await axios.get(`${API_BASE_URL}auth/business`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setBusiness(response.data);
-      } catch (error) {
-        console.error("Error fetching user information:", error);
-      }
-    }else{
-      console.warn(`No Business or User Logged In`);
-
-    }
-    
-  };
 
   const loginBusiness = (newToken: string, newBusiness: Business) => {
     setToken(newToken);
@@ -151,7 +150,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       formData.append("updatedAvatar", selectedAvatar);
     }
 
-
     try {
       const response = await axios.put(
         `${API_BASE_URL}auth/user/${user?.userId}`,
@@ -163,7 +161,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           },
         }
       );
-  
+
       setUpdatedUser((prevUser) => ({
         ...prevUser,
         firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
@@ -171,16 +169,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
         avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
       }));
-      
+
       setUser((prevUser) => ({
         ...prevUser!,
-        firstName: updatedUser?.updatedFirstName || prevUser?.firstName || '',
-        lastName: updatedUser?.updatedLastName || prevUser?.lastName || '',
-        email: updatedUser?.updatedEmail || prevUser?.email || '',
-        avatar: updatedUser?.updatedAvatar || prevUser?.avatar || '',
+        firstName: updatedUser?.updatedFirstName || prevUser?.firstName || "",
+        lastName: updatedUser?.updatedLastName || prevUser?.lastName || "",
+        email: updatedUser?.updatedEmail || prevUser?.email || "",
+        avatar: updatedUser?.updatedAvatar || prevUser?.avatar || "",
       }));
 
-  
       console.log(response?.data);
     } catch (error) {
       console.error("Error updating user:", error);
@@ -197,6 +194,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     loginBusiness,
     logoutBusiness,
     fetchUserInformation,
+    fetchBusinessInformation,
     updateUser,
     setUser,
     setUpdatedUser: setUpdatedUser as React.Dispatch<
@@ -205,9 +203,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
 

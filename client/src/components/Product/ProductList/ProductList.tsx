@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { /** useNavigate, */ useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/ProductContext";
 import "./ProductList.scss";
 import Loading from "../../Loading/Loading";
@@ -12,7 +12,7 @@ interface ProductListProps {
 }
 
 const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const { categoryName } = useParams();
   const { products, fetchProducts } = useProductContext();
   const {
@@ -59,9 +59,10 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
   const quantity = getItemQuantity(id);
   //console.log(quantity);
 
-  function handleRouting() {
-    navigate(`/category/${encodeURIComponent(product?.category)}`);
-  }
+  // function handleRouting() {
+  //  navigate(`/category/${encodeURIComponent(product?.category)}`);
+ // }
+
   return (
     <div className="product-list-layout">
       <CategorySideBar />
