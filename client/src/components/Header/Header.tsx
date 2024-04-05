@@ -22,6 +22,7 @@ useEffect(() => {
       <meta name="keywords" content="eBay, Clone, React, TypeScript, MongoDB, Express" />
       <meta name="author" content="Your Name" />
       <link rel="canonical" href="https://ebay-clone-mern-stack.vercel.app/" />
+      <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"></meta>
     </Helmet>
   );
 }

@@ -3,47 +3,43 @@ import { useAuth } from "../../../context/AuthContext";
 const BusinessProfile: React.FC = () => {
   const { business } = useAuth();
   return (
-    <div className="app-profile-container__info">
+    <div className="user-profile-container">
+  <div className="user-profile-header">
+    <h2>Business Profile</h2>
+  </div>
+  <div className="user-profile-info">
+    <div className="avatar">
+      {business?.businessAvatar ? (
+        <img
+          src={business?.businessAvatar}
+          alt={business?.businessEmail || "No business avatar uploaded"}
+        />
+      ) : (
+        <span className="no-avatar">No business avatar uploaded</span>
+      )}
+    </div>
+    <div className="user-details">
+      <h3>Business Information</h3>
       <table>
-        <thead>
-          <tr>
-            <th>Business Information</th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
-            <td>
-              <h4>Avatar:</h4>
-              <img
-                src={""}
-                alt={business?.businessAvatar || "No user avatar uploaded"}
-                width={25}
-                height={25}
-                loading="lazy"
-              />
-            </td>
+            <td>Business Id:</td>
+            <td>{business?.businessId}</td>
           </tr>
           <tr>
-            <td>
-              <h4>Business Id:</h4>
-              {business?.businessId}
-            </td>
+            <td>Email:</td>
+            <td>{business?.businessEmail}</td>
           </tr>
           <tr>
-            <td>
-              <h4>Email:</h4>
-              {business?.businessEmail}
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4>Business Name:</h4>
-              <p>{business?.businessName}</p>
-            </td>
+            <td>Business Name:</td>
+            <td>{business?.businessName}</td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
+</div>
+
   );
 };
 
