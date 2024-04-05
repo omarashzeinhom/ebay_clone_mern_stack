@@ -21,6 +21,8 @@ type FormData = {
 
 export default function CreateProduct() {
   const { business } = useAuth();
+  //DEBUG (Make sure businessId is passed to the useAuth Hook as a business object)
+  //console.log(`busines----->${JSON.stringify(business)}`)
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -163,7 +165,9 @@ export default function CreateProduct() {
   
   return (
     <div className="create-product-container">
-      <h2> Create Product</h2>
+  {business?.businessId && (
+    <>
+        <h2> Create Product</h2>
       <div className="create-product-form">
         <form onSubmit={handleSubmit}>
           {loading && <p>Loading...</p>}
@@ -245,6 +249,8 @@ export default function CreateProduct() {
           <button type="submit">Create Product</button>
         </form>
       </div>
+    </>
+  )}
     </div>
   );
 }

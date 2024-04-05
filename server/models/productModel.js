@@ -30,6 +30,10 @@ const ProductSchema = new mongoose.Schema({
   files: {
     type: Array
   },
+  businessId: {
+    type: String,
+    required: true,
+  }
 });
 
 const Product = mongoose.model("Product", ProductSchema);
