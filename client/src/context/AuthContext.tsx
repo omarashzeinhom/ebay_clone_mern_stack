@@ -8,6 +8,7 @@ interface AuthContextType {
   token: string | null;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | any>>;
+  setBusiness: React.Dispatch<React.SetStateAction<Business | any>>;
   business: Business | null;
   loginBusiness: (token: string, data: Business) => void;
   logoutBusiness: () => void;
@@ -17,7 +18,13 @@ interface AuthContextType {
     selectedAvatar: File | undefined,
     updatedUser: UpdatedUser | undefined
   ) => Promise<void>;
+  updateBusiness: (
+    selectedAvatar: File | undefined,
+    updatedUser: UpdatedBusiness | undefined
+  ) => Promise<void>;
   updatedUser: UpdatedUser | undefined;
+  updatedBusiness: UpdatedBusiness | undefined;
+
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
   fetchUserInformation: (token: string) => Promise<void>;
   fetchBusinessInformation: (token: string) => Promise<void>;
@@ -29,9 +36,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [token, setToken] = useState<string | null>(null);
+  //user
   const [user, setUser] = useState<User | null>(null);
-  const [business, setBusiness] = useState<Business | null>(null);
   const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({});
+  //business
+  const [business, setBusiness] = useState<Business | null>(null);
+  const [updatedBusiness, setUpdatedBusiness] = useState<UpdatedBusiness>({});
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -132,6 +142,50 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setBusiness(null);
     localStorage.removeItem("token");
   };
+
+  const updateBusiness = async (
+    selectedAvatar: File | undefined,
+    updatedBusiness: UpdatedBusiness | undefined
+  ) => {
+    const formData = new FormData();
+    if (updatedBusiness?.updatedBusinessName)
+      formData.append("businessName", updatedBusiness?.updatedBusinessName);
+    if (updatedBusiness?.updatedBusinessEmail)
+      formData.append("email", updatedBusiness?.updatedBusinessEmail);
+    if (selectedAvatar) {
+      formData.append("updatedAvatar", selectedAvatar);
+    }
+
+    try {
+      const response = await axios.put(
+        `${API_BASE_URL}auth/business/:${business?.businessId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setUpdatedBusiness((prevBusiness) => ({
+        ...prevBusiness,
+        businessName:
+          updatedBusiness?.updatedBusinessName ||
+          updatedBusiness?.updatedBusinessName,
+        businessEmail:
+          updatedBusiness?.updatedBusinessEmail ||
+          updatedBusiness?.updatedBusinessEmail,
+        businessAvatar:
+          updatedBusiness?.updatedBusinessAvatar ||
+          updatedBusiness?.updatedBusinessAvatar,
+      }));
+
+      console.log(response?.data);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
   /** Business Logic  End */
 
   const updateUser = async (
@@ -152,7 +206,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     try {
       const response = await axios.put(
-        `${API_BASE_URL}auth/user/${user?.userId}`,
+        `${API_BASE_URL}auth/user/:${user?.userId}`,
         formData,
         {
           headers: {
@@ -188,6 +242,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     token,
     user,
     updatedUser,
+    updatedBusiness,
     login,
     logout,
     business,
@@ -196,9 +251,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchUserInformation,
     fetchBusinessInformation,
     updateUser,
+    updateBusiness,
     setUser,
     setUpdatedUser: setUpdatedUser as React.Dispatch<
       React.SetStateAction<UpdatedUser | undefined>
+    >,
+    setBusiness: setUpdatedBusiness as React.Dispatch<
+      React.SetStateAction<UpdatedBusiness | undefined>
     >,
   };
 

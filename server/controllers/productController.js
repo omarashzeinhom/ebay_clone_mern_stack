@@ -9,7 +9,6 @@ class ProductController {
       if (!products || products.length === 0) {
         return res.status(404).json({ message: "Products not found" });
       }
-      // console.log(products);
       res.json(products);
     } catch (error) {
       console.error(error);
@@ -35,34 +34,12 @@ class ProductController {
 
   async createProduct(req, res) {
     try {
-      // Assuming you have already processed and stored the image file in `req.file`
-      //const imageData = req.file;
-
-     // console.log(`imageData----->>>>${JSON.stringify(imageData)}`)
-      //if (!imageData) {
-      //  return res.status(400).json({ error: 'Image file is required' });
-      //}
-
-      // Make sure to add Correct Upload Preset for each folder.
-      // Or make 1 general
       const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
-      // Upload new avatar to Cloudinary if provided
       let image = ""; // Define avatarUrl variable to store Cloudinary URL
       if (image) {
         const result = await cloudinary.uploader.upload(image);
         avatarUrl = result.secure_url;
-        console.log(`avatarUrl-------->${avatarUrl}`)
       }
-      console.log(`image======>>>>${image}`);
-      const path = "/ebay-clone-mern-images/businesses/products/"
-
-      // Upload the image to Cloudinary
-      // Bear in mind the upload preset is which handles which route to upload the folders to in cloudinary
-     
-
-      // Get the secure URL of the uploaded image from Cloudinary
-      //const cloudinaryImageUrl = cloudinaryResponse.secure_url;
-      ///console.log(`cloudinaryImageUrl=====>>>>>${JSON.stringify(cloudinaryImageUrl)}`);
 
       const { id, quantity, img, name, price, category, parent, businessId } =
         req.body;

@@ -6,4 +6,6 @@ export interface Business {
     businessLocation: string ,
     businessActive?: boolean,
     businessAvatar?: string, 
+    businessProducts?: [],
+    businessCountry?: string,
 }

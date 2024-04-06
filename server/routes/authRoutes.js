@@ -18,6 +18,8 @@ router.get("/business", verifyToken, authController.getBusiness);
 // Update user route
 router.put("/user/:id", verifyToken, authController.updateUser);
 
+router.put("/business/:id", verifyToken, authController.updateBusiness);
+
 
 // Additional routes
 router.get("/auth/register", (req, res) => {

@@ -66,21 +66,20 @@ if (notificationCount !== 0){
 
   useEffect(() => {
     // DEBUG
-    // console.log(`token in Nav.tsx ====> ${token}`);
-    // console.log(`user in Nav.tsx ====> ${user}`);
+   
     if (token && user && user.userId && !business) { // Check if user exists and is not a business
-      fetchUserInformation(token);
+        fetchUserInformation(token);
+    }else if (token && !user  && business) {
+        fetchBusinessInformation(token);
     }
-    // Causes Infinte loop error if the dependency is added
-    // eslint-disable-next-line
-     // Set automatic logout after 1 hour
+   
    const logoutTimeout = setTimeout(() => {
     logout();
     alert("You have been logged out due to inactivity.");
     navigate(`/`);
   }, 3600 * 1000); // 1 hour in milliseconds
   return () => clearTimeout(logoutTimeout);
-  }, [token, fetchUserInformation, fetchBusinessInformation, logout, navigate]);
+  }, );
 
 
   

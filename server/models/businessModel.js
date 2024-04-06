@@ -8,6 +8,12 @@ const BusinessSchema = new mongoose.Schema({
   businessLocation: { type: String, required: false },
   businessActive: { type: String, required: false },
   businessAvatar: { type: String, required: false },
+  businessProducts: {
+    type: Array, required: false
+  },
+  buisnessCountry:{
+    type: String, required: false
+  }
 });
 
 const Business = mongoose.model("Business", BusinessSchema);
