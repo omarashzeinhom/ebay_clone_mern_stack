@@ -8,5 +8,5 @@ export type Product = {
   category: string;
   parent: string;
   businessId: string;
-  file: []
+  file: [];
 };
