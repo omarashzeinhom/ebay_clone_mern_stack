@@ -190,9 +190,11 @@ export default function CreateProduct() {
               <label>
                 Product Image:
                 <input
+                placeholder="File Upload Not Working"
                   name="img"
                   type="file"
                   accept="image/*"
+                  disabled={true}
                   onChange={(e) => handleChange(e, "img")}
                 />
               </label>

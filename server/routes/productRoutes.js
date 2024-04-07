@@ -35,8 +35,13 @@ router.post(
   rateLimit(searchRateLimitOptions),
   async (req, res) => {
     try {
-      const searchResults = await productController.productController.getProductsBySearch(req.params.name);
-      res.send(`Search results for query: ${req.params.name}\nResults: ${searchResults}`);
+      const searchResults =
+        await productController.productController.getProductsBySearch(
+          req.params.name
+        );
+      res.send(
+        `Search results for query: ${req.params.name}\nResults: ${searchResults}`
+      );
     } catch (error) {
       console.error("Error retrieving search results:", error);
       res.status(500).send("Error retrieving search results");
@@ -74,15 +79,26 @@ router.post(
   productController.getProductByName
 );
 
-
+// Needs Adjustments
 // Route to create a product
 router.post("/product", upload.single("img"), productController.createProduct);
 
+// Works Without Image
 router.post(
   "/create",
   upload.array("file", 10),
   Product,
   productController.createProduct
+);
+
+// GET products by business ID
+router.get(
+  "/by-business/:businessId", productController.getProductsByBusinessId);
+
+// POST products by business ID
+router.post(
+  "/by-business/:businessId",
+   productController.getProductsByBusinessId
 );
 
 module.exports = router;

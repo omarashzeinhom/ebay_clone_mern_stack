@@ -107,7 +107,20 @@ class ProductController {
     }
   }
 
- 
+  async getProductsByBusinessId (req, res) {
+    try {
+      const products = await Product.find({ businessId: req.params.businessId });
+      if (!products || products.length === 0) {
+        return res.status(404).json({ message: "Products not found for the given business ID" });
+      }
+      res.json(products);
+    } catch (error) {
+      console.error("Error fetching products by business ID:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  }
+
+
 }
 
 module.exports = new ProductController();
