@@ -19,7 +19,7 @@ interface ProductContextValue {
   fetchProductsBySearch: (searchQuery: string) => Promise<void>;
   fetchProducts: (categoryName?: string) => Promise<void>;
   getProductById: (productId: string) => Promise<Product | undefined>;
-  getProductByName: (productName: string) => Promise<Product | undefined>;
+  getProductsByName: (productName: string) => Promise<Product | undefined>;
   searchResults: Product[] | undefined;
   setSearchResults: (searchResults: Product[]) => void; // Define setSearchResults
 }
@@ -39,11 +39,11 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
 
  //const [searchQuery,setSearchQuery] = useState<string>(""); 
 
-  const getProductByName = async (
+  const getProductsByName = async (
     productName: string
   ): Promise<Product | undefined> => {
     try {
-      const product = await productService.getProductByName(productName);
+      const product = await productService.getProductsByName(productName);
      console.log("product:====>"+ product);
       return product;
     } catch (error) {
@@ -108,7 +108,7 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
         selectedCategory,
         setCategory,
         fetchProducts,
-        getProductByName,
+        getProductsByName,
         getProductById,
         searchResults,
         fetchProductsBySearch,

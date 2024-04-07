@@ -20,7 +20,7 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
     getItemQuantity,
   } = useShoppingCart();
   const { productId,productName } = useParams();
-  const { getProductById,getProductByName } = useProductContext();
+  const { getProductById,getProductsByName } = useProductContext();
   const [product, setProduct] = useState<any | null>(null);
 
   console.log("productName:=====>" + productName);
@@ -32,13 +32,13 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
         setProduct(productData);
       }
       if(productName){
-        const productData = await getProductByName(productName);
+        const productData = await getProductsByName(productName);
         setProduct(productData);
       }
     };
 
     fetchData();
-  }, [productId, getProductById, productName, getProductByName]);
+  }, [productId, getProductById, productName, getProductsByName]);
 
   useEffect(() => {
     console.log("Products in ProductList component:", productListProp);

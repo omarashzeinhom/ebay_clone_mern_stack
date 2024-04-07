@@ -63,50 +63,24 @@ class ProductController {
       res.status(500).json({ message: "Internal Server Error" });
     }
   }
-  async getProductByName(req, res) {
-    const productName = req.params.productName;
-    console.log("productName" + productName);
+  async getProductsByName(req, res) {
+    const query = req.params.query;
+    console.log("Search query: " + query);
     try {
-      const products = await Product.find({name:productName});
-      console.log("Products" + products);
-      if (!products || products.length === 0) {
-        return res
-         .status(404)
-         .json({ message: "No products found for the search query" });
-      }
-      res.json(products);
+        const regexQuery = new RegExp(query, 'i');
+        console.log("Regex query: ", regexQuery);
+        const products = await Product.find({ name: regexQuery });
+        console.log("Products: ", products);
+        if (!products || products.length === 0) {
+            return res.status(404).json({ message: "No products found for the search query" });
+        }
+        res.json(products);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Internal Server Error" });
-
+        console.error("Error fetching products by name:", error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
-
-  }
-  async getProductsBySearch(req, res) {
-    const searchQuery = req.query;
-    console.log("searchQuery in getProducts By Search" + searchQuery);
-
-    try {
-      if (!searchQuery) {
-        return res.status(400).json({ message: "Search query is required" });
-      }
-
-      const products = await Product.find({
-        name: searchQuery
-      });
-
-      if (!products || products.length === 0) {
-        return res
-          .status(404)
-          .json({ message: "No products found for the search query" });
-      }
-      res.json(products);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Internal Server Error" });
-    }
-  }
-
+}
+ 
   async getProductsByBusinessId (req, res) {
     try {
       const products = await Product.find({ businessId: req.params.businessId });

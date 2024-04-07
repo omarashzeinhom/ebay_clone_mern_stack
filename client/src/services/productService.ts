@@ -44,7 +44,7 @@ export const productService = {
       throw error;
     }
   },
-  getProductByName: async (productName: string): Promise<Product | undefined> => {
+  getProductsByName: async (productName: string): Promise<Product | undefined> => {
     console.log("property prouctName===>" + productName);
     
     try {

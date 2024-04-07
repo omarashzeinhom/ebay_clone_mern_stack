@@ -52,7 +52,7 @@ export default function SearchBar() {
   const handleSearch = async () => {
     if (searchQuery.trim() !== "") {
       try {
-        const searchResult = await productService.getProductByName(searchQuery);
+        const searchResult = await productService.getProductsByName(searchQuery);
         setSearchResults(searchResult ? [searchResult] : []); // Set search results as an array, even if empty
         navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`); // Navigate to search results page
       } catch (error) {
@@ -60,7 +60,7 @@ export default function SearchBar() {
       }
     }
   };
-  
+
   return (
     <div className="app__searchbar">
       <a href="/">
@@ -100,31 +100,29 @@ export default function SearchBar() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-         
         </div>
         <button
-            className="app__searchbar-searchBtn"
-            id="searchBtn"
-            onClick={handleSearch}
-          >
-            <HiMagnifyingGlass className="app__searchbar-searchicon" />
-          </button>
+          className="app__searchbar-searchBtn"
+          id="searchBtn"
+          onClick={handleSearch}
+        >
+          <HiMagnifyingGlass className="app__searchbar-searchicon" />
+        </button>
         <select
-            onChange={handleChange}
-            className={`app__searchbar-form-dropDown ${
-              isMobile ? "app__searchbar-form-dropDown-mobile" : ""
-            }`}
-            id="categories__right"
-          >
-            {!isMobile && <option hidden>All Categories</option>}
-            {categories.map((category: Category, index: number) => (
-              <option key={index} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+          onChange={handleChange}
+          className={`app__searchbar-form-dropDown ${
+            isMobile ? "app__searchbar-form-dropDown-mobile" : ""
+          }`}
+          id="categories__right"
+        >
+          {!isMobile && <option hidden>All Categories</option>}
+          {categories.map((category: Category, index: number) => (
+            <option key={index} value={category.name}>
+              {category.name}
+            </option>
+          ))}
+        </select>
       </div>
-      
     </div>
   );
 }
