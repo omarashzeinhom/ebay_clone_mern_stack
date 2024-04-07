@@ -44,11 +44,10 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
   };
 
   const getProductsByName = async (
-    productName: string
   ): Promise<Product | undefined> => {
     try {
       const product = await productService.getProductsByName(searchQuery);
-      console.log("product:====>" + product);
+      console.log("product:====>" + searchQuery);
       return product;
     } catch (error) {
       console.error(

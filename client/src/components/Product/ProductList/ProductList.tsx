@@ -108,6 +108,9 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                     <br />
                     <a href={`${encodeURIComponent(product?.category)}`}>
                       {product?.category}</a></p>
+                      <div>
+       
+    </div>
                 </div>
               </li>
             ))
