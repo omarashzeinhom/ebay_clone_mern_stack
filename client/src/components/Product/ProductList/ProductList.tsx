@@ -8,19 +8,24 @@ import CategorySideBar from "../../Categories/CategorySideBar/CategorySideBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 
 interface ProductListProps {
-  products: Product[]; 
+  products: Product[];
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) => {
+const ProductList: React.FC<ProductListProps> = ({
+  products: productListProp,
+}) => {
   const { categoryName } = useParams();
-  const { products, fetchProducts,getProductById,getProductsByName,searchQuery } = useProductContext();
   const {
-    addItemToCart,
-    getItemQuantity,
-  } = useShoppingCart();
-  const { productId } = useParams<{ productId: string}>();
+    products,
+    fetchProducts,
+    getProductById,
+    getProductsByName,
+    searchQuery,
+  } = useProductContext();
+  const { addItemToCart, getItemQuantity } = useShoppingCart();
+  const { productId } = useParams<{ productId: string }>();
   console.log(searchQuery);
-  
+
   const [product, setProduct] = useState<any | null>(null);
   console.log("searchQuery:=====>" + searchQuery);
 
@@ -30,7 +35,7 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
         const productData = await getProductById(productId);
         setProduct(productData);
       }
-      if(searchQuery){
+      if (searchQuery) {
         const productData = await getProductsByName(searchQuery);
         setProduct(productData);
       }
@@ -66,7 +71,7 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
 
   // function handleRouting() {
   //  navigate(`/category/${encodeURIComponent(product?.category)}`);
- // }
+  // }
 
   return (
     <div className="product-list-layout">
@@ -77,20 +82,26 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
         <ul className="product-list__product-list">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <li key={product?._id} className="product-list__product-list-item">
+              <li
+                key={product?._id}
+                className="product-list__product-list-item"
+              >
                 <div className="product-list__product-list-item-top">
-                  <a className="product-list__product-link" href={`${productLink(product?._id)}`}>
+                  <a
+                    className="product-list__product-link"
+                    href={`${productLink(product?._id)}`}
+                  >
                     <img
                       className="product-list__product-list-image"
                       src={product?.img}
                       alt={product?.name}
                       loading="lazy"
                     />
-                    <p className="product-list__product-list-name">{product?.name}</p>
-
+                    <p className="product-list__product-list-name">
+                      {product?.name}
+                    </p>
                   </a>
                   <div className="product-list__product-list-price-container">
-
                     {quantity === 0 && (
                       <button
                         className="product-detail__button"
@@ -99,7 +110,9 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                         Add to Cart
                       </button>
                     )}
-                    <span className="product-list__product-list-price">{product?.price}$</span>
+                    <span className="product-list__product-list-price">
+                      {product?.price}$
+                    </span>
                   </div>
 
                   <p className="product-list__product-list-category">
@@ -107,10 +120,10 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                     <br />
                     <br />
                     <a href={`${encodeURIComponent(product?.category)}`}>
-                      {product?.category}</a></p>
-                      <div>
-       
-    </div>
+                      {product?.category}
+                    </a>
+                  </p>
+                  <div></div>
                 </div>
               </li>
             ))

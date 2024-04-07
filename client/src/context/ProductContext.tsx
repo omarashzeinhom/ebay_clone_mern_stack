@@ -21,8 +21,8 @@ interface ProductContextValue {
   fetchProducts: (categoryName?: string) => Promise<void>;
   getProductById: (productId: string) => Promise<Product | undefined>;
   getProductsByName: (productName: string) => Promise<Product | undefined>;
-  searchResults: Product[] | undefined;
-  setSearchResults: (searchResults: Product[]) => void; // Define setSearchResults
+  searchResults: Product[] | [] | undefined;
+  setSearchResults: (searchResults: Product[]) => void; 
 }
 
 const ProductContext = createContext<ProductContextValue | undefined>(
