@@ -7,7 +7,8 @@ import SearchBar from "./SearchBar";
 import Nav from "../Nav/Nav";
 
 const SearchResults: React.FC = () => {
-  const { fetchProductsBySearch, searchResults } = useProductContext();  const location = useLocation();
+  const { fetchProductsBySearch, searchResults } = useProductContext();  
+  const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query") || "";
 
   useEffect(() => {

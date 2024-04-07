@@ -54,7 +54,7 @@ export default function SearchBar() {
       try {
         const searchResult = await productService.getProductByName(searchQuery);
         setSearchResults(searchResult ? [searchResult] : []); // Set search results as an array, even if empty
-        navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`); // Navigate to search results page
+        navigate(`/search-results${encodeURIComponent(searchQuery)}`); // Navigate to search results page
       } catch (error) {
         console.error("Error fetching search results:", error);
       }

@@ -2,11 +2,21 @@
 
 test
 
-<p>The eBay clone in MERN Stack is a web application that replicates the core functionalities of the eBay platform using the MERN (MongoDB, Express.js, React, Node.js) technology stack. This clone allows users to buy and sell products in an online marketplace environment. It incorporates features such as user authentication, product listings, bidding or purchasing capabilities, and seller profiles. Utilizing the power of MERN, the application provides a responsive and dynamic user interface, real-time updates, and seamless interactions for a user-friendly online shopping experience reminiscent of eBay.</p>
-=======
+# <p>The eBay clone in MERN Stack is a web application that replicates the core functionalities of the eBay platform using the MERN (MongoDB, Express.js, React, Node.js) technology stack. This clone allows users to buy and sell products in an online marketplace environment. It incorporates features such as user authentication, product listings, bidding or purchasing capabilities, and seller profiles. Utilizing the power of MERN, the application provides a responsive and dynamic user interface, real-time updates, and seamless interactions for a user-friendly online shopping experience reminiscent of eBay.</p>
 
 - [Demo](https://ebay-clone-mern-stack.vercel.app/)
 
+#### References
+
+- Built With
+- [React Documentation](https://reactjs.org/)
+- [Node.js Documentation](https://nodejs.org/)
+- [Express.js Documentation](https://expressjs.com/)
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [Mongoose Documentation](https://mongoosejs.com/)
+- [axios Documentation](https://axios-http.com/)
+- [bcrypt Documentation](https://www.npmjs.com/package/bcrypt)
+- [jsonwebtoken Documentation](https://www.npmjs.com/package/jsonwebtoken)
 - **React Router - `useNavigate`:**
   - [React Router `useNavigate` documentation](https://reactrouter.com/web/api/useNavigate)
 - **React Swiper:**
@@ -67,16 +77,6 @@ Deploy to [cyclic](https://www.cyclic.sh/)
 
 #### References
 
-- Built With
-- [React Documentation](https://reactjs.org/)
-- [Node.js Documentation](https://nodejs.org/)
-- [Express.js Documentation](https://expressjs.com/)
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [Mongoose Documentation](https://mongoosejs.com/)
-- [axios Documentation](https://axios-http.com/)
-- [bcrypt Documentation](https://www.npmjs.com/package/bcrypt)
-- [jsonwebtoken Documentation](https://www.npmjs.com/package/jsonwebtoken)
-
 - [MERN Stack Tutorial - MongoDB](https://www.mongodb.com/languages/mern-stack-tutorial)
 - [react-icons Documentation](https://react-icons.github.io/)
 - [MERN Stack Project Structure: Best Practices - Kingsley Amankwah](https://dev.to/kingsley/mern-stack-project-structure-best-practices-2adk)
@@ -124,4 +124,4 @@ Deploy to [cyclic](https://www.cyclic.sh/)
 - [How to use profiling in production mode for react-dom](https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977)
 - [Uploading Multiple Images on Cloudinary using Express Js and MongoDB- Ermias Asmare](https://medium.com/@it.ermias.asmare/uploading-multiple-images-on-cloudinary-using-express-js-and-mongodb-2b9e26f03609)
 - [How to Configure SAML 2.0 for MongoDB Cloud](https://saml-doc.okta.com/SAML_Docs/How-to-Configure-SAML-2.0-for-MongoDB-Cloud.html)
-
+- [Configuration options for the dependabot.yml file](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file)

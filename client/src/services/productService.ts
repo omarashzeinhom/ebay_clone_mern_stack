@@ -45,8 +45,10 @@ export const productService = {
     }
   },
   getProductByName: async (productName: string): Promise<Product | undefined> => {
+    console.log("property prouctName===>" + productName);
+    
     try {
-      const response = await fetch(`${API_BASE_URL}products/${productName}`);
+      const response = await fetch(`${API_BASE_URL}products/search-results/${productName}`);
       if (!response.ok) {
         throw new Error("Failed to fetch product");
       }
@@ -106,10 +108,11 @@ export const productService = {
   getProductsBySearch: async (searchQuery: string): Promise<Product[]> => {
     try {
       const response: AxiosResponse<Product[]> = await axios.get(
-        `${API_BASE_URL}search/?query=${encodeURIComponent(searchQuery)}`,
+        `${API_BASE_URL}products/search/${encodeURIComponent(searchQuery)}`,
         { timeout: 5000 } // Set a timeout value in milliseconds (adjust as needed)
       );
-      return response.data;
+      console.log("response.data" + response.data);
+      return response.data || [];
     } catch (error: any) {
       if (axios.isCancel(error)) {
         console.log('Request canceled:', error.message);
