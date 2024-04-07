@@ -76,7 +76,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: <Survey />,
     },
     {
-      path: "/search-results", // Define the route for search results
+      path: "/search-results/:name", // Define the route for search results
       element: <SearchResults />,
     },
     {

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { Product } from "../models/product";
 import { API_BASE_URL } from "../utilities/constants";
 
@@ -43,12 +43,16 @@ export const productService = {
       throw error;
     }
   },
+
+  // Adjust the service function to accept productName parameter
   getProductsByName: async (
     productName: string
   ): Promise<Product | undefined> => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/products/search-results/${productName}`
+        `${API_BASE_URL}products/search-results/${encodeURIComponent(
+          productName
+        )}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch product");

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { /** useNavigate, */ useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/ProductContext";
 import "./ProductList.scss";
 import Loading from "../../Loading/Loading";
@@ -8,22 +8,21 @@ import CategorySideBar from "../../Categories/CategorySideBar/CategorySideBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 
 interface ProductListProps {
-  products: Product[]; // Replace YourProductType with the actual type of your products
+  products: Product[]; 
 }
 
 const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) => {
-  //const navigate = useNavigate();
   const { categoryName } = useParams();
-  const { products, fetchProducts } = useProductContext();
+  const { products, fetchProducts,getProductById,getProductsByName,searchQuery } = useProductContext();
   const {
     addItemToCart,
     getItemQuantity,
   } = useShoppingCart();
-  const { productId,productName } = useParams();
-  const { getProductById,getProductsByName } = useProductContext();
+  const { productId } = useParams<{ productId: string}>();
+  console.log(searchQuery);
+  
   const [product, setProduct] = useState<any | null>(null);
-
-  console.log("productName:=====>" + productName);
+  console.log("searchQuery:=====>" + searchQuery);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,14 +30,14 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
         const productData = await getProductById(productId);
         setProduct(productData);
       }
-      if(productName){
-        const productData = await getProductsByName(productName);
+      if(searchQuery){
+        const productData = await getProductsByName(searchQuery);
         setProduct(productData);
       }
     };
 
     fetchData();
-  }, [productId, getProductById, productName, getProductsByName]);
+  }, [productId, getProductById, searchQuery, getProductsByName]);
 
   useEffect(() => {
     console.log("Products in ProductList component:", productListProp);

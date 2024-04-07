@@ -10,8 +10,7 @@ import { useProductContext } from "../../context/ProductContext";
 export default function SearchBar() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const { setSearchResults } = useProductContext();
+  const { setSearchResults,searchQuery,setQuery } = useProductContext();
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -54,7 +53,7 @@ export default function SearchBar() {
       try {
         const searchResult = await productService.getProductsByName(searchQuery);
         setSearchResults(searchResult ? [searchResult] : []); // Set search results as an array, even if empty
-        navigate(`/search/${encodeURIComponent(searchQuery)}`); // Navigate to search results page with query parameter
+        navigate(`/search-results/${encodeURIComponent(searchQuery)}`); // Navigate to search results page with query parameter
       } catch (error) {
         console.error("Error fetching search results:", error);
       }
@@ -98,7 +97,7 @@ export default function SearchBar() {
             id="app__search"
             placeholder="Search for anything"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => setQuery(e.target.value)}
           />
         </div>
         <button

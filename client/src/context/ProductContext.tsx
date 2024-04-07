@@ -15,6 +15,8 @@ interface ProductContextProps {
 interface ProductContextValue {
   products: Product[];
   selectedCategory: string;
+  searchQuery: string;
+  setQuery: (query: string) => void; 
   setCategory: (category: string) => void;
   fetchProducts: (categoryName?: string) => Promise<void>;
   getProductById: (productId: string) => Promise<Product | undefined>;
@@ -32,22 +34,25 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>(""); // Initialize searchQuery state
   const [searchResults, setSearchResults] = useState<Product[] | undefined>(
     undefined
   );
 
-  //const [searchQuery,setSearchQuery] = useState<string>("");
+  const setQuery = (query: string) => { // Function to set searchQuery
+    setSearchQuery(query);
+  };
 
   const getProductsByName = async (
     productName: string
   ): Promise<Product | undefined> => {
     try {
-      const product = await productService.getProductsByName(productName);
+      const product = await productService.getProductsByName(searchQuery);
       console.log("product:====>" + product);
       return product;
     } catch (error) {
       console.error(
-        "Error fetching product with Name" + { productName },
+        "Error fetching product with Name" + { searchQuery },
         error
       );
       return undefined;
@@ -98,10 +103,12 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
         products,
         selectedCategory,
         setCategory,
+        setQuery, 
         fetchProducts,
         getProductsByName,
         getProductById,
         searchResults,
+        searchQuery,
       }}
     >
       {children}
