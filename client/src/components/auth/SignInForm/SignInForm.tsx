@@ -3,9 +3,10 @@ import { useAuth } from "../../../context/AuthContext";
 import { authService } from "../../../services/authService";
 import { summaryBoxText } from "../../../utilities/constants";
 import { useState, useEffect } from "react";
-import { FaFacebook, /*FaGoogle, */ FaApple } from "react-icons/fa";
+import { FaFacebook, /*FaGoogle, */ FaApple, FaGoogle } from "react-icons/fa";
 import DemoCredentials from "./DemoCredentials";
-import { GoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from "@react-oauth/google";
+import { useGoogleOneTapLogin } from "@react-oauth/google";
 
 export const SignInNav = () => {
   return (
@@ -34,7 +35,26 @@ const SignInForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState<string | null>(null);
+  const [credential, setCredential] = useState<any>();
+  // Create a custom function credential.
+  //const credentials = Realm.Credentials.function({
+  //  username: "ilovemongodb",
+  //});
+  //const googleUser = await app.logIn(credentials);
 
+  const googleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => setCredential(tokenResponse),
+  });
+  console.log(`credential------>${credential}`);
+
+  useGoogleOneTapLogin({
+    onSuccess: (credentialResponse) => {
+      console.log(credentialResponse);
+    },
+    onError: () => {
+      console.log("Login Failed");
+    },
+  });
   const showNotification = (message: string) => {
     setNotification(message);
     // Clear the notification after a certain time
@@ -102,12 +122,21 @@ const SignInForm: React.FC = () => {
   const userLink = `/user/${user?.userId}`;
   const businessLink = `/business/${business?.businessId}`;
 
+  // response message
   const responseMessage = (response: any) => {
     console.log(response);
-};
-const errorMessage = (error : any) => {
+  };
+  if (responseMessage !== null) {
+    console.log(responseMessage);
+  }
+
+  // errors
+  const errorMessage = (error: any) => {
     console.log(error);
-};
+  };
+  if (errorMessage !== null) {
+    console.log(errorMessage);
+  }
 
   return (
     <div className="app__signin">
@@ -132,7 +161,7 @@ const errorMessage = (error : any) => {
           <h4>
             Sign in to eBay or <a href="/register">create an account</a>
           </h4>
-         <DemoCredentials/>
+          <DemoCredentials />
           <div className="app__signin-form" id="signin">
             <input
               placeholder="Email or username"
@@ -156,8 +185,9 @@ const errorMessage = (error : any) => {
           <button className="app__signin-Btn">
             <FaFacebook /> Continue with Facebook
           </button>
-          <button className="app__signin-Btn-alt">
-          <GoogleLogin onSuccess={responseMessage} onError={(()=>errorMessage)} />          </button>
+          <button className="app__signin-Btn-alt" onClick={() => googleLogin}>
+            <FaGoogle /> Continue with Google
+          </button>
           <button className="app__signin-Btn-alt">
             <FaApple /> Continue with Apple
           </button>
@@ -177,7 +207,6 @@ const errorMessage = (error : any) => {
             <summary>Learn More</summary>
             <small>{summaryBoxText}</small>
           </details>
-
         </div>
       )}
     </div>
@@ -185,5 +214,3 @@ const errorMessage = (error : any) => {
 };
 
 export default SignInForm;
-
-

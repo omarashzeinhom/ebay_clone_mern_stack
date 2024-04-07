@@ -65,3 +65,4 @@ Start the server with `node index.js`
 - Various References 
 1. [Import and Export Data - MongoDB Compass ](https://www.mongodb.com/docs/compass/current/import-export/)
 2. [Create, View, Drop, and Hide Indexes](https://www.mongodb.com/docs/atlas/atlas-ui/indexes/#create-an-index)
+3. [Authenticate Users - Node.js SDK - MongoDB](https://www.mongodb.com/docs/realm/sdk/node/users/authenticate-users/#std-label-node-login-google)

@@ -67,7 +67,7 @@ class ProductController {
     const productName = req.params.productName;
 
     try {
-      const products = await Product.find({ name: productName });
+      const products = await Product.findOne({ name: productName });
 
       if (!products || products.length === 0) {
         return res
