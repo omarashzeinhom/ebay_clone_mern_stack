@@ -13,7 +13,7 @@ export default function ReadProduct() {
     const fetchBusinessProducts = async () => {
       try {
         if (business && business.businessId) {
-          const response = await axios.get<Product[]>(`/products/by-business/${business.businessId}`);
+          const response = await axios.get<Product[]>(`http://localhost:5000/products/by-business/${business.businessId}`);
           setBusinessProducts(response.data);
         }
       } catch (error) {
