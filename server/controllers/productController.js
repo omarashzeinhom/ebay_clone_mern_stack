@@ -48,16 +48,15 @@ class ProductController {
   }
   async getProductById(req, res) {
     const productId = req.params.productId;
-    try {
-      if(productId){
-        //const product = await Product.findById(productId);      
-        res.json(productId);
 
-      }
-      if (!productId) {
+    try {
+      const product = await Product.findById(productId);
+
+      if (!product) {
         return res.status(404).json({ message: "Product not found" });
       }
-      return productId;
+
+      res.json(product);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Internal Server Error" });

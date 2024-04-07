@@ -16,7 +16,6 @@ interface ProductContextValue {
   products: Product[];
   selectedCategory: string;
   setCategory: (category: string) => void;
-  fetchProductsBySearch: (searchQuery: string) => Promise<void>;
   fetchProducts: (categoryName?: string) => Promise<void>;
   getProductById: (productId: string) => Promise<Product | undefined>;
   getProductsByName: (productName: string) => Promise<Product | undefined>;
@@ -37,21 +36,24 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     undefined
   );
 
- //const [searchQuery,setSearchQuery] = useState<string>(""); 
+  //const [searchQuery,setSearchQuery] = useState<string>("");
 
   const getProductsByName = async (
     productName: string
   ): Promise<Product | undefined> => {
     try {
       const product = await productService.getProductsByName(productName);
-     console.log("product:====>"+ product);
+      console.log("product:====>" + product);
       return product;
     } catch (error) {
-      console.error("Error fetching product with Name" + {productName} , error);
+      console.error(
+        "Error fetching product with Name" + { productName },
+        error
+      );
       return undefined;
     }
   };
-  
+
   const getProductById = async (
     productId: string
   ): Promise<Product | undefined> => {
@@ -85,17 +87,6 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     setSelectedCategory(category);
   };
 
-  const fetchProductsBySearch = async (searchQuery: string) => {
-    try {
-      const foundProducts = await productService.getProductsBySearch(
-        searchQuery
-      );
-      setSearchResults(foundProducts);
-    } catch (error) {
-      console.error("Error fetching products by search:", error);
-    }
-  };
-
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -111,7 +102,6 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
         getProductsByName,
         getProductById,
         searchResults,
-        fetchProductsBySearch,
       }}
     >
       {children}
