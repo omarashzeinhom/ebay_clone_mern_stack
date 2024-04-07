@@ -39,7 +39,8 @@ export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => 
       const product = await productService.getProductById(productId);
       return product;
     } catch (error) {
-      console.error(`Error fetching product with ID ${productId}:`, error);
+      const productIDStr = `${productId}`
+      console.error("Error fetching product with ID:" + productIDStr + error)
       return undefined;
     }
   };
