@@ -21,7 +21,7 @@ export const productService = {
   },
   getProductById: async (productId: string): Promise<Product | undefined> => {
     try {
-      const response = await fetch(`${API_BASE_URL}products/${productId}`);
+      const response = await fetch(`${API_BASE_URL}products/search-results?query=${productId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch product");
       }

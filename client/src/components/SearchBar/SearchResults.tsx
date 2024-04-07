@@ -7,7 +7,7 @@ import SearchBar from "./SearchBar";
 import Nav from "../Nav/Nav";
 
 const SearchResults: React.FC = () => {
-  const { fetchProductsBySearch, searchResults } = useProductContext();  
+  const { getProductByName, searchResults } = useProductContext();  
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query") || "";
 
@@ -17,7 +17,7 @@ const SearchResults: React.FC = () => {
 
     // Fetch products based on the search query
     if (searchQuery) {
-      fetchProductsBySearch(searchQuery);
+      getProductByName(searchQuery);
     }
     // eslint-disable-next-line
   }, [searchQuery]); // Only fetch products when searchQuery changes
