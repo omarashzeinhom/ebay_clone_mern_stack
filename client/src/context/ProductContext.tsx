@@ -37,7 +37,7 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     undefined
   );
 
- const [searchQuery,setSearchQuery] = useState<string>(""); 
+ //const [searchQuery,setSearchQuery] = useState<string>(""); 
 
   const getProductByName = async (
     productName: string

@@ -5,6 +5,7 @@ const multer = require("multer");
 const upload = require("../config/multer");
 const rateLimit = require("express-rate-limit");
 const Product = require("../models/productModel");
+const { json } = require("body-parser");
 
 // Define rate-limiting options
 const searchRateLimitOptions = {
@@ -26,13 +27,21 @@ router.get(
     res.send(`Search results for query: ${req}`);
   },
   rateLimit(searchRateLimitOptions),
-  productController.getProductByName
+  productController.getProductsBySearch
 );
 
 router.post(
   "/search/:name",
   rateLimit(searchRateLimitOptions),
-  productController.getProductByName
+  async (req, res) => {
+    try {
+      const searchResults = await productController.productController.getProductsBySearch(req.params.name);
+      res.send(`Search results for query: ${req.params.name}\nResults: ${searchResults}`);
+    } catch (error) {
+      console.error("Error retrieving search results:", error);
+      res.status(500).send("Error retrieving search results");
+    }
+  }
 );
 
 // Route to get all products
@@ -41,21 +50,30 @@ router.get("/", productController.getProducts);
 // Route to get a product by ID
 router.get("/:productId", productController.getProductById);
 
-// Route to get a product by Name
-router.get("/:name", productController.getProductByName);
-
-// Route to handle search results
-router.get("/search-results/:name", (req, res) => {
-  const query = req.query.query; // Retrieve the value of the "query" parameter
-  // Process the query parameter as needed (e.g., perform a search)
-  // For example, you can pass the query parameter to a search function and return the results
-  res.send(`Search results for query: ${query}`);
+// Route to get products by search
+router.get("/search-results", (req, res) => {
+  res.send("Hello, this is the Search Results route!");
 });
 
-router.post("/search-results/:name", (req, res) => {
-  const query = req.query.query;
-  res.send(`Search results for query: ${query}`);
-});
+// Apply rate-limiting middleware to the route for searching products
+router.get(
+  "/search-results?query=:name",
+  (req, res) => {
+    res.send(`Search results for query: ${req}`);
+  },
+  rateLimit(searchRateLimitOptions),
+  productController.getProductByName
+);
+
+router.post(
+  "/search-results?query=:name",
+  (req, res) => {
+    res.send(`Search results for query: ${req}`);
+  },
+  rateLimit(searchRateLimitOptions),
+  productController.getProductByName
+);
+
 
 // Route to create a product
 router.post("/product", upload.single("img"), productController.createProduct);

@@ -48,7 +48,7 @@ export const productService = {
     console.log("property prouctName===>" + productName);
     
     try {
-      const response = await fetch(`${API_BASE_URL}products/search-results/${productName}`);
+      const response = await fetch(`${API_BASE_URL}products/search-results?query=${productName}`);
       if (!response.ok) {
         throw new Error("Failed to fetch product");
       }
@@ -111,7 +111,7 @@ export const productService = {
         `${API_BASE_URL}products/search/${encodeURIComponent(searchQuery)}`,
         { timeout: 5000 } // Set a timeout value in milliseconds (adjust as needed)
       );
-      console.log("response.data" + response.data);
+      console.log( `response.data ====>${JSON.stringify(response.data)}`);
       return response.data || [];
     } catch (error: any) {
       if (axios.isCancel(error)) {
