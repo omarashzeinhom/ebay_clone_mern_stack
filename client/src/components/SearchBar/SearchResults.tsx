@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, /**useParams  */} from "react-router-dom";
 import SearchBar from "./SearchBar";
 import Nav from "../Nav/Nav";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
@@ -10,22 +10,32 @@ const SearchResults: React.FC = () => {
   const [product, setProduct] = useState<any | null>(null);
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query") || "";
-  const { productId } = useParams<{ productId: string }>();
+  //const { productId } = useParams<{ productId: string }>();
 
   const { addItemToCart, getItemQuantity } = useShoppingCart();
-
   useEffect(() => {
-    if (searchQuery) {
-      getProductsByName(searchQuery);
-    }
-  }, [searchQuery]);
-  const strSearchedQueryResults = JSON.stringify(searchResults);
-  console.log(searchResults);
+    const fetchData = async () => {
+      if (searchQuery) {
+        const productData = await getProductsByName(searchQuery);
+        setProduct(productData);
+      }
+    };
+  
+    fetchData();
+  
+    console.log(product); // This will log the previous state, not the updated state
+  }, [searchQuery, getProductsByName,product]);
+
+
+ // const strSearchedQueryResults = JSON.stringify(searchResults);
+  
+ console.log("searchResults not stringified",searchResults);
 
   const productLink = (productId: string) => `/item/${productId}`;
   const id = product?.id;
 
   const quantity = getItemQuantity(id);
+  const flattenedResults = searchResults?.flatMap(innerArray => innerArray);
 
   return (
     <>
@@ -33,10 +43,10 @@ const SearchResults: React.FC = () => {
       <SearchBar />
       <div>
         <h2>JSON String Search Results for "{searchQuery}"</h2>
-        {strSearchedQueryResults}
+      
         <h3> Object Searched Query Results</h3>
-        {searchResults !== undefined && searchResults.length > 0 ? (
-          searchResults.map((result: any, index: any) => (
+        {flattenedResults !== undefined && flattenedResults.length > 0 ? (
+          flattenedResults.map((result: any, index: any) => (
             <>
               <li key={result?._id} className="result-list__result-list-item">
                 <div className="result-list__result-list-item-top">
