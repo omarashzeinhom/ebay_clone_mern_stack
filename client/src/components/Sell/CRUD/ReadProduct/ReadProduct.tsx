@@ -1,15 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useAuth } from "../../../context/AuthContext";
-import { Product } from "../../../models/product";
+import { useAuth } from "../../../../context/AuthContext";
+import { Product } from "../../../../models/product";
+import "./ReadProduct.scss"; // Import your SCSS file for styling
 
 export default function ReadProduct() {
   const { business } = useAuth();
-  //const businessId = business?.businessId;
   const [businessProducts, setBusinessProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Fetch products by business ID when component mounts
     const fetchBusinessProducts = async () => {
       try {
         if (business && business.businessId) {
@@ -25,21 +24,18 @@ export default function ReadProduct() {
   }, [business]);
 
   return (
-    <div>
+    <div className="business-products-container">
       <h2>Business Products</h2>
       {businessProducts.length > 0 ? (
-        <div>
+        <div className="product-list">
           {businessProducts.map((product: Product, index: number) => (
-            <div key={index}>
-              <span>ID: {product.id}</span>
-              <span>Business ID: {product.businessId}</span>
-              <span>Name: {product.name}</span>
-              <span>Image: {product.img}</span>
-              <span>Parent: {product.parent}</span>
-              <span>Category: {product.category}</span>
-              <span>File: {product.file}</span>
-              <span>Price: {product.price}</span>
-              <span>Quantity: {product.quantity}</span>
+            <div key={index} className="product-card">
+              <img src={product.img} alt={product.name} className="product-image" />
+              <div className="product-details">
+                <span className="product-name">{product.name}</span>
+                <span className="product-price">${product.price}</span>
+                <span className="product-quantity">Quantity: {product.quantity}</span>
+              </div>
             </div>
           ))}
         </div>

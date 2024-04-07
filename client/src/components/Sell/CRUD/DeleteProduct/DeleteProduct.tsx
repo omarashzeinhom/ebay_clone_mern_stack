@@ -1,5 +1,5 @@
-import { useAuth } from "../../../context/AuthContext";
-import { Product } from "../../../models/product";
+import { useAuth } from "../../../../context/AuthContext";
+import { Product } from "../../../../models/product";
 import "./DeleteProduct.scss"; // Import the styles
 
 export default function DeleteProduct() {
