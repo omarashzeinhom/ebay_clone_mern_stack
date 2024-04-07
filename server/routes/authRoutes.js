@@ -5,6 +5,7 @@ const router = express.Router();
 const authController = require("../controllers/authController");
 const verifyToken = require("../middleware/verifyToken"); 
 
+
 // User Routes 
 router.post("/login", authController.login);
 router.post("/register", authController.register);

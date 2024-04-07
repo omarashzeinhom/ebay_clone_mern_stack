@@ -1,4 +1,9 @@
 require("dotenv").config({ path: "./config.env" });
+const rateLimit = require("express-rate-limit");
+
+
+
+// Apply the rate limiting middleware to all requests.
 
 const express = require("express");
 const cors = require("cors");
@@ -15,13 +20,20 @@ const corsMiddleware = require("./middleware/corsMiddleware");
 const app = express();
 const port = process.env.PORT || 5007;
 
-
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+	// store: ... , // Redis, Memcached, etc. See below.
+})
 // Middleware
 app.use(corsMiddleware);
 app.use(express.json());  
 app.use(express.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
 app.use(helmet());
+app.use(limiter);
 
 //  root URL
 app.get("/", (req, res) => {
