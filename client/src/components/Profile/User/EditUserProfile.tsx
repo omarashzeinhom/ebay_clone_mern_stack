@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User } from "../../../models/user";
+import { User,UpdatedUser } from "../../../models";
 import { useAuth } from "../../../context/AuthContext";
 
 interface EditUserProfileProps {
@@ -9,6 +9,8 @@ interface EditUserProfileProps {
   updatedUser: UpdatedUser | undefined; // New state variable
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
 }
+
+
 
 const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
   const { updateUser, updatedUser, setUpdatedUser } = useAuth();
@@ -23,12 +25,18 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUpdatedUser((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
   
+    setUpdatedUser((prevData: any) => {
+      // Create a new object with the previous state properties
+      const updatedUser = { ...prevData };
+  
+      // Update the specific nested property based on the input name
+      updatedUser[name] = value;
+  
+      return updatedUser;
+    });
+  };
+
   console.log(
     `user ===> ${JSON.stringify(
       user
@@ -86,15 +94,42 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="app-profile-container__form__group">
+        <div className="app-profile-container__form__group">
+          <label>
+            {" "}
+            Email
+            <input
+              value={updatedUser?.updatedEmail }
+              placeholder={user?.email }
+              type="email"
+              name="updatedEmail"
+              onChange={handleInputChange}
+            />
+          </label>
+          
+        </div>
+        <div className="app-profile-container__form__group">
+          
+            <input
+              value={updatedUser?.updatedPassword }
+              placeholder={user?.password }
+              type="password"
+              hidden
+              name="updatedPassword"
+              onChange={handleInputChange}
+            />
+          
+        </div>
           <label>
             {" "}
             First Name
             <input
-              placeholder={user?.firstName || "John"}
-              value={updatedUser?.updatedFirstName || ""}
+              placeholder={user?.firstName }
+              value={updatedUser?.updatedFirstName }
               type="text"
-              onChange={handleInputChange}
               name="updatedFirstName"
+              onChange={handleInputChange}
+
             />
           </label>
         </div>
@@ -103,31 +138,19 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             {" "}
             Last Name
             <input
-              placeholder={user?.lastName || "Doe"}
-              value={updatedUser?.updatedLastName || ""}
+              placeholder={user?.lastName }
+              value={updatedUser?.updatedLastName }
               type="text"
               name="updatedLastName"
               onChange={handleInputChange}
             />
           </label>
         </div>
-        <div className="app-profile-container__form__group">
-          <label>
-            {" "}
-            Email
-            <input
-              value={updatedUser?.updatedEmail || ""}
-              placeholder={user?.email || "useremail@tmail.com"}
-              type="email"
-              name="updatedEmail"
-              onChange={handleInputChange}
-            />
-          </label>
-          {typeof user?.avatar === "string" && (
-            <img src={user?.avatar || " "} alt={user?.email || "User Photo"} loading="lazy"/>
-          )}{" "}
-        </div>
+   
         <label> Avatar </label>
+        {typeof user?.avatar === "string" && (
+            <img src={user?.avatar } alt={user?.email || "User Photo"} loading="lazy"/>
+          )}{" "}
         <input
           id="avatarUrl"
           className=""

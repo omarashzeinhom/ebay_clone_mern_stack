@@ -1,6 +1,5 @@
-export type Category = {
-    name: string;
-    img: string;
-    parent?: string;
-  };
-  
+export interface Category {
+  name: string;
+  img: string;
+  parent?: string;
+}

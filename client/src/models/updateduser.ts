@@ -1,6 +1,7 @@
-interface UpdatedUser {
+export interface UpdatedUser {
+    updatedEmail?: string;
+    updatedPassword?: string;
     updatedFirstName?: string;
     updatedLastName?: string;
-    updatedEmail?: string;
     updatedAvatar?: string; // or whatever type is appropriate
   }

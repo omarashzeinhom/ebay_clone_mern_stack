@@ -18,20 +18,6 @@ export const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/$
 // Append folder path as a parameter
 export const bussinessProductsFullUploadUri = `${businessProductsUploadEndPoint}?folder=${businessProductsfolderPath}`;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* NavBar Items Start */
 const navItems = [
   {

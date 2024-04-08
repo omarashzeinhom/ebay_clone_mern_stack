@@ -3,10 +3,9 @@ import { useAuth } from "../../../context/AuthContext";
 import { authService } from "../../../services/authService";
 import { summaryBoxText } from "../../../utilities/constants";
 import { useState, useEffect } from "react";
-import { FaFacebook, /*FaGoogle, */ FaApple, FaGoogle } from "react-icons/fa";
+import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
 import DemoCredentials from "./DemoCredentials";
-import { useGoogleLogin } from "@react-oauth/google";
-import { useGoogleOneTapLogin } from "@react-oauth/google";
+
 
 export const SignInNav = () => {
   return (
@@ -35,26 +34,13 @@ const SignInForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState<string | null>(null);
-  const [credential, setCredential] = useState<any>();
   // Create a custom function credential.
   //const credentials = Realm.Credentials.function({
   //  username: "ilovemongodb",
   //});
   //const googleUser = await app.logIn(credentials);
 
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => setCredential(tokenResponse),
-  });
-  console.log(`credential------>${credential}`);
 
-  useGoogleOneTapLogin({
-    onSuccess: (credentialResponse) => {
-      console.log(credentialResponse);
-    },
-    onError: () => {
-      console.log("Login Failed");
-    },
-  });
   const showNotification = (message: string) => {
     setNotification(message);
     // Clear the notification after a certain time
@@ -185,7 +171,7 @@ const SignInForm: React.FC = () => {
           <button className="app__signin-Btn">
             <FaFacebook /> Continue with Facebook
           </button>
-          <button className="app__signin-Btn-alt" onClick={() => googleLogin}>
+          <button className="app__signin-Btn-alt" >
             <FaGoogle /> Continue with Google
           </button>
           <button className="app__signin-Btn-alt">

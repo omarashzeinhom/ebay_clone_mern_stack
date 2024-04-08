@@ -329,11 +329,12 @@ exports.updateBusiness = async (req, res) => {
     updatedBusinessAvatar,
     password,
   } = req.body;
-  const userId = req.user.userId; // Assuming userId is extracted from authentication middleware
+  const businessId = req.business.businessId; // Assuming userId is extracted from authentication middleware
 
   try {
-    // Upload new avatar to Cloudinary if provided
     let avatarUrl = ""; // Define avatarUrl variable to store Cloudinary URL
+
+    // Upload new avatar to Cloudinary if provided
     if (updatedBusinessAvatar) {
       const result = await cloudinary.uploader.upload(updatedBusinessAvatar);
       avatarUrl = result.secure_url;

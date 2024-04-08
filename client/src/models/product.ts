@@ -1,4 +1,4 @@
-export type Product = {
+export interface Product {
   _id: string;
   id: number;
   quantity: number;
@@ -9,4 +9,4 @@ export type Product = {
   parent: string;
   businessId: string;
   file: [];
-};
+}

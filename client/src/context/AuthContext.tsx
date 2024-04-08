@@ -3,6 +3,7 @@ import { User } from "../models/user";
 import { Business } from "../models/business";
 import { createContext, useContext, useEffect, useState } from "react";
 import { API_BASE_URL } from "../utilities/constants";
+import { UpdatedUser, UpdatedBusiness } from "../models";
 
 interface AuthContextType {
   token: string | null;
@@ -24,7 +25,9 @@ interface AuthContextType {
   ) => Promise<void>;
   updatedUser: UpdatedUser | undefined;
   updatedBusiness: UpdatedBusiness | undefined;
-
+  setUpdatedBusiness: React.Dispatch<
+    React.SetStateAction<UpdatedBusiness | undefined>
+  >;
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
   fetchUserInformation: (token: string) => Promise<void>;
   fetchBusinessInformation: (token: string) => Promise<void>;
@@ -99,6 +102,71 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const login = (newToken: string, newUser: User) => {
+    setToken(newToken);
+    setUser(newUser);
+    localStorage.setItem("token", newToken);
+    localStorage.setItem("user", JSON.stringify(newUser));
+  };
+
+  const logout = () => {
+    setToken(null);
+    setUser(null);
+    localStorage.removeItem("token");
+  };
+
+  const updateUser = async (
+    selectedAvatar: File | undefined,
+    updatedUser: UpdatedUser | undefined
+  ) => {
+    const formData = new FormData();
+    if (updatedUser?.updatedFirstName)
+      formData.append("firstName", updatedUser?.updatedFirstName);
+    if (updatedUser?.updatedLastName)
+      formData.append("lastName", updatedUser?.updatedLastName);
+    if (updatedUser?.updatedEmail)
+      formData.append("email", updatedUser?.updatedEmail);
+
+    if (selectedAvatar) {
+      formData.append("updatedAvatar", selectedAvatar);
+    }
+
+    try {
+      const response = await axios.put(
+        `${API_BASE_URL}auth/user/:${user?.userId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setUpdatedUser((prevUser) => ({
+        ...prevUser,
+        firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
+        lastName: updatedUser?.updatedLastName || prevUser?.updatedLastName,
+        email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
+        avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
+      }));
+
+      setUser((prevUser) => ({
+        ...prevUser!,
+        firstName: updatedUser?.updatedFirstName || prevUser?.firstName || "",
+        lastName: updatedUser?.updatedLastName || prevUser?.lastName || "",
+        email: updatedUser?.updatedEmail || prevUser?.email || "",
+        avatar: updatedUser?.updatedAvatar || prevUser?.avatar || "",
+      }));
+
+      console.log(response?.data);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
+  /** Business Logic  Start*/
+
   const fetchBusinessInformation = async (token: string) => {
     if (!business && !user) {
       // Check if neither business nor user is logged in
@@ -114,21 +182,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       console.warn(`A business or user is already logged in`);
     }
   };
-
-  const login = (newToken: string, newUser: User) => {
-    setToken(newToken);
-    setUser(newUser);
-    localStorage.setItem("token", newToken);
-    localStorage.setItem("user", JSON.stringify(newUser));
-  };
-
-  const logout = () => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem("token");
-  };
-
-  /** Business Logic  Start*/
 
   const loginBusiness = (newToken: string, newBusiness: Business) => {
     setToken(newToken);
@@ -188,71 +241,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
   /** Business Logic  End */
 
-  const updateUser = async (
-    selectedAvatar: File | undefined,
-    updatedUser: UpdatedUser | undefined
-  ) => {
-    const formData = new FormData();
-    if (updatedUser?.updatedFirstName)
-      formData.append("firstName", updatedUser?.updatedFirstName);
-    if (updatedUser?.updatedLastName)
-      formData.append("lastName", updatedUser?.updatedLastName);
-    if (updatedUser?.updatedEmail)
-      formData.append("email", updatedUser?.updatedEmail);
-
-    if (selectedAvatar) {
-      formData.append("updatedAvatar", selectedAvatar);
-    }
-
-    try {
-      const response = await axios.put(
-        `${API_BASE_URL}auth/user/:${user?.userId}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setUpdatedUser((prevUser) => ({
-        ...prevUser,
-        firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
-        lastName: updatedUser?.updatedLastName || prevUser?.updatedLastName,
-        email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
-        avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
-      }));
-
-      setUser((prevUser) => ({
-        ...prevUser!,
-        firstName: updatedUser?.updatedFirstName || prevUser?.firstName || "",
-        lastName: updatedUser?.updatedLastName || prevUser?.lastName || "",
-        email: updatedUser?.updatedEmail || prevUser?.email || "",
-        avatar: updatedUser?.updatedAvatar || prevUser?.avatar || "",
-      }));
-
-      console.log(response?.data);
-    } catch (error) {
-      console.error("Error updating user:", error);
-    }
-  };
-
   const contextValue: AuthContextType = {
     token,
     user,
-    updatedUser,
-    updatedBusiness,
+    business,
     login,
     logout,
-    business,
     loginBusiness,
     logoutBusiness,
-    fetchUserInformation,
-    fetchBusinessInformation,
     updateUser,
     updateBusiness,
+    updatedUser,
+    updatedBusiness,
+    fetchUserInformation,
+    fetchBusinessInformation,
     setUser,
+    setUpdatedBusiness: setUpdatedBusiness as React.Dispatch<
+      React.SetStateAction<UpdatedBusiness | undefined>
+    >,
     setUpdatedUser: setUpdatedUser as React.Dispatch<
       React.SetStateAction<UpdatedUser | undefined>
     >,

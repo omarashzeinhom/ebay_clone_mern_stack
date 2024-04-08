@@ -20,15 +20,10 @@ import {
   ProductList,
   ProductDetail,
   Profile,
-  /**ErrorBoundary, */
   SearchResults,
   ErrorBoundary,
 } from "../components";
 import { CategoryProvider } from "../context/CategoryContext";
-
-//SSO 
-
-import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
 type AppProps = {
@@ -152,12 +147,10 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   const router = createBrowserRouter(routes);
 
-  const GoogSecAPIKey= process.env.REACT_APP_SSO_JS_GOOGLE_API_CLIENTID || " ";;
 
   return (
     <React.StrictMode>
       <ErrorBoundary>
-      <GoogleOAuthProvider clientId={GoogSecAPIKey}>
         <AuthProvider>
           <ShoppingCartProvider>
             <CategoryProvider>
@@ -167,7 +160,6 @@ const App: React.FC<AppProps> = ({ total }) => {
             </CategoryProvider>
           </ShoppingCartProvider>
         </AuthProvider>
-        </GoogleOAuthProvider>
       </ErrorBoundary>
     </React.StrictMode>
   );
