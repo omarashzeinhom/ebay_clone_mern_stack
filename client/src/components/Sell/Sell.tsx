@@ -21,20 +21,33 @@ export default function Sell({ total }: SellProps) {
   const handleBtnChange = (selectedButton: string) => {
     setSelectedBtn(selectedButton);
   };
-
   const signInLink = `${HOME_URL}/signin`;
+
+  const NoneSignedIn = () => {
+    return (
+      <>
+        <h2>No Business Logged In Please LogIn First</h2>
+        <a href={signInLink}>SignIn</a>
+      </>
+    );
+  };
+
+  if (!user || !business) {
+    return (
+      <>
+        <Nav total={total} />
+        <SearchBar />
+        <NoneSignedIn />
+      </>
+    );
+  }
+
   return (
     <>
       <Nav total={total} />
       <SearchBar />
 
-      {user?.userId === null ||
-        (business?.businessId === null && (
-          <>
-            <h2>No Business Logged In Please LogIn First</h2>
-            <a href={signInLink}>SignIn</a>
-          </>
-        ))}
+      <NoneSignedIn />
 
       {user?.userId && (
         <>
