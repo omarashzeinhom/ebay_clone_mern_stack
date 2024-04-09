@@ -12,7 +12,9 @@ export default function ReadProduct() {
     const fetchBusinessProducts = async () => {
       try {
         if (business && business.businessId) {
-          const response = await axios.get<Product[]>(`http://localhost:5000/products/by-business/${business.businessId}`);
+          const response = await axios.get<Product[]>(
+            `http://localhost:5000/products/by-business/${business.businessId}`
+          );
           setBusinessProducts(response.data);
         }
       } catch (error) {
@@ -26,15 +28,24 @@ export default function ReadProduct() {
   return (
     <div className="business-products-container">
       <h2>Business Products</h2>
-      {businessProducts.length > 0 ? (
+      {businessProducts?.length > 0 ? (
         <div className="product-list">
-          {businessProducts.map((product: Product, index: number) => (
+          {businessProducts?.map((product: Product, index: number) => (
             <div key={index} className="product-card">
-              <img src={product.img} alt={product.name} className="product-image" />
+              <img
+                src={product?.img}
+                alt={product?.name}
+                className="product-image"
+              />
               <div className="product-details">
-                <span className="product-name">{product.name}</span>
-                <span className="product-price">${product.price}</span>
-                <span className="product-quantity">Quantity: {product.quantity}</span>
+                <span className="product-name">Name:{product?.name}</span>
+                <span className="product-price">Price:{product?.price}$</span>
+                <span className="product-quantity">
+                  Quantity: {product?.quantity}
+                </span>
+                <span className="">Category: {product?.category}</span>
+                <button>Edit</button>
+                <button>Delete</button>
               </div>
             </div>
           ))}
