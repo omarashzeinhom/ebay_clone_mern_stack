@@ -3,8 +3,9 @@ import { useAuth } from "../../../context/AuthContext";
 import { authService } from "../../../services/authService";
 import { summaryBoxText } from "../../../utilities/constants";
 import { useState, useEffect } from "react";
-import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
+import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
 import DemoCredentials from "./DemoCredentials";
+
 
 export const SignInNav = () => {
   return (
@@ -33,6 +34,12 @@ const SignInForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState<string | null>(null);
+  // Create a custom function credential.
+  //const credentials = Realm.Credentials.function({
+  //  username: "ilovemongodb",
+  //});
+  //const googleUser = await app.logIn(credentials);
+
 
   const showNotification = (message: string) => {
     setNotification(message);
@@ -80,12 +87,12 @@ const SignInForm: React.FC = () => {
       // Fetch user or business information when the component mounts
       const fetchData = async () => {
         try {
-          const data = await authService.getUser(token);
+          const data = await authService?.getUser(token);
           login(token, data);
         } catch (error) {
           console.error(`Error fetching data: ${error}`);
           try {
-            const dataB = await authService.getBusiness(token);
+            const dataB = await authService?.getBusiness(token);
             loginBusiness(token, dataB);
           } catch (businessError) {
             console.error(businessError);
@@ -101,7 +108,21 @@ const SignInForm: React.FC = () => {
   const userLink = `/user/${user?.userId}`;
   const businessLink = `/business/${business?.businessId}`;
 
+  // response message
+  const responseMessage = (response: any) => {
+    console.log(response);
+  };
+  if (responseMessage !== null) {
+    console.log(responseMessage);
+  }
 
+  // errors
+  const errorMessage = (error: any) => {
+    console.log(error);
+  };
+  if (errorMessage !== null) {
+    console.log(errorMessage);
+  }
 
   return (
     <div className="app__signin">
@@ -126,7 +147,7 @@ const SignInForm: React.FC = () => {
           <h4>
             Sign in to eBay or <a href="/register">create an account</a>
           </h4>
-         <DemoCredentials/>
+          <DemoCredentials />
           <div className="app__signin-form" id="signin">
             <input
               placeholder="Email or username"
@@ -150,7 +171,7 @@ const SignInForm: React.FC = () => {
           <button className="app__signin-Btn">
             <FaFacebook /> Continue with Facebook
           </button>
-          <button className="app__signin-Btn-alt">
+          <button className="app__signin-Btn-alt" >
             <FaGoogle /> Continue with Google
           </button>
           <button className="app__signin-Btn-alt">
@@ -172,7 +193,6 @@ const SignInForm: React.FC = () => {
             <summary>Learn More</summary>
             <small>{summaryBoxText}</small>
           </details>
-
         </div>
       )}
     </div>
@@ -180,5 +200,3 @@ const SignInForm: React.FC = () => {
 };
 
 export default SignInForm;
-
-

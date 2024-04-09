@@ -4,6 +4,7 @@ import "./CreateProduct.scss";
 import { categoriesService } from "../../../../services/categoryService";
 import { productService } from "../../../../services/productService";
 import { useAuth } from "../../../../context/AuthContext";
+import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
 
 type FormData = {
   id: number;
@@ -19,12 +20,14 @@ type FormData = {
 
 export default function CreateProduct() {
   const { business } = useAuth();
+  //DEBUG (Make sure businessId is passed to the useAuth Hook as a business object)
+  //console.log(`busines----->${JSON.stringify(business)}`)
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     id: 0,
-    businessId: "",
+    businessId: `${business?.businessId}`,
     img: "",
     name: "",
     description: "",
@@ -34,16 +37,12 @@ export default function CreateProduct() {
     parent: "",
   });
 
-  const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
-  const folderPath = "ebay-clone-images/products";
-  const uploadEndPoint = `https://res.cloudinary.com/${cloudName}/image/upload/${folderPath}`;
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const data = await categoriesService.getAllCategories();
         setCategories(data);
-        console.log(`fetchCategories data is -->${data}`);
+        //console.log(`fetchCategories data is -->${data}`);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -66,55 +65,61 @@ export default function CreateProduct() {
     try {
       setLoading(true);
       setError(null);
-
-      const formDataToSend = new FormData();
-      formDataToSend.append("id", formData.id.toString());
-      formDataToSend.append("businessId", formData.businessId);
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("img", formData.img as File);
-      formDataToSend.append("description", formData.description);
-      formDataToSend.append("price", formData.price.toString());
-      formDataToSend.append("quantity", formData.quantity.toString());
-      formDataToSend.append("category", formData.category);
-      formDataToSend.append("parent", formData.parent);
-
-      console.log("FormData to Send:", formDataToSend);
-
-      const cloudinaryResponse = await fetch(uploadEndPoint, {
+  
+      // Upload the image file to Cloudinary
+      const cloudinaryFormData = new FormData();
+      cloudinaryFormData.append("file", formData.img as File);
+      cloudinaryFormData.append(
+        "upload_preset",
+        `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+      );
+  
+      const cloudinaryResponse = await fetch(bussinessProductsFullUploadUri, {
         method: "POST",
-        body: formDataToSend,
+        body: cloudinaryFormData,
       });
+  
       if (!cloudinaryResponse.ok) {
-        // Handle the error, throw an exception, or log the details
         const errorDetails = await cloudinaryResponse.json();
         console.error("Cloudinary API Error:", errorDetails);
         throw new Error("Failed to upload image to Cloudinary");
       }
+  
       const cloudinaryData = await cloudinaryResponse.json();
       const cloudinaryImageUrl = cloudinaryData.secure_url;
-
-      console.log("Cloudinary API Response:", cloudinaryData);
-
-      const updatedFormData: FormData = {
-        ...formData,
-        img: cloudinaryImageUrl,
+  
+      // Store the Cloudinary URL in MongoDB
+      const productData = {
+        id: formData.id,
+        name: formData.name,
+        description: formData.description,
+        img: cloudinaryImageUrl, // Store the Cloudinary URL here
+        price: formData.price,
+        quantity: formData.quantity,
+        category: formData.category,
+        parent: formData.parent,
+        businessId: formData.businessId,
       };
-
-      const data = await productService.createProduct(updatedFormData);
+  
+      // Call your backend service to store the product data in MongoDB
+      const data = await productService.createProduct({
+        id: formData.id,
+        name: formData.name,
+        img: cloudinaryImageUrl,
+        description: formData.description,
+        price: formData.price,
+        quantity: formData.quantity,
+        category: formData.category,
+        parent: formData.parent,
+        businessId: formData.businessId,
+      });      
       console.log("Product created:", data);
-
+  
       // Resetting the form after successful submission
-      setFormData({
-        id: 0,
-        businessId: "",
-        img: "",
-        name: "",
-        description: "",
-        price: 0,
-        quantity: 0,
-        category: "",
-        parent: "",
-      });
+      setFormData((prevState) => ({
+        ...prevState,
+        img: "", // Reset img property to an empty string
+      }));
     } catch (error) {
       console.error("Error creating product:", error);
       setError("Failed to create the product. Please try again.");
@@ -122,6 +127,9 @@ export default function CreateProduct() {
       setLoading(false);
     }
   };
+  
+  
+
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -146,90 +154,106 @@ export default function CreateProduct() {
       }));
     }
   };
+
   return (
     <div className="create-product-container">
-      <h2> Create Product</h2>
-      <div className="create-product-form">
-        <form onSubmit={handleSubmit}>
-          {loading && <p>Loading...</p>}
-          {error && <p style={{ color: "red" }}>{error}</p>}
-          <input
-            hidden
-            type="text"
-            value={business?.businessId}
-            name="businessId"
-            onChange={(e) => handleChange(e, "businessId")}
-          />
-          <label>
-            Product Name:
-            <input
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={(e) => handleChange(e, "name")}
-            />
-          </label>
-          <label>
-            Product Image:
-            <input
-              name="img"
-              type="file"
-              accept="image/*"
-              onChange={(e) => handleChange(e, "img")}
-            />
-          </label>
-          <label>
-            Product Description:
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={(e) => handleChange(e, "description")}
-            />
-          </label>
+      {business?.businessId && (
+        <>
+          <h2> Create Product</h2>
+          <div className="create-product-form">
+            <form onSubmit={handleSubmit}>
+              {loading && <p>Loading...</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
+              <input
+                hidden
+                type="text"
+                value={business?.businessId}
+                name="businessId"
+                onChange={(e) => handleChange(e, "businessId")}
+              />
+              <label>
+                Product Name:
+                <input
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => handleChange(e, "name")}
+                />
+              </label>
+              <label>
+                Product Image:
+                <input
+                placeholder="Upload Product Image Here"
+                  name="img" // need to pass another hidden input as string when full product is successfull 
+                  type="file"
+                  accept="image/*"
+                  //disabled={true}
+                  onChange={(e) => handleChange(e, "img")}
+                />
+                 <input
+                  name="" // need to pass another hidden input as string when full product is successfull 
+                  type="text"
+                  accept="image/*"
+                  hidden={true}
+                  onChange={(e) => handleChange(e, "img")}
+                />
+              </label>
+              <label>
+                Product Description:
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={(e) => handleChange(e, "description")}
+                />
+              </label>
 
-          <label>
-            Product Price:
-            <input
-              name="price"
-              type="number"
-              value={formData.price}
-              onChange={(e) => handleChange(e, "price")}
-            />
-          </label>
+              <label>
+                Product Price:
+                <input
+                  name="price"
+                  type="number"
+                  value={formData.price}
+                  onChange={(e) => handleChange(e, "price")}
+                />
+              </label>
 
-          <label>
-            Product Quantity:
-            <input
-              name="quantity"
-              type="number"
-              value={formData.quantity}
-              onChange={(e) => handleChange(e, "quantity")}
-            />
-          </label>
+              <label>
+                Product Quantity:
+                <input
+                  name="quantity"
+                  type="number"
+                  value={formData.quantity}
+                  onChange={(e) => handleChange(e, "quantity")}
+                />
+              </label>
 
-          <label>
-            Product Category:
-            <select
-              onChange={(e) => handleChange(e, "category")}
-              name="category"
-            >
-              {Object.entries(groupedCategories).map(
-                ([parent, categoryList]) => (
-                  <optgroup label={parent} key={parent}>
-                    {categoryList.map((category) => (
-                      <option key={category?.name} value={category?.name}>
-                        {category?.name}
-                      </option>
-                    ))}
-                  </optgroup>
-                )
-              )}
-            </select>
-          </label>
+              <label>
+                Product Category:
+                <select
+                  onChange={(e) => handleChange(e, "category")}
+                  name="category"
+                >
+                  {Object.entries(groupedCategories).map(
+                    ([parent, categoryList]) => (
+                      <optgroup label={parent} key={parent}>
+                        {categoryList.map((category) => (
+                          <option key={category?.name} value={category?.name}>
+                            {category?.name}
+                          </option>
+                        ))}
+                      </optgroup>
+                    )
+                  )}
+                </select>
+              </label>
 
-          <button type="submit">Create Product</button>
-        </form>
-      </div>
+              <button type="submit">Create Product</button>
+            </form>
+          </div>
+        </>
+      )}
     </div>
   );
 }
+
+

@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Product } from "../models/product";
 import { productService } from "../services/productService";
 
@@ -9,27 +15,58 @@ interface ProductContextProps {
 interface ProductContextValue {
   products: Product[];
   selectedCategory: string;
+  searchQuery: string;
+  setQuery: (query: string) => void; 
   setCategory: (category: string) => void;
-  fetchProductsBySearch: (searchQuery: string) => Promise<void>;
-  fetchProducts: (categoryName?: string) => Promise<void>; 
+  fetchProducts: (categoryName?: string) => Promise<void>;
   getProductById: (productId: string) => Promise<Product | undefined>;
-  searchResults: Product[];
-  setSearchResults: (searchResults: Product[]) => void; // Define setSearchResults
+  getProductsByName: (productName: string) => Promise<Product | undefined>;
+  searchResults: Product[] | [] | undefined;
+  setSearchResults: (searchResults: Product[]) => void; 
 }
 
-const ProductContext = createContext<ProductContextValue | undefined>(undefined);
+const ProductContext = createContext<ProductContextValue | undefined>(
+  undefined
+);
 
-export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => {
+export const ProductProvider: React.FC<ProductContextProps> = ({
+  children,
+}) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>(""); // Initialize searchQuery state
+  const [searchResults, setSearchResults] = useState<Product[] | undefined>(
+    undefined
+  );
 
-  const getProductById = async (productId: string): Promise<Product | undefined> => {
+  const setQuery = (query: string) => { // Function to set searchQuery
+    setSearchQuery(query);
+  };
+
+  const getProductsByName = async (
+  ): Promise<Product | undefined> => {
+    try {
+      const product = await productService.getProductsByName(searchQuery);
+      console.log("product:====>" + searchQuery);
+      return product;
+    } catch (error) {
+      console.error(
+        "Error fetching product with Name" + { searchQuery },
+        error
+      );
+      return undefined;
+    }
+  };
+
+  const getProductById = async (
+    productId: string
+  ): Promise<Product | undefined> => {
     try {
       const product = await productService.getProductById(productId);
       return product;
     } catch (error) {
-      console.error(`Error fetching product with ID ${productId}:`, error);
+      const productIDStr = `${productId}`;
+      console.error("Error fetching product with ID:" + productIDStr + error);
       return undefined;
     }
   };
@@ -38,7 +75,9 @@ export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => 
     try {
       let fetchedProducts;
       if (categoryName) {
-        fetchedProducts = await productService.getProductsByCategory(categoryName);
+        fetchedProducts = await productService.getProductsByCategory(
+          categoryName
+        );
       } else {
         fetchedProducts = await productService.getAllProducts();
       }
@@ -47,18 +86,9 @@ export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => 
       console.error("Error fetching products:", error);
     }
   };
-  
+
   const setCategory = (category: string) => {
     setSelectedCategory(category);
-  };
-
-  const fetchProductsBySearch = async (searchQuery: string) => {
-    try {
-      const foundProducts = await productService.getProductsBySearch(searchQuery);
-      setSearchResults(foundProducts);
-    } catch (error) {
-      console.error("Error fetching products by search:", error);
-    }
   };
 
   useEffect(() => {
@@ -72,10 +102,12 @@ export const ProductProvider: React.FC<ProductContextProps> = ({ children }) => 
         products,
         selectedCategory,
         setCategory,
+        setQuery, 
         fetchProducts,
+        getProductsByName,
         getProductById,
         searchResults,
-        fetchProductsBySearch,
+        searchQuery,
       }}
     >
       {children}

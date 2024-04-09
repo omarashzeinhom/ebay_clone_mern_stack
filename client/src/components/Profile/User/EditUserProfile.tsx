@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User } from "../../../models/user";
+import { User,UpdatedUser } from "../../../models";
 import { useAuth } from "../../../context/AuthContext";
 
 interface EditUserProfileProps {
@@ -10,6 +10,8 @@ interface EditUserProfileProps {
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
 }
 
+
+
 const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
   const { updateUser, updatedUser, setUpdatedUser } = useAuth();
   let { firstName, lastName, email, avatar } = user;
@@ -18,17 +20,21 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  
+  
+  
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUpdatedUser((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    setUser((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  
+    setUpdatedUser((prevData: any) => {
+      // Create a new object with the previous state properties
+      const updatedUser = { ...prevData };
+  
+      // Update the specific nested property based on the input name
+      updatedUser[name] = value;
+  
+      return updatedUser;
+    });
   };
 
   console.log(
@@ -51,24 +57,30 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
       setLoading(true);
       setError(null);
       event.preventDefault();
-      await updateUser(selectedAvatar, updatedUser);
-      setUpdatedUser((prevUser) => ({
-        ...prevUser,
-        firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
-        lastName: updatedUser?.updatedLastName || prevUser?.updatedLastName,
-        email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
-        avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
-      }));
-      setUser((prevUser) => ({
-        ...prevUser,
-        firstName: updatedUser?.updatedFirstName || prevUser?.firstName,
-        lastName: updatedUser?.updatedLastName || prevUser?.lastName,
-        email: updatedUser?.updatedEmail || prevUser?.email,
-        avatar: updatedUser?.updatedAvatar || prevUser?.avatar,
-      }));
+      
+      // Check if the updated user data is different from the previous user data
+      if (
+        updatedUser &&
+        (updatedUser.updatedFirstName !== user.firstName ||
+          updatedUser.updatedLastName !== user.lastName ||
+          updatedUser.updatedEmail !== user.email ||
+          updatedUser.updatedAvatar !== user.avatar)
+      ) {
+        await updateUser(selectedAvatar, updatedUser);
+        setUser((prevUser) => ({
+          ...prevUser,
+          firstName: updatedUser.updatedFirstName || prevUser.firstName,
+          lastName: updatedUser.updatedLastName || prevUser.lastName,
+          email: updatedUser.updatedEmail || prevUser.email,
+          avatar: updatedUser.updatedAvatar || prevUser.avatar,
+        }));
+        setUpdatedUser(undefined); // Reset updatedUser after successful update
+      } else {
+        console.log("User data has not changed. No update required.");
+      }
     } catch (error) {
-      console.error("Error creating product:", error);
-      setError("Failed to create the product. Please try again."); // Set an appropriate error message
+      console.error("Error updating user:", error);
+      setError("Failed to update the user. Please try again."); // Set an appropriate error message
     } finally {
       setLoading(false);
     }
@@ -82,15 +94,42 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="app-profile-container__form__group">
+        <div className="app-profile-container__form__group">
+          <label>
+            {" "}
+            Email
+            <input
+              value={updatedUser?.updatedEmail }
+              placeholder={user?.email }
+              type="email"
+              name="updatedEmail"
+              onChange={handleInputChange}
+            />
+          </label>
+          
+        </div>
+        <div className="app-profile-container__form__group">
+          
+            <input
+              value={updatedUser?.updatedPassword }
+              placeholder={user?.password }
+              type="password"
+              hidden
+              name="updatedPassword"
+              onChange={handleInputChange}
+            />
+          
+        </div>
           <label>
             {" "}
             First Name
             <input
-              placeholder={user?.firstName || "John"}
-              value={updatedUser?.updatedFirstName || ""}
+              placeholder={user?.firstName }
+              value={updatedUser?.updatedFirstName }
               type="text"
-              onChange={handleInputChange}
               name="updatedFirstName"
+              onChange={handleInputChange}
+
             />
           </label>
         </div>
@@ -99,31 +138,19 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             {" "}
             Last Name
             <input
-              placeholder={user?.lastName || "Doe"}
-              value={updatedUser?.updatedLastName || ""}
+              placeholder={user?.lastName }
+              value={updatedUser?.updatedLastName }
               type="text"
               name="updatedLastName"
               onChange={handleInputChange}
             />
           </label>
         </div>
-        <div className="app-profile-container__form__group">
-          <label>
-            {" "}
-            Email
-            <input
-              value={updatedUser?.updatedEmail || ""}
-              placeholder={user?.email || "useremail@tmail.com"}
-              type="email"
-              name="updatedEmail"
-              onChange={handleInputChange}
-            />
-          </label>
-          {typeof user?.avatar === "string" && (
-            <img src={user?.avatar || " "} alt={user?.email || "User Photo"} loading="lazy"/>
-          )}{" "}
-        </div>
+   
         <label> Avatar </label>
+        {typeof user?.avatar === "string" && (
+            <img src={user?.avatar } alt={user?.email || "User Photo"} loading="lazy"/>
+          )}{" "}
         <input
           id="avatarUrl"
           className=""

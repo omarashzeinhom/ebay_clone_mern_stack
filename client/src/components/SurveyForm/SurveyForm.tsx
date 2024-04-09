@@ -16,7 +16,6 @@ export default function SurveyForm({ total }: any) {
   const [notification, setNotification] = useState<Notification | null>(null); 
   const [loading, setLoading] = useState(false); // New state for loading
 
-
   const name = user?.firstName;
   console.log(`name====${name}`)
 
@@ -60,6 +59,9 @@ export default function SurveyForm({ total }: any) {
     sendEmail(); // Call sendEmail function to send the email
   };
 
+  // Separate the logic for setting the placeholder
+  let namePlaceholder = user ? user.firstName : (business ? business.businessName : "User Not Logged In");
+
   return (
     <>
       <Nav total={total} />
@@ -74,11 +76,9 @@ export default function SurveyForm({ total }: any) {
             <label>
               <em>Name:</em>
               <input
-                placeholder={
-                  user?.firstName || business?.businessName || "John Doe"
-                }
+                placeholder={namePlaceholder}
                 className="app__signin-input"
-                defaultValue={`${user?.firstName}` || `${business?.businessName}` || ""}
+                defaultValue={user?.firstName || business?.businessName || ""}
                 readOnly
               />
             </label>

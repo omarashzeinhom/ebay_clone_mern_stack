@@ -22,35 +22,49 @@ const secretKey = process.env.JWT_SECRET;
 /* <---------- User Async Functions Start ----------> */
 
 exports.register = async (req, res) => {
-  const { firstName, lastName, email, password, avatar } = req.body;
-
-  //Debug
-  console.log(`Received User register request: ---> ${req?.body}`);
-
   try {
+    const { firstName, lastName, email, password, avatar } = req.body;
+
+    // Sanitize and validate user inputs
+    if (!firstName || !lastName || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    // Check if the email already exists in the database
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
+    // Hash the password before storing it in the database
     const hashedPassword = await bcrypt.hash(password, 10);
-
+    // Upload avatar to Cloudinary if provided
+    let avatarUrl = "";
+    if (avatar) {
+      const result = await cloudinary.uploader.upload(avatar);
+      avatarUrl = result.secure_url;
+    }
+    // Create a new user instance
     const newUser = new User({
       firstName,
       lastName,
       email,
       password: hashedPassword,
-      avatar: avatar || " ",
+      avatar: avatarUrl, // It's better not to store default value as space
     });
 
+    // Save the new user to the database
     await newUser.save();
 
+    // Return a success response
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    console.error(error);
+    // Handle any errors that occurred during the registration process
+    console.error("Error in register:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 exports.getUser = async (req, res) => {
   try {
     // Verify that the user is authenticated and has a valid userId
@@ -58,13 +72,24 @@ exports.getUser = async (req, res) => {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
-    // Fetch the user from the database
-    const user = await User.findById(req.user.userId).populate({ path: "avatar", select: "_id name" });
-
-    if (!user) {
-      return res.status(400).json({ message: "User not found" });
+    // Sanitize and validate the userId
+    const userId = req.user.userId;
+    if (!userId) {
+      return res.status(400).json({ message: "Invalid userId" });
     }
 
+    // Fetch the user from the database using a secure method
+    const user = await User.findById(userId).populate({
+      path: "avatar",
+      select: "_id name",
+    });
+
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Return the user data in the response
     res.status(200).json({
       userId: user._id,
       email: user.email,
@@ -73,38 +98,98 @@ exports.getUser = async (req, res) => {
       avatar: user.avatar ? user.avatar._id : null,
     });
   } catch (error) {
-    console.error(error);
+    // Handle any errors that occurred during the process
+    console.error("Error in getUser:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
-  // console.log(`logged in with ${email} ${password}`);
 
   try {
+    // Validate input: Check if email and password are provided
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Email and password are required" });
+    }
+
+    // Find the user by email
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
+    // Compare the provided password with the hashed password stored in the database
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
+    // Generate a JWT token for authentication
     const token = jwt.sign({ userId: user._id, email: user.email }, secretKey, {
       expiresIn: "1h",
     });
 
-    //Debug
-    console.log(`User login successful: ---> ${req?.body}`);
+    // Log successful login attempt
+    console.log(`User login successful: ${email}`);
 
+    // Respond with the token and expiration time
     res.status(200).json({ token, expiresIn: 3600 });
   } catch (error) {
-    console.error(error);
+    // Handle any errors that occurred during the login process
+    console.error("Error in login:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+exports.updateUser = async (req, res) => {
+  const { updatedFirstName, updatedLastName, updatedEmail, avatar, password } =
+    req.body;
+  const userId = req.user.userId; // Assuming userId is extracted from authentication middleware
+
+  try {
+    // Upload new avatar to Cloudinary if provided
+    let avatarUrl = ""; // Define avatarUrl variable to store Cloudinary URL
+    if (avatar) {
+      const result = await cloudinary.uploader.upload(avatar);
+      avatarUrl = result.secure_url;
+    }
+
+    // Construct updates object with sanitized data
+    const updates = {};
+    if (updatedFirstName && typeof updatedFirstName === "string") {
+      updates.firstName = updatedFirstName;
+    }
+    if (updatedLastName && typeof updatedLastName === "string") {
+      updates.lastName = updatedLastName;
+    }
+    if (updatedEmail && typeof updatedEmail === "string") {
+      updates.email = updatedEmail;
+    }
+    if (avatarUrl && typeof avatarUrl === "string") {
+      updates.avatar = avatarUrl;
+    }
+    if (password && typeof password === "string") {
+      // Hash the password before updating
+      const hashedPassword = await bcrypt.hash(password, 10);
+      updates.password = hashedPassword;
+    }
+
+    // Update user document using Mongoose method
+    const updatedUser = await User.findByIdAndUpdate(userId, updates, {
+      new: true,
+    });
+
+    // Return updated user data in the response
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error("Error in updateUser:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 /* <---------- User Async Functions End ----------> */
 
 /* <---------- Business Async Functions Start ----------> */
@@ -120,13 +205,16 @@ exports.registerBusiness = async (req, res) => {
       businessAvatar,
     } = req.body;
 
-    //Debug
-    console.log(`Received Business register request: ---> ${req?.body}`);
+    // Validate input: Check if required fields are provided
+    if (!businessName || !businessEmail || !businessPassword) {
+      return res
+        .status(400)
+        .json({ message: "Business name, email, and password are required" });
+    }
 
     // Check if the email is already associated with a user or a business
     const existingUser = await User.findOne({ businessEmail });
     const existingBusiness = await Business.findOne({ businessEmail });
-
     if (existingBusiness || existingUser) {
       return res
         .status(400)
@@ -147,7 +235,7 @@ exports.registerBusiness = async (req, res) => {
     });
 
     await newBusiness.save();
-    console.log(`New business registered: -->>> ${newBusiness}`);
+    console.log(`New business registered: ${newBusiness}`);
 
     // Respond with a success message or any relevant data
     res.status(201).json({
@@ -165,11 +253,20 @@ exports.loginBusiness = async (req, res) => {
   const { businessEmail, businessPassword } = req.body;
 
   try {
+    // Validate input: Check if email and password are provided
+    if (!businessEmail || !businessPassword) {
+      return res
+        .status(400)
+        .json({ message: "Email and password are required" });
+    }
+
+    // Find the business by email
     const business = await Business.findOne({ businessEmail });
     if (!business) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
+    // Validate password
     const isPasswordValid = await bcrypt.compare(
       businessPassword,
       business.businessPassword
@@ -178,6 +275,7 @@ exports.loginBusiness = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
+    // Generate JWT token
     const token = jwt.sign(
       {
         businessName: business.businessName,
@@ -190,68 +288,88 @@ exports.loginBusiness = async (req, res) => {
       }
     );
 
-    //Debug
-    console.log(`Business login successful: ---> ${req?.body}`);
+    // Log successful login
+    console.log(`Business login successful: ${businessEmail}`);
 
+    // Return token and expiration time
     res.status(200).json({ token, expiresIn: 3600 });
   } catch (error) {
-    console.error(error);
+    // Handle any unexpected errors
+    console.error("Error in loginBusiness:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 exports.getBusiness = async (req, res) => {
   try {
-    const business = req?.business;
+    // Ensure that the business data exists in the request
+    if (!req.business) {
+      return res.status(404).json({ message: "Business not found" });
+    }
 
-    //Debug
-    // console.log(`getBusiness request : ---> ${req?.body}`);
+    // Extract relevant business information
+    const { businessId, businessEmail, businessName } = req.business;
 
+    // Return business data in the response
     res.status(200).json({
-      businessId: business?.businessId,
-      businessEmail: business?.businessEmail,
-      businessName: business?.businessName,
+      businessId,
+      businessEmail,
+      businessName,
     });
   } catch (error) {
-    console.error(error);
+    console.error("Error in getBusiness:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+exports.updateBusiness = async (req, res) => {
+  const {
+    updatedBusinessName,
+    updatedBusinessEmail,
+    updatedBusinessAvatar,
+    password,
+  } = req.body;
+  const businessId = req.business.businessId; // Assuming userId is extracted from authentication middleware
+
+  try {
+    let avatarUrl = ""; // Define avatarUrl variable to store Cloudinary URL
+
+    // Upload new avatar to Cloudinary if provided
+    if (updatedBusinessAvatar) {
+      const result = await cloudinary.uploader.upload(updatedBusinessAvatar);
+      avatarUrl = result.secure_url;
+    }
+
+    // Construct updates object with sanitized data
+    const updates = {};
+    if (updatedBusinessName && typeof updatedBusinessName === "string") {
+      updates.businessName = updatedBusinessName;
+    }
+    if (updatedBusinessEmail && typeof updatedBusinessEmail === "string") {
+      updates.businessEmail = updatedBusinessEmail;
+    }
+    if (updatedBusinessAvatar && typeof updatedBusinessAvatar === "string") {
+      updates.businessAvatar = updatedBusinessAvatar;
+    }
+    if (password && typeof password === "string") {
+      // Hash the password before updating
+      const hashedPassword = await bcrypt.hash(password, 10);
+      updates.password = hashedPassword;
+    }
+
+    // Update Business document using Mongoose method
+    const updatedBusiness = await Business.findByIdAndUpdate(
+      businessId,
+      updates,
+      { new: true }
+    );
+
+    // Return updated user data in the response
+    res.status(200).json(updatedBusiness);
+  } catch (error) {
+    console.error("Error in updateUser:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 /* <---------- Business Async Functions End ----------> */
-
-exports.updateUser = async (req, res) => {
-  const { email, avatar, userId } = req.body;
-  const { updatedFirstName, updatedLastName, updatedEmail } = req.body;
-
-  try {
-    let avatarLink = avatar; // Default to the existing avatar
-    if (avatar) {
-      // Upload the avatar to Cloudinary only if it's provided
-      const result = await cloudinary.v2.uploader.upload(avatar);
-      avatarLink = result?.secure_url;
-    }
-
-    //Fix for  Database query built from user-controlled sources 
-    const updatedUser = await User.findByIdAndUpdate(
-      { _id: userId },
-      {
-        _id: userId,
-        firstName: updatedFirstName || firstName,
-        lastName: updatedLastName || lastName,
-        email: updatedEmail || email,
-        avatar: avatarLink || avatar,
-        password: password,
-      },
-      { new: true } // Return the updated document
-    ).lean(); // Ensure it returns a plain JavaScript object, not a Mongoose Document.
-    res.status(200).json({
-      message: "User updated successfully",
-      updatedUser,
-      avatarLink,
-    });
-  } catch (error) {
-    console.error(`Error in updateUser: ${error}`);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};

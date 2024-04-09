@@ -1,7 +1,10 @@
+//authRoutes.js
+
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
 const verifyToken = require("../middleware/verifyToken"); 
+
 
 // User Routes 
 router.post("/login", authController.login);
@@ -14,7 +17,12 @@ router.post("/registerb", authController.registerBusiness);
 router.get("/business", verifyToken, authController.getBusiness); 
 
 // Update user route
-router.post("/user/:id", verifyToken, authController.updateUser);
+router.put("/user/:id", verifyToken, authController.updateUser);
+router.get("/user/:id", verifyToken, authController.updateUser);
+
+router.get("/business/:id", verifyToken, authController.updateBusiness);
+router.put("/business/:id", verifyToken, authController.updateBusiness);
+
 
 // Additional routes
 router.get("/auth/register", (req, res) => {

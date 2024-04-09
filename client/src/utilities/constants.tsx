@@ -1,12 +1,22 @@
-import { ProfilerOnRenderCallback } from "react";
+//import { ProfilerOnRenderCallback } from "react";
 // CHG DEVELOPMENT AND PRODUCTION
 export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
 
-const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
+const HOME_URL = "http://localhost:3000/";
 const DEVELOP_URL = "http://localhost:3000/";
 //const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
 
 //const SERVER_DEVELOP_URL = "http://localhost:3001/";
+
+
+// Config Constants 
+
+export const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
+export const businessProductsfolderPath = "ebay-clone-mern-images/businesses/products";
+export const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+
+// Append folder path as a parameter
+export const bussinessProductsFullUploadUri = `${businessProductsUploadEndPoint}?folder=${businessProductsfolderPath}`;
 
 /* NavBar Items Start */
 const navItems = [
@@ -380,15 +390,21 @@ changes to your account.`;
 
 // Create the onRender function
 // Define the onRender function with the correct signature
-export const onRender: ProfilerOnRenderCallback = (
-  id,
-  phase,
-  actualDuration,
-  baseDuration,
-  startTime,
-  commitTime,
-  interactions
+/**
+ * 
+ * export const onRender: ProfilerOnRenderCallback = (
+  id: any,
+  phase: any,
+  actualDuration: any,
+  baseDuration: any,
+  startTime: any,
+  commitTime: any,
+  interactions: any,
+  root: any, // Additional parameter
+  ...args: any[]
 ) => {
+  // Your implementation here
+
   // Convert duration values to seconds
   const actualDurationInSeconds = actualDuration / 1000;
   const baseDurationInSeconds = baseDuration / 1000;
@@ -406,11 +422,14 @@ export const onRender: ProfilerOnRenderCallback = (
   console.log(`Start Time: ${startTimeInSeconds} s`);
   console.log(`Commit Time: ${commitTimeInSeconds} s`);
   console.log(`Interactions: ${JSON.stringify(interactions)}`);
+  console.log(`Root: ${root}`);
   console.log(
     "---------- Performance Gotten From Profiler Hook --------------"
   );
 };
 
+ * 
+ */
 export {
   navItems,
   myEbayItems,

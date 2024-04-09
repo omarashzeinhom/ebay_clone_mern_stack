@@ -13,7 +13,7 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const navigate = useNavigate();
-  const { token, user, logout, business, fetchUserInformation } = useAuth();
+  const { token, user, logout, business, fetchUserInformation, fetchBusinessInformation } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
   // Debug
@@ -21,7 +21,13 @@ const Nav: React.FC<NavProps> = ({ total }) => {
 
   const [notificationCount, setNotificationCount] = useState(0);  // Assuming you have a way to update the notification count
   
-  
+ 
+if (notificationCount !== 0){
+  console.log(`setNotificationCount--->${setNotificationCount}`);
+  console.log(`notificationCount--->${notificationCount}`);
+
+}
+
   const handleNotificationIconClick = () => {
     // Show/hide the notification modal
     setIsNotificationModalVisible(!isNotificationModalVisible);
@@ -60,14 +66,23 @@ const Nav: React.FC<NavProps> = ({ total }) => {
 
   useEffect(() => {
     // DEBUG
-    // console.log(`token in Nav.tsx ====> ${token}`);
-    // console.log(`user in Nav.tsx ====> ${user}`);
-    if (token) {
-      fetchUserInformation(token);
+   
+    if (token && user && user.userId && !business) { // Check if user exists and is not a business
+        fetchUserInformation(token);
+    }else if (token && !user  && business) {
+        fetchBusinessInformation(token);
     }
-    // Causes Infinte loop error if the dependency is added
-    // eslint-disable-next-line
-  }, []);
+   
+   const logoutTimeout = setTimeout(() => {
+    logout();
+    alert("You have been logged out due to inactivity.");
+    navigate(`/`);
+  }, 3600 * 1000); // 1 hour in milliseconds
+  return () => clearTimeout(logoutTimeout);
+  }, );
+
+
+  
 
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>

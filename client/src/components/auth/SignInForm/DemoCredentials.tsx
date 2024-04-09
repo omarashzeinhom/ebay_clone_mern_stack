@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./DemoCredentials.scss"; // Assuming you have a separate SCSS file for styling
 
 const DemoCredentials = () => {

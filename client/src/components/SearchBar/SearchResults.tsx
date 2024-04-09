@@ -1,30 +1,84 @@
-// SearchResults.tsx
-import { useEffect } from "react";
-import { useProductContext } from "../../context/ProductContext";
-import ProductList from "../Product/ProductList/ProductList";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import SearchBar from "./SearchBar";
+import Nav from "../Nav/Nav";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+import { useProductContext } from "../../context/ProductContext";
+import "./SearchResults.scss";
+import CategorySideBar from "../Categories/CategorySideBar/CategorySideBar";
 
 const SearchResults: React.FC = () => {
-  const { fetchProductsBySearch, searchResults } = useProductContext();  const location = useLocation();
+  const { getProductsByName, searchResults } = useProductContext();
+  const [product, setProduct] = useState<any | null>(null);
+  const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query") || "";
 
-  useEffect(() => {
-    // Console.log to check if searchResults are received
-    console.log("Search Results in SearchResults component:", searchResults);
+  const { addItemToCart, getItemQuantity } = useShoppingCart();
 
-    // Fetch products based on the search query
-    if (searchQuery) {
-      fetchProductsBySearch(searchQuery);
-    }
-    // eslint-disable-next-line
-  }, [searchQuery]); // Only fetch products when searchQuery changes
+  useEffect(() => {
+    const fetchData = async () => {
+      if (searchQuery) {
+        const productData = await getProductsByName(searchQuery);
+        setProduct(productData);
+      }
+    };
+  
+    fetchData();
+  
+    console.log(product); // This will log the previous state, not the updated state
+  }, [searchQuery, getProductsByName, product]);
+
+  const productLink = (productId: string) => `/item/${productId}`;
+  const id = product?.id;
+  const quantity = getItemQuantity(id);
+  const flattenedResults = searchResults?.flatMap(innerArray => innerArray);
+
+const strQuery = JSON.stringify(searchQuery);
+
   return (
-    <div>
-      <h2>Search Results for "{searchQuery}"</h2>
-      <ProductList products={searchResults} />
-    </div>
+    <>
+      <Nav total={0} />
+      <SearchBar />
+      <div className="product-list-layout">      
+        <CategorySideBar />
+        <div className="product-list">
+          <h2 className="product-list__header">Searched  Results For {strQuery}</h2>
+
+          <ul className="product-list__product-list">
+            {flattenedResults !== undefined && flattenedResults.length > 0 ? (
+              flattenedResults.map((result: any, index: any) => (
+                <li key={result?._id} className="product-list__product-list-item">
+                  <div className="product-list__product-list-item-top">
+                    <a className="product-list__product-link" href={`${productLink(result?._id)}`}>
+                      <img className="product-list__product-list-image" src={result?.img} alt={result?.name} loading="lazy" />
+                      <p className="product-list__product-list-name">{result?.name}</p>
+                    </a>
+                    <div className="product-list__product-list-price-container">
+                      {quantity === 0 && (
+                        <button className="product-list__product-detail-button" onClick={() => addItemToCart(result)}>
+                          Add to Cart
+                        </button>
+                      )}
+                      <span className="product-list__product-list-price">{result?.price}$</span>
+                    </div>
+                    <p className="product-list__product-list-category">
+                      <em>Category:</em>
+                      <br />
+                      <br />
+                      <a href={`${encodeURIComponent(result?.category)}`}>{result?.category}</a>
+                    </p>
+                    <div></div>
+                  </div>
+                </li>
+              ))
+            ) : (
+              <p>No results found for "{searchQuery}"</p>
+            )}
+          </ul>
+        </div>
+      </div>
+    </>
   );
 };
-
 
 export default SearchResults;

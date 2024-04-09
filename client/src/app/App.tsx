@@ -20,11 +20,11 @@ import {
   ProductList,
   ProductDetail,
   Profile,
-  /**ErrorBoundary, */
   SearchResults,
   ErrorBoundary,
 } from "../components";
 import { CategoryProvider } from "../context/CategoryContext";
+
 
 type AppProps = {
   total: number;
@@ -71,7 +71,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: <Survey />,
     },
     {
-      path: "/search-results", // Define the route for search results
+      path: "/search-results/:name", // Define the route for search results
       element: <SearchResults />,
     },
     {
@@ -89,14 +89,14 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults} />
+          <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
       children: categories.map((category) => ({
         path: `/category/${encodeURIComponent(category?.name)}`,
         element: (
           <ProductProvider key={category?.name || " "}>
-            <ProductList products={searchResults} />
+            <ProductList products={searchResults || []} />
           </ProductProvider>
         ),
       })),
@@ -107,7 +107,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults} />
+          <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
     },
@@ -116,7 +116,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       element: (
         <ProductProvider>
           <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults} />
+          <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
     },
@@ -146,6 +146,7 @@ const App: React.FC<AppProps> = ({ total }) => {
   ];
 
   const router = createBrowserRouter(routes);
+
 
   return (
     <React.StrictMode>

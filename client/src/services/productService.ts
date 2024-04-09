@@ -1,7 +1,6 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { Product } from "../models/product";
 import { API_BASE_URL } from "../utilities/constants";
-
 
 export const productService = {
   getAllProducts: async (
@@ -45,22 +44,45 @@ export const productService = {
     }
   },
 
+  // Adjust the service function to accept productName parameter
+  getProductsByName: async (
+    productName: string
+  ): Promise<Product | undefined> => {
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}products/search-results/${encodeURIComponent(
+          productName
+        )}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch product");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching products by Name:", error);
+      return undefined;
+    }
+  },
   createProduct: async (product: {
     id: number;
-    quantity: number;
     name: string;
-    img: string | File; 
+    description : string;
+    quantity: number;   
+    img: string | File;
     price: number;
     category: string;
     parent: string;
     businessId: string | undefined;
+
   }) => {
     try {
       const response = await axios.post(
-        `${API_BASE_URL}products/product`,
+        `${API_BASE_URL}products/create/`,
         product
       );
-      
+
       return response?.data;
     } catch (error) {
       console.error(`Error in createProduct, in productService.ts: ${error}`);
@@ -70,50 +92,28 @@ export const productService = {
 
   updateProduct: async (product: {}) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
+      const response = await axios.post(
+        `${API_BASE_URL}products/product/:${product}`
+      );
       return response?.data;
     } catch {}
   },
 
   readProduct: async (product: {}) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
+      const response = await axios.post(
+        `${API_BASE_URL}products/product/:${product}`
+      );
       return response?.data;
     } catch {}
   },
 
   deleteProduct: async (product: {}) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}products/product/:${product}`);
+      const response = await axios.post(
+        `${API_BASE_URL}products/product/:${product}`
+      );
       return response?.data;
     } catch {}
   },
-
-  getProductsBySearch: async (searchQuery: string): Promise<Product[]> => {
-    try {
-      const response: AxiosResponse<Product[]> = await axios.get(
-        `${API_BASE_URL}search/?query=${encodeURIComponent(searchQuery)}`,
-        { timeout: 5000 } // Set a timeout value in milliseconds (adjust as needed)
-      );
-      return response.data;
-    } catch (error: any) {
-      if (axios.isCancel(error)) {
-        console.log('Request canceled:', error.message);
-      } else if (error.response) {
-        console.log('Server responded with a non-2xx status:', error.response.status);
-      } else if (error.code === 'ECONNABORTED') {
-        console.log('The request timed out:', error.message);
-        // Return a default value or an empty array
-        return [];
-      } else {
-        console.error('Unexpected error:', error.message);
-      }
-      // Return a default value or an empty array in case of an error
-      return [];
-      // Re-throw the error only if you want to propagate it further
-      // throw error;
-    }
-  },
-
-
 };

@@ -10,8 +10,7 @@ import { useProductContext } from "../../context/ProductContext";
 export default function SearchBar() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const { setSearchResults } = useProductContext();
+  const { setSearchResults,searchQuery,setQuery } = useProductContext();
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -52,9 +51,9 @@ export default function SearchBar() {
   const handleSearch = async () => {
     if (searchQuery.trim() !== "") {
       try {
-        const searchResults = await productService.getProductsBySearch(searchQuery);
-        setSearchResults(searchResults); // Set search results in the context
-        navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`); // Navigate to search results page
+        const searchResult = await productService.getProductsByName(searchQuery);
+        setSearchResults(searchResult ? [searchResult] : []); // Set search results as an array, even if empty
+        navigate(`/search-results/${encodeURIComponent(searchQuery)}`); // Navigate to search results page with query parameter
       } catch (error) {
         console.error("Error fetching search results:", error);
       }
@@ -98,33 +97,31 @@ export default function SearchBar() {
             id="app__search"
             placeholder="Search for anything"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => setQuery(e.target.value)}
           />
-         
         </div>
         <button
-            className="app__searchbar-searchBtn"
-            id="searchBtn"
-            onClick={handleSearch}
-          >
-            <HiMagnifyingGlass className="app__searchbar-searchicon" />
-          </button>
+          className="app__searchbar-searchBtn"
+          id="searchBtn"
+          onClick={handleSearch}
+        >
+          <HiMagnifyingGlass className="app__searchbar-searchicon" />
+        </button>
         <select
-            onChange={handleChange}
-            className={`app__searchbar-form-dropDown ${
-              isMobile ? "app__searchbar-form-dropDown-mobile" : ""
-            }`}
-            id="categories__right"
-          >
-            {!isMobile && <option hidden>All Categories</option>}
-            {categories.map((category: Category, index: number) => (
-              <option key={index} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+          onChange={handleChange}
+          className={`app__searchbar-form-dropDown ${
+            isMobile ? "app__searchbar-form-dropDown-mobile" : ""
+          }`}
+          id="categories__right"
+        >
+          {!isMobile && <option hidden>All Categories</option>}
+          {categories.map((category: Category, index: number) => (
+            <option key={index} value={category.name}>
+              {category.name}
+            </option>
+          ))}
+        </select>
       </div>
-      
     </div>
   );
 }
