@@ -91,20 +91,19 @@ export default function CreateProduct() {
       // Store the Cloudinary URL in MongoDB
       const productData = {
         id: formData.id,
-        businessId: formData.businessId,
         name: formData.name,
-        img: cloudinaryImageUrl, // Store the Cloudinary URL here
         description: formData.description,
+        img: cloudinaryImageUrl, // Store the Cloudinary URL here
         price: formData.price,
         quantity: formData.quantity,
         category: formData.category,
         parent: formData.parent,
+        businessId: formData.businessId,
       };
   
       // Call your backend service to store the product data in MongoDB
       const data = await productService.createProduct({
         id: formData.id,
-        businessId: formData.businessId,
         name: formData.name,
         img: cloudinaryImageUrl,
         description: formData.description,
@@ -112,7 +111,9 @@ export default function CreateProduct() {
         quantity: formData.quantity,
         category: formData.category,
         parent: formData.parent,
-      });      console.log("Product created:", data);
+        businessId: formData.businessId,
+      });      
+      console.log("Product created:", data);
   
       // Resetting the form after successful submission
       setFormData((prevState) => ({

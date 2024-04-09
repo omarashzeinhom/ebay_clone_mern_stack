@@ -18,37 +18,38 @@ class ProductController {
 
   async createProduct(req, res) {
     try {
-      const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
-      let image = " "; // Define avatarUrl variable to store Cloudinary URL
+      let image = req.body.img; // Assuming the image URL or file data is in req.body.img
+  
+      // Check if image is provided (optional)
       if (image) {
-        const result = await cloudinary.uploader.upload(image,uploadPreset);
-        const productUrl = result.secure_url;
-          //console.log(productUrl);
-          const { id, description, quantity, img, name, price, category, parent, businessId } =
-          req.body;
-          
-          const newProduct = new Product({
-            id,
-            quantity,
-            name,
-            description,
-            img: productUrl,
-            price,
-            category,
-            parent,
-            businessId,
-          });
-        
-    
-          const savedProduct = await newProduct.save();
-          res.json(savedProduct);
-       
-          
+        try {
+          const result = await cloudinary.uploader.upload(image);
+          image = result.secure_url; // Update image variable with the Cloudinary URL
+        } catch (uploadError) {
+          console.error("Error uploading image to Cloudinary:", uploadError);
+          return res.status(500).json({ message: "Error uploading image" });
+        }
       }
-     
+  
+      const { id, description, quantity, name, price, category, parent, businessId } = req.body;
+  
+      const newProduct = new Product({
+        id,
+        quantity,
+        name,
+        description,
+        img: image, // Use the updated image URL if available
+        price,
+        category,
+        parent,
+        businessId,
+      });
+  
+      const savedProduct = await newProduct.save();
+      res.json(savedProduct);
     } catch (error) {
       console.error("Error creating product:", error);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).json({ message: "Internal Server Error" }); // Consistent message
     }
   }
   async getProductById(req, res) {
@@ -71,25 +72,31 @@ class ProductController {
     const query = req.params.query;
     console.log("Search query: " + query);
     try {
-        const regexQuery = new RegExp(query, 'i');
-        console.log("Regex query: ", regexQuery);
-        const products = await Product.find({ name: regexQuery });
-        console.log("Products: ", products);
-        if (!products || products.length === 0) {
-            return res.status(404).json({ message: "No products found for the search query" });
-        }
-        res.json(products);
-    } catch (error) {
-        console.error("Error fetching products by name:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
-}
- 
-  async getProductsByBusinessId (req, res) {
-    try {
-      const products = await Product.find({ businessId: req.params.businessId });
+      const regexQuery = new RegExp(query, "i");
+      console.log("Regex query: ", regexQuery);
+      const products = await Product.find({ name: regexQuery });
+      console.log("Products: ", products);
       if (!products || products.length === 0) {
-        return res.status(404).json({ message: "Products not found for the given business ID" });
+        return res
+          .status(404)
+          .json({ message: "No products found for the search query" });
+      }
+      res.json(products);
+    } catch (error) {
+      console.error("Error fetching products by name:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
+  async getProductsByBusinessId(req, res) {
+    try {
+      const products = await Product.find({
+        businessId: req.params.businessId,
+      });
+      if (!products || products.length === 0) {
+        return res
+          .status(404)
+          .json({ message: "Products not found for the given business ID" });
       }
       res.json(products);
     } catch (error) {
@@ -97,8 +104,6 @@ class ProductController {
       res.status(500).json({ error: "Internal server error" });
     }
   }
-
-
 }
 
 module.exports = new ProductController();

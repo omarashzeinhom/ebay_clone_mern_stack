@@ -67,18 +67,19 @@ export const productService = {
   },
   createProduct: async (product: {
     id: number;
-    quantity: number;
     name: string;
     description : string;
+    quantity: number;   
     img: string | File;
     price: number;
     category: string;
     parent: string;
     businessId: string | undefined;
+
   }) => {
     try {
       const response = await axios.post(
-        `${API_BASE_URL}products/product`,
+        `${API_BASE_URL}products/create/`,
         product
       );
 

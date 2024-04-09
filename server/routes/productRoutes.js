@@ -35,13 +35,11 @@ router.post(
 
 // Needs Adjustments
 // Route to create a product
-router.post("/product", upload.single("img"), productController.createProduct);
+//router.post("/product", upload.single("img"), productController.createProduct);
 
 // POST Create Product Works Without Image
 router.post(
   "/create",
-  upload.array("file", 10),
-  Product,
   productController.createProduct
 );
 
