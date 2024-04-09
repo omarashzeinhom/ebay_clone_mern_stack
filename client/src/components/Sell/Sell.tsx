@@ -23,31 +23,14 @@ export default function Sell({ total }: SellProps) {
   };
   const signInLink = `${HOME_URL}/signin`;
 
-  const NoneSignedIn = () => {
-    return (
-      <>
-        <h2>No Business Logged In Please LogIn First</h2>
-        <a href={signInLink}>SignIn</a>
-      </>
-    );
-  };
-
-  if (!user || !business) {
-    return (
-      <>
-        <Nav total={total} />
-        <SearchBar />
-        <NoneSignedIn />
-      </>
-    );
-  }
-
   return (
     <>
       <Nav total={total} />
       <SearchBar />
-
-      <NoneSignedIn />
+      <h2>
+        If No Business is Logged In Please 
+        <a href={signInLink}> SignIn</a>
+      </h2>
 
       {user?.userId && (
         <>
