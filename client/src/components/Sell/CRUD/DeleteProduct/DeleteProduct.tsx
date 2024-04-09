@@ -12,12 +12,12 @@ export default function DeleteProduct() {
       id: 0,
       quantity: 0,
       name: "Product Mock",
+      description: "",
       img: "mockurl",
       price: 20,
       category: "Category Mock",
       parent: "Parent Mock",
       businessId: business?.businessId || "", // Default value, it will be Deleted later
-      file: [],
     },
   ];
 
@@ -41,7 +41,6 @@ export default function DeleteProduct() {
           <p>Image URL: {product.img}</p>
           <p>Parent: {product.parent}</p>
           <p>Category: {product.category}</p>
-          <p>File: {product.file.toString()}</p>
           <p>Price: {product.price}</p>
           <p>Quantity: {product.quantity}</p>
           <button

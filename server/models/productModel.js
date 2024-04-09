@@ -9,7 +9,6 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
   img: {
     type: String,
     required: false,
@@ -26,9 +25,6 @@ const ProductSchema = new mongoose.Schema({
   parent: {
     type: String,
     required: false,
-  },
-  files: {
-    type: Array
   },
   businessId: {
     type: String,

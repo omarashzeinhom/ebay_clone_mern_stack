@@ -18,7 +18,9 @@ router.get("/business", verifyToken, authController.getBusiness);
 
 // Update user route
 router.put("/user/:id", verifyToken, authController.updateUser);
+router.get("/user/:id", verifyToken, authController.updateUser);
 
+router.get("/business/:id", verifyToken, authController.updateBusiness);
 router.put("/business/:id", verifyToken, authController.updateBusiness);
 
 

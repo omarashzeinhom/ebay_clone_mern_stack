@@ -4,7 +4,7 @@ import "./CreateProduct.scss";
 import { categoriesService } from "../../../../services/categoryService";
 import { productService } from "../../../../services/productService";
 import { useAuth } from "../../../../context/AuthContext";
-//import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
+import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
 
 type FormData = {
   id: number;
@@ -16,7 +16,6 @@ type FormData = {
   quantity: number;
   category: string;
   parent: string;
-  file: [];
 };
 
 export default function CreateProduct() {
@@ -36,7 +35,6 @@ export default function CreateProduct() {
     quantity: 0,
     category: "",
     parent: "",
-    file: [],
   });
 
   useEffect(() => {
@@ -67,69 +65,60 @@ export default function CreateProduct() {
     try {
       setLoading(true);
       setError(null);
-
-      const formDataToSend = new FormData();
-      formDataToSend.append("id", formData.id.toString());
-      formDataToSend.append("businessId", formData.businessId);
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("img", formData.img as File);
-      formDataToSend.append("description", formData.description);
-      formDataToSend.append("price", formData.price.toString());
-      formDataToSend.append("quantity", formData.quantity.toString());
-      formDataToSend.append("category", formData.category);
-      formDataToSend.append("parent", formData.parent);
-      // DEBUG IF AXIOS ERROR EXISTS TO PREVENT IMAGE UPLOAD WHEN FORM
-      // IS NOT WORKING CORRECTLY
-      console.log(`error -> ${JSON.stringify(error)}`);
-
-      if (error !== "Failed to create the product. Please try again.") {
-        formDataToSend.append("file", formData.img);
-        // Prevent Adding Upload preset when formData is not passed to the backend.
-        formDataToSend.append(
-          "upload_preset",
-          `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
-        );
-      }
-
-      console.log("FormData to Send:", formDataToSend);
-
-      //const cloudinaryResponse = await fetch(bussinessProductsFullUploadUri, {
-      // method: "POST",
-      // body: formDataToSend,
-      //});
-      // When there is an issue with cloudinary
-      //if (!cloudinaryResponse.ok) {
-      // Handle the error, throw an exception, or log the details
-      //  const errorDetails = await cloudinaryResponse.json();
-      //  console.error("Cloudinary API Error:", errorDetails);
-      //  throw new Error("Failed to upload image to Cloudinary");
-      //}
-      //const cloudinaryData = await cloudinaryResponse.json();
-      //const cloudinaryImageUrl = cloudinaryData.secure_url;
-
-      //console.log("Cloudinary API Response:", cloudinaryData);
-
-      const updatedFormData: FormData = {
-        ...formData,
-        //img: cloudinaryImageUrl,
-      };
-
-      const data = await productService.createProduct(updatedFormData);
-      console.log("Product created:", data);
-
-      // Resetting the form after successful submission
-      setFormData({
-        id: 0,
-        businessId: "",
-        img: "",
-        name: "",
-        description: "",
-        price: 0,
-        quantity: 0,
-        category: "",
-        parent: "",
-        file: [],
+  
+      // Upload the image file to Cloudinary
+      const cloudinaryFormData = new FormData();
+      cloudinaryFormData.append("file", formData.img as File);
+      cloudinaryFormData.append(
+        "upload_preset",
+        `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+      );
+  
+      const cloudinaryResponse = await fetch(bussinessProductsFullUploadUri, {
+        method: "POST",
+        body: cloudinaryFormData,
       });
+  
+      if (!cloudinaryResponse.ok) {
+        const errorDetails = await cloudinaryResponse.json();
+        console.error("Cloudinary API Error:", errorDetails);
+        throw new Error("Failed to upload image to Cloudinary");
+      }
+  
+      const cloudinaryData = await cloudinaryResponse.json();
+      const cloudinaryImageUrl = cloudinaryData.secure_url;
+  
+      // Store the Cloudinary URL in MongoDB
+      const productData = {
+        id: formData.id,
+        businessId: formData.businessId,
+        name: formData.name,
+        img: cloudinaryImageUrl, // Store the Cloudinary URL here
+        description: formData.description,
+        price: formData.price,
+        quantity: formData.quantity,
+        category: formData.category,
+        parent: formData.parent,
+      };
+  
+      // Call your backend service to store the product data in MongoDB
+      const data = await productService.createProduct({
+        id: formData.id,
+        businessId: formData.businessId,
+        name: formData.name,
+        img: cloudinaryImageUrl,
+        description: formData.description,
+        price: formData.price,
+        quantity: formData.quantity,
+        category: formData.category,
+        parent: formData.parent,
+      });      console.log("Product created:", data);
+  
+      // Resetting the form after successful submission
+      setFormData((prevState) => ({
+        ...prevState,
+        img: "", // Reset img property to an empty string
+      }));
     } catch (error) {
       console.error("Error creating product:", error);
       setError("Failed to create the product. Please try again.");
@@ -137,6 +126,9 @@ export default function CreateProduct() {
       setLoading(false);
     }
   };
+  
+  
+
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -190,11 +182,18 @@ export default function CreateProduct() {
               <label>
                 Product Image:
                 <input
-                placeholder="File Upload Not Working"
-                  name="img"
+                placeholder="Upload Product Image Here"
+                  name="img" // need to pass another hidden input as string when full product is successfull 
                   type="file"
                   accept="image/*"
-                  disabled={true}
+                  //disabled={true}
+                  onChange={(e) => handleChange(e, "img")}
+                />
+                 <input
+                  name="" // need to pass another hidden input as string when full product is successfull 
+                  type="text"
+                  accept="image/*"
+                  hidden={true}
                   onChange={(e) => handleChange(e, "img")}
                 />
               </label>
@@ -255,3 +254,5 @@ export default function CreateProduct() {
     </div>
   );
 }
+
+

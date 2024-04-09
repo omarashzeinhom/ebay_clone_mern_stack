@@ -19,19 +19,21 @@ class ProductController {
   async createProduct(req, res) {
     try {
       const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
-      let image = ""; // Define avatarUrl variable to store Cloudinary URL
+      let image = " "; // Define avatarUrl variable to store Cloudinary URL
       if (image) {
         const result = await cloudinary.uploader.upload(image);
-        avatarUrl = result.secure_url;
+        const productUrl = result.secure_url;
+        console.log(productUrl);
       }
 
-      const { id, quantity, img, name, price, category, parent, businessId } =
+      const { id, description, quantity, img, name, price, category, parent, businessId } =
         req.body;
 
       const newProduct = new Product({
         id,
         quantity,
         name,
+        description,
         img,
         price,
         category,

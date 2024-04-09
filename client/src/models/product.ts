@@ -3,10 +3,10 @@ export interface Product {
   id: number;
   quantity: number;
   name: string;
+  description:string;
   img: string;
   price: number;
   category: string;
   parent: string;
   businessId: string;
-  file: [];
 }

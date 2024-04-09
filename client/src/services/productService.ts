@@ -69,12 +69,12 @@ export const productService = {
     id: number;
     quantity: number;
     name: string;
+    description : string;
     img: string | File;
     price: number;
     category: string;
     parent: string;
     businessId: string | undefined;
-    file: [];
   }) => {
     try {
       const response = await axios.post(
