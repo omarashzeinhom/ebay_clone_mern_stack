@@ -8,11 +8,11 @@ const DEVELOP_URL = "http://localhost:3000/";
 
 //const SERVER_DEVELOP_URL = "http://localhost:3001/";
 
-
-// Config Constants 
+// Config Constants
 
 export const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
-export const businessProductsfolderPath = "ebay-clone-mern-images/businesses/products";
+export const businessProductsfolderPath =
+  "ebay-clone-mern-images/businesses/products";
 export const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
 
 // Append folder path as a parameter
@@ -438,4 +438,3 @@ export {
   HOME_URL,
   DEVELOP_URL,
 };
-

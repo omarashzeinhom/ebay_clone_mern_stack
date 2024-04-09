@@ -8,6 +8,7 @@ import {
   DeleteProduct,
 } from "./CRUD";
 import { useState } from "react";
+import { HOME_URL } from "../../utilities/constants";
 
 interface SellProps {
   total: number;
@@ -21,10 +22,19 @@ export default function Sell({ total }: SellProps) {
     setSelectedBtn(selectedButton);
   };
 
+  const signInLink = `${HOME_URL}/signin`;
   return (
     <>
       <Nav total={total} />
       <SearchBar />
+
+      {user?.userId === null ||
+        (business?.businessId === null && (
+          <>
+            <h2>No Business Logged In Please LogIn First</h2>
+            <a href={signInLink}>SignIn</a>
+          </>
+        ))}
 
       {user?.userId && (
         <>
@@ -35,7 +45,7 @@ export default function Sell({ total }: SellProps) {
           </h2>
         </>
       )}
-      
+
       {business?.businessId != null && (
         <>
           <h2>Sell</h2>
