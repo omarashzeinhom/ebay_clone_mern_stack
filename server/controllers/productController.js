@@ -21,28 +21,31 @@ class ProductController {
       const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
       let image = " "; // Define avatarUrl variable to store Cloudinary URL
       if (image) {
-        const result = await cloudinary.uploader.upload(image);
+        const result = await cloudinary.uploader.upload(image,uploadPreset);
         const productUrl = result.secure_url;
-        console.log(productUrl);
+          //console.log(productUrl);
+          const { id, description, quantity, img, name, price, category, parent, businessId } =
+          req.body;
+          
+          const newProduct = new Product({
+            id,
+            quantity,
+            name,
+            description,
+            img: productUrl,
+            price,
+            category,
+            parent,
+            businessId,
+          });
+        
+    
+          const savedProduct = await newProduct.save();
+          res.json(savedProduct);
+       
+          
       }
-
-      const { id, description, quantity, img, name, price, category, parent, businessId } =
-        req.body;
-
-      const newProduct = new Product({
-        id,
-        quantity,
-        name,
-        description,
-        img,
-        price,
-        category,
-        parent,
-        businessId,
-      });
-
-      const savedProduct = await newProduct.save();
-      res.json(savedProduct);
+     
     } catch (error) {
       console.error("Error creating product:", error);
       res.status(500).json({ error: "Internal Server Error" });
