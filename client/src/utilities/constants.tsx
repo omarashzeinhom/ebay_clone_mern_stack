@@ -2,7 +2,7 @@
 // CHG DEVELOPMENT AND PRODUCTION
 export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
 
-const HOME_URL = "http://localhost:3000/";
+const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
 const DEVELOP_URL = "http://localhost:3000/";
 //const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
 
