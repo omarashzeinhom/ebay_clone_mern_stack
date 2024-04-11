@@ -22,50 +22,76 @@ const SearchResults: React.FC = () => {
         setProduct(productData);
       }
     };
-  
+
     fetchData();
-  
+
     console.log(product); // This will log the previous state, not the updated state
   }, [searchQuery, getProductsByName, product]);
 
   const productLink = (productId: string) => `/item/${productId}`;
   const id = product?.id;
   const quantity = getItemQuantity(id);
-  const flattenedResults = searchResults?.flatMap(innerArray => innerArray);
+  const flattenedResults = searchResults?.flatMap((innerArray) => innerArray);
 
-const strQuery = JSON.stringify(searchQuery);
+  const strQuery = JSON.stringify(searchQuery);
 
   return (
     <>
       <Nav total={0} />
       <SearchBar />
-      <div className="product-list-layout">      
+      <div className="product-list-layout">
         <CategorySideBar />
         <div className="product-list">
-          <h2 className="product-list__header">Searched  Results For {strQuery}</h2>
+          <h2 className="product-list__header">
+            Searched Results For {strQuery}
+          </h2>
 
           <ul className="product-list__product-list">
             {flattenedResults !== undefined && flattenedResults.length > 0 ? (
               flattenedResults.map((result: any, index: any) => (
-                <li key={result?._id} className="product-list__product-list-item">
+                <li
+                  key={result?._id}
+                  className="product-list__product-list-item"
+                >
                   <div className="product-list__product-list-item-top">
-                    <a className="product-list__product-link" href={`${productLink(result?._id)}`}>
-                      <img className="product-list__product-list-image" src={result?.img} alt={result?.name} loading="lazy" />
-                      <p className="product-list__product-list-name">{result?.name}</p>
+                    <a
+                      className="product-list__product-link"
+                      href={`${productLink(result?._id)}`}
+                    >
+                      <img
+                        className="product-list__product-list-image"
+                        src={result?.img}
+                        alt={result?.name}
+                        loading="lazy"
+                      />
+                      <p className="product-list__product-list-name">
+                        {result?.name}
+                      </p>
                     </a>
                     <div className="product-list__product-list-price-container">
                       {quantity === 0 && (
-                        <button className="product-list__product-detail-button" onClick={() => addItemToCart(result)}>
+                        <button
+                          className="product-list__product-detail-button"
+                          onClick={() => addItemToCart(result)}
+                        >
                           Add to Cart
                         </button>
                       )}
-                      <span className="product-list__product-list-price">{result?.price}$</span>
+                      <span className="product-list__product-list-price">
+                        {result?.price}$
+                      </span>
                     </div>
                     <p className="product-list__product-list-category">
                       <em>Category:</em>
                       <br />
                       <br />
-                      <a href={`${encodeURIComponent(result?.category)}`}>{result?.category}</a>
+                      <a
+                        href={`/category/${encodeURIComponent(
+                          result?.category
+                        )}`}
+                      >
+                        {result?.category}
+                      </a>
                     </p>
                     <div></div>
                   </div>
