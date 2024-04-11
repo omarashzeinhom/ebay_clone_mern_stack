@@ -41,8 +41,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   //user
   const [user, setUser] = useState<User | null>(null);
-  const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({});
-  //business
+  const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({
+    userId: "",
+  });  //business
   const [business, setBusiness] = useState<Business | null>(null);
   const [updatedBusiness, setUpdatedBusiness] = useState<UpdatedBusiness>({});
 

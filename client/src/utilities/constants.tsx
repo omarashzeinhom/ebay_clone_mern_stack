@@ -18,6 +18,16 @@ export const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/$
 // Append folder path as a parameter
 export const bussinessProductsFullUploadUri = `${businessProductsUploadEndPoint}?folder=${businessProductsfolderPath}`;
 
+// export const userUploads URIs 
+
+export const userUpdatesfolderPath =  "ebay-clone-mern-images/users/avatar";
+
+export const userUpdatesUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+
+
+export const userUpdatesFullUploadUri = `${userUpdatesUploadEndPoint}?folder=${userUpdatesfolderPath}`;
+
+
 /* NavBar Items Start */
 const navItems = [
   {

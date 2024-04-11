@@ -1,6 +1,9 @@
-import { useState } from "react";
-import { User,UpdatedUser } from "../../../models";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { User, UpdatedUser } from "../../../models";
 import { useAuth } from "../../../context/AuthContext";
+import { UpdatedUserFormData } from "../../../models/updateduser";
+import { userUpdatesFullUploadUri } from "../../../utilities/constants";
+import { authService } from "../../../services/authService";
 
 interface EditUserProfileProps {
   user: User;
@@ -10,31 +13,46 @@ interface EditUserProfileProps {
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
 }
 
-
-
 const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
-  const { updateUser, updatedUser, setUpdatedUser } = useAuth();
+  const { updateUser, updatedUser, setUpdatedUser, token } = useAuth();
   let { firstName, lastName, email, avatar } = user;
   const [selectedAvatar, setSelectedAvatar] = useState<File | undefined>(
     undefined
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
-  
-  
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-  
-    setUpdatedUser((prevData: any) => {
-      // Create a new object with the previous state properties
-      const updatedUser = { ...prevData };
-  
-      // Update the specific nested property based on the input name
-      updatedUser[name] = value;
-  
-      return updatedUser;
-    });
+
+  const [formData, setFormData] = useState<UpdatedUserFormData>({
+    userId: "",
+    updatedFirstName: "",
+    updatedLastName: "",
+    updatedEmail: "",
+    updatedAvatar: "",
+    updatedPassword: "",
+  });
+
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    fieldName: string
+  ) => {
+    if (
+      fieldName === "updatedAvatar" &&
+      e.target &&
+      e.target instanceof HTMLInputElement &&
+      e.target.files
+    ) {
+      const inputElement = e.target as HTMLInputElement;
+      setFormData((prevState) => ({
+        ...prevState,
+        [fieldName]: inputElement.files![0],
+      }));
+    } else {
+      const { name, value } = e.target;
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   console.log(
@@ -52,12 +70,13 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
     }
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
     try {
       setLoading(true);
       setError(null);
-      event.preventDefault();
-      
+      // Upload the image file to Cloudinary
       // Check if the updated user data is different from the previous user data
       if (
         updatedUser &&
@@ -66,17 +85,54 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
           updatedUser.updatedEmail !== user.email ||
           updatedUser.updatedAvatar !== user.avatar)
       ) {
-        await updateUser(selectedAvatar, updatedUser);
-        setUser((prevUser) => ({
-          ...prevUser,
-          firstName: updatedUser.updatedFirstName || prevUser.firstName,
-          lastName: updatedUser.updatedLastName || prevUser.lastName,
-          email: updatedUser.updatedEmail || prevUser.email,
-          avatar: updatedUser.updatedAvatar || prevUser.avatar,
+        const cloudinaryFormData = new FormData();
+        cloudinaryFormData.append("file", formData.updatedAvatar as File);
+        cloudinaryFormData.append(
+          "upload_preset",
+          `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+        );
+
+        const cloudinaryResponse = await fetch(userUpdatesFullUploadUri, {
+          method: "POST",
+          body: cloudinaryFormData,
+        });
+
+        if (!cloudinaryResponse.ok) {
+          const errorDetails = await cloudinaryResponse.json();
+          console.error("Cloudinary API Error:", errorDetails);
+          throw new Error("Failed to upload image to Cloudinary");
+        }
+
+        const cloudinaryData = await cloudinaryResponse.json();
+        const cloudinaryImageUrl = cloudinaryData.secure_url;
+
+        // Store the Cloudinary URL in MongoDB
+        const userData = {
+          userId: formData.userId,
+          firstName: formData.updatedFirstName,
+          lastName: formData.updatedLastName,
+          email: formData.updatedEmail,
+          avatar: cloudinaryImageUrl, // Store the Cloudinary URL here
+        };
+
+        const data = await authService.updateUser(
+          {
+            userId: formData.userId,
+            updatedFirstName: formData.updatedFirstName,
+            updatedLastName: formData.updatedLastName,
+            updatedEmail: formData.updatedEmail,
+            updatedAvatar: cloudinaryImageUrl, // Store the Cloudinary URL here
+          },
+          user?.userId,
+          token || ""
+        );
+
+        console.log("User updated", data);
+        // Resetting the form after successful submission
+        setFormData((prevState) => ({
+          ...prevState,
+          img: "", // Reset img property to an empty string
         }));
-        setUpdatedUser(undefined); // Reset updatedUser after successful update
-      } else {
-        console.log("User data has not changed. No update required.");
       }
     } catch (error) {
       console.error("Error updating user:", error);
@@ -94,70 +150,87 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="app-profile-container__form__group">
-        <div className="app-profile-container__form__group">
+          <div className="app-profile-container__form__group">
+            <label>
+              UserId
+              <input
+                value={updatedUser?.userId}
+                placeholder={user?.userId}
+                type="text"
+                name="userId"
+                onChange={(e) => handleInputChange(e, "userId")}
+              />
+            </label>
+          </div>
+
+          <div className="app-profile-container__form__group">
+            <label>
+              Email
+              <input
+                value={updatedUser?.updatedEmail}
+                placeholder={user?.email}
+                type="email"
+                name="updatedEmail"
+                onChange={(e) => handleInputChange(e, "updatedEmail")}
+              />
+            </label>
+          </div>
+          <div className="app-profile-container__form__group">
+            <label>
+              Password
+              <input
+                value={updatedUser?.updatedPassword}
+                placeholder={user?.password}
+                type="password"
+                hidden
+                name="updatedPassword"
+                onChange={(e) => handleInputChange(e, "updatedPassword")}
+              />
+            </label>
+          </div>
           <label>
-            {" "}
-            Email
-            <input
-              value={updatedUser?.updatedEmail }
-              placeholder={user?.email }
-              type="email"
-              name="updatedEmail"
-              onChange={handleInputChange}
-            />
-          </label>
-          
-        </div>
-        <div className="app-profile-container__form__group">
-          
-            <input
-              value={updatedUser?.updatedPassword }
-              placeholder={user?.password }
-              type="password"
-              hidden
-              name="updatedPassword"
-              onChange={handleInputChange}
-            />
-          
-        </div>
-          <label>
-            {" "}
             First Name
             <input
-              placeholder={user?.firstName }
-              value={updatedUser?.updatedFirstName }
+              placeholder={user?.firstName}
+              value={updatedUser?.updatedFirstName}
               type="text"
               name="updatedFirstName"
-              onChange={handleInputChange}
-
+              onChange={(e) => handleInputChange(e, "updatedFirstName")}
             />
           </label>
         </div>
         <div className="app-profile-container__form__group">
           <label>
-            {" "}
             Last Name
             <input
-              placeholder={user?.lastName }
-              value={updatedUser?.updatedLastName }
+              placeholder={user?.lastName}
+              value={updatedUser?.updatedLastName}
               type="text"
               name="updatedLastName"
-              onChange={handleInputChange}
+              onChange={(e) => handleInputChange(e, "updatedLastName")}
             />
           </label>
         </div>
-   
+
         <label> Avatar </label>
-        {typeof user?.avatar === "string" && (
-            <img src={user?.avatar } alt={user?.email || "User Photo"} loading="lazy"/>
-          )}{" "}
+
+        <input
+          id="avatarFile"
+          placeholder="Upload Avatar Image Here"
+          name="updatedAvatar" // need to pass another hidden input as string when full product is successfull
+          type="file"
+          accept="image/*"
+          //disabled={true}
+          alt={user?.firstName || user?.email || "User Avatar"}
+          onChange={(e) => handleInputChange(e, "updatedAvatar")}
+        />
         <input
           id="avatarUrl"
-          className=""
-          alt={user?.firstName || user?.email || "User Avatar"}
-          type="file"
-          name="updatedAvatar"
-          onChange={(e) => handleFileChange(e.target.files?.[0])}
+          name="" // need to pass another hidden input as string when full product is successfull
+          type="text"
+          accept="image/*"
+          hidden={true}
+          onChange={(e) => handleInputChange(e, "updatedAvatar")}
         />
         <hr />
         <button type="submit">Update User</button>

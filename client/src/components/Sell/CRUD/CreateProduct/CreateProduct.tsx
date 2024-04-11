@@ -5,18 +5,8 @@ import { categoriesService } from "../../../../services/categoryService";
 import { productService } from "../../../../services/productService";
 import { useAuth } from "../../../../context/AuthContext";
 import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
+import { CreateProductFormData } from "../../../../models/product";
 
-type FormData = {
-  id: number;
-  businessId: string;
-  img: File | string;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  category: string;
-  parent: string;
-};
 
 export default function CreateProduct() {
   const { business } = useAuth();
@@ -25,7 +15,7 @@ export default function CreateProduct() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<CreateProductFormData>({
     id: 0,
     businessId: `${business?.businessId}`,
     img: "",

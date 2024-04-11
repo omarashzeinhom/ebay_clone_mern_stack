@@ -1,8 +1,7 @@
 import axios, { AxiosResponse } from "axios";
-import { User } from "../models/user";
-import { Business } from "../models/business";
+import { User, UpdatedUser, Business } from "../models";
 import { API_BASE_URL } from "../utilities/constants";
-
+import { useAuth } from "../context/AuthContext";
 
 export const authService = {
   /* <--- User services start ---> */
@@ -39,25 +38,19 @@ export const authService = {
     }
   },
 
-
-
   updateUser: async (
-    selectedAvatar: File | undefined,
     updatedUser: UpdatedUser | undefined,
-    token: string,
+    userId: string,
+    token: string
   ) => {
     const formData = new FormData();
     formData.append("updatedFirstName", updatedUser?.updatedFirstName || "");
     formData.append("updatedLastName", updatedUser?.updatedLastName || "");
     formData.append("updatedEmail", updatedUser?.updatedEmail || "");
-  
-    if (selectedAvatar) {
-      formData.append("avatar", selectedAvatar);
-    }
-  
+
     try {
       const response = await axios.put(
-        `${API_BASE_URL}auth/user`,
+        `${API_BASE_URL}auth/user/${userId}`,
         formData,
         {
           headers: {
@@ -65,7 +58,7 @@ export const authService = {
           },
         }
       );
-  
+
       console.log(response?.data);
       return response?.data;
     } catch (error) {
@@ -73,34 +66,28 @@ export const authService = {
     }
   },
 
+  getUser: async (token: string): Promise<User> => {
+    try {
+      const response: AxiosResponse<User> = await axios.get(
+        `${API_BASE_URL}auth/user`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log("User data from server:", response?.data); // Add this line
 
-
-getUser: async (token: string): Promise<User> => {
-  try {
-    const response: AxiosResponse<User> = await axios.get(
-      `${API_BASE_URL}auth/user`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    console.log('User data from server:', response?.data); // Add this line
-
-    return {
-      userId: response?.data?.userId || '',
-      email: response?.data?.email || '',
-      password: response?.data.password || '',
-      firstName: response?.data?.firstName || '',
-      lastName: response?.data?.lastName || '',
-      avatar: response?.data?.avatar || '',
-    };
-
-  } catch (error) {
-    throw new Error(`Failed to get user: ${error}`);
-  }
-},
-
-
-
+      return {
+        userId: response?.data?.userId || "",
+        email: response?.data?.email || "",
+        password: response?.data.password || "",
+        firstName: response?.data?.firstName || "",
+        lastName: response?.data?.lastName || "",
+        avatar: response?.data?.avatar || "",
+      };
+    } catch (error) {
+      throw new Error(`Failed to get user: ${error}`);
+    }
+  },
 
   /* <---User services end ---> */
 
