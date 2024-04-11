@@ -14,11 +14,9 @@ interface EditUserProfileProps {
 }
 
 const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
-  const { updateUser, updatedUser, setUpdatedUser, token } = useAuth();
+  const { updatedUser, token } = useAuth();
   let { firstName, lastName, email, avatar } = user;
-  const [selectedAvatar, setSelectedAvatar] = useState<File | undefined>(
-    undefined
-  );
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -60,15 +58,6 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
       user
     )} and its props ===>> ${firstName} ${lastName} ${email} ${avatar}`
   );
-
-  const handleFileChange = (file: File | undefined) => {
-    setSelectedAvatar(file);
-    if (file) {
-      console.log(`File selected: ${file.name}`);
-    } else {
-      console.log("No file selected");
-    }
-  };
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -151,16 +140,14 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="app-profile-container__form__group">
           <div className="app-profile-container__form__group">
-            <label>
-              UserId
-              <input
-                value={updatedUser?.userId}
-                placeholder={user?.userId}
-                type="text"
-                name="userId"
-                onChange={(e) => handleInputChange(e, "userId")}
-              />
-            </label>
+            <input
+              value={user?.userId}
+              placeholder={user?.userId}
+              type="text"
+              name="userId"
+              hidden
+              onChange={(e) => handleInputChange(e, "userId")}
+            />
           </div>
 
           <div className="app-profile-container__form__group">
