@@ -3,7 +3,7 @@ const Realm = require("realm");
 const { google } = require("googleapis");
 
 // Configure and instantiate Google OAuth2.0 client
- const BASE_URL = "http://localhost:3000/"
+ const BASE_URL = "https://ebay-clone-mern-stack.vercel.app/"
 
 export const oauthConfig = {
     client_id: process.env.GOOGLE_API_CLIENTID,

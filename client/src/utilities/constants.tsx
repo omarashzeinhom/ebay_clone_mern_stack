@@ -1,18 +1,18 @@
 //import { ProfilerOnRenderCallback } from "react";
 // CHG DEVELOPMENT AND PRODUCTION
-export const API_BASE_URL = "http://localhost:5000/";
+export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
 
-const HOME_URL = "http://localhost:3000/";
+const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
 const DEVELOP_URL = "http://localhost:3000/";
 //const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
 
 //const SERVER_DEVELOP_URL = "http://localhost:3001/";
 
-
-// Config Constants 
+// Config Constants
 
 export const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
-export const businessProductsfolderPath = "ebay-clone-mern-images/businesses/products";
+export const businessProductsfolderPath =
+  "ebay-clone-mern-images/businesses/products";
 export const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
 
 // Append folder path as a parameter
@@ -448,4 +448,3 @@ export {
   HOME_URL,
   DEVELOP_URL,
 };
-

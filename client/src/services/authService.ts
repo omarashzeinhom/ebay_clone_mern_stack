@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { User, UpdatedUser, Business } from "../models";
+import { User } from "../models/user";
+import { Business } from "../models/business";
 import { API_BASE_URL } from "../utilities/constants";
 import { useAuth } from "../context/AuthContext";
 
