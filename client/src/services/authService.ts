@@ -1,8 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { User } from "../models/user";
-import { Business } from "../models/business";
+import { User, Business, UpdatedUser } from "../models/";
 import { API_BASE_URL } from "../utilities/constants";
-import { useAuth } from "../context/AuthContext";
 
 export const authService = {
   /* <--- User services start ---> */
