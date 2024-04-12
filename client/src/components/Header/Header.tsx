@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import { useCategoryContext } from "../../context/CategoryContext";
+import { useProductContext } from "../../context/ProductContext";
 
 export default function Header() {
   const [pageTitle, setPageTitle] = useState("eBay Clone");
+  const { categoryData } = useCategoryContext();
+  const { products } = useProductContext();
 
   useEffect(() => {
     // Update the document title when pageTitle changes
@@ -21,18 +25,23 @@ export default function Header() {
         content="eBay, Clone, React, TypeScript, MongoDB, Express"
       />
       <meta name="author" content="Omar Ashraf Zeinhom | &GoEdu" />
-      <link
-        rel="canonical"
-        href="https://ebay-clone-mern-stack.vercel.app/"
-      />
-      <link
-        rel="preload"
-        href="https://source.unsplash.com/"
-        as="image"
-      />
+      <link rel="canonical" href="https://ebay-clone-mern-stack.vercel.app/" />
+      {categoryData.map((category, index) => {
+        const categoryImage = category.img;
+        return (
+          <link key={index} rel="preload" href={categoryImage} as="image" />
+        );
+      })}
+
+      {products.map((product, index) => {
+        const productImage = product.img;
+        return (
+          <link key={index} rel="preload" href={productImage} as="image" />
+        );
+      })}
       <meta
         httpEquiv="Content-Security-Policy"
-        content="script-src 'unsafe-inline' 'self';"
+        content="script-src 'unsafe-inline' 'self' 'https://m.stripe.network' 'https://m.stripe.com';"
       />
     </Helmet>
   );

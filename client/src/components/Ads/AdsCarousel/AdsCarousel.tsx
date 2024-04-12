@@ -67,6 +67,7 @@ const AdsCarousel: React.FC = () => {
               key={category?.name}
               rel="preload"
               as="image"
+              crossOrigin=""
               href={category?.img}
             />
           ))}
