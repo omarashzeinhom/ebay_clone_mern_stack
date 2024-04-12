@@ -89,7 +89,7 @@ export const productService = {
 
       return response?.data;
     } catch (error) {
-      console.error(`Error in createProduct, in productService.ts: ${error}`);
+      console.error("Error in createProduct, in productService.ts:" + {error});
       throw error; // Re-throw the error to let the calling code handle it
     }
   },

@@ -6,10 +6,14 @@ import { useAuth } from "../../../context/AuthContext";
 import UserAccountForm from "./User/UserAccountForm";
 import BusinessAccountForm from "./Business/BusinessAccountForm";
 import { authService } from "../../../services/authService";
+import NotificationCard from "../../../components/NotifcationCard/NotificationCard";
 
 const RegisterForm: React.FC = () => {
   const { token } = useAuth();
   const [accountType, setAccountType] = useState<string>("Personal account");
+  const [notification, setNotification] = useState<string | null>(null);
+  //
+  console.log("notification===>" + notification);
 
   const [user, setUser] = useState<User>({
     userId: "",
@@ -17,6 +21,7 @@ const RegisterForm: React.FC = () => {
     lastName: "",
     email: "",
     password: "",
+    avatar: "",
   });
 
   const [business, setBusiness] = useState<Business>({
@@ -27,12 +32,22 @@ const RegisterForm: React.FC = () => {
     businessActive: true || false,
   });
 
+  const showNotification = (message: string) => {
+    setNotification(message);
+    // Clear the notification after a certain time
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000); // Adjust the duration as needed
+  };
+
+
   const handleRegister = async () => {
     try {
       if (accountType === "Personal account") {
         await authService.register(
          user
         );
+        showNotification("Registration successful! For User" + user?.firstName);
       } else if (accountType === "Business account") {
         if (
           business.businessName &&
@@ -58,6 +73,7 @@ const RegisterForm: React.FC = () => {
     } catch (error) {
       console.error(`Registration failed due to: ${error}`);
       alert(error);
+      showNotification("Registration failed. Please try again.");
     }
   };
 
@@ -122,7 +138,8 @@ const RegisterForm: React.FC = () => {
               Business account
             </label>
           </div>
-
+        {notification && <NotificationCard type="success" message={notification} />}
+        
           {accountType === "Personal account" && (
             <UserAccountForm
               user={user}

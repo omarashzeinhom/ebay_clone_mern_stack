@@ -1,19 +1,25 @@
 import axios, { AxiosResponse } from "axios";
-import { Business,User,UpdatedUser } from "../models";
+import { Business, User, UpdatedUser } from "../models";
 import { API_BASE_URL } from "../utilities/constants";
 
 export const authService = {
   /* <--- User services start ---> */
-  register: async ( user: {
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    avatar?: string | File
-  }
-    
-  ): Promise<void> => {
-    await axios.post(`${API_BASE_URL}auth/register`, user);
+  register: async (user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    avatar?: string | File;
+  }): Promise<void> => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}auth/register`, user);
+      return response?.data;
+    } catch (error) {
+      console.error(
+        "Error in createProduct, in productService.ts:" + { error }
+      );
+      throw error; // Re-throw the error to let the calling code handle it
+    }
   },
 
   login: async (email: string, password: string): Promise<string> => {
@@ -59,8 +65,7 @@ export const authService = {
       console.log(response?.data);
       return response?.data;
     } catch (error) {
-      console.error("Failed to update user" + {error});
-     
+      console.error("Failed to update user" + { error });
     }
   },
 
