@@ -25,23 +25,47 @@ export default function Header() {
         content="eBay, Clone, React, TypeScript, MongoDB, Express"
       />
       <meta name="author" content="Omar Ashraf Zeinhom | &GoEdu" />
-      <link rel="canonical" href="https://ebay-clone-mern-stack.vercel.app/" />
+      <link
+        rel="canonical"
+        href="https://ebay-clone-mern-stack.vercel.app/"
+      />
+     {/*
       {categoryData.map((category, index) => {
         const categoryImage = category.img;
         return (
-          <link key={index} rel="preload" href={categoryImage} type="text" as="fetch" crossOrigin="anonymous" />
+          <link
+           // key={index}
+            //rel="preload"
+            //href={categoryImage}
+            //type="text"
+            //as="fetch"
+            //crossOrigin="anonymous"
+          />
         );
       })}
+     
+     */}
 
+     {/*
       {products.map((product, index) => {
         const productImage = product.img;
         return (
-          <link key={index} rel="preload" href={productImage}  type="text" as="fetch" crossOrigin="anonymous" />
+          <link
+            //key={index}
+            //rel="preload"
+            //href={productImage}
+            //type="text"
+            //as="fetch"
+            //crossOrigin="anonymous"
+          />
         );
       })}
+     
+     */}
       <meta
         httpEquiv="Content-Security-Policy"
-        content="script-src 'unsafe-inline' 'self' 'https://m.stripe.network' 'https://m.stripe.com';"
+        content="script-src  'self' 'https://m.stripe.network' 'https://m.stripe.com';
+        object-src 'none';"
       />
     </Helmet>
   );

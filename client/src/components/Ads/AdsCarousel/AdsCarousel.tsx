@@ -65,9 +65,9 @@ const AdsCarousel: React.FC = () => {
           {shuffledData.map((category) => (
             <link
               key={category?.name}
-              rel="preload"
-              as="image"
-              crossOrigin=""
+              //rel="preload"
+              //as="image"
+              //crossOrigin=""
               href={category?.img}
             />
           ))}
