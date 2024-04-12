@@ -1,8 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { User } from "../models/user";
-import { Business } from "../models/business";
+import { Business,User,UpdatedUser } from "../models";
 import { API_BASE_URL } from "../utilities/constants";
-import { useAuth } from "../context/AuthContext";
 
 export const authService = {
   /* <--- User services start ---> */
@@ -63,7 +61,8 @@ export const authService = {
       console.log(response?.data);
       return response?.data;
     } catch (error) {
-      throw new Error(`Failed to update user: ${error}`);
+      console.error("Failed to update user" + {error});
+     
     }
   },
 
