@@ -1,28 +1,39 @@
-import { useEffect } from "react";
-import "./Header.scss";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 
-
-
 export default function Header() {
+  const [pageTitle, setPageTitle] = useState("eBay Clone");
 
-const defaultTitle = "eBay Clone";
-useEffect(() => {
-    // Optionally, you can perform additional logic when the title changes
-    //console.log('Document title changed:', document?.title);
-  }, []);
-  
-  
+  useEffect(() => {
+    // Update the document title when pageTitle changes
+    document.title = `${pageTitle} | eBay Clone`;
+  }, [pageTitle]);
+
   return (
     <Helmet>
-      <title>{`${defaultTitle} | ${document?.title || ""}`}</title>      <meta
+      <title>{pageTitle}</title>
+      <meta
         name="description"
         content="Your eBay Clone App Description Goes Here"
       />
-      <meta name="keywords" content="eBay, Clone, React, TypeScript, MongoDB, Express" />
-      <meta name="author" content="Your Name" />
-      <link rel="canonical" href="https://ebay-clone-mern-stack.vercel.app/" />
-      <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"></meta>
+      <meta
+        name="keywords"
+        content="eBay, Clone, React, TypeScript, MongoDB, Express"
+      />
+      <meta name="author" content="Omar Ashraf Zeinhom | &GoEdu" />
+      <link
+        rel="canonical"
+        href="https://ebay-clone-mern-stack.vercel.app/"
+      />
+      <link
+        rel="preload"
+        href="https://source.unsplash.com/"
+        as="image"
+      />
+      <meta
+        httpEquiv="Content-Security-Policy"
+        content="script-src 'unsafe-inline' 'self';"
+      />
     </Helmet>
   );
 }
