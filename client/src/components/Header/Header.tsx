@@ -29,14 +29,14 @@ export default function Header() {
       {categoryData.map((category, index) => {
         const categoryImage = category.img;
         return (
-          <link key={index} rel="preload" href={categoryImage}  />
+          <link key={index} rel="preload" href={categoryImage} type="text" as="fetch"  />
         );
       })}
 
       {products.map((product, index) => {
         const productImage = product.img;
         return (
-          <link key={index} rel="preload" href={productImage}  />
+          <link key={index} rel="preload" href={productImage}  type="text" as="fetch" />
         );
       })}
       <meta
