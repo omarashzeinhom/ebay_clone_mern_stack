@@ -3,18 +3,17 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
-const verifyToken = require("../middleware/verifyToken"); 
+const verifyToken = require("../middleware/verifyToken");
 
-
-// User Routes 
+// User Routes
 router.post("/login", authController.login);
 router.post("/register", authController.register);
-router.get("/user", verifyToken, authController.getUser); 
+router.get("/user", verifyToken, authController.getUser);
 
 // Business Routes
 router.post("/loginb", authController.loginBusiness);
 router.post("/registerb", authController.registerBusiness);
-router.get("/business", verifyToken, authController.getBusiness); 
+router.get("/business", verifyToken, authController.getBusiness);
 
 // Update user route
 router.put("/user/:id", verifyToken, authController.updateUser);
@@ -22,7 +21,6 @@ router.get("/user/:id", verifyToken, authController.updateUser);
 
 router.get("/business/:id", verifyToken, authController.updateBusiness);
 router.put("/business/:id", verifyToken, authController.updateBusiness);
-
 
 // Additional routes
 router.get("/auth/register", (req, res) => {

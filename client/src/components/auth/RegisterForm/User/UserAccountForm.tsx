@@ -110,8 +110,8 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
   };
 
   return (
-    <>
-      <form className="app__paform" onSubmit={handleSubmit}>
+    <div className="app__paform">
+      <form onSubmit={handleSubmit}>
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="app__paform-left">
@@ -121,7 +121,7 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
               name="firstName"
               type="text"
               required
-              value={formData.firstName}
+              placeholder="FirstName"
               className="app__paform-inputAlt"
               onChange={(e) => handleChange(e, "firstName")}
             />
@@ -129,11 +129,10 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
           <label>
             Last Name
             <input
-              type="text"
               name="lastName"
+              type="text"
               required
               placeholder="Last Name"
-              value={formData.lastName}
               className="app__paform-inputAlt"
               onChange={(e) => handleChange(e, "lastName")}
             />
@@ -144,7 +143,6 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
               name="email"
               required
               type="email"
-              value={formData.email}
               placeholder="Email"
               className="app__paform-input"
               autoComplete="useremail@email.com"
@@ -157,7 +155,6 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
             <input
               name="password"
               type="password"
-              value={formData.password}
               autoComplete="current-password"
               placeholder="Password"
               className="app__paform-input"
@@ -186,22 +183,22 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
             Register
           </button>
         </div>
-        <div className="app__paform-left">
-          <button className="app__google-Btn">
-            <FaGoogle /> Continue with Google
-          </button>
-          <button className="app__facebook-Btn">
-            <FaFacebook /> Continue with Facebook
-          </button>
-          <button className="app__apple-Btn">
-            <FaApple /> Continue with Apple
-          </button>
-        </div>
+      </form>
+      <div className="app__paform-right">
+        <button className="app__google-Btn">
+          <FaGoogle /> Continue with Google
+        </button>
+        <button className="app__facebook-Btn">
+          <FaFacebook /> Continue with Facebook
+        </button>
+        <button className="app__apple-Btn">
+          <FaApple /> Continue with Apple
+        </button>
         <small>
           <p>Already have an account?</p> <a href="/signin">SignIn!</a>
         </small>
-      </form>
-    </>
+      </div>
+    </div>
   );
 };
 
