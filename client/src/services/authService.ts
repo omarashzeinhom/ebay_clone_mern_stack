@@ -4,20 +4,16 @@ import { API_BASE_URL } from "../utilities/constants";
 
 export const authService = {
   /* <--- User services start ---> */
-  register: async (
+  register: async ( user: {
     firstName: string,
     lastName: string,
     email: string,
     password: string,
-    avatar?: string
+    avatar?: string | File
+  }
+    
   ): Promise<void> => {
-    await axios.post(`${API_BASE_URL}auth/register`, {
-      firstName,
-      lastName,
-      email,
-      password,
-      avatar: avatar || "",
-    });
+    await axios.post(`${API_BASE_URL}auth/register`, user);
   },
 
   login: async (email: string, password: string): Promise<string> => {
@@ -43,9 +39,11 @@ export const authService = {
     token: string
   ) => {
     const formData = new FormData();
+    formData.append("userId", userId);
     formData.append("updatedFirstName", updatedUser?.updatedFirstName || "");
     formData.append("updatedLastName", updatedUser?.updatedLastName || "");
     formData.append("updatedEmail", updatedUser?.updatedEmail || "");
+    formData.append("updatedAvatar", updatedUser?.updatedAvatar || "");
 
     try {
       const response = await axios.put(

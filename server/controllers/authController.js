@@ -23,7 +23,7 @@ const secretKey = process.env.JWT_SECRET;
 
 exports.register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, avatar } = req.body;
+    const { firstName, lastName, email, password,  } = req.body;
 
     // Sanitize and validate user inputs
     if (!firstName || !lastName || !email || !password) {
@@ -39,10 +39,19 @@ exports.register = async (req, res) => {
     // Hash the password before storing it in the database
     const hashedPassword = await bcrypt.hash(password, 10);
     // Upload avatar to Cloudinary if provided
-    let avatarUrl = "";
+    let avatar = req.body.img; 
+    let avatarUrl = ""
+    // Assuming the image URL or file data is in req.body.img
     if (avatar) {
-      const result = await cloudinary.uploader.upload(avatar);
-      avatarUrl = result.secure_url;
+      try{
+        const result = await cloudinary.uploader.upload(avatar);
+        
+       avatarUrl = result.secure_url;
+      }catch (uploadError) {
+        console.error("Error uploading image to Cloudinary:", uploadError);
+        return res.status(500).json({ message: "Error uploading image" });
+      }
+     
     }
     // Create a new user instance
     const newUser = new User({
@@ -50,7 +59,7 @@ exports.register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      avatar: avatarUrl, // It's better not to store default value as space
+      avatar: avatarUrl,
     });
 
     // Save the new user to the database
@@ -145,48 +154,55 @@ exports.login = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
+// _id we have to update the object with  the same prop _id value to avoid creation of duplicate users
+const userId = req.user.userId; // Assuming userId is extracted from authentication middleware
+  const objectId = req.params.id;  // This is the main focus
+
   const { updatedFirstName, updatedLastName, updatedEmail, avatar, password } =
     req.body;
-  const userId = req.user.userId; // Assuming userId is extracted from authentication middleware
 
-  try {
-    // Upload new avatar to Cloudinary if provided
-    let avatarUrl = ""; // Define avatarUrl variable to store Cloudinary URL
-    if (avatar) {
-      const result = await cloudinary.uploader.upload(avatar);
-      avatarUrl = result.secure_url;
-    }
 
-    // Construct updates object with sanitized data
-    const updates = {};
-    if (updatedFirstName && typeof updatedFirstName === "string") {
-      updates.firstName = updatedFirstName;
+  if (objectId === userId){
+    try {
+      const filter = { _id: userId };
+      // Upload new avatar to Cloudinary if provided
+      let avatarUrl = ""; // Define avatarUrl variable to store Cloudinary URL
+      if (avatar) {
+        const result = await cloudinary.uploader.upload(avatar);
+        avatarUrl = result.secure_url;
+      }
+  
+      // Construct updates object with sanitized data
+      const updates = {};
+      if (updatedFirstName && typeof updatedFirstName === "string") {
+        updates.firstName = updatedFirstName;
+      }
+      if (updatedLastName && typeof updatedLastName === "string") {
+        updates.lastName = updatedLastName;
+      }
+      if (updatedEmail && typeof updatedEmail === "string") {
+        updates.email = updatedEmail;
+      }
+      if (avatarUrl && typeof avatarUrl === "string") {
+        updates.avatar = avatarUrl;
+      }
+      if (password && typeof password === "string") {
+        // Hash the password before updating
+        const hashedPassword = await bcrypt.hash(password, 10);
+        updates.password = hashedPassword;
+      }
+  
+      // Update user document using Mongoose method
+      const updatedUser = await User.findOneAndReplace( filter, updates, {
+        new: true,
+      });
+  
+      // Return updated user data in the response
+      res.status(200).json(updatedUser);
+    } catch (error) {
+      console.error("Error in updateUser:", error);
+      res.status(500).json({ message: "Internal Server Error" });
     }
-    if (updatedLastName && typeof updatedLastName === "string") {
-      updates.lastName = updatedLastName;
-    }
-    if (updatedEmail && typeof updatedEmail === "string") {
-      updates.email = updatedEmail;
-    }
-    if (avatarUrl && typeof avatarUrl === "string") {
-      updates.avatar = avatarUrl;
-    }
-    if (password && typeof password === "string") {
-      // Hash the password before updating
-      const hashedPassword = await bcrypt.hash(password, 10);
-      updates.password = hashedPassword;
-    }
-
-    // Update user document using Mongoose method
-    const updatedUser = await User.findByIdAndUpdate(userId, updates, {
-      new: true,
-    });
-
-    // Return updated user data in the response
-    res.status(200).json(updatedUser);
-  } catch (error) {
-    console.error("Error in updateUser:", error);
-    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 

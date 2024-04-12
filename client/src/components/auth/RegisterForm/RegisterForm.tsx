@@ -31,13 +31,7 @@ const RegisterForm: React.FC = () => {
     try {
       if (accountType === "Personal account") {
         await authService.register(
-          user.firstName,
-          user.lastName,
-          user.email,
-          user.password,
-          user.avatar && typeof user.avatar !== "string"
-            ? URL.createObjectURL(user.avatar)
-            : user.avatar || ""
+         user
         );
       } else if (accountType === "Business account") {
         if (

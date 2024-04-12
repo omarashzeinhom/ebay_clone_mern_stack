@@ -42,7 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   //user
   const [user, setUser] = useState<User | null>(null);
   const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({
-    userId: "",
+    userId: `${user?.userId}`,
   });  //business
   const [business, setBusiness] = useState<Business | null>(null);
   const [updatedBusiness, setUpdatedBusiness] = useState<UpdatedBusiness>({});
@@ -121,13 +121,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     updatedUser: UpdatedUser | undefined
   ) => {
     const formData = new FormData();
-    if (updatedUser?.updatedFirstName)
+    if(user?.userId){
+      formData.append("userId", user?.userId);
+    }
+    if(user?.password){
+      formData.append("password", updatedUser?.updatedPassword || user?.password);
+    }
+    if (updatedUser?.updatedEmail){
+      formData.append("email", updatedUser?.updatedEmail   );
+    }
+    if (updatedUser?.updatedFirstName){
       formData.append("firstName", updatedUser?.updatedFirstName);
-    if (updatedUser?.updatedLastName)
-      formData.append("lastName", updatedUser?.updatedLastName);
-    if (updatedUser?.updatedEmail)
-      formData.append("email", updatedUser?.updatedEmail);
 
+    }
+    if (updatedUser?.updatedLastName)
+{
+  formData.append("lastName", updatedUser?.updatedLastName);
+
+}   
     if (selectedAvatar) {
       formData.append("updatedAvatar", selectedAvatar);
     }
