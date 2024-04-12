@@ -11,7 +11,7 @@ export default function Header() {
   useEffect(() => {
     // Update the document title when pageTitle changes
     document.title = `${pageTitle} | eBay Clone`;
-  }, []);
+  }, [pageTitle]);
 
   return (
     <Helmet>
@@ -36,13 +36,13 @@ export default function Header() {
       {products.map((product, index) => {
         const productImage = product.img;
         return (
-          <link key={index} rel="preload" href={productImage} as="image" />
+          <link key={index} rel="preload" href={productImage}  />
         );
       })}
-  <meta
-  httpEquiv="Content-Security-Policy"
-  content="script-src 'self' 'unsafe-inline' https://m.stripe.network https://m.stripe.com;"
-/>
+      <meta
+        httpEquiv="Content-Security-Policy"
+        content="script-src 'unsafe-inline' 'self' 'https://m.stripe.network' 'https://m.stripe.com';"
+      />
     </Helmet>
   );
 }
