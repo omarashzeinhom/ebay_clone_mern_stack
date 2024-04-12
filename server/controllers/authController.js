@@ -20,10 +20,25 @@ console.log(cloudinary.config());
 const secretKey = process.env.JWT_SECRET;
 
 /* <---------- User Async Functions Start ----------> */
-
-exports.register = async (req, res) => {
+class AuthController {
+  
+ async  register (req, res) {
   try {
-    const { firstName, lastName, email, password,  } = req.body;
+    let avatar = req.body.avatar; 
+    // Upload avatar to Cloudinary if provided
+    if (avatar) {
+      try {
+        const result = await cloudinary.uploader.upload(avatar);
+        avatar = result.secure_url;
+      } catch (uploadError) {
+        console.error("Error uploading image to Cloudinary:", uploadError);
+        return res.status(500).json({ message: "Error uploading image" });
+      }
+    }
+
+    console.log("avatar===>" + avatar);
+
+    const { firstName, lastName, email, password } = req.body;
 
     // Sanitize and validate user inputs
     if (!firstName || !lastName || !email || !password) {
@@ -38,28 +53,14 @@ exports.register = async (req, res) => {
 
     // Hash the password before storing it in the database
     const hashedPassword = await bcrypt.hash(password, 10);
-    // Upload avatar to Cloudinary if provided
-    let avatar = req.body.img; 
-    let avatarUrl = ""
-    // Assuming the image URL or file data is in req.body.img
-    if (avatar) {
-      try{
-        const result = await cloudinary.uploader.upload(avatar);
-        
-       avatarUrl = result.secure_url;
-      }catch (uploadError) {
-        console.error("Error uploading image to Cloudinary:", uploadError);
-        return res.status(500).json({ message: "Error uploading image" });
-      }
-     
-    }
+
     // Create a new user instance
     const newUser = new User({
       firstName,
       lastName,
       email,
       password: hashedPassword,
-      avatar: avatarUrl,
+      avatar: avatar,
     });
 
     // Save the new user to the database
@@ -74,7 +75,7 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.getUser = async (req, res) => {
+async getUser(req, res)  {
   try {
     // Verify that the user is authenticated and has a valid userId
     if (!req.user || !req.user.userId) {
@@ -113,7 +114,7 @@ exports.getUser = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+  async login(req, res)  {
   const { email, password } = req.body;
 
   try {
@@ -153,25 +154,23 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.updateUser = async (req, res) => {
-// _id we have to update the object with  the same prop _id value to avoid creation of duplicate users
-const userId = req.user.userId; // Assuming userId is extracted from authentication middleware
-  const objectId = req.params.id;  // This is the main focus
+async updateUser (req, res) {
+  // _id we have to update the object with  the same prop _id value to avoid creation of duplicate users
+  const userId = req.user.userId; // Assuming userId is extracted from authentication middleware
+  const objectId = req.params.id; // This is the main focus
 
   const { updatedFirstName, updatedLastName, updatedEmail, avatar, password } =
     req.body;
 
-
-  if (objectId === userId){
+  if (objectId === userId) {
     try {
       const filter = { _id: userId };
       // Upload new avatar to Cloudinary if provided
-      let avatarUrl = ""; // Define avatarUrl variable to store Cloudinary URL
       if (avatar) {
         const result = await cloudinary.uploader.upload(avatar);
-        avatarUrl = result.secure_url;
+        avatar = result.secure_url;
       }
-  
+
       // Construct updates object with sanitized data
       const updates = {};
       if (updatedFirstName && typeof updatedFirstName === "string") {
@@ -183,20 +182,20 @@ const userId = req.user.userId; // Assuming userId is extracted from authenticat
       if (updatedEmail && typeof updatedEmail === "string") {
         updates.email = updatedEmail;
       }
-      if (avatarUrl && typeof avatarUrl === "string") {
-        updates.avatar = avatarUrl;
+      if (avatar && typeof avatar === "string") {
+        updates.avatar = avatar;
       }
       if (password && typeof password === "string") {
         // Hash the password before updating
         const hashedPassword = await bcrypt.hash(password, 10);
         updates.password = hashedPassword;
       }
-  
+
       // Update user document using Mongoose method
-      const updatedUser = await User.findOneAndReplace( filter, updates, {
+      const updatedUser = await User.findOneAndReplace(filter, updates, {
         new: true,
       });
-  
+
       // Return updated user data in the response
       res.status(200).json(updatedUser);
     } catch (error) {
@@ -210,7 +209,7 @@ const userId = req.user.userId; // Assuming userId is extracted from authenticat
 
 /* <---------- Business Async Functions Start ----------> */
 
-exports.registerBusiness = async (req, res) => {
+   async registerBusiness (req, res) {
   try {
     const {
       businessName,
@@ -265,7 +264,7 @@ exports.registerBusiness = async (req, res) => {
   }
 };
 
-exports.loginBusiness = async (req, res) => {
+ async loginBusiness (req, res) {
   const { businessEmail, businessPassword } = req.body;
 
   try {
@@ -316,7 +315,7 @@ exports.loginBusiness = async (req, res) => {
   }
 };
 
-exports.getBusiness = async (req, res) => {
+async getBusiness (req, res)  {
   try {
     // Ensure that the business data exists in the request
     if (!req.business) {
@@ -338,7 +337,7 @@ exports.getBusiness = async (req, res) => {
   }
 };
 
-exports.updateBusiness = async (req, res) => {
+async updateBusiness (req, res) {
   const {
     updatedBusinessName,
     updatedBusinessEmail,
@@ -348,12 +347,11 @@ exports.updateBusiness = async (req, res) => {
   const businessId = req.business.businessId; // Assuming userId is extracted from authentication middleware
 
   try {
-    let avatarUrl = ""; // Define avatarUrl variable to store Cloudinary URL
 
     // Upload new avatar to Cloudinary if provided
     if (updatedBusinessAvatar) {
       const result = await cloudinary.uploader.upload(updatedBusinessAvatar);
-      avatarUrl = result.secure_url;
+      updatedBusinessAvatar = result.secure_url;
     }
 
     // Construct updates object with sanitized data
@@ -389,3 +387,7 @@ exports.updateBusiness = async (req, res) => {
 };
 
 /* <---------- Business Async Functions End ----------> */
+
+}
+
+module.exports = new AuthController();

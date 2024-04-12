@@ -4,7 +4,7 @@ export interface UpdatedUser {
   updatedLastName?: string;
   updatedEmail?: string;
   updatedPassword?: string;
-  updatedAvatar?: File | string; // or whatever type is appropriate
+  updatedAvatar?:  any; // or whatever type is appropriate
 }
 
 export type UpdatedUserFormData = {
@@ -13,5 +13,5 @@ export type UpdatedUserFormData = {
   updatedLastName: string;
   updatedEmail: string;
   updatedPassword: string;
-  updatedAvatar?: File | string; // ADD Generic Types for image
+  updatedAvatar?: any; // ADD Generic Types for image
 };

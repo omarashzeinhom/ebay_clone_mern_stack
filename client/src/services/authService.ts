@@ -9,8 +9,8 @@ export const authService = {
     lastName: string;
     email: string;
     password: string;
-    avatar?: string | File;
-  }): Promise<void> => {
+    avatar?: any;
+  }) => {
     try {
       const response = await axios.post(`${API_BASE_URL}auth/register`, user);
       return response?.data;

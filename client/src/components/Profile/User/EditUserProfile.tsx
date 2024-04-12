@@ -222,8 +222,8 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
           onChange={(e) => handleInputChange(e, "updatedAvatar")}
         />
         <input
-          id="avatarUrl"
-          name="" // need to pass another hidden input as string when full product is successfull
+          id="avatar"
+          name="updatedAvatar" // need to pass another hidden input as string when full product is successfull
           type="text"
           accept="image/*"
           hidden={true}
