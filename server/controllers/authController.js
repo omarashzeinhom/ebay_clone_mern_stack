@@ -105,7 +105,7 @@ async getUser(req, res)  {
       email: user.email,
       firstName: user.firstName,
       lastName: user.lastName,
-      avatar: user.avatar ? user.avatar._id : null,
+      avatar: user.avatar
     });
   } catch (error) {
     // Handle any errors that occurred during the process
