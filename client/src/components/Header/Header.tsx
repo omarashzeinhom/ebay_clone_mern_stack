@@ -29,7 +29,7 @@ export default function Header() {
       {categoryData.map((category, index) => {
         const categoryImage = category.img;
         return (
-          <link key={index} rel="preload" href={categoryImage} as="image" />
+          <link key={index} rel="preload" href={categoryImage}  />
         );
       })}
 
