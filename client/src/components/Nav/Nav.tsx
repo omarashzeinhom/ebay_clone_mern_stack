@@ -142,7 +142,6 @@ if (notificationCount !== 0){
             </li>
           )}
         </div>
-     <ul>
      {navItems.map((item, index) => (
           <li key={index}>
             <a href={item?.link} className="app__nav-item">
@@ -150,7 +149,6 @@ if (notificationCount !== 0){
             </a>
           </li>
         ))}
-     </ul>
        <button aria-label="OpenMobileMenu"
           className={`app__nav-close ${
             mobileMenuOpen ? "mobile-menu-open" : ""
