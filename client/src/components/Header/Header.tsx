@@ -66,7 +66,7 @@ export default function Header() {
      
      */}
       <meta
-        httpEquiv="Content-Security-Policy"
+       httpEquiv="Content-Security-Policy"
         content={`script-src  'self' ${stripeCSP} ;
         object-src 'none';`}
       />
