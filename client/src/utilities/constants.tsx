@@ -1,10 +1,11 @@
 //import { ProfilerOnRenderCallback } from "react";
 // CHG DEVELOPMENT AND PRODUCTION
-export const API_BASE_URL = "http://localhost:5000/";
+export const API_BASE_URL = "https://ebay-clone-mern-stack.vercel.app";
 
-const HOME_URL = "http://localhost:3000/";
+const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
 const DEVELOP_URL = "http://localhost:3000/";
 //const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
+// const BACKEND_URL_PROD = "https://ebay-clone-mern-stack.vercel.app";
 
 //const SERVER_DEVELOP_URL = "http://localhost:3001/";
 
