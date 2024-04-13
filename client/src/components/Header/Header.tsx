@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 //import { useProductContext } from "../../context/ProductContext";
 
 export default function Header() {
-  const [pageTitle, setPageTitle] = useState("eBay Clone");
+  const [pageTitle] = useState("eBay Clone");
   //const { categoryData } = useCategoryContext();
   //const { products } = useProductContext();
 
