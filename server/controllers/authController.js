@@ -159,21 +159,21 @@ class AuthController {
 
   async updateUser(req, res) {
     // _id we have to update the object with  the same prop _id value to avoid creation of duplicate users
-    const userId = req.user.userId; // Assuming userId is extracted from authentication middleware
+    const _id = req.updatedUser._id; // Assuming userId is extracted from authentication middleware
     //const objectId = req.params.id; // This is the main focus
+    console.log("_id===>" + _id);
 
     const {
-      updatedFirstName,
-      updatedLastName,
-      updatedEmail,
+      firstName,
+      lastName,
+      email,
       avatar,
       password,
     } = req.body;
 
     
       try {
-        const filter = { _id: userId };
-        console.log(userId);
+        const filter = { _id: _id };
         // Upload new avatar to Cloudinary if provided
         if (avatar) {
           const result = await cloudinary.uploader.upload(avatar);
@@ -182,14 +182,14 @@ class AuthController {
 
         // Construct updates object with sanitized data
         const updates = {};
-        if (updatedFirstName && typeof updatedFirstName === "string") {
-          updates.firstName = updatedFirstName;
+        if (firstName && typeof firstName === "string") {
+          updates.firstName = firstName;
         }
-        if (updatedLastName && typeof updatedLastName === "string") {
-          updates.lastName = updatedLastName;
+        if (lastName && typeof lastName === "string") {
+          updates.lastName = lastName;
         }
-        if (updatedEmail && typeof updatedEmail === "string") {
-          updates.email = updatedEmail;
+        if (email && typeof email === "string") {
+          updates.email = email;
         }
         if (avatar && typeof avatar === "string") {
           updates.avatar = avatar;

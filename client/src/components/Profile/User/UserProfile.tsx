@@ -12,11 +12,11 @@ export default function UserProfile() {
       </div>
       <div className="user-profile-info">
         <div className="avatar">
-          { user?.avatar ? updatedUser?.updatedAvatar || (
+          { user?.avatar ? updatedUser?.avatar || (
               <img
               rel="preload"
-              src={user?.avatar || updatedUser?.updatedAvatar }
-              alt={user?.email || updatedUser?.updatedEmail || "No user avatar uploaded"}
+              src={user?.avatar || updatedUser?.avatar }
+              alt={user?.email || updatedUser?.email || "No user avatar uploaded"}
             />
           ) : (
             <span className="no-avatar">No user avatar uploaded</span>
@@ -32,15 +32,15 @@ export default function UserProfile() {
               </tr>
               <tr>
                 <td>Email:</td>
-                <td>{updatedUser?.updatedEmail || user?.email}</td>
+                <td>{updatedUser?.email || user?.email}</td>
               </tr>
               <tr>
                 <td>First Name:</td>
-                <td>{updatedUser?.updatedFirstName || user?.firstName}</td>
+                <td>{updatedUser?.firstName || user?.firstName}</td>
               </tr>
               <tr>
                 <td>Last Name:</td>
-                <td>{updatedUser?.updatedLastName || user?.lastName}</td>
+                <td>{updatedUser?.lastName || user?.lastName}</td>
               </tr>
             </tbody>
           </table>

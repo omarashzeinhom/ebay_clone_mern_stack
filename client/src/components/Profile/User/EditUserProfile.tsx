@@ -15,16 +15,15 @@ interface EditUserProfileProps {
 const EditUserProfile: React.FC<EditUserProfileProps> = () => {
   const { updatedUser, token, user } = useAuth();
   const userId = user?.userId || "";
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState<UpdatedUserFormData>({
-    userId: userId,
-    updatedFirstName: "",
-    updatedLastName: "",
-    updatedEmail: "",
-    updatedAvatar: "",
-    updatedPassword: "",
+    _id: userId,
+    firstName: "",
+    lastName: "",
+    email: "",
+    avatar: "",
+    password: "",
   });
 
   const handleInputChange = (
@@ -32,7 +31,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
     fieldName: string
   ) => {
     if (
-      fieldName === "updatedAvatar" &&
+      fieldName === "avatar" &&
       e.target &&
       e.target instanceof HTMLInputElement &&
       e.target.files
@@ -64,7 +63,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
       setLoading(true);
       setError(null);
       const cloudinaryFormData = new FormData();
-      cloudinaryFormData.append("file", formData.updatedAvatar as File);
+      cloudinaryFormData.append("file", formData.avatar as File);
       cloudinaryFormData.append(
         "upload_preset",
         `${process.env.REACT_APP_CLODUINARY_USER_AVATARS_UPLOAD_PRESET}`
@@ -89,10 +88,10 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
 
       // Store the Cloudinary URL in MongoDB
       const userData = {
-        userId: formData.userId,
-        firstName: formData.updatedFirstName,
-        lastName: formData.updatedLastName,
-        email: formData.updatedEmail,
+        _id: userId,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
         avatar: cloudinaryImageUrl, // Store the Cloudinary URL here
       };
 
@@ -100,11 +99,11 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
 
       const data = await authService.updateUser(
         {
-          userId: formData.userId,
-          updatedFirstName: formData.updatedFirstName,
-          updatedLastName: formData.updatedLastName,
-          updatedEmail: formData.updatedEmail,
-          updatedAvatar: cloudinaryImageUrl,
+          _id: userId,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          avatar: cloudinaryImageUrl,
         },
         userId,
         token || ""
@@ -114,7 +113,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
       // Resetting the form after successful submission
       setFormData((prevState) => ({
         ...prevState,
-        img: "", // Reset img property to an empty string
+        avatar: "", // Reset img property to an empty string
       }));
     } catch (error) {
       console.error("Error updating user:", error);
@@ -137,9 +136,9 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
               value={user?.userId}
               placeholder={user?.userId}
               type="text"
-              name="userId"
+              name="_id"
               hidden
-              onChange={(e) => handleInputChange(e, "userId")}
+              onChange={(e) => handleInputChange(e, "_id")}
             />
           </div>
 
@@ -147,11 +146,11 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
             <label>
               Email
               <input
-                value={updatedUser?.updatedEmail}
+                value={updatedUser?.email}
                 placeholder={user?.email}
                 type="email"
-                name="updatedEmail"
-                onChange={(e) => handleInputChange(e, "updatedEmail")}
+                name="email"
+                onChange={(e) => handleInputChange(e, "email")}
               />
             </label>
           </div>
@@ -159,12 +158,12 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
             <label>
               Password
               <input
-                value={updatedUser?.updatedPassword}
+                value={updatedUser?.password}
                 placeholder={user?.password}
                 type="password"
                 hidden
-                name="updatedPassword"
-                onChange={(e) => handleInputChange(e, "updatedPassword")}
+                name="password"
+                onChange={(e) => handleInputChange(e, "password")}
               />
             </label>
           </div>
@@ -172,10 +171,10 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
             First Name
             <input
               placeholder={user?.firstName}
-              value={updatedUser?.updatedFirstName}
+              value={updatedUser?.firstName}
               type="text"
-              name="updatedFirstName"
-              onChange={(e) => handleInputChange(e, "updatedFirstName")}
+              name="firstName"
+              onChange={(e) => handleInputChange(e, "firstName")}
             />
           </label>
         </div>
@@ -184,33 +183,31 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
             Last Name
             <input
               placeholder={user?.lastName}
-              value={updatedUser?.updatedLastName}
+              value={updatedUser?.lastName}
               type="text"
-              name="updatedLastName"
-              onChange={(e) => handleInputChange(e, "updatedLastName")}
+              name="lastName"
+              onChange={(e) => handleInputChange(e, "lastName")}
             />
           </label>
         </div>
 
         <label> Avatar </label>
-
         <input
           id="avatarFile"
           placeholder="Upload Avatar Image Here"
-          name="updatedAvatar" // need to pass another hidden input as string when full product is successfull
+          name="avatar" // need to pass another hidden input as string when full product is successfull
           type="file"
           accept="image/*"
-          //disabled={true}
           alt={user?.firstName || user?.email || "User Avatar"}
-          onChange={(e) => handleInputChange(e, "updatedAvatar")}
+          onChange={(e) => handleInputChange(e, "avatar")}
         />
         <input
           id="avatar"
-          name="updatedAvatar" // need to pass another hidden input as string when full product is successfull
+          name="avatar" // need to pass another hidden input as string when full product is successfull
           type="text"
           accept="image/*"
           hidden={true}
-          onChange={(e) => handleInputChange(e, "updatedAvatar")}
+          onChange={(e) => handleInputChange(e, "avatar")}
         />
 
         <button aria-label="UpdateUserInformationButton" type="submit">

@@ -42,7 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   //user
   const [user, setUser] = useState<User | null>(null);
   const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({
-    userId: `${user?.userId}`,
+    _id: `${user?.userId}`,
   }); //business
   const [business, setBusiness] = useState<Business | null>(null);
   const [updatedBusiness, setUpdatedBusiness] = useState<UpdatedBusiness>({});
@@ -122,22 +122,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   ) => {
     const formData = new FormData();
     if (user?.userId) {
-      formData.append("userId", user?.userId);
+      formData.append("_id", user?.userId);
     }
     if (user?.password) {
       formData.append(
         "password",
-        updatedUser?.updatedPassword || user?.password
+        updatedUser?.password || user?.password
       );
     }
-    if (updatedUser?.updatedEmail) {
-      formData.append("email", updatedUser?.updatedEmail);
+    if (updatedUser?.email) {
+      formData.append("email", updatedUser?.email);
     }
-    if (updatedUser?.updatedFirstName) {
-      formData.append("firstName", updatedUser?.updatedFirstName);
+    if (updatedUser?.firstName) {
+      formData.append("firstName", updatedUser?.firstName);
     }
-    if (updatedUser?.updatedLastName) {
-      formData.append("lastName", updatedUser?.updatedLastName);
+    if (updatedUser?.lastName) {
+      formData.append("lastName", updatedUser?.lastName);
     }
     if (selectedAvatar) {
       formData.append("updatedAvatar", selectedAvatar);
@@ -157,18 +157,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setUpdatedUser((prevUser) => ({
         ...prevUser,
-        firstName: updatedUser?.updatedFirstName || prevUser?.updatedFirstName,
-        lastName: updatedUser?.updatedLastName || prevUser?.updatedLastName,
-        email: updatedUser?.updatedEmail || prevUser?.updatedEmail,
-        avatar: updatedUser?.updatedAvatar || prevUser?.updatedAvatar,
+        firstName: updatedUser?.firstName || prevUser?.firstName,
+        lastName: updatedUser?.lastName || prevUser?.lastName,
+        email: updatedUser?.email || prevUser?.email,
+        avatar: updatedUser?.avatar || prevUser?.avatar,
       }));
 
       setUser((prevUser) => ({
         ...prevUser!,
-        firstName: updatedUser?.updatedFirstName || prevUser?.firstName || "",
-        lastName: updatedUser?.updatedLastName || prevUser?.lastName || "",
-        email: updatedUser?.updatedEmail || prevUser?.email || "",
-        avatar: updatedUser?.updatedAvatar || prevUser?.avatar || "",
+        firstName: updatedUser?.firstName  || prevUser?.firstName || "",
+        lastName: updatedUser?.lastName || prevUser?.lastName || "",
+        email: updatedUser?.email || prevUser?.email || "",
+        avatar: updatedUser?.avatar  || prevUser?.avatar || "",
       }));
 
       console.log(response?.data);

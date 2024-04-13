@@ -39,7 +39,7 @@ export const authService = {
     }
   },
 
-  updateUser: async (updatedUser: UpdatedUser | undefined, userId: string, token: string) => {
+  updateUser: async (updatedUser: UpdatedUser | undefined, _id: string, token: string) => {
     const formData = new FormData();
 
     // Append all fields to formData
@@ -53,7 +53,7 @@ export const authService = {
 
     try {
         const response = await axios.put(
-            `${API_BASE_URL}auth/user/${userId}`,
+            `${API_BASE_URL}auth/user/${_id}`,
             formData,
             {
                 headers: {
