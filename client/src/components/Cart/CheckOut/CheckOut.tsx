@@ -95,7 +95,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
 
                 {paymentError && <div className="error">{paymentError}</div>}
 
-                <button type="submit" disabled={!stripe}>
+               <button aria-label="PaymentButton" type="submit" disabled={!stripe}>
                   Pay{" "}
                   {currencyFormatter(
                     cartItems.reduce((total, cartItem) => {

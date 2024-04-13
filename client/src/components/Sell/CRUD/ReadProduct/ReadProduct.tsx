@@ -45,8 +45,8 @@ export default function ReadProduct() {
                   Quantity: {product?.quantity}
                 </span>
                 <span className="">Category: {product?.category}</span>
-                <button>Edit</button>
-                <button>Delete</button>
+               <button aria-label={"EditProduct" + product?.name + "Button"}>Edit</button>
+               <button aria-label={"DeleteProduct" + product?.name + "Button"}>Delete</button>
               </div>
             </div>
           ))}

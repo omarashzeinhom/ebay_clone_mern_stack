@@ -139,7 +139,7 @@ export default function UpdateProduct() {
           </div>
         ))}
       </form>
-      <button className="update-button" onClick={handleSubmit}>Update Product</button>
+     <button aria-label="Update Product Button" className="update-button" onClick={handleSubmit}>Update Product</button>
     </div>
   );
   

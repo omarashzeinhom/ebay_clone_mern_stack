@@ -32,8 +32,8 @@ const NotificationModal: React.FC<NotificationModalProps> = ({ onClose }) => {
             {notifications.map((notification, index) => (
               <p key={index}>{notification}</p>
             ))}
-            <button onClick={handleCloseNotification}>Close</button>
-            <button onClick={handleMarkAllRead}>Mark All As Read</button>
+           <button aria-label="CloseNotificationButton" onClick={handleCloseNotification}>Close</button>
+           <button aria-label="MarkAllAsReadButton" onClick={handleMarkAllRead}>Mark All As Read</button>
 
           </div>
         </div>
@@ -44,7 +44,7 @@ const NotificationModal: React.FC<NotificationModalProps> = ({ onClose }) => {
           <div className="notification-modal-content">
             <h2>Signed In Successfully as</h2>
             <p>{user?.firstName || user?.email || business?.businessName}</p>
-            <button onClick={onClose}>Close</button>
+           <button aria-label="CloseNotificationSection" onClick={onClose}>Close</button>
           </div>
         </div>
       ) : (
@@ -52,7 +52,7 @@ const NotificationModal: React.FC<NotificationModalProps> = ({ onClose }) => {
           <div className="notification-modal-content">
             <h2>Notification</h2>
             <p>No New Notifications</p>
-            <button onClick={onClose}>Close</button>
+           <button aria-label="CloseNotificationSection" onClick={onClose}>Close</button>
           </div>
         </div>
       )}

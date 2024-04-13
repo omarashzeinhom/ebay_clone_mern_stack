@@ -1,11 +1,9 @@
 require("dotenv").config({ path: "./config.env" });
 const rateLimit = require("express-rate-limit");
-
-
-
 // Apply the rate limiting middleware to all requests.
 
 const express = require("express");
+const compression = require("compression"); 
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -26,6 +24,11 @@ const limiter = rateLimit({
 	legacyHeaders: true, // Disable the `X-RateLimit-*` headers.
 	// store: ... , // Redis, Memcached, etc. See below.
 })
+
+// Enable gzip compression middleware
+app.use(compression());
+
+
 // Middleware
 app.use(corsMiddleware);
 app.use(express.json());  

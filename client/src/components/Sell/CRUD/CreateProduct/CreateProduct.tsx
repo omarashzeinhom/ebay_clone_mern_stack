@@ -239,7 +239,7 @@ export default function CreateProduct() {
                 </select>
               </label>
 
-              <button type="submit">Create Product</button>
+             <button aria-label="CreateProductButton" type="submit">Create Product</button>
             </form>
           </div>
         </>

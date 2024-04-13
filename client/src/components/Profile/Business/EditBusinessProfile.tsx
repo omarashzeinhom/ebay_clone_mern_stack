@@ -136,7 +136,7 @@ export default function EditBusinessProfile() {
               return <option key={country || index}>{country}</option>;
             })}
           </select>
-          <button type="submit"> Update Business Info</button>
+         <button aria-label="UpdateBusinessInformationButton" type="submit"> Update Business Info</button>
         </form>
       </div>
     </>

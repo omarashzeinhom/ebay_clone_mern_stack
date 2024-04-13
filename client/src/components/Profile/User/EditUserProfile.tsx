@@ -230,7 +230,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
           onChange={(e) => handleInputChange(e, "updatedAvatar")}
         />
          
-        <button type="submit">Update User</button>
+       <button aria-label="UpdateUserInformationButton" type="submit">Update User</button>
       </form>
     </div>
   );

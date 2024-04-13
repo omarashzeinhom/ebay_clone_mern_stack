@@ -104,7 +104,7 @@ const ProductList: React.FC<ProductListProps> = ({
                   </a>
                   <div className="product-list__product-list-price-container">
                     {quantity === 0 && (
-                      <button
+                     <button aria-label="AddProductToCart"
                         className="product-detail__button"
                         onClick={() => addItemToCart(product)}
                       >

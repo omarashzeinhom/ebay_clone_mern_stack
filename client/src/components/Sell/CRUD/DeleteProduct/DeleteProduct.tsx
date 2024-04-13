@@ -43,7 +43,7 @@ export default function DeleteProduct() {
           <p>Category: {product.category}</p>
           <p>Price: {product.price}</p>
           <p>Quantity: {product.quantity}</p>
-          <button
+         <button aria-label="DeleteProductButton"
             className="delete-button"
             onClick={() => handleDelete(product._id)}
           >

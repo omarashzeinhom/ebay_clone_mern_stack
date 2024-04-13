@@ -111,7 +111,7 @@ export default function SurveyForm({ total }: any) {
               </select>
             </label>
 
-            <button
+           <button aria-label="MessageUsSurveyButton"
               className="app__signin-Btn"
               type="submit"
               disabled={loading}

@@ -77,7 +77,7 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
         <option>Egypt</option>
       </select>
 
-      <button className="app__baform-Btn">Register</button>
+     <button aria-label="RegisterButton" className="app__baform-Btn">Register</button>
     </form>
   );
 };

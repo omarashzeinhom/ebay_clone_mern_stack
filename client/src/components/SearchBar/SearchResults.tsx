@@ -71,7 +71,7 @@ const SearchResults: React.FC = () => {
                     </a>
                     <div className="product-list__product-list-price-container">
                       {quantity === 0 && (
-                        <button
+                       <button aria-label="AddToCartButton"
                           className="product-list__product-detail-button"
                           onClick={() => addItemToCart(result)}
                         >

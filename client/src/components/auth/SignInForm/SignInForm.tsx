@@ -139,7 +139,7 @@ const SignInForm: React.FC = () => {
           <br />
           <a href="/">
             {" "}
-            <button className="app__signin-Btn">Return Home </button>
+           <button aria-label="ReturnHomeButton" className="app__signin-Btn">Return Home </button>
           </a>
         </div>
       ) : (
@@ -164,18 +164,18 @@ const SignInForm: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button onClick={handleSignIn} className="app__signin-Btn">
+           <button aria-label="SignInButton" onClick={handleSignIn} className="app__signin-Btn">
               Continue
             </button>
           </div>
           Or
-          <button className="app__signin-Btn">
+         <button aria-label="SignInWithFaceBook" className="app__signin-Btn">
             <FaFacebook /> Continue with Facebook
           </button>
-          <button className="app__signin-Btn-alt">
+         <button aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
             <FaGoogle /> Continue with Google
           </button>
-          <button className="app__signin-Btn-alt">
+         <button aria-label="SignInWithApple" className="app__signin-Btn-alt">
             <FaApple /> Continue with Apple
           </button>
           <div>

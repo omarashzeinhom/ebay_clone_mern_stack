@@ -101,7 +101,7 @@ export default function SearchBar() {
             onChange={(e) => setQuery(e.target.value)}
           />
         </div>
-        <button
+       <button aria-label="SearchBarButton"
           className="app__searchbar-searchBtn"
           id="searchBtn"
           name="searchButton"

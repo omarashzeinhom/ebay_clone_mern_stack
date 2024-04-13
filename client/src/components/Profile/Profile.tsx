@@ -139,7 +139,7 @@ export default function Profile({ total }: ProfileProps) {
           <Nav total={total} />
           <SearchBar />
           <div className="app-profile-container">
-            <button onClick={() => (window.location.href = "/signin")}>
+           <button aria-label="GoToSignInPageButton" onClick={() => (window.location.href = "/signin")}>
               Sign In{" "}
             </button>
           </div>

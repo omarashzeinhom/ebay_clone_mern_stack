@@ -149,7 +149,7 @@ if (notificationCount !== 0){
             </a>
           </li>
         ))}
-        <button
+       <button aria-label="OpenMobileMenu"
           className={`app__nav-close ${
             mobileMenuOpen ? "mobile-menu-open" : ""
           }`}

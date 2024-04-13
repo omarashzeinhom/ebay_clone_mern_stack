@@ -72,6 +72,7 @@ const TrendingProducts: React.FC = () => {
                   <a href={productLink}>
                       <img
               rel="preload"
+              
                       src={product?.img}
                       alt={product?.name}
                       loading="lazy"

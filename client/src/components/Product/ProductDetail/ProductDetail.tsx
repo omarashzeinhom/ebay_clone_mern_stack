@@ -72,7 +72,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
           <strong>
             <em>Category: </em>
           </strong>{" "}
-          <button onClick={handleRouting} className="product-detail__button">
+         <button aria-label={"CategoryButtonFor" + product?.category} onClick={handleRouting} className="product-detail__button">
             {product?.category}
           </button>
         </p>
@@ -98,7 +98,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
         <div className="product-detail__buttongroup">
           {/* TODO Remove Access to add More products inside the ProductDetail to avoid  console.js:213 Warning: Encountered two children with the same key, `52*/}
           {quantity === 0 && (
-            <button
+           <button aria-label="AddProductToCart"
               className="product-detail__button"
               onClick={() => addItemToCart(product)}
             >
@@ -106,7 +106,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
             </button>
           )}
 
-          <button
+         <button aria-label="DecreaseItemQuantity"
             className="product-detail__altbutton"
             onClick={() => decreaseCartQuantity(id)}
           >

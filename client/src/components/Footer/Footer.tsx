@@ -45,7 +45,7 @@ const Footer: React.FC<FooterProps> = ({ footerLinks }) => {
       </ul>
       <small>Omar Ashraf Zeinhom © 2023 - 2024</small>
       {showToTop && (
-        <button className="scroll-totop__btn" onClick={scrollToTop}>
+       <button aria-label="ReturnToTopOfPageButton" className="scroll-totop__btn" onClick={scrollToTop}>
           <IoIosArrowUp />
         </button>
       )}

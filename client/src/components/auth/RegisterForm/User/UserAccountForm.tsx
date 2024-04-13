@@ -179,19 +179,19 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
             />
           </label>
 
-          <button className="app__paform-Btn" type="submit">
+         <button aria-label="RegisterButton" className="app__paform-Btn" type="submit">
             Register
           </button>
         </div>
       </form>
       <div className="app__paform-right">
-        <button className="app__google-Btn">
+       <button aria-label="RegisterWithGoogle" className="app__google-Btn">
           <FaGoogle /> Continue with Google
         </button>
-        <button className="app__facebook-Btn">
+       <button aria-label="RegisterWithFaceBook" className="app__facebook-Btn">
           <FaFacebook /> Continue with Facebook
         </button>
-        <button className="app__apple-Btn">
+       <button aria-label="RegisterWithApple" className="app__apple-Btn">
           <FaApple /> Continue with Apple
         </button>
         <small>

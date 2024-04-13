@@ -12,8 +12,8 @@ const CustomerServiceNav = () => {
   return (
     <div className="app__customerservice-nav">
       <a href="/">
-          <img
-              rel="preload"
+        <img
+          rel="preload"
           src="/ebaylogo.png"
           alt="ebaylogo"
           width={140}
@@ -44,7 +44,12 @@ const CustomerService: React.FC<CustomerServiceProps> = ({ total }) => {
         ) : (
           <>
             <a href="/signin">
-              <button className="app__customerservice-Btn">Sign in</button>
+              <button
+                aria-label="RegisterNowButton"
+                className="app__customerservice-Btn"
+              >
+                Sign in
+              </button>
             </a>
             <p>
               Don't have an account? <a href="/register">Register now</a>

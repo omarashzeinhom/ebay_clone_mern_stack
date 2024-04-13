@@ -52,13 +52,13 @@ const DemoCredentials = () => {
                         <h6>
                             <em>Email:</em> johndoe@email.com
                         </h6>
-                        <button className="copy-button" onClick={copyEmailToClipboard}>Copy Email</button>
+                       <button aria-label="DemoEmail" className="copy-button" onClick={copyEmailToClipboard}>Copy Email</button>
                     </div>
                     <div className="credential">
                         <h6>
                             <em>Password:</em> 123456789
                         </h6>
-                        <button className="copy-button" onClick={copyPasswordToClipboard}>Copy Password</button>
+                       <button aria-label="DemoPassword" className="copy-button" onClick={copyPasswordToClipboard}>Copy Password</button>
                     </div>
                     <div className="credential">
                         <h6>
@@ -74,13 +74,13 @@ const DemoCredentials = () => {
                         <h6>
                             <em>Email:</em> mariadoeinc@email.com
                         </h6>
-                        <button className="copy-button" onClick={copyEmailToClipboard}>Copy Email</button>
+                       <button aria-label="CopyDemoBussinessEmailButton" className="copy-button" onClick={copyEmailToClipboard}>Copy Email</button>
                     </div>
                     <div className="credential">
                         <h6>
                             <em>Password:</em> 123456789
                         </h6>
-                        <button className="copy-button" onClick={copyPasswordToClipboard}>Copy Password</button>
+                       <button aria-label="CopyDemoBussinessPasswordButton" className="copy-button" onClick={copyPasswordToClipboard}>Copy Password</button>
                     </div>
                     <div className="credential">
                         <h6>
