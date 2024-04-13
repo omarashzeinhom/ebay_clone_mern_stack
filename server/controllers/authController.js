@@ -201,9 +201,7 @@ class AuthController {
         }
 
         // Update user document using Mongoose method
-        const updatedUser = await User.updateOne(filter, updates, {
-          new: true,
-        });
+        const updatedUser = await User.updateOne(filter, updates);
 
         // Return updated user data in the response
         res.status(200).json(updatedUser);
