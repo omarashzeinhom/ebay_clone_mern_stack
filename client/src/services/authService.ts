@@ -39,35 +39,35 @@ export const authService = {
     }
   },
 
-  updateUser: async (
-    updatedUser: UpdatedUser | undefined,
-    userId: string,
-    token: string
-  ) => {
+  updateUser: async (updatedUser: UpdatedUser | undefined, userId: string, token: string) => {
     const formData = new FormData();
-    formData.append("userId", userId);
-    formData.append("updatedFirstName", updatedUser?.updatedFirstName || "");
-    formData.append("updatedLastName", updatedUser?.updatedLastName || "");
-    formData.append("updatedEmail", updatedUser?.updatedEmail || "");
-    formData.append("updatedAvatar", updatedUser?.updatedAvatar || "");
+
+    // Append all fields to formData
+    if (updatedUser) {
+        Object.entries(updatedUser).forEach(([key, value]) => {
+            if (value) {
+                formData.append(key, value);
+            }
+        });
+    }
 
     try {
-      const response = await axios.put(
-        `${API_BASE_URL}auth/user/${userId}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+        const response = await axios.post(
+            `${API_BASE_URL}auth/user/${userId}`,
+            formData,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
 
-      console.log(response?.data);
-      return response?.data;
+        console.log(response?.data);
+        return response?.data;
     } catch (error) {
-      console.error("Failed to update user" + { error });
+        console.error("Failed to update user", error);
     }
-  },
+},
 
   getUser: async (token: string): Promise<User> => {
     try {

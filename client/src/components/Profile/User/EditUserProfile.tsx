@@ -7,7 +7,6 @@ import { authService } from "../../../services/authService";
 
 interface EditUserProfileProps {
   user: User;
-  updateUser: (selectedAvatar: File | undefined) => Promise<void>; // Updated the function signature
   setUser: React.Dispatch<React.SetStateAction<User>>;
   updatedUser: UpdatedUser | undefined; // New state variable
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
@@ -73,6 +72,27 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
     try {
       setLoading(true);
       setError(null);
+      const cloudinaryFormData = new FormData();
+      cloudinaryFormData.append("file", formData.updatedAvatar as File);
+      cloudinaryFormData.append(
+        "upload_preset",
+        `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+      );
+
+      const cloudinaryResponse = await fetch(userUpdatesFullUploadUri, {
+        method: "POST",
+        body: cloudinaryFormData,
+      });
+
+      if (!cloudinaryResponse.ok) {
+        const errorDetails = await cloudinaryResponse.json();
+        console.error("Cloudinary API Error:", errorDetails);
+        throw new Error("Failed to upload image to Cloudinary");
+      }
+
+      const cloudinaryData = await cloudinaryResponse.json();
+      const cloudinaryImageUrl = cloudinaryData.secure_url;
+
       // Upload the image file to Cloudinary
       // Check if the updated user data is different from the previous user data
       if (
@@ -82,27 +102,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
           updatedUser?.updatedEmail !== user?.email ||
           updatedUser?.updatedAvatar !== user?.avatar)
       ) {
-        const cloudinaryFormData = new FormData();
-        cloudinaryFormData.append("file", formData.updatedAvatar as File);
-        cloudinaryFormData.append(
-          "upload_preset",
-          `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
-        );
-
-        const cloudinaryResponse = await fetch(userUpdatesFullUploadUri, {
-          method: "POST",
-          body: cloudinaryFormData,
-        });
-
-        if (!cloudinaryResponse.ok) {
-          const errorDetails = await cloudinaryResponse.json();
-          console.error("Cloudinary API Error:", errorDetails);
-          throw new Error("Failed to upload image to Cloudinary");
-        }
-
-        const cloudinaryData = await cloudinaryResponse.json();
-        const cloudinaryImageUrl = cloudinaryData.secure_url;
-
+     
         // Store the Cloudinary URL in MongoDB
         const userData = {
           userId: formData.userId,
@@ -120,7 +120,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
             updatedFirstName: formData.updatedFirstName,
             updatedLastName: formData.updatedLastName,
             updatedEmail: formData.updatedEmail,
-            updatedAvatar: cloudinaryImageUrl, // Store the Cloudinary URL here
+            updatedAvatar: cloudinaryImageUrl,
           },
           userId,
           token || ""

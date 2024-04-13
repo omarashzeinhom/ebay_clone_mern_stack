@@ -9,6 +9,10 @@
   flex-direction: column;
   position: relative; /* Added to position the mobile menu */
 
+  ul{
+    list-style: none;
+  }
+  
   @media screen and (max-width: 500px) {
     .app__nav-mobile-icon {
       display: block;

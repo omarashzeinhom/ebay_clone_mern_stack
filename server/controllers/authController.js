@@ -173,6 +173,7 @@ class AuthController {
     if (objectId === userId) {
       try {
         const filter = { _id: userId };
+        console.log(userId);
         // Upload new avatar to Cloudinary if provided
         if (avatar) {
           const result = await cloudinary.uploader.upload(avatar);

@@ -142,13 +142,15 @@ if (notificationCount !== 0){
             </li>
           )}
         </div>
-        {navItems.map((item, index) => (
+     <ul>
+     {navItems.map((item, index) => (
           <li key={index}>
             <a href={item?.link} className="app__nav-item">
               {item?.title}
             </a>
           </li>
         ))}
+     </ul>
        <button aria-label="OpenMobileMenu"
           className={`app__nav-close ${
             mobileMenuOpen ? "mobile-menu-open" : ""
@@ -158,11 +160,13 @@ if (notificationCount !== 0){
           &times;
         </button>
         <div className="app__nav-right">
-          <li className="app__nav-rightItem">
+         <ul>
+         <li className="app__nav-rightItem">
             <a className="app__nav-rightItem" href="/sell">
               Sell
             </a>
           </li>
+         </ul>
           <li>
             <select
               defaultValue={"My Ebay"}

@@ -1,32 +1,27 @@
-//import { ProfilerOnRenderCallback } from "react";
-// CHG DEVELOPMENT AND PRODUCTION
-export const API_BASE_URL = "http://localhost:5000/";
-
-const HOME_URL = "http://localhost:3000/";
-const DEVELOP_URL = "http://localhost:3000/";
-//const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
-
-//const SERVER_DEVELOP_URL = "http://localhost:3001/";
-
 // Config Constants
 
-export const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
-export const businessProductsfolderPath =
-  "ebay-clone-mern-images/businesses/products";
-export const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+// CHG DEVELOPMENT AND PRODUCTION
+const API_BASE_URL = "http://localhost:5000/";
+const HOME_URL = "http://localhost:3000/";
 
-// Append folder path as a parameter
-export const bussinessProductsFullUploadUri = `${businessProductsUploadEndPoint}?folder=${businessProductsfolderPath}`;
+//const DEVELOP_URL = "http://localhost:3000/";
+//const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
+//const SERVER_DEVELOP_URL = "http://localhost:5000/";
+//const SERVER_PROD_URL = "https://server-ebay-clone.onrender.com";
 
-// export const userUploads URIs 
+const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
 
-export const userUpdatesfolderPath =  "ebay-clone-mern-images/users/avatar";
+//  businessUploads URIs
 
-export const userUpdatesUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+const businessProductsfolderPath = "ebay-clone-mern-images/businesses/products";
+const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+const bussinessProductsFullUploadUri = `${businessProductsUploadEndPoint}?folder=${businessProductsfolderPath}`;
 
+//  userUploads URIs
 
-export const userUpdatesFullUploadUri = `${userUpdatesUploadEndPoint}?folder=${userUpdatesfolderPath}`;
-
+const userUpdatesfolderPath = "ebay-clone-mern-images/users/avatar";
+const userUpdatesUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+const userUpdatesFullUploadUri = `${userUpdatesUploadEndPoint}?folder=${userUpdatesfolderPath}`;
 
 /* NavBar Items Start */
 const navItems = [
@@ -367,7 +362,7 @@ const countryList = [
 
 /*CustomerService and Survery Common Issues */
 
-export const commonIssues = [
+const commonIssues = [
   {
     name: "Buying as a guest",
   },
@@ -392,7 +387,7 @@ export const commonIssues = [
 Login Constants
 */
 
-export const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
+const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
 to bid and buy. You'll also be all set to pay if you've saved your
 payment info. You can always turn off this feature in My eBay. We
 may ask you to sign in again for some activities, such as making
@@ -403,6 +398,11 @@ export {
   myEbayItems,
   footerLinks,
   countryList,
+  summaryBoxText,
+  commonIssues,
+  //URIS
+  API_BASE_URL,
   HOME_URL,
-  DEVELOP_URL,
+  bussinessProductsFullUploadUri,
+  userUpdatesFullUploadUri,
 };

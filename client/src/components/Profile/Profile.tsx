@@ -19,7 +19,6 @@ export default function Profile({ total }: ProfileProps) {
     business,
     user,
     setUser,
-    updateUser,
     updatedUser,
     setUpdatedUser /* token  */,
   } = useAuth();
@@ -77,9 +76,6 @@ export default function Profile({ total }: ProfileProps) {
             setUser={setUser}
             updatedUser={updatedUser}
             setUpdatedUser={setUpdatedUser}
-            updateUser={async (selectedAvatar) =>
-              updateUser(selectedAvatar, updatedUser)
-            }
           />
         )}
         {business?.businessId && <EditBusinessProfile />}
