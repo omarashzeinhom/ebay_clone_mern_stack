@@ -22,10 +22,8 @@ import {
   Profile,
   SearchResults,
   ErrorBoundary,
-  Header,
 } from "../components";
 import { CategoryProvider } from "../context/CategoryContext";
-
 
 type AppProps = {
   total: number;
@@ -148,7 +146,6 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   const router = createBrowserRouter(routes);
 
-
   return (
     <React.StrictMode>
       <ErrorBoundary>
@@ -156,7 +153,6 @@ const App: React.FC<AppProps> = ({ total }) => {
           <ShoppingCartProvider>
             <CategoryProvider>
               <ProductProvider>
-                
                 <RouterProvider router={router} />
               </ProductProvider>
             </CategoryProvider>
