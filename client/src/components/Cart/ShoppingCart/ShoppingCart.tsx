@@ -53,7 +53,7 @@ export default function ShoppingCart({ total }: ShoppingCartProps) {
                     category={item?.category}
                     
                   />
-                  <hr />
+                   
                 </React.Fragment>
               ))}
             </>
@@ -70,7 +70,7 @@ export default function ShoppingCart({ total }: ShoppingCartProps) {
           )}
           <div className="total">
             Total Items :{cartQuantity}
-            <hr />
+             
             Total :{" "}
             {currencyFormatter(
               cartItems.reduce((total, cartItem) => {

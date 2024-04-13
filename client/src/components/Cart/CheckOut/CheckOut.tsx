@@ -57,7 +57,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
       <>
         <details>
           <summary> Demo Credentials</summary>
-          <hr />
+           
           <small>
             <em>Test with card number:</em>
             4242 4242 4242 4242
@@ -73,7 +73,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
           <small>
             <em>ZIP:</em>22313
           </small>
-          <hr />
+           
         </details>
       </>
     );

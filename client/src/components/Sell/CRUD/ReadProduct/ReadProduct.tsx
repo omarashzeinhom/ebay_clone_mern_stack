@@ -32,7 +32,8 @@ export default function ReadProduct() {
         <div className="product-list">
           {businessProducts?.map((product: Product, index: number) => (
             <div key={index} className="product-card">
-              <img
+                <img
+              rel="preload"
                 src={product?.img}
                 alt={product?.name}
                 className="product-image"

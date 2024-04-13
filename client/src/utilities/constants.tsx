@@ -1,8 +1,8 @@
 //import { ProfilerOnRenderCallback } from "react";
 // CHG DEVELOPMENT AND PRODUCTION
-export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
+export const API_BASE_URL = "http://localhost:5000/";
 
-const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
+const HOME_URL = "http://localhost:3000/";
 const DEVELOP_URL = "http://localhost:3000/";
 //const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
 
@@ -398,48 +398,6 @@ payment info. You can always turn off this feature in My eBay. We
 may ask you to sign in again for some activities, such as making
 changes to your account.`;
 
-// Create the onRender function
-// Define the onRender function with the correct signature
-/**
- * 
- * export const onRender: ProfilerOnRenderCallback = (
-  id: any,
-  phase: any,
-  actualDuration: any,
-  baseDuration: any,
-  startTime: any,
-  commitTime: any,
-  interactions: any,
-  root: any, // Additional parameter
-  ...args: any[]
-) => {
-  // Your implementation here
-
-  // Convert duration values to seconds
-  const actualDurationInSeconds = actualDuration / 1000;
-  const baseDurationInSeconds = baseDuration / 1000;
-  const startTimeInSeconds = startTime / 1000;
-  const commitTimeInSeconds = commitTime / 1000;
-
-  // Log the performance information
-  console.log(
-    "-------- Performance Gotten From Profiler Hook ----------------"
-  );
-  console.log(`Render ID: ${id}`);
-  console.log(`Phase: ${phase}`);
-  console.log(`Actual Duration: ${actualDurationInSeconds} s`);
-  console.log(`Base Duration: ${baseDurationInSeconds} s`);
-  console.log(`Start Time: ${startTimeInSeconds} s`);
-  console.log(`Commit Time: ${commitTimeInSeconds} s`);
-  console.log(`Interactions: ${JSON.stringify(interactions)}`);
-  console.log(`Root: ${root}`);
-  console.log(
-    "---------- Performance Gotten From Profiler Hook --------------"
-  );
-};
-
- * 
- */
 export {
   navItems,
   myEbayItems,

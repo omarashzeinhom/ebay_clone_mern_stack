@@ -3,6 +3,7 @@ import "./UserProfile.scss";
 
 export default function UserProfile() {
   const { user, updatedUser } = useAuth();
+  console.log(user);
 
   return (
     <div className="user-profile-container">
@@ -11,9 +12,10 @@ export default function UserProfile() {
       </div>
       <div className="user-profile-info">
         <div className="avatar">
-          {updatedUser?.updatedAvatar || user?.avatar ? (
-            <img
-              src={user?.avatar || updatedUser?.updatedAvatar}
+          { user?.avatar ? updatedUser?.updatedAvatar || (
+              <img
+              rel="preload"
+              src={user?.avatar || updatedUser?.updatedAvatar }
               alt={user?.email || updatedUser?.updatedEmail || "No user avatar uploaded"}
             />
           ) : (

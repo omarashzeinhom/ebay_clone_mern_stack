@@ -13,15 +13,23 @@ interface EditUserProfileProps {
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
 }
 
-const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
-  const { updatedUser, token } = useAuth();
-  let { firstName, lastName, email, avatar } = user;
+const EditUserProfile: React.FC<EditUserProfileProps> = () => {
+  const { updatedUser, token, user} =
+    useAuth();
+
+  let firstName = user?.firstName || updatedUser?.updatedFirstName || "";
+  let lastName = user?.lastName || updatedUser?.updatedLastName || "";
+  let email = user?.email || updatedUser?.updatedEmail || "";
+  let avatar = user?.avatar || updatedUser?.updatedAvatar || "";
+  let userId = user?.userId || updatedUser?.userId || "";
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const userIdStrVal = JSON.stringify(`${userId}`);
+
   const [formData, setFormData] = useState<UpdatedUserFormData>({
-    userId: "",
+    userId: userIdStrVal,
     updatedFirstName: "",
     updatedLastName: "",
     updatedEmail: "",
@@ -56,7 +64,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
   console.log(
     `user ===> ${JSON.stringify(
       user
-    )} and its props ===>> ${firstName} ${lastName} ${email} ${avatar}`
+    )} and its props ===>> ${userId} ${firstName} ${lastName} ${email} ${avatar}`
   );
 
   const handleSubmit = async (event: FormEvent) => {
@@ -69,10 +77,10 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
       // Check if the updated user data is different from the previous user data
       if (
         updatedUser &&
-        (updatedUser.updatedFirstName !== user.firstName ||
-          updatedUser.updatedLastName !== user.lastName ||
-          updatedUser.updatedEmail !== user.email ||
-          updatedUser.updatedAvatar !== user.avatar)
+        (updatedUser?.updatedFirstName !== user?.firstName ||
+          updatedUser?.updatedLastName !== user?.lastName ||
+          updatedUser?.updatedEmail !== user?.email ||
+          updatedUser?.updatedAvatar !== user?.avatar)
       ) {
         const cloudinaryFormData = new FormData();
         cloudinaryFormData.append("file", formData.updatedAvatar as File);
@@ -104,6 +112,8 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
           avatar: cloudinaryImageUrl, // Store the Cloudinary URL here
         };
 
+        console.log("userData====>" + JSON.stringify(userData));
+
         const data = await authService.updateUser(
           {
             userId: formData.userId,
@@ -112,7 +122,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
             updatedEmail: formData.updatedEmail,
             updatedAvatar: cloudinaryImageUrl, // Store the Cloudinary URL here
           },
-          user?.userId,
+          userId,
           token || ""
         );
 
@@ -212,14 +222,14 @@ const EditUserProfile: React.FC<EditUserProfileProps> = ({ user, setUser }) => {
           onChange={(e) => handleInputChange(e, "updatedAvatar")}
         />
         <input
-          id="avatarUrl"
-          name="" // need to pass another hidden input as string when full product is successfull
+          id="avatar"
+          name="updatedAvatar" // need to pass another hidden input as string when full product is successfull
           type="text"
           accept="image/*"
           hidden={true}
           onChange={(e) => handleInputChange(e, "updatedAvatar")}
         />
-        <hr />
+         
         <button type="submit">Update User</button>
       </form>
     </div>

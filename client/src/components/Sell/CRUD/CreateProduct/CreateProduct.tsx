@@ -90,6 +90,8 @@ export default function CreateProduct() {
         parent: formData.parent,
         businessId: formData.businessId,
       };
+
+      console.log("productData====>" + productData)
   
       // Call your backend service to store the product data in MongoDB
       const data = await productService.createProduct({

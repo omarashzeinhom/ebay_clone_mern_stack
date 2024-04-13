@@ -58,7 +58,8 @@ const SearchResults: React.FC = () => {
                       className="product-list__product-link"
                       href={`${productLink(result?._id)}`}
                     >
-                      <img
+                        <img
+              rel="preload"
                         className="product-list__product-list-image"
                         src={result?.img}
                         alt={result?.name}

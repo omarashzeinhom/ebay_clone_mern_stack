@@ -1,23 +1,26 @@
 import axios, { AxiosResponse } from "axios";
-import { User, Business, UpdatedUser } from "../models/";
+import { User } from "../models/user";
+import { Business } from "../models/business";
 import { API_BASE_URL } from "../utilities/constants";
 
 export const authService = {
   /* <--- User services start ---> */
-  register: async (
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    avatar?: string
-  ): Promise<void> => {
-    await axios.post(`${API_BASE_URL}auth/register`, {
-      firstName,
-      lastName,
-      email,
-      password,
-      avatar: avatar || "",
-    });
+  register: async (user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    avatar?: any;
+  }) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}auth/register`, user);
+      return response?.data;
+    } catch (error) {
+      console.error(
+        "Error in createProduct, in productService.ts:" + { error }
+      );
+      throw error; // Re-throw the error to let the calling code handle it
+    }
   },
 
   login: async (email: string, password: string): Promise<string> => {
@@ -43,9 +46,11 @@ export const authService = {
     token: string
   ) => {
     const formData = new FormData();
+    formData.append("userId", userId);
     formData.append("updatedFirstName", updatedUser?.updatedFirstName || "");
     formData.append("updatedLastName", updatedUser?.updatedLastName || "");
     formData.append("updatedEmail", updatedUser?.updatedEmail || "");
+    formData.append("updatedAvatar", updatedUser?.updatedAvatar || "");
 
     try {
       const response = await axios.put(
@@ -61,7 +66,7 @@ export const authService = {
       console.log(response?.data);
       return response?.data;
     } catch (error) {
-      throw new Error(`Failed to update user: ${error}`);
+      console.error("Failed to update user" + { error });
     }
   },
 

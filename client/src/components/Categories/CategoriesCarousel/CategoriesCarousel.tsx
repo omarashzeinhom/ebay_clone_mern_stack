@@ -87,7 +87,8 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
                 onClick={() => handleCategoryClick(category?.name)}
               >
                 <div className="app__categories-slide">
-                  <img src={category?.img} alt={category?.name} loading="lazy" />
+                    <img
+              rel="preload" src={category?.img} alt={category?.name} loading="lazy" />
                   <p className="app__categories-category-name">{category?.name}</p>
                 </div>
               </SwiperSlide>

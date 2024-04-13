@@ -55,13 +55,17 @@ export const productService = {
         )}`
       );
       if (!response.ok) {
-        throw new Error("Failed to fetch product");
+        if (response.status === 429) {
+          alert('Search has been disabled because there have been too many attempts. Please wait a minute to reset the rate limit for security purposes.');
+        }
+        console.error("Failed to fetch product");
       }
 
       const data = await response.json();
       return data;
-    } catch (error) {
+    } catch (error:any) {
       console.error("Error fetching products by Name:", error);
+     
       return undefined;
     }
   },
@@ -85,7 +89,7 @@ export const productService = {
 
       return response?.data;
     } catch (error) {
-      console.error(`Error in createProduct, in productService.ts: ${error}`);
+      console.error("Error in createProduct, in productService.ts:" + {error});
       throw error; // Re-throw the error to let the calling code handle it
     }
   },

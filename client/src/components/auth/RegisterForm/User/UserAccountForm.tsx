@@ -1,7 +1,9 @@
 import "./UserAccountForm.scss";
-import React, { useState } from "react";
-import { User } from "../../../../models/user";
+import React, { ChangeEvent, FormEvent, useState } from "react";
+import { RegisterFormData, User } from "../../../../models/user";
 import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
+import { userUpdatesFullUploadUri } from "../../../../utilities/constants";
+import { authService } from "../../../../services/authService";
 
 interface UserAccountFormProps {
   user: User;
@@ -9,81 +11,180 @@ interface UserAccountFormProps {
   setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
-const UserAccountForm: React.FC<UserAccountFormProps> = ({
-  user,
-  handleRegister,
-  setUser,
-}) => {
-  const [localUser, setLocalUser] = useState<User>(user);
+const UserAccountForm: React.FC<UserAccountFormProps> = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [formData, setFormData] = useState<RegisterFormData>({
+    userId: "",
+    firstName: " ",
+    lastName: " ",
+    email: " ",
+    avatar: " ",
+    password: " ",
+  });
+  console.log("UserAccountForm formData===>", +formData);
 
-  const handleChange = (field: string, value: string | File | undefined) => {
-    const updatedUser: User = {
-      ...localUser,
-      [field]: value,
-    };
-    setLocalUser(updatedUser);
-    setUser(updatedUser);
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      setError(null);
+
+      // Upload the image file to Cloudinary
+      const cloudinaryFormData = new FormData();
+      cloudinaryFormData.append("file", formData.avatar as File);
+      cloudinaryFormData.append(
+        "upload_preset",
+        `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+      );
+
+      const cloudinaryResponse = await fetch(userUpdatesFullUploadUri, {
+        method: "POST",
+        body: cloudinaryFormData,
+      });
+
+      if (!cloudinaryResponse.ok) {
+        const errorDetails = await cloudinaryResponse.json();
+        console.error("Cloudinary API Error:", errorDetails);
+        throw new Error("Failed to upload image to Cloudinary");
+      }
+
+      const cloudinaryData = await cloudinaryResponse.json();
+      const cloudinaryImageUrl = cloudinaryData.secure_url;
+
+      // Store the Cloudinary URL in MongoDB
+      const userData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        avatar: cloudinaryImageUrl, // ADD Generic Types for image
+        password: formData.password,
+      };
+
+      console.log("productData====>" + userData);
+
+      // Call your backend service to store the product data in MongoDB
+      const data = await authService.register({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        avatar: cloudinaryImageUrl, // ADD Generic Types for image
+        password: formData.password,
+      });
+      console.log("User created:", data);
+
+      // Resetting the form after successful submission
+      setFormData((prevState) => ({
+        ...prevState,
+        avatar: "", // Reset img property to an empty string
+      }));
+    } catch (error) {
+      console.error("Error creating User:", error);
+      setError("Failed to create the User. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    fieldName: string
+  ) => {
+    if (
+      fieldName === "avatar" &&
+      e.target &&
+      e.target instanceof HTMLInputElement &&
+      e.target.files
+    ) {
+      const inputElement = e.target as HTMLInputElement;
+      setFormData((prevState) => ({
+        ...prevState,
+        [fieldName]: inputElement.files![0],
+      }));
+    } else {
+      const { name, value } = e.target;
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
-  const { firstName, lastName, email, password } = localUser;
-
   return (
-    <form className="app__paform" method="POST">
-      <div className="app__paform-left">
-        <input
-          type="text"
-          id="firstName"
-          required
-          value={firstName}
-          placeholder="First Name"
-          className="app__paform-inputAlt"
-          onChange={(e) => handleChange("firstName", e.target.value)}
-        />
-        <input
-          type="text"
-          id="lastName"
-          required
-          value={lastName}
-          placeholder="Last Name"
-          className="app__paform-inputAlt"
-          onChange={(e) => handleChange("lastName", e.target.value)}
-        />
-        <input
-          id="email"
-          required
-          type="email"
-          value={email}
-          placeholder="Email"
-          className="app__paform-input"
-          autoComplete="useremail@email.com"
-          onChange={(e) => handleChange("email", e.target.value)}
-        />
-        <input
-          id="password"
-          type="password"
-          value={password}
-          autoComplete="current-password"
-          placeholder="Password"
-          className="app__paform-input"
-          onChange={(e) => handleChange("password", e.target.value)}
-        />
-        <input
-          id="avatar"
-          type="file"
-          accept="image/*"
-          className="app__paform-Btn"
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            handleChange("avatar", file);
-          }}
-        />
+    <div className="app__paform">
+      <form onSubmit={handleSubmit}>
+        {loading && <p>Loading...</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <div className="app__paform-left">
+          <label>
+            First Name
+            <input
+              name="firstName"
+              type="text"
+              required
+              placeholder="FirstName"
+              className="app__paform-inputAlt"
+              onChange={(e) => handleChange(e, "firstName")}
+            />
+          </label>
+          <label>
+            Last Name
+            <input
+              name="lastName"
+              type="text"
+              required
+              placeholder="Last Name"
+              className="app__paform-inputAlt"
+              onChange={(e) => handleChange(e, "lastName")}
+            />
+          </label>
+          <label>
+            Email
+            <input
+              name="email"
+              required
+              type="email"
+              placeholder="Email"
+              className="app__paform-input"
+              autoComplete="useremail@email.com"
+              onChange={(e) => handleChange(e, "email")}
+            />
+          </label>
 
-        <button onClick={handleRegister} className="app__paform-Btn" type="button">
-          Register
-        </button>
-      </div>
+          <label>
+            Password
+            <input
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              placeholder="Password"
+              className="app__paform-input"
+              onChange={(e) => handleChange(e, "password")}
+            />
+          </label>
+          <label>
+            Avatar
+            <input
+              placeholder="Upload Product Image Here"
+              name="avatar"
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleChange(e, "avatar")}
+            />
+            <input
+              name="" // need to pass another hidden input as string when full product is successfull
+              type="text"
+              accept="image/*"
+              hidden={true}
+              onChange={(e) => handleChange(e, "avatar")}
+            />
+          </label>
 
-      <div className="app__paform-left">
+          <button className="app__paform-Btn" type="submit">
+            Register
+          </button>
+        </div>
+      </form>
+      <div className="app__paform-right">
         <button className="app__google-Btn">
           <FaGoogle /> Continue with Google
         </button>
@@ -93,11 +194,11 @@ const UserAccountForm: React.FC<UserAccountFormProps> = ({
         <button className="app__apple-Btn">
           <FaApple /> Continue with Apple
         </button>
+        <small>
+          <p>Already have an account?</p> <a href="/signin">SignIn!</a>
+        </small>
       </div>
-      <small>
-        <p>Already have an account?</p> <a href="/signin">SignIn!</a>
-      </small>
-    </form>
+    </div>
   );
 };
 

@@ -97,6 +97,7 @@ if (notificationCount !== 0){
             <select
               id="categoriesDropDown"
               className="app__nav-dropdown"
+              name="NavigationMenuCategories"
               onChange={(e) => {
                 if (e.target.value === "logout") {
                   handleLogOut();

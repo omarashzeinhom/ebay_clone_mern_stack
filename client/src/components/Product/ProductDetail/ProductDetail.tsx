@@ -59,7 +59,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
         <h2 className="product-detail__title">{product?.name}</h2>
 
         <p className="product-detail__price">${product?.price}</p>
-        <img
+          <img
+              rel="preload"
           className="product-detail__image"
           alt={product?.name}
           src={product?.img}

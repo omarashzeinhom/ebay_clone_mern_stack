@@ -121,7 +121,8 @@ export default function EditBusinessProfile() {
               type="file"
               onChange={(e) => handleFileChange(e.target.files?.[0])}
             />
-            <img
+              <img
+              rel="preload"
               loading="lazy"
               src={business?.businessAvatar || ""}
               alt={
