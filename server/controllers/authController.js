@@ -160,7 +160,7 @@ class AuthController {
   async updateUser(req, res) {
     // _id we have to update the object with  the same prop _id value to avoid creation of duplicate users
     const userId = req.user.userId; // Assuming userId is extracted from authentication middleware
-    const objectId = req.params.id; // This is the main focus
+    //const objectId = req.params.id; // This is the main focus
 
     const {
       updatedFirstName,
@@ -201,7 +201,7 @@ class AuthController {
         }
 
         // Update user document using Mongoose method
-        const updatedUser = await User.findOneAndReplace(filter, updates, {
+        const updatedUser = await User.updateOne(filter, updates, {
           new: true,
         });
 

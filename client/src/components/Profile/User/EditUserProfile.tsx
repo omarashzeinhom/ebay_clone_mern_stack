@@ -13,22 +13,13 @@ interface EditUserProfileProps {
 }
 
 const EditUserProfile: React.FC<EditUserProfileProps> = () => {
-  const { updatedUser, token, user} =
-    useAuth();
-
-  let firstName = user?.firstName || updatedUser?.updatedFirstName || "";
-  let lastName = user?.lastName || updatedUser?.updatedLastName || "";
-  let email = user?.email || updatedUser?.updatedEmail || "";
-  let avatar = user?.avatar || updatedUser?.updatedAvatar || "";
-  let userId = user?.userId || updatedUser?.userId || "";
+  const { updatedUser, token, user } = useAuth();
+  const userId = user?.userId || "";
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const userIdStrVal = JSON.stringify(`${userId}`);
-
   const [formData, setFormData] = useState<UpdatedUserFormData>({
-    userId: userIdStrVal,
+    userId: userId,
     updatedFirstName: "",
     updatedLastName: "",
     updatedEmail: "",
@@ -61,9 +52,9 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
   };
 
   console.log(
-    `user ===> ${JSON.stringify(
-      user
-    )} and its props ===>> ${userId} ${firstName} ${lastName} ${email} ${avatar}`
+    `user ===> ${JSON.stringify(user)} and its props ===>> ${user?.userId} ${
+      user?.firstName
+    } ${user?.lastName} ${user?.email} ${user?.avatar}`
   );
 
   const handleSubmit = async (event: FormEvent) => {
@@ -95,44 +86,36 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
 
       // Upload the image file to Cloudinary
       // Check if the updated user data is different from the previous user data
-      if (
-        updatedUser &&
-        (updatedUser?.updatedFirstName !== user?.firstName ||
-          updatedUser?.updatedLastName !== user?.lastName ||
-          updatedUser?.updatedEmail !== user?.email ||
-          updatedUser?.updatedAvatar !== user?.avatar)
-      ) {
-     
-        // Store the Cloudinary URL in MongoDB
-        const userData = {
+
+      // Store the Cloudinary URL in MongoDB
+      const userData = {
+        userId: formData.userId,
+        firstName: formData.updatedFirstName,
+        lastName: formData.updatedLastName,
+        email: formData.updatedEmail,
+        avatar: cloudinaryImageUrl, // Store the Cloudinary URL here
+      };
+
+      console.log("userData====>" + JSON.stringify(userData));
+
+      const data = await authService.updateUser(
+        {
           userId: formData.userId,
-          firstName: formData.updatedFirstName,
-          lastName: formData.updatedLastName,
-          email: formData.updatedEmail,
-          avatar: cloudinaryImageUrl, // Store the Cloudinary URL here
-        };
+          updatedFirstName: formData.updatedFirstName,
+          updatedLastName: formData.updatedLastName,
+          updatedEmail: formData.updatedEmail,
+          updatedAvatar: cloudinaryImageUrl,
+        },
+        userId,
+        token || ""
+      );
 
-        console.log("userData====>" + JSON.stringify(userData));
-
-        const data = await authService.updateUser(
-          {
-            userId: formData.userId,
-            updatedFirstName: formData.updatedFirstName,
-            updatedLastName: formData.updatedLastName,
-            updatedEmail: formData.updatedEmail,
-            updatedAvatar: cloudinaryImageUrl,
-          },
-          userId,
-          token || ""
-        );
-
-        console.log("User updated", data);
-        // Resetting the form after successful submission
-        setFormData((prevState) => ({
-          ...prevState,
-          img: "", // Reset img property to an empty string
-        }));
-      }
+      console.log("User updated", data);
+      // Resetting the form after successful submission
+      setFormData((prevState) => ({
+        ...prevState,
+        img: "", // Reset img property to an empty string
+      }));
     } catch (error) {
       console.error("Error updating user:", error);
       setError("Failed to update the user. Please try again."); // Set an appropriate error message
@@ -229,8 +212,10 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
           hidden={true}
           onChange={(e) => handleInputChange(e, "updatedAvatar")}
         />
-         
-       <button aria-label="UpdateUserInformationButton" type="submit">Update User</button>
+
+        <button aria-label="UpdateUserInformationButton" type="submit">
+          Update User
+        </button>
       </form>
     </div>
   );

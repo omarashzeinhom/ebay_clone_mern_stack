@@ -1,6 +1,7 @@
 import React from "react";
 import { Business } from "../../../../models/business";
 import "./BusinessAccountForm.scss";
+import { countryList } from "../../../../utilities/constants";
 
 interface BusinessAccountFormProps {
   business: Business;
@@ -74,7 +75,11 @@ const BusinessAccountForm: React.FC<BusinessAccountFormProps> = ({
           setBusiness({ ...business, businessLocation: e.target.value })
         }
       >
-        <option>Egypt</option>
+        {countryList.map((country,index)=>{
+          return (
+            <option key={index}>{country}</option>
+          )
+        })}
       </select>
 
      <button aria-label="RegisterButton" className="app__baform-Btn">Register</button>
