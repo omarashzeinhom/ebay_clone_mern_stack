@@ -70,7 +70,8 @@ const TrendingProducts: React.FC = () => {
               >
                 <div className="category-slide">
                   <a href={productLink}>
-                    <img
+                      <img
+              rel="preload"
                       src={product?.img}
                       alt={product?.name}
                       loading="lazy"

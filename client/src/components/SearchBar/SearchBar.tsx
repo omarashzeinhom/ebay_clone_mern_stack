@@ -63,7 +63,8 @@ export default function SearchBar() {
   return (
     <div className="app__searchbar">
       <a href="/">
-        <img
+          <img
+              rel="preload"
           className="app__searchbar-logo"
           src="/ebaylogo.png"
           alt="searchbarlogo"
@@ -103,6 +104,7 @@ export default function SearchBar() {
         <button
           className="app__searchbar-searchBtn"
           id="searchBtn"
+          name="searchButton"
           onClick={handleSearch}
         >
           <HiMagnifyingGlass className="app__searchbar-searchicon" />

@@ -229,7 +229,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
           hidden={true}
           onChange={(e) => handleInputChange(e, "updatedAvatar")}
         />
-        <hr />
+         
         <button type="submit">Update User</button>
       </form>
     </div>

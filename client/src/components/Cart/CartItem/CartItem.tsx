@@ -20,7 +20,8 @@ const CartItem: React.FC<CartItemProps> = ({
       {quantity > 0 && (
         <div>
           <div key={id} className="d-flex align-items-center">
-            <img
+              <img
+              rel="preload"
               src={img}
               alt={name}
               loading="lazy"

@@ -91,7 +91,8 @@ const ProductList: React.FC<ProductListProps> = ({
                     className="product-list__product-link"
                     href={`${productLink(product?._id)}`}
                   >
-                    <img
+                      <img
+              rel="preload"
                       className="product-list__product-list-image"
                       src={product?.img}
                       alt={product?.name}

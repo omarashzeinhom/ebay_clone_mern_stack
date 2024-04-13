@@ -13,7 +13,8 @@ export default function UserProfile() {
       <div className="user-profile-info">
         <div className="avatar">
           { user?.avatar ? updatedUser?.updatedAvatar || (
-            <img
+              <img
+              rel="preload"
               src={user?.avatar || updatedUser?.updatedAvatar }
               alt={user?.email || updatedUser?.updatedEmail || "No user avatar uploaded"}
             />

@@ -12,7 +12,8 @@ const Ads: React.FC = () => {
           className={`ads__featured__item ads__${item?.category}-item`}
         >
           <a href={item?.link}>
-            <img
+              <img
+              rel="preload"
               className="ads__featured__item__img"
               src={item?.imageUrl}
               alt={item?.title}

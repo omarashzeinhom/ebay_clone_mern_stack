@@ -10,7 +10,8 @@ const BusinessProfile: React.FC = () => {
   <div className="user-profile-info">
     <div className="avatar">
       {business?.businessAvatar ? (
-        <img
+          <img
+              rel="preload"
           src={business?.businessAvatar}
           alt={business?.businessEmail || "No business avatar uploaded"}
         />

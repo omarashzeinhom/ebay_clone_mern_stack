@@ -18,8 +18,9 @@ const NotFound: React.FC = () => {
     <SearchBar/>
     <div className="not-found-container">
       <h2 className="not-found-title">404 Not Found</h2>
-      <hr />
-      <img
+       
+        <img
+              rel="preload"
         className="not-found-image"
         src="/notfound.jpeg"
         alt="Funny Meme"
@@ -28,7 +29,7 @@ const NotFound: React.FC = () => {
       <p className="not-found-text">
         Sorry, the page you are looking for does not exist.
       </p>
-      <hr />
+       
 
       <a href="/">Return back </a>
     </div>

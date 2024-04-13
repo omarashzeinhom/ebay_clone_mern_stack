@@ -6,13 +6,13 @@ import { useState, useEffect } from "react";
 import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
 import DemoCredentials from "./DemoCredentials";
 
-
 export const SignInNav = () => {
   return (
     <div className="app__signin-nav">
       <div className="app__signin-nav-left">
         <a href="/">
           <img
+            rel="preload"
             src="/ebaylogo.png"
             alt="ebaylogo"
             width={140}
@@ -39,7 +39,6 @@ const SignInForm: React.FC = () => {
   //  username: "ilovemongodb",
   //});
   //const googleUser = await app.logIn(credentials);
-
 
   const showNotification = (message: string) => {
     setNotification(message);
@@ -137,9 +136,11 @@ const SignInForm: React.FC = () => {
               business?.businessName ||
               "No user data was found !"}
           </a>
-          <hr />
-
-          <a href="/">Return Home</a>
+          <br />
+          <a href="/">
+            {" "}
+            <button className="app__signin-Btn">Return Home </button>
+          </a>
         </div>
       ) : (
         <div className="app__signin-container">
@@ -171,7 +172,7 @@ const SignInForm: React.FC = () => {
           <button className="app__signin-Btn">
             <FaFacebook /> Continue with Facebook
           </button>
-          <button className="app__signin-Btn-alt" >
+          <button className="app__signin-Btn-alt">
             <FaGoogle /> Continue with Google
           </button>
           <button className="app__signin-Btn-alt">
