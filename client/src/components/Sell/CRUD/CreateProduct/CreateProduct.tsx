@@ -61,7 +61,7 @@ export default function CreateProduct() {
       cloudinaryFormData.append("file", formData.img as File);
       cloudinaryFormData.append(
         "upload_preset",
-        `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+        `${process.env.REACT_APP_CLODUINARY_BUSINESS_PRODUCTS_UPLOAD_PRESET}`
       );
   
       const cloudinaryResponse = await fetch(bussinessProductsFullUploadUri, {

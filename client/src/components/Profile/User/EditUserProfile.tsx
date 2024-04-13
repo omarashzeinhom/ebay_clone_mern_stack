@@ -76,7 +76,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
       cloudinaryFormData.append("file", formData.updatedAvatar as File);
       cloudinaryFormData.append(
         "upload_preset",
-        `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+        `${process.env.REACT_APP_CLODUINARY_USER_AVATARS_UPLOAD_PRESET}`
       );
 
       const cloudinaryResponse = await fetch(userUpdatesFullUploadUri, {

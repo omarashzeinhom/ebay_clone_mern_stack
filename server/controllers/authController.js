@@ -170,7 +170,7 @@ class AuthController {
       password,
     } = req.body;
 
-    if (objectId === userId) {
+    
       try {
         const filter = { _id: userId };
         console.log(userId);
@@ -211,7 +211,7 @@ class AuthController {
         console.error("Error in updateUser:", error);
         res.status(500).json({ message: "Internal Server Error" });
       }
-    }
+    
   }
 
   /* <---------- User Async Functions End ----------> */
