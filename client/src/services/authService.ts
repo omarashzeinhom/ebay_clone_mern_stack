@@ -52,7 +52,7 @@ export const authService = {
     }
 
     try {
-        const response = await axios.post(
+        const response = await axios.put(
             `${API_BASE_URL}auth/user/${userId}`,
             formData,
             {
