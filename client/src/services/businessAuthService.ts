@@ -10,7 +10,7 @@ export const businessAuthService = {
     businessName: string,
     businessEmail: string,
     businessPassword: string,
-    businessAvatar: string
+    businessAvatar: string,
     businessActive: boolean,
     businessLocation: string,
     businessCountry: string,
@@ -59,7 +59,7 @@ export const businessAuthService = {
         businessPassword: response?.data.businessPassword || "",
         businessName: response?.data?.businessName || "",
         businessAvatar: response?.data?.businessAvatar || "",
-        businessActive: response?.data.businessActive,
+        businessActive: response?.data.businessActive || true || false || null,
         businessLocation: response?.data.businessLocation || "",
         businessCountry: response?.data.businessCountry || "",
         businessProducts: response?.data.businessProducts || [],

@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import "./Profile.scss";
-import { useAuth } from "../../context/AuthContext";
 import Nav from "../Nav/Nav";
 import SearchBar from "../SearchBar/SearchBar";
 import { useState } from "react";
@@ -8,6 +7,8 @@ import UserProfile from "./User/UserProfile";
 import BusinessProfile from "./Business/BusinessProfile";
 import EditUserProfile from "./User/EditUserProfile";
 import EditBusinessProfile from "./Business/EditBusinessProfile";
+import { useBusinessAuth } from "../../context/BusinessAuthContext";
+import { useUserAuth } from "../../context/UserAuthContext";
 
 type ProfileProps = {
   total: number;
@@ -15,8 +16,9 @@ type ProfileProps = {
 
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("View");
-  const { business, user, setUser, updatedUser, setUpdatedUser /* token  */ } =
-    useAuth();
+  const {  user, setUser, updatedUser, setUpdatedUser} = useUserAuth();
+  const {business} = useBusinessAuth();
+
   const { businessId, userId } = useParams();
 
   const businessB = localStorage.getItem("business");

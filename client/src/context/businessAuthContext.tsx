@@ -2,7 +2,6 @@ import axios from "axios";
 import { Business } from "../models/business";
 import {
   createContext,
-  SetStateAction,
   useContext,
   useEffect,
   useState,
@@ -11,10 +10,10 @@ import { API_BASE_URL } from "../utilities/constants";
 import { UpdatedBusiness } from "../models";
 
 interface BusinessAuthContextType {
-  token: string | null;
+  businessToken: string | null;
   business: Business | null;
   setBusiness: React.Dispatch<React.SetStateAction<Business | any>>;
-  loginBusiness: (token: string, data: Business) => void;
+  loginBusiness: (businessToken: string, data: Business) => void;
   logoutBusiness: () => void;
   updateBusiness: (
     selectedAvatar: File | undefined,
@@ -24,7 +23,7 @@ interface BusinessAuthContextType {
   setUpdatedBusiness: React.Dispatch<
     React.SetStateAction<UpdatedBusiness | undefined>
   >;
-  fetchBusinessInformation: (token: string) => Promise<void>;
+  fetchBusinessInformation: (businessToken: string) => Promise<void>;
 }
 
 const BusinessAuthContext = createContext<BusinessAuthContextType | undefined>(
@@ -34,17 +33,17 @@ const BusinessAuthContext = createContext<BusinessAuthContextType | undefined>(
 export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [token, setToken] = useState<string | null>(null);
+  const [businessToken, setBusinessToken] = useState<string | null>(null);
   //user
 
   const [business, setBusiness] = useState<Business | null>(null);
   const [updatedBusiness, setUpdatedBusiness] = useState<UpdatedBusiness>({});
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-      fetchBusinessInformation(storedToken);
+    const storedbusinessToken = localStorage.getItem("businessToken");
+    if (storedbusinessToken) {
+      setBusinessToken(storedbusinessToken);
+      fetchBusinessInformation(storedbusinessToken);
 
       // Set automatic logout after 1 hour (3600 seconds)
       const logoutTimeout = setTimeout(() => {
@@ -81,11 +80,11 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   /** Business Logic  Start*/
 
-  const fetchBusinessInformation = async (token: string) => {
+  const fetchBusinessInformation = async (businessToken: string) => {
     // Check if neither business nor user is logged in
     try {
       const response = await axios.get(`${API_BASE_URL}auth/business`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${businessToken}` },
       });
       setBusiness(response.data);
     } catch (error) {
@@ -93,17 +92,17 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const loginBusiness = (newToken: string, newBusiness: Business) => {
-    setToken(newToken);
+  const loginBusiness = (newbusinessToken: string, newBusiness: Business) => {
+    setBusinessToken(newbusinessToken);
     setBusiness(newBusiness);
-    localStorage.setItem("token", newToken);
+    localStorage.setItem("businessToken", newbusinessToken);
     localStorage.setItem("business", JSON.stringify(newBusiness));
   };
 
   const logoutBusiness = () => {
-    setToken(null);
+    setBusinessToken(null);
     setBusiness(null);
-    localStorage.removeItem("token");
+    localStorage.removeItem("businessToken");
   };
 
   const updateBusiness = async (
@@ -126,7 +125,7 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${businessToken}`,
           },
         }
       );
@@ -155,7 +154,7 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   /** Business Logic  End */
 
   const contextValue: BusinessAuthContextType = {
-    token,
+    businessToken,
     business,
     loginBusiness,
     logoutBusiness,
@@ -177,10 +176,10 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export const useAuth = () => {
+export const useBusinessAuth = () => {
   const context = useContext(BusinessAuthContext);
   if (!context) {
-    throw new Error("useAuth must be used with an AuthProvider");
+    throw new Error("useBusiness Auth must be used with an BusinessAuthProvider");
   }
   return context;
 };

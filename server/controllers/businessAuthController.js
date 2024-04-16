@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const Business = require("../models/businessModel");
-const User = require("../models/userModel");
+require("dotenv").config({ path: "./config.env" });
 
 // TODO MAKE SURE EXISITNG EMAIL IS NOT IN USER OBJECTS OR VICE VERSA
 // Cloudinary configuration
@@ -18,7 +18,7 @@ cloudinary.config({
 // Log the configuration
 console.log(cloudinary.config());
 
-const secretKey = process.env.JWT_SECRET;
+const businessSecretKey = process.env.BUSINESS_JWT_SECRET;
 
 class BusinessAuthController {
   /* <---------- Business Async Functions Start ----------> */
@@ -122,13 +122,13 @@ class BusinessAuthController {
       }
 
       // Generate JWT token
-      const token = jwt.sign(
+      const businessToken = jwt.sign(
         {
           businessName: business.businessName,
           businessEmail: business.businessEmail,
           businessId: business._id,
         },
-        secretKey,
+        businessSecretKey,
         {
           expiresIn: "1h",
         }
@@ -137,8 +137,8 @@ class BusinessAuthController {
       // Log successful login
       console.log(`Business login successful: ${businessEmail}`);
 
-      // Return token and expiration time
-      res.status(200).json({ token, expiresIn: 3600 });
+      // Return businessToken and expiration time
+      res.status(200).json({ businessToken, expiresIn: 3600 });
     } catch (error) {
       // Handle any unexpected errors
       console.error("Error in loginBusiness:", error);
@@ -154,13 +154,25 @@ class BusinessAuthController {
       }
 
       // Extract relevant business information
-      const { businessId, businessEmail, businessName } = req.business;
+      const {
+        businessId,
+        businessEmail,
+        businessName,
+        businessAvatar,
+        businessLocation,
+        businessCountry,
+        businessProducts,
+      } = req.business;
 
       // Return business data in the response
       res.status(200).json({
         businessId,
         businessEmail,
         businessName,
+        businessAvatar,
+        businessLocation,
+        businessCountry,
+        businessProducts,
       });
     } catch (error) {
       console.error("Error in getBusiness:", error);

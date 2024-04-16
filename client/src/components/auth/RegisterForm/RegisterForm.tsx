@@ -1,15 +1,17 @@
 import "./RegisterForm.scss";
+//TODO ORGANIZE MORE
 import React, { useState } from "react";
-import { User } from "../../../models/user";
-import { Business } from "../../../models/business";
-import { useAuth } from "../../../context/AuthContext";
+import { User,Business } from "../../../models/";
 import UserAccountForm from "./User/UserAccountForm";
 import BusinessAccountForm from "./Business/BusinessAccountForm";
 import { authService } from "../../../services/authService";
 import NotificationCard from "../../../components/NotifcationCard/NotificationCard";
+import { useUserAuth } from "../../../context/UserAuthContext";
+import { useBusinessAuth } from "../../../context/BusinessAuthContext";
 
 const RegisterForm: React.FC = () => {
-  const { token } = useAuth();
+  const {userToken} = useUserAuth();
+  const {businessToken} = useBusinessAuth();
   const [accountType, setAccountType] = useState<string>("Personal account");
   const [notification, setNotification] = useState<string | null>(null);
   //
@@ -107,7 +109,7 @@ const RegisterForm: React.FC = () => {
     <>
       <RegisterNav />
 
-      {token ? (
+      {userToken || businessToken ? (
         <div className="app__signed-in">
           <h2>Already Signed In </h2>
           <p>

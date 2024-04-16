@@ -1,10 +1,12 @@
 import "./SignInForm.scss";
-import { useAuth } from "../../../context/AuthContext";
-import { authService } from "../../../services/authService";
 import { summaryBoxText } from "../../../utilities/constants";
 import { useState, useEffect } from "react";
 import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
-import DemoCredentials from "./DemoCredentials";
+import DemoCredentials from "./DemoCredentials/DemoCredentials";
+import { userAuthService } from "../../../services/userAuthService";
+import { businessAuthService } from "../../../services/businessAuthService";
+import { useBusinessAuth } from "../../../context/BusinessAuthContext";
+import { useUserAuth } from "../../../context/UserAuthContext";
 
 export const SignInNav = () => {
   return (
@@ -31,7 +33,10 @@ export const SignInNav = () => {
 
 const SignInForm: React.FC = () => {
   //TODO ADD useUserAuth and useBusinessAuth
-  const { login, loginBusiness, token, user, business } = useAuth();
+  const { login, userToken, user } = useUserAuth();
+  const { loginBusiness, businessToken, business } = useBusinessAuth();
+
+  // TODO need to switch token to businessToken and userToken
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState<string | null>(null);
@@ -45,20 +50,26 @@ const SignInForm: React.FC = () => {
   };
 
   const handleSignIn = async () => {
+    // TODO: Handle SignIn For User and Business Seperately with conditons
     try {
       // Try signing in as a regular user
-      const userToken = await authService.login(email, password);
-      const userData = await authService.getUser(userToken);
+      const userToken = await userAuthService.login(email, password);
+      const userData = await userAuthService.getUser(userToken);
       login(userToken, userData);
       // Show success notification
       showNotification("User Login Successful!");
       console.log(`User Login successful: ${email}`);
     } catch (userError) {
-      console.log(userError);
+      console.error(userError);
       try {
         // If signing in as a regular user fails, try signing in as a business
-        const businessToken = await authService.loginBusiness(email, password);
-        const businessData = await authService.getBusiness(businessToken);
+        const businessToken = await businessAuthService.loginBusiness(
+          email,
+          password
+        );
+        const businessData = await businessAuthService.getBusiness(
+          businessToken
+        );
         loginBusiness(businessToken, businessData);
         // Show success notification
         showNotification("Business Login Successful!");
@@ -73,68 +84,136 @@ const SignInForm: React.FC = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      // Fetch user or business information when the component mounts
-      const fetchData = async () => {
+    const fetchUserData = async () => {
+      if (userToken) {
         try {
-          const data = await authService?.getUser(token);
-          login(token, data);
+          const data = await userAuthService?.getUser(userToken);
+          login(userToken, data);
         } catch (error) {
-          console.error(`Error fetching data: ${error}`);
-          try {
-            const dataB = await authService?.getBusiness(token);
-            loginBusiness(token, dataB);
-          } catch (businessError) {
-            console.error(businessError);
-          }
+          console.error(`Error fetching User data: ${error}`);
         }
-      };
+      }
+    };
 
-      fetchData();
+    const fetchBusinessData = async () => {
+      if (businessToken) {
+        try {
+          const dataB = await businessAuthService?.getBusiness(businessToken);
+          loginBusiness(businessToken, dataB);
+        } catch (businessError) {
+          console.error(`Error fetching Business Data: ${businessError}`);
+        }
+      }
+    };
+
+    if (businessToken) {
+      fetchBusinessData();
     }
+
+    if (userToken) {
+      fetchUserData();
+    }
+
     // eslint-disable-next-line
-  }, [token]);
+  }, [userToken, businessToken]);
 
   const userLink = `/user/${user?.userId}`;
   const businessLink = `/business/${business?.businessId}`;
 
-  // response message
-  const responseMessage = (response: any) => {
-    console.log(response);
+  // Better Organized Components
+  const SignedInContainer = () => {
+    return (
+      <div className="app__signin-container">
+        <p> Nothing to show here already Signed in As</p>
+        <a href={userLink || businessLink || ""}>
+          {user?.email || business?.businessName || "No user data was found !"}
+        </a>
+        <br />
+        <a href="/">
+          {" "}
+          <button aria-label="ReturnHomeButton" className="app__signin-Btn">
+            Return Home{" "}
+          </button>
+        </a>
+      </div>
+    );
   };
-  if (responseMessage !== null) {
-    console.log(responseMessage);
-  }
 
-  // errors
-  const errorMessage = (error: any) => {
-    console.log(error);
+  const SignInForm = () => {
+    return (
+      <div className="app__signin-form" id="signin">
+        <input
+          placeholder="Email or username"
+          className="app__signin-input"
+          id="email"
+          autoComplete="true"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className="app__signin-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button
+          aria-label="SignInButton"
+          onClick={handleSignIn}
+          className="app__signin-Btn"
+        >
+          Continue
+        </button>
+      </div>
+    );
   };
-  if (errorMessage !== null) {
-    console.log(errorMessage);
-  }
+
+  const BottomSignInSection = () => {
+    return (
+      <div>
+        <label>
+          Stay signed in
+          <input
+            type="checkbox"
+            placeholder="Stay signed in"
+            color="black"
+            id="staySignedIn"
+          />
+        </label>
+        <br />
+        <small>
+          Using a public or shared device? Uncheck to protect your account.
+        </small>
+        <details>
+          <summary>Learn More</summary>
+          <small>{summaryBoxText}</small>
+        </details>
+      </div>
+    );
+  };
+
+  const SSOButtons = () => {
+    return (
+      <>
+        <button aria-label="SignInWithFaceBook" className="app__signin-Btn">
+          <FaFacebook /> Continue with Facebook
+        </button>
+        <button aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
+          <FaGoogle /> Continue with Google
+        </button>
+        <button aria-label="SignInWithApple" className="app__signin-Btn-alt">
+          <FaApple /> Continue with Apple
+        </button>
+      </>
+    );
+  };
 
   return (
     <div className="app__signin">
       <SignInNav />
       {notification && <div className="notification">{notification}</div>}
 
-      {token ? (
-        <div className="app__signin-container">
-          <p> Nothing to show here already Signed in As</p>
-          <a href={userLink || businessLink || ""}>
-            {user?.email ||
-              business?.businessName ||
-              "No user data was found !"}
-          </a>
-          <br />
-          <a href="/">
-            {" "}
-            <button aria-label="ReturnHomeButton" className="app__signin-Btn">
-              Return Home{" "}
-            </button>
-          </a>
-        </div>
+      {businessToken || userToken ? (
+        <SignedInContainer />
       ) : (
         <div className="app__signin-container">
           <h1>Hello</h1>
@@ -142,55 +221,9 @@ const SignInForm: React.FC = () => {
             Sign in to eBay or <a href="/register">create an account</a>
           </h4>
           <DemoCredentials />
-          <div className="app__signin-form" id="signin">
-            <input
-              placeholder="Email or username"
-              className="app__signin-input"
-              id="email"
-              autoComplete="true"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="app__signin-input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button
-              aria-label="SignInButton"
-              onClick={handleSignIn}
-              className="app__signin-Btn"
-            >
-              Continue
-            </button>
-          </div>
-          Or
-          <button aria-label="SignInWithFaceBook" className="app__signin-Btn">
-            <FaFacebook /> Continue with Facebook
-          </button>
-          <button aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
-            <FaGoogle /> Continue with Google
-          </button>
-          <button aria-label="SignInWithApple" className="app__signin-Btn-alt">
-            <FaApple /> Continue with Apple
-          </button>
-          <div>
-            <input
-              type="checkbox"
-              placeholder="Stay signed in"
-              color="black"
-              id="staySignedIn"
-            />
-            <small> Stay signed in</small>
-          </div>
-          <small>
-            Using a public or shared device? Uncheck to protect your account.
-          </small>
-          <details>
-            <summary>Learn More</summary>
-            <small>{summaryBoxText}</small>
-          </details>
+          <SignInForm />
+          <SSOButtons />
+          <BottomSignInSection />
         </div>
       )}
     </div>

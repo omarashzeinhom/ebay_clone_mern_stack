@@ -34,6 +34,7 @@ export const authService = {
       console.log(`JSON Web Token (JWT) :${response.data.token}`);
 
       return response.data.token;
+      
     } catch (error) {
       throw new Error(`Login failed: ${error}`);
     }

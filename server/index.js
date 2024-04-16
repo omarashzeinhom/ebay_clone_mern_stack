@@ -40,7 +40,7 @@ app.use(limiter);
 
 //  root URL
 app.get("/", (req, res) => {
-  res.send("Hello, this is the root route!");
+  //res.send("Hello, this is the root route!");
 });
 
 // Use route modules
@@ -81,46 +81,11 @@ app.listen(port, () => {
 
 
 async function run() {
-
     try {
-
         await mongoDBClient.connect();
-
-        // set namespace
-
-        const database = mongoDBClient.db("test");
-
-        const coll = database.collection("products");
-
-        // define pipeline
-
-        const agg = [
-
-            {$search: {index: "eb_clone_products_search", autocomplete: {query: "Sneakers", path: "name"}}},
-
-            {$limit: 20},
-
-            {$project: {_id: 0,title: 1}}
-
-        ];
-
-       try{
-         // run pipeline
-
-         const result = await coll.aggregate(agg);
-                 // print results
-
-         await result.forEach((doc) => console.log(doc));
-
-       }catch (error){
-        console.log("Error has been found in run()" + error);
-       }
-
-
+        
     } finally {
-
         await mongoDBClient.close();
-
     }
 
 }

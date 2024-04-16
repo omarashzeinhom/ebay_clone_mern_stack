@@ -1,10 +1,16 @@
 import "./App.scss";
 import React, { useState, useEffect } from "react";
 import { Category } from "../models/category";
-import { AuthProvider } from "../context/AuthContext";
-import { ProductProvider, useProductContext } from "../context/ProductContext";
 import { categoriesService } from "../services/categoryService";
-import { ShoppingCartProvider } from "../context/ShoppingCartContext";
+import {
+  UserAuthProvider,
+  BusinessAuthProvider,
+  ShoppingCartProvider,
+  ProductProvider,
+  useProductContext,
+  CategoryProvider,
+  AuthProvider,
+} from "../context/";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   Home,
@@ -23,9 +29,7 @@ import {
   SearchResults,
   ErrorBoundary,
 } from "../components";
-import { CategoryProvider } from "../context/CategoryContext";
 import { DeleteProduct, UpdateProduct } from "../components/Sell/CRUD";
-
 
 type AppProps = {
   total: number;
@@ -51,14 +55,13 @@ const App: React.FC<AppProps> = ({ total }) => {
   // DIVIDE LOGGEDOUT STACK AND LOGGEDIN STACK FOR (BUSINESS & USERS);
   const routes = [
     /* <--- Main Routes Start --->  */
-
     {
       path: "/",
       element: <Home total={total} />,
     },
     {
       path: "/signin",
-      element: <SignIn/>,
+      element: <SignIn />,
     },
     {
       path: "/register",
@@ -132,16 +135,16 @@ const App: React.FC<AppProps> = ({ total }) => {
     },
 
     /* <--- Update & Delete Routes Start ---> */
-  {
-    path: "/edit/:productId",
-    element: <UpdateProduct total={total} />,
-  },
-  {
-    path: "/delete/:productId",
-    element: <DeleteProduct total={total} />,
-  },
-  /* <--- Update & Delete Routes End ---> */
-  
+    {
+      path: "/edit/:productId",
+      element: <UpdateProduct total={total} />,
+    },
+    {
+      path: "/delete/:productId",
+      element: <DeleteProduct total={total} />,
+    },
+    /* <--- Update & Delete Routes End ---> */
+
     /* <--- Product & Categories End ---> */
     /* <--- Auth & Profile Start  ---> */
     {
@@ -161,19 +164,21 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   const router = createBrowserRouter(routes);
 
-
   return (
     <React.StrictMode>
       <ErrorBoundary>
         <AuthProvider>
-          <ShoppingCartProvider>
-            <CategoryProvider>
-              <ProductProvider>
-                
-                <RouterProvider router={router} />
-              </ProductProvider>
-            </CategoryProvider>
-          </ShoppingCartProvider>
+          <UserAuthProvider>
+            <BusinessAuthProvider>
+              <ShoppingCartProvider>
+                <CategoryProvider>
+                  <ProductProvider>
+                    <RouterProvider router={router} />
+                  </ProductProvider>
+                </CategoryProvider>
+              </ShoppingCartProvider>
+            </BusinessAuthProvider>
+          </UserAuthProvider>
         </AuthProvider>
       </ErrorBoundary>
     </React.StrictMode>

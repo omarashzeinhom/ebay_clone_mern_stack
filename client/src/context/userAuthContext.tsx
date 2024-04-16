@@ -5,7 +5,7 @@ import { API_BASE_URL } from "../utilities/constants";
 import { UpdatedUser} from "../models";
 
 interface UserAuthContextType {
-  token: string | null;
+  userToken: string | null;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | any>>;
   login: (token: string, data: User) => void;
@@ -24,7 +24,7 @@ const UserAuthContext = createContext<UserAuthContextType | undefined>(undefined
 export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [token, setToken] = useState<string | null>(null);
+  const [userToken, setUserToken] = useState<string | null>(null);
   //user
   const [user, setUser] = useState<User | null>(null);
   const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({
@@ -32,9 +32,9 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }); //business
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("user-token");
     if (storedToken) {
-      setToken(storedToken);
+      setUserToken(storedToken);
       fetchUserInformation(storedToken);
 
       // Set automatic logout after 1 hour (3600 seconds)
@@ -84,14 +84,14 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const login = (newToken: string, newUser: User) => {
-    setToken(newToken);
+    setUserToken(newToken);
     setUser(newUser);
     localStorage.setItem("token", newToken);
     localStorage.setItem("user", JSON.stringify(newUser));
   };
 
   const logout = () => {
-    setToken(null);
+    setUserToken(null);
     setUser(null);
     localStorage.removeItem("token");
   };
@@ -130,7 +130,7 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userToken}`,
           },
         }
       );
@@ -160,7 +160,7 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
  
 
   const contextValue: UserAuthContextType = {
-    token,
+    userToken,
     user,
     login,
     logout,
