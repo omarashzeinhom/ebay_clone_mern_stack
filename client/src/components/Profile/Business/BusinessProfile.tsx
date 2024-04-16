@@ -9,15 +9,13 @@ const BusinessProfile: React.FC = () => {
   </div>
   <div className="user-profile-info">
     <div className="avatar">
-      {business?.businessAvatar ? (
+   
           <img
-              rel="preload"
           src={business?.businessAvatar}
           alt={business?.businessEmail || "No business avatar uploaded"}
         />
-      ) : (
-        <span className="no-avatar">No business avatar uploaded</span>
-      )}
+
+  
     </div>
     <div className="user-details">
       <h3>Business Information</h3>

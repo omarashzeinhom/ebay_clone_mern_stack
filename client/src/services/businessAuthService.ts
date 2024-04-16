@@ -5,25 +5,22 @@ import { API_BASE_URL } from "../utilities/constants";
 export const businessAuthService = {
   /* <--- Business services start ---> */
 
-  registerBusiness: async (
+  registerBusiness: async ( business:{
+    businessId: string,
     businessName: string,
     businessEmail: string,
     businessPassword: string,
-    businessLocation: string,
+    businessAvatar: string
     businessActive: boolean,
-    businessAvatar?: string
+    businessLocation: string,
+    businessCountry: string,
+    businessProducts: [],
+  }
   ): Promise<void> => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth/registerb`, {
-        businessName,
-        businessEmail,
-        businessPassword,
-        businessLocation: businessLocation || " ",
-        businessActive: businessActive || true,
-        businessAvatar: businessAvatar || " ",
-      });
-
+      const response = await axios.post(`${API_BASE_URL}auth/registerb`, business);
       console.log("Business registration response:", response.data);
+      return response?.data;
     } catch (error) {
       console.error("Business registration failed:", error);
       throw error; // Rethrow the error to be caught in the calling function
@@ -56,7 +53,17 @@ export const businessAuthService = {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      return response.data;
+      return {
+        businessId: response?.data?.businessId || "",
+        businessEmail: response?.data?.businessEmail || "",
+        businessPassword: response?.data.businessPassword || "",
+        businessName: response?.data?.businessName || "",
+        businessAvatar: response?.data?.businessAvatar || "",
+        businessActive: response?.data.businessActive,
+        businessLocation: response?.data.businessLocation || "",
+        businessCountry: response?.data.businessCountry || "",
+        businessProducts: response?.data.businessProducts || [],
+      };
     } catch (error) {
       throw new Error(`Failed to get business: ${error}`);
     }

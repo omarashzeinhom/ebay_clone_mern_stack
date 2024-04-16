@@ -12,6 +12,9 @@ const HOME_URL = "http://localhost:3000/";
 const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
 
 //  businessUploads URIs
+const businessUpdatesfolderPath = "ebay-clone-mern-images/business/avatars";
+const businessUpdatesUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+const businessUpdatesFullUploadUri = `${businessUpdatesUploadEndPoint}?folder=${businessUpdatesfolderPath}`;
 
 const businessProductsfolderPath = "ebay-clone-mern-images/businesses/products";
 const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
@@ -404,5 +407,6 @@ export {
   API_BASE_URL,
   HOME_URL,
   bussinessProductsFullUploadUri,
+  businessUpdatesFullUploadUri,
   userUpdatesFullUploadUri,
 };

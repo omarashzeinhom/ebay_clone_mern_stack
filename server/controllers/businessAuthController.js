@@ -3,7 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const Business = require("../models/businessModel");
+const User = require("../models/userModel");
 
+// TODO MAKE SURE EXISITNG EMAIL IS NOT IN USER OBJECTS OR VICE VERSA
 // Cloudinary configuration
 // Return "https" URLs by setting secure: true
 cloudinary.config({
@@ -19,18 +21,29 @@ console.log(cloudinary.config());
 const secretKey = process.env.JWT_SECRET;
 
 class BusinessAuthController {
-
   /* <---------- Business Async Functions Start ----------> */
 
   async registerBusiness(req, res) {
     try {
+      let businessAvatar = req.body.businessAvatar;
+      if (businessAvatar) {
+        try {
+          const result = await cloudinary.uploader.upload(businessAvatar);
+          businessAvatar = result.secure_url;
+        } catch (uploadError) {
+          console.error("Error uploading image to Cloudinary:", uploadError);
+          return res.status(500).json({ message: "Error uploading image" });
+        }
+      }
+
       const {
         businessName,
         businessEmail,
         businessPassword,
-        businessLocation,
         businessActive,
-        businessAvatar,
+        businessLocation,
+        businessCountry,
+        businessProducts,
       } = req.body;
 
       // Validate input: Check if required fields are provided
@@ -41,9 +54,8 @@ class BusinessAuthController {
       }
 
       // Check if the email is already associated with a user or a business
-      const existingUser = await User.findOne({ businessEmail });
       const existingBusiness = await Business.findOne({ businessEmail });
-      if (existingBusiness || existingUser) {
+      if (existingBusiness) {
         return res
           .status(400)
           .json({ message: "User already exists as a business or customer" });
@@ -57,9 +69,15 @@ class BusinessAuthController {
         businessName,
         businessEmail,
         businessPassword: hashedBusinessPassword,
-        businessLocation: businessLocation || "Egypt",
-        businessActive: businessActive || true,
         businessAvatar: businessAvatar || "",
+        businessActive: businessActive || true,
+        businessLocation:
+          businessLocation ||
+          "Update Country By Clicking On Your Business Name then Edit",
+        businessCountry:
+          businessCountry ||
+          "Update Country By Clicking On Your Business Name then Edit",
+        businessProducts: businessProducts || [],
       });
 
       await newBusiness.save();

@@ -9,3 +9,17 @@ export interface Business {
     businessProducts?: [],
     businessCountry?: string,
 }
+
+export interface RegisterBusinessFormData{
+    businessId: string ,
+    businessName: string,
+    businessEmail: string,
+    businessPassword: string,
+    businessAvatar:  File | string, 
+    businessActive: boolean,
+    businessLocation: string ,
+    businessCountry: string,
+    businessProducts: [],
+}
+
+

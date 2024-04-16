@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const User = require("../models/userModel");
+const Business = require("../models/businessModel");
+// TODO MAKE SURE EXISITNG EMAIL IS NOT IN USER OBJECTS OR VICE VERSA 
 
 // Cloudinary configuration
 // Return "https" URLs by setting secure: true
@@ -46,6 +48,7 @@ class UserAuthController {
       // Check if the email already exists in the database
 
       const existingUser = await User.findOne({ email });
+
       if (existingUser) {
         return res.status(400).json({ message: "User already exists" });
       }
