@@ -13,7 +13,7 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const navigate = useNavigate();
-  const { businessToken,business, fetchBusinessInformation } = useBusinessAuth();
+  const { businessToken,business, fetchBusinessInformation, logoutBusiness } = useBusinessAuth();
   const {userToken , user, logout,fetchUserInformation} = useUserAuth();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -41,12 +41,16 @@ console.log("business===? in Nav.tsx"+business)
 
 
   const handleLogOut = () => {
-    logout();
     if(business){
       localStorage.removeItem("business");
+      localStorage.removeItem("business-token");
+logoutBusiness();
     }else{
       if(user){
         localStorage.removeItem("user");
+        localStorage.removeItem("user-token");
+        logout();
+
       }
     }
     if (user) {
@@ -78,11 +82,11 @@ console.log("business===? in Nav.tsx"+business)
 
     if (userToken ) { // Check if user exists and is not a business
         
-      //fetchUserInformation(userToken);
+      fetchUserInformation(userToken);
     }
     
     if(businessToken  ){
-        //fetchBusinessInformation(businessToken);
+      fetchBusinessInformation(businessToken);
 
     }
    
@@ -93,7 +97,7 @@ console.log("business===? in Nav.tsx"+business)
     navigate(`/`);
   }, 3600 * 1000); // 1 hour in milliseconds
   return () => clearTimeout(logoutTimeout);
-  }, );
+  }, []);
 
 
   
