@@ -4,13 +4,14 @@ const rateLimit = require("express-rate-limit");
 
 const express = require("express");
 const compression = require("compression"); 
-const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const { MongoClient } = require("mongodb");
 // Import route modules
-const authRoutes = require("./routes/authRoutes");
+const userAuthRoutes = require("./routes/userAuthRoutes");
+const businessAuthRoutes = require("./routes/businessAuthRoutes");
+
 const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const corsMiddleware = require("./middleware/corsMiddleware");
@@ -43,9 +44,9 @@ app.get("/", (req, res) => {
 });
 
 // Use route modules
-app.use("/user", authRoutes);
-app.use("/business", authRoutes);
-app.use("/auth", authRoutes);
+app.use("/user", userAuthRoutes);
+app.use("/business", businessAuthRoutes);
+app.use("/auth", userAuthRoutes,businessAuthRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 
