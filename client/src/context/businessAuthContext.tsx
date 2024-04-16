@@ -95,7 +95,7 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const loginBusiness = (newbusinessToken: string, newBusiness: Business) => {
     setBusinessToken(newbusinessToken);
     setBusiness(newBusiness);
-    localStorage.setItem("businessToken", newbusinessToken);
+    localStorage.setItem("business-token", newbusinessToken);
     localStorage.setItem("business", JSON.stringify(newBusiness));
   };
 

@@ -30,6 +30,8 @@ if (notificationCount !== 0){
 
 }
 
+console.log("business===? in Nav.tsx"+business)
+
   const handleNotificationIconClick = () => {
     // Show/hide the notification modal
     setIsNotificationModalVisible(!isNotificationModalVisible);
@@ -74,12 +76,13 @@ if (notificationCount !== 0){
   useEffect(() => {
     // DEBUG
 
-    if (userToken && user && user?.userId) { // Check if user exists and is not a business
-        fetchUserInformation(userToken);
+    if (userToken ) { // Check if user exists and is not a business
+        
+      //fetchUserInformation(userToken);
     }
     
-    if(businessToken &&  business && business?.businessId ){
-        fetchBusinessInformation(businessToken);
+    if(businessToken  ){
+        //fetchBusinessInformation(businessToken);
 
     }
    
