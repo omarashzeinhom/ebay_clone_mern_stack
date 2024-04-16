@@ -9,10 +9,9 @@ export type CheckoutProps = {
 };
 
 const Checkout: React.FC<CheckoutProps> = ({ total }) => {
-  const {user, userToken} = useUserAuth();
-  const {business, businessToken} = useBusinessAuth();
+  const {user} = useUserAuth();
+  const {business } = useBusinessAuth();
 
-  const token =  userToken || businessToken;
 
   const stripe = useStripe();
   const elements = useElements();
@@ -84,7 +83,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
     <div>
       <h2>Checkout</h2>
 
-      {token || user || business ? (
+      { user || business ? (
         <>
           {cartItems.length > 0 ? (
             <>

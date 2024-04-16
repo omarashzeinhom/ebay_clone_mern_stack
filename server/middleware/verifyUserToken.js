@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken");
 const userSecretKey = process.env.USER_JWT_SECRET;
 
-module.exports = (req, res, next) => {
-  const userToken = req.header("Authorization")?.replace("Bearer", "");
+
+exports.verifyUserToken = (req, res, next) => {
+  const userToken = req.header("Authorization")?.replace("Bearer", "").trim();
 
   if (!userToken) return res.status(401).json({ message: "Access Denied" });
 
@@ -13,6 +14,6 @@ module.exports = (req, res, next) => {
 
     next();
   } catch (error) {
-    res.status(400).json({ message: "Invalid Token not a Verified Token" });
+    res.status(400).json({ message: "Invalid User Token" });
   }
 };

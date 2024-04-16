@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../../../../context/AuthContext";
-import { useProductContext } from "../../../../context/ProductContext"; // Import the context
+import {  useProductContext  , useBusinessAuth} from "../../../../context/";
 import "./UpdateProduct.scss";
 import { Product } from "../../../../models";
 import { Nav, SearchBar,SellComponent } from "../../..";
@@ -12,7 +11,7 @@ type ProductDetailProps = {
 };
 
 const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
-  const { business, token, fetchBusinessInformation } = useAuth();
+  const { business, businessToken, fetchBusinessInformation } = useBusinessAuth();
   const { productId } = useParams();
   const { getProductById } = useProductContext();
   const [product, setProduct] = useState<any | null>(null);
@@ -26,12 +25,12 @@ const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
       }
     };
 
-    if (token) {
-      fetchBusinessInformation(token);
+    if (businessToken) {
+      fetchBusinessInformation(businessToken);
     }
 
     fetchData();
-  }, [productId, getProductById,fetchBusinessInformation,token]);
+  }, [productId, getProductById,fetchBusinessInformation,businessToken]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,

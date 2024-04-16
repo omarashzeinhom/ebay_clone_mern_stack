@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const User = require("../models/userModel");
 //const Business = require("../models/businessModel");
-// TODO MAKE SURE EXISITNG EMAIL IS NOT IN USER OBJECTS OR VICE VERSA 
+// TODO MAKE SURE EXISITNG EMAIL IS NOT IN USER OBJECTS OR VICE VERSA
 
 // Cloudinary configuration
 // Return "https" URLs by setting secure: true
@@ -21,8 +21,7 @@ console.log(cloudinary.config());
 const userSecretKey = process.env.USER_JWT_SECRET;
 
 class UserAuthController {
-    
-    /* <---------- User Async Functions Start ----------> */
+  /* <---------- User Async Functions Start ----------> */
   async register(req, res) {
     try {
       let avatar = req.body.avatar;
@@ -166,58 +165,48 @@ class UserAuthController {
     //const objectId = req.params.id; // This is the main focus
     console.log("_id===>" + _id);
 
-    const {
-      firstName,
-      lastName,
-      email,
-      avatar,
-      password,
-    } = req.body;
+    const { firstName, lastName, email, avatar, password } = req.body;
 
-    
-      try {
-        const filter = { _id: _id };
-        // Upload new avatar to Cloudinary if provided
-        if (avatar) {
-          const result = await cloudinary.uploader.upload(avatar);
-          avatar = result.secure_url;
-        }
-
-        // Construct updates object with sanitized data
-        const updates = {};
-        if (firstName && typeof firstName === "string") {
-          updates.firstName = firstName;
-        }
-        if (lastName && typeof lastName === "string") {
-          updates.lastName = lastName;
-        }
-        if (email && typeof email === "string") {
-          updates.email = email;
-        }
-        if (avatar && typeof avatar === "string") {
-          updates.avatar = avatar;
-        }
-        if (password && typeof password === "string") {
-          // Hash the password before updating
-          const hashedPassword = await bcrypt.hash(password, 10);
-          updates.password = hashedPassword;
-        }
-
-        // Update user document using Mongoose method
-        const updatedUser = await User.updateOne(filter, updates);
-
-        // Return updated user data in the response
-        res.status(200).json(updatedUser);
-      } catch (error) {
-        console.error("Error in updateUser:", error);
-        res.status(500).json({ message: "Internal Server Error" });
+    try {
+      const filter = { _id: _id };
+      // Upload new avatar to Cloudinary if provided
+      if (avatar) {
+        const result = await cloudinary.uploader.upload(avatar);
+        avatar = result.secure_url;
       }
-    
+
+      // Construct updates object with sanitized data
+      const updates = {};
+      if (firstName && typeof firstName === "string") {
+        updates.firstName = firstName;
+      }
+      if (lastName && typeof lastName === "string") {
+        updates.lastName = lastName;
+      }
+      if (email && typeof email === "string") {
+        updates.email = email;
+      }
+      if (avatar && typeof avatar === "string") {
+        updates.avatar = avatar;
+      }
+      if (password && typeof password === "string") {
+        // Hash the password before updating
+        const hashedPassword = await bcrypt.hash(password, 10);
+        updates.password = hashedPassword;
+      }
+
+      // Update user document using Mongoose method
+      const updatedUser = await User.updateOne(filter, updates);
+
+      // Return updated user data in the response
+      res.status(200).json(updatedUser);
+    } catch (error) {
+      console.error("Error in updateUser:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   }
 
   /* <---------- User Async Functions End ----------> */
-
- 
 }
 
 module.exports = new UserAuthController();

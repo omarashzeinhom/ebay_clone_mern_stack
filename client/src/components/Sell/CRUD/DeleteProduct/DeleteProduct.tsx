@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../../../../context/AuthContext";
-import { useProductContext } from "../../../../context/ProductContext"; // Import the context
+import {  useProductContext  , useBusinessAuth} from "../../../../context/";
 import "./DeleteProduct.scss";
 import { Nav, SearchBar, SellComponent } from "../../..";
 import { productService } from "../../../../services/productService";
@@ -11,7 +10,7 @@ type ProductDetailProps = {
 };
 
 const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
-  const { business, token, fetchBusinessInformation } = useAuth();
+  const { business, businessToken, fetchBusinessInformation } = useBusinessAuth();
   const { productId } = useParams();
   const { getProductById } = useProductContext();
   const [product, setProduct] = useState<any | null>(null);
@@ -26,12 +25,12 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
       }
     };
 
-    if (token) {
-      fetchBusinessInformation(token);
+    if (businessToken) {
+      fetchBusinessInformation(businessToken);
     }
 
     fetchData();
-  }, [productId, getProductById, fetchBusinessInformation, token]);
+  }, [productId, getProductById, fetchBusinessInformation, businessToken]);
 
   const handleSubmit = async () => {
     try {

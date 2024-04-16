@@ -40,7 +40,7 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [updatedBusiness, setUpdatedBusiness] = useState<UpdatedBusiness>({});
 
   useEffect(() => {
-    const storedbusinessToken = localStorage.getItem("businessToken");
+    const storedbusinessToken = localStorage.getItem("business-token");
     if (storedbusinessToken) {
       setBusinessToken(storedbusinessToken);
       fetchBusinessInformation(storedbusinessToken);

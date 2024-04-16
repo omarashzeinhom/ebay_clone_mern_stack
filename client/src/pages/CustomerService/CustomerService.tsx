@@ -1,7 +1,7 @@
 import React from "react";
 import "./CustomerService.scss";
 import { Nav } from "../../components";
-import { useAuth } from "../../context/AuthContext";
+import { useBusinessAuth, useUserAuth } from "../../context/";
 import { commonIssues } from "../../utilities/constants";
 
 type CustomerServiceProps = {
@@ -26,7 +26,8 @@ const CustomerServiceNav = () => {
   );
 };
 const CustomerService: React.FC<CustomerServiceProps> = ({ total }) => {
-  const { token, user, business } = useAuth();
+  const { user  } = useUserAuth();
+  const { business } = useBusinessAuth();
 
   return (
     <>
@@ -39,7 +40,7 @@ const CustomerService: React.FC<CustomerServiceProps> = ({ total }) => {
           <a href="/orders">See your recent orders</a>
         </div>
 
-        {user || business || token ? (
+        {user || business ? (
           <></>
         ) : (
           <>
