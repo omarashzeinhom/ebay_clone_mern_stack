@@ -31,7 +31,7 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
     }
 
     fetchData();
-  }, [productId, getProductById]);
+  }, [productId, getProductById,fetchBusinessInformation,token]);
 
   const handleSubmit = async () => {
     try {
@@ -61,16 +61,13 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
         <>
           {business?.businessId === product?.businessId && (
             <div className="Delete-product-container">
+              {loading}
               <h2>Delete Product</h2>
               <form className="product-form-container">
                 <div className="product-item">
                   <label className="product-label">
                     Name:
                     <p>{product?.name}</p>
-                  </label>
-                  <label className="product-label">
-                    Image URL:
-                    <p>{product?.img}</p>
                   </label>
                   <label className="product-label">
                     Parent:
@@ -81,8 +78,12 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
                     <p className="">{product?.category}</p>
                   </label>
                   <label className="product-label">
-                    Product Image
-                    <img src={product?.img} className="product-img" />
+                    Product Image & Url:
+                    <img 
+                    src={product?.img} 
+                    className="product-img"
+                    alt={product?.name}
+                    />
                     <p className="">{product?.img}</p>
                   </label>
                   <label className="product-label">

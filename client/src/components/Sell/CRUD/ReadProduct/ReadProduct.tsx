@@ -31,12 +31,13 @@ export default function ReadProduct() {
         }
       } catch (error) {
         console.error("Error fetching products by business ID:", error);
+        setProduct(product);
       }
     };
 
     fetchBusinessProducts();
-  }, [productId, getProductById,business]);
-  const id = product?.id;
+  }, [product, productId, getProductById,business]);
+
   const editProductLink = (productId: string) => `/edit/${productId}`;
   const deleteProductLink = (productId: string) => `/delete/${productId}`;
 

@@ -16,7 +16,7 @@ export const authService = {
       return response?.data;
     } catch (error) {
       console.error(
-        "Error in createProduct, in productService.ts:" + { error }
+        "Error in register, in authService.ts:" + { error }
       );
       throw error; // Re-throw the error to let the calling code handle it
     }

@@ -15,46 +15,43 @@ type ProfileProps = {
 
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("View");
-  const {
-    business,
-    user,
-    setUser,
-    updatedUser,
-    setUpdatedUser /* token  */,
-  } = useAuth();
+  const { business, user, setUser, updatedUser, setUpdatedUser /* token  */ } =
+    useAuth();
   const { businessId, userId } = useParams();
 
   const businessB = localStorage.getItem("business");
   const userB = localStorage.getItem("user");
 
-  if( businessId !== undefined){
+  const businessStr = JSON.stringify(business);
+  const userStr = JSON.stringify(user);
+  if (businessId !== undefined) {
     console.log(`
     ************************
     Business - Debug
     ************************
-    1. business---> ${JSON.stringify(business)} 
+    1. business---> ${businessStr} 
     ************************
     2. businessB(WithLocalStorage)--->${businessB}
     ************************
     3. businessId-->${businessId}
     ************************** 
     `);
-
-  }else if( userId !== null){
+  } else if (userId !== null) {
     console.log(`
     ************************
     User - Debug
     ************************
-    1. user---> ${JSON.stringify(user)} 
+    1. user---> ${userStr} 
     ************************
     2. userB(WithLocalStorage)--->${userB}
     ************************
     3. userId-->${userId}
     ************************** 
     `);
-
-  }else {
-    console.warn(`No User Logged In - Please Login with demo credentials to test all features`)
+  } else {
+    console.warn(
+      `No User Logged In - Please Login with demo credentials to test all features`
+    );
   }
 
   const ProfileContainer = () => {
@@ -116,7 +113,7 @@ export default function Profile({ total }: ProfileProps) {
       </div>
     );
   };
-  
+
   return (
     <>
       {user?.userId || business?.businessId ? (
@@ -135,7 +132,10 @@ export default function Profile({ total }: ProfileProps) {
           <Nav total={total} />
           <SearchBar />
           <div className="app-profile-container">
-           <button aria-label="GoToSignInPageButton" onClick={() => (window.location.href = "/signin")}>
+            <button
+              aria-label="GoToSignInPageButton"
+              onClick={() => (window.location.href = "/signin")}
+            >
               Sign In{" "}
             </button>
           </div>

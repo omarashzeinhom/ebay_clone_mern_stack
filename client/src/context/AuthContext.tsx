@@ -51,8 +51,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
-      fetchUserInformation(storedToken);
-      fetchBusinessInformation(storedToken);
+      if (!business) {
+        fetchUserInformation(storedToken);
+      }
+      if (!user) {
+        fetchBusinessInformation(storedToken);
+      }
 
       // Set automatic logout after 1 hour (3600 seconds)
       const logoutTimeout = setTimeout(() => {
@@ -88,13 +92,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const fetchUserInformation = async (token: string) => {
-    if (!business && !user) {
-      // Check if neither business nor user is logged in
+    if (!business) {
       try {
         const response = await axios.get(`${API_BASE_URL}auth/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setUser(response.data);
+          setUser(response.data);
+      
       } catch (error) {
         console.error("Error fetching user information:", error);
       }
@@ -125,10 +129,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       formData.append("_id", user?.userId);
     }
     if (user?.password) {
-      formData.append(
-        "password",
-        updatedUser?.password || user?.password
-      );
+      formData.append("password", updatedUser?.password || user?.password);
     }
     if (updatedUser?.email) {
       formData.append("email", updatedUser?.email);
@@ -165,10 +166,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setUser((prevUser) => ({
         ...prevUser!,
-        firstName: updatedUser?.firstName  || prevUser?.firstName || "",
+        firstName: updatedUser?.firstName || prevUser?.firstName || "",
         lastName: updatedUser?.lastName || prevUser?.lastName || "",
         email: updatedUser?.email || prevUser?.email || "",
-        avatar: updatedUser?.avatar  || prevUser?.avatar || "",
+        avatar: updatedUser?.avatar || prevUser?.avatar || "",
       }));
 
       console.log(response?.data);
@@ -180,13 +181,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   /** Business Logic  Start*/
 
   const fetchBusinessInformation = async (token: string) => {
-    if (!business && !user) {
+    if (!business) {
       // Check if neither business nor user is logged in
       try {
         const response = await axios.get(`${API_BASE_URL}auth/business`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setBusiness(response.data);
+      
+          setBusiness(response.data);
+     
       } catch (error) {
         console.error("Error fetching business information:", error);
       }

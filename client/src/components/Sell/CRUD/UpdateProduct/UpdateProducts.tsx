@@ -31,7 +31,7 @@ const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
     }
 
     fetchData();
-  }, [productId, getProductById]);
+  }, [productId, getProductById,fetchBusinessInformation,token]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -61,6 +61,7 @@ const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
   };
 
   if (!product) {
+   
     return <div className="loading">Loading...</div>;
   }
 
@@ -73,6 +74,7 @@ const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
         <>
           {business?.businessId === product?.businessId && (
             <div className="update-product-container">
+              {loading}
               <h2>Update Product</h2>
               <form className="product-form-container">
                 <div className="product-item">
@@ -114,7 +116,11 @@ const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
                   </label>
                   <label className="product-label">
                     Product Image
-                    <img src={product?.img} className="product-img" />
+                    <img 
+                    src={product?.img} 
+                    alt={product?.name || "Product Image"}
+                    className="product-img" 
+                    />
                     <input
                       className="product-input"
                       type="file"

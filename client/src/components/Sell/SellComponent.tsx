@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { HOME_URL } from "../../utilities/constants";
 import { CreateProduct, ReadProduct } from "./CRUD";
+import "./SellComponent.scss";
 
 export default function SellComponent () {
     const { user, business } = useAuth();

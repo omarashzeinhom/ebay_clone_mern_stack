@@ -1,0 +1,39 @@
+.sell-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .sell-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Make sure this property has a valid value */
+  }
+  
+  .sell-item {
+    margin-bottom: 10px;
+  }
+  
+  .sell-label {
+    margin-right: 10px;
+  }
+  
+  .sell-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Ensure the border-radius value is in correct format */
+    margin-bottom: 10px;
+  }
+  
+  .sell-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px; /* Ensure the border-radius value is in correct format */
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sell-button:hover {
+    background-color: #0056b3;
+  }

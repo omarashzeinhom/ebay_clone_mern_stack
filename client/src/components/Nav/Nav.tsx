@@ -38,8 +38,13 @@ if (notificationCount !== 0){
 
   const handleLogOut = () => {
     logout();
-    localStorage.removeItem("business");
-    localStorage.removeItem("user");
+    if(business){
+      localStorage.removeItem("business");
+    }else{
+      if(user){
+        localStorage.removeItem("user");
+      }
+    }
     if (user) {
       alert(" User has Logout successfully");
     } else {
@@ -66,11 +71,14 @@ if (notificationCount !== 0){
 
   useEffect(() => {
     // DEBUG
-   
-    if (token && user && user.userId && !business) { // Check if user exists and is not a business
+
+    if (token && user && user?.userId && !business) { // Check if user exists and is not a business
         fetchUserInformation(token);
-    }else if (token && !user  && business) {
+    }else{
+      if(token &&  business && business?.businessId && !user){
         fetchBusinessInformation(token);
+
+      }
     }
    
    const logoutTimeout = setTimeout(() => {
