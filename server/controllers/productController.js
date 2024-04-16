@@ -52,6 +52,20 @@ class ProductController {
       res.status(500).json({ message: "Internal Server Error" }); // Consistent message
     }
   }
+
+  async updateProduct(req,res){}
+
+  async deleteProduct(req,res){
+    // Delete Cloudinary Image
+
+    // Delete MongoDB object
+      const { id, description, quantity, name, price, category, parent, businessId } = req.body;
+
+      
+
+    //
+  }
+
   async getProductById(req, res) {
     const productId = req.params.productId;
 

@@ -3,10 +3,18 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../../../context/AuthContext";
 import { Product } from "../../../../models/product";
 import "./ReadProduct.scss"; // Import your SCSS file for styling
+import { Link, useParams } from "react-router-dom";
+import { useProductContext } from "../../../../context/ProductContext";
 
 export default function ReadProduct() {
   const { business } = useAuth();
   const [businessProducts, setBusinessProducts] = useState<Product[]>([]);
+  const {
+    getProductById,
+  } = useProductContext();
+  const { productId } = useParams<{ productId: string }>();
+  const [product, setProduct] = useState<any | null>(null);
+
 
   useEffect(() => {
     const fetchBusinessProducts = async () => {
@@ -16,6 +24,10 @@ export default function ReadProduct() {
             `http://localhost:5000/products/by-business/${business.businessId}`
           );
           setBusinessProducts(response.data);
+          if (productId) {
+            const productData = await getProductById(productId);
+            setProduct(productData);
+          }
         }
       } catch (error) {
         console.error("Error fetching products by business ID:", error);
@@ -23,13 +35,18 @@ export default function ReadProduct() {
     };
 
     fetchBusinessProducts();
-  }, [business]);
+  }, [productId, getProductById,business]);
+  const id = product?.id;
+  const editProductLink = (productId: string) => `/edit/${productId}`;
+  const deleteProductLink = (productId: string) => `/delete/${productId}`;
 
   return (
     <div className="business-products-container">
-      <h2>Business Products</h2>
+      <h2>Manage Business Products</h2>
       {businessProducts?.length > 0 ? (
         <div className="product-list">
+          <h3>Products Owned By Business {businessProducts?.length}</h3>
+          <br/>
           {businessProducts?.map((product: Product, index: number) => (
             <div key={index} className="product-card">
                 <img
@@ -45,14 +62,14 @@ export default function ReadProduct() {
                   Quantity: {product?.quantity}
                 </span>
                 <span className="">Category: {product?.category}</span>
-               <button aria-label={"EditProduct" + product?.name + "Button"}>Edit</button>
-               <button aria-label={"DeleteProduct" + product?.name + "Button"}>Delete</button>
+               <button aria-label={"EditProduct" + product?.name + "Button"}> <Link to={`${editProductLink(product?._id)}`}>Edit</Link>{" "}</button>
+               <button aria-label={"DeleteProduct" + product?.name + "Button"}><Link to={`${deleteProductLink(product?._id)}`}>Delete</Link></button>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <p>No products found for the logged-in business.</p>
+        <p>{businessProducts?.length} No products ,found for the logged-in business, Please Start Adding now</p>
       )}
     </div>
   );

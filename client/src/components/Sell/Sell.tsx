@@ -4,8 +4,6 @@ import { useAuth } from "../../context/AuthContext";
 import {
   CreateProduct,
   ReadProduct,
-  UpdateProduct,
-  DeleteProduct,
 } from "./CRUD";
 import { useState } from "react";
 import { HOME_URL } from "../../utilities/constants";
@@ -27,11 +25,15 @@ export default function Sell({ total }: SellProps) {
     <>
       <Nav total={total} />
       <SearchBar />
-      <h2>
-        If No Business is Logged In Please 
-        <a href={signInLink}> SignIn</a>
-      </h2>
 
+      {!business?.businessId && (
+        <>
+          <h2>
+            If No Business is Logged In Please
+            <a href={signInLink}> SignIn</a>
+          </h2>
+        </>
+      )}
       {user?.userId && (
         <>
           <h2>Sell</h2>
@@ -63,8 +65,7 @@ export default function Sell({ total }: SellProps) {
 
       {selectedBtn === "Create Product" && <CreateProduct />}
       {selectedBtn === "View Products" && <ReadProduct />}
-      {selectedBtn === "Update Product" && <UpdateProduct />}
-      {selectedBtn === "Delete" && <DeleteProduct />}
+      
     </>
   );
 }
@@ -79,14 +80,5 @@ const SellButtons = [
     link: "",
     element: <ReadProduct />,
   },
-  {
-    title: "Update Product",
-    link: "",
-    element: <UpdateProduct />,
-  },
-  {
-    title: "Delete",
-    link: "",
-    element: <DeleteProduct />,
-  },
+  
 ];

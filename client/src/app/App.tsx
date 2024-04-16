@@ -24,6 +24,7 @@ import {
   ErrorBoundary,
 } from "../components";
 import { CategoryProvider } from "../context/CategoryContext";
+import { DeleteProduct, UpdateProduct } from "../components/Sell/CRUD";
 
 
 type AppProps = {
@@ -128,6 +129,18 @@ const App: React.FC<AppProps> = ({ total }) => {
       path: "/",
       element: <ProductDetail total={total} />,
     },
+
+    /* <--- Update & Delete Routes Start ---> */
+  {
+    path: "/edit/:productId",
+    element: <UpdateProduct total={total} />,
+  },
+  {
+    path: "/delete/:productId",
+    element: <DeleteProduct />,
+  },
+  /* <--- Update & Delete Routes End ---> */
+  
     /* <--- Product & Categories End ---> */
     /* <--- Auth & Profile Start  ---> */
     {

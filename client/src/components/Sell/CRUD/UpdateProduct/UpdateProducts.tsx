@@ -1,146 +1,99 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
+import { useProductContext } from "../../../../context/ProductContext"; // Import the context
 import "./UpdateProduct.scss";
+import { Nav, SearchBar } from "../../..";
+import { Product } from "../../../../models";
 
-interface Product {
-  _id: string;
-  id: number;
-  quantity: number;
-  name: string;
-  img: string;
-  price: number;
-  category: string;
-  parent: string;
-  businessId: string;
-  file: string[]; // Assuming it's an array of strings
-}
+type ProductDetailProps = {
+  total: number;
+  
+  }
 
-export default function UpdateProduct() {
-  const { business } = useAuth();
 
-  // Assuming businesssProductMock is fetched from some API call initially
-  const businesssProductMock: Product[] = [
-    {
-      _id: "",
-      id: 0,
-      quantity: 0,
-      name: "Product Mock",
-      img: "mockurl",
-      price: 20,
-      category: "Category Mock",
-      parent: "Parent Mock",
-      businessId: business?.businessId || "", // Default value, it will be updated later
-      file: [],
-    },
-  ];
+  const UpdateProduct: React.FC<ProductDetailProps> = ({total}) => {
+    const { business } = useAuth();
+  const { productId } = useParams();
+  const {getProductById} =useProductContext();
+  const [product, setProduct] = useState<any | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  // Filter products based on businessId
-  const filteredProducts = businesssProductMock.filter(
-    (product) => product.businessId === business?.businessId
-  );
 
-  const [updatedProducts, setUpdatedProducts] = useState<Product[]>(filteredProducts);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (productId) {
+        const productData = await getProductById(productId);
+        setProduct(productData);
+      }
+    };
+
+    fetchData();
+  }, [productId, getProductById]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    index: number,
     propertyName: keyof Product
   ) => {
-    const newProducts = [...updatedProducts];
-    newProducts[index] = {
-      ...newProducts[index],
+    if (!product) return;
+    const newProduct = {
+      ...product,
       [propertyName]: e.target.value,
     };
-    setUpdatedProducts(newProducts);
+    setProduct(newProduct);
   };
 
-  const handleSubmit = () => {
-    console.log("Updated Products:", updatedProducts);
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+      await axios.put<Product>(
+        `http://localhost:5000/products/${productId}`,
+        product
+      );
+      setLoading(false);
+      console.log("Product updated successfully!");
+    } catch (error) {
+      console.error("Error updating product:", error);
+      setLoading(false);
+    }
   };
+
+  if (!product) {
+    return <div className="loading">Loading...</div>;
+  }
+  const id = product?.id;
 
   return (
-    <div className="update-product-container">
-      <h2>Update Product</h2>
-      <form className="product-form-container">
-        {updatedProducts.map((product, index) => (
-          <div className="product-item" key={index}>
-            <label className="product-label">
-              ID:
-              <input
-                className="product-input"
-                type="text"
-                value={product.id}
-                onChange={(e) => handleInputChange(e, index, "id")}
-              />
-            </label>
+    <>
+      <Nav total={total} />
+      <SearchBar />
+      <div className="update-product-container">
+        <h2>Update Product</h2>
+        <form className="product-form-container">
+          <div className="product-item">
             <label className="product-label">
               Name:
               <input
                 className="product-input"
                 type="text"
                 value={product.name}
-                onChange={(e) => handleInputChange(e, index, "name")}
+                onChange={(e) => handleInputChange(e, "name")}
               />
             </label>
-            <label className="product-label">
-              Image URL:
-              <input
-                className="product-input"
-                type="text"
-                value={product.img}
-                onChange={(e) => handleInputChange(e, index, "img")}
-              />
-            </label>
-            <label className="product-label">
-              Parent:
-              <input
-                className="product-input"
-                type="text"
-                value={product.parent}
-                onChange={(e) => handleInputChange(e, index, "parent")}
-              />
-            </label>
-            <label className="product-label">
-              Category:
-              <input
-                className="product-input"
-                type="text"
-                value={product.category}
-                onChange={(e) => handleInputChange(e, index, "category")}
-              />
-            </label>
-            <label className="product-label">
-              File (comma separated):
-              <input
-                className="product-input"
-                type="text"
-                value={product.file.toString()}
-                onChange={(e) => handleInputChange(e, index, "file")}
-              />
-            </label>
-            <label className="product-label">
-              Price:
-              <input
-                className="product-input"
-                type="text"
-                value={product.price.toString()}
-                onChange={(e) => handleInputChange(e, index, "price")}
-              />
-            </label>
-            <label className="product-label">
-              Quantity:
-              <input
-                className="product-input"
-                type="text"
-                value={product.quantity.toString()}
-                onChange={(e) => handleInputChange(e, index, "quantity")}
-              />
-            </label>
+            {/* Include other input fields similarly */}
           </div>
-        ))}
-      </form>
-     <button aria-label="Update Product Button" className="update-button" onClick={handleSubmit}>Update Product</button>
-    </div>
+        </form>
+        <button
+          aria-label="Update Product Button"
+          className="update-button"
+          onClick={handleSubmit}
+        >
+          Update Product
+        </button>
+      </div>
+    </>
   );
-  
 }
+
+export default UpdateProduct;
