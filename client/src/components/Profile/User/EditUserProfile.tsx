@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { User, UpdatedUser } from "../../../models";
-import { useAuth } from "../../../context/AuthContext";
+import { useUserAuth } from "../../../context/";
 import { UpdatedUserFormData } from "../../../models/updateduser";
 import { userUpdatesFullUploadUri } from "../../../utilities/constants";
-import { authService } from "../../../services/authService";
+import { userAuthService } from "../../../services";
 
 interface EditUserProfileProps {
   user: User;
@@ -13,7 +13,7 @@ interface EditUserProfileProps {
 }
 
 const EditUserProfile: React.FC<EditUserProfileProps> = () => {
-  const { updatedUser, token, user } = useAuth();
+  const { updatedUser, userToken, user } = useUserAuth();
   const userId = user?.userId || "";
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -97,7 +97,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
 
       console.log("userData====>" + JSON.stringify(userData));
 
-      const data = await authService.updateUser(
+      const data = await userAuthService.updateUser(
         {
           _id: userId,
           firstName: formData.firstName,
@@ -106,7 +106,7 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
           avatar: cloudinaryImageUrl,
         },
         userId,
-        token || ""
+        userToken || ""
       );
 
       console.log("User updated", data);

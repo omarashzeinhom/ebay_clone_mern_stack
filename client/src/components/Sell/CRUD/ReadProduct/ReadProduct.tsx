@@ -1,13 +1,12 @@
 import axios from "axios";
+import "./ReadProduct.scss"; 
 import { useState, useEffect } from "react";
-import { useAuth } from "../../../../context/AuthContext";
 import { Product } from "../../../../models/product";
-import "./ReadProduct.scss"; // Import your SCSS file for styling
 import { Link, useParams } from "react-router-dom";
-import { useProductContext } from "../../../../context/ProductContext";
+import { useProductContext,useBusinessAuth } from "../../../../context/";
 
 export default function ReadProduct() {
-  const { business } = useAuth();
+  const { business } = useBusinessAuth();
   const [businessProducts, setBusinessProducts] = useState<Product[]>([]);
   const {
     getProductById,

@@ -1,8 +1,8 @@
-import { useAuth } from "../../../context/AuthContext";
+import { useUserAuth } from "../../../context/";
 import "./UserProfile.scss";
 
 export default function UserProfile() {
-  const { user, updatedUser } = useAuth();
+  const { user, updatedUser } = useUserAuth();
   console.log(user);
 
   return (

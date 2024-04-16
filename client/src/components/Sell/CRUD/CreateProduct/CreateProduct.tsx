@@ -1,14 +1,12 @@
 import { useEffect, useState, ChangeEvent, FormEvent } from "react";
-import { Category } from "../../../../models/category";
 import "./CreateProduct.scss";
-import { categoriesService } from "../../../../services/categoryService";
-import { productService } from "../../../../services/productService";
-import { useAuth } from "../../../../context/AuthContext";
+import { categoriesService,productService } from "../../../../services/";
+import { useBusinessAuth } from "../../../../context/";
 import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
-import { CreateProductFormData } from "../../../../models/product";
+import { Category ,CreateProductFormData } from "../../../../models/";
 
 export default function CreateProduct() {
-  const { business } = useAuth();
+  const { business } = useBusinessAuth();
   //DEBUG (Make sure businessId is passed to the useAuth Hook as a business object)
   //console.log(`busines----->${JSON.stringify(business)}`)
   const [categories, setCategories] = useState<Category[]>([]);

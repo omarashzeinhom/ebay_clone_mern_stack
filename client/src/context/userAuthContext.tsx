@@ -2,7 +2,7 @@ import axios from "axios";
 import { User } from "../models/user";
 import { createContext, useContext, useEffect, useState } from "react";
 import { API_BASE_URL } from "../utilities/constants";
-import { UpdatedUser} from "../models";
+import { UpdatedUser } from "../models";
 
 interface UserAuthContextType {
   userToken: string | null;
@@ -19,7 +19,9 @@ interface UserAuthContextType {
   fetchUserInformation: (userToken: string) => Promise<void>;
 }
 
-const UserAuthContext = createContext<UserAuthContextType | undefined>(undefined);
+const UserAuthContext = createContext<UserAuthContextType | undefined>(
+  undefined
+);
 
 export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -35,7 +37,8 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const userStoredToken = localStorage.getItem("user-token");
     if (userStoredToken) {
       setUserToken(userStoredToken);
-      fetchUserInformation(userStoredToken);
+      // DEBUG LINE CAUSES INFINITE LOOP
+      //fetchUserInformation(userStoredToken);
 
       // Set automatic logout after 1 hour (3600 seconds)
       const logoutTimeout = setTimeout(() => {
@@ -45,9 +48,9 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       // Clear the timeout on component unmount or when the user logs out manually
       return () => clearTimeout(logoutTimeout);
+    } else {
     }
-    // eslint-disable-next-line
-  }, []);
+  }, [userToken]);
 
   const showLogoutNotification = () => {
     if (Notification.permission === "granted") {
@@ -71,16 +74,15 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const fetchUserInformation = async (userToken: string) => {
-      // Check if neither business nor user is logged in
-      try {
-        const response = await axios.get(`${API_BASE_URL}auth/user`, {
-          headers: { Authorization: `Bearer ${userToken}` },
-        });
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error fetching user information:", error);
-      }
-   
+    // Check if neither business nor user is logged in
+    try {
+      const response = await axios.get(`${API_BASE_URL}auth/user`, {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
+      setUser(response.data);
+    } catch (error) {
+      console.error("Error fetching user information:", error);
+    }
   };
 
   const login = (newToken: string, newUser: User) => {
@@ -105,10 +107,7 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
       formData.append("_id", user?.userId);
     }
     if (user?.password) {
-      formData.append(
-        "password",
-        updatedUser?.password || user?.password
-      );
+      formData.append("password", updatedUser?.password || user?.password);
     }
     if (updatedUser?.email) {
       formData.append("email", updatedUser?.email);
@@ -145,10 +144,10 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setUser((prevUser) => ({
         ...prevUser!,
-        firstName: updatedUser?.firstName  || prevUser?.firstName || "",
+        firstName: updatedUser?.firstName || prevUser?.firstName || "",
         lastName: updatedUser?.lastName || prevUser?.lastName || "",
         email: updatedUser?.email || prevUser?.email || "",
-        avatar: updatedUser?.avatar  || prevUser?.avatar || "",
+        avatar: updatedUser?.avatar || prevUser?.avatar || "",
       }));
 
       console.log(response?.data);
@@ -156,8 +155,6 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
       console.error("Error updating user:", error);
     }
   };
-
- 
 
   const contextValue: UserAuthContextType = {
     userToken,
@@ -171,11 +168,12 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUpdatedUser: setUpdatedUser as React.Dispatch<
       React.SetStateAction<UpdatedUser | undefined>
     >,
-    
   };
 
   return (
-    <UserAuthContext.Provider value={contextValue}>{children}</UserAuthContext.Provider>
+    <UserAuthContext.Provider value={contextValue}>
+      {children}
+    </UserAuthContext.Provider>
   );
 };
 

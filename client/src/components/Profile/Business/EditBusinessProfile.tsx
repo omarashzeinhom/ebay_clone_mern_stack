@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../../../context/AuthContext";
+import { useBusinessAuth } from "../../../context/";
 import { countryList } from "../../../utilities/constants";
 
 export default function EditBusinessProfile() {
@@ -9,7 +9,7 @@ export default function EditBusinessProfile() {
     updatedBusiness,
     setUpdatedBusiness,
     setBusiness,
-  } = useAuth();
+  } = useBusinessAuth();
 
   const [selectedAvatar, setSelectedAvatar] = useState<File | undefined>(
     undefined
