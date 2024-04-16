@@ -81,8 +81,74 @@ type ProductDetailProps = {
                 onChange={(e) => handleInputChange(e, "name")}
               />
             </label>
-            {/* Include other input fields similarly */}
-          </div>
+            <label className="product-label">
+              Image URL:
+              <input
+                className="product-input"
+                type="text"
+                value={product.img}
+                onChange={(e) => handleInputChange(e,  "img")}
+              />
+            </label>
+            <label className="product-label">
+              Parent:
+              <input
+                className="product-input"
+                type="text"
+                value={product.parent}
+                onChange={(e) => handleInputChange(e, "parent")}
+              />
+            </label>
+            <label className="product-label">
+              Category:
+              <input
+                className="product-input"
+                type="text"
+                value={product.category}
+                onChange={(e) => handleInputChange(e, "category")}
+              />
+            </label>
+            <label className="product-label">
+              Product Image
+              <img
+             src={product.img}
+            className="product-img"
+         
+              />
+              <input
+                className="product-input"
+                type="file"
+                src={product.img}
+                //value={product.img}
+                //onChange={(e) => handleInputChange(e, "img")}
+              />
+              <input
+                className="product-input"
+                type="text"
+                hidden
+                value={product.img}
+                onChange={(e) => handleInputChange(e, "img")}
+              />
+            </label>
+            <label className="product-label">
+              Price:
+              <input
+                className="product-input"
+                type="number"
+                value={product.price}
+                onChange={(e) => handleInputChange(e,  "price")}
+              />
+            </label>
+            <label className="product-label">
+              Quantity:
+              <input
+                className="product-input"
+                type="number"
+                value={product.quantity.toString()}
+                onChange={(e) => handleInputChange(e,  "quantity")}
+              />
+            </label>
+            </div>
         </form>
         <button
           aria-label="Update Product Button"
@@ -91,7 +157,7 @@ type ProductDetailProps = {
         >
           Update Product
         </button>
-      </div>
+        </div>
     </>
   );
 }
