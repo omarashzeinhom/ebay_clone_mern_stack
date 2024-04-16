@@ -94,30 +94,39 @@ export const productService = {
     }
   },
 
-  updateProduct: async (product: {}) => {
+  updateProduct: async (product: {
+    id: number;
+    name: string;
+    description : string;
+    quantity: number;   
+    img: string | File;
+    price: number;
+    category: string;
+    parent: string;
+    businessId: string | undefined;
+
+  }) => {
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}products/product/:${product}`
+      const response = await axios.put(
+        `${API_BASE_URL}products/update/:${product?.id}`
       );
       return response?.data;
-    } catch {}
+    } catch (error) {
+      console.error("Error in updateProduct, in productService.ts:" + {error});
+      throw error; // Re-throw the error to let the calling code handle it
+    }
   },
 
-  readProduct: async (product: {}) => {
-    try {
-      const response = await axios.post(
-        `${API_BASE_URL}products/product/:${product}`
-      );
-      return response?.data;
-    } catch {}
-  },
 
-  deleteProduct: async (product: {}) => {
+  deleteProduct: async (productId: string) => {
     try {
-      const response = await axios.post(
-        `${API_BASE_URL}products/product/:${product}`
+      const response = await axios.delete(
+        `${API_BASE_URL}products/delete/${productId}`
       );
       return response?.data;
-    } catch {}
+    } catch (error) {
+      console.error("Error in deleteProduct, in productService.ts:" + {error});
+      throw error; // Re-throw the error to let the calling code handle it
+    }
   },
 };

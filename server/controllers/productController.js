@@ -19,7 +19,7 @@ class ProductController {
   async createProduct(req, res) {
     try {
       let image = req.body.img; // Assuming the image URL or file data is in req.body.img
-  
+
       // Check if image is provided (optional)
       if (image) {
         try {
@@ -30,9 +30,18 @@ class ProductController {
           return res.status(500).json({ message: "Error uploading image" });
         }
       }
-  
-      const { id, description, quantity, name, price, category, parent, businessId } = req.body;
-  
+
+      const {
+        id,
+        description,
+        quantity,
+        name,
+        price,
+        category,
+        parent,
+        businessId,
+      } = req.body;
+
       const newProduct = new Product({
         id,
         quantity,
@@ -44,7 +53,7 @@ class ProductController {
         parent,
         businessId,
       });
-  
+
       const savedProduct = await newProduct.save();
       res.json(savedProduct);
     } catch (error) {
@@ -53,15 +62,24 @@ class ProductController {
     }
   }
 
-  async updateProduct(req,res){}
+  async updateProduct(req, res) {}
 
-  async deleteProduct(req,res){
+  async deleteProduct(req, res) {
     // Delete Cloudinary Image
 
     // Delete MongoDB object
-      const { id, description, quantity, name, price, category, parent, businessId } = req.body;
+    const productId = req.params.productId;
 
+    try {
+      const result = await Product.deleteOne({
+        id: {productId},
       
+      });
+      res.status(200);
+      res.json(result?.data);
+    } catch (error) {
+      console.error("error in deleteProduct" + error);
+    }
 
     //
   }

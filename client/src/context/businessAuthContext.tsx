@@ -1,49 +1,42 @@
 import axios from "axios";
-import { User } from "../models/user";
 import { Business } from "../models/business";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { API_BASE_URL } from "../utilities/constants";
-import { UpdatedUser, UpdatedBusiness } from "../models";
+import { UpdatedBusiness } from "../models";
 
-interface AuthContextType {
+interface BusinessAuthContextType {
   token: string | null;
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | any>>;
-  setBusiness: React.Dispatch<React.SetStateAction<Business | any>>;
   business: Business | null;
+  setBusiness: React.Dispatch<React.SetStateAction<Business | any>>;
   loginBusiness: (token: string, data: Business) => void;
   logoutBusiness: () => void;
-  login: (token: string, data: User) => void;
-  logout: () => void;
-  updateUser: (
-    selectedAvatar: File | undefined,
-    updatedUser: UpdatedUser | undefined
-  ) => Promise<void>;
   updateBusiness: (
     selectedAvatar: File | undefined,
     updatedUser: UpdatedBusiness | undefined
   ) => Promise<void>;
-  updatedUser: UpdatedUser | undefined;
   updatedBusiness: UpdatedBusiness | undefined;
   setUpdatedBusiness: React.Dispatch<
     React.SetStateAction<UpdatedBusiness | undefined>
   >;
-  setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
-  fetchUserInformation: (token: string) => Promise<void>;
   fetchBusinessInformation: (token: string) => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const BusinessAuthContext = createContext<BusinessAuthContextType | undefined>(
+  undefined
+);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [token, setToken] = useState<string | null>(null);
   //user
-  const [user, setUser] = useState<User | null>(null);
-  const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({
-    _id: `${user?.userId}`,
-  }); //business
+
   const [business, setBusiness] = useState<Business | null>(null);
   const [updatedBusiness, setUpdatedBusiness] = useState<UpdatedBusiness>({});
 
@@ -51,12 +44,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
-      fetchUserInformation(storedToken);
       fetchBusinessInformation(storedToken);
 
       // Set automatic logout after 1 hour (3600 seconds)
       const logoutTimeout = setTimeout(() => {
-        logout();
         logoutBusiness();
         showLogoutNotification();
       }, 3600 * 1000); // 1 hour in milliseconds
@@ -88,111 +79,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const fetchUserInformation = async (token: string) => {
-    if (!business && !user) {
-      // Check if neither business nor user is logged in
-      try {
-        const response = await axios.get(`${API_BASE_URL}auth/user`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error fetching user information:", error);
-      }
-    } else {
-      console.warn(`A business or user is already logged in`);
-    }
-  };
-
-  const login = (newToken: string, newUser: User) => {
-    setToken(newToken);
-    setUser(newUser);
-    localStorage.setItem("token", newToken);
-    localStorage.setItem("user", JSON.stringify(newUser));
-  };
-
-  const logout = () => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem("token");
-  };
-
-  const updateUser = async (
-    selectedAvatar: File | undefined,
-    updatedUser: UpdatedUser | undefined
-  ) => {
-    const formData = new FormData();
-    if (user?.userId) {
-      formData.append("_id", user?.userId);
-    }
-    if (user?.password) {
-      formData.append(
-        "password",
-        updatedUser?.password || user?.password
-      );
-    }
-    if (updatedUser?.email) {
-      formData.append("email", updatedUser?.email);
-    }
-    if (updatedUser?.firstName) {
-      formData.append("firstName", updatedUser?.firstName);
-    }
-    if (updatedUser?.lastName) {
-      formData.append("lastName", updatedUser?.lastName);
-    }
-    if (selectedAvatar) {
-      formData.append("updatedAvatar", selectedAvatar);
-    }
-
-    try {
-      const response = await axios.put(
-        `${API_BASE_URL}auth/user/:${user?.userId}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setUpdatedUser((prevUser) => ({
-        ...prevUser,
-        firstName: updatedUser?.firstName || prevUser?.firstName,
-        lastName: updatedUser?.lastName || prevUser?.lastName,
-        email: updatedUser?.email || prevUser?.email,
-        avatar: updatedUser?.avatar || prevUser?.avatar,
-      }));
-
-      setUser((prevUser) => ({
-        ...prevUser!,
-        firstName: updatedUser?.firstName  || prevUser?.firstName || "",
-        lastName: updatedUser?.lastName || prevUser?.lastName || "",
-        email: updatedUser?.email || prevUser?.email || "",
-        avatar: updatedUser?.avatar  || prevUser?.avatar || "",
-      }));
-
-      console.log(response?.data);
-    } catch (error) {
-      console.error("Error updating user:", error);
-    }
-  };
-
   /** Business Logic  Start*/
 
   const fetchBusinessInformation = async (token: string) => {
-    if (!business && !user) {
-      // Check if neither business nor user is logged in
-      try {
-        const response = await axios.get(`${API_BASE_URL}auth/business`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setBusiness(response.data);
-      } catch (error) {
-        console.error("Error fetching business information:", error);
-      }
-    } else {
-      console.warn(`A business or user is already logged in`);
+    // Check if neither business nor user is logged in
+    try {
+      const response = await axios.get(`${API_BASE_URL}auth/business`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setBusiness(response.data);
+    } catch (error) {
+      console.error("Error fetching business information:", error);
     }
   };
 
@@ -234,7 +131,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       );
 
-      setUpdatedBusiness((prevBusiness) => ({
+    /*
+      updatedBusiness((prevBusiness: any) => ({
         ...prevBusiness,
         businessName:
           updatedBusiness?.updatedBusinessName ||
@@ -246,6 +144,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
           updatedBusiness?.updatedBusinessAvatar ||
           updatedBusiness?.updatedBusinessAvatar,
       }));
+    
+    */
 
       console.log(response?.data);
     } catch (error) {
@@ -254,26 +154,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
   /** Business Logic  End */
 
-  const contextValue: AuthContextType = {
+  const contextValue: BusinessAuthContextType = {
     token,
-    user,
     business,
-    login,
-    logout,
     loginBusiness,
     logoutBusiness,
-    updateUser,
     updateBusiness,
-    updatedUser,
     updatedBusiness,
-    fetchUserInformation,
     fetchBusinessInformation,
-    setUser,
     setUpdatedBusiness: setUpdatedBusiness as React.Dispatch<
       React.SetStateAction<UpdatedBusiness | undefined>
-    >,
-    setUpdatedUser: setUpdatedUser as React.Dispatch<
-      React.SetStateAction<UpdatedUser | undefined>
     >,
     setBusiness: setUpdatedBusiness as React.Dispatch<
       React.SetStateAction<UpdatedBusiness | undefined>
@@ -281,12 +171,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <BusinessAuthContext.Provider value={contextValue}>
+      {children}
+    </BusinessAuthContext.Provider>
   );
 };
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
+  const context = useContext(BusinessAuthContext);
   if (!context) {
     throw new Error("useAuth must be used with an AuthProvider");
   }

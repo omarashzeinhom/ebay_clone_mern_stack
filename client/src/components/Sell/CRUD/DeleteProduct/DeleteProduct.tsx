@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
 import { useProductContext } from "../../../../context/ProductContext"; // Import the context
 import "./DeleteProduct.scss";
 import { Nav, SearchBar, SellComponent } from "../../..";
-import { Product } from "../../../../models";
+import { productService } from "../../../../services/productService";
 
 type ProductDetailProps = {
   total: number;
@@ -17,6 +16,7 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
   const { getProductById } = useProductContext();
   const [product, setProduct] = useState<any | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,19 +31,18 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
     }
 
     fetchData();
-  }, [productId, getProductById,fetchBusinessInformation,token]);
+  }, [productId, getProductById, fetchBusinessInformation, token]);
 
   const handleSubmit = async () => {
     try {
       setLoading(true);
-      await axios.put<Product>(
-        `http://localhost:5000/products/${productId}`,
-        product
-      );
+      setError(null);
+     const data = await productService.deleteProduct(`${productId}`); 
       setLoading(false);
+      console.log("Product deleted:", data);
       console.log("Product Deleted successfully!");
     } catch (error) {
-      console.error("Error updating product:", error);
+      console.error("Error Deleting product:", error);
       setLoading(false);
     }
   };
@@ -61,43 +60,59 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
         <>
           {business?.businessId === product?.businessId && (
             <div className="Delete-product-container">
-              {loading}
+            {loading && <p>Loading...</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
               <h2>Delete Product</h2>
-              <form className="product-form-container">
-                <div className="product-item">
-                  <label className="product-label">
-                    Name:
-                    <p>{product?.name}</p>
-                  </label>
-                  <label className="product-label">
-                    Parent:
-                    <p>{product?.parent}</p>
-                  </label>
-                  <label className="product-label">
-                    Category:
-                    <p className="">{product?.category}</p>
-                  </label>
-                  <label className="product-label">
-                    Product Image & Url:
-                    <img 
-                    src={product?.img} 
-                    className="product-img"
-                    alt={product?.name}
+              <form className="product-form-container" onSubmit={handleSubmit}>
+                <div className="delete-product-container">
+                    <p>
+                      {" "}
+                      <strong>id:</strong>
+                      {product?.id}
+                    </p>
+                    <p>
+                      <strong> _id:</strong>
+                      {product?._id}
+                    </p>
+                    <p>
+                      <strong>Name:</strong>
+                      {product?.name}
+                    </p>
+                    <p>
+                      <strong>Parent:</strong>
+                      {product?.parent}
+                    </p>
+                    <p className="">
+                      <strong>Category:</strong>
+                      {product?.category}
+                    </p>
+                    <p className="">
+                      <strong> Product Image & Url:</strong>
+                      {product?.img}
+                      <img
+                      src={product?.img}
+                      className="product-img"
+                      alt={product?.name}
                     />
-                    <p className="">{product?.img}</p>
-                  </label>
-                  <label className="product-label">
-                    Price:
-                    <p className="">{product?.price}</p>
-                  </label>
-                  <label className="product-label">
-                    Quantity:
-                    <p className="">{product?.quantity}</p>
-                  </label>
+                    </p>
+
+               
+                    <p className="">
+                      <strong> Price:</strong>
+                      {product?.price}
+                    </p>
+                    <p className="">
+                      <strong> Quantity:</strong>
+                      {product?.quantity}
+                    </p>
+                    <p className="">
+                      <strong> BusinessId:</strong>
+                      {product?.businessId}
+                    </p>
                   <button
                     aria-label="Delete Product Button"
                     className="delete-button"
-                    onClick={handleSubmit}
+                    type="submit"
                   >
                     Delete Product
                   </button>

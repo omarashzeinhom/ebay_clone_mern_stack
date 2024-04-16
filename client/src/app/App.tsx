@@ -48,6 +48,7 @@ const App: React.FC<AppProps> = ({ total }) => {
     fetchCategories();
   }, []);
 
+  // DIVIDE LOGGEDOUT STACK AND LOGGEDIN STACK FOR (BUSINESS & USERS);
   const routes = [
     /* <--- Main Routes Start --->  */
 
@@ -57,7 +58,7 @@ const App: React.FC<AppProps> = ({ total }) => {
     },
     {
       path: "/signin",
-      element: <SignIn />,
+      element: <SignIn/>,
     },
     {
       path: "/register",

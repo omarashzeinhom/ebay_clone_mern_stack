@@ -1,41 +1,27 @@
 import axios from "axios";
 import { User } from "../models/user";
-import { Business } from "../models/business";
 import { createContext, useContext, useEffect, useState } from "react";
 import { API_BASE_URL } from "../utilities/constants";
-import { UpdatedUser, UpdatedBusiness } from "../models";
+import { UpdatedUser} from "../models";
 
-interface AuthContextType {
+interface UserAuthContextType {
   token: string | null;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | any>>;
-  setBusiness: React.Dispatch<React.SetStateAction<Business | any>>;
-  business: Business | null;
-  loginBusiness: (token: string, data: Business) => void;
-  logoutBusiness: () => void;
   login: (token: string, data: User) => void;
   logout: () => void;
   updateUser: (
     selectedAvatar: File | undefined,
     updatedUser: UpdatedUser | undefined
   ) => Promise<void>;
-  updateBusiness: (
-    selectedAvatar: File | undefined,
-    updatedUser: UpdatedBusiness | undefined
-  ) => Promise<void>;
   updatedUser: UpdatedUser | undefined;
-  updatedBusiness: UpdatedBusiness | undefined;
-  setUpdatedBusiness: React.Dispatch<
-    React.SetStateAction<UpdatedBusiness | undefined>
-  >;
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
   fetchUserInformation: (token: string) => Promise<void>;
-  fetchBusinessInformation: (token: string) => Promise<void>;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const UserAuthContext = createContext<UserAuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [token, setToken] = useState<string | null>(null);
@@ -44,20 +30,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({
     _id: `${user?.userId}`,
   }); //business
-  const [business, setBusiness] = useState<Business | null>(null);
-  const [updatedBusiness, setUpdatedBusiness] = useState<UpdatedBusiness>({});
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
       fetchUserInformation(storedToken);
-      fetchBusinessInformation(storedToken);
 
       // Set automatic logout after 1 hour (3600 seconds)
       const logoutTimeout = setTimeout(() => {
         logout();
-        logoutBusiness();
         showLogoutNotification();
       }, 3600 * 1000); // 1 hour in milliseconds
 
@@ -89,7 +71,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const fetchUserInformation = async (token: string) => {
-    if (!business && !user) {
       // Check if neither business nor user is logged in
       try {
         const response = await axios.get(`${API_BASE_URL}auth/user`, {
@@ -99,9 +80,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       } catch (error) {
         console.error("Error fetching user information:", error);
       }
-    } else {
-      console.warn(`A business or user is already logged in`);
-    }
+   
   };
 
   const login = (newToken: string, newUser: User) => {
@@ -178,115 +157,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  /** Business Logic  Start*/
+ 
 
-  const fetchBusinessInformation = async (token: string) => {
-    if (!business && !user) {
-      // Check if neither business nor user is logged in
-      try {
-        const response = await axios.get(`${API_BASE_URL}auth/business`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setBusiness(response.data);
-      } catch (error) {
-        console.error("Error fetching business information:", error);
-      }
-    } else {
-      console.warn(`A business or user is already logged in`);
-    }
-  };
-
-  const loginBusiness = (newToken: string, newBusiness: Business) => {
-    setToken(newToken);
-    setBusiness(newBusiness);
-    localStorage.setItem("token", newToken);
-    localStorage.setItem("business", JSON.stringify(newBusiness));
-  };
-
-  const logoutBusiness = () => {
-    setToken(null);
-    setBusiness(null);
-    localStorage.removeItem("token");
-  };
-
-  const updateBusiness = async (
-    selectedAvatar: File | undefined,
-    updatedBusiness: UpdatedBusiness | undefined
-  ) => {
-    const formData = new FormData();
-    if (updatedBusiness?.updatedBusinessName)
-      formData.append("businessName", updatedBusiness?.updatedBusinessName);
-    if (updatedBusiness?.updatedBusinessEmail)
-      formData.append("email", updatedBusiness?.updatedBusinessEmail);
-    if (selectedAvatar) {
-      formData.append("updatedAvatar", selectedAvatar);
-    }
-
-    try {
-      const response = await axios.put(
-        `${API_BASE_URL}auth/business/:${business?.businessId}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setUpdatedBusiness((prevBusiness) => ({
-        ...prevBusiness,
-        businessName:
-          updatedBusiness?.updatedBusinessName ||
-          updatedBusiness?.updatedBusinessName,
-        businessEmail:
-          updatedBusiness?.updatedBusinessEmail ||
-          updatedBusiness?.updatedBusinessEmail,
-        businessAvatar:
-          updatedBusiness?.updatedBusinessAvatar ||
-          updatedBusiness?.updatedBusinessAvatar,
-      }));
-
-      console.log(response?.data);
-    } catch (error) {
-      console.error("Error updating user:", error);
-    }
-  };
-  /** Business Logic  End */
-
-  const contextValue: AuthContextType = {
+  const contextValue: UserAuthContextType = {
     token,
     user,
-    business,
     login,
     logout,
-    loginBusiness,
-    logoutBusiness,
     updateUser,
-    updateBusiness,
     updatedUser,
-    updatedBusiness,
     fetchUserInformation,
-    fetchBusinessInformation,
     setUser,
-    setUpdatedBusiness: setUpdatedBusiness as React.Dispatch<
-      React.SetStateAction<UpdatedBusiness | undefined>
-    >,
     setUpdatedUser: setUpdatedUser as React.Dispatch<
       React.SetStateAction<UpdatedUser | undefined>
     >,
-    setBusiness: setUpdatedBusiness as React.Dispatch<
-      React.SetStateAction<UpdatedBusiness | undefined>
-    >,
+    
   };
 
   return (
-    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+    <UserAuthContext.Provider value={contextValue}>{children}</UserAuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
+export const useUserAuth = () => {
+  const context = useContext(UserAuthContext);
   if (!context) {
     throw new Error("useAuth must be used with an AuthProvider");
   }

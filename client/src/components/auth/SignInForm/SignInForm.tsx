@@ -30,15 +30,11 @@ export const SignInNav = () => {
 };
 
 const SignInForm: React.FC = () => {
+  //TODO ADD useUserAuth and useBusinessAuth
   const { login, loginBusiness, token, user, business } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState<string | null>(null);
-  // Create a custom function credential.
-  //const credentials = Realm.Credentials.function({
-  //  username: "ilovemongodb",
-  //});
-  //const googleUser = await app.logIn(credentials);
 
   const showNotification = (message: string) => {
     setNotification(message);
@@ -54,23 +50,18 @@ const SignInForm: React.FC = () => {
       const userToken = await authService.login(email, password);
       const userData = await authService.getUser(userToken);
       login(userToken, userData);
-
       // Show success notification
       showNotification("User Login Successful!");
-
       console.log(`User Login successful: ${email}`);
     } catch (userError) {
       console.log(userError);
-
       try {
         // If signing in as a regular user fails, try signing in as a business
         const businessToken = await authService.loginBusiness(email, password);
         const businessData = await authService.getBusiness(businessToken);
         loginBusiness(businessToken, businessData);
-
         // Show success notification
         showNotification("Business Login Successful!");
-
         console.log(`Business Login successful: ${email}`);
       } catch (businessError) {
         // If both attempts fail, log the error
@@ -139,7 +130,9 @@ const SignInForm: React.FC = () => {
           <br />
           <a href="/">
             {" "}
-           <button aria-label="ReturnHomeButton" className="app__signin-Btn">Return Home </button>
+            <button aria-label="ReturnHomeButton" className="app__signin-Btn">
+              Return Home{" "}
+            </button>
           </a>
         </div>
       ) : (
@@ -164,18 +157,22 @@ const SignInForm: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-           <button aria-label="SignInButton" onClick={handleSignIn} className="app__signin-Btn">
+            <button
+              aria-label="SignInButton"
+              onClick={handleSignIn}
+              className="app__signin-Btn"
+            >
               Continue
             </button>
           </div>
           Or
-         <button aria-label="SignInWithFaceBook" className="app__signin-Btn">
+          <button aria-label="SignInWithFaceBook" className="app__signin-Btn">
             <FaFacebook /> Continue with Facebook
           </button>
-         <button aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
+          <button aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
             <FaGoogle /> Continue with Google
           </button>
-         <button aria-label="SignInWithApple" className="app__signin-Btn-alt">
+          <button aria-label="SignInWithApple" className="app__signin-Btn-alt">
             <FaApple /> Continue with Apple
           </button>
           <div>
