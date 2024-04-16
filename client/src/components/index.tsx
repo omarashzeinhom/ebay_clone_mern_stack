@@ -11,16 +11,17 @@ import AdsCarousel from "./Ads/AdsCarousel/AdsCarousel";
 // Categories
 import CategoryList from "./Categories/CategoryList/CategoryList";
 import CategoriesCarousel from "./Categories/CategoriesCarousel/CategoriesCarousel";
-// Products
 import Loading from "./Loading/Loading";
+// Cart 
 import Checkout from "./Cart/CheckOut/CheckOut";
 import CartItem from "./Cart/CartItem/CartItem";
 import ShoppingCart from "./Cart/ShoppingCart/ShoppingCart";
+// Products
 import ProductList from "./Product/ProductList/ProductList";
 import ProductDetail from "./Product/ProductDetail/ProductDetail";
 import TrendingProducts from "./Product/TrendingProducts/TrendingProducts";
 import TrendingProductsAlpha from "./Product/TrendingProducts/TrendingProductsAlpha";
-// Products
+// CRUD Products
 import SellComponent from "./Sell/SellComponent";
 // Auth
 import SignInForm from "./auth/SignInForm/SignInForm";
