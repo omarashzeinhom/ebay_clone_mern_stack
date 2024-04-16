@@ -137,7 +137,7 @@ const App: React.FC<AppProps> = ({ total }) => {
   },
   {
     path: "/delete/:productId",
-    element: <DeleteProduct />,
+    element: <DeleteProduct total={total} />,
   },
   /* <--- Update & Delete Routes End ---> */
   
