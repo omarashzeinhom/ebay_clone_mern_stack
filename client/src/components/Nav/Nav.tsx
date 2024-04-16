@@ -3,9 +3,9 @@ import { FaRegBell } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NotificationModal } from "./NotificationModal/NotificationModal";
-import { useAuth } from "../../context/AuthContext";
 import { navItems, myEbayItems } from "../../utilities/constants";
 import ShoppingCart from "../Cart/ShoppingCart/ShoppingCart";
+import { useBusinessAuth, useUserAuth } from "../../context";
 
 type NavProps = {
   total: number;
@@ -13,7 +13,9 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const navigate = useNavigate();
-  const { token, user, logout, business, fetchUserInformation, fetchBusinessInformation } = useAuth();
+  const { businessToken,business, fetchBusinessInformation } = useBusinessAuth();
+  const {userToken , user, logout,fetchUserInformation} = useUserAuth();
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
   // Debug
@@ -72,14 +74,15 @@ if (notificationCount !== 0){
   useEffect(() => {
     // DEBUG
 
-    if (token && user && user?.userId && !business) { // Check if user exists and is not a business
-        fetchUserInformation(token);
-    }else{
-      if(token &&  business && business?.businessId && !user){
-        fetchBusinessInformation(token);
-
-      }
+    if (userToken && user && user?.userId) { // Check if user exists and is not a business
+        fetchUserInformation(userToken);
     }
+    
+    if(businessToken &&  business && business?.businessId ){
+        fetchBusinessInformation(businessToken);
+
+    }
+   
    
    const logoutTimeout = setTimeout(() => {
     logout();
@@ -101,7 +104,7 @@ if (notificationCount !== 0){
         className={`app__nav-items ${mobileMenuOpen ? "mobile-menu-open" : ""}`}
       >
         <div className="app__nav-left">
-          {token ? (
+          {businessToken || userToken ? (
             <select
               id="categoriesDropDown"
               className="app__nav-dropdown"

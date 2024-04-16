@@ -83,7 +83,6 @@ app.listen(port, () => {
 async function run() {
     try {
         await mongoDBClient.connect();
-        
     } finally {
         await mongoDBClient.close();
     }

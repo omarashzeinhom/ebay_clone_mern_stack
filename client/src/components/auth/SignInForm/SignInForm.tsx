@@ -3,10 +3,9 @@ import { summaryBoxText } from "../../../utilities/constants";
 import { useState, useEffect } from "react";
 import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
 import DemoCredentials from "./DemoCredentials/DemoCredentials";
-import { userAuthService } from "../../../services/userAuthService";
-import { businessAuthService } from "../../../services/businessAuthService";
-import { useBusinessAuth } from "../../../context/BusinessAuthContext";
-import { useUserAuth } from "../../../context/UserAuthContext";
+import { userAuthService, businessAuthService } from "../../../services/";
+import {} from "../../../services/businessAuthService";
+import { useBusinessAuth, useUserAuth } from "../../../context/";
 
 export const SignInNav = () => {
   return (
@@ -43,26 +42,24 @@ const SignInForm: React.FC = () => {
 
   const showNotification = (message: string) => {
     setNotification(message);
-    // Clear the notification after a certain time
     setTimeout(() => {
       setNotification(null);
-    }, 3000); // Adjust the duration as needed
+    }, 3000);
   };
 
   const handleSignIn = async () => {
-    // TODO: Handle SignIn For User and Business Seperately with conditons
     try {
-      // Try signing in as a regular user
+      // Attempt user login
       const userToken = await userAuthService.login(email, password);
       const userData = await userAuthService.getUser(userToken);
       login(userToken, userData);
-      // Show success notification
       showNotification("User Login Successful!");
-      console.log(`User Login successful: ${email}`);
     } catch (userError) {
-      console.error(userError);
-      try {
-        // If signing in as a regular user fails, try signing in as a business
+      console.error("user SignIn Error:" + userError);
+      /**
+ *      SPLIT LOGIC TO AVOID DOUBLE LOGIN 
+ *       try {
+        // If user login fails, attempt business login
         const businessToken = await businessAuthService.loginBusiness(
           email,
           password
@@ -71,48 +68,39 @@ const SignInForm: React.FC = () => {
           businessToken
         );
         loginBusiness(businessToken, businessData);
-        // Show success notification
         showNotification("Business Login Successful!");
-        console.log(`Business Login successful: ${email}`);
       } catch (businessError) {
-        // If both attempts fail, log the error
-        console.error(`Error in handleSignIn: ${userError || businessError}`);
-        // Show error notification
+        // Both user and business login failed
+        console.error(`Error in handleSignIn: ${businessError}`);
         showNotification("Login failed. Please try again.");
       }
+ */
     }
   };
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    // Fetch user or business data after successful login
+    const fetchData = async () => {
       if (userToken) {
         try {
-          const data = await userAuthService?.getUser(userToken);
-          login(userToken, data);
+          const userData = await userAuthService.getUser(userToken);
+          login(userToken, userData);
         } catch (error) {
           console.error(`Error fetching User data: ${error}`);
         }
-      }
-    };
-
-    const fetchBusinessData = async () => {
-      if (businessToken) {
+      } else if (businessToken) {
         try {
-          const dataB = await businessAuthService?.getBusiness(businessToken);
-          loginBusiness(businessToken, dataB);
-        } catch (businessError) {
-          console.error(`Error fetching Business Data: ${businessError}`);
+          const businessData = await businessAuthService.getBusiness(
+            businessToken
+          );
+          loginBusiness(businessToken, businessData);
+        } catch (error) {
+          console.error(`Error fetching Business data: ${error}`);
         }
       }
     };
 
-    if (businessToken) {
-      fetchBusinessData();
-    }
-
-    if (userToken) {
-      fetchUserData();
-    }
+    fetchData();
 
     // eslint-disable-next-line
   }, [userToken, businessToken]);
@@ -135,34 +123,6 @@ const SignInForm: React.FC = () => {
             Return Home{" "}
           </button>
         </a>
-      </div>
-    );
-  };
-
-  const SignInForm = () => {
-    return (
-      <div className="app__signin-form" id="signin">
-        <input
-          placeholder="Email or username"
-          className="app__signin-input"
-          id="email"
-          autoComplete="true"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="app__signin-input"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          aria-label="SignInButton"
-          onClick={handleSignIn}
-          className="app__signin-Btn"
-        >
-          Continue
-        </button>
       </div>
     );
   };
@@ -221,7 +181,29 @@ const SignInForm: React.FC = () => {
             Sign in to eBay or <a href="/register">create an account</a>
           </h4>
           <DemoCredentials />
-          <SignInForm />
+          <div className="app__signin-form" id="signin">
+            <input
+              placeholder="Email or username"
+              className="app__signin-input"
+              id="email"
+              autoComplete="true"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="app__signin-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              aria-label="SignInButton"
+              onClick={handleSignIn}
+              className="app__signin-Btn"
+            >
+              Continue
+            </button>
+          </div>
           <SSOButtons />
           <BottomSignInSection />
         </div>

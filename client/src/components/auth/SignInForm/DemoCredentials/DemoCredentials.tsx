@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./DemoCredentials.scss"; // Assuming you have a separate SCSS file for styling
 
 const DemoCredentials = () => {
+    //TODO SPLIT SIGN IN BY SELECTED OPTION
     const [selectedCredential, setSelectedCredential] = useState<"User" | "Business">("User");
 
     const handleCredentialChange = (credentialType: "User" | "Business") => {

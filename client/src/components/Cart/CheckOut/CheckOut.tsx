@@ -1,17 +1,18 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useState } from "react";
-import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { currencyFormatter } from "../../../utilities/currencyFormatter";
-import { useProductContext } from "../../../context/ProductContext";
 import { Product } from "../../../models/product";
-import { useAuth } from "../../../context/AuthContext";
+import { useBusinessAuth, useUserAuth, useProductContext,useShoppingCart  } from "../../../context";
 
 export type CheckoutProps = {
   total: number; // Add total as a prop
 };
 
 const Checkout: React.FC<CheckoutProps> = ({ total }) => {
-  const { token, user, business } = useAuth();
+  const {user, userToken} = useUserAuth();
+  const {business, businessToken} = useBusinessAuth();
+
+  const token =  userToken || businessToken;
 
   const stripe = useStripe();
   const elements = useElements();

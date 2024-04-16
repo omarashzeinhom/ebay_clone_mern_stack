@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const businessSecretKey = process.env.BUSINESS_JWT_SECRET;
 
 module.exports = (req, res, next) => {
-  const businessToken = req.header("Authorization")?.replace("Bearer ", "");
+  const businessToken = req.header("Authorization")?.replace("Bearer", "");
 
   if (!businessToken) return res.status(401).json({ message: "Access Denied" });
 

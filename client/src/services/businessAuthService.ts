@@ -5,20 +5,22 @@ import { API_BASE_URL } from "../utilities/constants";
 export const businessAuthService = {
   /* <--- Business services start ---> */
 
-  registerBusiness: async ( business:{
-    businessId: string,
-    businessName: string,
-    businessEmail: string,
-    businessPassword: string,
-    businessAvatar: string,
-    businessActive: boolean,
-    businessLocation: string,
-    businessCountry: string,
-    businessProducts: [],
-  }
-  ): Promise<void> => {
+  registerBusiness: async (business: {
+    businessId: string;
+    businessName: string;
+    businessEmail: string;
+    businessPassword: string;
+    businessAvatar: string;
+    businessActive: boolean;
+    businessLocation: string;
+    businessCountry: string;
+    businessProducts: [];
+  }): Promise<void> => {
     try {
-      const response = await axios.post(`${API_BASE_URL}auth/registerb`, business);
+      const response = await axios.post(
+        `${API_BASE_URL}auth/registerb`,
+        business
+      );
       console.log("Business registration response:", response.data);
       return response?.data;
     } catch (error) {
@@ -32,25 +34,23 @@ export const businessAuthService = {
     businessPassword: string
   ): Promise<string> => {
     try {
-      const response: AxiosResponse<{ token: string }> = await axios.post(
-        `${API_BASE_URL}auth/loginb`,
-        {
+      const response: AxiosResponse<{ businessToken: string }> =
+        await axios.post(`${API_BASE_URL}auth/loginb`, {
           businessEmail,
           businessPassword,
-        }
-      );
-      return response.data.token;
+        });
+      return response.data.businessToken;
     } catch (error) {
       throw new Error(`Business login failed: ${error}`);
     }
   },
 
-  getBusiness: async (token: string): Promise<Business> => {
+  getBusiness: async (businessToken: string): Promise<Business> => {
     try {
       const response: AxiosResponse<Business> = await axios.get(
         `${API_BASE_URL}auth/business`, // Incomplete URL, replace with the correct path
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${businessToken}` },
         }
       );
       return {

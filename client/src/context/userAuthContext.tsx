@@ -8,7 +8,7 @@ interface UserAuthContextType {
   userToken: string | null;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | any>>;
-  login: (token: string, data: User) => void;
+  login: (userToken: string, data: User) => void;
   logout: () => void;
   updateUser: (
     selectedAvatar: File | undefined,
@@ -16,7 +16,7 @@ interface UserAuthContextType {
   ) => Promise<void>;
   updatedUser: UpdatedUser | undefined;
   setUpdatedUser: React.Dispatch<React.SetStateAction<UpdatedUser | undefined>>;
-  fetchUserInformation: (token: string) => Promise<void>;
+  fetchUserInformation: (userToken: string) => Promise<void>;
 }
 
 const UserAuthContext = createContext<UserAuthContextType | undefined>(undefined);
@@ -32,10 +32,10 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }); //business
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("user-token");
-    if (storedToken) {
-      setUserToken(storedToken);
-      fetchUserInformation(storedToken);
+    const userStoredToken = localStorage.getItem("user-token");
+    if (userStoredToken) {
+      setUserToken(userStoredToken);
+      fetchUserInformation(userStoredToken);
 
       // Set automatic logout after 1 hour (3600 seconds)
       const logoutTimeout = setTimeout(() => {
@@ -70,11 +70,11 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const fetchUserInformation = async (token: string) => {
+  const fetchUserInformation = async (userToken: string) => {
       // Check if neither business nor user is logged in
       try {
         const response = await axios.get(`${API_BASE_URL}auth/user`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${userToken}` },
         });
         setUser(response.data);
       } catch (error) {
@@ -86,14 +86,14 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const login = (newToken: string, newUser: User) => {
     setUserToken(newToken);
     setUser(newUser);
-    localStorage.setItem("token", newToken);
+    localStorage.setItem("user-token", newToken);
     localStorage.setItem("user", JSON.stringify(newUser));
   };
 
   const logout = () => {
     setUserToken(null);
     setUser(null);
-    localStorage.removeItem("token");
+    localStorage.removeItem("user-token");
   };
 
   const updateUser = async (

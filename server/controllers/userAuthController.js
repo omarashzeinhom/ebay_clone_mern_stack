@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cloudinary = require("cloudinary").v2;
 const User = require("../models/userModel");
-const Business = require("../models/businessModel");
+//const Business = require("../models/businessModel");
 // TODO MAKE SURE EXISITNG EMAIL IS NOT IN USER OBJECTS OR VICE VERSA 
 
 // Cloudinary configuration
@@ -18,7 +18,7 @@ cloudinary.config({
 // Log the configuration
 console.log(cloudinary.config());
 
-const secretKey = process.env.JWT_SECRET;
+const userSecretKey = process.env.USER_JWT_SECRET;
 
 class UserAuthController {
     
@@ -140,9 +140,9 @@ class UserAuthController {
       }
 
       // Generate a JWT token for authentication
-      const token = jwt.sign(
+      const userToken = jwt.sign(
         { userId: user._id, email: user.email },
-        secretKey,
+        userSecretKey,
         {
           expiresIn: "1h",
         }
@@ -152,7 +152,7 @@ class UserAuthController {
       console.log(`User login successful: ${email}`);
 
       // Respond with the token and expiration time
-      res.status(200).json({ token, expiresIn: 3600 });
+      res.status(200).json({ userToken, expiresIn: 3600 });
     } catch (error) {
       // Handle any errors that occurred during the login process
       console.error("Error in login:", error);

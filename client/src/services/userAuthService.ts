@@ -24,16 +24,16 @@ export const userAuthService = {
 
   login: async (email: string, password: string): Promise<string> => {
     try {
-      const response: AxiosResponse<{ token: string }> = await axios.post(
+      const response: AxiosResponse<{ userToken: string }> = await axios.post(
         `${API_BASE_URL}auth/login`,
         {
           email,
           password,
         }
       );
-      console.log(`JSON Web Token (JWT) :${response.data.token}`);
+      console.log(`JSON Web Token (JWT) :${response.data.userToken}`);
 
-      return response.data.token;
+      return response.data.userToken;
     } catch (error) {
       throw new Error(`Login failed: ${error}`);
     }
@@ -69,12 +69,12 @@ export const userAuthService = {
     }
 },
 
-  getUser: async (token: string): Promise<User> => {
+  getUser: async (userToken: string): Promise<User> => {
     try {
       const response: AxiosResponse<User> = await axios.get(
         `${API_BASE_URL}auth/user`,
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${userToken}` },
         }
       );
       console.log("User data from server:", response?.data); // Add this line
