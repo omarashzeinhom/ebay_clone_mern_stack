@@ -1,5 +1,6 @@
 .footer {
-  background-color: #f8f9fa;
+  background-color: #343a40;
+    color: #fff;
   padding: 20px 0;
 
   &__links {
@@ -13,18 +14,20 @@
     margin: 0 10px;
 
     a {
-      color: #212529;
+      color: #fff;
       text-decoration: none;
+      transition: 0.2s ease-in-out;
+      &:hover{
+        text-decoration: underline;
+        color: #686868;
+  
+      }
     }
   }
 }
 
-@media (max-width: 767px) {
-  .footer {
-    background-color: #343a40;
-    color: #fff;
-  }
 
+  
   .scroll-totop__btn {
     background-color: #1c1c1c;
     border: none;
@@ -41,4 +44,4 @@
       background-color: #282828;
     }
   }
-}
+

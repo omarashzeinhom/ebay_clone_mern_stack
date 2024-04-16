@@ -14,9 +14,7 @@
   }
   
   @media screen and (max-width: 500px) {
-    .app__nav-mobile-icon {
-      display: block;
-    }
+  
 
     .app__nav-items,
     .app__nav-itemLeft {
@@ -33,15 +31,13 @@
       background-color: white;
       z-index: 100;
       transition: right 0.3s ease; /* Smooth transition for sliding effect */
-      @media screen and (max-width: 500px) {
         font-size: 1rem;
-      }
+    
     }
     .app__nav-close {
       display: none;
       border: none;
       background-color: transparent;
-      border-radius: 1px solid transparent;
     }
     &.mobile-menu-open {
       .app__nav-items {
