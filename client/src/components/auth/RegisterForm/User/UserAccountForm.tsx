@@ -3,7 +3,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { RegisterUserFormData, User } from "../../../../models/user";
 import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
 import { userUpdatesFullUploadUri } from "../../../../utilities/constants";
-import { authService } from "../../../../services/authService";
+import { userAuthService } from "../../../../services";
 
 interface UserAccountFormProps {
   user: User;
@@ -64,7 +64,7 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
       console.log("productData====>" + userData);
 
       // Call your backend service to store the product data in MongoDB
-      const data = await authService.register({
+      const data = await userAuthService.register({
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,

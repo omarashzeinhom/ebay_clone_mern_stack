@@ -80,8 +80,7 @@ logoutBusiness();
   useEffect(() => {
     // DEBUG
 
-    if (userToken ) { // Check if user exists and is not a business
-        
+    if (userToken) { // Check if user exists and is not a business
       fetchUserInformation(userToken);
     }
     
@@ -97,6 +96,8 @@ logoutBusiness();
     navigate(`/`);
   }, 3600 * 1000); // 1 hour in milliseconds
   return () => clearTimeout(logoutTimeout);
+  // LEAVE IT EMPTY TO AVOID INFINITE LOOP
+  // eslint-disable-next-line
   }, []);
 
 

@@ -9,7 +9,6 @@ import {
   ProductProvider,
   useProductContext,
   CategoryProvider,
-  AuthProvider,
 } from "../context/";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
@@ -167,7 +166,6 @@ const App: React.FC<AppProps> = ({ total }) => {
   return (
     <React.StrictMode>
       <ErrorBoundary>
-        <AuthProvider>
           <UserAuthProvider>
             <BusinessAuthProvider>
               <ShoppingCartProvider>
@@ -179,7 +177,6 @@ const App: React.FC<AppProps> = ({ total }) => {
               </ShoppingCartProvider>
             </BusinessAuthProvider>
           </UserAuthProvider>
-        </AuthProvider>
       </ErrorBoundary>
     </React.StrictMode>
   );

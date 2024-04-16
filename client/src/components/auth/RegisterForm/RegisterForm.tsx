@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { User,Business } from "../../../models/";
 import UserAccountForm from "./User/UserAccountForm";
 import BusinessAccountForm from "./Business/BusinessAccountForm";
-import { authService } from "../../../services/authService";
+import { userAuthService, businessAuthService } from "../../../services/";
 import NotificationCard from "../../../components/NotifcationCard/NotificationCard";
 import { useUserAuth } from "../../../context/UserAuthContext";
 import { useBusinessAuth } from "../../../context/BusinessAuthContext";
@@ -46,7 +46,7 @@ const RegisterForm: React.FC = () => {
   const handleRegister = async () => {
     try {
       if (accountType === "Personal account") {
-        await authService.register(
+        await userAuthService.register(
          user
         );
         showNotification("Registration successful! For User" + user?.firstName);
@@ -57,17 +57,18 @@ const RegisterForm: React.FC = () => {
           business.businessPassword &&
           business.businessActive !== undefined
         ) {
-          await authService.registerBusiness(
-            business.businessName,
-            business.businessEmail,
-            business.businessPassword,
-            business.businessLocation || "",
-            business.businessActive || true,
-            business.businessAvatar &&
+          await businessAuthService.registerBusiness({
+            businessName: business.businessName,
+            businessEmail: business.businessEmail,
+            businessPassword: business.businessPassword,
+            businessLocation: business.businessLocation || "",
+            businessActive: business.businessActive || true,
+            businessAvatar:
+              business.businessAvatar &&
               typeof business.businessAvatar !== "string"
-              ? URL.createObjectURL(business.businessAvatar)
-              : business.businessAvatar || ""
-          );
+                ? URL.createObjectURL(business.businessAvatar)
+                : business.businessAvatar || "",
+          });
         }
       }
 

@@ -38,7 +38,7 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (userStoredToken) {
       setUserToken(userStoredToken);
       // DEBUG LINE CAUSES INFINITE LOOP
-      //fetchUserInformation(userStoredToken);
+      fetchUserInformation(userStoredToken);
 
       // Set automatic logout after 1 hour (3600 seconds)
       const logoutTimeout = setTimeout(() => {
@@ -50,7 +50,7 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
       return () => clearTimeout(logoutTimeout);
     } else {
     }
-  }, [userToken]);
+  }, []);
 
   const showLogoutNotification = () => {
     if (Notification.permission === "granted") {

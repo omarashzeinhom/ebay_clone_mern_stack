@@ -5,17 +5,7 @@ import { API_BASE_URL } from "../utilities/constants";
 export const businessAuthService = {
   /* <--- Business services start ---> */
 
-  registerBusiness: async (business: {
-    businessId: string;
-    businessName: string;
-    businessEmail: string;
-    businessPassword: string;
-    businessAvatar: string;
-    businessActive: boolean;
-    businessLocation: string;
-    businessCountry: string;
-    businessProducts: [];
-  }): Promise<void> => {
+  registerBusiness: async (business: Business): Promise<void> => {
     try {
       const response = await axios.post(
         `${API_BASE_URL}auth/registerb`,
