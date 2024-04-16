@@ -15,11 +15,11 @@ router.get("/business/:id", verifyToken, businessAuthController.updateBusiness);
 router.put("/business/:id", verifyToken, businessAuthController.updateBusiness);
 
 
-router.get("/auth/registerb", (req, res) => {
+router.get("/registerb", (req, res) => {
   res.send("Hello, this is the Business register route!");
 });
 
-router.get("/auth/loginb", (req, res) => {
+router.get("/loginb", (req, res) => {
   res.send("Hello, this is the Business login route!");
 });
 
