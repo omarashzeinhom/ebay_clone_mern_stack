@@ -148,31 +148,46 @@ class BusinessAuthController {
 
   async getBusiness(req, res) {
     try {
+
+
+
+
+
+
       // Ensure that the business data exists in the request
-      if (!req.business) {
+      if (!req.business || !req.business.businessId) {
         return res.status(404).json({ message: "Business not found" });
       }
 
+      const businessId = req.business.businessId ;
       // Extract relevant business information
-      const {
-        businessId,
-        businessEmail,
-        businessName,
-        businessAvatar,
-        businessLocation,
-        businessCountry,
-        businessProducts,
-      } = req.business;
+
+      if(!businessId){
+        return res.status(400).json({message: "Invalid businessId"});
+        
+
+      }
+
+      // Fetch the user from the database using a secure method
+      const business = await Business.findById(businessId).populate({
+        path: "businessAvatar",
+        select: "_id name",
+      });
+
+
+
+
+    
 
       // Return business data in the response
       res.status(200).json({
-        businessId,
-        businessEmail,
-        businessName,
-        businessAvatar,
-        businessLocation,
-        businessCountry,
-        businessProducts,
+        businessId: business._id,
+        businessEmail : business.businessEmail,
+        businessName : business.businessName,
+        businessAvatar : business.businessAvatar,
+        businessLocation: business.businessLocation,
+        businessCountry : business.buisnessCountry,
+        businessProducts: business.businessProducts,
       });
     } catch (error) {
       console.error("Error in getBusiness:", error);

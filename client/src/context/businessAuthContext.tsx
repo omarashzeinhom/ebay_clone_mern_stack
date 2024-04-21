@@ -1,11 +1,6 @@
 import axios from "axios";
 import { Business } from "../models/business";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { API_BASE_URL } from "../utilities/constants";
 import { UpdatedBusiness } from "../models";
 
@@ -44,7 +39,6 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (storedbusinessToken) {
       setBusinessToken(storedbusinessToken);
       fetchBusinessInformation(storedbusinessToken);
-
       // Set automatic logout after 1 hour (3600 seconds)
       const logoutTimeout = setTimeout(() => {
         logoutBusiness();
@@ -102,7 +96,9 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const logoutBusiness = () => {
     setBusinessToken(null);
     setBusiness(null);
-    localStorage.removeItem("businessToken");
+    localStorage.removeItem("business-token");
+    localStorage.removeItem("business");
+
   };
 
   const updateBusiness = async (
@@ -130,8 +126,8 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       );
 
-    /*
-      updatedBusiness((prevBusiness: any) => ({
+  
+      setUpdatedBusiness((prevBusiness: any) => ({
         ...prevBusiness,
         businessName:
           updatedBusiness?.updatedBusinessName ||
@@ -143,8 +139,7 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
           updatedBusiness?.updatedBusinessAvatar ||
           updatedBusiness?.updatedBusinessAvatar,
       }));
-    
-    */
+   
 
       console.log(response?.data);
     } catch (error) {
@@ -161,12 +156,11 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     updateBusiness,
     updatedBusiness,
     fetchBusinessInformation,
+    setBusiness,
     setUpdatedBusiness: setUpdatedBusiness as React.Dispatch<
       React.SetStateAction<UpdatedBusiness | undefined>
     >,
-    setBusiness: setUpdatedBusiness as React.Dispatch<
-      React.SetStateAction<UpdatedBusiness | undefined>
-    >,
+    
   };
 
   return (
@@ -179,7 +173,9 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useBusinessAuth = () => {
   const context = useContext(BusinessAuthContext);
   if (!context) {
-    throw new Error("useBusiness Auth must be used with an BusinessAuthProvider");
+    throw new Error(
+      "useBusiness Auth must be used with an BusinessAuthProvider"
+    );
   }
   return context;
 };

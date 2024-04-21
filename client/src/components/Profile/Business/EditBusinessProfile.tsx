@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { useBusinessAuth } from "../../../context/";
 import { countryList } from "../../../utilities/constants";
+import { Business, UpdatedBusiness } from "../../../models";
 
-export default function EditBusinessProfile() {
+
+interface EditBusinessProfileProps {
+ business: Business;
+  setBusiness: React.Dispatch<React.SetStateAction<Business>>;
+  updatedBusiness: UpdatedBusiness | undefined; // New state variable
+  setUpdatedBusiness: React.Dispatch<React.SetStateAction<UpdatedBusiness | undefined>>;
+}
+
+
+const EditBusinessProfile: React.FC<EditBusinessProfileProps> = () => {
   const {
     business,
     updateBusiness,
@@ -10,6 +20,8 @@ export default function EditBusinessProfile() {
     setUpdatedBusiness,
     setBusiness,
   } = useBusinessAuth();
+  
+  //const businessId = business?.businessId || "";
 
   const [selectedAvatar, setSelectedAvatar] = useState<File | undefined>(
     undefined
@@ -142,3 +154,5 @@ export default function EditBusinessProfile() {
     </>
   );
 }
+
+export default EditBusinessProfile;

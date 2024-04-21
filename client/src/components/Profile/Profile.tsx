@@ -17,7 +17,7 @@ type ProfileProps = {
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("View");
   const {  user, setUser, updatedUser, setUpdatedUser} = useUserAuth();
-  const {business} = useBusinessAuth();
+  const {business,setBusiness,setUpdatedBusiness,updatedBusiness} = useBusinessAuth();
 
   const { businessId, userId } = useParams();
 
@@ -77,7 +77,12 @@ export default function Profile({ total }: ProfileProps) {
             setUpdatedUser={setUpdatedUser}
           />
         )}
-        {business?.businessId && <EditBusinessProfile />}
+        {business?.businessId && <EditBusinessProfile 
+        business={business}
+        setBusiness={setBusiness}
+        updatedBusiness={updatedBusiness}
+        setUpdatedBusiness={setUpdatedBusiness}
+        />}
       </div>
     );
   };

@@ -3,11 +3,12 @@ export interface Business {
     businessName: string,
     businessEmail: string,
     businessPassword: string,
+    businessAvatar?: string,
+    businessActive: boolean,
     businessLocation: string ,
-    businessActive?: boolean,
-    businessAvatar?: string, 
-    businessProducts?: [],
     businessCountry?: string,
+    businessProducts?: [],
+
 }
 
 export interface RegisterBusinessFormData{

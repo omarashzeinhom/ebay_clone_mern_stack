@@ -43,6 +43,8 @@ export const businessAuthService = {
           headers: { Authorization: `Bearer ${businessToken}` },
         }
       );
+      console.log("Business data from server:", response?.data); // Add this line
+
       return {
         businessId: response?.data?.businessId || "",
         businessEmail: response?.data?.businessEmail || "",

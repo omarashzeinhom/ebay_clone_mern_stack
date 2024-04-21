@@ -36,8 +36,6 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const userStoredToken = localStorage.getItem("user-token");
     if (userStoredToken) {
-      setUserToken(userStoredToken);
-      // DEBUG LINE CAUSES INFINITE LOOP
       fetchUserInformation(userStoredToken);
 
       // Set automatic logout after 1 hour (3600 seconds)
@@ -48,7 +46,6 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
       // Clear the timeout on component unmount or when the user logs out manually
       return () => clearTimeout(logoutTimeout);
-    } else {
     }
   }, []);
 
@@ -96,6 +93,8 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUserToken(null);
     setUser(null);
     localStorage.removeItem("user-token");
+    localStorage.removeItem("user");
+
   };
 
   const updateUser = async (

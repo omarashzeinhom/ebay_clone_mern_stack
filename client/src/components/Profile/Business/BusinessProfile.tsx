@@ -2,6 +2,7 @@ import { useBusinessAuth } from "../../../context/BusinessAuthContext";
  
 const BusinessProfile: React.FC = () => {
   const { business } = useBusinessAuth();
+  console.log(business);
   return (
     <div className="user-profile-container">
   <div className="user-profile-header">
@@ -11,7 +12,6 @@ const BusinessProfile: React.FC = () => {
     <div className="avatar">
       {business?.businessAvatar ? (
           <img
-          rel="preload"
           src={business?.businessAvatar}
           alt={business?.businessEmail || "No business avatar uploaded"}
         />
@@ -57,3 +57,5 @@ const BusinessProfile: React.FC = () => {
 };
 
 export default BusinessProfile;
+
+
