@@ -16,7 +16,7 @@ const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const corsMiddleware = require("./middleware/corsMiddleware");
 const app = express();
-const port = process.env.PORT || 5007;
+const port = process.env.PORT || 5000 || 5001;
 
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes

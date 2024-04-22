@@ -127,6 +127,8 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
 
   return (
     <div className="app-profile-container__form">
+      <h2>Work in Progress:</h2>
+
       <form onSubmit={handleSubmit}>
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
@@ -210,7 +212,11 @@ const EditUserProfile: React.FC<EditUserProfileProps> = () => {
           onChange={(e) => handleInputChange(e, "avatar")}
         />
 
-        <button aria-label="UpdateUserInformationButton" type="submit">
+        <button
+          hidden={true}
+          aria-label="UpdateUserInformationButton"
+          type="submit"
+        >
           Update User
         </button>
       </form>

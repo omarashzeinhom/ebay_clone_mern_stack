@@ -100,6 +100,7 @@ const EditBusinessProfile: React.FC<EditBusinessProfileProps> = () => {
 
   return (
     <>
+    <h2>Work in Progress:</h2>
       <div className="app-profile-container__form">
         {loading && <p>Loading...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
@@ -188,7 +189,7 @@ const EditBusinessProfile: React.FC<EditBusinessProfileProps> = () => {
                 ))}
               </select>
             </label>
-            <button aria-label="UpdateBusinessInformationButton" type="submit">
+            <button hidden={true}  aria-label="UpdateBusinessInformationButton" type="submit">
               {" "}
               Update Business Info
             </button>
