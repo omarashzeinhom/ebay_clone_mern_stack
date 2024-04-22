@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import "./Profile.scss";
-import {Nav} from "../../";
+import { Nav } from "../../";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useState } from "react";
 
-import { useBusinessAuth } from "../../../context/BusinessAuthContext";
-import { useUserAuth } from "../../../context/UserAuthContext";
+import { useUserAuth, useBusinessAuth } from "../../../context/";
+
 import BusinessProfile from "../Profile/Business/BusinessProfile";
 import EditBusinessProfile from "../Profile/Business/EditBusinessProfile";
 import EditUserProfile from "../Profile/User/EditUserProfile";
@@ -17,8 +17,9 @@ type ProfileProps = {
 
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("View");
-  const {  user, setUser, updatedUser, setUpdatedUser} = useUserAuth();
-  const {business,setBusiness,setUpdatedBusiness,updatedBusiness} = useBusinessAuth();
+  const { user, setUser, updatedUser, setUpdatedUser } = useUserAuth();
+  const { business, setBusiness, setUpdatedBusiness, updatedBusiness } =
+    useBusinessAuth();
 
   const { businessId, userId } = useParams();
 
@@ -78,12 +79,14 @@ export default function Profile({ total }: ProfileProps) {
             setUpdatedUser={setUpdatedUser}
           />
         )}
-        {business?.businessId && <EditBusinessProfile 
-        business={business}
-        setBusiness={setBusiness}
-        updatedBusiness={updatedBusiness}
-        setUpdatedBusiness={setUpdatedBusiness}
-        />}
+        {business?.businessId && (
+          <EditBusinessProfile
+            business={business}
+            setBusiness={setBusiness}
+            updatedBusiness={updatedBusiness}
+            setUpdatedBusiness={setUpdatedBusiness}
+          />
+        )}
       </div>
     );
   };
