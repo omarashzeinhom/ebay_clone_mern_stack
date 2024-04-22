@@ -31,11 +31,15 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [user, setUser] = useState<User | null>(null);
   const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({
     _id: `${user?.userId}`,
-  }); //business
+  }); 
 
   useEffect(() => {
     const userStoredToken = localStorage.getItem("user-token");
     if (userStoredToken) {
+      // Make sure to set user in token
+      // Replace local storage 
+      // Encrypted storage
+      setUserToken(userStoredToken);
       fetchUserInformation(userStoredToken);
 
       // Set automatic logout after 1 hour (3600 seconds)

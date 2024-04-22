@@ -13,40 +13,46 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const navigate = useNavigate();
-  const { businessToken, business, fetchBusinessInformation, logoutBusiness } =
-    useBusinessAuth();
-  const { userToken, user, logout, fetchUserInformation } = useUserAuth();
+  const {businessToken,business, fetchBusinessInformation, logoutBusiness } = useBusinessAuth();
+  const {userToken , user, logout,fetchUserInformation} = useUserAuth();
+
+
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isNotificationModalVisible, setIsNotificationModalVisible] =
-    useState(false);
+  const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
   // Debug
-  // console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business )}`);
+   //console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business )}`);
 
-  const [notificationCount, setNotificationCount] = useState(0); // Assuming you have a way to update the notification count
+  const [notificationCount, setNotificationCount] = useState(0);  // Assuming you have a way to update the notification count
+  
+ 
+if (notificationCount !== 0){
+  console.log(`setNotificationCount--->${setNotificationCount}`);
+  console.log(`notificationCount--->${notificationCount}`);
 
-  if (notificationCount !== 0) {
-    console.log(`setNotificationCount--->${setNotificationCount}`);
-    console.log(`notificationCount--->${notificationCount}`);
-  }
+}
 
-  console.log("business===? in Nav.tsx" + business);
+console.log("business===? in Nav.tsx"+business)
 
   const handleNotificationIconClick = () => {
     // Show/hide the notification modal
     setIsNotificationModalVisible(!isNotificationModalVisible);
   };
 
+
+
+
   const handleLogOut = () => {
-    if (business) {
+    if(business){
       localStorage.removeItem("business");
       localStorage.removeItem("business-token");
-      logoutBusiness();
-    } else {
-      if (user) {
+logoutBusiness();
+    }else{
+      if(user){
         localStorage.removeItem("user");
         localStorage.removeItem("user-token");
         logout();
+
       }
     }
     if (user) {
@@ -73,27 +79,33 @@ const Nav: React.FC<NavProps> = ({ total }) => {
     }
   };
 
+   
+
   useEffect(() => {
     // DEBUG
 
-    if (userToken) {
-      // Check if user exists and is not a business
+  
+    if (userToken) { // Check if user exists and is not a business
       fetchUserInformation(userToken);
     }
-
-    if (businessToken) {
+    
+    if(businessToken  ){
       fetchBusinessInformation(businessToken);
-    }
 
-    const logoutTimeout = setTimeout(() => {
-      logout();
-      alert("You have been logged out due to inactivity.");
-      navigate(`/`);
-    }, 3600 * 1000); // 1 hour in milliseconds
-    return () => clearTimeout(logoutTimeout);
-    // LEAVE IT EMPTY TO AVOID INFINITE LOOP
-    // eslint-disable-next-line
+    }
+   
+   const logoutTimeout = setTimeout(() => {
+    logout();
+    alert("You have been logged out due to inactivity.");
+    navigate(`/`);
+  }, 3600 * 1000); // 1 hour in milliseconds
+  return () => clearTimeout(logoutTimeout);
+  // LEAVE IT EMPTY TO AVOID INFINITE LOOP
+  // eslint-disable-next-line
   }, []);
+
+
+  
 
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
@@ -104,7 +116,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
         className={`app__nav-items ${mobileMenuOpen ? "mobile-menu-open" : ""}`}
       >
         <div className="app__nav-left">
-          {businessToken || userToken ? (
+          {userToken || businessToken   ? (
             <select
               id="categoriesDropDown"
               className="app__nav-dropdown"
@@ -153,15 +165,14 @@ const Nav: React.FC<NavProps> = ({ total }) => {
             </li>
           )}
         </div>
-        {navItems.map((item, index) => (
+     {navItems.map((item, index) => (
           <li key={index}>
             <a href={item?.link} className="app__nav-item">
               {item?.title}
             </a>
           </li>
         ))}
-        <button
-          aria-label="OpenMobileMenu"
+       <button aria-label="OpenMobileMenu"
           className={`app__nav-close ${
             mobileMenuOpen ? "mobile-menu-open" : ""
           }`}
@@ -170,13 +181,13 @@ const Nav: React.FC<NavProps> = ({ total }) => {
           &times;
         </button>
         <div className="app__nav-right">
-          <ul>
-            <li className="app__nav-rightItem">
-              <a className="app__nav-rightItem" href="/sell">
-                Sell
-              </a>
-            </li>
-          </ul>
+         <ul>
+         <li className="app__nav-rightItem">
+            <a className="app__nav-rightItem" href="/sell">
+              Sell
+            </a>
+          </li>
+         </ul>
           <li>
             <select
               defaultValue={"My Ebay"}
@@ -209,11 +220,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
             <ShoppingCart total={total} />
           </li>
         </div>
-        {isNotificationModalVisible && (
-          <NotificationModal
-            onClose={() => setIsNotificationModalVisible(false)}
-          />
-        )}
+        {isNotificationModalVisible && <NotificationModal onClose={() => setIsNotificationModalVisible(false)} />}
       </ul>
     </nav>
   );

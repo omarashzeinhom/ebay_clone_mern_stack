@@ -8,6 +8,8 @@ const UserSignInForm: React.FC = () => {
   //TODO ADD useUserAuth and useBusinessAuth
   const { login, userToken, user } = useUserAuth();
 
+  console.log(user);
+
   // TODO need to switch token to businessToken and userToken
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
