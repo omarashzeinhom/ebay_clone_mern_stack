@@ -28,7 +28,7 @@ export default function SellComponent () {
             <h2>
               Hi There , Kindly  <a href={signInLink}>Sign In</a>as Business to Start Selling              
             </h2>
-          
+           
           </>
         )}
         {user?.userId && (

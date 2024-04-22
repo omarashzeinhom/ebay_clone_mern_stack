@@ -1,4 +1,4 @@
-import { useBusinessAuth } from "../../../../context/";
+import {useBusinessAuth } from "../../../../context";
 
 const BusinessProfile: React.FC = () => {
   const { business } = useBusinessAuth();

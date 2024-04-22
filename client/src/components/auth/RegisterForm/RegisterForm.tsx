@@ -6,7 +6,7 @@ import UserAccountForm from "./User/UserAccountForm";
 import BusinessAccountForm from "./Business/BusinessAccountForm";
 import { userAuthService, businessAuthService } from "../../../services/";
 import NotificationCard from "../../../components/NotifcationCard/NotificationCard";
-import { useUserAuth, useBusinessAuth } from "../../../context";
+import { useUserAuth, useBusinessAuth } from "../../../context/";
 
 
 const RegisterForm: React.FC = () => {
