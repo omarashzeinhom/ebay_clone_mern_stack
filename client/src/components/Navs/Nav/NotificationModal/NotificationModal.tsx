@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./NotificationModal.scss";
-import { useUserAuth,useBusinessAuth  } from "../../../context/";
+import { useUserAuth,useBusinessAuth  } from "../../../../context/";
 
 type NotificationModalProps = {
   onClose: () => void; // Callback to close the modal

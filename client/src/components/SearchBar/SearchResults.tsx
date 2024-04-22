@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import Nav from "../Nav/Nav";
-import { useShoppingCart } from "../../context/ShoppingCartContext";
-import { useProductContext } from "../../context/ProductContext";
+import { useProductContext,useShoppingCart  } from "../../context/";
 import "./SearchResults.scss";
-import CategorySideBar from "../Categories/CategorySideBar/CategorySideBar";
+import { CategorySideBar, Nav } from "..";
 
 const SearchResults: React.FC = () => {
   const { getProductsByName, searchResults } = useProductContext();

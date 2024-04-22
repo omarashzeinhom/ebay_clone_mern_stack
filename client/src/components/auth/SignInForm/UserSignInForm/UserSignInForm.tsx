@@ -26,7 +26,6 @@ const UserSignInForm: React.FC = () => {
     } catch (userError) {
       console.error("user SignIn Error:" + userError);
       showNotification("User Login failed. Please try again.");
-
     }
   };
 
@@ -44,7 +43,7 @@ const UserSignInForm: React.FC = () => {
     };
 
     fetchUserData();
-  }, [userToken,login]);
+  }, [userToken, login]);
 
   const userLink = `/user/${user?.userId}`;
 
@@ -117,11 +116,9 @@ const UserSignInForm: React.FC = () => {
             </button>
           </div>
           <SSOButtons />
-
         </div>
       )}
-                <UserDemoCredentials />
-
+      <UserDemoCredentials />
     </div>
   );
 };

@@ -1,7 +1,6 @@
 // Navs
-import Header from "./Header/Header";
-import Nav from "./Nav/Nav";
-import Footer from "./Footer/Footer";
+import {Header,Nav,Footer} from "./Navs"
+
 // Search
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchBar/SearchResults";
@@ -21,7 +20,7 @@ import {
 // CRUD Products
 import SellComponent from "./Sell/SellComponent";
 // Auth
-import { SignInForm, RegisterForm,Profile } from "./auth";
+import { SignInForm, RegisterForm,Profile } from "./Auth";
 // Survey
 import SurveyForm from "./SurveyForm/SurveyForm";
 

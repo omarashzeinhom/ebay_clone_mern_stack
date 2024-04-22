@@ -2,7 +2,7 @@ import { Loading, Nav, NotificationCard } from "..";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useBusinessAuth, useUserAuth } from "../../context/";
-import { SignInNav } from "../auth/SignInForm/SignInForm";
+import { SignInNav } from "../Auth/SignInForm/SignInForm";
 import { commonIssues } from "../../utilities/constants";
 
 interface Notification {
