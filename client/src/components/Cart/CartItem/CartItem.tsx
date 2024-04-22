@@ -27,25 +27,25 @@ const CartItem: React.FC<CartItemProps> = ({
               loading="lazy"
               style={{ width: "45px", height: "45px", borderRadius: "50%" }}
             />
-            <div className="">
-              <p className="">{name}</p>
-              <p className="">{currencyFormatter(price || 0)}</p>
+            <div >
+              <p >{name}</p>
+              <p >{currencyFormatter(price || 0)}</p>
             </div>
           </div>
           <p>Quantity:{quantity}</p>
-          <button
+         <button aria-label="IncreaseItemQuantity"
             onClick={() => increaseCartQuantity(id)}
             style={{ backgroundColor: "green", color: "white" }}
           >
             +
           </button>
-          <button
+         <button aria-label="DecreaseItemQuantity"
             onClick={() => decreaseCartQuantity(id)}
             style={{ backgroundColor: "red", color: "white" }}
           >
             -
           </button>
-          <button
+         <button aria-label="RemoveItemFromCart"
             onClick={() => removefromCart(id)}
             style={{ backgroundColor: "yellow", color: "black" }}
           >

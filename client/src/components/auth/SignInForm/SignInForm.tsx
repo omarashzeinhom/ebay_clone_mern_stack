@@ -1,10 +1,8 @@
 import "./SignInForm.scss";
-import { useAuth } from "../../../context/AuthContext";
-import { authService } from "../../../services/authService";
-import { summaryBoxText } from "../../../utilities/constants";
-import { useState, useEffect } from "react";
-import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
-import DemoCredentials from "./DemoCredentials";
+import { useState } from "react";
+import { useBusinessAuth, useUserAuth } from "../../../context/";
+import { BottomSignInSection } from "./DemoCredentials/constants";
+import { BusinessSignInForm, UserSignInForm } from ".";
 
 export const SignInNav = () => {
   return (
@@ -29,174 +27,83 @@ export const SignInNav = () => {
   );
 };
 
+
 const SignInForm: React.FC = () => {
-  const { login, loginBusiness, token, user, business } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [notification, setNotification] = useState<string | null>(null);
-  // Create a custom function credential.
-  //const credentials = Realm.Credentials.function({
-  //  username: "ilovemongodb",
-  //});
-  //const googleUser = await app.logIn(credentials);
+  const [selectedCredential, setSelectedCredential] = useState<
+    "User" | "Business"
+  >("User");
 
-  const showNotification = (message: string) => {
-    setNotification(message);
-    // Clear the notification after a certain time
-    setTimeout(() => {
-      setNotification(null);
-    }, 3000); // Adjust the duration as needed
+  const handleCredentialChange = (credentialType: "User" | "Business") => {
+    setSelectedCredential(credentialType);
   };
-
-  const handleSignIn = async () => {
-    try {
-      // Try signing in as a regular user
-      const userToken = await authService.login(email, password);
-      const userData = await authService.getUser(userToken);
-      login(userToken, userData);
-
-      // Show success notification
-      showNotification("User Login Successful!");
-
-      console.log(`User Login successful: ${email}`);
-    } catch (userError) {
-      console.log(userError);
-
-      try {
-        // If signing in as a regular user fails, try signing in as a business
-        const businessToken = await authService.loginBusiness(email, password);
-        const businessData = await authService.getBusiness(businessToken);
-        loginBusiness(businessToken, businessData);
-
-        // Show success notification
-        showNotification("Business Login Successful!");
-
-        console.log(`Business Login successful: ${email}`);
-      } catch (businessError) {
-        // If both attempts fail, log the error
-        console.error(`Error in handleSignIn: ${userError || businessError}`);
-        // Show error notification
-        showNotification("Login failed. Please try again.");
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (token) {
-      // Fetch user or business information when the component mounts
-      const fetchData = async () => {
-        try {
-          const data = await authService?.getUser(token);
-          login(token, data);
-        } catch (error) {
-          console.error(`Error fetching data: ${error}`);
-          try {
-            const dataB = await authService?.getBusiness(token);
-            loginBusiness(token, dataB);
-          } catch (businessError) {
-            console.error(businessError);
-          }
-        }
-      };
-
-      fetchData();
-    }
-    // eslint-disable-next-line
-  }, [token]);
+  //TODO ADD useUserAuth and useBusinessAuth
+  const { userToken, user } = useUserAuth();
+  const { businessToken, business } = useBusinessAuth();
 
   const userLink = `/user/${user?.userId}`;
   const businessLink = `/business/${business?.businessId}`;
 
-  // response message
-  const responseMessage = (response: any) => {
-    console.log(response);
+  // Better Organized Components
+  const SignedInContainer = () => {
+    return (
+      <div className="app__signin-container">
+        <p> Nothing to show here already Signed in As</p>
+        <a href={userLink || businessLink || ""}>
+          {user?.email || business?.businessName || "No user data was found !"}
+        </a>
+        <br />
+        <a href="/">
+          {" "}
+          <button aria-label="ReturnHomeButton" className="app__signin-Btn">
+            Return Home{" "}
+          </button>
+        </a>
+      </div>
+    );
   };
-  if (responseMessage !== null) {
-    console.log(responseMessage);
-  }
-
-  // errors
-  const errorMessage = (error: any) => {
-    console.log(error);
-  };
-  if (errorMessage !== null) {
-    console.log(errorMessage);
-  }
 
   return (
-    <div className="app__signin">
-      <SignInNav />
-      {notification && <div className="notification">{notification}</div>}
-
-      {token ? (
-        <div className="app__signin-container">
-          <p> Nothing to show here already Signed in As</p>
-          <a href={userLink || businessLink || ""}>
-            {user?.email ||
-              business?.businessName ||
-              "No user data was found !"}
-          </a>
-          <br />
-          <a href="/">
-            {" "}
-            <button className="app__signin-Btn">Return Home </button>
-          </a>
-        </div>
+    <>
+      {businessToken || userToken ? (
+        <SignedInContainer />
       ) : (
-        <div className="app__signin-container">
-          <h1>Hello</h1>
-          <h4>
-            Sign in to eBay or <a href="/register">create an account</a>
-          </h4>
-          <DemoCredentials />
-          <div className="app__signin-form" id="signin">
-            <input
-              placeholder="Email or username"
-              className="app__signin-input"
-              id="email"
-              autoComplete="true"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              className="app__signin-input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleSignIn} className="app__signin-Btn">
-              Continue
-            </button>
+        <>
+          <SignInNav />
+          <h4>Sign in as:</h4>
+          <div className="credential-radio">
+            <label>
+              <input
+                type="radio"
+                name="credentialType"
+                value="User"
+                checked={selectedCredential === "User"}
+                onChange={() => handleCredentialChange("User")}
+              />
+              User
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="credentialType"
+                value="Business"
+                checked={selectedCredential === "Business"}
+                onChange={() => handleCredentialChange("Business")}
+              />
+              Business
+            </label>
           </div>
-          Or
-          <button className="app__signin-Btn">
-            <FaFacebook /> Continue with Facebook
-          </button>
-          <button className="app__signin-Btn-alt">
-            <FaGoogle /> Continue with Google
-          </button>
-          <button className="app__signin-Btn-alt">
-            <FaApple /> Continue with Apple
-          </button>
-          <div>
-            <input
-              type="checkbox"
-              placeholder="Stay signed in"
-              color="black"
-              id="staySignedIn"
-            />
-            <small> Stay signed in</small>
-          </div>
-          <small>
-            Using a public or shared device? Uncheck to protect your account.
-          </small>
-          <details>
-            <summary>Learn More</summary>
-            <small>{summaryBoxText}</small>
-          </details>
-        </div>
+          {selectedCredential === "User" && (
+            // Render the user sign-in form
+            <UserSignInForm />
+          )}
+          {selectedCredential === "Business" && (
+            // Render the business sign-in form
+            <BusinessSignInForm />
+          )}
+        </>
       )}
-    </div>
+      <BottomSignInSection />
+    </>
   );
 };
 

@@ -1,0 +1,47 @@
+.footer {
+  background-color: #343a40;
+    color: #fff;
+  padding: 20px 0;
+
+  &__links {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  &__link {
+    margin: 0 10px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      transition: 0.2s ease-in-out;
+      &:hover{
+        text-decoration: underline;
+        color: #686868;
+  
+      }
+    }
+  }
+}
+
+
+  
+  .scroll-totop__btn {
+    background-color: #1c1c1c;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 16px;
+    position: fixed; // Change to fixed
+    bottom: 10px;
+    right: 10px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #282828;
+    }
+  }
+

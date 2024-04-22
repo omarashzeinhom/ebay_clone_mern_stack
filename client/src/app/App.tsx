@@ -1,10 +1,15 @@
 import "./App.scss";
 import React, { useState, useEffect } from "react";
 import { Category } from "../models/category";
-import { AuthProvider } from "../context/AuthContext";
-import { ProductProvider, useProductContext } from "../context/ProductContext";
 import { categoriesService } from "../services/categoryService";
-import { ShoppingCartProvider } from "../context/ShoppingCartContext";
+import {
+  UserAuthProvider,
+  BusinessAuthProvider,
+  ShoppingCartProvider,
+  ProductProvider,
+  useProductContext,
+  CategoryProvider,
+} from "../context/";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   Home,
@@ -23,7 +28,11 @@ import {
   SearchResults,
   ErrorBoundary,
 } from "../components";
+<<<<<<< HEAD
 import { CategoryProvider } from "../context/CategoryContext";
+=======
+import { DeleteProduct, UpdateProduct } from "../components/Sell/CRUD";
+>>>>>>> development
 
 type AppProps = {
   total: number;
@@ -46,9 +55,9 @@ const App: React.FC<AppProps> = ({ total }) => {
     fetchCategories();
   }, []);
 
+  // DIVIDE LOGGEDOUT STACK AND LOGGEDIN STACK FOR (BUSINESS & USERS);
   const routes = [
     /* <--- Main Routes Start --->  */
-
     {
       path: "/",
       element: <Home total={total} />,
@@ -127,6 +136,18 @@ const App: React.FC<AppProps> = ({ total }) => {
       path: "/",
       element: <ProductDetail total={total} />,
     },
+
+    /* <--- Update & Delete Routes Start ---> */
+    {
+      path: "/edit/:productId",
+      element: <UpdateProduct total={total} />,
+    },
+    {
+      path: "/delete/:productId",
+      element: <DeleteProduct total={total} />,
+    },
+    /* <--- Update & Delete Routes End ---> */
+
     /* <--- Product & Categories End ---> */
     /* <--- Auth & Profile Start  ---> */
     {
@@ -149,6 +170,7 @@ const App: React.FC<AppProps> = ({ total }) => {
   return (
     <React.StrictMode>
       <ErrorBoundary>
+<<<<<<< HEAD
         <AuthProvider>
           <ShoppingCartProvider>
             <CategoryProvider>
@@ -158,6 +180,19 @@ const App: React.FC<AppProps> = ({ total }) => {
             </CategoryProvider>
           </ShoppingCartProvider>
         </AuthProvider>
+=======
+          <UserAuthProvider>
+            <BusinessAuthProvider>
+              <ShoppingCartProvider>
+                <CategoryProvider>
+                  <ProductProvider>
+                    <RouterProvider router={router} />
+                  </ProductProvider>
+                </CategoryProvider>
+              </ShoppingCartProvider>
+            </BusinessAuthProvider>
+          </UserAuthProvider>
+>>>>>>> development
       </ErrorBoundary>
     </React.StrictMode>
   );

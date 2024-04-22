@@ -3,13 +3,8 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { Elements, ElementProps } from "@stripe/react-stripe-js";
 import stripePromise from "./features/stripe"; // Adjust the path
-import { useShoppingCart } from "./context/ShoppingCartContext";
-import { ProductProvider, useProductContext } from "./context/ProductContext";
-import { useState, /*Profiler */} from "react";
-
-// Debugging with Profiler imports 
-//  import {Profiler} from "react";
-//  import { onRender } from "./utilities/constants";
+import { ProductProvider, useProductContext ,useShoppingCart } from "./context/";
+import { useState } from "react";
 
 
 // root
@@ -31,7 +26,7 @@ const AppWrapper = () => {
     console.error("Stripe error:", error);
     // Handle the error as needed
     setStripeError(error);
-    console.log(stripeError)
+    console.log("stripeError in index.tsx" + stripeError)
   };
 
   // Check if cartItems is defined

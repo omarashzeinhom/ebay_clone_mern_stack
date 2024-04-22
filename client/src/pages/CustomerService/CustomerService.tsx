@@ -1,7 +1,7 @@
 import React from "react";
 import "./CustomerService.scss";
 import { Nav } from "../../components";
-import { useAuth } from "../../context/AuthContext";
+import { useBusinessAuth, useUserAuth } from "../../context/";
 import { commonIssues } from "../../utilities/constants";
 
 type CustomerServiceProps = {
@@ -12,8 +12,8 @@ const CustomerServiceNav = () => {
   return (
     <div className="app__customerservice-nav">
       <a href="/">
-          <img
-              rel="preload"
+        <img
+          rel="preload"
           src="/ebaylogo.png"
           alt="ebaylogo"
           width={140}
@@ -26,7 +26,8 @@ const CustomerServiceNav = () => {
   );
 };
 const CustomerService: React.FC<CustomerServiceProps> = ({ total }) => {
-  const { token, user, business } = useAuth();
+  const { user  } = useUserAuth();
+  const { business } = useBusinessAuth();
 
   return (
     <>
@@ -39,12 +40,17 @@ const CustomerService: React.FC<CustomerServiceProps> = ({ total }) => {
           <a href="/orders">See your recent orders</a>
         </div>
 
-        {user || business || token ? (
+        {user || business ? (
           <></>
         ) : (
           <>
             <a href="/signin">
-              <button className="app__customerservice-Btn">Sign in</button>
+              <button
+                aria-label="RegisterNowButton"
+                className="app__customerservice-Btn"
+              >
+                Sign in
+              </button>
             </a>
             <p>
               Don't have an account? <a href="/register">Register now</a>

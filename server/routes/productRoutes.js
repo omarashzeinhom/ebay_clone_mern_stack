@@ -1,9 +1,7 @@
 const express = require("express");
 const productController = require("../controllers/productController");
 const router = express.Router();
-const upload = require("../config/multer");
 const rateLimit = require("express-rate-limit");
-const Product = require("../models/productModel");
 
 // Define rate-limiting options
 const searchRateLimitOptions = {
@@ -17,6 +15,10 @@ router.get("/", productController.getProducts);
 
 // Route to get a product by ID
 router.get("/:productId", productController.getProductById);
+
+
+// Route to get delete by ID
+router.delete("/delete/:productId", productController.deleteProduct);
 
 // Apply rate-limiting middleware to the route for searching products
 // Route to get products by search

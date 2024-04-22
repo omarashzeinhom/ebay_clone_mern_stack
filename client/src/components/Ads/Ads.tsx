@@ -12,18 +12,20 @@ const Ads: React.FC = () => {
           className={`ads__featured__item ads__${item?.category}-item`}
         >
           <a href={item?.link}>
-              <img
+            <img
               rel="preload"
               className="ads__featured__item__img"
               src={item?.imageUrl}
               alt={item?.title}
+              width={800}
+              height={400}
               loading="lazy"
             />
             <h3 className="ads__featured__item__title">{item?.title}</h3>
             <p className="ads__featured__item__description">
               {item?.description}
             </p>
-            <button className="ads__featured__item__button">Shop Now</button>
+           <button aria-label="Shop Button"  className="ads__featured__item__button" id="ShopBtn" >Shop Now</button>
           </a>
         </div>
       )),

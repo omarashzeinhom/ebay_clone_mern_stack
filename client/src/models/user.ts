@@ -8,7 +8,7 @@ export interface User {
     
 }
 
-export type RegisterFormData = {
+export type RegisterUserFormData = {
     userId: string,
     firstName:string,
     lastName: string,

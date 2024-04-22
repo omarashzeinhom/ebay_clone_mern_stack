@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //import { ProfilerOnRenderCallback } from "react";
 // CHG DEVELOPMENT AND PRODUCTION
 export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
@@ -9,25 +10,36 @@ const DEVELOP_URL = "http://localhost:3000/";
 
 //const SERVER_DEVELOP_URL = "http://localhost:3001/";
 
+=======
+>>>>>>> development
 // Config Constants
+import { countryList} from "./countryList";
+// CHG DEVELOPMENT AND PRODUCTION
+const API_BASE_URL = "http://localhost:5000/";
+const HOME_URL = "http://localhost:3000/";
 
-export const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
-export const businessProductsfolderPath =
-  "ebay-clone-mern-images/businesses/products";
-export const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+//const DEVELOP_URL = "http://localhost:3000/";
+//const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
+//const SERVER_DEVELOP_URL = "http://localhost:5000/";
+//const SERVER_PROD_URL = "https://server-ebay-clone.onrender.com";
 
-// Append folder path as a parameter
-export const bussinessProductsFullUploadUri = `${businessProductsUploadEndPoint}?folder=${businessProductsfolderPath}`;
+const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
 
-// export const userUploads URIs 
+//  businessUploads URIs
+const businessUpdatesfolderPath = "ebay-clone-mern-images/business/avatars";
+const businessUpdatesUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+const businessUpdatesFullUploadUri = `${businessUpdatesUploadEndPoint}?folder=${businessUpdatesfolderPath}`;
 
-export const userUpdatesfolderPath =  "ebay-clone-mern-images/users/avatar";
+const businessProductsfolderPath = "ebay-clone-mern-images/businesses/products";
+const businessProductsUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+const bussinessProductsFullUploadUri = `${businessProductsUploadEndPoint}?folder=${businessProductsfolderPath}`;
 
-export const userUpdatesUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+//  userUploads URIs
+const signInLink = `${HOME_URL}signin`;
 
-
-export const userUpdatesFullUploadUri = `${userUpdatesUploadEndPoint}?folder=${userUpdatesfolderPath}`;
-
+const userUpdatesfolderPath = "ebay-clone-mern-images/users/avatar";
+const userUpdatesUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+const userUpdatesFullUploadUri = `${userUpdatesUploadEndPoint}?folder=${userUpdatesfolderPath}`;
 
 /* NavBar Items Start */
 const navItems = [
@@ -45,55 +57,55 @@ const navItems = [
 const myEbayItems = [
   {
     title: "Summary",
-    link: "#",
+    link: "/",
   },
   {
     title: "Recently Viewed",
-    link: "#",
+    link: "/",
   },
   {
     title: "Bids/Offers",
-    link: "#",
+    link: "/",
   },
   {
     title: " Watchlist",
-    link: "#",
+    link: "/",
   },
   {
     title: "Purchase History",
-    link: "#",
+    link: "/",
   },
   {
     title: "Buy Again",
-    link: "#",
+    link: "/",
   },
   {
     title: "Selling",
-    link: "#",
+    link: "/",
   },
 
   {
     title: "Saved Searches",
-    link: "#",
+    link: "/",
   },
   {
     title: "My Garage",
-    link: "#",
+    link: "/",
   },
 
   {
     title: "Messages",
-    link: "#",
+    link: "/",
   },
 
   {
     title: "Collection beta",
-    link: "#",
+    link: "/",
   },
 
   {
     title: "The eBay vault",
-    link: "#",
+    link: "/",
   },
 ];
 /* NavBar Items End*/
@@ -112,263 +124,9 @@ const footerLinks = [
 ];
 /* Footer Links End */
 
-// Country List
-/*Credits to https://gist.github.com/incredimike/1469814 for the countryList */
-const countryList = [
-  "Afghanistan",
-  "Albania",
-  "Algeria",
-  "American Samoa",
-  "Andorra",
-  "Angola",
-  "Anguilla",
-  "Antarctica",
-  "Antigua and Barbuda",
-  "Argentina",
-  "Armenia",
-  "Aruba",
-  "Australia",
-  "Austria",
-  "Azerbaijan",
-  "Bahamas (the)",
-  "Bahrain",
-  "Bangladesh",
-  "Barbados",
-  "Belarus",
-  "Belgium",
-  "Belize",
-  "Benin",
-  "Bermuda",
-  "Bhutan",
-  "Bolivia (Plurinational State of)",
-  "Bonaire, Sint Eustatius and Saba",
-  "Bosnia and Herzegovina",
-  "Botswana",
-  "Bouvet Island",
-  "Brazil",
-  "British Indian Ocean Territory (the)",
-  "Brunei Darussalam",
-  "Bulgaria",
-  "Burkina Faso",
-  "Burundi",
-  "Cabo Verde",
-  "Cambodia",
-  "Cameroon",
-  "Canada",
-  "Cayman Islands (the)",
-  "Central African Republic (the)",
-  "Chad",
-  "Chile",
-  "China",
-  "Christmas Island",
-  "Cocos (Keeling) Islands (the)",
-  "Colombia",
-  "Comoros (the)",
-  "Congo (the Democratic Republic of the)",
-  "Congo (the)",
-  "Cook Islands (the)",
-  "Costa Rica",
-  "Croatia",
-  "Cuba",
-  "Curaçao",
-  "Cyprus",
-  "Czechia",
-  "Côte d'Ivoire",
-  "Denmark",
-  "Djibouti",
-  "Dominica",
-  "Dominican Republic (the)",
-  "Ecuador",
-  "Egypt",
-  "El Salvador",
-  "Equatorial Guinea",
-  "Eritrea",
-  "Estonia",
-  "Eswatini",
-  "Ethiopia",
-  "Falkland Islands (the) [Malvinas]",
-  "Faroe Islands (the)",
-  "Fiji",
-  "Finland",
-  "France",
-  "French Guiana",
-  "French Polynesia",
-  "French Southern Territories (the)",
-  "Gabon",
-  "Gambia (the)",
-  "Georgia",
-  "Germany",
-  "Ghana",
-  "Gibraltar",
-  "Greece",
-  "Greenland",
-  "Grenada",
-  "Guadeloupe",
-  "Guam",
-  "Guatemala",
-  "Guernsey",
-  "Guinea",
-  "Guinea-Bissau",
-  "Guyana",
-  "Haiti",
-  "Heard Island and McDonald Islands",
-  "Holy See (the)",
-  "Honduras",
-  "Hong Kong",
-  "Hungary",
-  "Iceland",
-  "India",
-  "Indonesia",
-  "Iran (Islamic Republic of)",
-  "Iraq",
-  "Ireland",
-  "Isle of Man",
-  "Israel",
-  "Italy",
-  "Jamaica",
-  "Japan",
-  "Jersey",
-  "Jordan",
-  "Kazakhstan",
-  "Kenya",
-  "Kiribati",
-  "Korea (the Democratic People's Republic of)",
-  "Korea (the Republic of)",
-  "Kuwait",
-  "Kyrgyzstan",
-  "Lao People's Democratic Republic (the)",
-  "Latvia",
-  "Lebanon",
-  "Lesotho",
-  "Liberia",
-  "Libya",
-  "Liechtenstein",
-  "Lithuania",
-  "Luxembourg",
-  "Macao",
-  "Madagascar",
-  "Malawi",
-  "Malaysia",
-  "Maldives",
-  "Mali",
-  "Malta",
-  "Marshall Islands (the)",
-  "Martinique",
-  "Mauritania",
-  "Mauritius",
-  "Mayotte",
-  "Mexico",
-  "Micronesia (Federated States of)",
-  "Moldova (the Republic of)",
-  "Monaco",
-  "Mongolia",
-  "Montenegro",
-  "Montserrat",
-  "Morocco",
-  "Mozambique",
-  "Myanmar",
-  "Namibia",
-  "Nauru",
-  "Nepal",
-  "Netherlands (the)",
-  "New Caledonia",
-  "New Zealand",
-  "Nicaragua",
-  "Niger (the)",
-  "Nigeria",
-  "Niue",
-  "Norfolk Island",
-  "Northern Mariana Islands (the)",
-  "Norway",
-  "Oman",
-  "Pakistan",
-  "Palau",
-  "Palestine, State of",
-  "Panama",
-  "Papua New Guinea",
-  "Paraguay",
-  "Peru",
-  "Philippines (the)",
-  "Pitcairn",
-  "Poland",
-  "Portugal",
-  "Puerto Rico",
-  "Qatar",
-  "Republic of North Macedonia",
-  "Romania",
-  "Russian Federation (the)",
-  "Rwanda",
-  "Réunion",
-  "Saint Barthélemy",
-  "Saint Helena, Ascension and Tristan da Cunha",
-  "Saint Kitts and Nevis",
-  "Saint Lucia",
-  "Saint Martin (French part)",
-  "Saint Pierre and Miquelon",
-  "Saint Vincent and the Grenadines",
-  "Samoa",
-  "San Marino",
-  "Sao Tome and Principe",
-  "Saudi Arabia",
-  "Senegal",
-  "Serbia",
-  "Seychelles",
-  "Sierra Leone",
-  "Singapore",
-  "Sint Maarten (Dutch part)",
-  "Slovakia",
-  "Slovenia",
-  "Solomon Islands",
-  "Somalia",
-  "South Africa",
-  "South Georgia and the South Sandwich Islands",
-  "South Sudan",
-  "Spain",
-  "Sri Lanka",
-  "Sudan (the)",
-  "Suriname",
-  "Svalbard and Jan Mayen",
-  "Sweden",
-  "Switzerland",
-  "Syrian Arab Republic",
-  "Taiwan",
-  "Tajikistan",
-  "Tanzania, United Republic of",
-  "Thailand",
-  "Timor-Leste",
-  "Togo",
-  "Tokelau",
-  "Tonga",
-  "Trinidad and Tobago",
-  "Tunisia",
-  "Turkey",
-  "Turkmenistan",
-  "Turks and Caicos Islands (the)",
-  "Tuvalu",
-  "Uganda",
-  "Ukraine",
-  "United Arab Emirates (the)",
-  "United Kingdom of Great Britain and Northern Ireland (the)",
-  "United States Minor Outlying Islands (the)",
-  "United States of America (the)",
-  "Uruguay",
-  "Uzbekistan",
-  "Vanuatu",
-  "Venezuela (Bolivarian Republic of)",
-  "Viet Nam",
-  "Virgin Islands (British)",
-  "Virgin Islands (U.S.)",
-  "Wallis and Futuna",
-  "Western Sahara",
-  "Yemen",
-  "Zambia",
-  "Zimbabwe",
-  "Åland Islands",
-];
-
 /*CustomerService and Survery Common Issues */
 
-export const commonIssues = [
+const commonIssues = [
   {
     name: "Buying as a guest",
   },
@@ -393,17 +151,30 @@ export const commonIssues = [
 Login Constants
 */
 
-export const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
+const summaryBoxText = `With this box checked, we'll keep you signed in, making it easier
 to bid and buy. You'll also be all set to pay if you've saved your
 payment info. You can always turn off this feature in My eBay. We
 may ask you to sign in again for some activities, such as making
 changes to your account.`;
+
+
+/** Selling Constants */
+
 
 export {
   navItems,
   myEbayItems,
   footerLinks,
   countryList,
+  summaryBoxText,
+  commonIssues,
+  //URIS
+  API_BASE_URL,
   HOME_URL,
-  DEVELOP_URL,
+  bussinessProductsFullUploadUri,
+  businessUpdatesFullUploadUri,
+  userUpdatesFullUploadUri,
+  signInLink,
+  //,
+
 };

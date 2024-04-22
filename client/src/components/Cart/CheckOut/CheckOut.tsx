@@ -1,17 +1,17 @@
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useState } from "react";
-import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { currencyFormatter } from "../../../utilities/currencyFormatter";
-import { useProductContext } from "../../../context/ProductContext";
 import { Product } from "../../../models/product";
-import { useAuth } from "../../../context/AuthContext";
+import { useBusinessAuth, useUserAuth, useProductContext,useShoppingCart  } from "../../../context";
 
 export type CheckoutProps = {
   total: number; // Add total as a prop
 };
 
 const Checkout: React.FC<CheckoutProps> = ({ total }) => {
-  const { token, user, business } = useAuth();
+  const {user} = useUserAuth();
+  const {business } = useBusinessAuth();
+
 
   const stripe = useStripe();
   const elements = useElements();
@@ -83,7 +83,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
     <div>
       <h2>Checkout</h2>
 
-      {token || user || business ? (
+      { user || business ? (
         <>
           {cartItems.length > 0 ? (
             <>
@@ -95,7 +95,7 @@ const Checkout: React.FC<CheckoutProps> = ({ total }) => {
 
                 {paymentError && <div className="error">{paymentError}</div>}
 
-                <button type="submit" disabled={!stripe}>
+               <button aria-label="PaymentButton" type="submit" disabled={!stripe}>
                   Pay{" "}
                   {currencyFormatter(
                     cartItems.reduce((total, cartItem) => {

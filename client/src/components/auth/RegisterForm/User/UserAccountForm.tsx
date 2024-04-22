@@ -1,9 +1,9 @@
 import "./UserAccountForm.scss";
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { RegisterFormData, User } from "../../../../models/user";
+import { RegisterUserFormData, User } from "../../../../models/user";
 import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
 import { userUpdatesFullUploadUri } from "../../../../utilities/constants";
-import { authService } from "../../../../services/authService";
+import { userAuthService } from "../../../../services";
 
 interface UserAccountFormProps {
   user: User;
@@ -14,7 +14,7 @@ interface UserAccountFormProps {
 const UserAccountForm: React.FC<UserAccountFormProps> = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [formData, setFormData] = useState<RegisterFormData>({
+  const [formData, setFormData] = useState<RegisterUserFormData>({
     userId: "",
     firstName: " ",
     lastName: " ",
@@ -35,7 +35,7 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
       cloudinaryFormData.append("file", formData.avatar as File);
       cloudinaryFormData.append(
         "upload_preset",
-        `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+        `${process.env.REACT_APP_CLODUINARY_USER_AVATARS_UPLOAD_PRESET}`
       );
 
       const cloudinaryResponse = await fetch(userUpdatesFullUploadUri, {
@@ -64,7 +64,7 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
       console.log("productData====>" + userData);
 
       // Call your backend service to store the product data in MongoDB
-      const data = await authService.register({
+      const data = await userAuthService.register({
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
@@ -74,7 +74,7 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
       console.log("User created:", data);
 
       // Resetting the form after successful submission
-      setFormData((prevState) => ({
+      setFormData((prevState: any) => ({
         ...prevState,
         avatar: "", // Reset img property to an empty string
       }));
@@ -96,13 +96,13 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
       e.target.files
     ) {
       const inputElement = e.target as HTMLInputElement;
-      setFormData((prevState) => ({
+      setFormData((prevState: any) => ({
         ...prevState,
         [fieldName]: inputElement.files![0],
       }));
     } else {
       const { name, value } = e.target;
-      setFormData((prevState) => ({
+      setFormData((prevState: any) => ({
         ...prevState,
         [name]: value,
       }));
@@ -179,19 +179,19 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
             />
           </label>
 
-          <button className="app__paform-Btn" type="submit">
+         <button aria-label="UserRegisterButton" className="app__paform-Btn" type="submit">
             Register
           </button>
         </div>
       </form>
       <div className="app__paform-right">
-        <button className="app__google-Btn">
+       <button aria-label="UserRegisterWithGoogle" className="app__google-Btn">
           <FaGoogle /> Continue with Google
         </button>
-        <button className="app__facebook-Btn">
+       <button aria-label="UserRegisterWithFaceBook" className="app__facebook-Btn">
           <FaFacebook /> Continue with Facebook
         </button>
-        <button className="app__apple-Btn">
+       <button aria-label="UserRegisterWithApple" className="app__apple-Btn">
           <FaApple /> Continue with Apple
         </button>
         <small>

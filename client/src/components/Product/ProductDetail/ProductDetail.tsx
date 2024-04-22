@@ -4,18 +4,17 @@ import "./ProductDetail.scss";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/ProductContext";
-import Nav from "../../Nav/Nav";
+
 import SearchBar from "../../SearchBar/SearchBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
+import { Nav } from "../..";
 
 type ProductDetailProps = {
-total: number;
+  total: number;
+};
 
-}
-
-const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
+const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
   const navigate = useNavigate();
-
 
   const {
     addItemToCart,
@@ -59,8 +58,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
         <h2 className="product-detail__title">{product?.name}</h2>
 
         <p className="product-detail__price">${product?.price}</p>
-          <img
-              rel="preload"
+        <img
+          rel="preload"
           className="product-detail__image"
           alt={product?.name}
           src={product?.img}
@@ -72,7 +71,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
           <strong>
             <em>Category: </em>
           </strong>{" "}
-          <button onClick={handleRouting} className="product-detail__button">
+          <button
+            aria-label={"CategoryButtonFor" + product?.category}
+            onClick={handleRouting}
+            className="product-detail__button"
+          >
             {product?.category}
           </button>
         </p>
@@ -99,6 +102,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
           {/* TODO Remove Access to add More products inside the ProductDetail to avoid  console.js:213 Warning: Encountered two children with the same key, `52*/}
           {quantity === 0 && (
             <button
+              aria-label="AddProductToCart"
               className="product-detail__button"
               onClick={() => addItemToCart(product)}
             >
@@ -107,6 +111,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({total}) => {
           )}
 
           <button
+            aria-label="DecreaseItemQuantity"
             className="product-detail__altbutton"
             onClick={() => decreaseCartQuantity(id)}
           >

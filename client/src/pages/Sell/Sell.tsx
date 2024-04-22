@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Sell } from "../../components"
+import { Nav, SearchBar,SellComponent } from "../../components"
 
 
 interface SellPageProps {
@@ -17,6 +17,11 @@ export default function SellPage({total } : SellPageProps){
       }, []);
     
     return (
-        <Sell total={total} />
+     <>
+      <Nav total={total} />
+      <SearchBar />
+      <SellComponent/>
+     </>
+   
     )
 }

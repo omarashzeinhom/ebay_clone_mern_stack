@@ -1,8 +1,8 @@
 import { Loading, Nav, NotificationCard } from "..";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { useAuth } from "../../context/AuthContext";
-import { SignInNav } from "../auth/SignInForm/SignInForm";
+import { useBusinessAuth, useUserAuth } from "../../context/";
+import { SignInNav } from "../Auth/SignInForm/SignInForm";
 import { commonIssues } from "../../utilities/constants";
 
 interface Notification {
@@ -11,13 +11,15 @@ interface Notification {
 }
 
 export default function SurveyForm({ total }: any) {
-  const { user, business, token } = useAuth();
-  const form = useRef();  
-  const [notification, setNotification] = useState<Notification | null>(null); 
+  const { user } = useUserAuth();
+  const { business } = useBusinessAuth();
+
+  const form = useRef();
+  const [notification, setNotification] = useState<Notification | null>(null);
   const [loading, setLoading] = useState(false); // New state for loading
 
   const name = user?.firstName;
-  console.log(`name====${name}`)
+  console.log(`name====${name}`);
 
   const sendEmail = () => {
     const SERVICE_ID = process.env.REACT_APP_EMAIL_JS_SERVICE_ID;
@@ -60,14 +62,18 @@ export default function SurveyForm({ total }: any) {
   };
 
   // Separate the logic for setting the placeholder
-  let namePlaceholder = user ? user.firstName : (business ? business.businessName : "User Not Logged In");
+  let namePlaceholder = user
+    ? user.firstName
+    : business
+    ? business.businessName
+    : "User Not Logged In";
 
   return (
     <>
       <Nav total={total} />
       <SignInNav />
       <h2> Survey </h2>
-      {token || business || user ? (
+      {business || user ? (
         <>
           <form
             className="app__signin app__signin-container"
@@ -88,7 +94,7 @@ export default function SurveyForm({ total }: any) {
               <input
                 placeholder="johndoe@email.com"
                 className="app__signin-input"
-                defaultValue={`${user?.email || business?.businessEmail || ""}`}                
+                defaultValue={`${user?.email || business?.businessEmail || ""}`}
                 readOnly
               />
             </label>
@@ -112,6 +118,7 @@ export default function SurveyForm({ total }: any) {
             </label>
 
             <button
+              aria-label="MessageUsSurveyButton"
               className="app__signin-Btn"
               type="submit"
               disabled={loading}

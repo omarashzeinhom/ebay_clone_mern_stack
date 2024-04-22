@@ -35,7 +35,7 @@ export default function ShoppingCart({ total }: ShoppingCartProps) {
 
       <div className={`modal ${isModalVisible ? "visible" : ""}`}>
         <div className="modal-content">
-          <button onClick={() => setIsModalVisible(false)}>&times;</button>
+         <button aria-label="ShowShoppingCart" onClick={() => setIsModalVisible(false)}>&times;</button>
 
           <h2>Shopping Cart </h2>
           {cartQuantity > 0 && (
@@ -59,7 +59,7 @@ export default function ShoppingCart({ total }: ShoppingCartProps) {
             </>
           )}
           {cartQuantity > 0 && (
-           <button onClick={clearCart}>
+          <button aria-label="EmptyCartButton" onClick={clearCart}>
             Clear Cart
            </button>
           )}

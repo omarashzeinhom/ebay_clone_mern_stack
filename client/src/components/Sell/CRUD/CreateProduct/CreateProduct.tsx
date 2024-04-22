@@ -1,15 +1,12 @@
 import { useEffect, useState, ChangeEvent, FormEvent } from "react";
-import { Category } from "../../../../models/category";
 import "./CreateProduct.scss";
-import { categoriesService } from "../../../../services/categoryService";
-import { productService } from "../../../../services/productService";
-import { useAuth } from "../../../../context/AuthContext";
+import { categoriesService,productService } from "../../../../services/";
+import { useBusinessAuth } from "../../../../context/";
 import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
-import { CreateProductFormData } from "../../../../models/product";
-
+import { Category ,CreateProductFormData } from "../../../../models/";
 
 export default function CreateProduct() {
-  const { business } = useAuth();
+  const { business } = useBusinessAuth();
   //DEBUG (Make sure businessId is passed to the useAuth Hook as a business object)
   //console.log(`busines----->${JSON.stringify(business)}`)
   const [categories, setCategories] = useState<Category[]>([]);
@@ -55,29 +52,29 @@ export default function CreateProduct() {
     try {
       setLoading(true);
       setError(null);
-  
+
       // Upload the image file to Cloudinary
       const cloudinaryFormData = new FormData();
       cloudinaryFormData.append("file", formData.img as File);
       cloudinaryFormData.append(
         "upload_preset",
-        `${process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET}`
+        `${process.env.REACT_APP_CLODUINARY_BUSINESS_PRODUCTS_UPLOAD_PRESET}`
       );
-  
+
       const cloudinaryResponse = await fetch(bussinessProductsFullUploadUri, {
         method: "POST",
         body: cloudinaryFormData,
       });
-  
+
       if (!cloudinaryResponse.ok) {
         const errorDetails = await cloudinaryResponse.json();
         console.error("Cloudinary API Error:", errorDetails);
         throw new Error("Failed to upload image to Cloudinary");
       }
-  
+
       const cloudinaryData = await cloudinaryResponse.json();
       const cloudinaryImageUrl = cloudinaryData.secure_url;
-  
+
       // Store the Cloudinary URL in MongoDB
       const productData = {
         id: formData.id,
@@ -91,8 +88,8 @@ export default function CreateProduct() {
         businessId: formData.businessId,
       };
 
-      console.log("productData====>" + productData)
-  
+      console.log("productData====>" + productData);
+
       // Call your backend service to store the product data in MongoDB
       const data = await productService.createProduct({
         id: formData.id,
@@ -104,9 +101,9 @@ export default function CreateProduct() {
         category: formData.category,
         parent: formData.parent,
         businessId: formData.businessId,
-      });      
+      });
       console.log("Product created:", data);
-  
+
       // Resetting the form after successful submission
       setFormData((prevState) => ({
         ...prevState,
@@ -119,9 +116,6 @@ export default function CreateProduct() {
       setLoading(false);
     }
   };
-  
-  
-
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -175,15 +169,15 @@ export default function CreateProduct() {
               <label>
                 Product Image:
                 <input
-                placeholder="Upload Product Image Here"
-                  name="img" // need to pass another hidden input as string when full product is successfull 
+                  placeholder="Upload Product Image Here"
+                  name="img" // need to pass another hidden input as string when full product is successfull
                   type="file"
                   accept="image/*"
                   //disabled={true}
                   onChange={(e) => handleChange(e, "img")}
                 />
-                 <input
-                  name="" // need to pass another hidden input as string when full product is successfull 
+                <input
+                  name="" // need to pass another hidden input as string when full product is successfull
                   type="text"
                   accept="image/*"
                   hidden={true}
@@ -239,7 +233,9 @@ export default function CreateProduct() {
                 </select>
               </label>
 
-              <button type="submit">Create Product</button>
+              <button aria-label="CreateProductButton" type="submit">
+                Create Product
+              </button>
             </form>
           </div>
         </>
@@ -247,5 +243,3 @@ export default function CreateProduct() {
     </div>
   );
 }
-
-
