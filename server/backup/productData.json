@@ -409,7 +409,7 @@
     "id": 38,
     "quantity": 10,
     "name": "Elegant Dress",
-    "img": "https://source.unsplash.com/all/400x300/?ElegeantDress",
+    "img": "https://source.unsplash.com/all/400x300/?womens,dress,chiquedress",
     "price": 499.99,
     "parent": "Clothing & Accessories",
     "category": "Women Clothing",
@@ -442,7 +442,7 @@
     "id": 41,
     "quantity": 10,
     "name": "Chic Sunglasses",
-    "img": "https://source.unsplash.com/all/400x300/?WomenClothingsunglasses",
+    "img": "https://source.unsplash.com/all/400x300/?sunglasses",
     "price": 199.99,
     "parent": "Clothing & Accessories",
     "category": "Women Clothing",
@@ -508,7 +508,7 @@
     "id": 47,
     "quantity": 10,
     "name": "Leather Tote",
-    "img": "https://source.unsplash.com/all/400x300/?leathe,rtote",
+    "img": "https://source.unsplash.com/all/400x300/?leather,tote,leathertote",
     "price": 899.99,
     "parent": "Clothing & Accessories",
     "category": "Women Handbags",
@@ -833,7 +833,6 @@
     "category": "Outdoor sports",
     "description": "Conquer the trails with the Cannondale Trail 6 Mountain Bike Designed for off-road adventures, this mountain bike features a lightweight frame and responsive suspension for a smooth and exhilarating ride Whether you're a beginner or an experienced rider, the Cannondale Trail 6 delivers performance and durability on every trail",
     "businessId": "658515a349b83015d3b51fd0"
- 
   },
   {
     "id": 77,
@@ -1565,7 +1564,7 @@
   {
     "id": 143,
     "name": "Art Paints Set",
-    "img": "https://source.unsplash.com/all/400x300/?paintsset",
+    "img": "https://source.unsplash.com/all/400x300/?painting,set,paintingset",
     "price": 599.99,
     "category": "Outdoor Recreation Equipment",
     "parent": "Sports & Outdoors",
@@ -1576,7 +1575,7 @@
   {
     "id": 144,
     "name": "Exercise Ball",
-    "img": "https://source.unsplash.com/all/400x300/?exerciseball",
+    "img": "https://source.unsplash.com/all/400x300/?exercise,ball,exerciseball",
     "price": 29.99,
     "parent": "Sports & Fitness",
     "category": "Fitness & Exercise",
@@ -1587,7 +1586,7 @@
   {
     "id": 145,
     "name": "Dog Leash",
-    "img": "https://source.unsplash.com/all/400x300/?dogleash",
+    "img": "https://source.unsplash.com/all/400x300/?dog,leash",
     "price": 9.99,
     "category": "Pet Supplies",
     "parent": "Pets",
@@ -1598,7 +1597,7 @@
   {
     "id": 146,
     "name": "Computer Keyboard",
-    "img": "https://source.unsplash.com/all/400x300/?computerkeyboard",
+    "img": "https://source.unsplash.com/all/400x300/?computer,keyboard",
     "price": 79.99,
     "parent": "Professional & Technical",
     "category": "Computer & Office Equipment",
@@ -1609,7 +1608,7 @@
   {
     "id": 147,
     "name": "Kitchen Sink",
-    "img": "https://source.unsplash.com/all/400x300/?kitchensink",
+    "img": "https://source.unsplash.com/all/400x300/?kitchen,sink",
     "price": 249.99,
     "category": "Restaurant supplies",
     "parent": "Kitchen & Cookware",
@@ -1741,7 +1740,7 @@
   {
     "id": 159,
     "name": "Laser Cutter",
-    "img": "https://source.unsplash.com/all/400x300/?lasercutter",
+    "img": "https://source.unsplash.com/all/400x300/?laser,cutter",
     "price": 799.99,
     "parent": "Professional & Technical",
     "category": "Industrial & maintenance equipment",
@@ -1752,7 +1751,7 @@
   {
     "id": 160,
     "name": "Meditation Cushion",
-    "img": "https://source.unsplash.com/all/400x300/?meditationcushion",
+    "img": "https://source.unsplash.com/all/400x300/?meditation,cushion",
     "price": 199.99,
     "parent": "Health & Personal Care",
     "category": "Relaxation & Meditation",
@@ -1763,7 +1762,7 @@
   {
     "id": 161,
     "name": "Laser Cutter",
-    "img": "https://source.unsplash.com/all/400x300/?lasercutter",
+    "img": "https://source.unsplash.com/all/400x300/?laser,cutter",
     "price": 799.99,
     "parent": "Professional & Technical",
     "category": "Industrial & maintenance equipment",
@@ -1774,7 +1773,7 @@
   {
     "id": 162,
     "name": "Car Alarm System",
-    "img": "https://source.unsplash.com/all/400x300/?caralarmsystem",
+    "img": "https://source.unsplash.com/all/400x300/?car,alarm,system",
     "price": 99.99,
     "parent": "Auto, Transport & Industrial",
     "category": "Personal Transportation",
@@ -1785,7 +1784,7 @@
   {
     "id": 163,
     "name": "Motion Sensor Security Camera",
-    "img": "https://source.unsplash.com/all/400x300/?motionsensorsecuritycamera",
+    "img": "https://source.unsplash.com/all/400x300/?motion,sensor,security,camera",
     "price": 199.99,
     "parent": "Household goods",
     "category": "Audio & video equipment",
@@ -1796,7 +1795,7 @@
   {
     "id": 164,
     "name": "Electric Shaver",
-    "img": "https://source.unsplash.com/all/400x300/?electricshaver",
+    "img": "https://source.unsplash.com/all/400x300/?electric,shaver",
     "price": 399.99,
     "category": "Personal Grooming & Health",
     "parent": "Health & Personal Care",
@@ -1807,7 +1806,7 @@
   {
     "id": 165,
     "name": "Heated Towel Radiator",
-    "img": "https://source.unsplash.com/all/400x300/?heatedtowelradiator",
+    "img": "https://source.unsplash.com/all/400x300/?heated,towel,radiator",
     "price": 799.99,
     "parent": "Health & Personal Care",
     "category": "Bath & Shower",
@@ -1818,7 +1817,7 @@
   {
     "id": 166,
     "name": "Digital Audio Player",
-    "img": "https://source.unsplash.com/all/400x300/?digitalaudioplayer",
+    "img": "https://source.unsplash.com/all/400x300/?digital,audio,player,mp3",
     "price": 699.99,
     "category": "Audio & video equipment",
     "parent": "Household goods",
@@ -1829,7 +1828,7 @@
   {
     "id": 167,
     "name": "Headphones",
-    "img": "https://source.unsplash.com/all/400x300/?headphones",
+    "img": "https://source.unsplash.com/all/400x300/?head,phones",
     "price": 199.99,
     "category": "Audio & video equipment",
     "parent": "Household goods",
@@ -1840,7 +1839,7 @@
   {
     "id": 168,
     "name": "Laptop Bag",
-    "img": "https://source.unsplash.com/all/400x300/?laptopbag",
+    "img": "https://source.unsplash.com/all/400x300/?laptop,bag",
     "price": 59.99,
     "category": "Computer & Office Equipment",
     "parent": "Professional & Technical",
@@ -1851,7 +1850,7 @@
   {
     "id": 169,
     "name": "Camera Tripod",
-    "img": "https://source.unsplash.com/all/400x300/?cameratripod",
+    "img": "https://source.unsplash.com/all/400x300/?camera,tripod",
     "price": 79.99,
     "category": "Audio & video equipment",
     "parent": "Household goods",
@@ -1862,7 +1861,7 @@
   {
     "id": 170,
     "name": "Rolling Suitcase",
-    "img": "https://source.unsplash.com/all/400x300/?rollingsuitcase",
+    "img": "https://source.unsplash.com/all/400x300/?rolling,suitcase,suitecasewithwheels",
     "price": 99.99,
     "category": "Luggage & Travel",
     "parent": "Travelling Equipment",
@@ -2023,7 +2022,7 @@
   {
     "id": 185,
     "name": "Bean Bag",
-    "img": "https://source.unsplash.com/all/400x300/?wifihotspot",
+    "img": "https://source.unsplash.com/all/400x300/?beanbag",
     "price": 249.99,
     "category": "Indoor Living & Home",
     "parent": "Household goods",
@@ -2034,7 +2033,7 @@
   {
     "id": 186,
     "name": "Wi-Fi Hotspot",
-    "img": "https://source.unsplash.com/all/400x300/?wifihotspot",
+    "img": "https://source.unsplash.com/all/400x300/?wifi,hotspot",
     "price": 249.99,
     "category": "Computer & Office Equipment",
     "parent": "Professional & Technical",
@@ -2241,7 +2240,7 @@
   {
     "id": 205,
     "name": "Perfume Sampler Set",
-    "img": "https://source.unsplash.com/all/400x300/?perfumesamplerset",
+    "img": "https://source.unsplash.com/all/400x300/?perfumes,sampler,set",
     "price": 29.99,
     "parent": "Health & Personal Care",
     "category": "Beauty & personal care equipment",
