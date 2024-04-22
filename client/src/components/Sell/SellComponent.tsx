@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useBusinessAuth, useUserAuth } from "../../context/";
-import { HOME_URL } from "../../utilities/constants";
+import { signInLink } from "../../utilities/constants";
 import { CreateProduct, ReadProduct } from "./CRUD";
 import "./SellComponent.scss";
 
 export default function SellComponent () {
-    const { user, } = useUserAuth();
-    const {  business } = useBusinessAuth();
+    const { user,userToken } = useUserAuth();
+    const {  business,businessToken } = useBusinessAuth();
 
     const navigate = useNavigate(); // Access the navigate function
 
@@ -17,23 +17,29 @@ export default function SellComponent () {
     // Redirect to the /sell route
     navigate("/sell");
   };
-    const signInLink = `${HOME_URL}/signin`;
+
+    //DEBUGGING
+    //console.log("user===>" +user);
+    //console.log("business===>" + business);
     return (
       <>
-         {!business?.businessId && (
+         {!userToken && !businessToken && (
           <>
             <h2>
-              If No Business is Logged In Please
-              <a href={signInLink}> SignIn</a>
+              Hi There , Kindly  <a href={signInLink}>Sign In</a>as Business to Start Selling              
             </h2>
+            <img
+            
+            />
           </>
         )}
         {user?.userId && (
           <>
             <h2>Sell</h2>
-            <h2>
-              Register your <Link to="/register">business</Link> to start selling
-            </h2>
+<h3>Hi there, {user?.firstName || user?.email || "User"}</h3>
+            <h4>
+              Kindly , Register your <Link to="/register">Business Account as a seperate account</Link> to start selling
+            </h4>
           </>
         )}
   
