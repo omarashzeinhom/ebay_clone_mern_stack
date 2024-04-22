@@ -1,5 +1,5 @@
-import { UserAuthProvider, useUserAuth } from "./UserAuthContext";
-import { BusinessAuthProvider, useBusinessAuth } from "./BusinessAuthContext";
+import { UserAuthProvider, useUserAuth } from "./userAuthContext";
+import { BusinessAuthProvider, useBusinessAuth } from "./businessAuthContext";
 import { CategoryProvider, useCategoryContext } from "./CategoryContext";
 import { ProductProvider, useProductContext } from "./ProductContext";
 import { ShoppingCartProvider, useShoppingCart } from "./ShoppingCartContext";

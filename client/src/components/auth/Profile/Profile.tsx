@@ -4,8 +4,7 @@ import {Nav} from "../../";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useState } from "react";
 
-import { useBusinessAuth } from "../../../context/BusinessAuthContext";
-import { useUserAuth } from "../../../context/UserAuthContext";
+import { useBusinessAuth , useUserAuth} from "../../../context/";
 import BusinessProfile from "../Profile/Business/BusinessProfile";
 import EditBusinessProfile from "../Profile/Business/EditBusinessProfile";
 import EditUserProfile from "../Profile/User/EditUserProfile";

@@ -1,22 +1,18 @@
-<<<<<<< HEAD
+import { countryList } from "./countryList";
+
 //import { ProfilerOnRenderCallback } from "react";
 // CHG DEVELOPMENT AND PRODUCTION
-export const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
+ const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
 
 const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
-const DEVELOP_URL = "http://localhost:3000/";
+//const DEVELOP_URL = "http://localhost:3000/";
 //const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
 // const BACKEND_URL_PROD = "https://server-ebay-clone.onrender.com";
 
 //const SERVER_DEVELOP_URL = "http://localhost:3001/";
 
-=======
->>>>>>> development
 // Config Constants
-import { countryList} from "./countryList";
 // CHG DEVELOPMENT AND PRODUCTION
-const API_BASE_URL = "http://localhost:5000/";
-const HOME_URL = "http://localhost:3000/";
 
 //const DEVELOP_URL = "http://localhost:3000/";
 //const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";

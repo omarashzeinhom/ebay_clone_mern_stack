@@ -28,11 +28,7 @@ import {
   SearchResults,
   ErrorBoundary,
 } from "../components";
-<<<<<<< HEAD
-import { CategoryProvider } from "../context/CategoryContext";
-=======
 import { DeleteProduct, UpdateProduct } from "../components/Sell/CRUD";
->>>>>>> development
 
 type AppProps = {
   total: number;
@@ -170,17 +166,6 @@ const App: React.FC<AppProps> = ({ total }) => {
   return (
     <React.StrictMode>
       <ErrorBoundary>
-<<<<<<< HEAD
-        <AuthProvider>
-          <ShoppingCartProvider>
-            <CategoryProvider>
-              <ProductProvider>
-                <RouterProvider router={router} />
-              </ProductProvider>
-            </CategoryProvider>
-          </ShoppingCartProvider>
-        </AuthProvider>
-=======
           <UserAuthProvider>
             <BusinessAuthProvider>
               <ShoppingCartProvider>
@@ -192,7 +177,6 @@ const App: React.FC<AppProps> = ({ total }) => {
               </ShoppingCartProvider>
             </BusinessAuthProvider>
           </UserAuthProvider>
->>>>>>> development
       </ErrorBoundary>
     </React.StrictMode>
   );
