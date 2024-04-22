@@ -88,7 +88,7 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
               >
                 <div className="app__categories-slide">
                     <img
-              rel="preload" 
+                
               src={category?.img} 
               alt={category?.name} 
               width={"100%"}

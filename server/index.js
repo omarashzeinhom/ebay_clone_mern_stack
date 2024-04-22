@@ -3,7 +3,7 @@ const rateLimit = require("express-rate-limit");
 // Apply the rate limiting middleware to all requests.
 
 const express = require("express");
-const compression = require("compression"); 
+const compression = require("compression");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
@@ -19,21 +19,20 @@ const app = express();
 const port = process.env.PORT || 5000 || 5001;
 
 const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	limit: 5000, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
-	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
-	legacyHeaders: true, // Disable the `X-RateLimit-*` headers.
-	// store: ... , // Redis, Memcached, etc. See below.
-})
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  limit: 5000, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+  standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+  legacyHeaders: true, // Disable the `X-RateLimit-*` headers.
+  // store: ... , // Redis, Memcached, etc. See below.
+});
 
 // Enable gzip compression middleware
 app.use(compression());
 
-
 // Middleware
 app.use(corsMiddleware);
-app.use(express.json());  
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(limiter);
@@ -46,14 +45,11 @@ app.get("/", (req, res) => {
 // Use route modules
 app.use("/user", userAuthRoutes);
 app.use("/business", businessAuthRoutes);
-app.use("/auth", userAuthRoutes,businessAuthRoutes);
+app.use("/auth", userAuthRoutes, businessAuthRoutes);
 app.use("/products", productRoutes);
 app.use("/categories", categoryRoutes);
 
-
-
 // MongoDB
-
 
 const uri = process.env.ATLAS_URI;
 const mongoDBClient = new MongoClient(uri);
@@ -69,7 +65,7 @@ connection.once("open", () => {
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something went wrong!');
+  res.status(500).send("Something went wrong!");
 });
 
 // Starting the server
@@ -77,16 +73,12 @@ app.listen(port, () => {
   console.log(`Server is running on port: http://localhost:${port} 🚀`);
 });
 
-
-
-
 async function run() {
-    try {
-        await mongoDBClient.connect();
-    } finally {
-        await mongoDBClient.close();
-    }
-
+  try {
+    await mongoDBClient.connect();
+  } finally {
+    await mongoDBClient.close();
+  }
 }
 
 run().catch(console.dir);

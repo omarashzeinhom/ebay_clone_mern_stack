@@ -20,7 +20,7 @@ const NotFound: React.FC = () => {
       <h2 className="not-found-title">404 Not Found</h2>
        
         <img
-              rel="preload"
+               
         className="not-found-image"
         src="/notfound.jpeg"
         alt="Funny Meme"
