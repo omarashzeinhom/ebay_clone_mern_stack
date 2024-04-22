@@ -1,14 +1,14 @@
 import { useParams } from "react-router-dom";
 import "./Profile.scss";
-import Nav from "../Nav/Nav";
-import SearchBar from "../SearchBar/SearchBar";
+import Nav from "../../Nav/Nav";
+import SearchBar from "../../SearchBar/SearchBar";
 import { useState } from "react";
 import UserProfile from "./User/UserProfile";
 import BusinessProfile from "./Business/BusinessProfile";
 import EditUserProfile from "./User/EditUserProfile";
 import EditBusinessProfile from "./Business/EditBusinessProfile";
-import { useBusinessAuth } from "../../context/BusinessAuthContext";
-import { useUserAuth } from "../../context/UserAuthContext";
+import { useBusinessAuth } from "../../../context/BusinessAuthContext";
+import { useUserAuth } from "../../../context/UserAuthContext";
 
 type ProfileProps = {
   total: number;

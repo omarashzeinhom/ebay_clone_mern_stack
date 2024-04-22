@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { User, UpdatedUser } from "../../../models";
-import { useUserAuth } from "../../../context/";
-import { UpdatedUserFormData } from "../../../models/updateduser";
-import { userUpdatesFullUploadUri } from "../../../utilities/constants";
-import { userAuthService } from "../../../services";
+import { User, UpdatedUser } from "../../../../models";
+import { useUserAuth } from "../../../../context/";
+import { UpdatedUserFormData } from "../../../../models/updateduser";
+import { userUpdatesFullUploadUri } from "../../../../utilities/constants";
+import { userAuthService } from "../../../../services";
 
 interface EditUserProfileProps {
   user: User;

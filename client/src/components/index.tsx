@@ -2,35 +2,34 @@
 import Header from "./Header/Header";
 import Nav from "./Nav/Nav";
 import Footer from "./Footer/Footer";
-// Search 
+// Search
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchBar/SearchResults";
 // Ads
-import Ads from "./Ads/Ads";
-import AdsCarousel from "./Ads/AdsCarousel/AdsCarousel";
+import { Ads, AdsCarousel } from "./Ads";
 // Categories
-import CategoryList from "./Categories/CategoryList/CategoryList";
-import CategoriesCarousel from "./Categories/CategoriesCarousel/CategoriesCarousel";
-import Loading from "./Loading/Loading";
-// Cart 
-import Checkout from "./Cart/CheckOut/CheckOut";
-import CartItem from "./Cart/CartItem/CartItem";
-import ShoppingCart from "./Cart/ShoppingCart/ShoppingCart";
+import { CategoryList, CategoriesCarousel,CategorySideBar } from "./Categories";
+// Cart
+import { Checkout, CartItem, ShoppingCart } from "./Cart";
 // Products
-import ProductList from "./Product/ProductList/ProductList";
-import ProductDetail from "./Product/ProductDetail/ProductDetail";
-import TrendingProducts from "./Product/TrendingProducts/TrendingProducts";
-import TrendingProductsAlpha from "./Product/TrendingProducts/TrendingProductsAlpha";
+import {
+  ProductList,
+  ProductDetail,
+  TrendingProducts,
+  TrendingProductsAlpha,
+} from "./Product";
 // CRUD Products
 import SellComponent from "./Sell/SellComponent";
 // Auth
-import SignInForm from "./auth/SignInForm/SignInForm";
-import RegisterForm from "./auth/RegisterForm/RegisterForm";
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-import Profile from "./Profile/Profile";
+import { SignInForm, RegisterForm,Profile } from "./auth";
 // Survey
-import NotificationCard from "./NotifcationCard/NotificationCard";
 import SurveyForm from "./SurveyForm/SurveyForm";
+
+//Misc
+import Loading from "./Loading/Loading";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+import NotificationCard from "./NotifcationCard/NotificationCard";
+
 
 export {
   Header,
@@ -42,6 +41,7 @@ export {
   AdsCarousel,
   CategoryList,
   CategoriesCarousel,
+  CategorySideBar,
   Loading,
   Checkout,
   CartItem,

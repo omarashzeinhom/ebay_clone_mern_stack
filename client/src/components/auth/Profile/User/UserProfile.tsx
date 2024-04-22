@@ -1,4 +1,4 @@
-import { useUserAuth } from "../../../context/";
+import { useUserAuth } from "../../../../context/";
 import "./UserProfile.scss";
 
 export default function UserProfile() {

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useBusinessAuth } from "../../../context/";
-import { countryList } from "../../../utilities/constants";
-import { Business, UpdatedBusiness } from "../../../models";
+import { useBusinessAuth } from "../../../../context/";
+import { countryList } from "../../../../utilities/constants";
+import { Business, UpdatedBusiness } from "../../../../models";
 import "./BusinessProfile.scss";
 
 interface EditBusinessProfileProps {
