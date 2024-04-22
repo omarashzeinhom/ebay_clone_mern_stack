@@ -5,12 +5,7 @@ import { useUserAuth } from "../../../../context";
 import UserDemoCredentials from "../DemoCredentials/UserDemoCredentials";
 
 const UserSignInForm: React.FC = () => {
-  //TODO ADD useUserAuth and useBusinessAuth
   const { login, userToken, user } = useUserAuth();
-
-  console.log(user);
-
-  // TODO need to switch token to businessToken and userToken
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState<string | null>(null);
@@ -24,13 +19,14 @@ const UserSignInForm: React.FC = () => {
 
   const handleUserSignIn = async () => {
     try {
-      // Attempt user login
       const userToken = await userAuthService.login(email, password);
       const userData = await userAuthService.getUser(userToken);
       login(userToken, userData);
-      showNotification("User Login Successful!");
+      showNotification(user?.firstName + "has logged in Successfully!");
     } catch (userError) {
       console.error("user SignIn Error:" + userError);
+      showNotification("User Login failed. Please try again.");
+
     }
   };
 
@@ -97,8 +93,6 @@ const UserSignInForm: React.FC = () => {
           <h4>
             Sign in to eBay or <a href="/register">create an account</a>
           </h4>
-          <h5>User Sign In</h5>
-          <UserDemoCredentials />
           <div className="app__signin-form" id="signin">
             <input
               placeholder="Email or username"
@@ -123,8 +117,11 @@ const UserSignInForm: React.FC = () => {
             </button>
           </div>
           <SSOButtons />
+
         </div>
       )}
+                <UserDemoCredentials />
+
     </div>
   );
 };

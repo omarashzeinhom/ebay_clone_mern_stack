@@ -30,8 +30,6 @@ const Nav: React.FC<NavProps> = ({ total }) => {
     console.log(`notificationCount--->${notificationCount}`);
   }
 
-  console.log("business===? in Nav.tsx" + business);
-
   const handleNotificationIconClick = () => {
     // Show/hide the notification modal
     setIsNotificationModalVisible(!isNotificationModalVisible);
@@ -107,24 +105,26 @@ const Nav: React.FC<NavProps> = ({ total }) => {
           </li>
         </ul>
         <li>
-          <select
-            defaultValue={"My Ebay"}
-            className="app__nav-right-dropDown"
-            id="MyEbay"
-          >
-            <option hidden className="app__nav-rightItem">
-              My Ebay
-            </option>
-            {myEbayItems.map((ebayItem, index) => (
-              <option
-                key={index}
-                id={ebayItem?.title}
-                className="app__nav-rightItem"
-              >
-                <a href={ebayItem?.link}>{ebayItem?.title}</a>
+          {userToken || businessToken ? (
+            <select
+              defaultValue={"My Ebay"}
+              className="app__nav-right-dropDown"
+              id="MyEbay"
+            >
+              <option hidden className="app__nav-rightItem">
+                My Ebay
               </option>
-            ))}
-          </select>
+              {myEbayItems.map((ebayItem, index) => (
+                <option
+                  key={index}
+                  id={ebayItem?.title}
+                  className="app__nav-rightItem"
+                >
+                  {ebayItem?.title}
+                </option>
+              ))}
+            </select>
+          ) : null}
         </li>
         <li className="app__nav-rightItem">
           <a href="#notifications" onClick={handleNotificationIconClick}>
@@ -195,7 +195,6 @@ const Nav: React.FC<NavProps> = ({ total }) => {
       </div>
     );
   };
-
 
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>

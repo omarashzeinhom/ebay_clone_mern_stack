@@ -2,14 +2,10 @@ import { useState, useEffect } from "react";
 import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
 import { useBusinessAuth } from "../../../../context";
 import { businessAuthService } from "../../../../services";
-import BusinessDemoCredentials from "../DemoCredentials/BusinessDemoCredentials";
-
+import {BusinessDemoCredentials} from "../index";
 
 const BusinessSignInForm: React.FC = () => {
-  //TODO ADD useUserAuth and useBusinessAuth
   const { loginBusiness, businessToken, business } = useBusinessAuth();
-
-  // TODO need to switch token to businessToken and userToken
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [notification, setNotification] = useState<string | null>(null);
@@ -22,44 +18,38 @@ const BusinessSignInForm: React.FC = () => {
   };
 
   const handleBusinessSignIn = async () => {
-   try {
-        const businessToken = await businessAuthService.loginBusiness(
-          email,
-          password
-        );
-        const businessData = await businessAuthService.getBusiness(
-          businessToken
-        );
-        loginBusiness(businessToken, businessData);
-        showNotification("Business Login Successful!");
-      } catch (businessError) {
-        // Both user and business login failed
-        console.error(`Error in handleSignIn: ${businessError}`);
-        showNotification("Login failed. Please try again.");
-      }
-
+    try {
+      const businessToken = await businessAuthService.loginBusiness(
+        email,
+        password
+      );
+      const businessData = await businessAuthService.getBusiness(businessToken);
+      loginBusiness(businessToken, businessData);
+      showNotification(business?.businessName + "has logged in Successfully!");
+    } catch (businessError) {
+      // Both user and business login failed
+      console.error(`Error in handleSignIn: ${businessError}`);
+      showNotification("Login failed. Please try again.");
+    }
   };
 
   useEffect(() => {
     // Fetch user or business data after successful login
     const fetchBusinessData = async () => {
-      
-       if(businessToken){
+      if (businessToken) {
         try {
-            const businessData = await businessAuthService.getBusiness(
-              businessToken
-            );
-            loginBusiness(businessToken, businessData);
-          } catch (error) {
-            console.error(`Error fetching Business data: ${error}`);
-          }
-       }
-    
+          const businessData = await businessAuthService.getBusiness(
+            businessToken
+          );
+          loginBusiness(businessToken, businessData);
+        } catch (error) {
+          console.error(`Error fetching Business data: ${error}`);
+        }
+      }
     };
 
     fetchBusinessData();
-
-  }, [ businessToken, loginBusiness]);
+  }, [businessToken, loginBusiness]);
 
   const businessLink = `/business/${business?.businessId}`;
 
@@ -69,7 +59,7 @@ const BusinessSignInForm: React.FC = () => {
       <div className="app__signin-container">
         <p> Nothing to show here already Signed in As</p>
         <a href={businessLink || ""}>
-          { business?.businessName || "No Business data was found !"}
+          {business?.businessName || "No Business data was found !"}
         </a>
         <br />
         <a href="/">
@@ -81,8 +71,6 @@ const BusinessSignInForm: React.FC = () => {
       </div>
     );
   };
-
- 
 
   const SSOButtons = () => {
     return (
@@ -113,7 +101,6 @@ const BusinessSignInForm: React.FC = () => {
             Sign in to eBay or <a href="/register">create an account</a>
           </h4>
           <h5>Business Sign In </h5>
-          <BusinessDemoCredentials/>
           <div className="app__signin-form" id="signin">
             <input
               placeholder="Email or username"
@@ -140,6 +127,7 @@ const BusinessSignInForm: React.FC = () => {
           <SSOButtons />
         </div>
       )}
+      <BusinessDemoCredentials />
     </div>
   );
 };

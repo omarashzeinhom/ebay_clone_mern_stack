@@ -1,9 +1,8 @@
 import "./SignInForm.scss";
 import { useState } from "react";
 import { useBusinessAuth, useUserAuth } from "../../../context/";
-import BusinessSignInForm from "./BusinessSignInForm/BusinessSignInForm";
-import UserSignInForm from "./UserSignInForm/UserSignInForm";
-import { summaryBoxText } from "../../../utilities/constants";
+import { BottomSignInSection } from "./DemoCredentials/constants";
+import { BusinessSignInForm, UserSignInForm } from ".";
 
 export const SignInNav = () => {
   return (
@@ -28,44 +27,18 @@ export const SignInNav = () => {
   );
 };
 
-const BottomSignInSection = () => {
-  return (
-    <div>
-      <label>
-        Stay signed in
-        <input
-          type="checkbox"
-          placeholder="Stay signed in"
-          color="black"
-          id="staySignedIn"
-        />
-      </label>
-      <br />
-      <small>
-        Using a public or shared device? Uncheck to protect your account.
-      </small>
-      <details>
-        <summary>Learn More</summary>
-        <small>{summaryBoxText}</small>
-      </details>
-    </div>
-  );
-};
-
 
 const SignInForm: React.FC = () => {
-  const [selectedCredential, setSelectedCredential] = useState<"User" | "Business">("User");
+  const [selectedCredential, setSelectedCredential] = useState<
+    "User" | "Business"
+  >("User");
 
   const handleCredentialChange = (credentialType: "User" | "Business") => {
     setSelectedCredential(credentialType);
   };
   //TODO ADD useUserAuth and useBusinessAuth
-  const {  userToken, user } = useUserAuth();
-  const {  businessToken, business } = useBusinessAuth();
-
-
-
- 
+  const { userToken, user } = useUserAuth();
+  const { businessToken, business } = useBusinessAuth();
 
   const userLink = `/user/${user?.userId}`;
   const businessLink = `/business/${business?.businessId}`;
@@ -89,51 +62,47 @@ const SignInForm: React.FC = () => {
     );
   };
 
-
-
   return (
     <>
-
       {businessToken || userToken ? (
         <SignedInContainer />
       ) : (
         <>
-        <SignInNav/>
-        <h4>Sign in as:</h4>
-      <div className="credential-radio">
-        <label>
-          <input
-            type="radio"
-            name="credentialType"
-            value="User"
-            checked={selectedCredential === "User"}
-            onChange={() => handleCredentialChange("User")}
-          />
-          User
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="credentialType"
-            value="Business"
-            checked={selectedCredential === "Business"}
-            onChange={() => handleCredentialChange("Business")}
-          />
-          Business
-        </label>
-      </div>
-      {selectedCredential === "User" && (
-        // Render the user sign-in form
-        <UserSignInForm />
-      )}
-      {selectedCredential === "Business" && (
-        // Render the business sign-in form
-        <BusinessSignInForm />
-      )}
+          <SignInNav />
+          <h4>Sign in as:</h4>
+          <div className="credential-radio">
+            <label>
+              <input
+                type="radio"
+                name="credentialType"
+                value="User"
+                checked={selectedCredential === "User"}
+                onChange={() => handleCredentialChange("User")}
+              />
+              User
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="credentialType"
+                value="Business"
+                checked={selectedCredential === "Business"}
+                onChange={() => handleCredentialChange("Business")}
+              />
+              Business
+            </label>
+          </div>
+          {selectedCredential === "User" && (
+            // Render the user sign-in form
+            <UserSignInForm />
+          )}
+          {selectedCredential === "Business" && (
+            // Render the business sign-in form
+            <BusinessSignInForm />
+          )}
         </>
-       
       )}
-      <BottomSignInSection/>
+      <BottomSignInSection />
     </>
   );
 };
