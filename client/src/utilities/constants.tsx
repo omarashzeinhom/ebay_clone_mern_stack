@@ -42,55 +42,55 @@ const navItems = [
 const myEbayItems = [
   {
     title: "Summary",
-    link: "#",
+    link: "/",
   },
   {
     title: "Recently Viewed",
-    link: "#",
+    link: "/",
   },
   {
     title: "Bids/Offers",
-    link: "#",
+    link: "/",
   },
   {
     title: " Watchlist",
-    link: "#",
+    link: "/",
   },
   {
     title: "Purchase History",
-    link: "#",
+    link: "/",
   },
   {
     title: "Buy Again",
-    link: "#",
+    link: "/",
   },
   {
     title: "Selling",
-    link: "#",
+    link: "/",
   },
 
   {
     title: "Saved Searches",
-    link: "#",
+    link: "/",
   },
   {
     title: "My Garage",
-    link: "#",
+    link: "/",
   },
 
   {
     title: "Messages",
-    link: "#",
+    link: "/",
   },
 
   {
     title: "Collection beta",
-    link: "#",
+    link: "/",
   },
 
   {
     title: "The eBay vault",
-    link: "#",
+    link: "/",
   },
 ];
 /* NavBar Items End*/

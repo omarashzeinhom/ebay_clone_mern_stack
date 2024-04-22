@@ -98,7 +98,6 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setBusiness(null);
     localStorage.removeItem("business-token");
     localStorage.removeItem("business");
-
   };
 
   const updateBusiness = async (
@@ -126,7 +125,6 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       );
 
-  
       setUpdatedBusiness((prevBusiness: any) => ({
         ...prevBusiness,
         businessName:
@@ -139,7 +137,6 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
           updatedBusiness?.updatedBusinessAvatar ||
           updatedBusiness?.updatedBusinessAvatar,
       }));
-   
 
       console.log(response?.data);
     } catch (error) {
@@ -160,7 +157,6 @@ export const BusinessAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUpdatedBusiness: setUpdatedBusiness as React.Dispatch<
       React.SetStateAction<UpdatedBusiness | undefined>
     >,
-    
   };
 
   return (

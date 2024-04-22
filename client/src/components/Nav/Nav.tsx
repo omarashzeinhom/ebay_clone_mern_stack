@@ -13,46 +13,40 @@ type NavProps = {
 
 const Nav: React.FC<NavProps> = ({ total }) => {
   const navigate = useNavigate();
-  const {businessToken,business, fetchBusinessInformation, logoutBusiness } = useBusinessAuth();
-  const {userToken , user, logout,fetchUserInformation} = useUserAuth();
-
-
+  const { businessToken, business, fetchBusinessInformation, logoutBusiness } =
+    useBusinessAuth();
+  const { userToken, user, logout, fetchUserInformation } = useUserAuth();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isNotificationModalVisible, setIsNotificationModalVisible] = useState(false);
+  const [isNotificationModalVisible, setIsNotificationModalVisible] =
+    useState(false);
   // Debug
-   //console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business )}`);
+  //console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business )}`);
 
-  const [notificationCount, setNotificationCount] = useState(0);  // Assuming you have a way to update the notification count
-  
- 
-if (notificationCount !== 0){
-  console.log(`setNotificationCount--->${setNotificationCount}`);
-  console.log(`notificationCount--->${notificationCount}`);
+  const [notificationCount, setNotificationCount] = useState(0); // Assuming you have a way to update the notification count
 
-}
+  if (notificationCount !== 0) {
+    console.log(`setNotificationCount--->${setNotificationCount}`);
+    console.log(`notificationCount--->${notificationCount}`);
+  }
 
-console.log("business===? in Nav.tsx"+business)
+  console.log("business===? in Nav.tsx" + business);
 
   const handleNotificationIconClick = () => {
     // Show/hide the notification modal
     setIsNotificationModalVisible(!isNotificationModalVisible);
   };
 
-
-
-
   const handleLogOut = () => {
-    if(business){
+    if (business) {
       localStorage.removeItem("business");
       localStorage.removeItem("business-token");
-logoutBusiness();
-    }else{
-      if(user){
+      logoutBusiness();
+    } else {
+      if (user) {
         localStorage.removeItem("user");
         localStorage.removeItem("user-token");
         logout();
-
       }
     }
     if (user) {
@@ -79,33 +73,129 @@ logoutBusiness();
     }
   };
 
-   
-
   useEffect(() => {
     // DEBUG
 
-  
-    if (userToken) { // Check if user exists and is not a business
+    if (userToken) {
+      // Check if user exists and is not a business
       fetchUserInformation(userToken);
     }
-    
-    if(businessToken  ){
-      fetchBusinessInformation(businessToken);
 
+    if (businessToken) {
+      fetchBusinessInformation(businessToken);
     }
-   
-   const logoutTimeout = setTimeout(() => {
-    logout();
-    alert("You have been logged out due to inactivity.");
-    navigate(`/`);
-  }, 3600 * 1000); // 1 hour in milliseconds
-  return () => clearTimeout(logoutTimeout);
-  // LEAVE IT EMPTY TO AVOID INFINITE LOOP
-  // eslint-disable-next-line
+
+    const logoutTimeout = setTimeout(() => {
+      logout();
+      alert("You have been logged out due to inactivity.");
+      navigate(`/`);
+    }, 3600 * 1000); // 1 hour in milliseconds
+    return () => clearTimeout(logoutTimeout);
+    // LEAVE IT EMPTY TO AVOID INFINITE LOOP
+    // eslint-disable-next-line
   }, []);
 
+  // Organizing Nav
+  const AppNavRight = () => {
+    return (
+      <div className="app__nav-right">
+        <ul>
+          <li className="app__nav-rightItem">
+            <a className="app__nav-rightItem" href="/sell">
+              Sell
+            </a>
+          </li>
+        </ul>
+        <li>
+          <select
+            defaultValue={"My Ebay"}
+            className="app__nav-right-dropDown"
+            id="MyEbay"
+          >
+            <option hidden className="app__nav-rightItem">
+              My Ebay
+            </option>
+            {myEbayItems.map((ebayItem, index) => (
+              <option
+                key={index}
+                id={ebayItem?.title}
+                className="app__nav-rightItem"
+              >
+                <a href={ebayItem?.link}>{ebayItem?.title}</a>
+              </option>
+            ))}
+          </select>
+        </li>
+        <li className="app__nav-rightItem">
+          <a href="#notifications" onClick={handleNotificationIconClick}>
+            <FaRegBell className="app__nav-rightIcon" />
+            {notificationCount > 0 && (
+              <span className="notification-count">{notificationCount}</span>
+            )}
+          </a>
+        </li>
+        <li className="app__nav-rightItem">
+          <ShoppingCart total={total} />
+        </li>
+      </div>
+    );
+  };
 
-  
+  const AppNavLeft = () => {
+    return (
+      <div className="app__nav-left">
+        {userToken || businessToken ? (
+          <select
+            id="categoriesDropDown"
+            className="app__nav-dropdown"
+            name="NavigationMenuCategories"
+            onChange={(e) => {
+              if (e.target.value === "logout") {
+                handleLogOut();
+              } else if (user?.userId) {
+                navigate(`/user/${user?.userId}`);
+              } else if (business?.businessId) {
+                navigate(`/business/${business?.businessId}`);
+              } else {
+                navigate(`/signin`);
+              }
+            }}
+          >
+            <option value="" className="app__nav-itemLeft">
+              Hi,{" "}
+              {user?.firstName ||
+                user?.email ||
+                business?.businessName ||
+                business?.businessEmail ||
+                "User"}
+              !
+            </option>
+            <option onClick={handleRoute} className="app__nav-itemLeft">
+              User Profile:{" "}
+              {user?.firstName ||
+                user?.email ||
+                business?.businessName ||
+                business?.businessEmail ||
+                "User Profile"}
+              !
+            </option>
+            <option value="logout" className="app__nav-itemLeft">
+              Sign out
+            </option>
+          </select>
+        ) : (
+          <li>
+            Hi!{" "}
+            <a href="/signin" className="app__nav-item">
+              Sign in
+            </a>{" "}
+            or <a href="/register">register</a>
+          </li>
+        )}
+      </div>
+    );
+  };
+
 
   return (
     <nav className={`app__nav ${mobileMenuOpen ? "mobile-menu-open" : ""}`}>
@@ -115,64 +205,17 @@ logoutBusiness();
       <ul
         className={`app__nav-items ${mobileMenuOpen ? "mobile-menu-open" : ""}`}
       >
-        <div className="app__nav-left">
-          {userToken || businessToken   ? (
-            <select
-              id="categoriesDropDown"
-              className="app__nav-dropdown"
-              name="NavigationMenuCategories"
-              onChange={(e) => {
-                if (e.target.value === "logout") {
-                  handleLogOut();
-                } else if (user?.userId) {
-                  navigate(`/user/${user?.userId}`);
-                } else if (business?.businessId) {
-                  navigate(`/business/${business?.businessId}`);
-                } else {
-                  navigate(`/signin`);
-                }
-              }}
-            >
-              <option value="" className="app__nav-itemLeft">
-                Hi,{" "}
-                {user?.firstName ||
-                  user?.email ||
-                  business?.businessName ||
-                  business?.businessEmail ||
-                  "User"}
-                !
-              </option>
-              <option onClick={handleRoute} className="app__nav-itemLeft">
-                User Profile:{" "}
-                {user?.firstName ||
-                  user?.email ||
-                  business?.businessName ||
-                  business?.businessEmail ||
-                  "User Profile"}
-                !
-              </option>
-              <option value="logout" className="app__nav-itemLeft">
-                Sign out
-              </option>
-            </select>
-          ) : (
-            <li>
-              Hi!{" "}
-              <a href="/signin" className="app__nav-item">
-                Sign in
-              </a>{" "}
-              or <a href="/register">register</a>
-            </li>
-          )}
-        </div>
-     {navItems.map((item, index) => (
+        <AppNavLeft />
+
+        {navItems.map((item, index) => (
           <li key={index}>
             <a href={item?.link} className="app__nav-item">
               {item?.title}
             </a>
           </li>
         ))}
-       <button aria-label="OpenMobileMenu"
+        <button
+          aria-label="OpenMobileMenu"
           className={`app__nav-close ${
             mobileMenuOpen ? "mobile-menu-open" : ""
           }`}
@@ -180,47 +223,12 @@ logoutBusiness();
         >
           &times;
         </button>
-        <div className="app__nav-right">
-         <ul>
-         <li className="app__nav-rightItem">
-            <a className="app__nav-rightItem" href="/sell">
-              Sell
-            </a>
-          </li>
-         </ul>
-          <li>
-            <select
-              defaultValue={"My Ebay"}
-              className="app__nav-right-dropDown"
-              id="MyEbay"
-            >
-              <option hidden className="app__nav-rightItem">
-                My Ebay
-              </option>
-              {myEbayItems.map((ebayItem, index) => (
-                <option
-                  key={index}
-                  id={ebayItem?.title}
-                  className="app__nav-rightItem"
-                >
-                  {ebayItem?.title}
-                </option>
-              ))}
-            </select>
-          </li>
-          <li className="app__nav-rightItem">
-            <a href="#notifications" onClick={handleNotificationIconClick}>
-              <FaRegBell className="app__nav-rightIcon" />
-              {notificationCount > 0 && (
-                <span className="notification-count">{notificationCount}</span>
-              )}
-            </a>
-          </li>
-          <li className="app__nav-rightItem">
-            <ShoppingCart total={total} />
-          </li>
-        </div>
-        {isNotificationModalVisible && <NotificationModal onClose={() => setIsNotificationModalVisible(false)} />}
+        <AppNavRight />
+        {isNotificationModalVisible && (
+          <NotificationModal
+            onClose={() => setIsNotificationModalVisible(false)}
+          />
+        )}
       </ul>
     </nav>
   );
