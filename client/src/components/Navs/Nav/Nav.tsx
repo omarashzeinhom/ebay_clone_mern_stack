@@ -17,6 +17,8 @@ const Nav: React.FC<NavProps> = ({ total }) => {
     useBusinessAuth();
   const { userToken, user, logout, fetchUserInformation } = useUserAuth();
 
+  console.log(businessToken, business);
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNotificationModalVisible, setIsNotificationModalVisible] =
     useState(false);
@@ -40,19 +42,22 @@ const Nav: React.FC<NavProps> = ({ total }) => {
       localStorage.removeItem("business");
       localStorage.removeItem("business-token");
       logoutBusiness();
-    } else {
+      alert(" Business has Logout successfully");
+
+    } 
       if (user) {
+        alert(" User has Logout successfully");
+
         localStorage.removeItem("user");
         localStorage.removeItem("user-token");
         logout();
       }
-    }
-    if (user) {
-      alert(" User has Logout successfully");
-    } else {
-      if (business) {
-        alert(" Business has Logout successfully");
-      }
+ 
+
+    else{
+      logout();
+      logoutBusiness();
+
     }
     navigate(`/`);
   };
