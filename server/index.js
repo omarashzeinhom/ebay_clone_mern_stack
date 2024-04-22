@@ -40,7 +40,7 @@ app.use(limiter);
 
 //  root URL
 app.get("/", (req, res) => {
-  //res.send("Hello, this is the root route!");
+  res.send("Hello, this is the root route!");
 });
 
 // Use route modules
