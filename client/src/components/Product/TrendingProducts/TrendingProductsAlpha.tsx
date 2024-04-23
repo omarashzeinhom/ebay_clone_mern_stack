@@ -4,15 +4,17 @@ import "swiper/swiper-bundle.css";
 import { Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useProductContext } from "../../../context/ProductContext";
-import "./TrendingProductsAlpha.scss";
+import "./TrendingProducts.scss";
 import { HOME_URL } from "../../../utilities/constants";
 import Loading from "../../Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
-interface TrendingProductsAlphaProps { }
+interface TrendingProductsAlphaProps {}
 
 const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
   const { products, fetchProducts } = useProductContext();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,8 +35,12 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
     (product) => product?.category === "Collectible Sneakers"
   );
 
+  const handleProductClick = (productId: string) => {
+    navigate(`/item/${encodeURIComponent(productId)}`);
+  };
+
   return (
-    <section id="dailydeals" className="app-trending-products-alpha__carousel">
+    <div id="dailydeals" className="app__trending-products-carousel">
       <h2>Score These Trending Kicks</h2>
       {loading ? (
         <Loading text="Fetching Trending Products..." />
@@ -69,32 +75,24 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
               <SwiperSlide
                 lazy={true}
                 key={index}
-                className="app-trending-products-alpha__carousel__slide"
+                onClick={() => handleProductClick(product?._id)}
               >
-                <div className="category-slide">
-                  <a href={productLink}>
-                      <img
-               
-                      src={product?.img}
-                      alt={product?.name}
-                      loading="lazy"
-                      className="app-trending-products-alpha__carousel__slide__img"
-                    />
-                    <small className="app-trending-products-alpha__carousel__slide__name">
-                      {product?.name}
-                    </small>
-                    <br />
-                    <small className="app-trending-products-alpha__carousel__slide__price">
-                      Price:{product?.price} $
-                    </small>
-                  </a>
+                <div className="app__trending-products-slide  app__trending-products-slide-active">
+                  <img src={product?.img} alt={product?.name} loading="lazy" />
+                  <p className="app__trending-products-slide-name">
+                    {product?.name.slice(0, 10)}
+                  </p>
+
+                  <p className="app__trending-products-slide-price">
+                    Price:{product?.price} $
+                  </p>
                 </div>
               </SwiperSlide>
             );
           })}
         </Swiper>
       )}
-    </section>
+    </div>
   );
 };
 

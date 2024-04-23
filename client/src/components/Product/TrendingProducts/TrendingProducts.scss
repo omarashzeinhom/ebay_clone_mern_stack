@@ -1,86 +1,88 @@
 /* TrendingProductsAlpha.scss */
 
-.app-trending-products-alpha {
+.app__trending-products-carousel{
+  h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
 
-  &__carousel {
-    width: 100%;
-    height: 200px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    overflow: hidden;
-    padding-bottom: 2rem;
+  .app__trending-products-slide{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out;
+    padding: 0.5rem 0.1rem 0.1rem 0.1rem;
+    cursor: pointer;
 
-    &__slide {
-      width: 100%;
-      max-width: 150px;
-      height: 150px;
-      text-align: center;
-      font-size: 14px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    &:hover {
+      outline: 0.1rem solid black;
       border-radius: 50%;
-      overflow: hidden;
-      position: relative;
+      opacity: 0.7;
+    }
+
+    img {
+      margin-top: 10px;
+      display: block;
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
       transition: 0.2s ease-in-out;
-      padding: 0.7rem 0.1rem 0.1rem 0.1rem;
-      cursor: pointer;
-      &:hover {
-        outline: 0.1rem solid black;
-        border-radius: 50%;
-        opacity: 0.7;
+      box-shadow: 0.1rem 0.1rem 0.5rem 0.1rem rgb(255, 242, 171);
 
-      }
-      a {
-        text-decoration: none;
-        color: black;
-
-        &__hover {
-          position: absolute;
-          bottom: 10px;
-          left: 50%;
-          transform: translateX(-50%);
-          font-size: 12px;
-          color: transparent;
-          text-decoration: underline transparent;
-
-        }
+      &:not(:hover) {
+        outline: none;
       }
 
       &:hover {
-        img {
-          transform: scale(1.1);
-          box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem rgba(14, 14, 14, 0.5);
-
-        }
-
-        &__hover {
-          color: black;
-          text-decoration: underline;
-          transform: scale(1.1);
-
-        }
-      }
-
-      img {
-        background-color: #f5f5dc;
-        box-shadow: 0.1rem 0.1rem 0.5rem 0.1rem rgb(255, 242, 171);
-        display: block;
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 50%;
-        margin-bottom: 5px;
-        transition: 0.2s ease-in-out;
-        &:not(:hover) {
-          outline: none;
-        }
-      }
-
-      p.category-name {
-        margin: 0;
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgb(0, 0, 0);
       }
     }
+
+    .app__trending-products-slide-name {
+      margin: 0;
+      font-size: 12px;
+      color: black;
+      text-decoration: none;
+      text-align: center;
+      transition: 0.2s ease-in-out;
+      margin-bottom: 25px;
+
+      &:hover {
+        color: black;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        font-weight: bold;
+      }
+    }
+    .app__trending-products-slide-price {
+      margin: 0;
+      color: black;
+      text-decoration: underline;
+      font-weight: bold;
+      font-size: xx-small;
+      text-decoration: none;
+      &:hover {
+        color: black;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        font-weight: bold;
+      }
+    }
+
+    &.app__trending-products-slide-active {
+      transition: 0.2s ease-in-out;
+      img {
+        box-shadow: 0 0 10px rgb(0, 0, 0);
+      }
+    
+    }
   }
+
+
+
 }

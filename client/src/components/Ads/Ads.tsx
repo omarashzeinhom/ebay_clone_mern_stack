@@ -9,9 +9,9 @@ const Ads: React.FC = () => {
       const img = new Image();
       img.src = item.imageUrl;
     });
-  }, []); // Empty dependency array ensures this effect runs only once on component mount
+  }, []); 
 
-  const adItems = useMemo(
+  const AdCarouselItems = useMemo(
     () =>
       AdItems.map((item) => (
         <div
@@ -47,7 +47,7 @@ const Ads: React.FC = () => {
     <div className="ads">
       <div className="ads__featured">
         <h2 className="ads__featured__title">Featured</h2>
-        {adItems}
+        {AdCarouselItems}
       </div>
     </div>
   );
