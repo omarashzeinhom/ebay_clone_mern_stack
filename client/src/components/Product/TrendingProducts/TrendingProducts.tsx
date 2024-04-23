@@ -54,7 +54,7 @@ const TrendingProducts: React.FC = () => {
             }}
             loop={filteredProducts.length > 2}
             slidesPerView={3}
-            spaceBetween={100}
+            spaceBetween={10}
             breakpoints={{
               768: {
                 slidesPerView: 5,

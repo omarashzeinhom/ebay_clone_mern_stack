@@ -61,8 +61,6 @@ const AdsCarousel: React.FC = () => {
       ) : fetchError ? (
         <div className="error-message">{fetchError}</div>
       ) : (
-
-         
           <Swiper
             lazyPreloadPrevNext={1}
             lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
@@ -87,7 +85,7 @@ const AdsCarousel: React.FC = () => {
                     width={100}
                     height={100}
                     loading="lazy"
-                     
+                    onClick={() => handleCategoryClick(category?.name)}
                     className="ads-swiper__image"
                   />
                   <div className="ads-swiper__slide-container">

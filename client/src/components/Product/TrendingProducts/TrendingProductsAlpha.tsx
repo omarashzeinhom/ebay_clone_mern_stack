@@ -9,7 +9,7 @@ import { HOME_URL } from "../../../utilities/constants";
 import Loading from "../../Loading/Loading";
 import { useNavigate } from "react-router-dom";
 
-interface TrendingProductsAlphaProps {}
+interface TrendingProductsAlphaProps { }
 
 const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
   const { products, fetchProducts } = useProductContext();
@@ -39,6 +39,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
     navigate(`/item/${encodeURIComponent(productId)}`);
   };
 
+
   return (
     <div id="dailydeals" className="app__trending-products-carousel">
       <h2>Score These Trending Kicks</h2>
@@ -46,28 +47,28 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
         <Loading text="Fetching Trending Products..." />
       ) : (
         <Swiper
-          lazyPreloadPrevNext={1}
-          lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
-          navigation={{
-            nextEl: ".ads-swiper__button-next",
-            prevEl: ".ads-swiper__button-prev",
-          }}
-          modules={[Scrollbar, Navigation]}
-          scrollbar={{
-            hide: true,
-          }}
-          loop={filteredProducts.length > 2}
-          slidesPerView={3}
-          spaceBetween={50}
-          breakpoints={{
-            768: {
-              slidesPerView: 5,
-              loop: filteredProducts.length > 3,
-            },
-            1024: {
-              slidesPerView: 6,
-            },
-          }}
+         lazyPreloadPrevNext={1}
+            lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
+            navigation={{
+              nextEl: ".ads-swiper__button-next",
+              prevEl: ".ads-swiper__button-prev",
+            }}
+            modules={[Scrollbar, Navigation]}
+            scrollbar={{
+              hide: true,
+            }}
+            loop={filteredProducts.length > 2}
+            slidesPerView={3}
+            spaceBetween={10}
+            breakpoints={{
+              768: {
+                slidesPerView: 5,
+                loop: filteredProducts.length > 3,
+              },
+              1024: {
+                slidesPerView: 6,
+              },
+            }}
         >
           {filteredProducts.map((product, index) => {
             const productLink = `${HOME_URL}item/${product?._id}`;
@@ -76,16 +77,21 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
                 lazy={true}
                 key={index}
                 onClick={() => handleProductClick(product?._id)}
+
               >
                 <div className="app__trending-products-slide  app__trending-products-slide-active">
-                  <img src={product?.img} alt={product?.name} loading="lazy" />
-                  <p className="app__trending-products-slide-name">
-                    {product?.name.slice(0, 10)}
-                  </p>
-
-                  <p className="app__trending-products-slide-price">
-                    Price:{product?.price} $
-                  </p>
+                      <img
+                      src={product?.img}
+                      alt={product?.name}
+                      loading="lazy"
+                    />
+                    <p className="app__trending-products-slide-name">
+                      {product?.name.slice(0, 10)}
+                    </p>
+                
+                    <p className="app__trending-products-slide-price">
+                      Price:{product?.price} $
+                    </p>
                 </div>
               </SwiperSlide>
             );
