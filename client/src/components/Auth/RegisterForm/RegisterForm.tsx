@@ -90,7 +90,7 @@ const RegisterForm: React.FC = () => {
         <div className="app__register-nav-left">
           <a href="/">
               <img
-              rel="preload"
+               
               src="/ebaylogo.png"
               alt="ebaylogo"
               width={140}

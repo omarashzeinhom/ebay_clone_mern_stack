@@ -13,7 +13,7 @@ const CustomerServiceNav = () => {
     <div className="app__customerservice-nav">
       <a href="/">
         <img
-          rel="preload"
+           
           src="/ebaylogo.png"
           alt="ebaylogo"
           width={140}

@@ -61,16 +61,6 @@ const AdsCarousel: React.FC = () => {
       ) : fetchError ? (
         <div className="error-message">{fetchError}</div>
       ) : (
-        <>
-          {shuffledData.map((category) => (
-            <link
-              key={category?.name}
-              //rel="preload"
-              //as="image"
-              //crossOrigin=""
-              href={category?.img}
-            />
-          ))}
           <Swiper
             lazyPreloadPrevNext={1}
             lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
@@ -95,7 +85,7 @@ const AdsCarousel: React.FC = () => {
                     width={100}
                     height={100}
                     loading="lazy"
-                    rel="preload"
+                    onClick={() => handleCategoryClick(category?.name)}
                     className="ads-swiper__image"
                   />
                   <div className="ads-swiper__slide-container">
@@ -114,7 +104,7 @@ const AdsCarousel: React.FC = () => {
             <div className="ads-swiper__button-next" aria-label="NextImageButton"></div>
             <div className="ads-swiper__button-prev" aria-label="PreviousImageButton"></div>
           </Swiper>
-        </>
+      
       )}
     </div>
   );

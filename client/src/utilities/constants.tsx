@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 import { countryList } from "./countryList";
+=======
+// Config Constants
+import { countryList} from "./countryList";
+// CHG DEVELOPMENT AND PRODUCTION
+const HOME_URL = "http://localhost:3000/";
+const API_BASE_URL = "http://localhost:5000/";
+
+>>>>>>> development
 
  const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
 const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
@@ -146,6 +155,45 @@ changes to your account.`;
 
 /** Selling Constants */
 
+/** Ads Constants */
+
+ const AdItems = [
+  {
+    id: 1,
+    category: "ebay",
+    title: "eBay Deals made easy all year long",
+    description: "Free shipping. Best prices. Get your thing →→",
+    imageUrl: "https://source.unsplash.com/800x400/?ebay",
+    link: "/category/Video Games & Consoles",
+  },
+  {
+    id: 2,
+    category: "holiday-gifts",
+    title: "Up to 60% off holiday gifts",
+    description: "Shop candles, cookware, décor, and more. Take a look →",
+    imageUrl: "https://source.unsplash.com/800x400/?holiday,gifts",
+    link: "/category/Video Games & Consoles",
+  },
+  {
+    id: 3,
+    category: "adidas",
+    title: "Unwrap holiday savings on adidas",
+    description:
+      "Save an additional 50% on gift-worthy faves with code ADI5OSALE. Shop now →",
+    imageUrl: "https://source.unsplash.com/800x400/?adidas",
+    link: "/category/Collectible Sneakers",
+  },
+  {
+    id: 4,
+    category: "tire-installation",
+    title: "Get local tire installation",
+    description:
+      "Have your new set installed by our network of experts. Shop top brands →",
+    imageUrl: "https://source.unsplash.com/800x400/?tire,installation",
+    link: "/category/Parts & accessories",
+  },
+];
+
 
 export {
   navItems,
@@ -154,6 +202,7 @@ export {
   countryList,
   summaryBoxText,
   commonIssues,
+  AdItems,
   //URIS
   API_BASE_URL,
   HOME_URL,

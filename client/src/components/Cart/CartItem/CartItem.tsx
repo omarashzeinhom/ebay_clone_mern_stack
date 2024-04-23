@@ -21,7 +21,7 @@ const CartItem: React.FC<CartItemProps> = ({
         <div>
           <div key={id} className="d-flex align-items-center">
               <img
-              rel="preload"
+               
               src={img}
               alt={name}
               loading="lazy"

@@ -10,7 +10,7 @@ export const SignInNav = () => {
       <div className="app__signin-nav-left">
         <a href="/">
           <img
-            rel="preload"
+             
             src="/ebaylogo.png"
             alt="ebaylogo"
             width={140}

@@ -64,7 +64,7 @@ export default function SearchBar() {
     <div className="app__searchbar">
       <a href="/">
           <img
-              rel="preload"
+               
           className="app__searchbar-logo"
           src="/ebaylogo.png"
           alt="searchbarlogo"

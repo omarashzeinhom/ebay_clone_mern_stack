@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import "swiper/swiper-bundle.css";
 import { Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProducts.scss";
-import { HOME_URL } from "../../../utilities/constants";
 import Loading from "../../Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
 const TrendingProducts: React.FC = () => {
   const { products, fetchProducts } = useProductContext();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,67 +30,69 @@ const TrendingProducts: React.FC = () => {
     (product) => product?.category === "Video Games & Consoles"
   );
 
+  const handleProductClick = (productId: string) => {
+    navigate(`/item/${encodeURIComponent(productId)}`);
+  };
+
   return (
-    <div className="app-trending-products-alpha__carousel" id="deals">
-      <h2>Todays deals on consoles</h2>
+    <div  id="deals" className="app__trending-products-carousel">
       {loading ? (
         <Loading text="Fetching Trending Products..." />
       ) : (
-        <Swiper
-          lazyPreloadPrevNext={1}
-          lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
-          navigation={{
-            nextEl: ".ads-swiper__button-next",
-            prevEl: ".ads-swiper__button-prev",
-          }}
-          modules={[Scrollbar, Navigation]}
-          scrollbar={{
-            hide: true,
-          }}
-          loop={filteredProducts.length > 2}
-          slidesPerView={3}
-          spaceBetween={100}
-          breakpoints={{
-            768: {
-              slidesPerView: 5,
-              loop: filteredProducts.length > 3,
-            },
-            1024: {
-              slidesPerView: 6,
-            },
-          }}
-        >
-          {filteredProducts.map((product, index) => {
-            const productLink = `${HOME_URL}item/${product?._id}`;
-            return (
-              <SwiperSlide
-                lazy={true}
-                key={index}
-                className="app-trending-products-alpha__carousel__slide"
-              >
-                <div className="category-slide">
-                  <a href={productLink}>
-                      <img
-              rel="preload"
-              
+        <>
+          <h2>Todays deals on consoles</h2>
+          <Swiper
+            lazyPreloadPrevNext={1}
+            lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
+            navigation={{
+              nextEl: ".ads-swiper__button-next",
+              prevEl: ".ads-swiper__button-prev",
+            }}
+            modules={[Scrollbar, Navigation]}
+            scrollbar={{
+              hide: true,
+            }}
+            loop={filteredProducts.length > 2}
+            slidesPerView={3}
+            spaceBetween={10}
+            breakpoints={{
+              768: {
+                slidesPerView: 5,
+                loop: filteredProducts.length > 3,
+              },
+              1024: {
+                slidesPerView: 6,
+              },
+            }}
+          >
+            {filteredProducts.map((product, index) => {
+              return (
+                <SwiperSlide
+                  lazy={true}
+                  key={product?.name + index}
+                  onClick={() => handleProductClick(product?._id)}
+                >
+                  <div className="app__trending-products-slide  app__trending-products-slide-active">
+                    <img
+                      width={"100%"}
+                      height={"100"}
                       src={product?.img}
                       alt={product?.name}
                       loading="lazy"
-                      className="app-trending-products-alpha__carousel__slide__img"
                     />
-                    <small className="app-trending-products-alpha__carousel__slide__name">
+                    <p className="app__trending-products-slide-name">
                       {product?.name.slice(0, 10)}
-                    </small>
-                    <br />
-                    <small className="app-trending-products-alpha__carousel__slide__price">
+                    </p>
+                
+                    <p className="app__trending-products-slide-price">
                       Price:{product?.price} $
-                    </small>
-                  </a>
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+                    </p>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </>
       )}
     </div>
   );

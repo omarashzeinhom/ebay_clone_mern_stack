@@ -8,8 +8,8 @@ import "./CategoriesCarousel.scss";
 import Loading from "../../Loading/Loading";
 
 interface CategoriesCarouselProps {
-  selectedCategory? : string;
-  handleCategoryClick?: (categoryName: string)=> void;
+  selectedCategory?: string;
+  handleCategoryClick?: (categoryName: string) => void;
 }
 
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
@@ -83,18 +83,20 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
             {shuffledData.map((category, index) => (
               <SwiperSlide
                 lazy={true}
-                key={category?.name}
+                key={category?.name + index}
                 onClick={() => handleCategoryClick(category?.name)}
               >
                 <div className="app__categories-slide">
-                    <img
-              rel="preload" 
-              src={category?.img} 
-              alt={category?.name} 
-              width={"100%"}
-              height={"100"}
-              loading="lazy" />
-                  <p className="app__categories-category-name">{category?.name}</p>
+                  <img
+                    src={category?.img}
+                    alt={category?.name}
+                    width={"100%"}
+                    height={"100"}
+                    loading="lazy"
+                  />
+                  <p className="app__categories-category-name">
+                    {category?.name}
+                  </p>
                 </div>
               </SwiperSlide>
             ))}

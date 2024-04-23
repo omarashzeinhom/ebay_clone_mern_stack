@@ -118,7 +118,7 @@ const EditBusinessProfile: React.FC<EditBusinessProfileProps> = () => {
                 onChange={(e) => handleFileChange(e.target.files?.[0])}
               />
               <img
-                rel="preload"
+                 
                 loading="lazy"
                 className="app-profile-container__form__avatar"
                 src={business?.businessAvatar || ""}
