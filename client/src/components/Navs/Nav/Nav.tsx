@@ -104,7 +104,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
       <div className="app__nav-right">
         <ul>
           <li className="app__nav-rightItem">
-            <a className="app__nav-rightItem" href="/sell">
+            <a className="app__nav-rightItem" href="/sell" id="sellingButton">
               Sell
             </a>
           </li>
@@ -132,7 +132,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
           ) : null}
         </li>
         <li className="app__nav-rightItem">
-          <a href="#notifications" onClick={handleNotificationIconClick}>
+          <a href="#notifications" onClick={handleNotificationIconClick} id="yourNotifications">
             <FaRegBell className="app__nav-rightIcon" />
             {notificationCount > 0 && (
               <span className="notification-count">{notificationCount}</span>

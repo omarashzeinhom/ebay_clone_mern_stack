@@ -91,9 +91,7 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
     setSelectedCategory(category);
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+ 
 
   return (
     <ProductContext.Provider

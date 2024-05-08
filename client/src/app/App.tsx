@@ -9,6 +9,7 @@ import {
   ProductProvider,
   useProductContext,
   CategoryProvider,
+  BiddingProvider,
 } from "../context/";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
@@ -166,12 +167,15 @@ const App: React.FC<AppProps> = ({ total }) => {
   return (
     <React.StrictMode>
       <ErrorBoundary>
-          <UserAuthProvider>
+         
+         <UserAuthProvider>
             <BusinessAuthProvider>
               <ShoppingCartProvider>
                 <CategoryProvider>
                   <ProductProvider>
+                  <BiddingProvider>
                     <RouterProvider router={router} />
+                    </BiddingProvider>
                   </ProductProvider>
                 </CategoryProvider>
               </ShoppingCartProvider>
