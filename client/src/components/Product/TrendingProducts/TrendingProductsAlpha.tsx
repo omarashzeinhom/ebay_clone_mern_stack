@@ -5,7 +5,6 @@ import { Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProducts.scss";
-import { HOME_URL } from "../../../utilities/constants";
 import Loading from "../../Loading/Loading";
 import { useNavigate } from "react-router-dom";
 
@@ -71,7 +70,6 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
             }}
         >
           {filteredProducts.map((product, index) => {
-            const productLink = `${HOME_URL}item/${product?._id}`;
             return (
               <SwiperSlide
                 lazy={true}

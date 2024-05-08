@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-//import { useCategoryContext } from "../../context/CategoryContext";
-//import { useProductContext } from "../../context/ProductContext";
 
 export default function Header() {
   const [pageTitle] = useState("eBay Clone");
-  //const { categoryData } = useCategoryContext();
-  //const { products } = useProductContext();
 
   useEffect(() => {
     // Update the document title when pageTitle changes
