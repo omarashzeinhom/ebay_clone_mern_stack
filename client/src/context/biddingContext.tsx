@@ -29,6 +29,8 @@ export const BiddingProvider: React.FC<BiddingProviderProps> = ({ children }) =>
     currentBid: null,
     biddingHistory: [],
   });
+  
+  console.log(setBiddingState);
 
  
 

@@ -2,7 +2,6 @@ import React, {
   createContext,
   ReactNode,
   useContext,
-  useEffect,
   useState,
 } from "react";
 import { Product } from "../models/product";

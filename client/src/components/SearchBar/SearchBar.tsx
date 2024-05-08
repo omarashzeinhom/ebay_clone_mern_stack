@@ -72,6 +72,7 @@ export default function SearchBar() {
         />
       </a>
       <select
+      title="leftCategories"
         id="categories__left"
         onChange={handleChange}
         className="app__searchbar-form-dropDown"
@@ -110,6 +111,7 @@ export default function SearchBar() {
           <HiMagnifyingGlass className="app__searchbar-searchicon" />
         </button>
         <select
+        title="app__searchbar-form-dropDown"
           onChange={handleChange}
           className={`app__searchbar-form-dropDown ${
             isMobile ? "app__searchbar-form-dropDown-mobile" : ""
