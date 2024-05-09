@@ -18,18 +18,24 @@ const Footer: React.FC<FooterProps> = ({ footerLinks }) => {
   };
 
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
     const handleScroll = () => {
-      if (window.pageYOffset > 700) {
-        setShowToTop(true);
-      } else {
-        setShowToTop(false);
-      }
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        if (window.scrollY > 700) {
+          setShowToTop(true);
+        } else {
+          setShowToTop(false);
+        }
+      }, 100); // Adjust the debounce delay here
     };
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeout);
     };
   }, []);
 
@@ -44,9 +50,12 @@ const Footer: React.FC<FooterProps> = ({ footerLinks }) => {
       </ul>
       <small>Omar Ashraf Zeinhom © 2023 - 2024</small>
       {showToTop && (
-       <button 
-       type="button"
-       aria-label="ReturnToTopOfPageButton" className="scroll-totop__btn" onClick={scrollToTop}>
+        <button
+          type="button"
+          aria-label="ReturnToTopOfPageButton"
+          className="scroll-totop__btn"
+          onClick={scrollToTop}
+        >
           ↑
         </button>
       )}
