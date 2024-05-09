@@ -116,6 +116,7 @@ const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
                   <label className="product-label">
                     Product Image
                     <img 
+                    loading="lazy"
                     src={product?.img} 
                     alt={product?.name || "Product Image"}
                     className="product-img" 

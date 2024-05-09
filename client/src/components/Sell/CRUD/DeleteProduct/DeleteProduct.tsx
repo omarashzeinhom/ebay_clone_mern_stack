@@ -89,6 +89,7 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
                       <strong> Product Image & Url:</strong>
                       {product?.img}
                       <img
+                      loading="lazy"
                       src={product?.img}
                       className="product-img"
                       alt={product?.name}

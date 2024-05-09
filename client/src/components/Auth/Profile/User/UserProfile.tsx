@@ -14,7 +14,7 @@ export default function UserProfile() {
         <div className="avatar">
           { user?.avatar ? updatedUser?.avatar || (
               <img
-               
+               loading="lazy"
               src={user?.avatar || updatedUser?.avatar }
               alt={user?.email || updatedUser?.email || "No user avatar uploaded"}
             />

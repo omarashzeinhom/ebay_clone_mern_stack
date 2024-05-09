@@ -12,6 +12,7 @@ const BusinessProfile: React.FC = () => {
         <div className="avatar">
           {business?.businessAvatar ? (
             <img
+              loading="lazy"
               src={business?.businessAvatar}
               alt={business?.businessEmail || "No business avatar uploaded"}
             />

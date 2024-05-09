@@ -10,8 +10,8 @@ export default function Header() {
   }, [pageTitle]);
 
   return (
-    <>
+
       <title>{pageTitle}</title>
-    </>
+
   );
 }

@@ -148,6 +148,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
   const AppNavLeft = () => {
     return (
       <div className="app__nav-left">
+        <ul>
         {userToken || businessToken ? (
           <select
             title="NavigationMenuCategories"
@@ -188,6 +189,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
               Sign out
             </option>
           </select>
+          
         ) : (
           <li>
             Hi!{" "}
@@ -197,6 +199,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
             or <a href="/register">register</a>
           </li>
         )}
+        </ul>
       </div>
     );
   };
@@ -219,6 +222,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
           </li>
         ))}
         <button
+        type="button"
           aria-label="OpenMobileMenu"
           className={`app__nav-close ${
             mobileMenuOpen ? "mobile-menu-open" : ""

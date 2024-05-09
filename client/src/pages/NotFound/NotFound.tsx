@@ -1,6 +1,6 @@
 // NotFound.tsx
 import React, { useEffect } from "react";
-import "./NotFound.scss"; 
+import "./NotFound.scss";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 
@@ -14,26 +14,26 @@ const NotFound: React.FC = () => {
     };
   }, []);
   return (
-  <>
-    <SearchBar/>
-    <div className="not-found-container">
-      <h2 className="not-found-title">404 Not Found</h2>
-       
-        <img
-               
-        className="not-found-image"
-        src="/notfound.jpeg"
-        alt="Funny Meme"
-        loading="lazy"
-      />
-      <p className="not-found-text">
-        Sorry, the page you are looking for does not exist.
-      </p>
-       
+    <>
+      <SearchBar />
+      <div className="not-found-container">
+        <h2 className="not-found-title">404 Not Found</h2>
 
-      <a href="/">Return back </a>
-    </div>
-  </>
+        <img
+
+          className="not-found-image"
+          src="/notfound.jpeg"
+          alt="Funny Meme"
+          loading="lazy"
+        />
+        <p className="not-found-text">
+          Sorry, the page you are looking for does not exist.
+        </p>
+
+
+        <a href="/">Return back </a>
+      </div>
+    </>
   );
 };
 

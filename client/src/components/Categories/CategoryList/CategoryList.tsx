@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./CategoryList.scss";
 import { useNavigate } from "react-router-dom";
 import { Nav, SearchBar } from "../..";
@@ -6,52 +6,56 @@ import { Category } from "../../../models/category";
 import { categoriesService } from "../../../services/categoryService";
 
 interface CategoryListProps {
-  // Assuming there's an endpoint like '/categories' that returns categories
   categories: Category[];
   total: number;
 }
 
 const CategoryList: React.FC<CategoryListProps> = ({ total }) => {
   const [categories, setCategories] = useState<Category[]>([]);
-
+  const [loadingCategories, setLoadingCategories] = useState(false);
   const navigate = useNavigate();
+  const categoryListRef = useRef<HTMLSelectElement>(null);
+
+  const fetchCategories = async () => {
+    setLoadingCategories(true);
+    try {
+      const data = await categoriesService.getAllCategories();
+      setCategories((prevCategories) => [...prevCategories, ...data]);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    } finally {
+      setLoadingCategories(false);
+    }
+  };
 
   useEffect(() => {
-    // Fetch categories from the server when the component mounts
-    const fetchCategories = async () => {
-      try {
-        const data = await categoriesService.getAllCategories();
-        setCategories(data);
-        console.log(`fetchCategories data is -->${data}`);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
-
+    // Fetch initial categories
     fetchCategories();
   }, []);
 
-  const groupedCategories: { [parent: string]: Category[] } = {};
-  categories.forEach((category) => {
-    const parent = category?.parent || "Other";
-    if (!groupedCategories[parent]) {
-      groupedCategories[parent] = [];
+  useEffect(() => {
+    if (!loadingCategories && categoryListRef.current) {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          fetchCategories();
+        }
+      });
+
+      observer.observe(categoryListRef.current);
+
+      return () => {
+        observer.disconnect();
+      };
     }
-    groupedCategories[parent].push(category);
-  });
+  }, [loadingCategories, categoryListRef.current]);
 
   const handleCategoryChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedCategory = event.target.value;
-    // console.log("Selected Category:", selectedCategory);
-
-    // Extract only the category name from the full path
     const categoryName = decodeURIComponent(
       selectedCategory.replace("/category/", "")
     );
-
-    // console.log(categoryName);
 
     if (categoryName) {
       navigate(`/category/${encodeURIComponent(categoryName)}`);
@@ -66,19 +70,20 @@ const CategoryList: React.FC<CategoryListProps> = ({ total }) => {
       <SearchBar />
       <div className="app-category__list">
         <h2>Categories</h2>
-        <select onChange={handleCategoryChange} name="handleCategoryList">
-          {Object.entries(groupedCategories).map(([parent, categoryList]) => (
-            <optgroup label={parent} key={parent}>
-              {categoryList.map((category) => (
-                <option
-                  key={category.name}
-                  value={`/category/${encodeURIComponent(category.name)}`}
-                >
-                  {category.name}
-                </option>
-              ))}
-            </optgroup>
+        <select
+          title="selectCategoryHere"
+          onChange={handleCategoryChange}
+          ref={categoryListRef}
+        >
+          {categories.map((category) => (
+            <option
+              key={category.name}
+              value={`/category/${encodeURIComponent(category.name)}`}
+            >
+              {category.name}
+            </option>
           ))}
+          {loadingCategories && <option>Loading more categories...</option>}
         </select>
       </div>
     </>

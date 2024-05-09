@@ -50,7 +50,7 @@ export default function ReadProduct() {
           {businessProducts?.map((product: Product, index: number) => (
             <div key={index} className="product-card">
                 <img
-               
+               loading="lazy"
                 src={product?.img}
                 alt={product?.name}
                 className="product-image"
