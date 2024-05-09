@@ -4,6 +4,7 @@ import { useBusinessAuth, useUserAuth } from "../../context/";
 import { signInLink } from "../../utilities/constants";
 import { CreateProduct, ReadProduct } from "./CRUD";
 import "./SellComponent.scss";
+import CreateAuctionProduct from "./CRUD/CreateAuctionProduct/CreateAuctionProduct";
 
 export default function SellComponent () {
     const { user,userToken } = useUserAuth();
@@ -62,6 +63,7 @@ export default function SellComponent () {
         )}
   
         {selectedBtn === "Create Product" && <CreateProduct />}
+        {selectedBtn === "Create Auction Product" && <CreateAuctionProduct />}
         {selectedBtn === "View Products" && <ReadProduct />}
         
       </>
@@ -71,12 +73,14 @@ export default function SellComponent () {
   const SellButtons = [
     {
       title: "Create Product",
-      link: "",
       element: <CreateProduct />,
     },
     {
+      title: "Create Auction Product",
+      element: <CreateAuctionProduct />,
+    },
+    {
       title: "View Products",
-      link: "",
       element: <ReadProduct />,
     },
     

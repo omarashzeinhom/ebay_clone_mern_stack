@@ -144,7 +144,7 @@ export default function CreateProduct() {
     <div className="create-product-container">
       {business?.businessId && (
         <>
-          <h2> Create Product</h2>
+          <h2> Create Auction Product</h2>
           <div className="create-product-form">
             <form onSubmit={handleSubmit}>
               {loading && <p>Loading...</p>}
@@ -193,15 +193,23 @@ export default function CreateProduct() {
               </label>
 
               <label>
-                Product Price:
+                Starting Price:
                 <input
-                  name="price"
+                  name="startingprice"
                   type="number"
                   value={formData.price}
                   onChange={(e) => handleChange(e, "price")}
                 />
               </label>
-
+              <label>
+                Final Price:
+                <input
+                  name="finalprice"
+                  type="number"
+                  value={formData.price}
+                  onChange={(e) => handleChange(e, "price")}
+                />
+              </label>
               <label>
                 Product Quantity:
                 <input

@@ -33,16 +33,18 @@
     }
   
     button {
-      background-color: #4caf50;
+      background-color: #0099ff;
       color: white;
       padding: 10px 15px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
-  
+      transition: 0.2s ease-in-out;
+
       &:hover {
-        background-color: #45a049;
+        background-color: #4586a0;
+        transform: scale(1.1);
       }
     }
   }

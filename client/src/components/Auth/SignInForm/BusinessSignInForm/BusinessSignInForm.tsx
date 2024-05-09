@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 //import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
 import { useBusinessAuth } from "../../../../context";
 import { businessAuthService } from "../../../../services";
-import {BusinessDemoCredentials} from "../index";
+import { BusinessDemoCredentials } from "../index";
 
 const BusinessSignInForm: React.FC = () => {
   const { loginBusiness, businessToken, business } = useBusinessAuth();
@@ -64,7 +64,7 @@ const BusinessSignInForm: React.FC = () => {
         <br />
         <a href="/">
           {" "}
-          <button aria-label="ReturnHomeButton" className="app__signin-Btn">
+          <button type="button" aria-label="ReturnHomeButton" className="app__signin-Btn">
             Return Home{" "}
           </button>
         </a>
@@ -75,15 +75,15 @@ const BusinessSignInForm: React.FC = () => {
   const SSOButtons = () => {
     return (
       <>
-        <button aria-label="SignInWithFaceBook" className="app__signin-Btn">
-{/*          <FaGoogle /> Continue with Google
- */}        </button>
-        <button aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
-{/*          <FaGoogle /> Continue with Google
- */}        </button>
-        <button aria-label="SignInWithApple" className="app__signin-Btn-alt">
-{/*          <FaApple /> Continue with Apple
- */}        </button>
+        <button type="button" aria-label="SignInWithFaceBook" className="app__signin-Btn">
+          Continue with Google
+        </button>
+        <button type="button" aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
+          Continue with Google
+        </button>
+        <button type="button" aria-label="SignInWithApple" className="app__signin-Btn-alt">
+          Continue with Apple
+        </button>
       </>
     );
   };

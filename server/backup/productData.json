@@ -14,7 +14,7 @@
     "id": 2,
     "quantity": 10,
     "name": "Oil Filter",
-    "img": "https://source.unsplash.com/all/400x300/?oil,filter",
+    "img": "https://source.unsplash.com/all/400x300/?oil,filter?q=80&fm=jpg",
     "price": 249.99,
     "parent": "Motors",
     "category": "Parts & accessories",
