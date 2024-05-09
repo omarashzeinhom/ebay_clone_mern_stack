@@ -1,6 +1,9 @@
 // productController.js
 const Product = require("../models/productModel");
 const cloudinary = require("cloudinary");
+const axios = require("axios");
+const sharp = require("sharp");
+
 
 class ProductController {
   async getProducts(req, res) {
@@ -136,6 +139,8 @@ class ProductController {
       res.status(500).json({ error: "Internal server error" });
     }
   }
+
+
 }
 
 module.exports = new ProductController();

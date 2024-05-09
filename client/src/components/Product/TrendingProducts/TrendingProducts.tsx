@@ -15,11 +15,11 @@ const TrendingProducts: React.FC = () => {
     const fetchData = async () => {
       try {
         await fetchProducts();
+        setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
+        setLoading(false); // Ensure loading is set to false even if there's an error
+      } 
     };
 
     fetchData();
@@ -37,7 +37,7 @@ const TrendingProducts: React.FC = () => {
   return (
     <div  id="deals" className="app__trending-products-carousel">
       {loading ? (
-        <Loading text="Fetching Trending Products..." />
+        <Loading text="Fetching Trending Kicks..." />
       ) : (
         <>
           <h2>Todays deals on consoles</h2>

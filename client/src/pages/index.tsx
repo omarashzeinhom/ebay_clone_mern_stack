@@ -5,5 +5,6 @@ import Register from "./Register/Register";
 import Survey from "./Survey/Survey";
 import SellPage from "./Sell/Sell";
 import CustomerService from "./CustomerService/CustomerService";
+import CheckOut from "./CheckOut/CheckOut";
 
-export { Home, SignIn, Register, CustomerService, Survey, NotFound, SellPage };
+export { Home, SignIn, Register, CustomerService, Survey, NotFound, SellPage, CheckOut };
