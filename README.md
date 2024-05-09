@@ -1,14 +1,16 @@
 # Ebay clone in MERN Stack
-
-
-
-# <p>The eBay clone in MERN Stack is a web application that replicates the core functionalities of the eBay platform using the MERN (MongoDB, Express.js, React, Node.js) technology stack. This clone allows users to buy and sell products in an online marketplace environment. It incorporates features such as user authentication, product listings, bidding or purchasing capabilities, and seller profiles. Utilizing the power of MERN, the application provides a responsive and dynamic user interface, real-time updates, and seamless interactions for a user-friendly online shopping experience reminiscent of eBay.</p>
+The eBay clone in MERN Stack is a web application that replicates the core functionalities of the eBay platform using the MERN (MongoDB, Express.js, React, Node.js) technology stack. This clone allows users to buy and sell products in an online marketplace environment. It incorporates features such as user authentication, product listings, bidding or purchasing capabilities, and seller profiles. Utilizing the power of MERN, the application provides a responsive and dynamic user interface, real-time updates, and seamless interactions for a user-friendly online shopping experience reminiscent of eBay.
 
 - [Demo](https://ebay-clone-mern-stack.vercel.app/)
 
-#### References
+## TODOS
 
-- Built With
+1. ADD DIFFERENT AUCTION SYSTEM[]
+2. ADD STRIPE TO BACKEND INSTEAD OF FRONTEND
+3. OPTIMIZE IMAGES FROM UNSPLASH AS WEBP 
+
+### Built With
+
 - [React Documentation](https://reactjs.org/)
 - [Node.js Documentation](https://nodejs.org/)
 - [Express.js Documentation](https://expressjs.com/)
