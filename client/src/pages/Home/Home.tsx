@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import {
   Header,
   Nav,
@@ -22,18 +22,11 @@ type HomeProps = {
 };
 
 export default function Home({ total, selectedCategory , handleCategoryClick }: HomeProps) {
-  useEffect(() => {
-    document.title = 'Home'; // Set your desired dynamic page title here
-    return () => {
-      // Optionally, you can reset the title when the component unmounts
-      document.title = 'Home';
-    };
-  }, []);
-  
+
   return (
     <>
-      <Header />
-      <Nav total={total} />
+      <Header pageTitle="Home" />
+      <Nav pageTitle="Home" total={total} />
       <SearchBar />
       <AdsCarousel />
       {/*ADD DIFFERENT PRODUCTS FOR BIDDING HISTORY */}

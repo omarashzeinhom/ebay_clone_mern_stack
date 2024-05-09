@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import { SearchResults, Profile } from "../components";
-import { Home, SignIn, Register, CustomerService, Survey, SellPage, NotFound } from "../pages";
+import { Home, SignIn, Register, CustomerService, Survey, SellPage, NotFound, CheckOutPage } from "../pages";
 
 const mainRoutes = (total: number): RouteObject[] => [
     /* <--- Main Routes Start --->  */
@@ -18,7 +18,7 @@ const mainRoutes = (total: number): RouteObject[] => [
     },
     {
       path: "/help&contact",
-      element: <CustomerService total={total} />,
+      element: <CustomerService total={total} pageTitle="CustomerService"/>,
     },
     {
       path: "/survey",
@@ -30,7 +30,7 @@ const mainRoutes = (total: number): RouteObject[] => [
     },
     {
       path: "/sell",
-      element: <SellPage total={total} />,
+      element: <SellPage total={total} pageTitle="Sell"/>,
     },
     {
       path: "*",
@@ -51,6 +51,11 @@ const mainRoutes = (total: number): RouteObject[] => [
     element: <Profile total={total} />,
   },
   /* <--- Auth & Profile End  ---> */
+ 
+  {
+    path: "/checkout",
+    element: <CheckOutPage total={total} pageTitle="CheckOut" />,
+  },
 
 ]
 

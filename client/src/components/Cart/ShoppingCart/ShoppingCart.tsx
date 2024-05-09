@@ -29,7 +29,11 @@ export default function ShoppingCart({ total }: ShoppingCartProps) {
 
       <div className={`modal ${isModalVisible ? "visible" : ""}`}>
         <div className="modal-content">
-         <button aria-label="ShowShoppingCart" onClick={() => setIsModalVisible(false)}>&times;</button>
+         <button 
+         type="button"
+         aria-label="ShowShoppingCart" 
+         onClick={() => setIsModalVisible(false)}>&times;
+         </button>
 
           <h2>Shopping Cart </h2>
           {cartQuantity > 0 && (

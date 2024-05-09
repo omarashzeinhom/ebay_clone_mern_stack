@@ -1,11 +1,12 @@
 import React from "react";
 import "./CustomerService.scss";
-import { Nav } from "../../components";
+import { Header, Nav } from "../../components";
 import { useBusinessAuth, useUserAuth } from "../../context/";
 import { commonIssues } from "../../utilities/constants";
 
 type CustomerServiceProps = {
   total: number;
+  pageTitle: string;
 };
 
 const CustomerServiceNav = () => {
@@ -25,13 +26,14 @@ const CustomerServiceNav = () => {
     </div>
   );
 };
-const CustomerService: React.FC<CustomerServiceProps> = ({ total }) => {
+const CustomerService: React.FC<CustomerServiceProps> = ({ total, pageTitle }) => {
   const { user  } = useUserAuth();
   const { business } = useBusinessAuth();
 
   return (
     <>
-      <Nav total={total} />
+    <Header pageTitle={pageTitle} />
+      <Nav pageTitle="Contact" total={total} />
       <CustomerServiceNav />
       <div className="customer-service">
         <h2>How can we help you today?</h2>

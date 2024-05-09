@@ -67,11 +67,11 @@ const App: React.FC<AppProps> = ({ total }) => {
  
     {
       path: "/edit/:productId",
-      element: <UpdateProduct total={total} />,
+      element: <UpdateProduct total={total} pageTitle="Update Product"/>,
     },
     {
       path: "/delete/:productId",
-      element: <DeleteProduct total={total} />,
+      element: <DeleteProduct total={total} pageTitle="Update Product" />,
     },
   ];
 

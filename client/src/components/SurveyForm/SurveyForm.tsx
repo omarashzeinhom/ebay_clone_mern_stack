@@ -1,4 +1,4 @@
-import { Loading, Nav, NotificationCard } from "..";
+import { Header, Loading, Nav, NotificationCard } from "..";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useBusinessAuth, useUserAuth } from "../../context/";
@@ -8,9 +8,10 @@ import { commonIssues } from "../../utilities/constants";
 interface Notification {
   type: "success" | "error";
   message: string;
+
 }
 
-export default function SurveyForm({ total }: any) {
+export default function SurveyForm({ total, pageTitle }: any) {
   const { user } = useUserAuth();
   const { business } = useBusinessAuth();
 
@@ -70,7 +71,8 @@ export default function SurveyForm({ total }: any) {
 
   return (
     <>
-      <Nav total={total} />
+    <Header pageTitle={pageTitle}/>
+      <Nav total={total} pageTitle="Survey" />
       <SignInNav />
       <h2> Survey </h2>
       {business || user ? (

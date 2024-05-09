@@ -19,7 +19,7 @@ const TrendingProducts: React.FC = () => {
       } catch (error) {
         console.error("Error fetching products:", error);
         setLoading(false); // Ensure loading is set to false even if there's an error
-      } 
+      }
     };
 
     fetchData();
@@ -35,7 +35,7 @@ const TrendingProducts: React.FC = () => {
   };
 
   return (
-    <div  id="deals" className="app__trending-products-carousel">
+    <div id="deals" className="app__trending-products-carousel">
       {loading ? (
         <Loading text="Fetching Trending Kicks..." />
       ) : (
@@ -73,6 +73,7 @@ const TrendingProducts: React.FC = () => {
                   onClick={() => handleProductClick(product?._id)}
                 >
                   <div className="app__trending-products-slide  app__trending-products-slide-active">
+
                     <img
                       width={"100%"}
                       height={"100"}
@@ -83,7 +84,7 @@ const TrendingProducts: React.FC = () => {
                     <p className="app__trending-products-slide-name">
                       {product?.name.slice(0, 10)}
                     </p>
-                
+
                     <p className="app__trending-products-slide-price">
                       Price:{product?.price} $
                     </p>

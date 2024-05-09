@@ -35,7 +35,7 @@ const SearchResults: React.FC = () => {
 
   return (
     <>
-      <Nav total={0} />
+      <Nav total={0} pageTitle="SearchResults"/>
       <SearchBar />
       <div className="product-list-layout">
         <CategorySideBar />

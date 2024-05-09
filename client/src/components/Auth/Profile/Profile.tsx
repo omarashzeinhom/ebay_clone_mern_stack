@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import "./Profile.scss";
-import { Nav } from "../../";
+import { Header, Nav } from "../../";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useState } from "react";
 
@@ -129,7 +129,8 @@ export default function Profile({ total }: ProfileProps) {
     <>
       {user?.userId || business?.businessId ? (
         <>
-          <Nav total={total} />
+        <Header pageTitle="Profile"/>
+          <Nav total={total} pageTitle="Profile"/>
           <SearchBar />
           <RadioButtons />
           <div className="app-profile-container">
@@ -140,7 +141,7 @@ export default function Profile({ total }: ProfileProps) {
         </>
       ) : (
         <>
-          <Nav total={total} />
+          <Nav total={total} pageTitle="" />
           <SearchBar />
           <div className="app-profile-container">
             <button

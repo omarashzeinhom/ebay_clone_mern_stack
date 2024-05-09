@@ -7,9 +7,10 @@ import { productService } from "../../../../services/productService";
 
 type ProductDetailProps = {
   total: number;
+  pageTitle: string;
 };
 
-const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
+const DeleteProduct: React.FC<ProductDetailProps> = ({ total,pageTitle }) => {
   const { business, businessToken, fetchBusinessInformation } = useBusinessAuth();
   const { productId } = useParams();
   const { getProductById } = useProductContext();
@@ -52,7 +53,7 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
 
   return (
     <>
-      <Nav total={total} />
+      <Nav total={total} pageTitle={`${pageTitle}`}/>
       <SearchBar />
       <SellComponent />
       {business?.businessId !== null && (

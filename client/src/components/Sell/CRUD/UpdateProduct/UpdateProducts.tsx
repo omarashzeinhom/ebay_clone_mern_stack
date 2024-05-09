@@ -8,9 +8,11 @@ import { Nav, SearchBar,SellComponent } from "../../..";
 
 type ProductDetailProps = {
   total: number;
+  pageTitle: string;
+
 };
 
-const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
+const UpdateProduct: React.FC<ProductDetailProps> = ({ total, pageTitle }) => {
   const { business, businessToken, fetchBusinessInformation } = useBusinessAuth();
   const { productId } = useParams();
   const { getProductById } = useProductContext();
@@ -66,7 +68,7 @@ const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
 
   return (
     <>
-      <Nav total={total} />
+      <Nav total={total} pageTitle={`${pageTitle}`}/>
       <SearchBar />
       <SellComponent/>
       {business?.businessId !== null && (

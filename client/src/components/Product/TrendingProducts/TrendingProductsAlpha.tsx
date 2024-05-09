@@ -78,6 +78,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
 
               >
                 <div className="app__trending-products-slide  app__trending-products-slide-active">
+                     
                       <img
                       src={product?.img}
                       alt={product?.name}
