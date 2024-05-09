@@ -1,7 +1,7 @@
 import "./UserAccountForm.scss";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { RegisterUserFormData, User } from "../../../../models/user";
-import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
+//import { FaGoogle, FaFacebook, FaApple } from "react-icons/fa";
 import { userUpdatesFullUploadUri } from "../../../../utilities/constants";
 import { userAuthService } from "../../../../services";
 
@@ -186,13 +186,15 @@ const UserAccountForm: React.FC<UserAccountFormProps> = () => {
       </form>
       <div className="app__paform-right">
        <button aria-label="UserRegisterWithGoogle" className="app__google-Btn">
-          <FaGoogle /> Continue with Google
+
+{/**          <FaGoogle /> Continue with Google
+ */}
         </button>
        <button aria-label="UserRegisterWithFaceBook" className="app__facebook-Btn">
-          <FaFacebook /> Continue with Facebook
-        </button>
+{/*          <FaFacebook /> Continue with Facebook
+ */}        </button>
        <button aria-label="UserRegisterWithApple" className="app__apple-Btn">
-          <FaApple /> Continue with Apple
+          {/*<FaApple /> Continue with Apple */}
         </button>
         <small>
           <p>Already have an account?</p> <a href="/signin">SignIn!</a>

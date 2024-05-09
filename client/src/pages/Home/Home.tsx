@@ -11,6 +11,7 @@ import {
   Footer,
 } from "../../components";
 import { footerLinks } from "../../utilities/constants";
+import BidHistory from "../../components/Bidding/BidHistory";
 
 
 
@@ -35,6 +36,8 @@ export default function Home({ total, selectedCategory , handleCategoryClick }: 
       <Nav total={total} />
       <SearchBar />
       <AdsCarousel />
+      {/*ADD DIFFERENT PRODUCTS FOR BIDDING HISTORY */}
+      <BidHistory/>
       <CategoriesCarousel selectedCategory={selectedCategory} handleCategoryClick={handleCategoryClick}/>
       <TrendingProductsAlpha />
       <TrendingProducts />

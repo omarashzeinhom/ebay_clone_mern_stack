@@ -1,5 +1,5 @@
 import "./Nav.scss";
-import { FaRegBell } from "react-icons/fa";
+//import { FaRegBell } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NotificationModal } from "./NotificationModal/NotificationModal";
@@ -109,12 +109,13 @@ const Nav: React.FC<NavProps> = ({ total }) => {
             </a>
           </li>
         </ul>
-        <li>
+     
           {userToken || businessToken ? (
             <select
               defaultValue={"My Ebay"}
               className="app__nav-right-dropDown"
               id="MyEbay"
+              title="NavigationMenuDropDown"
             >
               <option hidden className="app__nav-rightItem">
                 My Ebay
@@ -130,18 +131,16 @@ const Nav: React.FC<NavProps> = ({ total }) => {
               ))}
             </select>
           ) : null}
-        </li>
-        <li className="app__nav-rightItem">
-          <a href="#notifications" onClick={handleNotificationIconClick} id="yourNotifications">
-            <FaRegBell className="app__nav-rightIcon" />
+   
+          <a className="app__nav-rightItem" href="#notifications" onClick={handleNotificationIconClick} id="yourNotifications">
+        🔔
             {notificationCount > 0 && (
               <span className="notification-count">{notificationCount}</span>
             )}
           </a>
-        </li>
-        <li className="app__nav-rightItem">
+        <div className="app__nav-rightItem">
           <ShoppingCart total={total} />
-        </li>
+        </div>
       </div>
     );
   };
@@ -151,6 +150,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
       <div className="app__nav-left">
         {userToken || businessToken ? (
           <select
+            title="NavigationMenuCategories"
             id="categoriesDropDown"
             className="app__nav-dropdown"
             name="NavigationMenuCategories"

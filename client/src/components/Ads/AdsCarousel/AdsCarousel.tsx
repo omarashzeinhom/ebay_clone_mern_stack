@@ -79,6 +79,12 @@ const AdsCarousel: React.FC = () => {
             {shuffledData.map((category) => (
               <SwiperSlide key={category?.name} lazy={true}>
                 <div className="ads-swiper__slide">
+                  <link
+                  rel="preload"
+                  as="image"
+                  href={category?.img}
+
+                  />
                   <img
                     src={category?.img}
                     alt={category?.name}
@@ -91,6 +97,7 @@ const AdsCarousel: React.FC = () => {
                   <div className="ads-swiper__slide-container">
                     <div className="ads-swiper__image-buttons">
                      <button aria-label="NextImageButton"
+                     type="button"
                         className="ads-swiper__generate-text-button"
                         onClick={() => handleCategoryClick(category?.name)}
                       >

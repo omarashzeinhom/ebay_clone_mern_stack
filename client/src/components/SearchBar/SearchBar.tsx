@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HiMagnifyingGlass } from "react-icons/hi2";
+//import { HiMagnifyingGlass } from "react-icons/hi2";
 import "./SearchBar.scss";
 import { useNavigate } from "react-router-dom";
 import { Category } from "../../models/category";
@@ -108,7 +108,8 @@ export default function SearchBar() {
           name="searchButton"
           onClick={handleSearch}
         >
-          <HiMagnifyingGlass className="app__searchbar-searchicon" />
+                   <i className="app__searchbar-searchicon">⌕</i>
+
         </button>
         <select
         title="app__searchbar-form-dropDown"

@@ -55,23 +55,17 @@ const ProductList: React.FC<ProductListProps> = ({
     }
     // eslint-disable-next-line
   }, [categoryName /*Dont Add fetchProducts Causes infiniteLoop */]);
-  //DEBUG console.log(categoryName);
 
   const filteredProducts = categoryName
     ? products.filter((product) => product?.category === categoryName)
     : products.filter((product) => categoryName === product?.category);
 
-  //DEBUG console.log(filteredProducts);
 
   const productLink = (productId: string) => `/item/${productId}`;
   const id = product?.id;
 
   const quantity = getItemQuantity(id);
-  //console.log(quantity);
-
-  // function handleRouting() {
-  //  navigate(`/category/${encodeURIComponent(product?.category)}`);
-  // }
+ 
 
   return (
     <div className="product-list-layout">

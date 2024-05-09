@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
+//import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
 import { useBusinessAuth } from "../../../../context";
 import { businessAuthService } from "../../../../services";
 import {BusinessDemoCredentials} from "../index";
@@ -76,14 +76,14 @@ const BusinessSignInForm: React.FC = () => {
     return (
       <>
         <button aria-label="SignInWithFaceBook" className="app__signin-Btn">
-          <FaFacebook /> Continue with Facebook
-        </button>
+{/*          <FaGoogle /> Continue with Google
+ */}        </button>
         <button aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
-          <FaGoogle /> Continue with Google
-        </button>
+{/*          <FaGoogle /> Continue with Google
+ */}        </button>
         <button aria-label="SignInWithApple" className="app__signin-Btn-alt">
-          <FaApple /> Continue with Apple
-        </button>
+{/*          <FaApple /> Continue with Apple
+ */}        </button>
       </>
     );
   };

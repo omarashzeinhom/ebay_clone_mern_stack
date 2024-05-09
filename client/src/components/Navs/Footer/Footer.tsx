@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Footer.scss";
-import { IoIosArrowUp } from "react-icons/io";
 
 interface FooterLink {
   title?: string;
@@ -45,8 +44,10 @@ const Footer: React.FC<FooterProps> = ({ footerLinks }) => {
       </ul>
       <small>Omar Ashraf Zeinhom © 2023 - 2024</small>
       {showToTop && (
-       <button aria-label="ReturnToTopOfPageButton" className="scroll-totop__btn" onClick={scrollToTop}>
-          <IoIosArrowUp />
+       <button 
+       type="button"
+       aria-label="ReturnToTopOfPageButton" className="scroll-totop__btn" onClick={scrollToTop}>
+          ↑
         </button>
       )}
     </footer>

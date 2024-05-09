@@ -4,13 +4,12 @@ import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import CartItem from "../CartItem/CartItem";
 import { currencyFormatter } from "../../../utilities/currencyFormatter";
 import { useProductContext } from "../../../context/ProductContext";
-import { TbShoppingCart } from "react-icons/tb";
 import { Product } from "../../../models/product";
 import Checkout from "../CheckOut/CheckOut";
 import React from "react";
 
 type ShoppingCartProps = {
-  total: number; // Add total as a prop
+  total: number; 
 };
 
 export default function ShoppingCart({ total }: ShoppingCartProps) {
@@ -20,17 +19,12 @@ export default function ShoppingCart({ total }: ShoppingCartProps) {
 
   const storeProducts: Product[] = products;
 
-  /* <-----| DEBUG |-----> */
-  // const cartItemsStr = JSON.stringify(cartItems);
-  //console.log(`cartItems----->${cartItemsStr}`);
-  // console.log('storeProducts:', storeProducts);
 
   return (
     <>
       <span onClick={() => setIsModalVisible(true)}>
         {isModalVisible === false && <>{cartQuantity}</>}
-
-        <TbShoppingCart className="app__nav-rightIcon" />
+        🛒
       </span>
 
       <div className={`modal ${isModalVisible ? "visible" : ""}`}>
@@ -41,7 +35,7 @@ export default function ShoppingCart({ total }: ShoppingCartProps) {
           {cartQuantity > 0 && (
             <>
               {cartItems.map((item, index) => (
-                <React.Fragment key={item?.id}>
+                <React.Fragment key={item?.id + index}>
                   <CartItem
                     price={item?.price}
                     parent={item?.parent}

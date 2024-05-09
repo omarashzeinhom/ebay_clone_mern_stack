@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
+//import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
 import { userAuthService } from "../../../../services";
 import { useUserAuth } from "../../../../context";
 import UserDemoCredentials from "../DemoCredentials/UserDemoCredentials";
@@ -67,14 +67,14 @@ const UserSignInForm: React.FC = () => {
   const SSOButtons = () => {
     return (
       <>
-        <button aria-label="SignInWithFaceBook" className="app__signin-Btn">
-          <FaFacebook /> Continue with Facebook
+        <button type="submit" aria-label="SignInWithFaceBook" className="app__signin-Btn">
+          Continue with Facebook
         </button>
-        <button aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
-          <FaGoogle /> Continue with Google
+        <button type="submit" aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
+          Continue with Google
         </button>
-        <button aria-label="SignInWithApple" className="app__signin-Btn-alt">
-          <FaApple /> Continue with Apple
+        <button type="submit" aria-label="SignInWithApple" className="app__signin-Btn-alt">
+          Continue with Apple
         </button>
       </>
     );
@@ -108,6 +108,8 @@ const UserSignInForm: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <button
+              title="SignInButton"
+              type="button"
               aria-label="SignInButton"
               onClick={handleUserSignIn}
               className="app__signin-Btn"
