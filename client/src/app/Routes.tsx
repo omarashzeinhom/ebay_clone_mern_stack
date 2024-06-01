@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import { SearchResults, Profile } from "../components";
-import { Home, SignIn, Register, CustomerService, Survey, SellPage, NotFound, CheckOutPage } from "../pages";
+import { Home, SignIn, Register, CustomerService, Bids, Survey, SellPage, NotFound, CheckOutPage } from "../pages";
 
 const mainRoutes = (total: number): RouteObject[] => [
     /* <--- Main Routes Start --->  */
@@ -31,6 +31,10 @@ const mainRoutes = (total: number): RouteObject[] => [
     {
       path: "/sell",
       element: <SellPage total={total} pageTitle="Sell"/>,
+    },
+    {
+      path: "/bids",
+      element: <Bids pageTitle="Bids"/>,
     },
     {
       path: "*",

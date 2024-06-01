@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Nav, SearchBar, SellComponent } from "../../components"
-
+ document.title = 'Sell'
 
 interface SellPageProps {
   total: number,
@@ -13,7 +13,7 @@ export default function SellPage({ total }: SellPageProps) {
     document.title = 'Sell';
     return () => {
       // Optionally, you can reset the title when the component unmounts
-      document.title = 'Your Default Title';
+      document.title = 'Sell';
     };
   }, []);
 
