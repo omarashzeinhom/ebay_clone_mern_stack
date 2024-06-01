@@ -1,6 +1,7 @@
-import { BusinessContactInfoForm, UserContactInfoForm } from "../../components";
+import { BusinessContactInfoForm, Footer, Header, Nav, SearchBar, UserContactInfoForm } from "../../components";
 import { useBusinessAuth, useUserAuth } from "../../context";
 import { Bid } from "../../models/bid";
+import { footerLinks } from "../../utilities/constants";
 document.title = 'Bid'
 interface BidsProps {
     pageTitle: string;
@@ -14,6 +15,9 @@ export default function Bids({ pageTitle }: BidsProps) {
 
     return (
         <>
+            <Header pageTitle={pageTitle} />
+            <Nav total={0} pageTitle="CheckOut" />
+            <SearchBar />
             <h2>Bids</h2>
 
             {business && (
@@ -26,7 +30,7 @@ export default function Bids({ pageTitle }: BidsProps) {
                     <UserContactInfoForm />
                 </>
             )}
-
+            <Footer footerLinks={footerLinks} />
         </>
     )
 }
