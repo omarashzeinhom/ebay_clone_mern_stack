@@ -1,110 +1,120 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "./AdsCarousel.scss";
 import { categoriesService } from "../../../services/categoryService";
-import { Category } from "../../../models/category";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading/Loading";
-import { useCategoryContext } from "../../../context/CategoryContext";
+import { createApi } from "unsplash-js";
+
+// Unsplash API client
+const unsplashApi = createApi({
+  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
+});
 
 const AdsCarousel: React.FC = () => {
-  const { categoryData, setCategoryData } = useCategoryContext();
+  const [categoryData, setCategoryData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [shuffledData, setShuffledData] = useState<Category[]>([]);
-  const [fetchError, setFetchError] = useState<string | null>(null);
+  const [categoryImages, setCategoryImages] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Check if categoryData is already available
-        if (categoryData.length === 0) {
-          // Fetch categories only if not available
-          const data = await categoriesService.getAllCategories();
-          setCategoryData(data);
-          setShuffledData(shuffleArray([...data]));
-        } else {
-          // If data is available, use it directly
-          setShuffledData(shuffleArray([...categoryData]));
-        }
+        const data = await categoriesService.getAllCategories();
+        setCategoryData(data);
       } catch (error) {
         console.error("Error fetching categories:", error);
-        setFetchError("Error fetching categories");
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [categoryData, setCategoryData]);
+  }, []);
 
-  const shuffleArray = (array: Category[]): Category[] => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+  useEffect(() => {
+    const fetchCategoryImages = async () => {
+      const imagePromises = categoryData.map(async (category) => {
+        try {
+          const result = await unsplashApi.search.getPhotos({
+            query: category.name,
+            orientation: "landscape",
+            perPage: 1,
+          });
+
+          if (result.response?.results[0]) {
+            return { [category.name]: result.response.results[0].urls.small };
+          }
+        } catch (error) {
+          console.error(`Error fetching image for ${category.name} from Unsplash:`, error);
+        }
+        return { [category.name]: "" };
+      });
+
+      const images = await Promise.all(imagePromises);
+      const imagesMap = images.reduce((acc, cur) => ({ ...acc, ...cur }), {});
+      setCategoryImages(imagesMap);
+    };
+
+    if (categoryData.length > 0) {
+      fetchCategoryImages();
     }
-    return array;
-  };
+  }, [categoryData]);
 
-  const handleCategoryClick = useCallback(
-    (categoryName: string) => {
-      navigate(`/category/${encodeURIComponent(categoryName)}`);
-    },
-    [navigate]
-  );
+  const handleCategoryClick = (categoryName: string) => {
+    navigate(`/category/${encodeURIComponent(categoryName)}`);
+  };
 
   return (
     <div className="ads-swiper-container">
       {loading ? (
         <Loading text="Fetching Ads..." />
-      ) : fetchError ? (
-        <div className="error-message">{fetchError}</div>
       ) : (
-          <Swiper
-            lazyPreloadPrevNext={1}
-            lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
-            navigation={{
-              nextEl: ".ads-swiper__button-next",
-              prevEl: ".ads-swiper__button-prev",
-            }}
-            modules={[Autoplay, Navigation, Pagination]}
-            className="ads-swiper"
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            loop={shuffledData.length > 0} // Enable loop only if there are enough slides
-          >
-            {shuffledData.map((category) => (
-              <SwiperSlide key={category?.name} lazy={true}>
-                <div className="ads-swiper__slide">
-                  <img
-                    src={category?.img}
-                    alt={category?.name}
-                    width={100}
-                    height={100}
-                    loading="lazy"
-                    onClick={() => handleCategoryClick(category?.name)}
-                    className="ads-swiper__image"
-                  />
-                  <div className="ads-swiper__slide-container">
-                    <div className="ads-swiper__image-buttons">
-                     <button aria-label="NextImageButton"
-                        className="ads-swiper__generate-text-button"
-                        onClick={() => handleCategoryClick(category?.name)}
-                      >
-                        {category?.name}
-                      </button>
-                    </div>
+        <Swiper
+          lazyPreloadPrevNext={1}
+          lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
+          navigation={{
+            nextEl: ".ads-swiper__button-next",
+            prevEl: ".ads-swiper__button-prev",
+          }}
+          modules={[Autoplay, Navigation, Pagination]}
+          className="ads-swiper"
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          loop={categoryData.length > 0} // Enable loop only if there are enough slides
+        >
+          {categoryData.map((category) => (
+            <SwiperSlide key={category.name} lazy={true}>
+              <div className="ads-swiper__slide">
+                <img
+                  src={categoryImages[category.name] || 'default-fallback-image-url'}
+                  alt={category.name}
+                  width={100}
+                  height={100}
+                  loading="lazy"
+                  onClick={() => handleCategoryClick(category.name)}
+                  className="ads-swiper__image"
+                />
+                <div className="ads-swiper__slide-container">
+                  <div className="ads-swiper__image-buttons">
+                    <button
+                      aria-label="NextImageButton"
+                      className="ads-swiper__generate-text-button"
+                      onClick={() => handleCategoryClick(category.name)}
+                    >
+                      {category.name}
+                    </button>
                   </div>
                 </div>
-              </SwiperSlide>
-            ))}
-            <div className="ads-swiper__button-next" aria-label="NextImageButton"></div>
-            <div className="ads-swiper__button-prev" aria-label="PreviousImageButton"></div>
-          </Swiper>
-      
+              </div>
+            </SwiperSlide>
+          ))}
+          <div className="ads-swiper__button-next" aria-label="NextImageButton"></div>
+          <div className="ads-swiper__button-prev" aria-label="PreviousImageButton"></div>
+        </Swiper>
       )}
     </div>
   );
