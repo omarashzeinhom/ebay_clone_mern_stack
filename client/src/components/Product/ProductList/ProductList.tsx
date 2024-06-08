@@ -89,7 +89,7 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                   <a className="product-list__product-link" href={`/item/${product._id}`}>
                     <img
                       className="product-list__product-list-image"
-                      src={categoryImages[product._id] || 'fallback-image-url'} // Use fetched image or fallback
+                      src={categoryImages[product._id] || 'fallback-image-url'} 
                       alt={product.name}
                       loading="lazy"
                     />
@@ -98,6 +98,7 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                   <div className="product-list__product-list-price-container">
                     {getItemQuantity(product.id) === 0 && (
                       <button
+                        type="button"
                         aria-label="AddProductToCart"
                         className="product-detail__button"
                         onClick={() => addItemToCart(product)}
