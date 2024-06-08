@@ -20,6 +20,7 @@
     "sass": "^1.77.0",
     "swiper": "^11.0.5",
     "typescript": "^5.4.5",
+    "unsplash-js": "^7.0.19",
     "web-vitals": "^3.5.2"
   },
   "scripts": {

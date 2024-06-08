@@ -87,13 +87,7 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
                 onClick={() => handleCategoryClick(category?.name)}
               >
                 <div className="app__categories-slide">
-                  <img
-                    src={category?.img}
-                    alt={category?.name}
-                    width={"100%"}
-                    height={"100"}
-                    loading="lazy"
-                  />
+                  
                   <p className="app__categories-category-name">
                     {category?.name}
                   </p>
