@@ -6,6 +6,12 @@ import { Scrollbar, Navigation } from "swiper/modules";
 import { categoriesService } from "../../../services/categoryService";
 import "./CategoriesCarousel.scss";
 import Loading from "../../Loading/Loading";
+import { createApi } from "unsplash-js";
+
+// Unsplash API client
+const unsplashApi = createApi({
+  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
+});
 
 interface CategoriesCarouselProps {
   selectedCategory?: string;
@@ -15,12 +21,12 @@ interface CategoriesCarouselProps {
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   const [categoryData, setCategoryData] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const [categoryImages, setCategoryImages] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Check if category data is already available in the state
         if (categoryData.length === 0) {
           const data = await categoriesService.getAllCategories();
           setCategoryData(data);
@@ -33,7 +39,36 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
     };
 
     fetchData();
-  }, [categoryData]); // Only re-run the effect when categoryData changes
+  }, [categoryData]);
+
+  useEffect(() => {
+    const fetchCategoryImages = async () => {
+      const imagePromises = categoryData.map(async (category) => {
+        try {
+          const result = await unsplashApi.search.getPhotos({
+            query: category.name,
+            orientation: "landscape",
+            perPage: 1,
+          });
+
+          if (result.response?.results[0]) {
+            return { [category.name]: result.response.results[0].urls.small };
+          }
+        } catch (error) {
+          console.error(`Error fetching image for ${category.name} from Unsplash:`, error);
+        }
+        return { [category.name]: "" };
+      });
+
+      const images = await Promise.all(imagePromises);
+      const imagesMap = images.reduce((acc, cur) => ({ ...acc, ...cur }), {});
+      setCategoryImages(imagesMap);
+    };
+
+    if (categoryData.length > 0) {
+      fetchCategoryImages();
+    }
+  }, [categoryData]);
 
   const shuffleArray = (array: Category[]): Category[] => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -87,7 +122,12 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
                 onClick={() => handleCategoryClick(category?.name)}
               >
                 <div className="app__categories-slide">
-                  
+                  <img
+                    className="app__categories-image"
+                    src={categoryImages[category.name] || 'default-fallback-image-url'}
+                    alt={category?.name}
+                    loading="lazy"
+                  />
                   <p className="app__categories-category-name">
                     {category?.name}
                   </p>
