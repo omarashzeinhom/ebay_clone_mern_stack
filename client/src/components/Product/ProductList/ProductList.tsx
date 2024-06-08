@@ -14,7 +14,7 @@ interface ProductListProps {
 
 // Unsplash API client
 const unsplashApi = createApi({
-  accessKey: `${process.env.REACT_APP_UNSPLASH_API_AK}`
+  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
 });
 
 const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) => {
