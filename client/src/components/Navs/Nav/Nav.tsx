@@ -112,6 +112,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
         <li>
           {userToken || businessToken ? (
             <select
+              title="MyEbay"
               defaultValue={"My Ebay"}
               className="app__nav-right-dropDown"
               id="MyEbay"
@@ -151,6 +152,7 @@ const Nav: React.FC<NavProps> = ({ total }) => {
       <div className="app__nav-left">
         {userToken || businessToken ? (
           <select
+          title="CategoriesDropDown"
             id="categoriesDropDown"
             className="app__nav-dropdown"
             name="NavigationMenuCategories"
