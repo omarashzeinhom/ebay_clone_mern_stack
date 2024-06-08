@@ -28,44 +28,15 @@ export default function Header() {
         rel="canonical"
         href="https://ebay-clone-mern-stack.vercel.app/"
       />
-     {/*
-      {categoryData.map((category, index) => {
-        const categoryImage = category.img;
-        return (
-          <link
-           // key={index}
-            //rel="preload"
-            //href={categoryImage}
-            //type="text"
-            //as="fetch"
-            //crossOrigin="anonymous"
-          />
-        );
-      })}
      
-     */}
-
-     {/*
-      {products.map((product, index) => {
-        const productImage = product.img;
-        return (
-          <link
-            //key={index}
-            //rel="preload"
-            //href={productImage}
-            //type="text"
-            //as="fetch"
-            //crossOrigin="anonymous"
-          />
-        );
-      })}
-     
-     */}
+      {/* 
       <meta
        httpEquiv="Content-Security-Policy"
         content={`script-src  'self' ${stripeCSP} ;
         object-src 'none';`}
       />
+      
+      */}
     </Helmet>
   );
 }
