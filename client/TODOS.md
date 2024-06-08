@@ -5,6 +5,7 @@
 5. Update User Interface and minor fixes on GUI
 6. Secure Content Security policy 
 
+7. Change Images URLS to Actual Urls not Randomly Generated URLS.
 
     Lazy Loading: Load content and components only when they are needed. For example, use React's lazy loading for components or lazy loading for images.
 
