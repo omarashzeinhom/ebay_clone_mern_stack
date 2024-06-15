@@ -1,10 +1,8 @@
 import "./Nav.scss";
-//import { FaRegBell } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NotificationModal } from "./NotificationModal/NotificationModal";
 import { navItems, myEbayItems } from "../../../utilities/constants";
-//import { ShoppingCart } from "../../";
 import { useBusinessAuth, useUserAuth } from "../../../context";
 import { ShoppingCart } from "../../Cart";
 

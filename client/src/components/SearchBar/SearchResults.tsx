@@ -45,7 +45,7 @@ const SearchResults: React.FC = () => {
           </h2>
 
           <ul className="product-list__product-list">
-            {flattenedResults !== undefined && flattenedResults.length > 0 ? (
+            {flattenedResults !== undefined && flattenedResults.length !== 0 ? (
               flattenedResults.map((result: any, index: any) => (
                 <li
                   key={result?._id}
