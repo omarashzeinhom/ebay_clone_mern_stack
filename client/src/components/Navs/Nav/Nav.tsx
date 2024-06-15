@@ -1,17 +1,19 @@
 import "./Nav.scss";
-import { FaRegBell } from "react-icons/fa";
+//import { FaRegBell } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NotificationModal } from "./NotificationModal/NotificationModal";
 import { navItems, myEbayItems } from "../../../utilities/constants";
-import {ShoppingCart} from "../../";
+//import { ShoppingCart } from "../../";
 import { useBusinessAuth, useUserAuth } from "../../../context";
+import { ShoppingCart } from "../../Cart";
 
 type NavProps = {
   total: number;
+  pageTitle: string;
 };
 
-const Nav: React.FC<NavProps> = ({ total }) => {
+const Nav: React.FC<NavProps> = ({ total, pageTitle }) => {
   const navigate = useNavigate();
   const { businessToken, business, fetchBusinessInformation, logoutBusiness } =
     useBusinessAuth();
@@ -44,17 +46,18 @@ const Nav: React.FC<NavProps> = ({ total }) => {
       logoutBusiness();
       alert(" Business has Logout successfully");
 
-    } 
-      if (user) {
-        alert(" User has Logout successfully");
+    }
+    if (user) {
+      alert(" User has Logout successfully");
 
-        localStorage.removeItem("user");
-        localStorage.removeItem("user-token");
-        logout();
-      }
+      localStorage.removeItem("user");
+      localStorage.removeItem("user-token");
+      logout();
+    }
+
  
 
-    else{
+    else {
       logout();
       logoutBusiness();
 
@@ -98,51 +101,62 @@ const Nav: React.FC<NavProps> = ({ total }) => {
     // eslint-disable-next-line
   }, []);
 
+  if (user?.firstName === "User" || business?.businessName === "User") {
+    localStorage.removeItem("user");
+    localStorage.removeItem("user-token");
+    logout();
+    localStorage.removeItem("business");
+    localStorage.removeItem("business-token");
+    logoutBusiness();
+  }
+
   // Organizing Nav
   const AppNavRight = () => {
     return (
       <div className="app__nav-right">
         <ul>
           <li className="app__nav-rightItem">
-            <a className="app__nav-rightItem" href="/sell">
+            <a className="app__nav-rightItem" href="/sell" id="sellingButton">
               Sell
             </a>
           </li>
         </ul>
-        <li>
-          {userToken || businessToken ? (
-            <select
-              title="MyEbay"
-              defaultValue={"My Ebay"}
-              className="app__nav-right-dropDown"
-              id="MyEbay"
-            >
-              <option hidden className="app__nav-rightItem">
-                My Ebay
+
+        {userToken || businessToken ? (
+          <select
+            defaultValue={"My Ebay"}
+            className="app__nav-right-dropDown"
+            id="MyEbay"
+            title="NavigationMenuDropDown"
+          >
+            <option hidden className="app__nav-rightItem">
+              My Ebay
+            </option>
+            {myEbayItems.map((ebayItem, index) => (
+              <option
+                key={index}
+                id={ebayItem?.title}
+                className="app__nav-rightItem"
+              >
+                {ebayItem?.title}
               </option>
-              {myEbayItems.map((ebayItem, index) => (
-                <option
-                  key={index}
-                  id={ebayItem?.title}
-                  className="app__nav-rightItem"
-                >
-                  {ebayItem?.title}
-                </option>
-              ))}
-            </select>
-          ) : null}
-        </li>
-        <li className="app__nav-rightItem">
-          <a href="#notifications" onClick={handleNotificationIconClick}>
-            <FaRegBell className="app__nav-rightIcon" />
-            {notificationCount > 0 && (
-              <span className="notification-count">{notificationCount}</span>
-            )}
-          </a>
-        </li>
-        <li className="app__nav-rightItem">
-          <ShoppingCart total={total} />
-        </li>
+            ))}
+          </select>
+        ) : null}
+
+        <a className="app__nav-rightItem" href="#notifications" onClick={handleNotificationIconClick} id="yourNotifications">
+          🔔
+          {notificationCount > 0 && (
+            <span className="notification-count">{notificationCount}</span>
+          )}
+        </a>
+        <div className="app__nav-rightItem">
+          {pageTitle !== "CheckOut" && (
+            <>
+            <ShoppingCart total={total}/>
+            </>
+          )}
+        </div>
       </div>
     );
   };
@@ -150,55 +164,58 @@ const Nav: React.FC<NavProps> = ({ total }) => {
   const AppNavLeft = () => {
     return (
       <div className="app__nav-left">
-        {userToken || businessToken ? (
-          <select
-          title="CategoriesDropDown"
-            id="categoriesDropDown"
-            className="app__nav-dropdown"
-            name="NavigationMenuCategories"
-            onChange={(e) => {
-              if (e.target.value === "logout") {
-                handleLogOut();
-              } else if (user?.userId) {
-                navigate(`/user/${user?.userId}`);
-              } else if (business?.businessId) {
-                navigate(`/business/${business?.businessId}`);
-              } else {
-                navigate(`/signin`);
-              }
-            }}
-          >
-            <option value="" className="app__nav-itemLeft">
-              Hi,{" "}
-              {user?.firstName ||
-                user?.email ||
-                business?.businessName ||
-                business?.businessEmail ||
-                "User"}
-              !
-            </option>
-            <option onClick={handleRoute} className="app__nav-itemLeft">
-              User Profile:{" "}
-              {user?.firstName ||
-                user?.email ||
-                business?.businessName ||
-                business?.businessEmail ||
-                "User Profile"}
-              !
-            </option>
-            <option value="logout" className="app__nav-itemLeft">
-              Sign out
-            </option>
-          </select>
-        ) : (
-          <li>
-            Hi!{" "}
-            <a href="/signin" className="app__nav-item">
-              Sign in
-            </a>{" "}
-            or <a href="/register">register</a>
-          </li>
-        )}
+        <ul>
+          {userToken || businessToken ? (
+            <select
+              title="NavigationMenuCategories"
+              id="categoriesDropDown"
+              className="app__nav-dropdown"
+              name="NavigationMenuCategories"
+              onChange={(e) => {
+                if (e.target.value === "logout") {
+                  handleLogOut();
+                } else if (user?.userId) {
+                  navigate(`/user/${user?.userId}`);
+                } else if (business?.businessId) {
+                  navigate(`/business/${business?.businessId}`);
+                } else {
+                  navigate(`/signin`);
+                }
+              }}
+            >
+              <option value="" className="app__nav-itemLeft">
+                Hi,{" "}
+                {user?.firstName ||
+                  user?.email ||
+                  business?.businessName ||
+                  business?.businessEmail ||
+                  "User"}
+                !
+              </option>
+              <option onClick={handleRoute} className="app__nav-itemLeft">
+                User Profile:{" "}
+                {user?.firstName ||
+                  user?.email ||
+                  business?.businessName ||
+                  business?.businessEmail ||
+                  "User Profile"}
+                !
+              </option>
+              <option value="logout" className="app__nav-itemLeft">
+                Sign out
+              </option>
+            </select>
+
+          ) : (
+            <li>
+              Hi!{" "}
+              <a href="/signin" className="app__nav-item">
+                Sign in
+              </a>{" "}
+              or <a href="/register">register</a>
+            </li>
+          )}
+        </ul>
       </div>
     );
   };
@@ -221,10 +238,10 @@ const Nav: React.FC<NavProps> = ({ total }) => {
           </li>
         ))}
         <button
+          type="button"
           aria-label="OpenMobileMenu"
-          className={`app__nav-close ${
-            mobileMenuOpen ? "mobile-menu-open" : ""
-          }`}
+          className={`app__nav-close ${mobileMenuOpen ? "mobile-menu-open" : ""
+            }`}
           onClick={handleMobileMenuToggle}
         >
           &times;
