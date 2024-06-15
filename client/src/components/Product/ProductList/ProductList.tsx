@@ -6,23 +6,19 @@ import Loading from "../../Loading/Loading";
 import { Product } from "../../../models/product";
 import CategorySideBar from "../../Categories/CategorySideBar/CategorySideBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
-import { unsplashApi } from "../../../features/unsplashConfig";
-
-
 
 interface ProductListProps {
   products: Product[];
 }
 
 
-const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) => {
+const ProductList: React.FC<ProductListProps> = () => {
   const { categoryName } = useParams();
   const { products, fetchProducts, getProductById, getProductsByName, searchQuery } = useProductContext();
   const { addItemToCart, getItemQuantity } = useShoppingCart();
   const { productId } = useParams<{ productId: string }>();
 
   const [product, setProduct] = useState<Product | null>(null);
-  const [categoryImages, setCategoryImages] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,28 +42,6 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
     }
   }, [categoryName, fetchProducts]);
 
-  useEffect(() => {
-    if (categoryName) {
-      // Fetch images from Unsplash based on category
-      unsplashApi.search.getPhotos({ query: categoryName, orientation: 'landscape' })
-        .then(result => {
-          if (result.response) {
-            // Create a mapping of product IDs to images
-            const images = result.response.results.reduce((acc, photo, index) => {
-              const productId = filteredProducts[index]?._id;
-              if (productId) {
-                acc[productId] = photo.urls.small;
-              }
-              return acc;
-            }, {} as { [key: string]: string });
-            setCategoryImages(images);
-          } else {
-            console.error("No response from Unsplash");
-          }
-        })
-        .catch(error => console.error("Error fetching images from Unsplash:", error));
-    }
-  }, [categoryName]);
 
   const filteredProducts = categoryName
     ? products.filter(product => product.category === categoryName)
@@ -87,8 +61,8 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                   <a className="product-list__product-link" href={`/item/${product._id}`}>
                     <img
                       className="product-list__product-list-image"
-                      src={categoryImages[product._id] || 'fallback-image-url'}
-                      alt={product.name}
+                      src={product?.img}
+                      alt={product?.name}
                       loading="lazy"
                     />
                     <p className="product-list__product-list-name">{product.name}</p>
@@ -103,11 +77,11 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                         Add to Cart
                       </button>
                     )}
-                    <span className="product-list__product-list-price">{product.price}$</span>
+                    <span className="product-list__product-list-price">{product?.price}$</span>
                   </div>
                   <p className="product-list__product-list-category">
                     <em>Category:</em>
-                    <a href={`/${encodeURIComponent(product.category)}`}>{product.category}</a>
+                    <a href={`/${encodeURIComponent(product?.category)}`}>{product?.category}</a>
                   </p>
                 </div>
               </li>

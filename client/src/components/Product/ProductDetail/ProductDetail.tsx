@@ -18,7 +18,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
   const { productId } = useParams();
   const { getProductById } = useProductContext();
   const [product, setProduct] = useState<any | null>(null);
-  const [unsplashImage, setUnsplashImage] = useState<string>("");
   //const {biddingState} = useBiddingContext();
 
   // Props as consts
@@ -42,29 +41,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
     fetchData();
   }, [productId, getProductById]);
 
-  useEffect(() => {
-    const fetchUnsplashImage = async () => {
-      if (!productName) return;
 
-      try {
-        const result = await unsplashApi.search.getPhotos({
-          query: productName,
-          orientation: 'landscape',
-          perPage: 1
-        });
-
-        if (result.response?.results[0]) {
-          setUnsplashImage(result.response.results[0].urls.full);
-        } else {
-          console.error("No image found for product name from Unsplash");
-        }
-      } catch (error) {
-        console.error("Error fetching image from Unsplash:", error);
-      }
-    };
-
-    fetchUnsplashImage();
-  }, [productName]);
 
   if (!product) {
     return <div className="loading">Loading...</div>;
@@ -84,7 +61,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
         <img
           className="product-detail__image"
           alt={product?.name}
-          src={unsplashImage || product?.img || 'fallback-image-url'}
+          src={product?.img}
           width={150}
           height={150}
           loading="lazy"

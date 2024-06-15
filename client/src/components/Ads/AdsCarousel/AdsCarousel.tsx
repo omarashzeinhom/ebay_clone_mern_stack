@@ -5,14 +5,12 @@ import "./AdsCarousel.scss";
 import { categoriesService } from "../../../services/categoryService";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading/Loading";
-import { unsplashApi } from "../../../features/unsplashConfig";
 
 
 
 const AdsCarousel: React.FC = () => {
   const [categoryData, setCategoryData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [categoryImages, setCategoryImages] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,34 +28,6 @@ const AdsCarousel: React.FC = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    const fetchCategoryImages = async () => {
-      const imagePromises = categoryData.map(async (category) => {
-        try {
-          const result = await unsplashApi?.search?.getPhotos({
-            query: category.name,
-            orientation: "landscape",
-            perPage: 1,
-          });
-
-          if (result.response?.results[0]) {
-            return { [category.name]: result?.response?.results[0]?.urls?.regular };
-          }
-        } catch (error) {
-          console.error(`Error fetching image for ${category.name} from Unsplash:`, error);
-        }
-        return { [category.name]: "" };
-      });
-
-      const images = await Promise.all(imagePromises);
-      const imagesMap = images.reduce((acc, cur) => ({ ...acc, ...cur }), {});
-      setCategoryImages(imagesMap);
-    };
-
-    if (categoryData.length > 0) {
-      fetchCategoryImages();
-    }
-  }, [categoryData]);
 
   const handleCategoryClick = (categoryName: string) => {
     navigate(`/category/${encodeURIComponent(categoryName)}`);
@@ -84,15 +54,15 @@ const AdsCarousel: React.FC = () => {
           loop={categoryData.length > 0} // Enable loop only if there are enough slides
         >
           {categoryData.map((category) => (
-            <SwiperSlide key={category.name} lazy={true}>
+            <SwiperSlide key={category?.name} lazy={true}>
               <div className="ads-swiper__slide">
                 <img
-                  src={categoryImages[category.name] || 'default-fallback-image-url'}
-                  alt={category.name}
+                  src={category?.img}
+                  alt={category?.name}
                   width={100}
                   height={100}
                   loading="lazy"
-                  onClick={() => handleCategoryClick(category.name)}
+                  onClick={() => handleCategoryClick(category?.name)}
                   className="ads-swiper__image"
                 />
                 <div className="ads-swiper__slide-container">
@@ -100,7 +70,7 @@ const AdsCarousel: React.FC = () => {
                     <button
                       aria-label="NextImageButton"
                       className="ads-swiper__generate-text-button"
-                      onClick={() => handleCategoryClick(category.name)}
+                      onClick={() => handleCategoryClick(category?.name)}
                     >
                       {category.name}
                     </button>
