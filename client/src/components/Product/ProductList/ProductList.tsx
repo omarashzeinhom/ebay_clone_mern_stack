@@ -26,6 +26,11 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
   const [product, setProduct] = useState<Product | null>(null);
   const [categoryImages, setCategoryImages] = useState<{ [key: string]: string }>({});
 
+  const filteredProducts = categoryName 
+    ? products.filter(product => product.category === categoryName)
+    : products;
+
+   
   useEffect(() => {
     const fetchData = async () => {
       if (productId) {
@@ -36,44 +41,46 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
         const productData = await getProductsByName(searchQuery);
         setProduct(productData || null); // Set to null if productData is undefined
       }
+          fetchData();
+
     };
 
-    fetchData();
-  }, [productId, searchQuery, getProductById, getProductsByName]);
 
-  useEffect(() => {
-    // Fetch products based on category
-    if (categoryName) {
-      fetchProducts();
-    }
-  }, [categoryName, fetchProducts]);
+      // Fetch products based on category
+      if (categoryName === product?.category) {
+        fetchProducts();
+      }else if (product?.id){
+        getProductById(`${getProductById}`);
+      }else {
 
-  useEffect(() => {
-    if (categoryName) {
-      // Fetch images from Unsplash based on category
-      unsplashApi.search.getPhotos({ query: categoryName, orientation: 'landscape' })
-        .then(result => {
-          if (result.response) {
-            // Create a mapping of product IDs to images
-            const images = result.response.results.reduce((acc, photo, index) => {
-              const productId = filteredProducts[index]?._id;
-              if (productId) {
-                acc[productId] = photo.urls.small;
-              }
-              return acc;
-            }, {} as { [key: string]: string });
-            setCategoryImages(images);
-          } else {
-            console.error("No response from Unsplash");
-          }
-        })
-        .catch(error => console.error("Error fetching images from Unsplash:", error));
-    }
-  }, [categoryName]);
+      }
 
-  const filteredProducts = categoryName 
-    ? products.filter(product => product.category === categoryName)
-    : products;
+      if (categoryName) {
+        unsplashApi.search.getPhotos({ query: categoryName, orientation: 'landscape' })
+          .then(result => {
+            if (result.response) {
+              const images = result.response.results.reduce((acc, photo) => {
+                const productId = filteredProducts.find(product => product.name === photo.description)?._id;
+                if (productId) {
+                  acc[productId] = photo.urls.small;
+                }
+                return acc;
+              }, {} as { [key: string]: string });
+              setCategoryImages(images);
+            } else {
+              console.error("No response from Unsplash:", result);
+            }
+          })
+          .catch(error => console.error("Error fetching images from Unsplash:", error));
+      }
+
+
+  }, []);
+
+
+
+
+    
 
   return (
     <div className="product-list-layout">
