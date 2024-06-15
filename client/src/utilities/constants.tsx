@@ -1,15 +1,14 @@
 // Config Constants
 import { countryList} from "./countryList";
 // CHG DEVELOPMENT AND PRODUCTION
+const HOME_URL = "http://localhost:3000/";
+const API_BASE_URL = "http://localhost:5000/";
 
- const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
-const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
 
-// Config Constants
 //const DEVELOP_URL = "http://localhost:3000/";
 //const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
-//const BACKEND_URL_PROD = "https://server-ebay-clone.onrender.com";
 //const SERVER_DEVELOP_URL = "http://localhost:5000/";
+//const SERVER_PROD_URL = "https://server-ebay-clone.onrender.com";
 
 const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
 
@@ -153,19 +152,19 @@ changes to your account.`;
  const AdItems = [
   {
     id: 1,
-    category: "ebay",
-    title: "eBay Deals made easy all year long",
-    description: "Free shipping. Best prices. Get your thing →→",
-    imageUrl: "https://source.unsplash.com/800x400/?ebay",
-    link: "/category/Video Games & Consoles",
+    category: "Cars & trucks",
+    title: "Cars & trucks Deals made easy all year long",
+    description: "Best prices. Get your thing →→",
+    img: "https://images.unsplash.com/photo-1547744152-14d985cb937f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    link: "/category/Cars & trucks",
   },
   {
     id: 2,
-    category: "holiday-gifts",
+    category: "Parts & accessories",
     title: "Up to 60% off holiday gifts",
     description: "Shop candles, cookware, décor, and more. Take a look →",
-    imageUrl: "https://source.unsplash.com/800x400/?holiday,gifts",
-    link: "/category/Video Games & Consoles",
+    img: "https://images.unsplash.com/photo-1525841508523-2aebc593a6b7?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QWlyJTIwRmlsdGVyfGVufDB8fDB8fHww",
+    link: "/category/Parts & accessories",
   },
   {
     id: 3,
@@ -173,17 +172,8 @@ changes to your account.`;
     title: "Unwrap holiday savings on adidas",
     description:
       "Save an additional 50% on gift-worthy faves with code ADI5OSALE. Shop now →",
-    imageUrl: "https://source.unsplash.com/800x400/?adidas",
+    img: "https://images.unsplash.com/photo-1585459733416-825300c90f90?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     link: "/category/Collectible Sneakers",
-  },
-  {
-    id: 4,
-    category: "tire-installation",
-    title: "Get local tire installation",
-    description:
-      "Have your new set installed by our network of experts. Shop top brands →",
-    imageUrl: "https://source.unsplash.com/800x400/?tire,installation",
-    link: "/category/Parts & accessories",
   },
 ];
 
