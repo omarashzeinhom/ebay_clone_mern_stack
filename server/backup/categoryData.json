@@ -2,219 +2,52 @@
   {
     "name": "Parts & accessories",
     "parent": "Motors",
-    "img": "https://source.unsplash.com/featured/500x500/?car"
+    "img": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FyfGVufDB8fDB8fHww"
   },
   {
     "name": "Cars & trucks",
     "parent": "Motors",
-    "img": "https://source.unsplash.com/featured/500x500/?truck"
+    "img": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Q2Fyc3xlbnwwfHwwfHx8MA%3D%3D"
   },
   {
     "name": "Other vehicles",
     "parent": "Motors",
-    "img": "https://source.unsplash.com/featured/500x500/?vehicle"
+    "img": "https://images.unsplash.com/photo-1617096498689-c68a21d8d87b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TW90b3JzfGVufDB8fDB8fHww"
   },
   {
     "name": "Women Clothing",
     "parent": "Clothing & Accessories",
-    "img": "https://source.unsplash.com/featured/500x500/?fashion"
+    "img": "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8V29tZW4lMjBDbG90aGluZ3xlbnwwfHwwfHx8MA%3D%3D"
   },
   {
     "name": "Men Clothing",
     "parent": "Clothing & Accessories",
-    "img": "https://source.unsplash.com/featured/500x500/?men"
+    "img": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TWVuJTIwQ2xvdGhpbmd8ZW58MHx8MHx8fDA%3D"
   },
   {
     "name": "Furniture & Decor",
     "parent": "Household goods",
-    "img": "https://source.unsplash.com/featured/500x500/?furniture"
+    "img": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Women Handbags",
     "parent": "Clothing & Accessories",
-    "img": "https://source.unsplash.com/featured/500x500/?handbag"
+    "img": "https://images.unsplash.com/photo-1445633814773-e687a5de9baa?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fFdvbWVuJTIwSGFuZGJhZ3N8ZW58MHx8MHx8fDA%3D"
   },
   {
     "name": "Collectible Sneakers",
     "parent": "Clothing & Accessories",
-    "img": "https://source.unsplash.com/featured/500x500/?sneakers"
-  },
-  {
-    "name": "Hunting Equipment",
-    "parent": "Sporting goods",
-    "img": "https://source.unsplash.com/featured/500x500/?hunting"
-  },
-  {
-    "name": "Golf Equipment",
-    "parent": "Sporting goods",
-    "img": "https://source.unsplash.com/featured/500x500/?golf"
-  },
-  {
-    "name": "Outdoor sports",
-    "parent": "Sporting goods",
-    "img": "https://source.unsplash.com/featured/500x500/?outdoors"
-  },
-  {
-    "name": "Cycling Equipment",
-    "parent": "Sporting goods",
-    "img": "https://source.unsplash.com/featured/500x500/?cycling"
-  },
- 
-  {
-    "name": "Computers, Tablets & Network Hardware",
-    "parent": "Electronics",
-    "img": "https://source.unsplash.com/featured/500x500/?computer"
-  },
-  {
-    "name": "Smart home devices",
-    "parent": "Electronics",
-    "img": "https://source.unsplash.com/featured/500x500/?smart,home"
-  },
-
-  {
-    "name": "Video Games & Consoles",
-    "parent": "Electronics",
-    "img": "https://source.unsplash.com/featured/500x500/?video,game,videogames"
-  },
- 
-  {
-    "name": "Personal Grooming & Health",
-    "parent": "Health & Personal Care",
-    "img": "https://source.unsplash.com/featured/500x500/?grooming"
-  },
-  {
-    "name": "Bath & Shower",
-    "parent": "Health & Personal Care",
-    "img": "https://source.unsplash.com/featured/500x500/?shower,products"
-  },
-  {
-    "name": "Audio & Video Equipment",
-    "parent": "Household goods",
-    "img": "https://source.unsplash.com/featured/500x500/?audio"
-  },
-
-  {
-    "name": "Fitness & Exercise",
-    "parent": "Sports & Fitness",
-    "img": "https://source.unsplash.com/featured/500x500/?gym"
-  },
-  {
-    "name": "Relaxation & Meditation",
-    "parent": "Health & Personal Care",
-    "img": "https://source.unsplash.com/featured/500x500/?meditation"
-  },
-  {
-    "name": "Indoor Living & Home",
-    "parent": "Household goods",
-    "img": "https://source.unsplash.com/featured/500x500/?indoor"
-  },
-  {
-    "name": "Outdoor Living & Home",
-    "parent": "Household goods",
-    "img": "https://source.unsplash.com/featured/500x500/?outdoor"
-  },
-  {
-    "name": "Entertainment & Toys",
-    "parent": "Kids Toys",
-    "img": "https://source.unsplash.com/featured/500x500/?Toys"
-  },
-  {
-    "name": "Electronics & Technology",
-    "parent": "Electronics",
-    "img": "https://source.unsplash.com/featured/500x500/?Toys"
-  },
-  {
-    "name": "Restaurant supplies",
-    "parent": "Kitchen & Cookware",
-    "img": "https://source.unsplash.com/featured/500x500/?barware,restaurant"
-  },
-  {
-    "name": "Pet Supplies",
-    "parent": "Pets",
-    "img": "https://source.unsplash.com/featured/500x500/?pettoys,pets"
-  },
-
-  {
-    "name": "Medical & healthcare equipment",
-    "parent": "Health & Personal Care",
-    "img": "https://source.unsplash.com/featured/500x500/?medical,health,care"
-  },
-  {
-    "name": "Pharmacy & drugstore supplies",
-    "parent": "Health & Personal Care",
-    "img": "https://source.unsplash.com/featured/500x500/?pharmacy,drugstore"
-  },
-  {
-    "name": "Beauty & personal care equipment",
-    "parent": "Health & Personal Care",
-    "img": "https://source.unsplash.com/featured/500x500/?beauty"
-  },
-  {
-    "name": "Lab & scientific equipment",
-    "parent": "Health & Personal Care",
-    "img": "https://source.unsplash.com/featured/500x500/?lab,scientific"
-  },
-  {
-    "name": "Education & training equipment",
-    "parent": "Education & Training",
-    "img": "https://source.unsplash.com/featured/500x500/?education,training"
-  },
-  {
-    "name": "Learning & educational aids",
-    "parent": "Education & Training",
-    "img": "https://source.unsplash.com/featured/500x500/?educationtail,aid"
-  },
- 
-  {
-    "name": "Library & office equipment",
-    "parent": "Education & Training",
-    "img": "https://source.unsplash.com/featured/500x500/?library,office"
+    "img": "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fENvbGxlY3RpYmxlJTIwU25lYWtlcnN8ZW58MHx8MHx8fDA%3D"
   },
   {
     "name": "Audio & video equipment",
     "parent": "Professional & Technical",
-    "img": "https://source.unsplash.com/featured/500x500/?audio,video"
+    "img": "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fEF1ZGlvJTIwJTI2JTIwdmlkZW8lMjBlcXVpcG1lbnxlbnwwfHwwfHx8MA%3D%3D"
   },
   {
-    "name": "Industrial & maintenance equipment",
-    "parent": "Professional & Technical",
-    "img": "https://source.unsplash.com/featured/500x500/?industrial,maintenance"
-  },
-  {
-    "name": "Electronics & communication equipment",
-    "parent": "Professional & Technical",
-    "img": "https://source.unsplash.com/featured/500x500/?electronics,communication"
-  },
-  {
-    "name": "Music Equipment",
-    "parent": "Arts & Entertainment",
-    "img": "https://source.unsplash.com/featured/500x500/?music"
-  },
-
-  {
-    "name": "Outdoor Recreation Equipment",
-    "parent": "Sports & Outdoors",
-    "img": "https://source.unsplash.com/featured/500x500/?outdoor,recreation"
-  },
-  {
-    "name": "Water Sports & Outdoors",
-    "parent": "Sports & Outdoors",
-    "img": "https://source.unsplash.com/featured/500x500/?watersports"
-  },
-  {
-    "name": "Personal Transportation",
-    "parent": "Auto, Transport & Industrial",
-    "img": "https://source.unsplash.com/featured/500x500/?personal,transportation"
-  },
-
-  {
-    "name": "Computer & Office Equipment",
-    "parent": "Professional & Technical",
-    "img": "https://source.unsplash.com/featured/500x500/?computer,office,equipment"
-  },
-  {
-    "name": "Luggage & Travel",
-    "parent": "Travelling Equipment",
-    "img": "https://source.unsplash.com/featured/500x500/?luggage"
+    "name": "Smart home devices",
+    "parent": "Electronics",
+    "img": "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8U21hcnQlMjBob21lJTIwZGV2aWNlc3xlbnwwfHwwfHx8MA%3D%3D"
   }
+  
 ]
