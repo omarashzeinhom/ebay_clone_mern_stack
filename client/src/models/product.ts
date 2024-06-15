@@ -9,6 +9,7 @@ export interface Product {
   category: string;
   parent: string;
   businessId: string;
+
 }
 
 
