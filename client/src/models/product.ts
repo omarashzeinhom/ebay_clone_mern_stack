@@ -32,4 +32,11 @@ export type CreateProductFormData = {
   quantity: number;
   category: string;
   parent: string;
+  bids:[
+    {
+      userVerified: true, // Todo add check for user if verified or not
+      userBiddedId: string,
+      userBid: number,
+    }
+  ]
 };
