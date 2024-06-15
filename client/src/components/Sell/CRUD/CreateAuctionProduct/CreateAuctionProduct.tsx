@@ -4,7 +4,7 @@ import { useBusinessAuth } from "../../../../context/";
 import { bussinessProductsFullUploadUri } from "../../../../utilities/constants";
 import { Category ,CreateProductFormData } from "../../../../models/";
 
-export default function CreateProduct() {
+export default function CreateAuctionProduct() {
   const { business } = useBusinessAuth();
   //DEBUG (Make sure businessId is passed to the useAuth Hook as a business object)
   //console.log(`busines----->${JSON.stringify(business)}`)
@@ -248,7 +248,7 @@ export default function CreateProduct() {
               </label>
 
               <button aria-label="CreateProductButton" type="submit">
-                Create Product
+                Create Auction Product
               </button>
             </form>
           </div>
