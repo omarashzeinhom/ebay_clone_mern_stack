@@ -46,7 +46,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
           });
 
           if (result.response?.results[0]) {
-            setUnsplashImage(result.response.results[0].urls.small);
+            setUnsplashImage(result.response.results[0].urls.full);
           } else {
             console.error("No image found for category from Unsplash");
           }
