@@ -44,7 +44,7 @@ const AdsCarousel: React.FC = () => {
           });
 
           if (result.response?.results[0]) {
-            return { [category.name]: result.response.results[0].urls.small };
+            return { [category.name]: result?.response?.results[0]?.urls?.regular };
           }
         } catch (error) {
           console.error(`Error fetching image for ${category.name} from Unsplash:`, error);
