@@ -21,13 +21,6 @@ export default function CreateProduct() {
     quantity: 0,
     category: "",
     parent: "",
-    bids:[
-      {
-        userVerified: true, // Todo add check for user if verified or not
-        userBiddedId: "",
-        userBid: 0,
-      },
-    ]
   });
 
   useEffect(() => {
