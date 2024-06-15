@@ -5,7 +5,8 @@ import { useProductContext } from "../../../context/ProductContext";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { Nav } from "../..";
-import { unsplashApi } from "../../../features/unsplashConfig";
+//import { unsplashApi } from "../../../features/unsplashConfig";
+//import { useBiddingContext } from "../../../context";
 
 type ProductDetailProps = {
   total: number;
@@ -17,12 +18,13 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
   const { productId } = useParams();
   const { getProductById } = useProductContext();
   const [product, setProduct] = useState<any | null>(null);
-  const [unsplashImage, setUnsplashImage] = useState<string>("");
+  //const {biddingState} = useBiddingContext();
 
   // Props as consts
   const productName = product?.name;
   const id = product?.id;
   const quantity = getItemQuantity(id);
+  let bid;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,29 +41,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
     fetchData();
   }, [productId, getProductById]);
 
-  useEffect(() => {
-    const fetchUnsplashImage = async () => {
-      if (!productName) return;
 
-      try {
-        const result = await unsplashApi.search.getPhotos({
-          query: productName,
-          orientation: 'landscape',
-          perPage: 1
-        });
-
-        if (result.response?.results[0]) {
-          setUnsplashImage(result.response.results[0].urls.full);
-        } else {
-          console.error("No image found for product name from Unsplash");
-        }
-      } catch (error) {
-        console.error("Error fetching image from Unsplash:", error);
-      }
-    };
-
-    fetchUnsplashImage();
-  }, [productName]);
 
   if (!product) {
     return <div className="loading">Loading...</div>;
@@ -73,7 +53,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
 
   return (
     <>
-      <Nav total={total}  />
+      <Nav total={total} pageTitle="" />
       <SearchBar />
       <div className="product-detail">
         <h2 className="product-detail__title">{product?.name}</h2>
@@ -81,7 +61,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
         <img
           className="product-detail__image"
           alt={product?.name}
-          src={unsplashImage || product?.img || 'fallback-image-url'}
+          src={product?.img}
           width={150}
           height={150}
           loading="lazy"
@@ -134,6 +114,40 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
           >
             -
           </button>
+        </div>
+
+        <div className="product-detail__buttongroup">
+          {quantity === 0 && (
+            <button
+              aria-label="AddProductToCart"
+              className="product-detail__button"
+            //onClick={() => addItemToBid(product)}
+            >
+              Place Bid
+            </button>
+          )}
+          <button
+            aria-label="DecreaseItemQuantity"
+            className="product-detail__altbutton"
+          //onClick={() => buyFinalPriceFromBid(id)}
+          >
+            Buy Now
+          </button>
+          {bid && (
+            <>
+              <button
+                aria-label="DecreaseItemQuantity"
+                className="product-detail__altbutton"
+              //onClick={() => removeItemFromBid(id)}
+              >
+                Remove Existing Bid
+              </button>
+            </>
+          )
+
+          }
+
+
         </div>
       </div>
     </>

@@ -1,143 +1,100 @@
 import React, { useEffect, useState } from "react";
-import { Navigation, Scrollbar } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useParams } from "react-router-dom";
 import { useProductContext } from "../../../context/ProductContext";
-import "./TrendingProducts.scss";
+import "./ProductList.scss";
 import Loading from "../../Loading/Loading";
-import { useNavigate } from "react-router-dom";
-import { unsplashApi } from "../../../features/unsplashConfig";
+import { Product } from "../../../models/product";
+import CategorySideBar from "../../Categories/CategorySideBar/CategorySideBar";
+import { useShoppingCart } from "../../../context/ShoppingCartContext";
+
+interface ProductListProps {
+  products: Product[];
+}
 
 
-const TrendingProducts: React.FC = () => {
-  const { products, fetchProducts } = useProductContext();
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-  const [productImages, setProductImages] = useState<{ [key: string]: string }>({});
+const ProductList: React.FC<ProductListProps> = () => {
+  const { categoryName } = useParams();
+  const { products, fetchProducts, getProductById, getProductsByName, searchQuery } = useProductContext();
+  const { addItemToCart, getItemQuantity } = useShoppingCart();
+  const { productId } = useParams<{ productId: string }>();
+
+  const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        await fetchProducts();
-        setLoading(false); // Set loading to false once data is fetched
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        setLoading(false); // Ensure loading is set to false even if there's an error
+      if (productId) {
+        const productData = await getProductById(productId);
+        setProduct(productData || null); // Set to null if productData is undefined
+      }
+      if (searchQuery) {
+        const productData = await getProductsByName(searchQuery);
+        setProduct(productData || null); // Set to null if productData is undefined
       }
     };
 
     fetchData();
-    // eslint-disable-next-line
-  }, []);
+  }, [productId, searchQuery, getProductById, getProductsByName]);
 
   useEffect(() => {
-    const fetchImages = async () => {
-      const filteredProducts = products.filter(
-        (product) => product?.category === "Video Games & Consoles"
-      );
-
-      // Fetch images for each product category
-      if (filteredProducts.length > 0) {
-        const category = filteredProducts[0]?.category || "Video Games";
-        try {
-          const result = await unsplashApi.search.getPhotos({
-            query: category,
-            orientation: 'landscape',
-            perPage: filteredProducts.length // Get as many images as products
-          });
-
-          if (result.response) {
-            const images = result.response.results.reduce((acc, photo, index) => {
-              const productId = filteredProducts[index]?._id;
-              if (productId) {
-                acc[productId] = photo.urls.small;
-              }
-              return acc;
-            }, {} as { [key: string]: string });
-
-            setProductImages(images);
-          } else {
-            console.error("No response from Unsplash");
-          }
-        } catch (error) {
-          console.error("Error fetching images from Unsplash:", error);
-        }
-      }
-    };
-
-    if (products.length > 0) {
-      fetchImages();
+    // Fetch products based on category
+    if (categoryName) {
+      fetchProducts();
     }
-  }, [products]);
+  }, [categoryName, fetchProducts]);
 
-  const filteredProducts = products.filter(
-    (product) => product?.category === "Video Games & Consoles"
-  );
 
-  const handleProductClick = (productId: string) => {
-    navigate(`/item/${encodeURIComponent(productId)}`);
-  };
+  const filteredProducts = categoryName
+    ? products.filter(product => product.category === categoryName)
+    : products;
 
   return (
-    <div id="deals" className="app__trending-products-carousel">
-      {loading ? (
-        <Loading text="Fetching Trending Kicks..." />
-      ) : (
-        <>
-          <h2>Todays deals on consoles</h2>
-          <Swiper
-            lazyPreloadPrevNext={1}
-            lazyPreloaderClass="swiper-lazy swiper-lazy-loading swiper-lazy-loaded swiper-lazy-preloader"
-            navigation={{
-              nextEl: ".ads-swiper__button-next",
-              prevEl: ".ads-swiper__button-prev",
-            }}
-            modules={[Scrollbar, Navigation]}
-            scrollbar={{
-              hide: true,
-            }}
-            loop={filteredProducts.length > 2}
-            slidesPerView={3}
-            spaceBetween={10}
-            breakpoints={{
-              768: {
-                slidesPerView: 5,
-                loop: filteredProducts.length > 3,
-              },
-              1024: {
-                slidesPerView: 6,
-              },
-            }}
-          >
-            {filteredProducts.map((product, index) => {
-              return (
-                <SwiperSlide
-                  lazy={true}
-                  key={product?._id}
-                  onClick={() => handleProductClick(product?._id)}
-                >
-                  <div className="app__trending-products-slide app__trending-products-slide-active">
+    <div className="product-list-layout">
+      <CategorySideBar />
+      <div className="product-list">
+        <h2 className="product-list__header">Products</h2>
+        <h3>{categoryName}</h3>
+        <ul className="product-list__product-list">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <li key={product._id} className="product-list__product-list-item">
+                <div className="product-list__product-list-item-top">
+                  <a className="product-list__product-link" href={`/item/${product._id}`}>
                     <img
-                      width={"100%"}
-                      height={"100"}
-                      src={productImages[product._id] || 'fallback-image-url'} // Use fetched Unsplash image or fallback
+                      className="product-list__product-list-image"
+                      src={product?.img}
                       alt={product?.name}
                       loading="lazy"
                     />
-                    <p className="app__trending-products-slide-name">
-                      {product?.name.slice(0, 10)}
-                    </p>
-                    <p className="app__trending-products-slide-price">
-                      Price: {product?.price} $
-                    </p>
+                    <p className="product-list__product-list-name">{product.name}</p>
+                  </a>
+                  <div className="product-list__product-list-price-container">
+                    {getItemQuantity(product.id) === 0 && (
+                      <button
+                        aria-label="AddProductToCart"
+                        className="product-detail__button"
+                        onClick={() => addItemToCart(product)}
+                      >
+                        Add to Cart
+                      </button>
+                    )}
+                    <span className="product-list__product-list-price">{product?.price}$</span>
                   </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </>
-      )}
+                  <p className="product-list__product-list-category">
+                    <em>Category:</em>
+                    <a href={`/${encodeURIComponent(product?.category)}`}>{product?.category}</a>
+                  </p>
+                </div>
+              </li>
+            ))
+          ) : (
+            <li className="product-list__product-list-item">
+              <Loading />
+            </li>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };
 
-export default TrendingProducts;
+export default ProductList;
