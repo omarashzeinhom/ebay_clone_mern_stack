@@ -26,19 +26,19 @@ const Ads: React.FC = () => {
     const fetchUnsplashImages = async () => {
       const imagePromises = AdItems.map(async (item) => {
         try {
-          const result = await unsplashApi.search.getPhotos({
-            query: item.title || item.category,
+          const result = await unsplashApi?.search?.getPhotos({
+            query: item?.title || item?.category,
             orientation: "landscape",
             perPage: 1,
           });
 
           if (result.response?.results[0]) {
-            return { [item.id]: result.response.results[0].urls.small };
+            return { [item?.id]: result?.response?.results[0].urls?.regular };
           }
         } catch (error) {
-          console.error(`Error fetching Unsplash image for ${item.title || item.category}:`, error);
+          console.error(`Error fetching Unsplash image for ${item?.title || item.category}:`, error);
         }
-        return { [item.id]: "" };
+        return { [item?.id]: "" };
       });
 
       const images = await Promise.all(imagePromises);
