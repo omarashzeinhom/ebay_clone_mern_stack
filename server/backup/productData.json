@@ -173,6 +173,61 @@
     "parent": "Clothing & Accessories",
     "description": "Step into the world of urban fashion with these collectible sneakers Combining comfort and street style, these sneakers are a statement piece for sneaker enthusiasts and trendsetters alike",
     "businessId": "658515a349b83015d3b51fd0"
+  },
+  {
+    "id": 17,
+    "quantity": 10,
+    "name": "Air Jordan 1",
+    "img": "https://images.unsplash.com/photo-1631312788472-e90ae179756a?q=80&w=2028&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "price": 1999.99,
+    "parent": "Clothing & Accessories",
+    "category": "Collectible Sneakers",
+    "description": "Own a piece of sneaker history with the iconic Air Jordan 1 Renowned for its classic silhouette and cultural significance, these sneakers deliver both style and substance A must-have for sneaker enthusiasts and fashion-forward individuals alike",
+    "businessId": "658515a349b83015d3b51fd0"
+  },
+  {
+    "id": 18,
+    "quantity": 10,
+    "name": "Yeezy Boost 350",
+    "img": "https://images.unsplash.com/photo-1569710084961-8db1abda6000?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "price": 249.99,
+    "parent": "Clothing & Accessories",
+    "category": "Collectible Sneakers",
+    "description": "Step into the world of high fashion and streetwear with the Yeezy Boost 350 Designed by Kanye West, these sneakers combine cutting-edge design with unmatched comfort Elevate your sneaker collection with this coveted and stylish pair",
+    "businessId": "658515a349b83015d3b51fd0"
+  },
+  {
+    "id": 18,
+    "quantity": 10,
+    "name": "Nike SB Dunk",
+    "img": "https://images.unsplash.com/photo-1584735175097-719d848f8449?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "price": 159.99,
+    "parent": "Clothing & Accessories",
+    "category": "Collectible Sneakers",
+    "description": "Make a bold statement with the Nike SB Dunk Known for its vibrant colorways and unique collaborations, the SB Dunk is a favorite among sneaker enthusiasts Whether you're into skateboarding or street style, these sneakers deliver on both performance and aesthetics",
+    "businessId": "658515a349b83015d3b51fd0"
+  },
+  {
+    "id": 19,
+    "quantity": 10,
+    "name": "Adidas NMD",
+    "img": "https://images.unsplash.com/photo-1585459733416-825300c90f90?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "price": 179.99,
+    "parent": "Clothing & Accessories",
+    "category": "Collectible Sneakers",
+    "description": "Experience the perfect blend of comfort and style with the Adidas NMD These sneakers feature innovative cushioning technology and a sleek design, making them ideal for everyday wear Elevate your streetwear game with this modern and versatile pair",
+    "businessId": "658515a349b83015d3b51fd0"
+  },
+  {
+    "id": 20,
+    "quantity": 10,
+    "name": "Converse Chuck Taylor",
+    "img": "https://images.unsplash.com/photo-1556048219-bb6978360b84?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "price": 129.99,
+    "parent": "Clothing & Accessories",
+    "category": "Collectible Sneakers",
+    "description": "Step into timeless style with the Converse Chuck Taylor A classic since its inception, these sneakers are a symbol of authenticity and self-expression Whether you're a sneaker connoisseur or embracing casual comfort, the Chuck Taylor is a wardrobe essential",
+    "businessId": "658515a349b83015d3b51fd0"
   }
 ]
  
