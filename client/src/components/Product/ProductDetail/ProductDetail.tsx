@@ -7,7 +7,6 @@ import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { Nav } from "../..";
 import { unsplashApi } from "../../../features/unsplashConfig";
 
-
 type ProductDetailProps = {
   total: number;
 };
@@ -20,11 +19,20 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
   const [product, setProduct] = useState<any | null>(null);
   const [unsplashImage, setUnsplashImage] = useState<string>("");
 
+  // Props as consts
+  const productName = product?.name;
+  const id = product?.id;
+  const quantity = getItemQuantity(id);
+
   useEffect(() => {
     const fetchData = async () => {
       if (productId) {
-        const productData = await getProductById(productId);
-        setProduct(productData);
+        try {
+          const productData = await getProductById(productId);
+          setProduct(productData);
+        } catch (error) {
+          console.error("Error fetching product details:", error);
+        }
       }
     };
 
@@ -33,36 +41,31 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
 
   useEffect(() => {
     const fetchUnsplashImage = async () => {
-      if (product?.category) {
-        try {
-          const result = await unsplashApi.search.getPhotos({
-            query: product.category,
-            orientation: 'landscape',
-            perPage: 1
-          });
+      if (!productName) return;
 
-          if (result.response?.results[0]) {
-            setUnsplashImage(result.response.results[0].urls.small);
-          } else {
-            console.error("No image found for category from Unsplash");
-          }
-        } catch (error) {
-          console.error("Error fetching image from Unsplash:", error);
+      try {
+        const result = await unsplashApi.search.getPhotos({
+          query: productName,
+          orientation: 'landscape',
+          perPage: 1
+        });
+
+        if (result.response?.results[0]) {
+          setUnsplashImage(result.response.results[0].urls.full);
+        } else {
+          console.error("No image found for product name from Unsplash");
         }
+      } catch (error) {
+        console.error("Error fetching image from Unsplash:", error);
       }
     };
 
-    if (product) {
-      fetchUnsplashImage();
-    }
-  }, [product]);
+    fetchUnsplashImage();
+  }, [productName]);
 
   if (!product) {
     return <div className="loading">Loading...</div>;
   }
-
-  const id = product?.id;
-  const quantity = getItemQuantity(id);
 
   function handleRouting() {
     navigate(`/category/${encodeURIComponent(product?.category)}`);
@@ -70,7 +73,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
 
   return (
     <>
-      <Nav total={total} />
+      <Nav total={total} pageTitle="" />
       <SearchBar />
       <div className="product-detail">
         <h2 className="product-detail__title">{product?.name}</h2>
