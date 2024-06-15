@@ -18,12 +18,12 @@
       box-shadow: 0.4rem 0.4rem 0.5rem 0.4rem rgb(255, 242, 171);
       max-height: 35vh;
       transition: 0.3s ease-in-out;
+      opacity: 0.9;
       &:hover {
-        opacity: 0.8;
+        opacity: 1;
       }
       @media screen and (max-width: 500px) {
-        max-height: 250px;
-        max-width: 500px;
+      
         border-radius: 8px;
       }
     }
