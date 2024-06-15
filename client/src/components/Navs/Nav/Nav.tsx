@@ -55,6 +55,7 @@ const Nav: React.FC<NavProps> = ({ total, pageTitle }) => {
       logout();
     }
 
+ 
 
     else {
       logout();
@@ -99,6 +100,15 @@ const Nav: React.FC<NavProps> = ({ total, pageTitle }) => {
     // LEAVE IT EMPTY TO AVOID INFINITE LOOP
     // eslint-disable-next-line
   }, []);
+
+  if (user?.firstName === "User" || business?.businessName === "User") {
+    localStorage.removeItem("user");
+    localStorage.removeItem("user-token");
+    logout();
+    localStorage.removeItem("business");
+    localStorage.removeItem("business-token");
+    logoutBusiness();
+  }
 
   // Organizing Nav
   const AppNavRight = () => {
