@@ -5,12 +5,8 @@ import "./AdsCarousel.scss";
 import { categoriesService } from "../../../services/categoryService";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading/Loading";
-import { createApi } from "unsplash-js";
+import { unsplashApi } from "../../../features/unsplashConfig";
 
-// Unsplash API client
-const unsplashApi = createApi({
-  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
-});
 
 const AdsCarousel: React.FC = () => {
   const [categoryData, setCategoryData] = useState<any[]>([]);

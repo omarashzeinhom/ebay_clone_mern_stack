@@ -5,12 +5,8 @@ import { useProductContext } from "../../../context/ProductContext";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { Nav } from "../..";
-import { createApi } from 'unsplash-js';
+import { unsplashApi } from "../../../features/unsplashConfig";
 
-// Unsplash API client
-const unsplashApi = createApi({
-  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
-});
 
 type ProductDetailProps = {
   total: number;

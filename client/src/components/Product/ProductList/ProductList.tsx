@@ -6,16 +6,14 @@ import Loading from "../../Loading/Loading";
 import { Product } from "../../../models/product";
 import CategorySideBar from "../../Categories/CategorySideBar/CategorySideBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
-import { createApi } from 'unsplash-js';
+import { unsplashApi } from "../../../features/unsplashConfig";
+
+
 
 interface ProductListProps {
   products: Product[];
 }
 
-// Unsplash API client
-const unsplashApi = createApi({
-  accessKey: `${process.env.REACT_APP_UNSPLASH_API_AK}`
-});
 
 const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) => {
   const { categoryName } = useParams();
@@ -71,7 +69,7 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
     }
   }, [categoryName]);
 
-  const filteredProducts = categoryName 
+  const filteredProducts = categoryName
     ? products.filter(product => product.category === categoryName)
     : products;
 

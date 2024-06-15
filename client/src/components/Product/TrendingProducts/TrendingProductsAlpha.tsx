@@ -6,12 +6,8 @@ import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProducts.scss";
 import Loading from "../../Loading/Loading";
 import { useNavigate } from "react-router-dom";
-import { createApi } from 'unsplash-js';
+import { unsplashApi } from "../../../features/unsplashConfig";
 
-// Unsplash API client
-const unsplashApi = createApi({
-  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
-});
 
 interface TrendingProductsAlphaProps { }
 

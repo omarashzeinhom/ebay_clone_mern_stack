@@ -1,12 +1,8 @@
 import React, { useMemo, useEffect, useState } from "react";
 import "./Ads.scss";
 import { AdItems } from "../../utilities/constants";
-import { createApi } from "unsplash-js";
+import { unsplashApi } from "../../features/unsplashConfig";
 
-// Unsplash API client
-const unsplashApi = createApi({
-  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
-});
 
 const Ads: React.FC = () => {
   const [unsplashImages, setUnsplashImages] = useState<{ [key: string]: string }>({});
