@@ -14,10 +14,9 @@
       width: 100%; // Set the width to 100%
       height: 100%; // Set the height to 100%
       object-fit: cover;
-      max-width: 1024px;
       border-radius: 12px;
       box-shadow: 0.4rem 0.4rem 0.5rem 0.4rem rgb(255, 242, 171);
-      max-height: 590px;
+      max-height: 35vh;
       transition: 0.3s ease-in-out;
       &:hover {
         opacity: 0.8;
