@@ -6,81 +6,53 @@ import Loading from "../../Loading/Loading";
 import { Product } from "../../../models/product";
 import CategorySideBar from "../../Categories/CategorySideBar/CategorySideBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
-import { createApi } from 'unsplash-js';
+import { unsplashApi } from "../../../features/unsplashConfig";
 
 interface ProductListProps {
   products: Product[];
 }
 
-// Unsplash API client
-const unsplashApi = createApi({
-  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
-});
 
 const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) => {
   const { categoryName } = useParams();
-  const { products, fetchProducts, getProductById, getProductsByName, searchQuery } = useProductContext();
+  const { products, fetchProducts, getProductsByName } = useProductContext();
   const { addItemToCart, getItemQuantity } = useShoppingCart();
-  const { productId } = useParams<{ productId: string }>();
 
-  const [product, setProduct] = useState<Product | null>(null);
   const [categoryImages, setCategoryImages] = useState<{ [key: string]: string }>({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (categoryName) {
+          // Fetch products based on category name
+          await fetchProducts(); // Assuming fetchProducts fetches all products
+          
+          // Fetch images from Unsplash based on category name
+          const result = await unsplashApi.search.getPhotos({ query: categoryName, orientation: 'landscape' });
+          if (result.response) {
+            const images = result.response.results.reduce((acc, photo) => {
+              const product = products.find(product => product.name === photo.description);
+              if (product) {
+                acc[product._id] = photo.urls.small;
+              }
+              return acc;
+            }, {} as { [key: string]: string });
+            setCategoryImages(images);
+          } else {
+            console.error("No response from Unsplash:", result);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [categoryName, products, fetchProducts]);
 
   const filteredProducts = categoryName 
     ? products.filter(product => product.category === categoryName)
     : products;
-
-   
-  useEffect(() => {
-    const fetchData = async () => {
-      if (productId) {
-        const productData = await getProductById(productId);
-        setProduct(productData || null); // Set to null if productData is undefined
-      }
-      if (searchQuery) {
-        const productData = await getProductsByName(searchQuery);
-        setProduct(productData || null); // Set to null if productData is undefined
-      }
-          fetchData();
-
-    };
-
-
-      // Fetch products based on category
-      if (categoryName === product?.category) {
-        fetchProducts();
-      }else if (product?.id){
-        getProductById(`${getProductById}`);
-      }else {
-
-      }
-
-      if (categoryName) {
-        unsplashApi.search.getPhotos({ query: categoryName, orientation: 'landscape' })
-          .then(result => {
-            if (result.response) {
-              const images = result.response.results.reduce((acc, photo) => {
-                const productId = filteredProducts.find(product => product.name === photo.description)?._id;
-                if (productId) {
-                  acc[productId] = photo.urls.small;
-                }
-                return acc;
-              }, {} as { [key: string]: string });
-              setCategoryImages(images);
-            } else {
-              console.error("No response from Unsplash:", result);
-            }
-          })
-          .catch(error => console.error("Error fetching images from Unsplash:", error));
-      }
-
-
-  }, []);
-
-
-
-
-    
 
   return (
     <div className="product-list-layout">
@@ -103,7 +75,7 @@ const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) 
                     <p className="product-list__product-list-name">{product.name}</p>
                   </a>
                   <div className="product-list__product-list-price-container">
-                    {getItemQuantity(product.id) === 0 && (
+                    {getItemQuantity(product?.id) === 0 && (
                       <button
                         type="button"
                         aria-label="AddProductToCart"

@@ -6,12 +6,7 @@ import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProducts.scss";
 import Loading from "../../Loading/Loading";
 import { useNavigate } from "react-router-dom";
-import { createApi } from 'unsplash-js';
-
-// Unsplash API client
-const unsplashApi = createApi({
-  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
-});
+import { unsplashApi } from "../../../features/unsplashConfig";
 
 interface TrendingProductsAlphaProps { }
 
@@ -45,7 +40,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
       if (filteredProducts.length > 0) {
         const category = filteredProducts[0]?.category || "Sneakers";
         try {
-          const result = await unsplashApi.search.getPhotos({
+          const result = await unsplashApi?.search?.getPhotos({
             query: category,
             orientation: 'landscape',
             perPage: filteredProducts.length // Get as many images as products

@@ -5,12 +5,7 @@ import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProducts.scss";
 import Loading from "../../Loading/Loading";
 import { useNavigate } from "react-router-dom";
-import { createApi } from 'unsplash-js';
-
-// Unsplash API client
-const unsplashApi = createApi({
-  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
-});
+import { unsplashApi } from "../../../features/unsplashConfig";
 
 const TrendingProducts: React.FC = () => {
   const { products, fetchProducts } = useProductContext();
@@ -40,20 +35,20 @@ const TrendingProducts: React.FC = () => {
       );
 
       // Fetch images for each product category
-      if (filteredProducts.length > 0) {
+      if (filteredProducts?.length > 0) {
         const category = filteredProducts[0]?.category || "Video Games";
         try {
-          const result = await unsplashApi.search.getPhotos({
+          const result = await unsplashApi?.search?.getPhotos({
             query: category,
             orientation: 'landscape',
-            perPage: filteredProducts.length // Get as many images as products
+            perPage: filteredProducts?.length // Get as many images as products
           });
 
           if (result.response) {
             const images = result.response.results.reduce((acc, photo, index) => {
               const productId = filteredProducts[index]?._id;
               if (productId) {
-                acc[productId] = photo.urls.small;
+                acc[productId] = photo?.urls?.small;
               }
               return acc;
             }, {} as { [key: string]: string });
