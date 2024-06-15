@@ -5,8 +5,7 @@ import { useProductContext } from "../../../context/ProductContext";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { Nav } from "../..";
-import { unsplashApi } from "../../../features/unsplashConfig";
-import { useBiddingContext } from "../../../context";
+
 
 type ProductDetailProps = {
   total: number;
