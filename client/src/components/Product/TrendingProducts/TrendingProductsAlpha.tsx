@@ -6,7 +6,6 @@ import { useProductContext } from "../../../context/ProductContext";
 import "./TrendingProducts.scss";
 import Loading from "../../Loading/Loading";
 import { useNavigate } from "react-router-dom";
-import { unsplashApi } from "../../../features/unsplashConfig";
 
 
 interface TrendingProductsAlphaProps { }
@@ -15,7 +14,6 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
   const { products, fetchProducts } = useProductContext();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const [productImages, setProductImages] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,44 +30,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
     // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      const filteredProducts = products.filter(
-        (product) => product?.category === "Collectible Sneakers"
-      );
 
-      if (filteredProducts.length > 0) {
-        const category = filteredProducts[0]?.category || "Sneakers";
-        try {
-          const result = await unsplashApi.search.getPhotos({
-            query: category,
-            orientation: 'landscape',
-            perPage: filteredProducts.length // Get as many images as products
-          });
-
-          if (result.response) {
-            const images = result.response.results.reduce((acc, photo, index) => {
-              const productId = filteredProducts[index]?._id;
-              if (productId) {
-                acc[productId] = photo.urls.small;
-              }
-              return acc;
-            }, {} as { [key: string]: string });
-
-            setProductImages(images);
-          } else {
-            console.error("No response from Unsplash");
-          }
-        } catch (error) {
-          console.error("Error fetching images from Unsplash:", error);
-        }
-      }
-    };
-
-    if (products.length > 0) {
-      fetchImages();
-    }
-  }, [products]);
 
   const filteredProducts = products.filter(
     (product) => product?.category === "Collectible Sneakers"
@@ -110,11 +71,11 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
           }}
         >
           {filteredProducts.map((product, index) => {
-            const imageUrl = productImages[product._id] || product.img || 'fallback-image-url';
+            const imageUrl = product?.img;
             return (
               <SwiperSlide
                 lazy={true}
-                key={product?._id}
+                key={product?._id + index}
                 onClick={() => handleProductClick(product?._id)}
               >
                 <div className="app__trending-products-slide app__trending-products-slide-active">
