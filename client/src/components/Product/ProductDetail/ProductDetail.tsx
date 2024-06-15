@@ -5,8 +5,6 @@ import { useProductContext } from "../../../context/ProductContext";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { Nav } from "../..";
-//import { unsplashApi } from "../../../features/unsplashConfig";
-//import { useBiddingContext } from "../../../context";
 
 type ProductDetailProps = {
   total: number;
@@ -18,10 +16,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
   const { productId } = useParams();
   const { getProductById } = useProductContext();
   const [product, setProduct] = useState<any | null>(null);
-  //const {biddingState} = useBiddingContext();
 
-  // Props as consts
-  const productName = product?.name;
+
   const id = product?.id;
   const quantity = getItemQuantity(id);
   let bid;

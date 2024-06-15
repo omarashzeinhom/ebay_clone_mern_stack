@@ -1,13 +1,9 @@
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useMemo} from "react";
 import "./Ads.scss";
 import { AdItems } from "../../utilities/constants";
 
 
 const Ads: React.FC = () => {
-  const [unsplashImages, setUnsplashImages] = useState<{ [key: string]: string }>({});
-
- 
-
 
   const AdCarouselItems = useMemo(
     () =>
@@ -39,7 +35,7 @@ const Ads: React.FC = () => {
           </a>
         </div>
       )),
-    [unsplashImages]
+    []
   );
 
   return (

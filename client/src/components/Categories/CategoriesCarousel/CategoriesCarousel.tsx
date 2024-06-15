@@ -21,7 +21,6 @@ interface CategoriesCarouselProps {
 const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
   const [categoryData, setCategoryData] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
-  const [categoryImages, setCategoryImages] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,34 +40,6 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
     fetchData();
   }, [categoryData]);
 
-  useEffect(() => {
-    const fetchCategoryImages = async () => {
-      const imagePromises = categoryData.map(async (category) => {
-        try {
-          const result = await unsplashApi.search.getPhotos({
-            query: category.name,
-            orientation: "landscape",
-            perPage: 1,
-          });
-
-          if (result.response?.results[0]) {
-            return { [category.name]: result.response.results[0].urls.small };
-          }
-        } catch (error) {
-          console.error(`Error fetching image for ${category.name} from Unsplash:`, error);
-        }
-        return { [category.name]: "" };
-      });
-
-      const images = await Promise.all(imagePromises);
-      const imagesMap = images.reduce((acc, cur) => ({ ...acc, ...cur }), {});
-      setCategoryImages(imagesMap);
-    };
-
-    if (categoryData.length > 0) {
-      fetchCategoryImages();
-    }
-  }, [categoryData]);
 
   const shuffleArray = (array: Category[]): Category[] => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -124,7 +95,7 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
                 <div className="app__categories-slide">
                   <img
                     className="app__categories-image"
-                    src={categoryImages[category.name] || 'default-fallback-image-url'}
+                    src={category?.img}
                     alt={category?.name}
                     loading="lazy"
                   />

@@ -5,7 +5,6 @@ import "./AdsCarousel.scss";
 import { categoriesService } from "../../../services/categoryService";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading/Loading";
-import { unsplashApi } from "../../../features/unsplashConfig";
 
 
 const AdsCarousel: React.FC = () => {
