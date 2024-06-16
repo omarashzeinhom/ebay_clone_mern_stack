@@ -17,10 +17,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
   const { productId } = useParams();
   const { getProductById } = useProductContext();
   const [product, setProduct] = useState<any | null>(null);
-  //const {biddingState} = useBiddingContext();
 
   // Props as consts
-  const productName = product?.name;
   const id = product?.id;
   const quantity = getItemQuantity(id);
   let bid;

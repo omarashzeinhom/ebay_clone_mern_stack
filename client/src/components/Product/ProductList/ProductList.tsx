@@ -20,6 +20,8 @@ const ProductList: React.FC<ProductListProps> = () => {
 
   const [product, setProduct] = useState<Product | null>(null);
 
+  console.log(product);
+  
   useEffect(() => {
     const fetchData = async () => {
       if (productId) {

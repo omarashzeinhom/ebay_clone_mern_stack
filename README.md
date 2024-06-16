@@ -1,4 +1,5 @@
 # Ebay clone in MERN Stack
+
 The eBay clone in MERN Stack is a web application that replicates the core functionalities of the eBay platform using the MERN (MongoDB, Express.js, React, Node.js) technology stack. This clone allows users to buy and sell products in an online marketplace environment. It incorporates features such as user authentication, product listings, bidding or purchasing capabilities, and seller profiles. Utilizing the power of MERN, the application provides a responsive and dynamic user interface, real-time updates, and seamless interactions for a user-friendly online shopping experience reminiscent of eBay.
 
 - [Demo](https://ebay-clone-mern-stack.vercel.app/)
@@ -7,7 +8,14 @@ The eBay clone in MERN Stack is a web application that replicates the core funct
 
 1. ADD DIFFERENT AUCTION SYSTEM[]
 2. ADD STRIPE TO BACKEND INSTEAD OF FRONTEND
-3. OPTIMIZE IMAGES FROM UNSPLASH AS WEBP 
+3. OPTIMIZE IMAGES FROM UNSPLASH AS WEBP
+4. Optimize App By Using `useContext` in `global States Only`
+
+- `Auth`
+- `Translation`
+- `Theme Dark/Light Mode`
+
+5. Remove `Products` & `Categories` from Global State
 
 ### Built With
 
@@ -129,3 +137,5 @@ Deploy to [render](https://render.com/)
 - [Configuration options for the dependabot.yml file](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file)
 - [What is rate limiting? | Rate limiting and bots](https://www.cloudflare.com/en-gb/learning/bots/what-is-rate-limiting/)
 - [Write Concern-MongoDB](https://www.mongodb.com/docs/manual/reference/write-concern/#write-concern)
+- [Passing Data Deeply with Context](https://react.dev/learn/passing-data-deeply-with-context)
+- [React Context performance and suggestions](https://stackoverflow.com/questions/75060633/react-context-performance-and-suggestions)
