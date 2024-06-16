@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Category } from "../models/category";
-import { categoriesService } from "../services/categoryService";
+import React from "react";
 import {
   UserAuthProvider,
   BusinessAuthProvider,
   ShoppingCartProvider,
   ProductProvider,
   useProductContext,
-  CategoryProvider,
   BiddingProvider,
 } from "../context/";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -24,22 +21,9 @@ type AppProps = {
 };
 
 const App: React.FC<AppProps> = ({ total }) => {
-  const [categories, setCategories] = useState<Category[]>([]);
   const { searchResults } = useProductContext();
 
-  useEffect(() => {
-    // Fetch categories from the server when the component mounts
-    const fetchCategories = async () => {
-      try {
-        const data = await categoriesService.getAllCategories();
-        setCategories(data);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
+ 
 
   // Existing routes
   const existingRoutes = [
@@ -88,13 +72,13 @@ const App: React.FC<AppProps> = ({ total }) => {
       <UserAuthProvider>
         <BusinessAuthProvider>
           <ShoppingCartProvider>
-            <CategoryProvider>
+          
               <ProductProvider>
                 <BiddingProvider>
                   <RouterProvider router={router} />
                 </BiddingProvider>
               </ProductProvider>
-            </CategoryProvider>
+       
           </ShoppingCartProvider>
         </BusinessAuthProvider>
       </UserAuthProvider>
