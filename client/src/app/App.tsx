@@ -14,7 +14,7 @@ import { DeleteProduct, UpdateProduct } from "../components/Sell/CRUD";
 import Routes from "./Routes";
 import "./App.scss";
 import { Provider } from 'react-redux';
-import store from "../store/store";
+import {store} from "../store/store";
 
 type AppProps = {
   total: number;

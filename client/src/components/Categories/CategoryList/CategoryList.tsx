@@ -13,7 +13,7 @@ interface CategoryListProps {
 
 const CategoryList: React.FC<CategoryListProps> = ({ total }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data: categories, loading } = useSelector((state: RootState) => state.categories);
+  const { data: categories} = useSelector((state: RootState) => state.categories);
 
   const navigate = useNavigate();
 

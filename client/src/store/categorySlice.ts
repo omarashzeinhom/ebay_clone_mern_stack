@@ -1,27 +1,26 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { Category } from '../models/category';
-import { categoriesService } from '../services/categoryService';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Category } from "../models/category";
+import { categoriesService } from "../services/categoryService";
 
-// Async thunk to fetch categories
-export const fetchCategories = createAsyncThunk('categories/fetchCategories', async () => {
-  const data = await categoriesService.getAllCategories();
-  return data;
-});
-
-interface CategoryState {
+interface CategoriesState {
   data: Category[];
   loading: boolean;
   error: string | null;
 }
 
-const initialState: CategoryState = {
+const initialState: CategoriesState = {
   data: [],
   loading: false,
   error: null,
 };
 
-const categorySlice = createSlice({
-  name: 'categories',
+export const fetchCategories = createAsyncThunk("categories/fetchCategories", async () => {
+  const response = await categoriesService.getAllCategories();
+  return response;
+});
+
+const categoriesSlice = createSlice({
+  name: "categories",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -30,15 +29,15 @@ const categorySlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchCategories.fulfilled, (state, action: PayloadAction<Category[]>) => {
+      .addCase(fetchCategories.fulfilled, (state, action) => {
         state.data = action.payload;
         state.loading = false;
       })
       .addCase(fetchCategories.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'Failed to fetch categories';
+        state.error = action.error.message || "Failed to fetch categories";
       });
   },
 });
 
-export default categorySlice.reducer;
+export default categoriesSlice.reducer;
