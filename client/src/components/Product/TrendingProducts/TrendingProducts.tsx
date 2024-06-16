@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useProductContext } from "../../../context/ProductContext";
+import { useDispatch, useSelector } from "react-redux";
 import "./TrendingProducts.scss";
 import Loading from "../../Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { fetchProducts } from "../../../store/productSlice";
+import { RootState, AppDispatch } from "../../../store/store";
 
 const TrendingProducts: React.FC = () => {
-  const { products, fetchProducts } = useProductContext();
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { products, status, error } = useSelector((state: RootState) => state.products);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetchProducts();
+        await dispatch(fetchProducts()).unwrap();
         setLoading(false); // Set loading to false once data is fetched
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -24,9 +27,7 @@ const TrendingProducts: React.FC = () => {
 
     fetchData();
     // eslint-disable-next-line
-  }, []);
-
-
+  }, [dispatch]);
 
   const filteredProducts = products.filter(
     (product) => product?.category === "Video Games & Consoles"
@@ -67,31 +68,28 @@ const TrendingProducts: React.FC = () => {
               },
             }}
           >
-            {filteredProducts.map((product, index) => {
-              return (
-                <SwiperSlide
-                  lazy={true}
-                  key={product?._id}
-                  onClick={() => handleProductClick(product?._id)}
-                >
-                  <div className="app__trending-products-slide app__trending-products-slide-active">
-                    <img
-                      width={"100%"}
-                      height={"100"}
-                      src={product?.img} // Use fetched Unsplash image or fallback
-                      alt={product?.name}
-                      loading="lazy"
-                    />
-                    <p className="app__trending-products-slide-name">
-                      {product?.name.slice(0, 10)}
-                    </p>
-                    <p className="app__trending-products-slide-price">
-                      Price: {product?.price} $
-                    </p>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
+            {filteredProducts.map((product) => (
+              <SwiperSlide
+                key={product?._id}
+                onClick={() => handleProductClick(product?._id)}
+              >
+                <div className="app__trending-products-slide app__trending-products-slide-active">
+                  <img
+                    width={"100%"}
+                    height={"100"}
+                    src={product?.img}
+                    alt={product?.name}
+                    loading="lazy"
+                  />
+                  <p className="app__trending-products-slide-name">
+                    {product?.name.slice(0, 10)}
+                  </p>
+                  <p className="app__trending-products-slide-price">
+                    Price: {product?.price} $
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </>
       )}

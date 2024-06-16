@@ -2,22 +2,25 @@ import React, { useEffect, useState } from "react";
 import "swiper/swiper-bundle.css";
 import { Navigation, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useProductContext } from "../../../context/ProductContext";
+import { useDispatch, useSelector } from "react-redux";
 import "./TrendingProducts.scss";
 import Loading from "../../Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { fetchProducts } from "../../../store/productSlice";
+import { RootState, AppDispatch } from "../../../store/store";
 
 interface TrendingProductsAlphaProps { }
 
 const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
-  const { products, fetchProducts } = useProductContext();
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { products, status } = useSelector((state: RootState) => state.products);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await fetchProducts();
+        await dispatch(fetchProducts()).unwrap();
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
@@ -26,9 +29,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
     };
 
     fetchData();
-    // eslint-disable-next-line
-  }, []);
-
+  }, [dispatch]);
 
   const filteredProducts = products.filter(
     (product) => product?.category === "Collectible Sneakers"
@@ -41,7 +42,7 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
   return (
     <div id="dailydeals" className="app__trending-products-carousel">
       <h2>Score These Trending Kicks</h2>
-      {loading ? (
+      {loading || status === "loading" ? (
         <Loading text="Fetching Trending Products..." />
       ) : (
         <Swiper
@@ -68,31 +69,28 @@ const TrendingProductsAlpha: React.FC<TrendingProductsAlphaProps> = () => {
             },
           }}
         >
-          {filteredProducts.map((product, index) => {
-            return (
-              <SwiperSlide
-                lazy={true}
-                key={product?._id}
-                onClick={() => handleProductClick(product?._id)}
-              >
-                <div className="app__trending-products-slide app__trending-products-slide-active">
-                  <img
-                    src={product?.img}
-                    alt={product?.name}
-                    loading="lazy"
-                    width={"100%"}
-                    height={"100"}
-                  />
-                  <p className="app__trending-products-slide-name">
-                    {product?.name.slice(0, 10)}
-                  </p>
-                  <p className="app__trending-products-slide-price">
-                    Price: {product?.price} $
-                  </p>
-                </div>
-              </SwiperSlide>
-            );
-          })}
+          {filteredProducts.map((product) => (
+            <SwiperSlide
+              key={product?._id}
+              onClick={() => handleProductClick(product?._id)}
+            >
+              <div className="app__trending-products-slide app__trending-products-slide-active">
+                <img
+                  src={product?.img}
+                  alt={product?.name}
+                  loading="lazy"
+                  width={"100%"}
+                  height={"100"}
+                />
+                <p className="app__trending-products-slide-name">
+                  {product?.name.slice(0, 10)}
+                </p>
+                <p className="app__trending-products-slide-price">
+                  Price: {product?.price} $
+                </p>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       )}
     </div>
