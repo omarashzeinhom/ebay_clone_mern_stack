@@ -1,38 +1,15 @@
-import { useEffect, useState } from "react";
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import React, { useEffect } from "react";
 
-export default function Header() {
-  const [pageTitle] = useState("eBay Clone");
-  
+interface HeaderProps {
+  pageTitle: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
   useEffect(() => {
-    // Update the document title when pageTitle changes
     document.title = `${pageTitle} | eBay Clone`;
   }, [pageTitle]);
 
-
-
-  return (
-    <HelmetProvider>
-<Helmet>
-      <title>{pageTitle}</title>
-      <meta
-        name="description"
-        content="eBay Clone App By ANDGOEDU"
-      />
-      <meta
-        name="keywords"
-        content="eBay, Clone, React, TypeScript, MongoDB, Express"
-      />
-      <meta name="author" content="Omar Ashraf Zeinhom | &GoEdu" />
-      <link
-        rel="canonical"
-        href="https://ebay-clone-mern-stack.vercel.app/"
-      />
-
-     
-    </Helmet>
-
-    </HelmetProvider>
-    
-  );
+  return null; // Since <title> tag cannot be directly rendered in React
 }
+
+export default Header;
