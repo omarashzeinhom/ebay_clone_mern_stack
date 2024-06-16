@@ -45,22 +45,28 @@ export const productService = {
   },
 
   // Adjust the service function to accept productName parameter
-  getProductsByName: async (productName: string): Promise<Product[]> => {
+  getProductsByName: async (
+    productName: string
+  ): Promise<Product | undefined> => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}products/search-results/${encodeURIComponent(productName)}`
+        `${API_BASE_URL}products/search-results/${encodeURIComponent(
+          productName
+        )}`
       );
       if (!response.ok) {
         if (response.status === 429) {
-          alert('Search has been disabled due to too many attempts. Please wait a moment and try again.');
+          alert('Search has been disabled because there have been too many attempts. Please wait a minute to reset the rate limit for security purposes.');
         }
-        throw new Error('Failed to fetch products');
+        console.error("Failed to fetch product");
       }
+
       const data = await response.json();
-      return data || []; // Ensure to return an array, handle edge cases gracefully
-    } catch (error) {
-      console.error('Error fetching products by Name:', error);
-      throw error; // Optionally handle or rethrow the error
+      return data || [];
+    } catch (error:any) {
+      console.error("Error fetching products by Name:", error);
+     
+      return undefined;
     }
   },
   createProduct: async (product: {
