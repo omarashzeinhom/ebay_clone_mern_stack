@@ -6,7 +6,6 @@ import Loading from "../../Loading/Loading";
 import { Product } from "../../../models/product";
 import CategorySideBar from "../../Categories/CategorySideBar/CategorySideBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
-import { unsplashApi } from "../../../features/unsplashConfig";
 
 
 
@@ -15,7 +14,7 @@ interface ProductListProps {
 }
 
 
-const ProductList: React.FC<ProductListProps> = ({ products: productListProp }) => {
+const ProductList: React.FC<ProductListProps> = () => {
   const { categoryName } = useParams();
   const { products, fetchProducts, getProductById, getProductsByName, searchQuery } = useProductContext();
   const { addItemToCart, getItemQuantity } = useShoppingCart();

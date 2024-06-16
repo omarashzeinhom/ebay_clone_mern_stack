@@ -31,7 +31,7 @@ export default function Home({ total, selectedCategory , handleCategoryClick }: 
   
   return (
     <>
-      <Header />
+      <Header pageTitle="Home" />
       <Nav total={total} pageTitle="Home"/>
       <SearchBar />
       <AdsCarousel />

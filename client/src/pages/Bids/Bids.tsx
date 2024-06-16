@@ -15,7 +15,7 @@ export default function Bids({ pageTitle }: BidsProps) {
 
     return (
         <>
-            <Header  />
+            <Header pageTitle="MyBids" />
             <Nav total={0} pageTitle="CheckOut" />
             <SearchBar />
             <h2>Bids</h2>

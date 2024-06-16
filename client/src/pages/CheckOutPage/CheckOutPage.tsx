@@ -11,7 +11,7 @@ interface CheckOutProps {
 const CheckOutPage: React.FC<CheckOutProps> = () => {
     return (
         <>
-            <Header  />
+            <Header pageTitle="CheckOut"  />
             <Nav total={0} pageTitle="CheckOut" />
             <SearchBar/>
             <h1>CheckOut</h1>
