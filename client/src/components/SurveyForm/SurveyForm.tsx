@@ -70,7 +70,7 @@ export default function SurveyForm({ total }: any) {
 
   return (
     <>
-      <Nav total={total} />
+      <Nav total={total} pageTitle="Survery Form" />
       <SignInNav />
       <h2> Survey </h2>
       {business || user ? (

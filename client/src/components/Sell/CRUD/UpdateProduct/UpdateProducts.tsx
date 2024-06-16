@@ -66,7 +66,7 @@ const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
 
   return (
     <>
-      <Nav total={total} />
+      <Nav total={total} pageTitle="UpdateProduct"/>
       <SearchBar />
       <SellComponent/>
       {business?.businessId !== null && (

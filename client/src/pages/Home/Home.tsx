@@ -32,7 +32,7 @@ export default function Home({ total, selectedCategory , handleCategoryClick }: 
   return (
     <>
       <Header />
-      <Nav total={total} />
+      <Nav total={total} pageTitle="Home"/>
       <SearchBar />
       <AdsCarousel />
       <CategoriesCarousel selectedCategory={selectedCategory} handleCategoryClick={handleCategoryClick}/>

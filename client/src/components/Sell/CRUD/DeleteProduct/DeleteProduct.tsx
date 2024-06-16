@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {  useProductContext  , useBusinessAuth} from "../../../../context/";
+import { useProductContext, useBusinessAuth } from "../../../../context/";
 import "./DeleteProduct.scss";
 import { Nav, SearchBar, SellComponent } from "../../..";
 import { productService } from "../../../../services/productService";
@@ -36,7 +36,7 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
     try {
       setLoading(true);
       setError(null);
-     const data = await productService.deleteProduct(`${productId}`); 
+      const data = await productService.deleteProduct(`${productId}`);
       setLoading(false);
       console.log("Product deleted:", data);
       console.log("Product Deleted successfully!");
@@ -52,62 +52,62 @@ const DeleteProduct: React.FC<ProductDetailProps> = ({ total }) => {
 
   return (
     <>
-      <Nav total={total} />
+      <Nav total={total} pageTitle="Delete Product" />
       <SearchBar />
       <SellComponent />
       {business?.businessId !== null && (
         <>
           {business?.businessId === product?.businessId && (
             <div className="Delete-product-container">
-            {loading && <p>Loading...</p>}
+              {loading && <p>Loading...</p>}
               {error && <p style={{ color: "red" }}>{error}</p>}
               <h2>Delete Product</h2>
               <form className="product-form-container" onSubmit={handleSubmit}>
                 <div className="delete-product-container">
-                    <p>
-                      {" "}
-                      <strong>id:</strong>
-                      {product?.id}
-                    </p>
-                    <p>
-                      <strong> _id:</strong>
-                      {product?._id}
-                    </p>
-                    <p>
-                      <strong>Name:</strong>
-                      {product?.name}
-                    </p>
-                    <p>
-                      <strong>Parent:</strong>
-                      {product?.parent}
-                    </p>
-                    <p className="">
-                      <strong>Category:</strong>
-                      {product?.category}
-                    </p>
-                    <p className="">
-                      <strong> Product Image & Url:</strong>
-                      {product?.img}
-                      <img
+                  <p>
+                    {" "}
+                    <strong>id:</strong>
+                    {product?.id}
+                  </p>
+                  <p>
+                    <strong> _id:</strong>
+                    {product?._id}
+                  </p>
+                  <p>
+                    <strong>Name:</strong>
+                    {product?.name}
+                  </p>
+                  <p>
+                    <strong>Parent:</strong>
+                    {product?.parent}
+                  </p>
+                  <p className="">
+                    <strong>Category:</strong>
+                    {product?.category}
+                  </p>
+                  <p className="">
+                    <strong> Product Image & Url:</strong>
+                    {product?.img}
+                    <img
                       src={product?.img}
                       className="product-img"
                       alt={product?.name}
                     />
-                    </p>
+                  </p>
 
-               
-                    <p className="">
-                      <strong> Price:</strong>
-                      {product?.price}
-                    </p>
-                    <p className="">
-                      <strong> Quantity:</strong>
-                      {product?.quantity}
-                    </p>
-                    <p className="">
-                      <strong> BusinessId:</strong>
-                      {product?.businessId}
-                    </p>
+
+                  <p className="">
+                    <strong> Price:</strong>
+                    {product?.price}
+                  </p>
+                  <p className="">
+                    <strong> Quantity:</strong>
+                    {product?.quantity}
+                  </p>
+                  <p className="">
+                    <strong> BusinessId:</strong>
+                    {product?.businessId}
+                  </p>
                   <button
                     aria-label="Delete Product Button"
                     className="delete-button"

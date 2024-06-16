@@ -31,7 +31,7 @@ const CustomerService: React.FC<CustomerServiceProps> = ({ total }) => {
 
   return (
     <>
-      <Nav total={total} />
+      <Nav total={total} pageTitle="Customer Service"/>
       <CustomerServiceNav />
       <div className="customer-service">
         <h2>How can we help you today?</h2>

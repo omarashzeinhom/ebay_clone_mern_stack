@@ -129,7 +129,7 @@ export default function Profile({ total }: ProfileProps) {
     <>
       {user?.userId || business?.businessId ? (
         <>
-          <Nav total={total} />
+          <Nav total={total}  pageTitle=""/>
           <SearchBar />
           <RadioButtons />
           <div className="app-profile-container">
@@ -140,7 +140,7 @@ export default function Profile({ total }: ProfileProps) {
         </>
       ) : (
         <>
-          <Nav total={total} />
+          <Nav total={total} pageTitle=""/>
           <SearchBar />
           <div className="app-profile-container">
             <button
