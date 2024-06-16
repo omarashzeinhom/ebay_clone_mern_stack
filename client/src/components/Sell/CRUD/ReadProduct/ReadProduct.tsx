@@ -1,9 +1,9 @@
 import axios from "axios";
-import "./ReadProduct.scss"; 
+import "./ReadProduct.scss";
 import { useState, useEffect } from "react";
 import { Product } from "../../../../models/product";
 import { Link, useParams } from "react-router-dom";
-import { useProductContext,useBusinessAuth } from "../../../../context/";
+import { useProductContext, useBusinessAuth } from "../../../../context/";
 
 export default function ReadProduct() {
   const { business } = useBusinessAuth();
@@ -35,7 +35,7 @@ export default function ReadProduct() {
     };
 
     fetchBusinessProducts();
-  }, [product, productId, getProductById,business]);
+  }, [product, productId, getProductById, business]);
 
   const editProductLink = (productId: string) => `/edit/${productId}`;
   const deleteProductLink = (productId: string) => `/delete/${productId}`;
@@ -46,11 +46,11 @@ export default function ReadProduct() {
       {businessProducts?.length > 0 ? (
         <div className="product-list">
           <h3>Products Owned By Business {businessProducts?.length}</h3>
-          <br/>
+          <br />
           {businessProducts?.map((product: Product, index: number) => (
             <div key={index} className="product-card">
-                <img
-               
+              <img
+
                 src={product?.img}
                 alt={product?.name}
                 className="product-image"
@@ -62,8 +62,8 @@ export default function ReadProduct() {
                   Quantity: {product?.quantity}
                 </span>
                 <span className="">Category: {product?.category}</span>
-               <button aria-label={"EditProduct" + product?.name + "Button"}> <Link to={`${editProductLink(product?._id)}`}>Edit</Link>{" "}</button>
-               <button aria-label={"DeleteProduct" + product?.name + "Button"}><Link to={`${deleteProductLink(product?._id)}`}>Delete</Link></button>
+                <button aria-label={"EditProduct" + product?.name + "Button"}> <Link to={`${editProductLink(product?._id)}`}>Edit</Link>{" "}</button>
+                <button aria-label={"DeleteProduct" + product?.name + "Button"}><Link to={`${deleteProductLink(product?._id)}`}>Delete</Link></button>
               </div>
             </div>
           ))}

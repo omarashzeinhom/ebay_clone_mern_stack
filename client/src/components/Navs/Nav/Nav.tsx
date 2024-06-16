@@ -24,8 +24,6 @@ const Nav: React.FC<NavProps> = ({ total, pageTitle }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNotificationModalVisible, setIsNotificationModalVisible] =
     useState(false);
-  // Debug
-  //console.log(`user ====> ${JSON.stringify(user)} | business ====> ${JSON.stringify(business )}`);
 
   const [notificationCount, setNotificationCount] = useState(0); // Assuming you have a way to update the notification count
 

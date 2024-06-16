@@ -9,7 +9,7 @@ const Header: React.FC<HeaderProps> = ({ pageTitle }) => {
     document.title = `${pageTitle} | eBay Clone`;
   }, [pageTitle]);
 
-  return null; // Since <title> tag cannot be directly rendered in React
+  return null;
 }
 
 export default Header;

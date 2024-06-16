@@ -20,7 +20,7 @@ const Footer: React.FC<FooterProps> = ({ footerLinks }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.pageYOffset > 700) {
+      if (window?.scrollY > 700) {
         setShowToTop(true);
       } else {
         setShowToTop(false);
