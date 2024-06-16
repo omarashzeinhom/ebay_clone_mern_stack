@@ -53,14 +53,17 @@ export const productService = {
       if (!response.ok) {
         if (response.status === 429) {
           alert('Search has been disabled due to too many attempts. Please wait a moment and try again.');
+        } else {
+          alert("No Product Was Found Matching the Searched term, please try again");
         }
         throw new Error('Failed to fetch products');
       }
       const data = await response.json();
-      return data || []; // Ensure to return an array, handle edge cases gracefully
+      const regex = new RegExp(productName, 'i'); // 'i' makes it case-insensitive
+      return data.filter((product: Product) => regex.test(product.name)) || []; // Filter products based on the regex match
     } catch (error) {
-      console.error('Error fetching products by Name:', error);
-      throw error; // Optionally handle or rethrow the error
+      console.error('Error fetching products by name:', error);
+      throw error;
     }
   },
   createProduct: async (product: {
