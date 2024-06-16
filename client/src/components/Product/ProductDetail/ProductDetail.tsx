@@ -1,11 +1,12 @@
 import "./ProductDetail.scss";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useProductContext } from "../../../context/ProductContext";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../../store/store";
+import { fetchProductById } from "../../../store/productSlice";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 import { Nav } from "../..";
-
 
 type ProductDetailProps = {
   total: number;
@@ -14,38 +15,26 @@ type ProductDetailProps = {
 const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
   const navigate = useNavigate();
   const { addItemToCart, decreaseCartQuantity, getItemQuantity } = useShoppingCart();
-  const { productId } = useParams();
-  const { getProductById } = useProductContext();
-  const [product, setProduct] = useState<any | null>(null);
-
-  // Props as consts
-  const id = product?.id;
-  const quantity = getItemQuantity(id);
-  let bid;
+  const { productId } = useParams<{ productId: string }>();
+  const dispatch = useDispatch<AppDispatch>();
+  const product = useSelector((state: RootState) => state.products.productDetail);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (productId) {
-        try {
-          const productData = await getProductById(productId);
-          setProduct(productData);
-        } catch (error) {
-          console.error("Error fetching product details:", error);
-        }
-      }
-    };
+    if (productId) {
+      dispatch(fetchProductById(productId));
+    }
+  }, [productId, dispatch]);
 
-    fetchData();
-  }, [productId, getProductById]);
+  // Ensure id is always treated as a number
+  const id = product?.id || 0; // Assuming id should be a number, use 0 as fallback if product?.id is falsy
+  const quantity = getItemQuantity(id);
 
-
+  function handleRouting() {
+    navigate(`/category/${encodeURIComponent(product?.category ?? "")}`);
+  }
 
   if (!product) {
     return <div className="loading">Loading...</div>;
-  }
-
-  function handleRouting() {
-    navigate(`/category/${encodeURIComponent(product?.category)}`);
   }
 
   return (
@@ -118,7 +107,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
             <button
               aria-label="AddProductToCart"
               className="product-detail__button"
-            //onClick={() => addItemToBid(product)}
+              // onClick={() => addItemToBid(product)}
             >
               Place Bid
             </button>
@@ -126,25 +115,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ total }) => {
           <button
             aria-label="DecreaseItemQuantity"
             className="product-detail__altbutton"
-          //onClick={() => buyFinalPriceFromBid(id)}
+            // onClick={() => buyFinalPriceFromBid(id)}
           >
             Buy Now
           </button>
-          {bid && (
-            <>
-              <button
-                aria-label="DecreaseItemQuantity"
-                className="product-detail__altbutton"
-              //onClick={() => removeItemFromBid(id)}
-              >
-                Remove Existing Bid
-              </button>
-            </>
-          )
-
-          }
-
-
+          {/* Add additional conditions and functionality for bid if needed */}
         </div>
       </div>
     </>

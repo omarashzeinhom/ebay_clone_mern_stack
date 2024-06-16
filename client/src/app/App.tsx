@@ -27,7 +27,6 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   // Existing routes
   const existingRoutes = [
-  
     {
       path: "/products",
       element: (
