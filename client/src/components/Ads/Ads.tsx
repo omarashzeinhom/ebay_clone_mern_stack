@@ -1,9 +1,9 @@
-import React, { useMemo} from "react";
+import React, { useMemo, } from "react";
 import "./Ads.scss";
 import { AdItems } from "../../utilities/constants";
 
-
 const Ads: React.FC = () => {
+
 
   const AdCarouselItems = useMemo(
     () =>
@@ -15,7 +15,7 @@ const Ads: React.FC = () => {
           <a href={item?.link}>
             <img
               className="ads__featured__item__img"
-              src={ item?.img}
+              src={item?.img}
               alt={item?.title}
               width={800}
               height={400}

@@ -1,45 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
 import { Category } from "../../../models/category";
 import { Scrollbar, Navigation } from "swiper/modules";
-import { categoriesService } from "../../../services/categoryService";
-import "./CategoriesCarousel.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../../store/store";
+import { fetchCategories } from "../../../store/categorySlice";
 import Loading from "../../Loading/Loading";
-import { createApi } from "unsplash-js";
-
-// Unsplash API client
-const unsplashApi = createApi({
-  accessKey: process.env.REACT_APP_UNSPLASH_API_AK || ''
-});
+import "./CategoriesCarousel.scss";
 
 interface CategoriesCarouselProps {
   selectedCategory?: string;
   handleCategoryClick?: (categoryName: string) => void;
 }
 
-const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
-  const [categoryData, setCategoryData] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
+const CategoriesCarousel: React.FC<CategoriesCarouselProps> = ({
+  selectedCategory,
+  handleCategoryClick,
+}) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { data: categoryData, loading } = useSelector((state: RootState) => state.categories);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (categoryData.length === 0) {
-          const data = await categoriesService.getAllCategories();
-          setCategoryData(data);
-        }
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [categoryData]);
-
+    if (categoryData.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categoryData.length]);
 
   const shuffleArray = (array: Category[]): Category[] => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -51,8 +38,13 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
 
   const shuffledData = shuffleArray([...categoryData]);
 
-  const handleCategoryClick = (categoryName: string) => {
-    navigate(`/category/${encodeURIComponent(categoryName)}`);
+  // Use handleCategoryClick from props if provided
+  const onCategoryClick = (categoryName: string) => {
+    if (handleCategoryClick) {
+      handleCategoryClick(categoryName);
+    } else {
+      navigate(`/category/${encodeURIComponent(categoryName)}`);
+    }
   };
 
   return (
@@ -90,12 +82,12 @@ const CategoriesCarousel: React.FC<CategoriesCarouselProps> = () => {
               <SwiperSlide
                 lazy={true}
                 key={category?.name + index}
-                onClick={() => handleCategoryClick(category?.name)}
+                onClick={() => onCategoryClick(category?.name)}
               >
                 <div className="app__categories-slide">
                   <img
                     className="app__categories-image"
-                    src={category?.img}
+                    src={category?.img || 'default-fallback-image-url'}
                     alt={category?.name}
                     loading="lazy"
                   />

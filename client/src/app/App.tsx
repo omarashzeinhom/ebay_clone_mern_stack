@@ -1,116 +1,37 @@
-import "./App.scss";
-import React, { useState, useEffect } from "react";
-import { Category } from "../models/category";
-import { categoriesService } from "../services/categoryService";
+import React from "react";
 import {
   UserAuthProvider,
   BusinessAuthProvider,
   ShoppingCartProvider,
   ProductProvider,
   useProductContext,
-  CategoryProvider,
+  BiddingProvider,
 } from "../context/";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import {
-  Home,
-  SignIn,
-  Register,
-  CustomerService,
-  Survey,
-  NotFound,
-  SellPage,
-} from "../pages";
-import {
-  CategoryList,
-  ProductList,
-  ProductDetail,
-  Profile,
-  SearchResults,
-  ErrorBoundary,
-} from "../components";
+
+import { CategoryList, ProductList, ProductDetail } from "../components";
 import { DeleteProduct, UpdateProduct } from "../components/Sell/CRUD";
+import Routes from "./Routes";
+import "./App.scss";
+import { Provider } from 'react-redux';
+import {store} from "../store/store";
 
 type AppProps = {
   total: number;
 };
+
 const App: React.FC<AppProps> = ({ total }) => {
-  const [categories, setCategories] = useState<Category[]>([]);
   const { searchResults } = useProductContext();
 
-  useEffect(() => {
-    // Fetch categories from the server when the component mounts
-    const fetchCategories = async () => {
-      try {
-        const data = await categoriesService.getAllCategories();
-        setCategories(data);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
+ 
 
-    fetchCategories();
-  }, []);
-
-  // DIVIDE LOGGEDOUT STACK AND LOGGEDIN STACK FOR (BUSINESS & USERS);
-  const routes = [
-    /* <--- Main Routes Start --->  */
-    {
-      path: "/",
-      element: <Home total={total} />,
-    },
-    {
-      path: "/signin",
-      element: <SignIn />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    },
-    {
-      path: "/help&contact",
-      element: <CustomerService total={total} />,
-    },
-    {
-      path: "/survey",
-      element: <Survey />,
-    },
-    {
-      path: "/search-results/:name", // Define the route for search results
-      element: <SearchResults />,
-    },
-    {
-      path: "/sell",
-      element: <SellPage total={total} />,
-    },
-    {
-      path: "*",
-      element: <NotFound />,
-    },
-    /* <--- Main Routes End --->  */
-    /* <--- Product & Categories Start ---> */
-    {
-      path: "/",
-      element: (
-        <ProductProvider>
-          <CategoryList categories={categories} total={total} />
-          <ProductList products={searchResults || []} />
-        </ProductProvider>
-      ),
-      children: categories.map((category) => ({
-        path: `/category/${encodeURIComponent(category?.name)}`,
-        element: (
-          <ProductProvider key={category?.name || " "}>
-            <ProductList products={searchResults || []} />
-          </ProductProvider>
-        ),
-      })),
-    },
-
+  // Existing routes
+  const existingRoutes = [
     {
       path: "/products",
       element: (
         <ProductProvider>
-          <CategoryList categories={categories} total={total} />
+          <CategoryList  total={total} />
           <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
@@ -119,7 +40,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       path: "/category/:categoryName",
       element: (
         <ProductProvider>
-          <CategoryList categories={categories} total={total} />
+          <CategoryList total={total} />
           <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
@@ -128,56 +49,39 @@ const App: React.FC<AppProps> = ({ total }) => {
       path: "/item/:productId",
       element: <ProductDetail total={total} />,
     },
-    {
-      path: "/",
-      element: <ProductDetail total={total} />,
-    },
-
-    /* <--- Update & Delete Routes Start ---> */
+ 
     {
       path: "/edit/:productId",
-      element: <UpdateProduct total={total} />,
+      element: <UpdateProduct total={total}/>,
     },
     {
       path: "/delete/:productId",
-      element: <DeleteProduct total={total} />,
+      element: <DeleteProduct total={total}  />,
     },
-    /* <--- Update & Delete Routes End ---> */
-
-    /* <--- Product & Categories End ---> */
-    /* <--- Auth & Profile Start  ---> */
-    {
-      path: "/",
-      element: <Profile total={total} />,
-    },
-    {
-      path: "/user/:userId",
-      element: <Profile total={total} />,
-    },
-    {
-      path: "/business/:businessId",
-      element: <Profile total={total} />,
-    },
-    /* <--- Auth & Profile End  ---> */
   ];
 
-  const router = createBrowserRouter(routes);
+  // Merge existing routes with routes from Routes.tsx
+  const allRoutes = [...existingRoutes, ...Routes(total)];
+
+  const router = createBrowserRouter(allRoutes);
 
   return (
     <React.StrictMode>
-      <ErrorBoundary>
-          <UserAuthProvider>
-            <BusinessAuthProvider>
-              <ShoppingCartProvider>
-                <CategoryProvider>
-                  <ProductProvider>
-                    <RouterProvider router={router} />
-                  </ProductProvider>
-                </CategoryProvider>
-              </ShoppingCartProvider>
-            </BusinessAuthProvider>
-          </UserAuthProvider>
-      </ErrorBoundary>
+       <Provider store={store}>
+      <UserAuthProvider>
+        <BusinessAuthProvider>
+          <ShoppingCartProvider>
+          
+              <ProductProvider>
+                <BiddingProvider>
+                  <RouterProvider router={router} />
+                </BiddingProvider>
+              </ProductProvider>
+       
+          </ShoppingCartProvider>
+        </BusinessAuthProvider>
+      </UserAuthProvider>
+      </Provider>
     </React.StrictMode>
   );
 };

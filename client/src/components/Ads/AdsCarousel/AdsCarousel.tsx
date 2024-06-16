@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../../Loading/Loading";
 
 
+
 const AdsCarousel: React.FC = () => {
   const [categoryData, setCategoryData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -27,7 +28,6 @@ const AdsCarousel: React.FC = () => {
     fetchData();
   }, []);
 
- 
 
   const handleCategoryClick = (categoryName: string) => {
     navigate(`/category/${encodeURIComponent(categoryName)}`);
@@ -54,7 +54,7 @@ const AdsCarousel: React.FC = () => {
           loop={categoryData.length > 0} // Enable loop only if there are enough slides
         >
           {categoryData.map((category) => (
-            <SwiperSlide key={category.name} lazy={true}>
+            <SwiperSlide key={category?.name} lazy={true}>
               <div className="ads-swiper__slide">
                 <img
                   src={category?.img}
@@ -72,7 +72,7 @@ const AdsCarousel: React.FC = () => {
                       className="ads-swiper__generate-text-button"
                       onClick={() => handleCategoryClick(category?.name)}
                     >
-                      {category?.name}
+                      {category.name}
                     </button>
                   </div>
                 </div>

@@ -1,6 +1,5 @@
 // Navs
 import {Header,Nav,Footer} from "./Navs"
-
 // Search
 import SearchBar from "./SearchBar/SearchBar";
 import SearchResults from "./SearchBar/SearchResults";
@@ -19,6 +18,10 @@ import {
 } from "./Product";
 // CRUD Products
 import SellComponent from "./Sell/SellComponent";
+// Bidding 
+import BidHistory from "./Bidding/BidHistory";
+import BusinessContactInfoForm from "./Bidding/ContactInfo/BusinessContactInfoForm";
+import UserContactInfoForm from "./Bidding/ContactInfo/UserContactInfoForm";
 // Auth
 import { SignInForm, RegisterForm,Profile } from "./Auth";
 // Survey
@@ -38,6 +41,9 @@ export {
   Footer,
   Ads,
   AdsCarousel,
+  BidHistory,
+  UserContactInfoForm,
+  BusinessContactInfoForm,
   CategoryList,
   CategoriesCarousel,
   CategorySideBar,
