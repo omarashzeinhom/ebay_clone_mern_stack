@@ -7,8 +7,6 @@ import { Product } from "../../../models/product";
 import CategorySideBar from "../../Categories/CategorySideBar/CategorySideBar";
 import { useShoppingCart } from "../../../context/ShoppingCartContext";
 
-
-
 interface ProductListProps {
   products: Product[];
 }
@@ -84,8 +82,7 @@ const ProductList: React.FC<ProductListProps> = () => {
                   </div>
                   <p className="product-list__product-list-category">
                     <em>Category:</em>
-                    <a href={`/${encodeURIComponent(product?.category)}`}>{product?.category}</a>
-                  </p>
+                    <a href={`/${encodeURIComponent(product.category)}`}>{product.category}</a>                  </p>
                 </div>
               </li>
             ))
