@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { categoriesService } from "../../../services/categoryService";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../../store/store";
+import { fetchCategories } from "../../../store/categorySlice";
 import "./CategorySideBar.scss";
 import { Category } from "../../../models/category";
 
 interface Props {}
 
 const CategorySideBar: React.FC<Props> = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const { data: categories, loading } = useSelector((state: RootState) => state.categories);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const data = await categoriesService.getAllCategories();
-        setCategories(data);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
+    if (categories.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories.length]);
 
   const handleCategoryClick = (categoryName: string) => {
     setSelectedCategory(categoryName);
@@ -35,17 +31,21 @@ const CategorySideBar: React.FC<Props> = () => {
         <h4>Categories</h4>
       </div>
       <div className="category-sidebar__content">
-        <ul className="category-sidebar__list">
-          {categories.map((category: Category) => (
-            <li
-              key={category.name}
-              className={`category-sidebar__item ${selectedCategory === category.name ? 'selected' : ''}`}
-              onClick={() => handleCategoryClick(category.name)}
-            >
-              {category.name}
-            </li>
-          ))}
-        </ul>
+        {loading ? (
+          <p>Loading categories...</p>
+        ) : (
+          <ul className="category-sidebar__list">
+            {categories.map((category: Category) => (
+              <li
+                key={category.name}
+                className={`category-sidebar__item ${selectedCategory === category.name ? 'selected' : ''}`}
+                onClick={() => handleCategoryClick(category.name)}
+              >
+                {category.name}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

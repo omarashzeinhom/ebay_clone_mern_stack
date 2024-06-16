@@ -1,36 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./CategoryList.scss";
 import { useNavigate } from "react-router-dom";
 import { Nav, SearchBar } from "../..";
-import { Category } from "../../../models/category";
-import { categoriesService } from "../../../services/categoryService";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../../store/store";
+import { fetchCategories } from "../../../store/categorySlice";
+import { Category } from "../../../models";
 
 interface CategoryListProps {
-  // Assuming there's an endpoint like '/categories' that returns categories
-  categories: Category[];
   total: number;
 }
 
 const CategoryList: React.FC<CategoryListProps> = ({ total }) => {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const { data: categories, loading } = useSelector((state: RootState) => state.categories);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch categories from the server when the component mounts
-    const fetchCategories = async () => {
-      try {
-        const data = await categoriesService.getAllCategories();
-        setCategories(data);
-        console.log(`fetchCategories data is -->${data}`);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
-    };
+    if (categories.length === 0) {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, categories.length]);
 
-    fetchCategories();
-  }, []);
-
+  // Group categories by their parent property
   const groupedCategories: { [parent: string]: Category[] } = {};
   categories.forEach((category) => {
     const parent = category?.parent || "Other";
@@ -44,14 +37,9 @@ const CategoryList: React.FC<CategoryListProps> = ({ total }) => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedCategory = event.target.value;
-    // console.log("Selected Category:", selectedCategory);
-
-    // Extract only the category name from the full path
     const categoryName = decodeURIComponent(
       selectedCategory.replace("/category/", "")
     );
-
-    // console.log(categoryName);
 
     if (categoryName) {
       navigate(`/category/${encodeURIComponent(categoryName)}`);
@@ -66,7 +54,11 @@ const CategoryList: React.FC<CategoryListProps> = ({ total }) => {
       <SearchBar />
       <div className="app-category__list">
         <h2>Categories</h2>
-        <select title="selectCategoryHere"onChange={handleCategoryChange} name="handleCategoryList">
+        <select
+          title="selectCategoryHere"
+          onChange={handleCategoryChange}
+          name="handleCategoryList"
+        >
           {Object.entries(groupedCategories).map(([parent, categoryList]) => (
             <optgroup label={parent} key={parent}>
               {categoryList.map((category) => (

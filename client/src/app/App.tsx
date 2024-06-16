@@ -16,6 +16,8 @@ import { CategoryList, ProductList, ProductDetail } from "../components";
 import { DeleteProduct, UpdateProduct } from "../components/Sell/CRUD";
 import Routes from "./Routes";
 import "./App.scss";
+import { Provider } from 'react-redux';
+import store from "../store/store";
 
 type AppProps = {
   total: number;
@@ -46,7 +48,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       path: "/products",
       element: (
         <ProductProvider>
-          <CategoryList categories={categories} total={total} />
+          <CategoryList  total={total} />
           <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
@@ -55,7 +57,7 @@ const App: React.FC<AppProps> = ({ total }) => {
       path: "/category/:categoryName",
       element: (
         <ProductProvider>
-          <CategoryList categories={categories} total={total} />
+          <CategoryList total={total} />
           <ProductList products={searchResults || []} />
         </ProductProvider>
       ),
@@ -82,6 +84,7 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   return (
     <React.StrictMode>
+       <Provider store={store}>
       <UserAuthProvider>
         <BusinessAuthProvider>
           <ShoppingCartProvider>
@@ -95,6 +98,7 @@ const App: React.FC<AppProps> = ({ total }) => {
           </ShoppingCartProvider>
         </BusinessAuthProvider>
       </UserAuthProvider>
+      </Provider>
     </React.StrictMode>
   );
 };
