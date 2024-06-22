@@ -18,6 +18,10 @@ const corsMiddleware = require("./middleware/corsMiddleware");
 const app = express();
 const port = process.env.PORT || 5000 || 5001;
 
+const Connection = require('tedious').Connection
+const Request = require('tedious').Request
+
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   limit: 5000, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
@@ -67,6 +71,41 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
 });
+
+
+
+// MySQL Setup
+
+// 1. Config
+
+const mySQLConfig= {
+  server: "localhost",
+  authentication:{
+    type: 'default',
+    options:{
+      userName: process.env.MYSQL_USERNAME,
+      password: process.env.MYSQL_PASS
+    }
+  }
+}
+
+// 2. Connection
+const mySQLConnection = new Connection(mySQLConfig)
+
+// 3. Error Handling
+
+mySQLConnection.on('connect', (err)=> {
+  try{
+
+  }catch(error){
+    console.log(error + "Error has been found in")
+  }
+})
+
+
+
+
+
 
 // Starting the server
 app.listen(port, () => {

@@ -67,3 +67,4 @@ Start the server with `node index.js`
 2. [Create, View, Drop, and Hide Indexes](https://www.mongodb.com/docs/atlas/atlas-ui/indexes/#create-an-index)
 3. [Authenticate Users - Node.js SDK - MongoDB](https://www.mongodb.com/docs/realm/sdk/node/users/authenticate-users/#std-label-node-login-google)
 4. [express-rate-limit](https://www.npmjs.com/package/express-rate-limit)
+5. [MySQL - Express (tedious)](https://expressjs.com/en/guide/database-integration.html#sql-server)
