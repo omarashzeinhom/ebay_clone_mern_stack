@@ -16,10 +16,10 @@ const productRoutes = require("./routes/productRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const corsMiddleware = require("./middleware/corsMiddleware");
 const app = express();
-const port = process.env.PORT || 5000 || 5001;
+const port = process.env.PORT || 5001 || 5002;
 
-const Connection = require('tedious').Connection
-const Request = require('tedious').Request
+// Create Pool Connection for MySQL
+//const { createPool } = require('mysql2/promise');
 
 
 const limiter = rateLimit({
@@ -71,37 +71,6 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
 });
-
-
-
-// MySQL Setup
-
-// 1. Config
-
-const mySQLConfig= {
-  server: "localhost",
-  authentication:{
-    type: 'default',
-    options:{
-      userName: process.env.MYSQL_USERNAME,
-      password: process.env.MYSQL_PASS
-    }
-  }
-}
-
-// 2. Connection
-const mySQLConnection = new Connection(mySQLConfig)
-
-// 3. Error Handling
-
-mySQLConnection.on('connect', (err)=> {
-  try{
-
-  }catch(error){
-    console.log(error + "Error has been found in")
-  }
-})
-
 
 
 
