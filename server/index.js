@@ -19,7 +19,7 @@ const app = express();
 const port = process.env.PORT || 5001 || 5002;
 
 // Create Pool Connection for MySQL
-//const { createPool } = require('mysql2/promise');
+const { createPool } = require('mysql2/promise');
 
 
 const limiter = rateLimit({
@@ -73,6 +73,39 @@ app.use((err, req, res, next) => {
 });
 
 
+
+// MySQL Setup
+
+// 1. Config
+
+// MySQL Config
+const pool = createPool({
+  host: 'localhost',
+  user: process.env.MYSQL_USERNAME,
+  password: process.env.MYSQL_PASS,
+  database: process.env.MYSQL_DB,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
+
+// Attempt to connect using pool
+pool.getConnection()
+  .then(connection => {
+    console.log('Connected to MySQL database 🚀');
+
+    // Release the connection
+    connection.release();
+    
+    // Start the server
+    const port = 5005;
+    app.listen(port, () => {
+      console.log(`SQL Server is running on port: http://localhost:${port} 🚀`);
+    });
+  })
+  .catch(err => {
+    console.error('Error connecting to MySQL:', err.message);
+  });
 
 
 
