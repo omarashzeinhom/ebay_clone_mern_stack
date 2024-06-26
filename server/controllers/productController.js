@@ -1,8 +1,6 @@
 // productController.js
 const Product = require("../models/productModel");
 const cloudinary = require("cloudinary");
-const axios = require("axios");
-const sharp = require("sharp");
 
 
 class ProductController {
