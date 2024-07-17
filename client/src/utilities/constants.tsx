@@ -1,8 +1,8 @@
 // Config Constants
 import { countryList} from "./countryList";
 // CHG DEVELOPMENT AND PRODUCTION
-const HOME_URL = "http://localhost:3000/";
-const API_BASE_URL = "http://localhost:5000/";
+const HOME_URL = "https://ebay-clone-mern-stack.vercel.app/";
+const API_BASE_URL = "https://server-ebay-clone.onrender.com";
 
 
 //const DEVELOP_URL = "http://localhost:3000/";
