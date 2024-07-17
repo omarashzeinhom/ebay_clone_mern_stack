@@ -46,8 +46,7 @@ export const ProductProvider: React.FC<ProductContextProps> = ({
   ): Promise<Product | undefined> => {
     try {
       const product = await productService.getProductsByName(searchQuery);
-      console.log("product:====>" + searchQuery);
-      //return product;
+      console.log("product:====>"+ product);
     } catch (error) {
       console.error(
         "Error fetching product with Name" + { searchQuery },

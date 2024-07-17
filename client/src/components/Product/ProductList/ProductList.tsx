@@ -19,6 +19,7 @@ const ProductList: React.FC<ProductListProps> = () => {
   const { productId } = useParams<{ productId: string }>();
 
   const [product, setProduct] = useState<Product | null>(null);
+  console.log(product);
 
   useEffect(() => {
     const fetchData = async () => {
