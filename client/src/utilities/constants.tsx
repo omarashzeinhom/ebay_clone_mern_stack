@@ -8,7 +8,7 @@ const API_BASE_URL = "https://server-ebay-clone.onrender.com/";
 //const DEVELOP_URL = "http://localhost:3000/";
 //const PROD_URL = "https://ebay-clone-mern-stack.vercel.app/";
 //const SERVER_DEVELOP_URL = "http://localhost:5000/";
-//const SERVER_PROD_URL = "https://server-ebay-clone.onrender.com";
+//const SERVER_PROD_URL = "https://server-ebay-clone.onrender.com/";
 
 const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || " ";
 
