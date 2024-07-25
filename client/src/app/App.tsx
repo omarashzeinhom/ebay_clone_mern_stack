@@ -3,7 +3,6 @@ import {
   UserAuthProvider,
   BusinessAuthProvider,
   ShoppingCartProvider,
-  ProductProvider,
   useProductContext,
   BiddingProvider,
 } from "../context/";
@@ -14,7 +13,7 @@ import { DeleteProduct, UpdateProduct } from "../components/Sell/CRUD";
 import Routes from "./Routes";
 import "./App.scss";
 import { Provider } from 'react-redux';
-import {store} from "../store/store";
+import { store } from "../store/store";
 
 type AppProps = {
   total: number;
@@ -23,40 +22,40 @@ type AppProps = {
 const App: React.FC<AppProps> = ({ total }) => {
   const { searchResults } = useProductContext();
 
- 
+
 
   // Existing routes
   const existingRoutes = [
     {
       path: "/products",
       element: (
-        <ProductProvider>
-          <CategoryList  total={total} />
+        <>
+          <CategoryList total={total} />
           <ProductList products={searchResults || []} />
-        </ProductProvider>
+        </>
       ),
     },
     {
       path: "/category/:categoryName",
       element: (
-        <ProductProvider>
+        <>
           <CategoryList total={total} />
           <ProductList products={searchResults || []} />
-        </ProductProvider>
+        </>
       ),
     },
     {
       path: "/item/:productId",
       element: <ProductDetail total={total} />,
     },
- 
+
     {
       path: "/edit/:productId",
-      element: <UpdateProduct total={total}/>,
+      element: <UpdateProduct total={total} />,
     },
     {
       path: "/delete/:productId",
-      element: <DeleteProduct total={total}  />,
+      element: <DeleteProduct total={total} />,
     },
   ];
 
@@ -67,20 +66,16 @@ const App: React.FC<AppProps> = ({ total }) => {
 
   return (
     <React.StrictMode>
-       <Provider store={store}>
-      <UserAuthProvider>
-        <BusinessAuthProvider>
-          <ShoppingCartProvider>
-          
-              <ProductProvider>
-                <BiddingProvider>
-                  <RouterProvider router={router} />
-                </BiddingProvider>
-              </ProductProvider>
-       
-          </ShoppingCartProvider>
-        </BusinessAuthProvider>
-      </UserAuthProvider>
+      <Provider store={store}>
+        <UserAuthProvider>
+          <BusinessAuthProvider>
+            <ShoppingCartProvider>
+              <BiddingProvider>
+                <RouterProvider router={router} />
+              </BiddingProvider>
+            </ShoppingCartProvider>
+          </BusinessAuthProvider>
+        </UserAuthProvider>
       </Provider>
     </React.StrictMode>
   );
