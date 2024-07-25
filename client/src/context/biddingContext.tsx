@@ -30,7 +30,7 @@ export const BiddingProvider: React.FC<BiddingProviderProps> = ({ children }) =>
     biddingHistory: [],
   });
   
-  console.log(setBiddingState);
+  //console.log(setBiddingState);
 
  
 

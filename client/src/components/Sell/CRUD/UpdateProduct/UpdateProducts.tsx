@@ -60,8 +60,12 @@ const UpdateProduct: React.FC<ProductDetailProps> = ({ total }) => {
   };
 
   if (!product) {
-   
-    return <div className="loading">Loading...</div>;
+    return (
+      <>
+      <h2>No Products Found!</h2>
+      <div className="loading">Loading... </div>
+      </>
+    );
   }
 
   return (

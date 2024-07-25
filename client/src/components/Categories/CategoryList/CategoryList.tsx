@@ -36,7 +36,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ total }) => {
   const handleCategoryChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    const selectedCategory = event.target.value;
+    const selectedCategory = event?.target?.value;
     const categoryName = decodeURIComponent(
       selectedCategory.replace("/category/", "")
     );

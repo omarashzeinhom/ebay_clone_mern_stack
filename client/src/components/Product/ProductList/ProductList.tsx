@@ -19,7 +19,7 @@ const ProductList: React.FC<ProductListProps> = () => {
   const { productId } = useParams<{ productId: string }>();
 
   const [product, setProduct] = useState<Product | null>(null);
-  console.log(product);
+  //console.log(product);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,14 +34,14 @@ const ProductList: React.FC<ProductListProps> = () => {
     };
 
     fetchData();
-  }, [productId, searchQuery, getProductById, getProductsByName]);
+  }, []);
 
   useEffect(() => {
     // Fetch products based on category
     if (categoryName) {
       fetchProducts();
     }
-  }, [categoryName, fetchProducts]);
+  }, []);
 
 
 
@@ -55,7 +55,8 @@ const ProductList: React.FC<ProductListProps> = () => {
       <div className="product-list">
         <h2 className="product-list__header">Products</h2>
         <h3>{categoryName}</h3>
-        <ul className="product-list__product-list">
+      {products !== null && (
+          <ul className="product-list__product-list">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <li key={product._id} className="product-list__product-list-item">
@@ -88,11 +89,16 @@ const ProductList: React.FC<ProductListProps> = () => {
               </li>
             ))
           ) : (
+           <>
             <li className="product-list__product-list-item">
-              <Loading />
+              <h4>No Products Found! in this Category</h4>
             </li>
+         
+           </>
           )}
         </ul>
+      )}
+      
       </div>
     </div>
   );

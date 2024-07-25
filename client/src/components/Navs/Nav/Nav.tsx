@@ -19,7 +19,7 @@ const Nav: React.FC<NavProps> = ({ total, pageTitle }) => {
     useBusinessAuth();
   const { userToken, user, logout, fetchUserInformation } = useUserAuth();
 
-  console.log(businessToken, business);
+  //console.log(businessToken, business);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNotificationModalVisible, setIsNotificationModalVisible] =
