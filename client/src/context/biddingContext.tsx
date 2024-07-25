@@ -24,13 +24,12 @@ interface BiddingProviderProps {
 }
 
 export const BiddingProvider: React.FC<BiddingProviderProps> = ({ children }) => {
-  const [biddingState, setBiddingState] = useState<BiddingState>({
+  const [biddingState, ] = useState<BiddingState>({
     products: [],
     currentBid: null,
     biddingHistory: [],
   });
   
-  //console.log(setBiddingState);
 
  
 

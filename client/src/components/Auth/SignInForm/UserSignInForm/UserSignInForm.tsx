@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { FaFacebook, FaApple, FaGoogle } from "react-icons/fa";
+import { FaApple, FaGoogle } from "react-icons/fa";
 import { userAuthService } from "../../../../services";
 import { useUserAuth } from "../../../../context";
 import UserDemoCredentials from "../DemoCredentials/UserDemoCredentials";
+import FaceBookSSO from "../SSO/SSO";
 
 const UserSignInForm: React.FC = () => {
   const { login, userToken, user } = useUserAuth();
@@ -67,9 +68,7 @@ const UserSignInForm: React.FC = () => {
   const SSOButtons = () => {
     return (
       <>
-        <button aria-label="SignInWithFaceBook" className="app__signin-Btn">
-          <FaFacebook /> Continue with Facebook
-        </button>
+        <FaceBookSSO/>
         <button aria-label="SignInWithGoogle" className="app__signin-Btn-alt">
           <FaGoogle /> Continue with Google
         </button>
