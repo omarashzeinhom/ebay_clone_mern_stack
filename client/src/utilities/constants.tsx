@@ -29,6 +29,9 @@ const userUpdatesUploadEndPoint = `https://api.cloudinary.com/v1_1/${cloudName}/
 const userUpdatesFullUploadUri = `${userUpdatesUploadEndPoint}?folder=${userUpdatesfolderPath}`;
 
 /* NavBar Items Start */
+
+// Define the type for a navigation item
+
 const navItems = [
   {
     title: "Daily Deals",

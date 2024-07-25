@@ -7,8 +7,8 @@ import { UpdatedUser } from "../models";
 interface UserAuthContextType {
   userToken: string | null;
   user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | any>>;
-  login: (userToken: string, data: User) => void;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  login: (userToken: string, user: User) => void;
   logout: () => void;
   updateUser: (
     selectedAvatar: File | undefined,
@@ -19,36 +19,22 @@ interface UserAuthContextType {
   fetchUserInformation: (userToken: string) => Promise<void>;
 }
 
-const UserAuthContext = createContext<UserAuthContextType | undefined>(
-  undefined
-);
+const UserAuthContext = createContext<UserAuthContextType | undefined>(undefined);
 
-export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [userToken, setUserToken] = useState<string | null>(null);
-  //user
   const [user, setUser] = useState<User | null>(null);
-  const [updatedUser, setUpdatedUser] = useState<UpdatedUser>({
-    _id: `${user?.userId}`,
-  }); 
+  const [updatedUser, setUpdatedUser] = useState<UpdatedUser | undefined>(undefined);
 
   useEffect(() => {
     const userStoredToken = localStorage.getItem("user-token");
     if (userStoredToken) {
-      // Make sure to set user in token
-      // Replace local storage 
-      // Encrypted storage
       setUserToken(userStoredToken);
       fetchUserInformation(userStoredToken);
-
-      // Set automatic logout after 1 hour (3600 seconds)
       const logoutTimeout = setTimeout(() => {
         logout();
         showLogoutNotification();
       }, 3600 * 1000); // 1 hour in milliseconds
-
-      // Clear the timeout on component unmount or when the user logs out manually
       return () => clearTimeout(logoutTimeout);
     }
   }, []);
@@ -75,7 +61,6 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const fetchUserInformation = async (userToken: string) => {
-    // Check if neither business nor user is logged in
     try {
       const response = await axios.get(`${API_BASE_URL}auth/user`, {
         headers: { Authorization: `Bearer ${userToken}` },
@@ -98,7 +83,6 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUser(null);
     localStorage.removeItem("user-token");
     localStorage.removeItem("user");
-
   };
 
   const updateUser = async (
@@ -107,19 +91,19 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
   ) => {
     const formData = new FormData();
     if (user?.userId) {
-      formData.append("_id", user?.userId);
+      formData.append("_id", user.userId);
     }
     if (user?.password) {
-      formData.append("password", updatedUser?.password || user?.password);
+      formData.append("password", updatedUser?.password || user.password);
     }
     if (updatedUser?.email) {
-      formData.append("email", updatedUser?.email);
+      formData.append("email", updatedUser.email);
     }
     if (updatedUser?.firstName) {
-      formData.append("firstName", updatedUser?.firstName);
+      formData.append("firstName", updatedUser.firstName);
     }
     if (updatedUser?.lastName) {
-      formData.append("lastName", updatedUser?.lastName);
+      formData.append("lastName", updatedUser.lastName);
     }
     if (selectedAvatar) {
       formData.append("updatedAvatar", selectedAvatar);
@@ -127,7 +111,7 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     try {
       const response = await axios.put(
-        `${API_BASE_URL}auth/user/:${user?.userId}`,
+        `${API_BASE_URL}auth/user/${user?.userId}`,
         formData,
         {
           headers: {
@@ -137,23 +121,22 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       );
 
-      setUpdatedUser((prevUser) => ({
-        ...prevUser,
-        firstName: updatedUser?.firstName || prevUser?.firstName,
-        lastName: updatedUser?.lastName || prevUser?.lastName,
-        email: updatedUser?.email || prevUser?.email,
-        avatar: updatedUser?.avatar || prevUser?.avatar,
-      }));
+      const updatedUserData: UpdatedUser = {
+        _id: user?.userId || "", // Ensure _id is set
+        firstName: updatedUser?.firstName || user?.firstName || "",
+        lastName: updatedUser?.lastName || user?.lastName || "",
+        email: updatedUser?.email || user?.email || "",
+        avatar: updatedUser?.avatar || user?.avatar || "",
+        password: updatedUser?.password || user?.password || "",
+      };
 
-      setUser((prevUser) => ({
-        ...prevUser!,
-        firstName: updatedUser?.firstName || prevUser?.firstName || "",
-        lastName: updatedUser?.lastName || prevUser?.lastName || "",
-        email: updatedUser?.email || prevUser?.email || "",
-        avatar: updatedUser?.avatar || prevUser?.avatar || "",
-      }));
+      setUpdatedUser(updatedUserData);
+      setUser({
+        ...user!,
+        ...updatedUserData,
+      });
 
-      console.log(response?.data);
+      console.log(response.data);
     } catch (error) {
       console.error("Error updating user:", error);
     }
@@ -168,9 +151,7 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
     updatedUser,
     fetchUserInformation,
     setUser,
-    setUpdatedUser: setUpdatedUser as React.Dispatch<
-      React.SetStateAction<UpdatedUser | undefined>
-    >,
+    setUpdatedUser,
   };
 
   return (
@@ -183,7 +164,7 @@ export const UserAuthProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useUserAuth = () => {
   const context = useContext(UserAuthContext);
   if (!context) {
-    throw new Error("useAuth must be used with an AuthProvider");
+    throw new Error("useUserAuth must be used within a UserAuthProvider");
   }
   return context;
 };

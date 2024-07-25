@@ -22,4 +22,7 @@ router.get("/user/:id", verifyUserToken, userAuthController.updateUser);
 //router.get("/register", (req, res) => {});
 //router.get("/login", (req, res) => {});
 
+//  Facebook login route
+router.post("/auth/facebook", userAuthController.facebookLogin);
+
 module.exports = router;

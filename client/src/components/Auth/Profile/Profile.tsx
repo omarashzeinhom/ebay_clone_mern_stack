@@ -3,13 +3,12 @@ import "./Profile.scss";
 import { Nav } from "../../";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useState } from "react";
-
 import { useUserAuth, useBusinessAuth } from "../../../context/";
-
 import BusinessProfile from "../Profile/Business/BusinessProfile";
 import EditBusinessProfile from "../Profile/Business/EditBusinessProfile";
 import EditUserProfile from "../Profile/User/EditUserProfile";
 import UserProfile from "../Profile/User/UserProfile";
+import { User, Business } from "../../../models";
 
 type ProfileProps = {
   total: number;
@@ -18,8 +17,7 @@ type ProfileProps = {
 export default function Profile({ total }: ProfileProps) {
   const [isEditing, setIsEditing] = useState("View");
   const { user, setUser, updatedUser, setUpdatedUser } = useUserAuth();
-  const { business, setBusiness, setUpdatedBusiness, updatedBusiness } =
-    useBusinessAuth();
+  const { business, setBusiness, setUpdatedBusiness, updatedBusiness } = useBusinessAuth();
 
   const { businessId, userId } = useParams();
 
@@ -28,6 +26,7 @@ export default function Profile({ total }: ProfileProps) {
 
   const businessStr = JSON.stringify(business);
   const userStr = JSON.stringify(user);
+
   if (businessId !== undefined) {
     console.log(`
     ************************
@@ -74,7 +73,7 @@ export default function Profile({ total }: ProfileProps) {
         {user?.userId && (
           <EditUserProfile
             user={user}
-            setUser={setUser}
+            setUser={setUser as React.Dispatch<React.SetStateAction<User>>} // Cast to correct type
             updatedUser={updatedUser}
             setUpdatedUser={setUpdatedUser}
           />
@@ -82,7 +81,7 @@ export default function Profile({ total }: ProfileProps) {
         {business?.businessId && (
           <EditBusinessProfile
             business={business}
-            setBusiness={setBusiness}
+            setBusiness={setBusiness as React.Dispatch<React.SetStateAction<Business>>} // Cast to correct type
             updatedBusiness={updatedBusiness}
             setUpdatedBusiness={setUpdatedBusiness}
           />
@@ -129,25 +128,24 @@ export default function Profile({ total }: ProfileProps) {
     <>
       {user?.userId || business?.businessId ? (
         <>
-          <Nav total={total}  pageTitle=""/>
+          <Nav total={total} pageTitle="" />
           <SearchBar />
           <RadioButtons />
           <div className="app-profile-container">
             {isEditing === "View" && <ProfileContainer />}
-
             {isEditing === "Edit" && <EditProfileForm />}
           </div>
         </>
       ) : (
         <>
-          <Nav total={total} pageTitle=""/>
+          <Nav total={total} pageTitle="" />
           <SearchBar />
           <div className="app-profile-container">
             <button
               aria-label="GoToSignInPageButton"
               onClick={() => (window.location.href = "/signin")}
             >
-              Sign In{" "}
+              Sign In
             </button>
           </div>
         </>

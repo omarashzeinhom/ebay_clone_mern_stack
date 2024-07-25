@@ -19,7 +19,7 @@ const Nav: React.FC<NavProps> = ({ total, pageTitle }) => {
     useBusinessAuth();
   const { userToken, user, logout, fetchUserInformation } = useUserAuth();
 
-  //console.log(businessToken, business);
+  console.log(businessToken, business);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNotificationModalVisible, setIsNotificationModalVisible] =
@@ -247,8 +247,7 @@ const Nav: React.FC<NavProps> = ({ total, pageTitle }) => {
         <AppNavRight />
         {isNotificationModalVisible && (
           <NotificationModal
-            onClose={() => setIsNotificationModalVisible(false)}
-          />
+            onClose={() => setIsNotificationModalVisible(false)} isVisible={false}          />
         )}
       </ul>
     </nav>

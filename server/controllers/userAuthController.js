@@ -207,6 +207,47 @@ class UserAuthController {
   }
 
   /* <---------- User Async Functions End ----------> */
+  async facebookLogin(req, res) {
+    const { accessToken } = req.body;
+
+    try {
+      // Validate access token with Facebook
+      const fbResponse = await axios.get(`https://graph.facebook.com/me?access_token=${accessToken}&fields=id,email,first_name,last_name,picture`);
+
+      const { id, email, first_name, last_name, picture } = fbResponse.data;
+
+      // Check if the user already exists
+      let user = await User.findOne({ email });
+      
+      if (!user) {
+        // Register the user if they do not exist
+        const hashedPassword = await bcrypt.hash(id, 10); // Use Facebook ID as temporary password
+        
+        user = new User({
+          firstName: first_name,
+          lastName: last_name,
+          email: email,
+          password: hashedPassword,
+          avatar: picture.data.url,
+        });
+        
+        await user.save();
+      }
+
+      // Generate a JWT token
+      const userToken = jwt.sign(
+        { userId: user._id, email: user.email },
+        userSecretKey,
+        { expiresIn: "1h" }
+      );
+
+      res.status(200).json({ userToken, expiresIn: 3600 });
+    } catch (error) {
+      console.error("Error in facebookLogin:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  }
+
 }
 
 module.exports = new UserAuthController();

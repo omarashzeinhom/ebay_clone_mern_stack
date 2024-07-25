@@ -93,5 +93,12 @@ export const userAuthService = {
   },
 
   /* <---User services end ---> */
-
+  async facebookLogin(accessToken: string) {
+    try {
+      const response = await axios.post(`${API_BASE_URL}auth/facebook`, { accessToken });      return response.data; // Assuming your backend returns { userToken, userData }
+    } catch (error) {
+      console.error("Error in facebookLogin:", error);
+      throw error; // Re-throw the error to let the calling code handle it
+    }
+  }
 };
