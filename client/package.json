@@ -11,7 +11,7 @@
     "@stripe/stripe-js": "^3.4.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@types/connect": "^3.4.38",
-    "@types/node": "^20.12.10",
+    "@types/node": "^20.19.1",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.7.4",
     "react": "^18.3.1",
